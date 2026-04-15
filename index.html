@@ -202,6 +202,61 @@
 
   .hero-desc span { opacity: 0.6; }
 
+  /* HERO SEARCH */
+  .hero-search-wrap {
+    display: flex;
+    max-width: 580px;
+    margin: 36px auto 0;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(82,183,136,0.3);
+    border-radius: 4px;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1.2s;
+  }
+
+  .hero-search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 16px 22px;
+    color: var(--cream);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  .hero-search-input::placeholder { color: rgba(242,234,216,0.38); }
+
+  .hero-search-btn {
+    background: var(--mid-green);
+    border: none;
+    color: var(--cream);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 16px 28px;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+
+  .hero-search-btn:hover { background: var(--bright-green); }
+  .hero-search-btn:disabled { opacity: 0.5; cursor: default; }
+
+  .hero-pills {
+    max-width: 580px;
+    margin: 14px auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1.4s;
+  }
+
   .hero-actions {
     display: flex;
     gap: 20px;
@@ -2060,7 +2115,7 @@
   <ul class="nav-links">
     <li><a href="#magazine">Magazine</a></li>
     <li><a href="#cannalogy">Cannalogy</a></li>
-    <li><a href="#seminars">Seminars</a></li>
+    <li><a href="#consulting">Seminars</a></li>
     <li><a href="#hash">Hash Culture</a></li>
     <li><a href="#consulting">CannaQuant</a></li>
     <li><a href="#newsletter" class="nav-cta">Subscribe</a></li>
@@ -2108,7 +2163,20 @@
       <div class="hero-wordmark">Cannascenti</div>
     </div>
     <div class="hero-tagline">Mary Jane Knows What You Want Before You Do</div>
-    <p class="hero-desc"><span>A futuristic cannabis magazine built by industry professionals.</span> Real knowledge, real experience — for the consumer who wants more and the professional who demands it.</p>
+    <p class="hero-desc"><span>Step into the future of cannabis.</span> Your personal CannaQuant — real knowledge, real experience, and an AI that knows what you want before you do.</p>
+    <div class="hero-search-wrap">
+      <input id="strainInput" class="hero-search-input" type="text" placeholder="Search strains — mood, flavor, vibe, or name..." maxlength="200" />
+      <button id="strainSearchBtn" class="hero-search-btn" onclick="findStrains()">Find Strains</button>
+    </div>
+    <div class="hero-pills">
+      <span class="strain-example-pill" onclick="searchExample(this)">relaxed</span>
+      <span class="strain-example-pill" onclick="searchExample(this)">energetic</span>
+      <span class="strain-example-pill" onclick="searchExample(this)">creative</span>
+      <span class="strain-example-pill" onclick="searchExample(this)">sleep</span>
+      <span class="strain-example-pill" onclick="searchExample(this)">Gelato</span>
+      <span class="strain-example-pill" onclick="searchExample(this)">OG Kush</span>
+      <span class="strain-example-pill" onclick="searchExample(this)">Blue Dream</span>
+    </div>
     <div class="hero-actions">
       <a href="#magazine" class="btn-primary">Read the Magazine</a>
       <a href="#pro" class="btn-secondary">Budtender Pro</a>
@@ -2153,6 +2221,325 @@
     <span class="ticker-dot">◆</span>
   </div>
 </div>
+
+<!-- STRAIN FINDER RESULTS -->
+<div id="strain-finder" class="strain-finder" style="padding-top:40px; padding-bottom:60px;">
+  <div class="strain-finder-inner">
+    <div id="strainLoading" class="strain-loading">Finding your matches...</div>
+    <div id="strainError" class="strain-error"></div>
+    <div id="strainResults" class="strain-results">
+      <div id="strainResultsHeader" class="strain-results-header"></div>
+      <div id="strainCards" class="strain-cards"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CANNALOGY -->
+<div id="cannalogy" class="cannalogy">
+  <div class="cannalogy-inner">
+    <div class="section-label">✦ The Cannalogy</div>
+    <div class="section-title">Cannabis education for <em>everyone</em></div>
+
+    <div class="cannalogy-grid">
+
+      <!-- Featured education block -->
+      <div class="canna-card canna-card-featured">
+        <div>
+          <span class="canna-featured-label">✦ Start Here</span>
+          <div class="canna-featured-title">Everything you thought you knew about cannabis is <em>incomplete</em></div>
+          <p class="canna-featured-desc">Most people pick up cannabis and just start using it. Nobody ever sat down and explained terpenes, cannabinoids, the entourage effect, consumption methods, or why one strain hits completely different than another. Cannalogy fixes that. Real education, plain language, zero gatekeeping.</p>
+          <a href="#" class="btn-primary">Start Learning</a>
+        </div>
+        <div class="canna-topics">
+          <div class="canna-topic"><div class="canna-topic-dot"></div><span class="canna-topic-name">Terpenes 101</span></div>
+          <div class="canna-topic"><div class="canna-topic-dot"></div><span class="canna-topic-name">THC vs CBD vs CBG</span></div>
+          <div class="canna-topic"><div class="canna-topic-dot"></div><span class="canna-topic-name">The Entourage Effect</span></div>
+          <div class="canna-topic"><div class="canna-topic-dot"></div><span class="canna-topic-name">Consumption Methods</span></div>
+          <div class="canna-topic"><div class="canna-topic-dot"></div><span class="canna-topic-name">Dosing Guide</span></div>
+          <div class="canna-topic"><div class="canna-topic-dot"></div><span class="canna-topic-name">Reading a Label</span></div>
+          <div class="canna-topic"><div class="canna-topic-dot"></div><span class="canna-topic-name">Sativa vs Indica</span></div>
+          <div class="canna-topic"><div class="canna-topic-dot"></div><span class="canna-topic-name">Growing Basics</span></div>
+        </div>
+      </div>
+
+      <a class="canna-card" href="#">
+        <div class="canna-card-num">01</div>
+        <div class="canna-card-title">Terpenes: The Real Reason Strains Feel Different</div>
+        <p class="canna-card-desc">Forget Sativa vs. Indica. The real driver of your experience is terpenes — the aromatic compounds that shape every aspect of your high.</p>
+        <div class="canna-card-arrow">→</div>
+      </a>
+
+      <a class="canna-card" href="#">
+        <div class="canna-card-num">02</div>
+        <div class="canna-card-title">How to Actually Read a Cannabis Label</div>
+        <p class="canna-card-desc">THC percentage, COA, batch numbers, harvest dates — decoded. What to look for, what to ignore, and what dispensaries don't tell you.</p>
+        <div class="canna-card-arrow">→</div>
+      </a>
+
+      <a class="canna-card" href="#">
+        <div class="canna-card-num">03</div>
+        <div class="canna-card-title">The Entourage Effect Explained Simply</div>
+        <p class="canna-card-desc">Why a full-spectrum product hits differently than isolate. The science of cannabinoids and terpenes working together — made simple.</p>
+        <div class="canna-card-arrow">→</div>
+      </a>
+
+      <a class="canna-card" href="#">
+        <div class="canna-card-num">04</div>
+        <div class="canna-card-title">Every Consumption Method, Honestly Reviewed</div>
+        <p class="canna-card-desc">Flower, vape, edible, tincture, dab, topical — the real differences in onset, duration, intensity, and who each method is actually for.</p>
+        <div class="canna-card-arrow">→</div>
+      </a>
+
+      <a class="canna-card" href="#">
+        <div class="canna-card-num">05</div>
+        <div class="canna-card-title">Dosing: The Art of Finding Your Sweet Spot</div>
+        <p class="canna-card-desc">Too much is the most common mistake. A practical framework for new users and experienced consumers to dial in the perfect dose every time.</p>
+        <div class="canna-card-arrow">→</div>
+      </a>
+
+      <a class="canna-card" href="#">
+        <div class="canna-card-num">06</div>
+        <div class="canna-card-title">Cannabis & the Body: What's Actually Happening</div>
+        <p class="canna-card-desc">The endocannabinoid system, CB1 and CB2 receptors, why cannabis affects everyone differently — the biology explained without a PhD.</p>
+        <div class="canna-card-arrow">→</div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<!-- CANNAQUANT -->
+<div id="consulting" class="consulting">
+  <div class="consulting-inner">
+
+    <div class="consulting-left">
+      <div class="section-label">✦ CannaQuant</div>
+      <div class="consulting-title">I'm your personal <em>CannaQuant.</em> Your budtender for life.</div>
+      <p class="consulting-desc">Think of me as your cannabis financial advisor — except instead of money, we're talking about your experience, your body, your goals, and your plant. Whether you're brand new or a seasoned connoisseur, I meet you exactly where you are. Real conversations. Real answers. No guesswork.</p>
+
+      <div class="consulting-stats">
+        <div>
+          <div class="consulting-stat-num">10+</div>
+          <div class="consulting-stat-label">Years on the floor</div>
+        </div>
+        <div>
+          <div class="consulting-stat-num">1000s</div>
+          <div class="consulting-stat-label">Customers helped</div>
+        </div>
+        <div>
+          <div class="consulting-stat-num">500+</div>
+          <div class="consulting-stat-label">Strains studied</div>
+        </div>
+        <div>
+          <div class="consulting-stat-num">100%</div>
+          <div class="consulting-stat-label">Real experience</div>
+        </div>
+      </div>
+
+      <a href="#newsletter" class="btn-primary">Book Your CannaQuant Session</a>
+    </div>
+
+    <div class="consulting-services">
+
+      <div class="consulting-service">
+        <div class="consulting-service-icon">🌿</div>
+        <div>
+          <div class="consulting-service-title">Personal Consumer Session</div>
+          <p class="consulting-service-desc">New to cannabis or just not getting the results you want? Tell me your goals, your lifestyle, your experience — I'll build you a personalized cannabis plan covering strains, products, dosing, and consumption methods. One session changes everything.</p>
+          <div class="consulting-service-price">1-on-1 · 60 minutes · Zoom or phone</div>
+        </div>
+      </div>
+
+      <div class="consulting-service">
+        <div class="consulting-service-icon">🏪</div>
+        <div>
+          <div class="consulting-service-title">Dispensary & Retail Consulting</div>
+          <p class="consulting-service-desc">Staff training, floor strategy, product curation, customer experience — built by someone who has actually managed a dispensary. Not theory. Systems that work.</p>
+          <div class="consulting-service-price">Custom packages · Multi-session programs available</div>
+        </div>
+      </div>
+
+      <div class="consulting-service">
+        <div class="consulting-service-icon">💼</div>
+        <div>
+          <div class="consulting-service-title">Cannabis Business Strategy</div>
+          <p class="consulting-service-desc">Launching a brand, entering the market, refining your positioning? Deep industry knowledge meets real commercial thinking. From startup to scale.</p>
+          <div class="consulting-service-price">Project-based · Initial call complimentary</div>
+        </div>
+      </div>
+
+      <div class="consulting-service">
+        <div class="consulting-service-icon">🎓</div>
+        <div>
+          <div class="consulting-service-title">Budtender & Staff Training</div>
+          <p class="consulting-service-desc">Your staff is your brand. Comprehensive training on strains, terpenes, customer conversations, product knowledge, and sales technique — from the floor up.</p>
+          <div class="consulting-service-price">Group sessions · In-person or virtual</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- JOINT ROLLING SEMINARS (inside CannaQuant) -->
+    <div style="margin-top: 80px; border-top: 1px solid rgba(82,183,136,0.12); padding-top: 60px;">
+      <div class="seminars-header">
+        <div>
+          <div class="section-label">✦ Joint Rolling Seminars</div>
+          <div class="section-title">The art of <em>the roll</em></div>
+        </div>
+        <div>
+          <p style="font-size:14px; line-height:1.9; color:var(--cream); opacity:0.5;">Most people have been smoking for years and still can't roll a proper joint. No judgment — nobody taught them. That changes here. From your first joint to a perfectly engineered cross — every level covered, every technique mastered.</p>
+        </div>
+      </div>
+
+      <div class="seminars-levels" style="margin-top: 40px;">
+
+        <div class="seminar-level">
+          <span class="seminar-level-badge badge-beginner">Beginner</span>
+          <div class="seminar-level-title">Your First Roll</div>
+          <p class="seminar-level-desc">Never rolled before? No problem. We start from zero — papers, filters, grinding, and the basics of a solid roll that burns clean.</p>
+          <ul class="seminar-techniques">
+            <li>Choosing the right papers</li>
+            <li>Grinding consistency</li>
+            <li>The classic straight joint</li>
+            <li>Making a proper filter tip</li>
+            <li>Lighting and smoking technique</li>
+          </ul>
+          <a href="#newsletter" class="seminar-cta">Book This Class</a>
+        </div>
+
+        <div class="seminar-level">
+          <span class="seminar-level-badge badge-intermediate">Intermediate</span>
+          <div class="seminar-level-title">Level Up Your Roll</div>
+          <p class="seminar-level-desc">You can roll, but it's not consistent. This class tightens your technique and introduces blunts, backwoods, and the cone roll.</p>
+          <ul class="seminar-techniques">
+            <li>The perfect cone joint</li>
+            <li>Blunt rolling (cigarillo & backwood)</li>
+            <li>Dutch masters technique</li>
+            <li>Pre-roll consistency tricks</li>
+            <li>Infused rolls & kief crowning</li>
+          </ul>
+          <a href="#newsletter" class="seminar-cta">Book This Class</a>
+        </div>
+
+        <div class="seminar-level">
+          <span class="seminar-level-badge badge-advanced">Advanced</span>
+          <div class="seminar-level-title">The Masterclass</div>
+          <p class="seminar-level-desc">For the enthusiast who wants to go all the way. Intricate rolls, showpieces, and techniques that will genuinely impress anyone in the room.</p>
+          <ul class="seminar-techniques">
+            <li>The cross joint</li>
+            <li>Tulip & cannons</li>
+            <li>Multi-paper braided rolls</li>
+            <li>Diamond & star formations</li>
+            <li>Scorpion & windmill techniques</li>
+          </ul>
+          <a href="#newsletter" class="seminar-cta">Book This Class</a>
+        </div>
+
+      </div>
+
+      <div class="seminars-formats" style="margin-top: 40px;">
+        <div class="seminar-format">
+          <div class="seminar-format-icon">🖥</div>
+          <div class="seminar-format-title">Live Online Sessions</div>
+          <p class="seminar-format-desc">Zoom-based classes with real-time instruction. Learn from anywhere. Sessions are small-group, interactive, and recorded for replay.</p>
+        </div>
+        <div class="seminar-format">
+          <div class="seminar-format-icon">📍</div>
+          <div class="seminar-format-title">In-Person Workshops</div>
+          <p class="seminar-format-desc">Hands-on sessions in select cities. Everything provided. The most effective way to learn — direct feedback, small groups, full experience.</p>
+        </div>
+        <div class="seminar-format">
+          <div class="seminar-format-icon">🏢</div>
+          <div class="seminar-format-title">Private Events & Groups</div>
+          <p class="seminar-format-desc">Dispensary staff training, private parties, corporate events, and group bookings. Fully customized to your occasion and audience.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<!-- HASH CULTURE -->
+<div id="hash" class="hash-section">
+  <div class="hash-inner">
+    <span class="hash-label">✦ Hash Culture</span>
+    <div class="hash-title">The oldest cannabis tradition.<br><em>Finally respected.</em></div>
+    <p class="hash-intro">Before dispensaries, before pre-rolls, before flower became a commodity — there was hash. The most concentrated, most storied, most misunderstood form of cannabis. We're bringing it back to the forefront, and giving it the stage it deserves.</p>
+
+    <div class="hash-events">
+
+      <div class="hash-event">
+        <div class="hash-event-glow"></div>
+        <span class="hash-event-label">✦ Signature Experience</span>
+        <div class="hash-event-name"><em>Taste the Courage</em></div>
+        <p class="hash-event-desc">A curated hash tasting experience for the true connoisseur. Multiple expressions — different regions, different techniques, different profiles — presented and guided by someone who actually knows what they're talking about. Like a whisky flight, but elevated.</p>
+        <div class="hash-event-details">
+          <span class="hash-event-detail">Bubblehash · Dry Sift · Rosin · Live Hash</span>
+          <span class="hash-event-detail">Guided tasting with full terpene breakdowns</span>
+          <span class="hash-event-detail">Small groups — intimate, educational, unforgettable</span>
+        </div>
+        <a href="#" class="hash-btn">Reserve Your Seat</a>
+      </div>
+
+      <div class="hash-event">
+        <div class="hash-event-glow"></div>
+        <span class="hash-event-label">✦ Exclusive Event</span>
+        <div class="hash-event-name"><em>Solventless</em> Sessions</div>
+        <p class="hash-event-desc">A hash-only evening for people who actually appreciate the craft. No flower, no vapes. Just the finest solventless expressions available, expertly presented to a room of people who get it.</p>
+        <div class="hash-event-details">
+          <span class="hash-event-detail">Hash-only format</span>
+          <span class="hash-event-detail">Private invite and public events</span>
+          <span class="hash-event-detail">Education + experience combined</span>
+        </div>
+        <a href="#" class="hash-btn">Join the List</a>
+      </div>
+
+      <div class="hash-event">
+        <div class="hash-event-glow"></div>
+        <span class="hash-event-label">✦ Community Night</span>
+        <div class="hash-event-name">Hash <em>Nights</em></div>
+        <p class="hash-event-desc">A recurring gathering for the hash community. Monthly sessions where enthusiasts, connoisseurs, and the hash-curious all come together. The culture lives here.</p>
+        <div class="hash-event-details">
+          <span class="hash-event-detail">Monthly recurring events</span>
+          <span class="hash-event-detail">Open to all levels — beginners welcome</span>
+          <span class="hash-event-detail">Community-driven, expert-guided</span>
+        </div>
+        <a href="#" class="hash-btn">Attend a Night</a>
+      </div>
+
+    </div>
+
+    <div class="hash-classes">
+      <div>
+        <div class="hash-classes-intro">Master every form of hash — <em>from pressing to rolling to tasting</em></div>
+      </div>
+      <div class="hash-class-grid">
+        <div class="hash-class-card">
+          <div class="hash-class-name">Hash 101</div>
+          <p class="hash-class-desc">History, types, and how hash is made. The foundation every enthusiast needs. Covers kief, dry sift, bubble, rosin, and live hash.</p>
+        </div>
+        <div class="hash-class-card">
+          <div class="hash-class-name">Rolling with Hash</div>
+          <p class="hash-class-desc">How to properly incorporate hash into joints — from sprinkling kief to building a proper hash rod or snake. Technique matters.</p>
+        </div>
+        <div class="hash-class-card">
+          <div class="hash-class-name">Pressing & Extraction</div>
+          <p class="hash-class-desc">Understanding how solventless concentrates are made. Bubble hash, rosin pressing — demystified for the serious enthusiast.</p>
+        </div>
+        <div class="hash-class-card">
+          <div class="hash-class-name">The Connoisseur's Eye</div>
+          <p class="hash-class-desc">How to evaluate hash quality — color, texture, melt, aroma, and terpene expression. What separates premium from average.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
 
 <!-- FEATURED ARTICLE -->
 <div id="magazine">
@@ -2265,359 +2652,6 @@
 </div>
 
 <div class="full-divider" style="margin-top: 80px;"></div>
-
-<!-- STRAIN FINDER -->
-<div id="strain-finder" class="strain-finder">
-  <div class="strain-finder-inner">
-    <span class="strain-finder-label">✦ AI Strain Finder</span>
-    <div class="strain-finder-title">Describe how you want to <em>feel</em></div>
-    <p class="strain-finder-sub">Type anything — a mood, a flavor, a vibe, or a strain name. Our AI understands terpenes, effects, and how cannabis works.</p>
-
-    <div class="strain-search-wrap">
-      <input
-        id="strainInput"
-        class="strain-input"
-        type="text"
-        placeholder="e.g. limey, productive and cheery — or just type 'sleep' or 'creative'"
-        maxlength="200"
-      />
-      <button id="strainSearchBtn" class="strain-search-btn" onclick="findStrains()">Find Strains</button>
-    </div>
-
-    <div class="strain-examples">
-      <span class="strain-example-pill" onclick="searchExample(this)">Jack Herer</span>
-      <span class="strain-example-pill" onclick="searchExample(this)">Skywalker</span>
-      <span class="strain-example-pill" onclick="searchExample(this)">Durban Poison</span>
-      <span class="strain-example-pill" onclick="searchExample(this)">Gelato</span>
-      <span class="strain-example-pill" onclick="searchExample(this)">Girl Scout Cookies</span>
-      <span class="strain-example-pill" onclick="searchExample(this)">Blue Dream</span>
-      <span class="strain-example-pill" onclick="searchExample(this)">earthy</span>
-      <span class="strain-example-pill" onclick="searchExample(this)">pungent</span>
-      <span class="strain-example-pill" onclick="searchExample(this)">Kush</span>
-      <span class="strain-example-pill" onclick="searchExample(this)">OG</span>
-    </div>
-
-    <div id="strainLoading" class="strain-loading">Finding your matches...</div>
-    <div id="strainError" class="strain-error"></div>
-
-    <div id="strainResults" class="strain-results">
-      <div id="strainResultsHeader" class="strain-results-header"></div>
-      <div id="strainCards" class="strain-cards"></div>
-    </div>
-  </div>
-</div>
-
-<!-- CANNALOGY -->
-<div id="cannalogy" class="cannalogy">
-  <div class="cannalogy-inner">
-    <div class="section-label">✦ The Cannalogy</div>
-    <div class="section-title">Cannabis education for <em>everyone</em></div>
-
-    <div class="cannalogy-grid">
-
-      <!-- Featured education block -->
-      <div class="canna-card canna-card-featured">
-        <div>
-          <span class="canna-featured-label">✦ Start Here</span>
-          <div class="canna-featured-title">Everything you thought you knew about cannabis is <em>incomplete</em></div>
-          <p class="canna-featured-desc">Most people pick up cannabis and just start using it. Nobody ever sat down and explained terpenes, cannabinoids, the entourage effect, consumption methods, or why one strain hits completely different than another. Cannalogy fixes that. Real education, plain language, zero gatekeeping.</p>
-          <a href="#" class="btn-primary">Start Learning</a>
-        </div>
-        <div class="canna-topics">
-          <div class="canna-topic"><div class="canna-topic-dot"></div><span class="canna-topic-name">Terpenes 101</span></div>
-          <div class="canna-topic"><div class="canna-topic-dot"></div><span class="canna-topic-name">THC vs CBD vs CBG</span></div>
-          <div class="canna-topic"><div class="canna-topic-dot"></div><span class="canna-topic-name">The Entourage Effect</span></div>
-          <div class="canna-topic"><div class="canna-topic-dot"></div><span class="canna-topic-name">Consumption Methods</span></div>
-          <div class="canna-topic"><div class="canna-topic-dot"></div><span class="canna-topic-name">Dosing Guide</span></div>
-          <div class="canna-topic"><div class="canna-topic-dot"></div><span class="canna-topic-name">Reading a Label</span></div>
-          <div class="canna-topic"><div class="canna-topic-dot"></div><span class="canna-topic-name">Sativa vs Indica</span></div>
-          <div class="canna-topic"><div class="canna-topic-dot"></div><span class="canna-topic-name">Growing Basics</span></div>
-        </div>
-      </div>
-
-      <a class="canna-card" href="#">
-        <div class="canna-card-num">01</div>
-        <div class="canna-card-title">Terpenes: The Real Reason Strains Feel Different</div>
-        <p class="canna-card-desc">Forget Sativa vs. Indica. The real driver of your experience is terpenes — the aromatic compounds that shape every aspect of your high.</p>
-        <div class="canna-card-arrow">→</div>
-      </a>
-
-      <a class="canna-card" href="#">
-        <div class="canna-card-num">02</div>
-        <div class="canna-card-title">How to Actually Read a Cannabis Label</div>
-        <p class="canna-card-desc">THC percentage, COA, batch numbers, harvest dates — decoded. What to look for, what to ignore, and what dispensaries don't tell you.</p>
-        <div class="canna-card-arrow">→</div>
-      </a>
-
-      <a class="canna-card" href="#">
-        <div class="canna-card-num">03</div>
-        <div class="canna-card-title">The Entourage Effect Explained Simply</div>
-        <p class="canna-card-desc">Why a full-spectrum product hits differently than isolate. The science of cannabinoids and terpenes working together — made simple.</p>
-        <div class="canna-card-arrow">→</div>
-      </a>
-
-      <a class="canna-card" href="#">
-        <div class="canna-card-num">04</div>
-        <div class="canna-card-title">Every Consumption Method, Honestly Reviewed</div>
-        <p class="canna-card-desc">Flower, vape, edible, tincture, dab, topical — the real differences in onset, duration, intensity, and who each method is actually for.</p>
-        <div class="canna-card-arrow">→</div>
-      </a>
-
-      <a class="canna-card" href="#">
-        <div class="canna-card-num">05</div>
-        <div class="canna-card-title">Dosing: The Art of Finding Your Sweet Spot</div>
-        <p class="canna-card-desc">Too much is the most common mistake. A practical framework for new users and experienced consumers to dial in the perfect dose every time.</p>
-        <div class="canna-card-arrow">→</div>
-      </a>
-
-      <a class="canna-card" href="#">
-        <div class="canna-card-num">06</div>
-        <div class="canna-card-title">Cannabis & the Body: What's Actually Happening</div>
-        <p class="canna-card-desc">The endocannabinoid system, CB1 and CB2 receptors, why cannabis affects everyone differently — the biology explained without a PhD.</p>
-        <div class="canna-card-arrow">→</div>
-      </a>
-
-    </div>
-  </div>
-</div>
-
-<div class="full-divider"></div>
-
-<!-- JOINT ROLLING SEMINARS -->
-<div id="seminars" class="seminars">
-  <div class="seminars-inner">
-
-    <div class="seminars-header">
-      <div>
-        <div class="section-label">✦ Seminars & Workshops</div>
-        <div class="section-title">The art of <em>the roll</em></div>
-      </div>
-      <div>
-        <p style="font-size:14px; line-height:1.9; color:var(--cream); opacity:0.5;">Most people have been smoking for years and still can't roll a proper joint. No judgment — nobody taught them. That changes here. From your first joint to a perfectly engineered cross — every level covered, every technique mastered.</p>
-      </div>
-    </div>
-
-    <div class="seminars-levels">
-
-      <div class="seminar-level">
-        <span class="seminar-level-badge badge-beginner">Beginner</span>
-        <div class="seminar-level-title">Your First Roll</div>
-        <p class="seminar-level-desc">Never rolled before? No problem. We start from zero — papers, filters, grinding, and the basics of a solid roll that burns clean.</p>
-        <ul class="seminar-techniques">
-          <li>Choosing the right papers</li>
-          <li>Grinding consistency</li>
-          <li>The classic straight joint</li>
-          <li>Making a proper filter tip</li>
-          <li>Lighting and smoking technique</li>
-        </ul>
-        <a href="#" class="seminar-cta">Book This Class</a>
-      </div>
-
-      <div class="seminar-level">
-        <span class="seminar-level-badge badge-intermediate">Intermediate</span>
-        <div class="seminar-level-title">Level Up Your Roll</div>
-        <p class="seminar-level-desc">You can roll, but it's not consistent. This class tightens your technique and introduces blunts, backwoods, and the cone roll.</p>
-        <ul class="seminar-techniques">
-          <li>The perfect cone joint</li>
-          <li>Blunt rolling (cigarillo & backwood)</li>
-          <li>Dutch masters technique</li>
-          <li>Pre-roll consistency tricks</li>
-          <li>Infused rolls & kief crowning</li>
-        </ul>
-        <a href="#" class="seminar-cta">Book This Class</a>
-      </div>
-
-      <div class="seminar-level">
-        <span class="seminar-level-badge badge-advanced">Advanced</span>
-        <div class="seminar-level-title">The Masterclass</div>
-        <p class="seminar-level-desc">For the enthusiast who wants to go all the way. Intricate rolls, showpieces, and techniques that will genuinely impress anyone in the room.</p>
-        <ul class="seminar-techniques">
-          <li>The cross joint</li>
-          <li>Tulip & cannons</li>
-          <li>Multi-paper braided rolls</li>
-          <li>Diamond & star formations</li>
-          <li>Scorpion & windmill techniques</li>
-        </ul>
-        <a href="#" class="seminar-cta">Book This Class</a>
-      </div>
-
-    </div>
-
-    <div class="seminars-formats">
-      <div class="seminar-format">
-        <div class="seminar-format-icon">🖥</div>
-        <div class="seminar-format-title">Live Online Sessions</div>
-        <p class="seminar-format-desc">Zoom-based classes with real-time instruction. Learn from anywhere. Sessions are small-group, interactive, and recorded for replay.</p>
-      </div>
-      <div class="seminar-format">
-        <div class="seminar-format-icon">📍</div>
-        <div class="seminar-format-title">In-Person Workshops</div>
-        <p class="seminar-format-desc">Hands-on sessions in select cities. Everything provided. The most effective way to learn — direct feedback, small groups, full experience.</p>
-      </div>
-      <div class="seminar-format">
-        <div class="seminar-format-icon">🏢</div>
-        <div class="seminar-format-title">Private Events & Groups</div>
-        <p class="seminar-format-desc">Dispensary staff training, private parties, corporate events, and group bookings. Fully customized to your occasion and audience.</p>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<div class="full-divider"></div>
-
-<!-- CANNAQUANT -->
-<div id="consulting" class="consulting">
-  <div class="consulting-inner">
-
-    <div class="consulting-left">
-      <div class="section-label">✦ CannaQuant</div>
-      <div class="consulting-title">I'm your personal <em>CannaQuant.</em> Your budtender for life.</div>
-      <p class="consulting-desc">Think of me as your cannabis financial advisor — except instead of money, we're talking about your experience, your body, your goals, and your plant. Whether you're brand new or a seasoned connoisseur, I meet you exactly where you are. Real conversations. Real answers. No guesswork.</p>
-
-      <div class="consulting-stats">
-        <div>
-          <div class="consulting-stat-num">10+</div>
-          <div class="consulting-stat-label">Years on the floor</div>
-        </div>
-        <div>
-          <div class="consulting-stat-num">1000s</div>
-          <div class="consulting-stat-label">Customers helped</div>
-        </div>
-        <div>
-          <div class="consulting-stat-num">500+</div>
-          <div class="consulting-stat-label">Strains studied</div>
-        </div>
-        <div>
-          <div class="consulting-stat-num">100%</div>
-          <div class="consulting-stat-label">Real experience</div>
-        </div>
-      </div>
-
-      <a href="#newsletter" class="btn-primary">Book Your CannaQuant Session</a>
-    </div>
-
-    <div class="consulting-services">
-
-      <div class="consulting-service">
-        <div class="consulting-service-icon">🌿</div>
-        <div>
-          <div class="consulting-service-title">Personal Consumer Session</div>
-          <p class="consulting-service-desc">New to cannabis or just not getting the results you want? Tell me your goals, your lifestyle, your experience — I'll build you a personalized cannabis plan covering strains, products, dosing, and consumption methods. One session changes everything.</p>
-          <div class="consulting-service-price">1-on-1 · 60 minutes · Zoom or phone</div>
-        </div>
-      </div>
-
-      <div class="consulting-service">
-        <div class="consulting-service-icon">🏪</div>
-        <div>
-          <div class="consulting-service-title">Dispensary & Retail Consulting</div>
-          <p class="consulting-service-desc">Staff training, floor strategy, product curation, customer experience — built by someone who has actually managed a dispensary. Not theory. Systems that work.</p>
-          <div class="consulting-service-price">Custom packages · Multi-session programs available</div>
-        </div>
-      </div>
-
-      <div class="consulting-service">
-        <div class="consulting-service-icon">💼</div>
-        <div>
-          <div class="consulting-service-title">Cannabis Business Strategy</div>
-          <p class="consulting-service-desc">Launching a brand, entering the market, refining your positioning? Deep industry knowledge meets real commercial thinking. From startup to scale.</p>
-          <div class="consulting-service-price">Project-based · Initial call complimentary</div>
-        </div>
-      </div>
-
-      <div class="consulting-service">
-        <div class="consulting-service-icon">🎓</div>
-        <div>
-          <div class="consulting-service-title">Budtender & Staff Training</div>
-          <p class="consulting-service-desc">Your staff is your brand. Comprehensive training on strains, terpenes, customer conversations, product knowledge, and sales technique — from the floor up.</p>
-          <div class="consulting-service-price">Group sessions · In-person or virtual</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<div class="full-divider"></div>
-
-<!-- HASH CULTURE -->
-<div id="hash" class="hash-section">
-  <div class="hash-inner">
-    <span class="hash-label">✦ Hash Culture</span>
-    <div class="hash-title">The oldest cannabis tradition.<br><em>Finally respected.</em></div>
-    <p class="hash-intro">Before dispensaries, before pre-rolls, before flower became a commodity — there was hash. The most concentrated, most storied, most misunderstood form of cannabis. We're bringing it back to the forefront, and giving it the stage it deserves.</p>
-
-    <div class="hash-events">
-
-      <div class="hash-event">
-        <div class="hash-event-glow"></div>
-        <span class="hash-event-label">✦ Signature Experience</span>
-        <div class="hash-event-name"><em>Taste the Courage</em></div>
-        <p class="hash-event-desc">A curated hash tasting experience for the true connoisseur. Multiple expressions — different regions, different techniques, different profiles — presented and guided by someone who actually knows what they're talking about. Like a whisky flight, but elevated.</p>
-        <div class="hash-event-details">
-          <span class="hash-event-detail">Bubblehash · Dry Sift · Rosin · Live Hash</span>
-          <span class="hash-event-detail">Guided tasting with full terpene breakdowns</span>
-          <span class="hash-event-detail">Small groups — intimate, educational, unforgettable</span>
-        </div>
-        <a href="#" class="hash-btn">Reserve Your Seat</a>
-      </div>
-
-      <div class="hash-event">
-        <div class="hash-event-glow"></div>
-        <span class="hash-event-label">✦ Exclusive Event</span>
-        <div class="hash-event-name"><em>Solventless</em> Sessions</div>
-        <p class="hash-event-desc">A hash-only evening for people who actually appreciate the craft. No flower, no vapes. Just the finest solventless expressions available, expertly presented to a room of people who get it.</p>
-        <div class="hash-event-details">
-          <span class="hash-event-detail">Hash-only format</span>
-          <span class="hash-event-detail">Private invite and public events</span>
-          <span class="hash-event-detail">Education + experience combined</span>
-        </div>
-        <a href="#" class="hash-btn">Join the List</a>
-      </div>
-
-      <div class="hash-event">
-        <div class="hash-event-glow"></div>
-        <span class="hash-event-label">✦ Community Night</span>
-        <div class="hash-event-name">Hash <em>Nights</em></div>
-        <p class="hash-event-desc">A recurring gathering for the hash community. Monthly sessions where enthusiasts, connoisseurs, and the hash-curious all come together. The culture lives here.</p>
-        <div class="hash-event-details">
-          <span class="hash-event-detail">Monthly recurring events</span>
-          <span class="hash-event-detail">Open to all levels — beginners welcome</span>
-          <span class="hash-event-detail">Community-driven, expert-guided</span>
-        </div>
-        <a href="#" class="hash-btn">Attend a Night</a>
-      </div>
-
-    </div>
-
-    <div class="hash-classes">
-      <div>
-        <div class="hash-classes-intro">Master every form of hash — <em>from pressing to rolling to tasting</em></div>
-      </div>
-      <div class="hash-class-grid">
-        <div class="hash-class-card">
-          <div class="hash-class-name">Hash 101</div>
-          <p class="hash-class-desc">History, types, and how hash is made. The foundation every enthusiast needs. Covers kief, dry sift, bubble, rosin, and live hash.</p>
-        </div>
-        <div class="hash-class-card">
-          <div class="hash-class-name">Rolling with Hash</div>
-          <p class="hash-class-desc">How to properly incorporate hash into joints — from sprinkling kief to building a proper hash rod or snake. Technique matters.</p>
-        </div>
-        <div class="hash-class-card">
-          <div class="hash-class-name">Pressing & Extraction</div>
-          <p class="hash-class-desc">Understanding how solventless concentrates are made. Bubble hash, rosin pressing — demystified for the serious enthusiast.</p>
-        </div>
-        <div class="hash-class-card">
-          <div class="hash-class-name">The Connoisseur's Eye</div>
-          <p class="hash-class-desc">How to evaluate hash quality — color, texture, melt, aroma, and terpene expression. What separates premium from average.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="full-divider"></div>
 
 <!-- BUDTENDER PRO -->
 <div id="pro" class="pro-banner">
@@ -2799,6 +2833,7 @@
       });
 
       results.classList.add('visible');
+      document.getElementById('strain-finder').scrollIntoView({ behavior: 'smooth', block: 'start' });
     } catch (err) {
       error.textContent = 'Something went wrong. Make sure the server is running.';
       error.classList.add('visible');
