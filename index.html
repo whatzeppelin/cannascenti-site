@@ -1,0 +1,3023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cannascenti — Cannabis Intelligence</title>
+<meta name="description" content="Cannascenti is the futuristic cannabis magazine built by industry professionals, for industry professionals and consumers. Real knowledge. Real experience.">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep-green: #1B4332;
+    --mid-green: #2D6A4F;
+    --bright-green: #52B788;
+    --light-green: #74C69D;
+    --mint: #B7E4C7;
+    --gold: #C9973A;
+    --amber: #D4A853;
+    --cream: #F2EAD8;
+    --ivory: #FAF6EE;
+    --warm-black: #081C15;
+    --card-bg: #0d2b1f;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm-black);
+    color: var(--cream);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* GRID OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 80px, rgba(82,183,136,0.025) 80px, rgba(82,183,136,0.025) 81px),
+      repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(82,183,136,0.025) 80px, rgba(82,183,136,0.025) 81px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ===================== NAV ===================== */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 20px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(8,28,21,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(82,183,136,0.1);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+  }
+
+  .nav-wordmark {
+    font-family: 'Great Vibes', cursive;
+    font-size: 32px;
+    background: linear-gradient(135deg, #F5F0E8 0%, #d8f3e8 60%, #B7E4C7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+
+  .nav-vert {
+    width: 1px;
+    height: 32px;
+    background: rgba(82,183,136,0.3);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--cream);
+    text-decoration: none;
+    opacity: 0.65;
+    transition: opacity 0.2s;
+  }
+
+  .nav-links a:hover { opacity: 1; color: var(--bright-green); }
+
+  .nav-cta {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm-black) !important;
+    background: var(--bright-green);
+    padding: 10px 22px;
+    border-radius: 2px;
+    opacity: 1 !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--light-green) !important; }
+
+  /* ===================== HERO ===================== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 140px 60px 80px;
+    background: radial-gradient(ellipse at 50% 30%, #0d3320 0%, var(--warm-black) 65%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 900px;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--bright-green);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .hero-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+
+  .hero-leaf svg { filter: drop-shadow(0 0 20px rgba(82,183,136,0.3)); }
+
+  .hero-vert {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, rgba(82,183,136,0.4), transparent);
+  }
+
+  .hero-wordmark {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(44px, 7vw, 80px);
+    background: linear-gradient(135deg, #F5F0E8 0%, #d8f3e8 55%, #B7E4C7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+  }
+
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(18px, 2.5vw, 26px);
+    color: var(--amber);
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+
+  .hero-desc {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--cream);
+    opacity: 0;
+    max-width: 560px;
+    margin: 0 auto 48px;
+    line-height: 1.9;
+    animation: fadeUp 0.8s ease forwards 0.8s;
+  }
+
+  .hero-desc span { opacity: 0.6; }
+
+  .hero-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1s;
+  }
+
+  .btn-primary {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--warm-black);
+    background: var(--bright-green);
+    padding: 16px 36px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--light-green); transform: translateY(-2px); }
+
+  .btn-secondary {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--bright-green);
+    border: 1px solid rgba(82,183,136,0.4);
+    padding: 16px 36px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: var(--bright-green); transform: translateY(-2px); }
+
+  /* Scroll indicator */
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1.4s;
+  }
+
+  .scroll-hint span {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--bright-green);
+    opacity: 0.5;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(82,183,136,0.5), transparent);
+    animation: scrollPulse 2s ease infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+  }
+
+  /* ===================== TICKER ===================== */
+  .ticker-bar {
+    background: var(--deep-green);
+    border-top: 1px solid rgba(82,183,136,0.15);
+    border-bottom: 1px solid rgba(82,183,136,0.15);
+    padding: 12px 0;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ticker-track {
+    display: flex;
+    gap: 60px;
+    animation: ticker 30s linear infinite;
+    white-space: nowrap;
+  }
+
+  .ticker-item {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--light-green);
+    opacity: 0.7;
+    flex-shrink: 0;
+  }
+
+  .ticker-dot {
+    color: var(--bright-green);
+    margin-right: 60px;
+  }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ===================== SECTIONS ===================== */
+  .section {
+    position: relative;
+    z-index: 2;
+    padding: 100px 60px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--bright-green);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.15;
+    margin-bottom: 60px;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--light-green);
+  }
+
+  .full-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(82,183,136,0.2), transparent);
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ===================== FEATURED ARTICLE ===================== */
+  .featured {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(82,183,136,0.12);
+    overflow: hidden;
+    background: var(--card-bg);
+  }
+
+  .featured-img {
+    background: linear-gradient(135deg, var(--warm-black) 0%, var(--deep-green) 60%, var(--mid-green) 100%);
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .featured-img-leaf {
+    opacity: 0.12;
+  }
+
+  .featured-label {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--bright-green);
+    background: rgba(8,28,21,0.8);
+    padding: 8px 16px;
+    border: 1px solid rgba(82,183,136,0.3);
+  }
+
+  .featured-content {
+    padding: 60px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .featured-cat {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--bright-green);
+  }
+
+  .featured-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(26px, 3vw, 40px);
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--cream);
+  }
+
+  .featured-excerpt {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--cream);
+    opacity: 0.65;
+  }
+
+  .read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--bright-green);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(82,183,136,0.4);
+    padding-bottom: 4px;
+    width: fit-content;
+    transition: border-color 0.2s;
+  }
+
+  .read-more:hover { border-color: var(--bright-green); }
+
+  /* ===================== ARTICLE GRID ===================== */
+  .article-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 2px;
+  }
+
+  .article-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(82,183,136,0.08);
+    padding: 40px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .article-card:hover {
+    border-color: rgba(82,183,136,0.3);
+    transform: translateY(-4px);
+  }
+
+  .article-card-img {
+    height: 180px;
+    background: linear-gradient(135deg, var(--warm-black), var(--deep-green));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: -40px -36px 0;
+    overflow: hidden;
+  }
+
+  .article-card-img svg { opacity: 0.15; }
+
+  .article-card-cat {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--bright-green);
+    margin-top: 24px;
+  }
+
+  .article-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--cream);
+  }
+
+  .article-card-excerpt {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--cream);
+    opacity: 0.55;
+    flex: 1;
+  }
+
+  .article-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid rgba(82,183,136,0.1);
+  }
+
+  .article-card-tag {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bright-green);
+    opacity: 0.6;
+  }
+
+  .article-arrow {
+    color: var(--bright-green);
+    font-size: 18px;
+    opacity: 0.6;
+  }
+
+  /* ===================== PRO BANNER ===================== */
+  .pro-banner {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(135deg, var(--deep-green) 0%, #0a2018 100%);
+    border-top: 1px solid rgba(82,183,136,0.15);
+    border-bottom: 1px solid rgba(82,183,136,0.15);
+    padding: 100px 60px;
+    overflow: hidden;
+  }
+
+  .pro-banner::before {
+    content: '';
+    position: absolute;
+    right: -100px;
+    top: -100px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(82,183,136,0.06) 0%, transparent 70%);
+  }
+
+  .pro-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .pro-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .pro-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--cream);
+    margin-bottom: 24px;
+  }
+
+  .pro-title em { font-style: italic; color: var(--light-green); }
+
+  .pro-desc {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--cream);
+    opacity: 0.65;
+    margin-bottom: 36px;
+  }
+
+  .pro-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .pro-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .pro-feature-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--bright-green);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .pro-feature-text {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--cream);
+    opacity: 0.7;
+    line-height: 1.5;
+  }
+
+  /* ===================== ABOUT STRIP ===================== */
+  .about-strip {
+    position: relative;
+    z-index: 2;
+    padding: 100px 60px;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.3;
+    color: var(--cream);
+    border-left: 2px solid var(--bright-green);
+    padding-left: 40px;
+  }
+
+  .about-quote em { color: var(--light-green); font-style: normal; }
+
+  .about-text { font-size: 15px; font-weight: 300; line-height: 1.9; color: var(--cream); opacity: 0.65; }
+
+  /* ===================== NEWSLETTER ===================== */
+  .newsletter {
+    position: relative;
+    z-index: 2;
+    background: var(--deep-green);
+    border-top: 1px solid rgba(82,183,136,0.15);
+    padding: 80px 60px;
+    text-align: center;
+  }
+
+  .newsletter-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+
+  .newsletter-sub {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--cream);
+    opacity: 0.55;
+    margin-bottom: 36px;
+    letter-spacing: 0.05em;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 0;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .newsletter-input {
+    flex: 1;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(82,183,136,0.2);
+    border-right: none;
+    padding: 16px 20px;
+    color: var(--cream);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    outline: none;
+    border-radius: 2px 0 0 2px;
+  }
+
+  .newsletter-input::placeholder { color: rgba(242,234,216,0.3); }
+  .newsletter-input:focus { border-color: rgba(82,183,136,0.5); }
+
+  .newsletter-btn {
+    background: var(--bright-green);
+    border: none;
+    padding: 16px 28px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--warm-black);
+    cursor: pointer;
+    border-radius: 0 2px 2px 0;
+    transition: background 0.2s;
+  }
+
+  .newsletter-btn:hover { background: var(--light-green); }
+
+  /* ===================== FOOTER ===================== */
+  footer {
+    position: relative;
+    z-index: 2;
+    background: var(--warm-black);
+    border-top: 1px solid rgba(82,183,136,0.1);
+    padding: 60px 60px 40px;
+  }
+
+  .footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+  }
+
+  .footer-brand .footer-wordmark {
+    font-family: 'Great Vibes', cursive;
+    font-size: 38px;
+    background: linear-gradient(135deg, var(--mint), var(--bright-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .footer-brand p {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--cream);
+    opacity: 0.45;
+    line-height: 1.8;
+    max-width: 280px;
+  }
+
+  .footer-col-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--bright-green);
+    margin-bottom: 20px;
+  }
+
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+
+  .footer-links a {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--cream);
+    opacity: 0.5;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .footer-links a:hover { opacity: 1; color: var(--bright-green); }
+
+  .footer-bottom {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-top: 30px;
+    border-top: 1px solid rgba(82,183,136,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-bottom p {
+    font-size: 12px;
+    color: var(--cream);
+    opacity: 0.3;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--light-green);
+    opacity: 0.4;
+  }
+
+  /* ===================== STRAIN FINDER ===================== */
+  .strain-finder {
+    position: relative;
+    z-index: 2;
+    padding: 100px 60px;
+    background: linear-gradient(180deg, var(--warm-black) 0%, #0a1f15 100%);
+    border-top: 1px solid rgba(82,183,136,0.1);
+    border-bottom: 1px solid rgba(82,183,136,0.1);
+  }
+
+  .strain-finder-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .strain-finder-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--bright-green);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .strain-finder-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+
+  .strain-finder-title em {
+    font-style: italic;
+    color: var(--light-green);
+  }
+
+  .strain-finder-sub {
+    font-size: 14px;
+    color: var(--cream);
+    opacity: 0.5;
+    letter-spacing: 0.05em;
+    margin-bottom: 48px;
+    line-height: 1.7;
+  }
+
+  .strain-search-wrap {
+    position: relative;
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .strain-input {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(82,183,136,0.2);
+    border-radius: 4px;
+    padding: 18px 24px;
+    color: var(--cream);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 0.03em;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  .strain-input::placeholder { color: rgba(242,234,216,0.28); }
+  .strain-input:focus { border-color: rgba(82,183,136,0.5); }
+
+  .strain-search-btn {
+    background: var(--mid-green);
+    color: var(--cream);
+    border: none;
+    padding: 18px 36px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s;
+    white-space: nowrap;
+  }
+
+  .strain-search-btn:hover { background: var(--bright-green); }
+  .strain-search-btn:disabled { opacity: 0.5; cursor: default; }
+
+  .strain-examples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 48px;
+  }
+
+  .strain-example-pill {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--bright-green);
+    opacity: 0.6;
+    background: rgba(82,183,136,0.07);
+    border: 1px solid rgba(82,183,136,0.15);
+    border-radius: 20px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: opacity 0.2s, background 0.2s;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .strain-example-pill:hover { opacity: 1; background: rgba(82,183,136,0.14); }
+
+  .strain-results {
+    display: none;
+    text-align: left;
+    margin-top: 40px;
+    animation: fadeUp 0.4s ease;
+  }
+
+  .strain-results.visible { display: block; }
+
+  .strain-results-header {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bright-green);
+    opacity: 0.5;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .strain-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .strain-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(82,183,136,0.1);
+    border-radius: 6px;
+    padding: 24px;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .strain-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .strain-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.2;
+  }
+
+  .strain-card-type {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  .type-sativa { background: rgba(82,183,136,0.15); color: var(--bright-green); }
+  .type-indica { background: rgba(100,60,180,0.18); color: #b8a0f0; }
+  .type-hybrid { background: rgba(201,151,58,0.15); color: var(--gold); }
+
+  .strain-card-desc {
+    font-size: 13px;
+    line-height: 1.75;
+    color: var(--cream);
+    opacity: 0.6;
+    margin-bottom: 16px;
+  }
+
+  .strain-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .strain-tag {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--mint);
+    background: rgba(183,228,199,0.08);
+    border-radius: 3px;
+    padding: 3px 8px;
+  }
+
+  .strain-card-thc {
+    font-size: 11px;
+    color: var(--amber);
+    letter-spacing: 0.08em;
+    margin-top: 14px;
+    opacity: 0.75;
+  }
+
+  .strain-loading {
+    display: none;
+    text-align: center;
+    padding: 48px 0;
+    color: var(--cream);
+    opacity: 0.4;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+  }
+
+  .strain-loading.visible { display: block; }
+
+  .strain-error {
+    display: none;
+    text-align: center;
+    padding: 24px;
+    color: #e88;
+    font-size: 13px;
+    opacity: 0.8;
+  }
+
+  .strain-error.visible { display: block; }
+
+  @media (max-width: 900px) {
+    .strain-finder { padding: 60px 24px; }
+    .strain-search-wrap { flex-direction: column; }
+    .strain-cards { grid-template-columns: 1fr; }
+  }
+
+  /* ===================== CANNALOGY ===================== */
+  .cannalogy {
+    position: relative;
+    z-index: 2;
+    padding: 100px 60px;
+  }
+
+  .cannalogy-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .cannalogy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+  }
+
+  .canna-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(82,183,136,0.08);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+  }
+
+  .canna-card:hover { border-color: rgba(82,183,136,0.3); }
+
+  .canna-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--mid-green), var(--bright-green));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .canna-card:hover::before { transform: scaleX(1); }
+
+  .canna-card-num {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--bright-green);
+    opacity: 0.4;
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .canna-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.3;
+    margin-bottom: 14px;
+  }
+
+  .canna-card-desc {
+    font-size: 13px;
+    line-height: 1.75;
+    color: var(--cream);
+    opacity: 0.5;
+    margin-bottom: 24px;
+  }
+
+  .canna-card-arrow {
+    font-size: 18px;
+    color: var(--bright-green);
+    opacity: 0.5;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .canna-card:hover .canna-card-arrow { opacity: 1; transform: translateX(4px); }
+
+  .canna-card-featured {
+    grid-column: span 3;
+    background: linear-gradient(135deg, #0d2b1f 0%, #0a1f15 100%);
+    border-color: rgba(82,183,136,0.15);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    padding: 60px;
+  }
+
+  .canna-featured-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .canna-featured-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--cream);
+    margin-bottom: 20px;
+  }
+
+  .canna-featured-title em { font-style: italic; color: var(--light-green); }
+
+  .canna-featured-desc {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--cream);
+    opacity: 0.55;
+    margin-bottom: 32px;
+  }
+
+  .canna-topics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .canna-topic {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: rgba(82,183,136,0.05);
+    border: 1px solid rgba(82,183,136,0.1);
+    border-radius: 4px;
+  }
+
+  .canna-topic-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--bright-green);
+    flex-shrink: 0;
+  }
+
+  .canna-topic-name {
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: var(--cream);
+    opacity: 0.7;
+  }
+
+  /* ===================== JOINT ROLLING ===================== */
+  .seminars {
+    position: relative;
+    z-index: 2;
+    padding: 100px 60px;
+    background: linear-gradient(135deg, #0a1f15 0%, var(--warm-black) 100%);
+    border-top: 1px solid rgba(82,183,136,0.1);
+    border-bottom: 1px solid rgba(82,183,136,0.1);
+  }
+
+  .seminars-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .seminars-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: end;
+    margin-bottom: 60px;
+  }
+
+  .seminars-levels {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 60px;
+  }
+
+  .seminar-level {
+    background: var(--card-bg);
+    border: 1px solid rgba(82,183,136,0.1);
+    border-radius: 6px;
+    padding: 36px 28px;
+    text-align: center;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .seminar-level:hover { border-color: rgba(82,183,136,0.3); transform: translateY(-4px); }
+
+  .seminar-level-badge {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  .badge-beginner { background: rgba(82,183,136,0.12); color: var(--bright-green); }
+  .badge-intermediate { background: rgba(201,151,58,0.15); color: var(--gold); }
+  .badge-advanced { background: rgba(180,80,80,0.15); color: #e8a0a0; }
+
+  .seminar-level-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 14px;
+  }
+
+  .seminar-level-desc {
+    font-size: 12px;
+    line-height: 1.8;
+    color: var(--cream);
+    opacity: 0.5;
+    margin-bottom: 20px;
+  }
+
+  .seminar-techniques {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 28px;
+  }
+
+  .seminar-techniques li {
+    font-size: 12px;
+    color: var(--mint);
+    opacity: 0.7;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(82,183,136,0.06);
+    letter-spacing: 0.04em;
+  }
+
+  .seminar-techniques li::before {
+    content: '→ ';
+    color: var(--bright-green);
+    opacity: 0.5;
+  }
+
+  .seminar-cta {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--bright-green);
+    border: 1px solid rgba(82,183,136,0.3);
+    padding: 10px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .seminar-cta:hover { background: var(--mid-green); color: var(--cream); border-color: var(--mid-green); }
+
+  .seminars-formats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    border-top: 1px solid rgba(82,183,136,0.1);
+    padding-top: 48px;
+  }
+
+  .seminar-format {
+    padding: 28px 24px;
+    border-right: 1px solid rgba(82,183,136,0.08);
+  }
+
+  .seminar-format:last-child { border-right: none; }
+
+  .seminar-format-icon {
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
+
+  .seminar-format-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+
+  .seminar-format-desc {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--cream);
+    opacity: 0.45;
+  }
+
+  /* ===================== CONSULTING ===================== */
+  .consulting {
+    position: relative;
+    z-index: 2;
+    padding: 100px 60px;
+  }
+
+  .consulting-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: start;
+  }
+
+  .consulting-left .section-label { margin-bottom: 24px; }
+
+  .consulting-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 54px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--cream);
+    margin-bottom: 24px;
+  }
+
+  .consulting-title em { font-style: italic; color: var(--light-green); }
+
+  .consulting-desc {
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--cream);
+    opacity: 0.55;
+    margin-bottom: 40px;
+  }
+
+  .consulting-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .consulting-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--bright-green);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .consulting-stat-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--cream);
+    opacity: 0.45;
+    text-transform: uppercase;
+  }
+
+  .consulting-services {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .consulting-service {
+    background: var(--card-bg);
+    border: 1px solid rgba(82,183,136,0.1);
+    border-radius: 6px;
+    padding: 28px 32px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    transition: border-color 0.3s;
+    cursor: pointer;
+  }
+
+  .consulting-service:hover { border-color: rgba(82,183,136,0.3); }
+
+  .consulting-service-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .consulting-service-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+
+  .consulting-service-desc {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--cream);
+    opacity: 0.5;
+  }
+
+  .consulting-service-price {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-top: 10px;
+    opacity: 0.8;
+  }
+
+  @media (max-width: 900px) {
+    .cannalogy { padding: 60px 24px; }
+    .cannalogy-grid { grid-template-columns: 1fr; }
+    .canna-card-featured { grid-column: span 1; grid-template-columns: 1fr; gap: 32px; padding: 32px 24px; }
+    .canna-topics { grid-template-columns: 1fr; }
+    .seminars { padding: 60px 24px; }
+    .seminars-header { grid-template-columns: 1fr; gap: 24px; }
+    .seminars-levels { grid-template-columns: 1fr; }
+    .seminars-formats { grid-template-columns: 1fr; }
+    .seminar-format { border-right: none; border-bottom: 1px solid rgba(82,183,136,0.08); }
+    .consulting { padding: 60px 24px; }
+    .consulting-inner { grid-template-columns: 1fr; gap: 48px; }
+    .consulting-stats { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ===================== ANIMATIONS ===================== */
+  /* ===================== HASH CULTURE ===================== */
+  .hash-section {
+    position: relative;
+    z-index: 2;
+    padding: 100px 60px;
+    background: linear-gradient(160deg, #0e1a0f 0%, #1a0f05 50%, #0a1205 100%);
+    border-top: 1px solid rgba(201,151,58,0.15);
+    border-bottom: 1px solid rgba(201,151,58,0.15);
+    overflow: hidden;
+  }
+
+  .hash-section::before {
+    content: '';
+    position: absolute;
+    top: -150px; right: -150px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,151,58,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hash-inner { max-width: 1280px; margin: 0 auto; }
+
+  .hash-label {
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .hash-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 5vw, 66px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 20px;
+  }
+
+  .hash-title em { font-style: italic; color: var(--amber); }
+
+  .hash-intro {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--cream);
+    opacity: 0.55;
+    max-width: 680px;
+    margin-bottom: 70px;
+  }
+
+  .hash-events {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 60px;
+  }
+
+  .hash-event {
+    padding: 48px 40px;
+    background: rgba(20,12,4,0.7);
+    border: 1px solid rgba(201,151,58,0.1);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .hash-event:hover { border-color: rgba(201,151,58,0.3); }
+
+  .hash-event-glow {
+    position: absolute;
+    bottom: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(201,151,58,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hash-event-label {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.7;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .hash-event-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .hash-event-name em { font-style: italic; color: var(--amber); }
+
+  .hash-event-desc {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--cream);
+    opacity: 0.5;
+    margin-bottom: 28px;
+  }
+
+  .hash-event-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+
+  .hash-event-detail {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--amber);
+    opacity: 0.7;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hash-event-detail::before {
+    content: '';
+    display: inline-block;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.6;
+    flex-shrink: 0;
+  }
+
+  .hash-btn {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber);
+    border: 1px solid rgba(201,151,58,0.35);
+    padding: 10px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+  }
+
+  .hash-btn:hover { background: var(--gold); color: var(--warm-black); border-color: var(--gold); }
+
+  .hash-classes {
+    border-top: 1px solid rgba(201,151,58,0.1);
+    padding-top: 60px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .hash-classes-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.4;
+  }
+
+  .hash-classes-intro em { font-style: italic; color: var(--amber); }
+
+  .hash-class-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .hash-class-card {
+    background: rgba(201,151,58,0.04);
+    border: 1px solid rgba(201,151,58,0.1);
+    border-radius: 4px;
+    padding: 24px;
+    transition: border-color 0.3s;
+  }
+
+  .hash-class-card:hover { border-color: rgba(201,151,58,0.3); }
+
+  .hash-class-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  .hash-class-desc {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--cream);
+    opacity: 0.45;
+  }
+
+  @media (max-width: 900px) {
+    .hash-section { padding: 60px 24px; }
+    .hash-events { grid-template-columns: 1fr; }
+    .hash-classes { grid-template-columns: 1fr; gap: 32px; }
+    .hash-class-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===================== MARY JANE CHAT ===================== */
+  .mj-bubble {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+  }
+
+  .mj-toggle {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--mid-green), var(--deep-green));
+    border: 2px solid rgba(82,183,136,0.35);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 0 rgba(82,183,136,0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: mjPulse 3s ease-in-out infinite;
+    position: relative;
+  }
+
+  .mj-toggle:hover {
+    transform: scale(1.08);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 20px rgba(82,183,136,0.3);
+  }
+
+  .mj-toggle-label {
+    position: absolute;
+    right: 74px;
+    background: var(--card-bg);
+    border: 1px solid rgba(82,183,136,0.2);
+    color: var(--cream);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    padding: 8px 16px;
+    border-radius: 20px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateX(8px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  .mj-bubble:hover .mj-toggle-label { opacity: 1; transform: translateX(0); }
+
+  .mj-unread {
+    position: absolute;
+    top: -4px; right: -4px;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--gold);
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--warm-black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  @keyframes mjPulse {
+    0%, 100% { box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 0 rgba(82,183,136,0.4); }
+    50% { box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 8px rgba(82,183,136,0); }
+  }
+
+  .mj-panel {
+    position: fixed;
+    bottom: 104px;
+    right: 28px;
+    z-index: 9998;
+    width: 380px;
+    height: 560px;
+    background: #0a1a10;
+    border: 1px solid rgba(82,183,136,0.2);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(82,183,136,0.05);
+    transform: translateY(20px) scale(0.96);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), opacity 0.25s ease;
+  }
+
+  .mj-panel.open {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .mj-header {
+    padding: 18px 20px;
+    background: linear-gradient(135deg, #0d2b1f, #0a1f15);
+    border-bottom: 1px solid rgba(82,183,136,0.12);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+  }
+
+  .mj-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--mid-green), var(--deep-green));
+    border: 1.5px solid rgba(82,183,136,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .mj-header-info { flex: 1; }
+
+  .mj-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 22px;
+    background: linear-gradient(135deg, var(--mint), var(--bright-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+  }
+
+  .mj-status {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--bright-green);
+    opacity: 0.6;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .mj-status::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--bright-green);
+    display: inline-block;
+  }
+
+  .mj-close {
+    background: none;
+    border: none;
+    color: var(--cream);
+    opacity: 0.35;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+    transition: opacity 0.2s;
+  }
+
+  .mj-close:hover { opacity: 0.8; }
+
+  .mj-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(82,183,136,0.2) transparent;
+  }
+
+  .mj-messages::-webkit-scrollbar { width: 4px; }
+  .mj-messages::-webkit-scrollbar-track { background: transparent; }
+  .mj-messages::-webkit-scrollbar-thumb { background: rgba(82,183,136,0.2); border-radius: 2px; }
+
+  .mj-msg {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    animation: fadeUp 0.25s ease;
+  }
+
+  .mj-msg.user { flex-direction: row-reverse; }
+
+  .mj-msg-avatar {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--mid-green), var(--deep-green));
+    border: 1px solid rgba(82,183,136,0.3);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .mj-msg-bubble {
+    max-width: 78%;
+    padding: 12px 16px;
+    border-radius: 14px;
+    font-size: 13px;
+    line-height: 1.65;
+    letter-spacing: 0.02em;
+  }
+
+  .mj-msg.assistant .mj-msg-bubble {
+    background: rgba(82,183,136,0.08);
+    border: 1px solid rgba(82,183,136,0.12);
+    color: var(--cream);
+    border-bottom-left-radius: 4px;
+  }
+
+  .mj-msg.user .mj-msg-bubble {
+    background: var(--mid-green);
+    color: var(--cream);
+    border-bottom-right-radius: 4px;
+  }
+
+  .mj-typing {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+  }
+
+  .mj-typing-dots {
+    background: rgba(82,183,136,0.08);
+    border: 1px solid rgba(82,183,136,0.12);
+    border-radius: 14px;
+    border-bottom-left-radius: 4px;
+    padding: 14px 18px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .mj-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--bright-green);
+    opacity: 0.6;
+    animation: mjDot 1.4s ease-in-out infinite;
+  }
+
+  .mj-dot:nth-child(2) { animation-delay: 0.2s; }
+  .mj-dot:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes mjDot {
+    0%, 80%, 100% { transform: scale(1); opacity: 0.4; }
+    40% { transform: scale(1.3); opacity: 1; }
+  }
+
+  .mj-suggestions {
+    padding: 0 16px 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    flex-shrink: 0;
+  }
+
+  .mj-suggestion {
+    font-size: 11px;
+    color: var(--bright-green);
+    background: rgba(82,183,136,0.07);
+    border: 1px solid rgba(82,183,136,0.18);
+    border-radius: 20px;
+    padding: 6px 13px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, opacity 0.2s;
+    white-space: nowrap;
+  }
+
+  .mj-suggestion:hover { background: rgba(82,183,136,0.16); }
+
+  .mj-input-area {
+    padding: 14px 16px;
+    border-top: 1px solid rgba(82,183,136,0.1);
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    background: rgba(0,0,0,0.2);
+    flex-shrink: 0;
+  }
+
+  .mj-input {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(82,183,136,0.18);
+    border-radius: 10px;
+    padding: 10px 14px;
+    color: var(--cream);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    outline: none;
+    resize: none;
+    max-height: 100px;
+    line-height: 1.5;
+    transition: border-color 0.2s;
+  }
+
+  .mj-input::placeholder { color: rgba(242,234,216,0.25); }
+  .mj-input:focus { border-color: rgba(82,183,136,0.4); }
+
+  .mj-send {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    background: var(--mid-green);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+
+  .mj-send:hover { background: var(--bright-green); }
+  .mj-send:disabled { opacity: 0.4; cursor: default; }
+
+  .mj-footer-note {
+    text-align: center;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--cream);
+    opacity: 0.2;
+    padding-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  @media (max-width: 900px) {
+    .mj-panel { width: calc(100vw - 32px); right: 16px; bottom: 90px; }
+    .mj-bubble { right: 16px; bottom: 16px; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===================== RESPONSIVE ===================== */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 120px 24px 80px; }
+    .hero-logo { flex-direction: column; gap: 16px; }
+    .hero-vert { display: none; }
+    .hero-actions { flex-direction: column; align-items: center; }
+    .section { padding: 60px 24px; }
+    .featured { grid-template-columns: 1fr; }
+    .featured-img { min-height: 260px; }
+    .article-grid { grid-template-columns: 1fr; }
+    .pro-inner { grid-template-columns: 1fr; gap: 40px; }
+    .about-strip { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
+    .pro-banner { padding: 60px 24px; }
+    .newsletter { padding: 60px 24px; }
+    .newsletter-form { flex-direction: column; }
+    .newsletter-input { border-right: 1px solid rgba(82,183,136,0.2); border-bottom: none; border-radius: 2px 2px 0 0; }
+    .newsletter-btn { border-radius: 0 0 2px 2px; }
+    footer { padding: 60px 24px 40px; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <svg width="28" height="37" viewBox="0 0 160 200" fill="none">
+      <defs>
+        <linearGradient id="nav-lg" x1="80" y1="0" x2="80" y2="200" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#B7E4C7"/>
+          <stop offset="50%" stop-color="#52B788"/>
+          <stop offset="100%" stop-color="#1B4332"/>
+        </linearGradient>
+        <linearGradient id="nav-lgr" x1="160" y1="0" x2="0" y2="200" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#74C69D" stop-opacity="0.7"/>
+          <stop offset="100%" stop-color="#2D6A4F" stop-opacity="0.4"/>
+        </linearGradient>
+      </defs>
+      <polygon points="80,4 92,32 80,52 68,32" fill="url(#nav-lg)" opacity="0.95"/>
+      <polygon points="80,28 108,38 96,62 80,52" fill="url(#nav-lgr)" opacity="0.9"/>
+      <polygon points="80,28 52,38 64,62 80,52" fill="url(#nav-lg)" opacity="0.9"/>
+      <polygon points="80,50 118,58 104,84 80,74" fill="url(#nav-lgr)" opacity="0.8"/>
+      <polygon points="80,50 42,58 56,84 80,74" fill="url(#nav-lg)" opacity="0.8"/>
+      <polygon points="80,72 114,82 98,108 80,98" fill="url(#nav-lgr)" opacity="0.65"/>
+      <polygon points="80,72 46,82 62,108 80,98" fill="url(#nav-lg)" opacity="0.65"/>
+      <polygon points="80,95 106,108 92,130 80,122" fill="url(#nav-lgr)" opacity="0.5"/>
+      <polygon points="80,95 54,108 68,130 80,122" fill="url(#nav-lg)" opacity="0.5"/>
+      <polygon points="80,118 90,134 80,148 70,134" fill="url(#nav-lg)" opacity="0.4"/>
+      <path d="M80 148 Q76 162 74 175" stroke="url(#nav-lg)" stroke-width="2" fill="none" opacity="0.6"/>
+    </svg>
+    <div class="nav-vert"></div>
+    <span class="nav-wordmark">Cannascenti</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#magazine">Magazine</a></li>
+    <li><a href="#cannalogy">Cannalogy</a></li>
+    <li><a href="#seminars">Seminars</a></li>
+    <li><a href="#hash">Hash Culture</a></li>
+    <li><a href="#consulting">Consulting</a></li>
+    <li><a href="#newsletter" class="nav-cta">Subscribe</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Cannabis Intelligence · Est. 2026</div>
+    <div class="hero-logo">
+      <div class="hero-leaf">
+        <svg width="70" height="92" viewBox="0 0 160 200" fill="none">
+          <defs>
+            <linearGradient id="hero-lg" x1="80" y1="0" x2="80" y2="200" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#B7E4C7"/>
+              <stop offset="50%" stop-color="#52B788"/>
+              <stop offset="100%" stop-color="#1B4332"/>
+            </linearGradient>
+            <linearGradient id="hero-lgr" x1="160" y1="0" x2="0" y2="200" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#74C69D" stop-opacity="0.7"/>
+              <stop offset="100%" stop-color="#2D6A4F" stop-opacity="0.4"/>
+            </linearGradient>
+          </defs>
+          <polygon points="80,4 92,32 80,52 68,32" fill="url(#hero-lg)" opacity="0.95"/>
+          <polygon points="80,28 108,38 96,62 80,52" fill="url(#hero-lgr)" opacity="0.9"/>
+          <polygon points="80,28 52,38 64,62 80,52" fill="url(#hero-lg)" opacity="0.9"/>
+          <polygon points="80,50 118,58 104,84 80,74" fill="url(#hero-lgr)" opacity="0.8"/>
+          <polygon points="80,50 42,58 56,84 80,74" fill="url(#hero-lg)" opacity="0.8"/>
+          <polygon points="80,72 114,82 98,108 80,98" fill="url(#hero-lgr)" opacity="0.65"/>
+          <polygon points="80,72 46,82 62,108 80,98" fill="url(#hero-lg)" opacity="0.65"/>
+          <polygon points="80,95 106,108 92,130 80,122" fill="url(#hero-lgr)" opacity="0.5"/>
+          <polygon points="80,95 54,108 68,130 80,122" fill="url(#hero-lg)" opacity="0.5"/>
+          <polygon points="80,118 90,134 80,148 70,134" fill="url(#hero-lg)" opacity="0.4"/>
+          <line x1="80" y1="4" x2="80" y2="148" stroke="url(#hero-lg)" stroke-width="1" opacity="0.3"/>
+          <path d="M80 148 Q76 162 74 175" stroke="url(#hero-lg)" stroke-width="2" fill="none" opacity="0.6"/>
+          <circle cx="80" cy="4" r="2.5" fill="#B7E4C7"/>
+          <circle cx="80" cy="28" r="2" fill="#74C69D" opacity="0.9"/>
+          <circle cx="80" cy="50" r="2" fill="#52B788" opacity="0.8"/>
+          <circle cx="80" cy="72" r="2" fill="#52B788" opacity="0.7"/>
+          <circle cx="80" cy="95" r="2" fill="#2D6A4F" opacity="0.6"/>
+        </svg>
+      </div>
+      <div class="hero-vert"></div>
+      <div class="hero-wordmark">Cannascenti</div>
+    </div>
+    <div class="hero-tagline">Mary Jane Knows What You Want Before You Do</div>
+    <p class="hero-desc"><span>A futuristic cannabis magazine built by industry professionals.</span> Real knowledge, real experience — for the consumer who wants more and the professional who demands it.</p>
+    <div class="hero-actions">
+      <a href="#magazine" class="btn-primary">Read the Magazine</a>
+      <a href="#pro" class="btn-secondary">Budtender Pro</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-track">
+    <span class="ticker-item">Cannabis Education</span>
+    <span class="ticker-dot">◆</span>
+    <span class="ticker-item">Terpene Profiles</span>
+    <span class="ticker-dot">◆</span>
+    <span class="ticker-item">Industry Insider</span>
+    <span class="ticker-dot">◆</span>
+    <span class="ticker-item">Product Reviews</span>
+    <span class="ticker-dot">◆</span>
+    <span class="ticker-item">Day in the Life</span>
+    <span class="ticker-dot">◆</span>
+    <span class="ticker-item">Strain Spotlight</span>
+    <span class="ticker-dot">◆</span>
+    <span class="ticker-item">Budtender Pro</span>
+    <span class="ticker-dot">◆</span>
+    <span class="ticker-item">Cannabis Education</span>
+    <span class="ticker-dot">◆</span>
+    <span class="ticker-item">Terpene Profiles</span>
+    <span class="ticker-dot">◆</span>
+    <span class="ticker-item">Industry Insider</span>
+    <span class="ticker-dot">◆</span>
+    <span class="ticker-item">Product Reviews</span>
+    <span class="ticker-dot">◆</span>
+    <span class="ticker-item">Day in the Life</span>
+    <span class="ticker-dot">◆</span>
+    <span class="ticker-item">Strain Spotlight</span>
+    <span class="ticker-dot">◆</span>
+    <span class="ticker-item">Budtender Pro</span>
+    <span class="ticker-dot">◆</span>
+  </div>
+</div>
+
+<!-- FEATURED ARTICLE -->
+<div id="magazine">
+  <div class="section">
+    <div class="section-label">Latest from the Magazine</div>
+    <div class="section-title">Stories from <em>inside</em> the industry</div>
+  </div>
+
+  <div style="padding: 0 60px; max-width: 1280px; margin: 0 auto; position:relative; z-index:2;">
+    <div class="featured">
+      <div class="featured-img">
+        <div class="featured-label">Featured Story</div>
+        <svg class="featured-img-leaf" width="280" height="370" viewBox="0 0 160 200" fill="none">
+          <defs>
+            <linearGradient id="feat-lg" x1="80" y1="0" x2="80" y2="200" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#B7E4C7"/>
+              <stop offset="100%" stop-color="#1B4332"/>
+            </linearGradient>
+          </defs>
+          <polygon points="80,4 92,32 80,52 68,32" fill="url(#feat-lg)"/>
+          <polygon points="80,28 108,38 96,62 80,52" fill="url(#feat-lg)" opacity="0.8"/>
+          <polygon points="80,28 52,38 64,62 80,52" fill="url(#feat-lg)" opacity="0.8"/>
+          <polygon points="80,50 118,58 104,84 80,74" fill="url(#feat-lg)" opacity="0.7"/>
+          <polygon points="80,50 42,58 56,84 80,74" fill="url(#feat-lg)" opacity="0.7"/>
+          <polygon points="80,72 114,82 98,108 80,98" fill="url(#feat-lg)" opacity="0.6"/>
+          <polygon points="80,72 46,82 62,108 80,98" fill="url(#feat-lg)" opacity="0.6"/>
+          <polygon points="80,95 106,108 92,130 80,122" fill="url(#feat-lg)" opacity="0.5"/>
+          <polygon points="80,95 54,108 68,130 80,122" fill="url(#feat-lg)" opacity="0.5"/>
+          <polygon points="80,118 90,134 80,148 70,134" fill="url(#feat-lg)" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="featured-content">
+        <div class="featured-cat">Industry Insider</div>
+        <div class="featured-title">How I Got Into Cannabis & What Nobody Tells You</div>
+        <p class="featured-excerpt">From selling shoes at Vans to buying manager in one of California's top dispensaries — a real story about hustle, relationships, and bringing a retail mindset to the cannabis floor.</p>
+        <a href="#" class="read-more">Read the Full Story →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE GRID -->
+<div style="padding: 2px 60px 0; max-width: 1280px; margin: 0 auto; position:relative; z-index:2;">
+  <div class="article-grid">
+
+    <a class="article-card" href="#">
+      <div class="article-card-img">
+        <svg width="100" height="130" viewBox="0 0 160 200" fill="none" opacity="0.6">
+          <polygon points="80,4 92,32 80,52 68,32" fill="#52B788"/>
+          <polygon points="80,28 108,38 96,62 80,52" fill="#2D6A4F"/>
+          <polygon points="80,28 52,38 64,62 80,52" fill="#52B788"/>
+          <polygon points="80,50 118,58 104,84 80,74" fill="#2D6A4F"/>
+          <polygon points="80,50 42,58 56,84 80,74" fill="#52B788"/>
+          <polygon points="80,72 114,82 98,108 80,98" fill="#2D6A4F"/>
+          <polygon points="80,72 46,82 62,108 80,98" fill="#52B788"/>
+        </svg>
+      </div>
+      <div class="article-card-cat">Cannabis Education</div>
+      <div class="article-card-title">Stop Chasing THC Percentages. Here's What Actually Matters.</div>
+      <p class="article-card-excerpt">A higher number on the label does not mean a better experience. Terpenes, the entourage effect, and why quality always beats quantity.</p>
+      <div class="article-card-footer">
+        <span class="article-card-tag">Education</span>
+        <span class="article-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="article-card" href="#">
+      <div class="article-card-img">
+        <svg width="100" height="130" viewBox="0 0 160 200" fill="none" opacity="0.6">
+          <polygon points="80,4 92,32 80,52 68,32" fill="#74C69D"/>
+          <polygon points="80,28 108,38 96,62 80,52" fill="#1B4332"/>
+          <polygon points="80,28 52,38 64,62 80,52" fill="#74C69D"/>
+          <polygon points="80,50 118,58 104,84 80,74" fill="#1B4332"/>
+          <polygon points="80,50 42,58 56,84 80,74" fill="#74C69D"/>
+          <polygon points="80,72 114,82 98,108 80,98" fill="#1B4332"/>
+          <polygon points="80,72 46,82 62,108 80,98" fill="#74C69D"/>
+        </svg>
+      </div>
+      <div class="article-card-cat">Product Education</div>
+      <div class="article-card-title">Distillate, Live Resin, Cured Resin & Live Rosin: What's Actually in Your Cart?</div>
+      <p class="article-card-excerpt">A floor-level breakdown of every vape category — from shelf life to shelf price, no lab coat required.</p>
+      <div class="article-card-footer">
+        <span class="article-card-tag">Products</span>
+        <span class="article-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="article-card" href="#">
+      <div class="article-card-img">
+        <svg width="100" height="130" viewBox="0 0 160 200" fill="none" opacity="0.6">
+          <polygon points="80,4 92,32 80,52 68,32" fill="#B7E4C7"/>
+          <polygon points="80,28 108,38 96,62 80,52" fill="#2D6A4F"/>
+          <polygon points="80,28 52,38 64,62 80,52" fill="#B7E4C7"/>
+          <polygon points="80,50 118,58 104,84 80,74" fill="#2D6A4F"/>
+          <polygon points="80,50 42,58 56,84 80,74" fill="#B7E4C7"/>
+          <polygon points="80,72 114,82 98,108 80,98" fill="#2D6A4F"/>
+          <polygon points="80,72 46,82 62,108 80,98" fill="#B7E4C7"/>
+        </svg>
+      </div>
+      <div class="article-card-cat">Industry Insider</div>
+      <div class="article-card-title">How to Get Into the Cannabis Industry — A Real Answer</div>
+      <p class="article-card-excerpt">Not the LinkedIn version. The real story of what it takes, who you need to know, and how to turn your passion into a career on the floor.</p>
+      <div class="article-card-footer">
+        <span class="article-card-tag">Career</span>
+        <span class="article-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<div class="full-divider" style="margin-top: 80px;"></div>
+
+<!-- STRAIN FINDER -->
+<div id="strain-finder" class="strain-finder">
+  <div class="strain-finder-inner">
+    <span class="strain-finder-label">✦ AI Strain Finder</span>
+    <div class="strain-finder-title">Describe how you want to <em>feel</em></div>
+    <p class="strain-finder-sub">Type anything — a mood, a flavor, a vibe, or a strain name. Our AI understands terpenes, effects, and how cannabis works.</p>
+
+    <div class="strain-search-wrap">
+      <input
+        id="strainInput"
+        class="strain-input"
+        type="text"
+        placeholder="e.g. limey, productive and cheery — or just type 'sleep' or 'creative'"
+        maxlength="200"
+      />
+      <button id="strainSearchBtn" class="strain-search-btn" onclick="findStrains()">Find Strains</button>
+    </div>
+
+    <div class="strain-examples">
+      <span class="strain-example-pill" onclick="searchExample(this)">Jack Herer</span>
+      <span class="strain-example-pill" onclick="searchExample(this)">Skywalker</span>
+      <span class="strain-example-pill" onclick="searchExample(this)">Durban Poison</span>
+      <span class="strain-example-pill" onclick="searchExample(this)">Gelato</span>
+      <span class="strain-example-pill" onclick="searchExample(this)">Girl Scout Cookies</span>
+      <span class="strain-example-pill" onclick="searchExample(this)">Blue Dream</span>
+      <span class="strain-example-pill" onclick="searchExample(this)">earthy</span>
+      <span class="strain-example-pill" onclick="searchExample(this)">pungent</span>
+      <span class="strain-example-pill" onclick="searchExample(this)">Kush</span>
+      <span class="strain-example-pill" onclick="searchExample(this)">OG</span>
+    </div>
+
+    <div id="strainLoading" class="strain-loading">Finding your matches...</div>
+    <div id="strainError" class="strain-error"></div>
+
+    <div id="strainResults" class="strain-results">
+      <div id="strainResultsHeader" class="strain-results-header"></div>
+      <div id="strainCards" class="strain-cards"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CANNALOGY -->
+<div id="cannalogy" class="cannalogy">
+  <div class="cannalogy-inner">
+    <div class="section-label">✦ The Cannalogy</div>
+    <div class="section-title">Cannabis education for <em>everyone</em></div>
+
+    <div class="cannalogy-grid">
+
+      <!-- Featured education block -->
+      <div class="canna-card canna-card-featured">
+        <div>
+          <span class="canna-featured-label">✦ Start Here</span>
+          <div class="canna-featured-title">Everything you thought you knew about cannabis is <em>incomplete</em></div>
+          <p class="canna-featured-desc">Most people pick up cannabis and just start using it. Nobody ever sat down and explained terpenes, cannabinoids, the entourage effect, consumption methods, or why one strain hits completely different than another. Cannalogy fixes that. Real education, plain language, zero gatekeeping.</p>
+          <a href="#" class="btn-primary">Start Learning</a>
+        </div>
+        <div class="canna-topics">
+          <div class="canna-topic"><div class="canna-topic-dot"></div><span class="canna-topic-name">Terpenes 101</span></div>
+          <div class="canna-topic"><div class="canna-topic-dot"></div><span class="canna-topic-name">THC vs CBD vs CBG</span></div>
+          <div class="canna-topic"><div class="canna-topic-dot"></div><span class="canna-topic-name">The Entourage Effect</span></div>
+          <div class="canna-topic"><div class="canna-topic-dot"></div><span class="canna-topic-name">Consumption Methods</span></div>
+          <div class="canna-topic"><div class="canna-topic-dot"></div><span class="canna-topic-name">Dosing Guide</span></div>
+          <div class="canna-topic"><div class="canna-topic-dot"></div><span class="canna-topic-name">Reading a Label</span></div>
+          <div class="canna-topic"><div class="canna-topic-dot"></div><span class="canna-topic-name">Sativa vs Indica</span></div>
+          <div class="canna-topic"><div class="canna-topic-dot"></div><span class="canna-topic-name">Growing Basics</span></div>
+        </div>
+      </div>
+
+      <a class="canna-card" href="#">
+        <div class="canna-card-num">01</div>
+        <div class="canna-card-title">Terpenes: The Real Reason Strains Feel Different</div>
+        <p class="canna-card-desc">Forget Sativa vs. Indica. The real driver of your experience is terpenes — the aromatic compounds that shape every aspect of your high.</p>
+        <div class="canna-card-arrow">→</div>
+      </a>
+
+      <a class="canna-card" href="#">
+        <div class="canna-card-num">02</div>
+        <div class="canna-card-title">How to Actually Read a Cannabis Label</div>
+        <p class="canna-card-desc">THC percentage, COA, batch numbers, harvest dates — decoded. What to look for, what to ignore, and what dispensaries don't tell you.</p>
+        <div class="canna-card-arrow">→</div>
+      </a>
+
+      <a class="canna-card" href="#">
+        <div class="canna-card-num">03</div>
+        <div class="canna-card-title">The Entourage Effect Explained Simply</div>
+        <p class="canna-card-desc">Why a full-spectrum product hits differently than isolate. The science of cannabinoids and terpenes working together — made simple.</p>
+        <div class="canna-card-arrow">→</div>
+      </a>
+
+      <a class="canna-card" href="#">
+        <div class="canna-card-num">04</div>
+        <div class="canna-card-title">Every Consumption Method, Honestly Reviewed</div>
+        <p class="canna-card-desc">Flower, vape, edible, tincture, dab, topical — the real differences in onset, duration, intensity, and who each method is actually for.</p>
+        <div class="canna-card-arrow">→</div>
+      </a>
+
+      <a class="canna-card" href="#">
+        <div class="canna-card-num">05</div>
+        <div class="canna-card-title">Dosing: The Art of Finding Your Sweet Spot</div>
+        <p class="canna-card-desc">Too much is the most common mistake. A practical framework for new users and experienced consumers to dial in the perfect dose every time.</p>
+        <div class="canna-card-arrow">→</div>
+      </a>
+
+      <a class="canna-card" href="#">
+        <div class="canna-card-num">06</div>
+        <div class="canna-card-title">Cannabis & the Body: What's Actually Happening</div>
+        <p class="canna-card-desc">The endocannabinoid system, CB1 and CB2 receptors, why cannabis affects everyone differently — the biology explained without a PhD.</p>
+        <div class="canna-card-arrow">→</div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<!-- JOINT ROLLING SEMINARS -->
+<div id="seminars" class="seminars">
+  <div class="seminars-inner">
+
+    <div class="seminars-header">
+      <div>
+        <div class="section-label">✦ Seminars & Workshops</div>
+        <div class="section-title">The art of <em>the roll</em></div>
+      </div>
+      <div>
+        <p style="font-size:14px; line-height:1.9; color:var(--cream); opacity:0.5;">Most people have been smoking for years and still can't roll a proper joint. No judgment — nobody taught them. That changes here. From your first joint to a perfectly engineered cross — every level covered, every technique mastered.</p>
+      </div>
+    </div>
+
+    <div class="seminars-levels">
+
+      <div class="seminar-level">
+        <span class="seminar-level-badge badge-beginner">Beginner</span>
+        <div class="seminar-level-title">Your First Roll</div>
+        <p class="seminar-level-desc">Never rolled before? No problem. We start from zero — papers, filters, grinding, and the basics of a solid roll that burns clean.</p>
+        <ul class="seminar-techniques">
+          <li>Choosing the right papers</li>
+          <li>Grinding consistency</li>
+          <li>The classic straight joint</li>
+          <li>Making a proper filter tip</li>
+          <li>Lighting and smoking technique</li>
+        </ul>
+        <a href="#" class="seminar-cta">Book This Class</a>
+      </div>
+
+      <div class="seminar-level">
+        <span class="seminar-level-badge badge-intermediate">Intermediate</span>
+        <div class="seminar-level-title">Level Up Your Roll</div>
+        <p class="seminar-level-desc">You can roll, but it's not consistent. This class tightens your technique and introduces blunts, backwoods, and the cone roll.</p>
+        <ul class="seminar-techniques">
+          <li>The perfect cone joint</li>
+          <li>Blunt rolling (cigarillo & backwood)</li>
+          <li>Dutch masters technique</li>
+          <li>Pre-roll consistency tricks</li>
+          <li>Infused rolls & kief crowning</li>
+        </ul>
+        <a href="#" class="seminar-cta">Book This Class</a>
+      </div>
+
+      <div class="seminar-level">
+        <span class="seminar-level-badge badge-advanced">Advanced</span>
+        <div class="seminar-level-title">The Masterclass</div>
+        <p class="seminar-level-desc">For the enthusiast who wants to go all the way. Intricate rolls, showpieces, and techniques that will genuinely impress anyone in the room.</p>
+        <ul class="seminar-techniques">
+          <li>The cross joint</li>
+          <li>Tulip & cannons</li>
+          <li>Multi-paper braided rolls</li>
+          <li>Diamond & star formations</li>
+          <li>Scorpion & windmill techniques</li>
+        </ul>
+        <a href="#" class="seminar-cta">Book This Class</a>
+      </div>
+
+    </div>
+
+    <div class="seminars-formats">
+      <div class="seminar-format">
+        <div class="seminar-format-icon">🖥</div>
+        <div class="seminar-format-title">Live Online Sessions</div>
+        <p class="seminar-format-desc">Zoom-based classes with real-time instruction. Learn from anywhere. Sessions are small-group, interactive, and recorded for replay.</p>
+      </div>
+      <div class="seminar-format">
+        <div class="seminar-format-icon">📍</div>
+        <div class="seminar-format-title">In-Person Workshops</div>
+        <p class="seminar-format-desc">Hands-on sessions in select cities. Everything provided. The most effective way to learn — direct feedback, small groups, full experience.</p>
+      </div>
+      <div class="seminar-format">
+        <div class="seminar-format-icon">🏢</div>
+        <div class="seminar-format-title">Private Events & Groups</div>
+        <p class="seminar-format-desc">Dispensary staff training, private parties, corporate events, and group bookings. Fully customized to your occasion and audience.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<!-- CONSULTING -->
+<div id="consulting" class="consulting">
+  <div class="consulting-inner">
+
+    <div class="consulting-left">
+      <div class="section-label">✦ Cannabis Consulting</div>
+      <div class="consulting-title">The <em>best cannabis consultant</em> there ever was. At your service.</div>
+      <p class="consulting-desc">Not an algorithm. Not a chatbot. Not someone who read a couple of articles. Decades of real dispensary floor experience — buying manager, budtender, educator, industry insider. If you need guidance, strategy, or just the right answer, this is where you get it.</p>
+
+      <div class="consulting-stats">
+        <div>
+          <div class="consulting-stat-num">10+</div>
+          <div class="consulting-stat-label">Years on the floor</div>
+        </div>
+        <div>
+          <div class="consulting-stat-num">1000s</div>
+          <div class="consulting-stat-label">Customers helped</div>
+        </div>
+        <div>
+          <div class="consulting-stat-num">500+</div>
+          <div class="consulting-stat-label">Strains studied</div>
+        </div>
+        <div>
+          <div class="consulting-stat-num">100%</div>
+          <div class="consulting-stat-label">Real experience</div>
+        </div>
+      </div>
+
+      <a href="#newsletter" class="btn-primary">Book a Consultation</a>
+    </div>
+
+    <div class="consulting-services">
+
+      <div class="consulting-service">
+        <div class="consulting-service-icon">🌿</div>
+        <div>
+          <div class="consulting-service-title">Personal Consumer Consultation</div>
+          <p class="consulting-service-desc">Not sure what you need? Tell me your goals, your experience, your lifestyle — I'll point you to exactly the right products, strains, and consumption methods. One session changes everything.</p>
+          <div class="consulting-service-price">1-on-1 · 60 minutes · Zoom or phone</div>
+        </div>
+      </div>
+
+      <div class="consulting-service">
+        <div class="consulting-service-icon">🏪</div>
+        <div>
+          <div class="consulting-service-title">Dispensary & Retail Consulting</div>
+          <p class="consulting-service-desc">Staff training, floor strategy, product curation, customer experience — built by someone who has actually managed a dispensary. Not theory. Systems that work.</p>
+          <div class="consulting-service-price">Custom packages · Multi-session programs available</div>
+        </div>
+      </div>
+
+      <div class="consulting-service">
+        <div class="consulting-service-icon">💼</div>
+        <div>
+          <div class="consulting-service-title">Cannabis Business Strategy</div>
+          <p class="consulting-service-desc">Launching a brand, entering the market, refining your positioning? Deep industry knowledge meets real commercial thinking. From startup to scale.</p>
+          <div class="consulting-service-price">Project-based · Initial call complimentary</div>
+        </div>
+      </div>
+
+      <div class="consulting-service">
+        <div class="consulting-service-icon">🎓</div>
+        <div>
+          <div class="consulting-service-title">Budtender & Staff Training</div>
+          <p class="consulting-service-desc">Your staff is your brand. Comprehensive training on strains, terpenes, customer conversations, product knowledge, and sales technique — from the floor up.</p>
+          <div class="consulting-service-price">Group sessions · In-person or virtual</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<!-- HASH CULTURE -->
+<div id="hash" class="hash-section">
+  <div class="hash-inner">
+    <span class="hash-label">✦ Hash Culture</span>
+    <div class="hash-title">The oldest cannabis tradition.<br><em>Finally respected.</em></div>
+    <p class="hash-intro">Before dispensaries, before pre-rolls, before flower became a commodity — there was hash. The most concentrated, most storied, most misunderstood form of cannabis. We're bringing it back to the forefront, and giving it the stage it deserves.</p>
+
+    <div class="hash-events">
+
+      <div class="hash-event">
+        <div class="hash-event-glow"></div>
+        <span class="hash-event-label">✦ Signature Experience</span>
+        <div class="hash-event-name"><em>Taste the Courage</em></div>
+        <p class="hash-event-desc">A curated hash tasting experience for the true connoisseur. Multiple expressions — different regions, different techniques, different profiles — presented and guided by someone who actually knows what they're talking about. Like a whisky flight, but elevated.</p>
+        <div class="hash-event-details">
+          <span class="hash-event-detail">Bubblehash · Dry Sift · Rosin · Live Hash</span>
+          <span class="hash-event-detail">Guided tasting with full terpene breakdowns</span>
+          <span class="hash-event-detail">Small groups — intimate, educational, unforgettable</span>
+        </div>
+        <a href="#" class="hash-btn">Reserve Your Seat</a>
+      </div>
+
+      <div class="hash-event">
+        <div class="hash-event-glow"></div>
+        <span class="hash-event-label">✦ Exclusive Event</span>
+        <div class="hash-event-name"><em>Solventless</em> Sessions</div>
+        <p class="hash-event-desc">A hash-only evening for people who actually appreciate the craft. No flower, no vapes. Just the finest solventless expressions available, expertly presented to a room of people who get it.</p>
+        <div class="hash-event-details">
+          <span class="hash-event-detail">Hash-only format</span>
+          <span class="hash-event-detail">Private invite and public events</span>
+          <span class="hash-event-detail">Education + experience combined</span>
+        </div>
+        <a href="#" class="hash-btn">Join the List</a>
+      </div>
+
+      <div class="hash-event">
+        <div class="hash-event-glow"></div>
+        <span class="hash-event-label">✦ Community Night</span>
+        <div class="hash-event-name">Hash <em>Nights</em></div>
+        <p class="hash-event-desc">A recurring gathering for the hash community. Monthly sessions where enthusiasts, connoisseurs, and the hash-curious all come together. The culture lives here.</p>
+        <div class="hash-event-details">
+          <span class="hash-event-detail">Monthly recurring events</span>
+          <span class="hash-event-detail">Open to all levels — beginners welcome</span>
+          <span class="hash-event-detail">Community-driven, expert-guided</span>
+        </div>
+        <a href="#" class="hash-btn">Attend a Night</a>
+      </div>
+
+    </div>
+
+    <div class="hash-classes">
+      <div>
+        <div class="hash-classes-intro">Master every form of hash — <em>from pressing to rolling to tasting</em></div>
+      </div>
+      <div class="hash-class-grid">
+        <div class="hash-class-card">
+          <div class="hash-class-name">Hash 101</div>
+          <p class="hash-class-desc">History, types, and how hash is made. The foundation every enthusiast needs. Covers kief, dry sift, bubble, rosin, and live hash.</p>
+        </div>
+        <div class="hash-class-card">
+          <div class="hash-class-name">Rolling with Hash</div>
+          <p class="hash-class-desc">How to properly incorporate hash into joints — from sprinkling kief to building a proper hash rod or snake. Technique matters.</p>
+        </div>
+        <div class="hash-class-card">
+          <div class="hash-class-name">Pressing & Extraction</div>
+          <p class="hash-class-desc">Understanding how solventless concentrates are made. Bubble hash, rosin pressing — demystified for the serious enthusiast.</p>
+        </div>
+        <div class="hash-class-card">
+          <div class="hash-class-name">The Connoisseur's Eye</div>
+          <p class="hash-class-desc">How to evaluate hash quality — color, texture, melt, aroma, and terpene expression. What separates premium from average.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<!-- BUDTENDER PRO -->
+<div id="pro" class="pro-banner">
+  <div class="pro-inner">
+    <div>
+      <div class="pro-label">✦ Budtender Pro</div>
+      <div class="pro-title">The professional's <em>essential tool</em> — on the floor, every shift.</div>
+      <p class="pro-desc">Every budtender in the world should have Cannascenti open on their tablet the moment they hit the sales floor. When a customer has a question — the answer is here.</p>
+      <a href="#" class="btn-primary">Coming Soon — Join the Waitlist</a>
+    </div>
+    <div class="pro-features">
+      <div class="pro-feature">
+        <div class="pro-feature-dot"></div>
+        <div class="pro-feature-text">Strain Database — searchable by terpene, effect, and flavor</div>
+      </div>
+      <div class="pro-feature">
+        <div class="pro-feature-dot"></div>
+        <div class="pro-feature-text">Terpene Guide — every compound explained</div>
+      </div>
+      <div class="pro-feature">
+        <div class="pro-feature-dot"></div>
+        <div class="pro-feature-text">Product Comparison Tool — side by side</div>
+      </div>
+      <div class="pro-feature">
+        <div class="pro-feature-dot"></div>
+        <div class="pro-feature-text">Sales Techniques — floor-tested strategies</div>
+      </div>
+      <div class="pro-feature">
+        <div class="pro-feature-dot"></div>
+        <div class="pro-feature-text">Compliance by State — always up to date</div>
+      </div>
+      <div class="pro-feature">
+        <div class="pro-feature-dot"></div>
+        <div class="pro-feature-text">Team subscriptions for dispensaries</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<!-- ABOUT -->
+<div id="about" class="about-strip">
+  <div class="about-quote">
+    Built by someone who has <em>actually worked the floor</em> — from pre-legalization to today.
+  </div>
+  <div>
+    <p class="about-text">Cannascenti was built out of a gap nobody was filling. There was no authoritative, trusted, beautiful resource for cannabis professionals and educated consumers — written by people who actually knew what they were talking about.</p>
+    <br>
+    <p class="about-text">Every article, every guide, every piece of content on this platform comes from real dispensary floor experience. Buying manager. Budtender. Industry insider. This is cannabis intelligence from the people who live it.</p>
+    <br>
+    <a href="#" class="read-more">Our Story →</a>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<!-- NEWSLETTER -->
+<div id="newsletter" class="newsletter">
+  <div class="section-label" style="justify-content:center; display:flex;">Stay in the know</div>
+  <div class="newsletter-title">The Cannascenti Newsletter</div>
+  <p class="newsletter-sub">New articles, strain spotlights, industry news, and product drops — weekly.</p>
+  <div class="newsletter-form">
+    <input class="newsletter-input" type="email" placeholder="Your email address">
+    <button class="newsletter-btn">Subscribe</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-wordmark">Cannascenti</span>
+      <p>A futuristic cannabis magazine built by industry professionals, for industry professionals and the consumers who want to know more.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Magazine</div>
+      <ul class="footer-links">
+        <li><a href="#">Cannabis Education</a></li>
+        <li><a href="#">Product Reviews</a></li>
+        <li><a href="#">Industry Trends</a></li>
+        <li><a href="#">Day in the Life</a></li>
+        <li><a href="#">Strain Spotlight</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Platform</div>
+      <ul class="footer-links">
+        <li><a href="#">Budtender Pro</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Advertise</a></li>
+        <li><a href="#">Partner Dispensaries</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Connect</div>
+      <ul class="footer-links">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">TikTok</a></li>
+        <li><a href="#">X / Twitter</a></li>
+        <li><a href="#">Newsletter</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Cannascenti. All rights reserved.</p>
+    <span class="footer-tagline">Mary Jane Knows What You Want Before You Do</span>
+  </div>
+</footer>
+
+<script>
+  // Allow Enter key to trigger search
+  document.getElementById('strainInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') findStrains();
+  });
+
+  function searchExample(el) {
+    document.getElementById('strainInput').value = el.textContent;
+    findStrains();
+  }
+
+  async function findStrains() {
+    const query = document.getElementById('strainInput').value.trim();
+    if (!query) return;
+
+    const btn = document.getElementById('strainSearchBtn');
+    const loading = document.getElementById('strainLoading');
+    const results = document.getElementById('strainResults');
+    const error = document.getElementById('strainError');
+    const cards = document.getElementById('strainCards');
+    const header = document.getElementById('strainResultsHeader');
+
+    btn.disabled = true;
+    loading.classList.add('visible');
+    results.classList.remove('visible');
+    error.classList.remove('visible');
+    cards.innerHTML = '';
+
+    try {
+      const res = await fetch('/api/strains', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query })
+      });
+
+      if (!res.ok) throw new Error('Server error');
+      const data = await res.json();
+
+      if (!data.strains || data.strains.length === 0) {
+        error.textContent = 'No strains found for that search. Try different words.';
+        error.classList.add('visible');
+        return;
+      }
+
+      header.textContent = `${data.strains.length} strains matched for "${query}"`;
+      data.strains.forEach((strain, i) => {
+        const typeClass = {
+          'Sativa': 'type-sativa',
+          'Indica': 'type-indica',
+          'Hybrid': 'type-hybrid'
+        }[strain.type] || 'type-hybrid';
+
+        const card = document.createElement('div');
+        card.className = 'strain-card';
+        card.style.animationDelay = `${i * 0.06}s`;
+        card.innerHTML = `
+          <div class="strain-card-header">
+            <div class="strain-card-name">${strain.name}</div>
+            <span class="strain-card-type ${typeClass}">${strain.type}</span>
+          </div>
+          <p class="strain-card-desc">${strain.description}</p>
+          <div class="strain-card-tags">
+            ${strain.effects.map(e => `<span class="strain-tag">${e}</span>`).join('')}
+          </div>
+          <div class="strain-card-thc">THC ${strain.thc} · CBD ${strain.cbd}</div>
+        `;
+        cards.appendChild(card);
+      });
+
+      results.classList.add('visible');
+    } catch (err) {
+      error.textContent = 'Something went wrong. Make sure the server is running.';
+      error.classList.add('visible');
+    } finally {
+      btn.disabled = false;
+      loading.classList.remove('visible');
+    }
+  }
+</script>
+
+<!-- MARY JANE CHAT WIDGET -->
+<div class="mj-bubble" id="mjBubble">
+  <div class="mj-toggle-label">Ask Mary Jane</div>
+  <button class="mj-toggle" id="mjToggle" onclick="toggleMJ()" aria-label="Chat with Mary Jane">
+    <svg width="26" height="34" viewBox="0 0 160 200" fill="none">
+      <polygon points="80,4 92,32 80,52 68,32" fill="#B7E4C7" opacity="0.95"/>
+      <polygon points="80,28 108,38 96,62 80,52" fill="#74C69D" opacity="0.85"/>
+      <polygon points="80,28 52,38 64,62 80,52" fill="#B7E4C7" opacity="0.85"/>
+      <polygon points="80,50 118,58 104,84 80,74" fill="#74C69D" opacity="0.7"/>
+      <polygon points="80,50 42,58 56,84 80,74" fill="#B7E4C7" opacity="0.7"/>
+      <polygon points="80,72 114,82 98,108 80,98" fill="#52B788" opacity="0.6"/>
+      <polygon points="80,72 46,82 62,108 80,98" fill="#74C69D" opacity="0.6"/>
+      <path d="M80 108 Q76 128 74 148" stroke="#52B788" stroke-width="2.5" fill="none" opacity="0.5"/>
+    </svg>
+    <span class="mj-unread" id="mjUnread">1</span>
+  </button>
+</div>
+
+<div class="mj-panel" id="mjPanel">
+  <div class="mj-header">
+    <div class="mj-avatar">
+      <svg width="20" height="27" viewBox="0 0 160 200" fill="none">
+        <polygon points="80,4 92,32 80,52 68,32" fill="#B7E4C7"/>
+        <polygon points="80,28 108,38 96,62 80,52" fill="#74C69D" opacity="0.8"/>
+        <polygon points="80,28 52,38 64,62 80,52" fill="#B7E4C7" opacity="0.8"/>
+        <polygon points="80,50 118,58 104,84 80,74" fill="#52B788" opacity="0.7"/>
+        <polygon points="80,50 42,58 56,84 80,74" fill="#74C69D" opacity="0.7"/>
+        <path d="M80 84 Q77 100 75 112" stroke="#52B788" stroke-width="2" fill="none" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="mj-header-info">
+      <div class="mj-name">Mary Jane</div>
+      <div class="mj-status">Online · Cannabis Intelligence</div>
+    </div>
+    <button class="mj-close" onclick="toggleMJ()">×</button>
+  </div>
+
+  <div class="mj-messages" id="mjMessages">
+    <div class="mj-msg assistant">
+      <div class="mj-msg-avatar">
+        <svg width="14" height="18" viewBox="0 0 160 200" fill="none">
+          <polygon points="80,4 92,32 80,52 68,32" fill="#B7E4C7"/>
+          <polygon points="80,28 108,38 96,62 80,52" fill="#74C69D" opacity="0.8"/>
+          <polygon points="80,28 52,38 64,62 80,52" fill="#B7E4C7" opacity="0.8"/>
+        </svg>
+      </div>
+      <div class="mj-msg-bubble">Hey — I'm Mary Jane. Your personal guide to everything cannabis. Whether you need the right strain, want to understand terpenes, book a seminar, or just have a question — I've got you. What can I help you with?</div>
+    </div>
+  </div>
+
+  <div class="mj-suggestions" id="mjSuggestions">
+    <span class="mj-suggestion" onclick="mjSuggest(this)">Find me a strain</span>
+    <span class="mj-suggestion" onclick="mjSuggest(this)">What are Solventless Sessions?</span>
+    <span class="mj-suggestion" onclick="mjSuggest(this)">I want to learn to roll</span>
+    <span class="mj-suggestion" onclick="mjSuggest(this)">Book a consultation</span>
+    <span class="mj-suggestion" onclick="mjSuggest(this)">Explain terpenes</span>
+  </div>
+
+  <div class="mj-input-area">
+    <textarea
+      id="mjInput"
+      class="mj-input"
+      placeholder="Ask Mary Jane anything..."
+      rows="1"
+      maxlength="500"
+    ></textarea>
+    <button id="mjSend" class="mj-send" onclick="sendMJ()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="22" y1="2" x2="11" y2="13"/>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+      </svg>
+    </button>
+  </div>
+  <div class="mj-footer-note">Cannascenti · Cannabis Intelligence</div>
+</div>
+
+<script>
+  // ── Mary Jane state ──
+  const mjHistory = [];
+  let mjOpen = false;
+  let mjStreaming = false;
+
+  function toggleMJ() {
+    mjOpen = !mjOpen;
+    document.getElementById('mjPanel').classList.toggle('open', mjOpen);
+    document.getElementById('mjUnread').style.display = 'none';
+    if (mjOpen) document.getElementById('mjInput').focus();
+  }
+
+  function mjSuggest(el) {
+    document.getElementById('mjInput').value = el.textContent;
+    document.getElementById('mjSuggestions').style.display = 'none';
+    sendMJ();
+  }
+
+  document.getElementById('mjInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMJ(); }
+    this.style.height = 'auto';
+    this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+  });
+
+  function appendMsg(role, text) {
+    const msgs = document.getElementById('mjMessages');
+    const div = document.createElement('div');
+    div.className = `mj-msg ${role}`;
+
+    const avatarHtml = role === 'assistant' ? `
+      <div class="mj-msg-avatar">
+        <svg width="14" height="18" viewBox="0 0 160 200" fill="none">
+          <polygon points="80,4 92,32 80,52 68,32" fill="#B7E4C7"/>
+          <polygon points="80,28 108,38 96,62 80,52" fill="#74C69D" opacity="0.8"/>
+          <polygon points="80,28 52,38 64,62 80,52" fill="#B7E4C7" opacity="0.8"/>
+        </svg>
+      </div>` : '';
+
+    div.innerHTML = `${avatarHtml}<div class="mj-msg-bubble">${text}</div>`;
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+    return div.querySelector('.mj-msg-bubble');
+  }
+
+  function showTyping() {
+    const msgs = document.getElementById('mjMessages');
+    const div = document.createElement('div');
+    div.className = 'mj-typing';
+    div.id = 'mjTyping';
+    div.innerHTML = `
+      <div class="mj-msg-avatar">
+        <svg width="14" height="18" viewBox="0 0 160 200" fill="none">
+          <polygon points="80,4 92,32 80,52 68,32" fill="#B7E4C7"/>
+          <polygon points="80,28 108,38 96,62 80,52" fill="#74C69D" opacity="0.8"/>
+          <polygon points="80,28 52,38 64,62 80,52" fill="#B7E4C7" opacity="0.8"/>
+        </svg>
+      </div>
+      <div class="mj-typing-dots">
+        <div class="mj-dot"></div><div class="mj-dot"></div><div class="mj-dot"></div>
+      </div>`;
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+
+  function removeTyping() {
+    const t = document.getElementById('mjTyping');
+    if (t) t.remove();
+  }
+
+  async function sendMJ() {
+    if (mjStreaming) return;
+    const input = document.getElementById('mjInput');
+    const text = input.value.trim();
+    if (!text) return;
+
+    input.value = '';
+    input.style.height = 'auto';
+    document.getElementById('mjSuggestions').style.display = 'none';
+    document.getElementById('mjSend').disabled = true;
+    mjStreaming = true;
+
+    appendMsg('user', text);
+    mjHistory.push({ role: 'user', content: text });
+
+    showTyping();
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: mjHistory })
+      });
+
+      if (!res.ok) throw new Error('Server error');
+
+      removeTyping();
+      const bubble = appendMsg('assistant', '');
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let fullText = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        const chunk = decoder.decode(value, { stream: true });
+        const lines = chunk.split('\n');
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            const data = line.slice(6);
+            if (data === '[DONE]') break;
+            try {
+              const { delta } = JSON.parse(data);
+              if (delta) {
+                fullText += delta;
+                bubble.textContent = fullText;
+                document.getElementById('mjMessages').scrollTop = document.getElementById('mjMessages').scrollHeight;
+              }
+            } catch {}
+          }
+        }
+      }
+
+      mjHistory.push({ role: 'assistant', content: fullText });
+    } catch (err) {
+      removeTyping();
+      appendMsg('assistant', "Sorry, I'm having trouble connecting right now. Make sure the server is running.");
+    } finally {
+      mjStreaming = false;
+      document.getElementById('mjSend').disabled = false;
+    }
+  }
+</script>
+
+</body>
+</html>
