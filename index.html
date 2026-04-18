@@ -1496,6 +1496,9 @@
     .cannalogy-grid { grid-template-columns: 1fr; }
     .canna-card-featured { grid-column: span 1; grid-template-columns: 1fr; gap: 32px; padding: 32px 24px; }
     .canna-topics { grid-template-columns: 1fr; }
+    .terpene-grid { grid-template-columns: repeat(2, 1fr); }
+    .craft { padding: 60px 24px; }
+    .craft-pillars { grid-template-columns: 1fr; }
     .seminars { padding: 60px 24px; }
     .seminars-header { grid-template-columns: 1fr; gap: 24px; }
     .seminars-levels { grid-template-columns: 1fr; }
@@ -1504,6 +1507,128 @@
     .consulting { padding: 60px 24px; }
     .consulting-inner { grid-template-columns: 1fr; gap: 48px; }
     .consulting-stats { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ===================== TERPENES ===================== */
+  .terpene-section {
+    margin-top: 80px;
+    border-top: 1px solid rgba(82,183,136,0.12);
+    padding-top: 60px;
+  }
+  .terpene-intro { max-width: 700px; margin-bottom: 48px; }
+  .terpene-intro-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .terpene-intro-title em { font-style: italic; color: var(--light-green); }
+  .terpene-intro-desc { font-size: 14px; line-height: 1.9; color: var(--cream); opacity: 0.6; }
+  .terpene-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+  }
+  .terpene-card {
+    background: var(--card-bg);
+    padding: 32px 24px;
+    border: 1px solid rgba(82,183,136,0.08);
+    transition: border-color 0.2s;
+  }
+  .terpene-card:hover { border-color: rgba(82,183,136,0.25); }
+  .terpene-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--light-green);
+    margin-bottom: 4px;
+  }
+  .terpene-tag {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .terpene-found {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--cream);
+    opacity: 0.5;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(82,183,136,0.08);
+  }
+  .terpene-effect {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--cream);
+    opacity: 0.75;
+    margin-bottom: 12px;
+  }
+  .terpene-ecs {
+    font-size: 11px;
+    line-height: 1.6;
+    color: var(--bright-green);
+    opacity: 0.9;
+    font-style: italic;
+  }
+
+  /* ===================== THE CRAFT ===================== */
+  .craft {
+    position: relative;
+    z-index: 2;
+    padding: 100px 60px;
+  }
+  .craft-inner { max-width: 1280px; margin: 0 auto; }
+  .craft-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+  }
+  .craft-pillar {
+    background: var(--card-bg);
+    padding: 48px 36px;
+    border: 1px solid rgba(82,183,136,0.08);
+    transition: border-color 0.2s;
+  }
+  .craft-pillar:hover { border-color: rgba(82,183,136,0.2); }
+  .craft-pillar-icon { font-size: 28px; margin-bottom: 20px; }
+  .craft-pillar-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .craft-pillar-title em { font-style: italic; color: var(--light-green); }
+  .craft-pillar-desc {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--cream);
+    opacity: 0.6;
+    margin-bottom: 28px;
+  }
+  .craft-topics { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .craft-topics li {
+    font-size: 12px;
+    color: var(--cream);
+    opacity: 0.55;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .craft-topics li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    font-size: 7px;
+    color: var(--bright-green);
+    top: 3px;
   }
 
   /* ===================== ANIMATIONS ===================== */
@@ -2113,11 +2238,10 @@
     <span class="nav-wordmark">Cannascenti</span>
   </a>
   <ul class="nav-links">
-    <li><a href="#magazine">Magazine</a></li>
     <li><a href="#cannalogy">Cannalogy</a></li>
-    <li><a href="#consulting">Seminars</a></li>
-    <li><a href="#hash">Hash Culture</a></li>
     <li><a href="#consulting">CannaQuant</a></li>
+    <li><a href="#the-craft">The Craft</a></li>
+    <li><a href="#hash">Hash Culture</a></li>
     <li><a href="#newsletter" class="nav-cta">Subscribe</a></li>
   </ul>
 </nav>
@@ -2301,6 +2425,60 @@
       </a>
 
     </div>
+
+    <!-- TERPENES -->
+    <div class="terpene-section">
+      <div class="terpene-intro">
+        <div class="section-label">✦ Terpenes</div>
+        <div class="terpene-intro-title">The molecules that make you <em>feel everything</em></div>
+        <p class="terpene-intro-desc">Terpenes aren't just cannabis compounds — they exist all around us in nature. Every time you've smelled a lemon, walked through a pine forest, or felt calm holding lavender, your endocannabinoid system was already responding. Cannabis just delivers them in high concentration — and your body already knows exactly what to do with them.</p>
+      </div>
+
+      <div class="terpene-grid">
+
+        <div class="terpene-card">
+          <div class="terpene-name">Myrcene</div>
+          <span class="terpene-tag">Most Common in Cannabis</span>
+          <p class="terpene-found">Found in: mangoes, hops, lemongrass, thyme, bay leaves. That tropical, musky, earthy smell — that's myrcene.</p>
+          <p class="terpene-effect">The most abundant terpene in most cannabis strains. Produces that heavy, relaxed, couch-lock feeling. High myrcene = indica-leaning experience regardless of strain type.</p>
+          <p class="terpene-ecs">Enhances CB1 receptor binding — helps cannabinoids cross the blood-brain barrier faster. Eating a mango before smoking? The myrcene increases absorption. That's real science.</p>
+        </div>
+
+        <div class="terpene-card">
+          <div class="terpene-name">Limonene</div>
+          <span class="terpene-tag">The Mood Lifter</span>
+          <p class="terpene-found">Found in: lemon rinds, orange peel, limes, grapefruit, juniper berries. That bright citrus punch — pure limonene.</p>
+          <p class="terpene-effect">Uplifting, euphoric, anxiety-reducing. The reason citrus makes you feel awake and positive. In cannabis, it drives that bright, social, happy high.</p>
+          <p class="terpene-ecs">Interacts with serotonin and dopamine receptors — the same pathways antidepressants target. Your body recognizes citrus as a mood signal. Cannabis with limonene amplifies that response dramatically.</p>
+        </div>
+
+        <div class="terpene-card">
+          <div class="terpene-name">Caryophyllene</div>
+          <span class="terpene-tag">The Only Terpene That Binds CB2</span>
+          <p class="terpene-found">Found in: black pepper, cloves, cinnamon, basil, oregano. That spicy, woody bite in black pepper — that's caryophyllene.</p>
+          <p class="terpene-effect">Anti-inflammatory, pain-relieving, calming. Why cracking black pepper under your nose can take the edge off a too-intense high. It's not a myth — it's chemistry.</p>
+          <p class="terpene-ecs">The only terpene that directly binds to CB2 receptors — the same receptors that regulate inflammation and immune response. It's technically a cannabinoid and a terpene simultaneously.</p>
+        </div>
+
+        <div class="terpene-card">
+          <div class="terpene-name">Linalool</div>
+          <span class="terpene-tag">Nature's Anxiety Reducer</span>
+          <p class="terpene-found">Found in: lavender, mint, cinnamon, birch trees, coriander. The reason lavender has been used for sleep and calm for thousands of years.</p>
+          <p class="terpene-effect">Deeply calming, sedating, anxiolytic. The floral, slightly spicy note in certain cannabis strains. Strong linalool presence = serious stress and anxiety relief.</p>
+          <p class="terpene-ecs">Activates GABA receptors — the same system that benzodiazepines target. Your nervous system evolved to respond to linalool as a relaxation signal. Cannabis concentrates it to therapeutic levels.</p>
+        </div>
+
+        <div class="terpene-card">
+          <div class="terpene-name">Pinene</div>
+          <span class="terpene-tag">The Alertness Terpene</span>
+          <p class="terpene-found">Found in: pine needles, rosemary, dill, basil, parsley. That crisp, fresh forest air smell — alpha-pinene in its purest form.</p>
+          <p class="terpene-effect">Promotes alertness, memory retention, and airway openness. One of the few terpenes that can actually counteract some of THC's short-term memory effects. Pine strains keep you sharp.</p>
+          <p class="terpene-ecs">Inhibits acetylcholinesterase — the enzyme that breaks down the neurotransmitter responsible for memory and focus. Your brain reads pinene as a signal to stay alert. That's why a pine forest feels clarifying.</p>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -2459,6 +2637,69 @@
 
 <div class="full-divider"></div>
 
+<!-- THE CRAFT -->
+<div id="the-craft" class="craft">
+  <div class="craft-inner">
+    <div class="section-label">✦ The Craft</div>
+    <div class="section-title">From <em>seed to extract</em> — the full picture</div>
+    <p style="font-size:14px; line-height:1.9; color:var(--cream); opacity:0.5; max-width:680px; margin-top:16px;">Most people experience cannabis as a final product. Very few understand what it takes to grow it, process it, and transform it. This is where that changes — cultivation, extraction, and infusion explained from the ground up.</p>
+
+    <div class="craft-pillars">
+
+      <div class="craft-pillar">
+        <div class="craft-pillar-icon">🌱</div>
+        <div class="craft-pillar-title">Cultivation — <em>Seed to Harvest</em></div>
+        <p class="craft-pillar-desc">Whether you're growing in a closet or running a commercial facility, understanding how cannabis is cultivated changes how you experience it forever. From your first seed to building a genetics program that defines a generation.</p>
+        <ul class="craft-topics">
+          <li>Home growing — tents, lights, soil vs. hydro</li>
+          <li>Understanding plant stages — veg, flower, harvest</li>
+          <li>Commercial cultivation & facility design</li>
+          <li>Licensing & entering the industry as a grower</li>
+          <li>Genetics & breeding — creating new strains</li>
+          <li>Phenotype hunting — finding the one</li>
+          <li>Cloning & maintaining a mother plant library</li>
+          <li>Seed hunting around the world — landraces & preservation</li>
+        </ul>
+      </div>
+
+      <div class="craft-pillar">
+        <div class="craft-pillar-icon">⚗️</div>
+        <div class="craft-pillar-title">Extractions — <em>Concentrates & Beyond</em></div>
+        <p class="craft-pillar-desc">Concentrates aren't just a product category — they're a craft. Understanding how rosin, live resin, distillate, and diamonds are made gives you a completely new lens on quality, pricing, and what you're actually consuming.</p>
+        <ul class="craft-topics">
+          <li>Solventless vs. solvent-based extraction — the real difference</li>
+          <li>Rosin pressing — home and commercial scale</li>
+          <li>Bubble hash & ice water extraction</li>
+          <li>Live resin & live rosin — why fresh-frozen matters</li>
+          <li>Distillate, BHO & THCA diamonds explained</li>
+          <li>Home extraction basics & safety</li>
+          <li>Building a commercial extraction operation</li>
+          <li>Reading a COA — what lab results actually mean</li>
+        </ul>
+      </div>
+
+      <div class="craft-pillar">
+        <div class="craft-pillar-icon">🍫</div>
+        <div class="craft-pillar-title">Edibles & <em>Infusions</em></div>
+        <p class="craft-pillar-desc">Edibles are one of the most misunderstood categories in cannabis. Dosing, consistency, and bioavailability separate a great product from a disaster. Whether you're cooking at home or launching a brand, this is where it starts.</p>
+        <ul class="craft-topics">
+          <li>Decarboxylation — why it's the most important step</li>
+          <li>Infusing oils, butters & tinctures at home</li>
+          <li>Bioavailability — why edibles hit differently</li>
+          <li>Dosing consistency & how to measure accurately</li>
+          <li>Nano-emulsification & fast-acting technology</li>
+          <li>Commercial edible production & compliance</li>
+          <li>Beverages, tinctures & sublingual products</li>
+          <li>Launching an edible brand — what you need to know</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
 <!-- HASH CULTURE -->
 <div id="hash" class="hash-section">
   <div class="hash-inner">
@@ -2534,176 +2775,6 @@
     </div>
   </div>
 </div>
-
-<div class="full-divider"></div>
-
-<!-- FEATURED ARTICLE -->
-<div id="magazine">
-  <div class="section">
-    <div class="section-label">Latest from the Magazine</div>
-    <div class="section-title">Stories from <em>inside</em> the industry</div>
-  </div>
-
-  <div style="padding: 0 60px; max-width: 1280px; margin: 0 auto; position:relative; z-index:2;">
-    <div class="featured">
-      <div class="featured-img">
-        <div class="featured-label">Featured Story</div>
-        <svg class="featured-img-leaf" width="280" height="370" viewBox="0 0 160 200" fill="none">
-          <defs>
-            <linearGradient id="feat-lg" x1="80" y1="0" x2="80" y2="200" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#B7E4C7"/>
-              <stop offset="100%" stop-color="#1B4332"/>
-            </linearGradient>
-          </defs>
-          <polygon points="80,4 92,32 80,52 68,32" fill="url(#feat-lg)"/>
-          <polygon points="80,28 108,38 96,62 80,52" fill="url(#feat-lg)" opacity="0.8"/>
-          <polygon points="80,28 52,38 64,62 80,52" fill="url(#feat-lg)" opacity="0.8"/>
-          <polygon points="80,50 118,58 104,84 80,74" fill="url(#feat-lg)" opacity="0.7"/>
-          <polygon points="80,50 42,58 56,84 80,74" fill="url(#feat-lg)" opacity="0.7"/>
-          <polygon points="80,72 114,82 98,108 80,98" fill="url(#feat-lg)" opacity="0.6"/>
-          <polygon points="80,72 46,82 62,108 80,98" fill="url(#feat-lg)" opacity="0.6"/>
-          <polygon points="80,95 106,108 92,130 80,122" fill="url(#feat-lg)" opacity="0.5"/>
-          <polygon points="80,95 54,108 68,130 80,122" fill="url(#feat-lg)" opacity="0.5"/>
-          <polygon points="80,118 90,134 80,148 70,134" fill="url(#feat-lg)" opacity="0.4"/>
-        </svg>
-      </div>
-      <div class="featured-content">
-        <div class="featured-cat">Industry Insider</div>
-        <div class="featured-title">How I Got Into Cannabis & What Nobody Tells You</div>
-        <p class="featured-excerpt">From selling shoes at Vans to buying manager in one of California's top dispensaries — a real story about hustle, relationships, and bringing a retail mindset to the cannabis floor.</p>
-        <a href="#" class="read-more">Read the Full Story →</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ARTICLE GRID -->
-<div style="padding: 2px 60px 0; max-width: 1280px; margin: 0 auto; position:relative; z-index:2;">
-  <div class="article-grid">
-
-    <a class="article-card" href="#">
-      <div class="article-card-img">
-        <svg width="100" height="130" viewBox="0 0 160 200" fill="none" opacity="0.6">
-          <polygon points="80,4 92,32 80,52 68,32" fill="#52B788"/>
-          <polygon points="80,28 108,38 96,62 80,52" fill="#2D6A4F"/>
-          <polygon points="80,28 52,38 64,62 80,52" fill="#52B788"/>
-          <polygon points="80,50 118,58 104,84 80,74" fill="#2D6A4F"/>
-          <polygon points="80,50 42,58 56,84 80,74" fill="#52B788"/>
-          <polygon points="80,72 114,82 98,108 80,98" fill="#2D6A4F"/>
-          <polygon points="80,72 46,82 62,108 80,98" fill="#52B788"/>
-        </svg>
-      </div>
-      <div class="article-card-cat">Cannabis Education</div>
-      <div class="article-card-title">Stop Chasing THC Percentages. Here's What Actually Matters.</div>
-      <p class="article-card-excerpt">A higher number on the label does not mean a better experience. Terpenes, the entourage effect, and why quality always beats quantity.</p>
-      <div class="article-card-footer">
-        <span class="article-card-tag">Education</span>
-        <span class="article-arrow">→</span>
-      </div>
-    </a>
-
-    <a class="article-card" href="#">
-      <div class="article-card-img">
-        <svg width="100" height="130" viewBox="0 0 160 200" fill="none" opacity="0.6">
-          <polygon points="80,4 92,32 80,52 68,32" fill="#74C69D"/>
-          <polygon points="80,28 108,38 96,62 80,52" fill="#1B4332"/>
-          <polygon points="80,28 52,38 64,62 80,52" fill="#74C69D"/>
-          <polygon points="80,50 118,58 104,84 80,74" fill="#1B4332"/>
-          <polygon points="80,50 42,58 56,84 80,74" fill="#74C69D"/>
-          <polygon points="80,72 114,82 98,108 80,98" fill="#1B4332"/>
-          <polygon points="80,72 46,82 62,108 80,98" fill="#74C69D"/>
-        </svg>
-      </div>
-      <div class="article-card-cat">Product Education</div>
-      <div class="article-card-title">Distillate, Live Resin, Cured Resin & Live Rosin: What's Actually in Your Cart?</div>
-      <p class="article-card-excerpt">A floor-level breakdown of every vape category — from shelf life to shelf price, no lab coat required.</p>
-      <div class="article-card-footer">
-        <span class="article-card-tag">Products</span>
-        <span class="article-arrow">→</span>
-      </div>
-    </a>
-
-    <a class="article-card" href="#">
-      <div class="article-card-img">
-        <svg width="100" height="130" viewBox="0 0 160 200" fill="none" opacity="0.6">
-          <polygon points="80,4 92,32 80,52 68,32" fill="#B7E4C7"/>
-          <polygon points="80,28 108,38 96,62 80,52" fill="#2D6A4F"/>
-          <polygon points="80,28 52,38 64,62 80,52" fill="#B7E4C7"/>
-          <polygon points="80,50 118,58 104,84 80,74" fill="#2D6A4F"/>
-          <polygon points="80,50 42,58 56,84 80,74" fill="#B7E4C7"/>
-          <polygon points="80,72 114,82 98,108 80,98" fill="#2D6A4F"/>
-          <polygon points="80,72 46,82 62,108 80,98" fill="#B7E4C7"/>
-        </svg>
-      </div>
-      <div class="article-card-cat">Industry Insider</div>
-      <div class="article-card-title">How to Get Into the Cannabis Industry — A Real Answer</div>
-      <p class="article-card-excerpt">Not the LinkedIn version. The real story of what it takes, who you need to know, and how to turn your passion into a career on the floor.</p>
-      <div class="article-card-footer">
-        <span class="article-card-tag">Career</span>
-        <span class="article-arrow">→</span>
-      </div>
-    </a>
-
-  </div>
-</div>
-
-<div class="full-divider" style="margin-top: 80px;"></div>
-
-<!-- BUDTENDER PRO -->
-<div id="pro" class="pro-banner">
-  <div class="pro-inner">
-    <div>
-      <div class="pro-label">✦ Budtender Pro</div>
-      <div class="pro-title">The professional's <em>essential tool</em> — on the floor, every shift.</div>
-      <p class="pro-desc">Every budtender in the world should have Cannascenti open on their tablet the moment they hit the sales floor. When a customer has a question — the answer is here.</p>
-      <a href="#" class="btn-primary">Coming Soon — Join the Waitlist</a>
-    </div>
-    <div class="pro-features">
-      <div class="pro-feature">
-        <div class="pro-feature-dot"></div>
-        <div class="pro-feature-text">Strain Database — searchable by terpene, effect, and flavor</div>
-      </div>
-      <div class="pro-feature">
-        <div class="pro-feature-dot"></div>
-        <div class="pro-feature-text">Terpene Guide — every compound explained</div>
-      </div>
-      <div class="pro-feature">
-        <div class="pro-feature-dot"></div>
-        <div class="pro-feature-text">Product Comparison Tool — side by side</div>
-      </div>
-      <div class="pro-feature">
-        <div class="pro-feature-dot"></div>
-        <div class="pro-feature-text">Sales Techniques — floor-tested strategies</div>
-      </div>
-      <div class="pro-feature">
-        <div class="pro-feature-dot"></div>
-        <div class="pro-feature-text">Compliance by State — always up to date</div>
-      </div>
-      <div class="pro-feature">
-        <div class="pro-feature-dot"></div>
-        <div class="pro-feature-text">Team subscriptions for dispensaries</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="full-divider"></div>
-
-<!-- ABOUT -->
-<div id="about" class="about-strip">
-  <div class="about-quote">
-    Built by someone who has <em>actually worked the floor</em> — from pre-legalization to today.
-  </div>
-  <div>
-    <p class="about-text">Cannascenti was built out of a gap nobody was filling. There was no authoritative, trusted, beautiful resource for cannabis professionals and educated consumers — written by people who actually knew what they were talking about.</p>
-    <br>
-    <p class="about-text">Every article, every guide, every piece of content on this platform comes from real dispensary floor experience. Buying manager. Budtender. Industry insider. This is cannabis intelligence from the people who live it.</p>
-    <br>
-    <a href="#" class="read-more">Our Story →</a>
-  </div>
-</div>
-
-<div class="full-divider"></div>
 
 <!-- NEWSLETTER -->
 <div id="newsletter" class="newsletter">
