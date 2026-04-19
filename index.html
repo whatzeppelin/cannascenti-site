@@ -1576,6 +1576,77 @@
     font-style: italic;
   }
 
+  /* ===================== TERPENE WHEEL ===================== */
+  .terpene-wheel-wrap {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+  }
+  #terpeneWheel {
+    width: 420px;
+    max-width: 100%;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .terpene-wheel-info {
+    flex: 1;
+    min-width: 260px;
+  }
+  .twi-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 300;
+    color: var(--light-green);
+    margin-bottom: 4px;
+    transition: color 0.3s;
+  }
+  .twi-tag {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: block;
+  }
+  .twi-aroma {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--cream);
+    opacity: 0.5;
+    margin-bottom: 12px;
+    min-height: 20px;
+  }
+  .twi-effect {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--cream);
+    opacity: 0.85;
+    margin-bottom: 12px;
+    min-height: 40px;
+  }
+  .twi-found {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--bright-green);
+    opacity: 0.9;
+    font-style: italic;
+    margin-bottom: 8px;
+    min-height: 20px;
+  }
+  .twi-boiling {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.35;
+    min-height: 16px;
+  }
+  .terpene-slice { transition: opacity 0.2s; }
+  .terpene-slice:hover { opacity: 0.85; }
+  .terpene-slice.active { opacity: 1; }
+
   /* ===================== THE CRAFT ===================== */
   .craft {
     position: relative;
@@ -2434,6 +2505,19 @@
         <p class="terpene-intro-desc">Terpenes aren't just cannabis compounds — they exist all around us in nature. Every time you've smelled a lemon, walked through a pine forest, or felt calm holding lavender, your endocannabinoid system was already responding. Cannabis just delivers them in high concentration — and your body already knows exactly what to do with them.</p>
       </div>
 
+      <!-- INTERACTIVE TERPENE WHEEL -->
+      <div class="terpene-wheel-wrap">
+        <svg id="terpeneWheel" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"></svg>
+        <div class="terpene-wheel-info" id="terpeneInfo">
+          <div class="twi-name" id="twiName">Click a terpene</div>
+          <div class="twi-tag" id="twiTag">Explore the wheel</div>
+          <div class="twi-aroma" id="twiAroma"></div>
+          <div class="twi-effect" id="twiEffect"></div>
+          <div class="twi-found" id="twiFound"></div>
+          <div class="twi-boiling" id="twiBoiling"></div>
+        </div>
+      </div>
+
       <div class="terpene-grid">
 
         <div class="terpene-card">
@@ -2835,6 +2919,117 @@
   document.getElementById('strainInput').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') findStrains();
   });
+
+  // ─── Terpene Wheel ───────────────────────────────────────────────────────────
+  (function buildTerpeneWheel() {
+    const terpenes = [
+      { name: 'Myrcene',        tag: 'Most Common in Cannabis',         color: '#E07B39', aroma: 'Earthy, musky, tropical, mango, hops', effect: 'Heavy relaxation, couch-lock, sedating. High myrcene = indica-leaning experience regardless of strain type.', found: 'Found in: mangoes, hops, lemongrass, thyme, bay leaves', boiling: 'Boiling point: 168°C / 334°F' },
+      { name: 'Limonene',       tag: 'The Mood Lifter',                 color: '#F5C842', aroma: 'Citrus, lemon, orange, lime, grapefruit', effect: 'Uplifting, euphoric, anxiety-reducing. Drives that bright, social, happy high. The reason citrus makes you feel awake and positive.', found: 'Found in: lemon rinds, orange peel, limes, grapefruit, juniper', boiling: 'Boiling point: 176°C / 349°F' },
+      { name: 'Pinene',         tag: 'The Alertness Terpene',           color: '#52B788', aroma: 'Pine, fresh, forest, herbs, rosemary', effect: 'Promotes alertness, memory retention, and airway openness. Can counteract THC\'s short-term memory effects. Pine strains keep you sharp.', found: 'Found in: pine needles, rosemary, dill, basil, parsley', boiling: 'Boiling point: 155°C / 311°F' },
+      { name: 'Linalool',       tag: 'Nature\'s Anxiety Reducer',       color: '#74C69D', aroma: 'Floral, lavender, citrus, spicy', effect: 'Deeply calming, sedating, anxiolytic. Strong linalool presence = serious stress and anxiety relief. The reason lavender has been used for sleep for thousands of years.', found: 'Found in: lavender, mint, cinnamon, birch trees, coriander', boiling: 'Boiling point: 198°C / 388°F' },
+      { name: 'Terpinolene',    tag: 'The Multidimensional Terpene',    color: '#4895C2', aroma: 'Pine, floral, herbs, citrus, sweet', effect: 'Mildly sedating, calming, sleep-inducing. Often found in sativa-leaning strains despite its sedating effects. The most complex aroma profile of any terpene.', found: 'Found in: apples, cumin, lilacs, tea tree, nutmeg', boiling: 'Boiling point: 186°C / 367°F' },
+      { name: 'Caryophyllene',  tag: 'The Only Terpene That Binds CB2', color: '#C9973A', aroma: 'Spicy, peppery, woody, clove, cinnamon', effect: 'Anti-inflammatory, pain-relieving, calming. Why black pepper under your nose can take the edge off a too-intense high. It\'s not a myth — it\'s chemistry.', found: 'Found in: black pepper, cloves, cinnamon, basil, oregano', boiling: 'Boiling point: 160°C / 320°F' },
+      { name: 'Humulene',       tag: 'The Appetite Suppressant',        color: '#A67C52', aroma: 'Earthy, woody, hoppy, herbal, spicy', effect: 'Anti-inflammatory, antibacterial, appetite-suppressing. Unique among cannabis terpenes — it can actually reduce hunger rather than increase it.', found: 'Found in: hops, sage, ginseng, coriander, cloves', boiling: 'Boiling point: 198°C / 388°F' },
+      { name: 'Ocimene',        tag: 'The Uplifting Floral',            color: '#B5C4A1', aroma: 'Sweet, herbal, floral, woody, citrus', effect: 'Uplifting, energizing, antiviral. The sweet floral note you notice in tropical strains. Often paired with limonene for an extra euphoric effect.', found: 'Found in: mint, parsley, basil, orchids, mangoes', boiling: 'Boiling point: 50°C / 122°F' },
+    ];
+
+    const svg = document.getElementById('terpeneWheel');
+    if (!svg) return;
+    const cx = 250, cy = 250, outerR = 220, innerR = 80;
+    const count = terpenes.length;
+    const slice = (2 * Math.PI) / count;
+
+    function polar(cx, cy, r, angle) {
+      return [cx + r * Math.cos(angle), cy + r * Math.sin(angle)];
+    }
+
+    function makeSlice(i) {
+      const t = terpenes[i];
+      const startAngle = i * slice - Math.PI / 2;
+      const endAngle = startAngle + slice;
+      const gap = 0.03;
+      const sa = startAngle + gap, ea = endAngle - gap;
+      const [x1, y1] = polar(cx, cy, innerR, sa);
+      const [x2, y2] = polar(cx, cy, outerR, sa);
+      const [x3, y3] = polar(cx, cy, outerR, ea);
+      const [x4, y4] = polar(cx, cy, innerR, ea);
+      const d = `M ${x1} ${y1} L ${x2} ${y2} A ${outerR} ${outerR} 0 0 1 ${x3} ${y3} L ${x4} ${y4} A ${innerR} ${innerR} 0 0 0 ${x1} ${y1} Z`;
+
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.classList.add('terpene-slice');
+
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', d);
+      path.setAttribute('fill', t.color);
+      path.setAttribute('opacity', '0.75');
+      g.appendChild(path);
+
+      // Label
+      const midAngle = startAngle + slice / 2;
+      const labelR = (innerR + outerR) / 2;
+      const [lx, ly] = polar(cx, cy, labelR, midAngle);
+      const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      text.setAttribute('x', lx);
+      text.setAttribute('y', ly);
+      text.setAttribute('text-anchor', 'middle');
+      text.setAttribute('dominant-baseline', 'middle');
+      text.setAttribute('fill', '#081C15');
+      text.setAttribute('font-size', '10');
+      text.setAttribute('font-family', 'Montserrat, sans-serif');
+      text.setAttribute('font-weight', '600');
+      text.setAttribute('letter-spacing', '0.05em');
+      text.setAttribute('transform', `rotate(${(midAngle * 180 / Math.PI) + 90}, ${lx}, ${ly})`);
+      text.setAttribute('pointer-events', 'none');
+      text.textContent = t.name.toUpperCase();
+      g.appendChild(text);
+
+      g.addEventListener('click', () => selectTerpene(i, g));
+      svg.appendChild(g);
+    }
+
+    // Center circle
+    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    circle.setAttribute('cx', cx); circle.setAttribute('cy', cy);
+    circle.setAttribute('r', innerR - 4);
+    circle.setAttribute('fill', '#081C15');
+    svg.appendChild(circle);
+
+    const centerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    centerText.setAttribute('x', cx); centerText.setAttribute('y', cy);
+    centerText.setAttribute('text-anchor', 'middle');
+    centerText.setAttribute('dominant-baseline', 'middle');
+    centerText.setAttribute('fill', '#52B788');
+    centerText.setAttribute('font-size', '11');
+    centerText.setAttribute('font-family', 'Montserrat, sans-serif');
+    centerText.setAttribute('font-weight', '300');
+    centerText.setAttribute('letter-spacing', '0.15em');
+    centerText.textContent = 'TERPENES';
+    svg.appendChild(centerText);
+
+    for (let i = 0; i < count; i++) makeSlice(i);
+
+    let activeSlice = null;
+    function selectTerpene(i, g) {
+      if (activeSlice) {
+        activeSlice.querySelector('path').setAttribute('opacity', '0.75');
+        activeSlice.classList.remove('active');
+      }
+      g.querySelector('path').setAttribute('opacity', '1');
+      g.classList.add('active');
+      activeSlice = g;
+      const t = terpenes[i];
+      document.getElementById('twiName').textContent = t.name;
+      document.getElementById('twiTag').textContent = t.tag;
+      document.getElementById('twiAroma').textContent = t.aroma;
+      document.getElementById('twiEffect').textContent = t.effect;
+      document.getElementById('twiFound').textContent = t.found;
+      document.getElementById('twiBoiling').textContent = t.boiling;
+      document.getElementById('twiName').style.color = t.color;
+    }
+
+    // Auto-select first on load
+    selectTerpene(0, svg.querySelectorAll('.terpene-slice')[0]);
+  })();
 
   function searchExample(el) {
     document.getElementById('strainInput').value = el.textContent;
