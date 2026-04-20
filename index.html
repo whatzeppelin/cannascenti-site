@@ -3200,6 +3200,366 @@
     .strain-db-detail { padding: 28px 20px; }
   }
   @media (max-width: 480px) { .strain-db-grid { grid-template-columns: 1fr; } }
+
+  /* Browse bar between search results and database */
+  .sdb-browse-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    border-top: 1px solid rgba(82,183,136,0.15);
+    margin-top: 40px;
+    padding: 32px 0 48px;
+    flex-wrap: wrap;
+  }
+  .sdb-browse-bar-left { display: flex; flex-direction: column; gap: 5px; }
+  .sdb-browse-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--cream);
+  }
+  .sdb-browse-sub {
+    font-size: 13px;
+    color: rgba(245,240,225,0.5);
+    font-family: 'Montserrat', sans-serif;
+  }
+  .sdb-browse-btn {
+    background: transparent;
+    border: 1px solid var(--bright-green);
+    color: var(--bright-green);
+    padding: 13px 28px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .sdb-browse-btn:hover { background: var(--bright-green); color: var(--warm-black); }
+  .sdb-browse-btn.open { border-color: rgba(255,255,255,0.3); color: rgba(245,240,225,0.5); }
+  .sdb-db-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 36px;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .sdb-close-db {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(245,240,225,0.45);
+    padding: 10px 22px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+    white-space: nowrap;
+    align-self: flex-start;
+    margin-top: 12px;
+  }
+  .sdb-close-db:hover { border-color: rgba(255,255,255,0.4); color: var(--cream); }
+
+  /* ===================== HASH ENCYCLOPEDIA ===================== */
+  .hashenc-section {
+    position: relative;
+    z-index: 2;
+    padding: 100px 60px;
+    background: linear-gradient(160deg, #100d04 0%, #0e1108 50%, #0a0c04 100%);
+    border-top: 1px solid rgba(201,151,58,0.15);
+    overflow: hidden;
+  }
+  .hashenc-section::before {
+    content: '';
+    position: absolute;
+    bottom: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(201,151,58,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hashenc-inner { max-width: 1280px; margin: 0 auto; }
+  .hashenc-intro {
+    color: rgba(245,240,225,0.65);
+    font-size: 17px;
+    max-width: 720px;
+    margin: 0 0 72px;
+    line-height: 1.8;
+  }
+  .hashenc-sub-label {
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .hashenc-sub-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 36px;
+    line-height: 1.2;
+  }
+  .hashenc-sub-title em { color: var(--gold); font-style: italic; }
+  .hashenc-region-tabs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+  }
+  .hashenc-tab {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,151,58,0.2);
+    border-radius: 4px;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    min-width: 140px;
+    flex: 1;
+  }
+  .hashenc-tab:hover { background: rgba(201,151,58,0.06); border-color: rgba(201,151,58,0.4); }
+  .hashenc-tab.active { background: rgba(201,151,58,0.1); border-color: var(--gold); }
+  .hashenc-tab-flag { font-size: 22px; line-height: 1; margin-bottom: 2px; }
+  .hashenc-tab-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--cream);
+    letter-spacing: 0.05em;
+  }
+  .hashenc-tab-type {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    color: rgba(201,151,58,0.7);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .hashenc-panel {
+    background: rgba(201,151,58,0.04);
+    border: 1px solid rgba(201,151,58,0.15);
+    border-top: 3px solid var(--gold);
+    border-radius: 0 0 6px 6px;
+    padding: 40px 44px;
+    margin-bottom: 80px;
+    animation: fadeSlideUp 0.3s ease;
+  }
+  .hashenc-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  .hashenc-panel-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 600;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .hashenc-panel-sub {
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .hashenc-panel-meta {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .hashenc-meta-tag {
+    padding: 6px 14px;
+    border-radius: 3px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: rgba(201,151,58,0.12);
+    color: var(--gold);
+    border: 1px solid rgba(201,151,58,0.25);
+  }
+  .hashenc-panel-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .hashenc-panel-desc {
+    grid-column: 1 / -1;
+    color: rgba(245,240,225,0.75);
+    font-size: 16px;
+    line-height: 1.85;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding-bottom: 28px;
+    margin-bottom: 4px;
+  }
+  .hashenc-panel-col h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .hashenc-panel-col p {
+    font-size: 14px;
+    color: rgba(245,240,225,0.65);
+    line-height: 1.7;
+    margin: 0;
+  }
+  .hashenc-panel-col ul {
+    list-style: none;
+    padding: 0; margin: 0;
+  }
+  .hashenc-panel-col ul li {
+    padding: 5px 0;
+    font-size: 14px;
+    color: rgba(245,240,225,0.65);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+  }
+  .hashenc-panel-col ul li::before { content: '·'; color: var(--gold); font-size: 18px; line-height: 1; }
+
+  /* Quality Guide */
+  .hashenc-quality { margin-bottom: 80px; }
+  .hashenc-quality-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+  .hashenc-quality-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px;
+    padding: 28px 22px;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .hashenc-quality-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), rgba(201,151,58,0.3));
+  }
+  .hashenc-quality-card:hover { background: rgba(201,151,58,0.05); border-color: rgba(201,151,58,0.2); }
+  .hashenc-quality-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 600;
+    color: rgba(201,151,58,0.2);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .hashenc-quality-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 14px;
+  }
+  .hashenc-quality-desc {
+    font-size: 13px;
+    color: rgba(245,240,225,0.6);
+    line-height: 1.7;
+  }
+  .hashenc-quality-pro {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    font-size: 12px;
+    color: var(--gold);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* Solventless Revolution */
+  .hashenc-solv { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .hashenc-solv-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 500;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+  .hashenc-solv-title em { color: var(--gold); }
+  .hashenc-solv-body {
+    font-size: 15px;
+    color: rgba(245,240,225,0.65);
+    line-height: 1.85;
+    margin-bottom: 18px;
+  }
+  .hashenc-solv-types { display: flex; flex-direction: column; gap: 12px; }
+  .hashenc-solv-type {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,151,58,0.15);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 4px 4px 0;
+    padding: 20px 22px;
+  }
+  .hashenc-solv-type-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+  .hashenc-solv-type-desc {
+    font-size: 13px;
+    color: rgba(245,240,225,0.6);
+    line-height: 1.65;
+  }
+  .hashenc-solv-type-grade {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(201,151,58,0.1);
+    border: 1px solid rgba(201,151,58,0.2);
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  @media (max-width: 1100px) {
+    .hashenc-quality-grid { grid-template-columns: repeat(3,1fr); }
+    .hashenc-solv { grid-template-columns: 1fr; gap: 40px; }
+  }
+  @media (max-width: 768px) {
+    .hashenc-section { padding: 60px 24px; }
+    .hashenc-panel { padding: 28px 20px; }
+    .hashenc-panel-body { grid-template-columns: 1fr; }
+    .hashenc-panel-desc { grid-column: 1; }
+    .hashenc-quality-grid { grid-template-columns: repeat(2,1fr); }
+    .hashenc-panel-title { font-size: 32px; }
+  }
+  @media (max-width: 480px) { .hashenc-quality-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -3339,8 +3699,8 @@
   </div>
 </div>
 
-<!-- STRAIN FINDER RESULTS -->
-<div id="strain-finder" class="strain-finder" style="padding-top:40px; padding-bottom:60px;">
+<!-- STRAIN FINDER + DATABASE -->
+<div id="strain-finder" class="strain-finder" style="padding-top:40px; padding-bottom:0;">
   <div class="strain-finder-inner">
     <div id="strainLoading" class="strain-loading">Finding your matches...</div>
     <div id="strainError" class="strain-error"></div>
@@ -3348,15 +3708,28 @@
       <div id="strainResultsHeader" class="strain-results-header"></div>
       <div id="strainCards" class="strain-cards"></div>
     </div>
+    <!-- Browse toggle -->
+    <div class="sdb-browse-bar">
+      <div class="sdb-browse-bar-left">
+        <span class="sdb-browse-label">Not finding what you need?</span>
+        <span class="sdb-browse-sub">Browse the full Cannascenti strain encyclopedia — 24 strains with complete profiles.</span>
+      </div>
+      <button class="sdb-browse-btn" id="sdbBrowseBtn" onclick="toggleStrainDB()">Browse All Strains ↓</button>
+    </div>
   </div>
 </div>
 
-<!-- STRAIN DATABASE -->
-<div id="strain-database" class="strain-db-section">
+<!-- STRAIN DATABASE (revealed on click) -->
+<div id="strain-database" class="strain-db-section" style="display:none;">
   <div class="strain-db-inner">
-    <div class="section-label">✦ Strain Database</div>
-    <div class="section-title">Every strain. <em>Full profiles.</em></div>
-    <p class="strain-db-intro">Browse the Cannascenti strain encyclopedia. Filter by type, click any strain for the full profile — genetics, terpenes, effects, flavor, best use, and more.</p>
+    <div class="sdb-db-header">
+      <div>
+        <div class="section-label">✦ Strain Database</div>
+        <div class="section-title" style="margin-bottom:16px;">Every strain. <em>Full profiles.</em></div>
+        <p class="strain-db-intro">Filter by type or effect — click any strain card for the complete encyclopedia entry.</p>
+      </div>
+      <button class="sdb-close-db" onclick="toggleStrainDB()">↑ Close Database</button>
+    </div>
 
     <div class="strain-db-filters">
       <div class="strain-db-type-tabs">
@@ -4031,6 +4404,76 @@
       </div>
 
     </div>
+  </div>
+</div>
+
+<!-- HASH ENCYCLOPEDIA -->
+<div id="hash-encyclopedia" class="hashenc-section">
+  <div class="hashenc-inner">
+
+    <div class="section-label">✦ Hash Encyclopedia</div>
+    <div class="section-title">3,000 years of <em>the original concentrate.</em></div>
+    <p class="hashenc-intro">Before CO₂ extractors, before BHO rigs, before every dispensary shelf filled with distillate cartridges — humans were making hash for three millennia. From the Rif Mountains of Morocco to the Hindu Kush of Afghanistan to the sacred charas of the Himalayas. This is the full story.</p>
+
+    <!-- REGIONS -->
+    <div class="hashenc-sub-label">✦ Hash by Region</div>
+    <div class="hashenc-sub-title">Every culture found its own way to the same plant.</div>
+
+    <div class="hashenc-region-tabs" id="hashRegionTabs">
+      <button class="hashenc-tab active" onclick="hashRegionSelect('morocco')">
+        <span class="hashenc-tab-flag">🇲🇦</span>
+        <span class="hashenc-tab-name">Morocco</span>
+        <span class="hashenc-tab-type">Moroccan Slate</span>
+      </button>
+      <button class="hashenc-tab" onclick="hashRegionSelect('afghanistan')">
+        <span class="hashenc-tab-flag">🇦🇫</span>
+        <span class="hashenc-tab-name">Afghanistan</span>
+        <span class="hashenc-tab-type">Afghani Black</span>
+      </button>
+      <button class="hashenc-tab" onclick="hashRegionSelect('nepal')">
+        <span class="hashenc-tab-flag">🇳🇵</span>
+        <span class="hashenc-tab-name">Nepal</span>
+        <span class="hashenc-tab-type">Temple Balls</span>
+      </button>
+      <button class="hashenc-tab" onclick="hashRegionSelect('india')">
+        <span class="hashenc-tab-flag">🇮🇳</span>
+        <span class="hashenc-tab-name">India</span>
+        <span class="hashenc-tab-type">Charas</span>
+      </button>
+      <button class="hashenc-tab" onclick="hashRegionSelect('lebanon')">
+        <span class="hashenc-tab-flag">🇱🇧</span>
+        <span class="hashenc-tab-name">Lebanon</span>
+        <span class="hashenc-tab-type">Lebanese Blonde</span>
+      </button>
+      <button class="hashenc-tab" onclick="hashRegionSelect('modern')">
+        <span class="hashenc-tab-flag">🧪</span>
+        <span class="hashenc-tab-name">Modern USA</span>
+        <span class="hashenc-tab-type">Bubble · Rosin</span>
+      </button>
+    </div>
+    <div class="hashenc-panel" id="hashEncPanel"></div>
+
+    <!-- QUALITY GUIDE -->
+    <div class="hashenc-quality">
+      <div class="hashenc-sub-label">✦ How to Evaluate Hash</div>
+      <div class="hashenc-sub-title">Five things that separate premium from mediocre.</div>
+      <div class="hashenc-quality-grid" id="hashQualityGrid"></div>
+    </div>
+
+    <!-- SOLVENTLESS REVOLUTION -->
+    <div class="hashenc-solv">
+      <div class="hashenc-solv-left">
+        <div class="hashenc-sub-label">✦ The Solventless Revolution</div>
+        <div class="hashenc-solv-title">No chemicals. No shortcuts.<br><em>Pure craft.</em></div>
+        <p class="hashenc-solv-body">For decades, BHO — butane hash oil — dominated the concentrate market. Cheap, scalable, and efficient. But something was lost. The terpenes. The nuance. The craft. Then the ice water movement changed everything.</p>
+        <p class="hashenc-solv-body">Solventless extraction — using only ice, water, heat, and pressure — produces the most faithful representation of the cannabis plant that exists. No residual solvents. No degraded terpenes. Just the pure expression of the genetics, preserved at every stage.</p>
+        <p class="hashenc-solv-body">The best bubble hash on the market today — "full melt" — rivals wine and whisky in complexity. A single dab of fresh-pressed live rosin from a premium cultivar can contain 80+ distinct terpene compounds. The connoisseur era is here.</p>
+      </div>
+      <div class="hashenc-solv-right">
+        <div class="hashenc-solv-types" id="hashSolvTypes"></div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -5925,9 +6368,195 @@
     document.querySelectorAll('.sdb-card').forEach(c => c.classList.remove('active'));
   }
 
+  function toggleStrainDB() {
+    const db = document.getElementById('strain-database');
+    const btn = document.getElementById('sdbBrowseBtn');
+    const isOpen = db.style.display !== 'none';
+    if (isOpen) {
+      db.style.display = 'none';
+      btn.textContent = 'Browse All Strains ↓';
+      btn.classList.remove('open');
+    } else {
+      db.style.display = 'block';
+      btn.textContent = 'Close Database ↑';
+      btn.classList.add('open');
+      setTimeout(() => db.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+    }
+  }
+
   // Init strain database
   renderSdbChips();
   renderSdbGrid();
+
+  // ─── HASH ENCYCLOPEDIA ────────────────────────────────────────────────────
+  const HASH_REGIONS = {
+    morocco: {
+      name: 'Moroccan Hash',
+      sub: 'The Rif Mountains · Ketama Region',
+      tags: ['Pressed','Dry Sift','Old World'],
+      desc: 'Morocco is the world\'s largest hash producer — responsible for an estimated 70% of the European market and a trade that stretches back centuries. The magic happens in the Rif Mountains, specifically around the town of Ketama in the Al Hoceïma province, where cannabis cultivation is woven into the local economy and culture as deeply as any agricultural tradition on Earth. Moroccan hash begins with dried cannabis sieved through fine mesh bags to collect kief, then pressed — traditionally with the palms, sometimes with heat — into slabs, bars, or bricks. The result ranges from soft, almost clay-like "pollinator" to hard, dark-pressed slabs that mellow over time. The best Moroccan hash is gold to dark brown, smells of spice and earth, and softens to a putty when warmed between the fingers.',
+      history: 'Cannabis arrived in Morocco from Spain via Arab traders in the 7th century. By the 15th century, cannabis was a fixture in the daily life of Rif mountain communities. European hippies discovered the Ketama region in the 1960s and 1970s, and the export market was never the same. Today the Rif produces "Zero Zero" — a reference to the finest grade — that commands serious prices from European connoisseurs.',
+      quality: 'Color: Gold to dark brown. Aroma: Spicy, earthy, floral. Melt: Good to excellent on quality grades. Feel: Soft putty to hard slab. Grades: Zero Zero, Primo, Pollen, Soap Bar (low quality).',
+      known: ['Zero Zero (the finest grade)','Ketama Gold','Moroccan Slate','Soap Bar (avoid)']
+    },
+    afghanistan: {
+      name: 'Afghan Hash',
+      sub: 'The Hindu Kush · Kandahar & Mazar-i-Sharif',
+      tags: ['Hand-Pressed','Indica','Ancient'],
+      desc: 'Afghanistan is the birthplace of indica cannabis and the spiritual home of black hash. The Hindu Kush mountains are perhaps the most significant geographic location in cannabis history — the conditions that shaped Afghan landrace genetics also created the ideal plant for hash production: dense, resinous, short-season cultivars covered in thick trichome heads. Afghan hash is made by dry-sieving cannabis over fine mesh, then pressing the kief — sometimes with just heat and pressure, sometimes with minimal moisture — into the characteristic black, dark brown, or green slabs and balls that have been traded for centuries. The exterior is nearly black; slice it open and the interior is golden-green. Melt it and it bubbles and flows.',
+      history: 'Afghanistan has been producing hash for at least 500 years, and likely far longer. The country sits at the crossroads of the Silk Road — hash moved through Afghan trade routes to Persia, India, and the Ottoman Empire. In the 1970s, Afghanistan became the most famous hash origin in the world, with brands like "Royal Afghan" and "Black Primo" becoming legendary in the Western market. Today\'s production continues largely unchanged.',
+      quality: 'Color: Dark brown to black exterior, gold-green interior. Aroma: Spicy, sweet, incense-like, complex. Melt: Full melt on finest grades. Feel: Firm exterior, pliable and sticky when warmed. Grades: Royal Afghan, Black Afghan, Primo, Slab.',
+      known: ['Royal Afghan','Afghan Black','Kandahari Hash','Mazar-i-Sharif Hash']
+    },
+    nepal: {
+      name: 'Nepali Temple Balls',
+      sub: 'The Himalayas · Kathmandu Valley',
+      tags: ['Hand-Rolled','Sacred','Temple Tradition'],
+      desc: 'Nepali Temple Balls are among the most revered and rare hash in the world — small, perfectly round spheres of hand-collected resin that can take days of patient work to produce. The process begins with fresh cannabis plants: the hash maker slowly runs their hands along the living, resinous flowers, and the trichomes transfer directly onto the skin. This collected resin is then slowly rolled and worked between the palms over hours — sometimes days — until a dense, perfectly spherical ball forms. The spherical shape is intentional: it minimizes surface area, slowing oxidation and preserving the terpene profile. Fresh temple balls are light brown and aromatic. Aged ones turn dark, develop a complex cured character, and are considered collector-grade.',
+      history: 'Temple Balls have been produced in Nepal for thousands of years — they played a role in Hindu and Buddhist ceremonies and were consumed in the temples of Kathmandu long before any Western cannabis tourist arrived. The Pashupatinath Temple in Kathmandu has traditionally allowed cannabis use during Shiva worship. Nepal was a major destination of the 1960s-70s "Hippie Trail," introducing Temple Balls to Western consciousness.',
+      quality: 'Color: Golden-brown to dark brown. Aroma: Extraordinary — floral, sweet, complex, fresh. Melt: Full or near-full melt. Feel: Slightly sticky, perfectly round. The best examples contain living terpenes from fresh plant material.',
+      known: ['Classic Temple Ball','Himalayan Hash','Kathmandu Valley Hash','Shiva Hash']
+    },
+    india: {
+      name: 'Charas',
+      sub: 'Himalayan Foothills · Parvati Valley & Kullu',
+      tags: ['Live Plant','Hand-Rubbed','Sacred to Shiva'],
+      desc: 'Charas is the only major hash tradition that uses fresh, living cannabis — not dried flower. The process is simple and ancient: collectors rub their hands rhythmically along the living cannabis plant while it still grows, and the trichomes adhere directly to the skin. The collected resin — dark, fragrant, and alive with terpenes — is then scraped from the hands and slowly rolled into finger-like sticks or small balls. Because it\'s made from living plant material, charas preserves terpene compounds that are destroyed during the drying process. The aroma is extraordinary — floral, sweet, herbal, and alive in a way that dried-and-cured hash cannot replicate. The most famous production regions are the Parvati Valley and Kullu Valley in Himachal Pradesh, where strains like "Malana Cream" have achieved legendary status.',
+      history: 'Charas is directly tied to the worship of Shiva in Hindu tradition — the plant and its product considered sacred. Sadhus (Hindu holy men) have smoked charas in chillums as part of their spiritual practice for millennia. The Parvati Valley in Himachal Pradesh is considered the most significant charas-producing region on Earth, and Malana — a village with its own unique language and customs — produces what many consider the finest charas in existence.',
+      quality: 'Color: Dark green-black to reddish-brown. Aroma: Fresh, alive, sweet, floral — unlike any dried hash. Melt: Full melt from quality material. Feel: Sticky, slightly waxy, pliable. Grades: Malana Cream (top grade), regular valley charas.',
+      known: ['Malana Cream','Parvati Valley Charas','Kullu Charas','Himalayan Charas']
+    },
+    lebanon: {
+      name: 'Lebanese Hash',
+      sub: 'Bekaa Valley',
+      tags: ['Blonde','Red','Classic'],
+      desc: 'Lebanon\'s Bekaa Valley sits between two mountain ranges and enjoys a Mediterranean climate ideal for cannabis — warm, dry summers and fertile soil. Lebanese hash comes in two famous grades: "Lebanese Blonde" (or "Lebanese Gold") — a lighter, more golden product made from less mature cannabis — and "Lebanese Red," made from fully mature plants and characterized by a darker, reddish-brown color. The sieving and pressing process is similar to Moroccan production, but Lebanese hash is typically lighter and more floral than its North African counterpart. Blonde Lebanese was particularly sought-after in the 1970s and 1980s for its clean, cerebral, almost sativa-like effect — unusual for hash of that era.',
+      history: 'Lebanon has been growing cannabis in the Bekaa Valley for centuries, originally for fiber and seed. During the Lebanese Civil War (1975–1990), cannabis cultivation expanded dramatically as agricultural alternatives collapsed. Lebanese hash became a significant export commodity. "The Lebanese" as it was known in Europe in the 1970s was considered among the finest hash available. Production declined after the war but has experienced a modern revival.',
+      quality: 'Color: Gold to blonde (Blonde); Reddish-brown (Red). Aroma: Floral, earthy, slightly sweet. Melt: Medium to good. Feel: Firm but pliable. Blonde is lighter and more cerebral; Red is heavier and more indica-like.',
+      known: ['Lebanese Blonde','Lebanese Gold','Lebanese Red','Bekaa Valley Hash']
+    },
+    modern: {
+      name: 'Modern Solventless',
+      sub: 'United States · The New Connoisseur Era',
+      tags: ['Ice Water','Rosin','Full Melt','Craft'],
+      desc: 'The modern solventless movement in the United States represents the most significant evolution in hash production in centuries — combining ancient wisdom with modern technology to produce the most refined, terpene-rich cannabis extracts in history. It began in earnest in the 2000s with the popularization of ice water extraction — the "bubble hash" method — which uses cold water and agitation to separate trichome heads from plant material without any chemical solvents. The technology improved: better micron bags, cleaner cultivars grown specifically for extraction, freeze-drying equipment. By the 2010s, "full melt" bubble hash — rated by its ability to melt completely without leaving residue — had become the standard of excellence. Then came rosin: the realization that fresh-pressed bubble hash under precise heat and pressure produces a full-spectrum oil that preserves everything. Live rosin, pressed from fresh-frozen material, is now the apex of the market.',
+      history: 'The bubble bag was patented by Reinhard C. Delp in the 1990s and popularized by Bubbleman (Marcus Richardson) in the early 2000s. Frenchy Cannoli — a legendary French hash maker who learned in the Rif Mountains and Hindu Kush — traveled the world teaching traditional hash techniques to American producers and elevating the craft. The first rosin was accidentally discovered when someone pressed a folded piece of parchment with a hair straightener around 2015. From there, the industry exploded.',
+      quality: 'Rated by melt quality: Full Melt (6-star) melts completely; Half Melt (3-4 star) leaves some residue. Fresh-frozen live rosin is the current apex. Terpene preservation is the primary quality metric — the best examples rival wine in complexity.',
+      known: ['Ice Water Bubble Hash','6-Star Full Melt','Live Rosin','Fresh Press Rosin','Cured Rosin','THCA Diamonds']
+    }
+  };
+
+  const HASH_QUALITY = [
+    {
+      num: '01',
+      name: 'Appearance',
+      desc: 'Color tells you a lot. Fresh, quality hash runs from golden-blonde to dark amber. Black with a greenish tint indicates plant material contamination. Grayish, dusty appearance means over-oxidation.',
+      pro: '"Press a small piece between two fingers. Quality hash will stick and stretch slightly — not crumble to dust."'
+    },
+    {
+      num: '02',
+      name: 'The Melt Test',
+      desc: 'The definitive test. Place a small piece on a mesh screen and apply gentle heat. Full-melt hash bubbles completely, leaves no residue. Half-melt leaves a small char. Anything more means plant material present.',
+      pro: '"The bubble test doesn\'t lie. A 6-star hash disappears entirely — nothing left but a clean screen."'
+    },
+    {
+      num: '03',
+      name: 'Aroma',
+      desc: 'Fresh hash should smell complex — earthy, spicy, floral notes depending on origin. A sharp chemical smell indicates solvent contamination. Flat, hay-like smell means terpenes have degraded.',
+      pro: '"Warm the hash slightly between your palms before smelling. Heat activates terpenes and reveals the true aromatic profile."'
+    },
+    {
+      num: '04',
+      name: 'Texture & Feel',
+      desc: 'Quality hash softens and becomes pliable when gently warmed. It should not crumble at room temperature or feel like dirt. Sticky, slightly waxy, and plastic-like are all good signs.',
+      pro: '"Room temperature crumble = dry sift with no care taken. Pliable, slightly tacky = resin-rich and handled properly."'
+    },
+    {
+      num: '05',
+      name: 'Taste & Effect',
+      desc: 'Premium hash should taste clean — terpene-forward, complex, and without harshness. The effect should come on smoothly and fully. Headaches or rough come-up suggest pesticides or contamination.',
+      pro: '"Taste the first exhale before any throat hit obscures flavor. That\'s where the real terpene character lives."'
+    }
+  ];
+
+  const HASH_SOLV_TYPES = [
+    {
+      name: 'Dry Sift',
+      desc: 'Dried cannabis tumbled or hand-sieved over fine mesh screens. The original modern method. Quality depends entirely on screen micron size and temperature. Can achieve full melt with proper technique.',
+      grade: 'Good → Full Melt'
+    },
+    {
+      name: 'Ice Water (Bubble Hash)',
+      desc: 'Cannabis agitated in ice water, trichomes separated by micron bags. The cleanest mechanical separation method. Fresh-frozen material produces exceptional terpene preservation.',
+      grade: '3-Star → 6-Star Full Melt'
+    },
+    {
+      name: 'Fresh Press Rosin',
+      desc: 'Bubble hash pressed immediately under heat and pressure. Retains maximum terpene content. Slightly wet, high-flavor, consumed immediately or stored frozen.',
+      grade: 'Connoisseur Grade'
+    },
+    {
+      name: 'Live Rosin',
+      desc: 'Made from fresh-frozen cannabis run through ice water, then pressed. Preserves the living plant\'s full terpene profile. The current apex of solventless craft.',
+      grade: 'Apex Solventless'
+    },
+    {
+      name: 'Cured Rosin',
+      desc: 'Bubble hash pressed after curing. Develops a budder or badder-like consistency. Longer shelf stable than fresh press. Complex, evolved flavor profile.',
+      grade: 'Craft Tier'
+    },
+  ];
+
+  function hashRegionSelect(id) {
+    document.querySelectorAll('.hashenc-tab').forEach(t => t.classList.remove('active'));
+    const tabs = document.querySelectorAll('.hashenc-tab');
+    const keys = Object.keys(HASH_REGIONS);
+    const idx = keys.indexOf(id);
+    if (tabs[idx]) tabs[idx].classList.add('active');
+    const r = HASH_REGIONS[id];
+    document.getElementById('hashEncPanel').innerHTML = `
+      <div class="hashenc-panel-header">
+        <div>
+          <div class="hashenc-panel-title">${r.name}</div>
+          <div class="hashenc-panel-sub">${r.sub}</div>
+        </div>
+        <div class="hashenc-panel-meta">${r.tags.map(t=>`<span class="hashenc-meta-tag">${t}</span>`).join('')}</div>
+      </div>
+      <div class="hashenc-panel-body">
+        <p class="hashenc-panel-desc">${r.desc}</p>
+        <div class="hashenc-panel-col">
+          <h4>History &amp; Culture</h4>
+          <p>${r.history}</p>
+        </div>
+        <div class="hashenc-panel-col">
+          <h4>Evaluating Quality</h4>
+          <p>${r.quality}</p>
+          <h4 style="margin-top:20px">Notable Varieties</h4>
+          <ul>${r.known.map(k=>`<li>${k}</li>`).join('')}</ul>
+        </div>
+      </div>
+    `;
+  }
+
+  // Init hash encyclopedia
+  hashRegionSelect('morocco');
+
+  document.getElementById('hashQualityGrid').innerHTML = HASH_QUALITY.map(q => `
+    <div class="hashenc-quality-card">
+      <div class="hashenc-quality-num">${q.num}</div>
+      <div class="hashenc-quality-name">${q.name}</div>
+      <div class="hashenc-quality-desc">${q.desc}</div>
+      <div class="hashenc-quality-pro">${q.pro}</div>
+    </div>
+  `).join('');
+
+  document.getElementById('hashSolvTypes').innerHTML = HASH_SOLV_TYPES.map(t => `
+    <div class="hashenc-solv-type">
+      <div class="hashenc-solv-type-name">${t.name}</div>
+      <div class="hashenc-solv-type-desc">${t.desc}</div>
+      <span class="hashenc-solv-type-grade">${t.grade}</span>
+    </div>
+  `).join('');
 
 </script>
 
