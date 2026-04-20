@@ -2882,6 +2882,324 @@
     .footer-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
     .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
   }
+
+  /* ===================== STRAIN DATABASE ===================== */
+  .strain-db-section {
+    position: relative;
+    z-index: 2;
+    padding: 100px 60px;
+    background: linear-gradient(160deg, #081208 0%, #0a160a 50%, #060e06 100%);
+    border-top: 1px solid rgba(82,183,136,0.15);
+    border-bottom: 1px solid rgba(82,183,136,0.15);
+    overflow: hidden;
+  }
+  .strain-db-section::before {
+    content: '';
+    position: absolute;
+    top: -200px; left: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(82,183,136,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .strain-db-inner { max-width: 1280px; margin: 0 auto; }
+  .strain-db-intro {
+    color: rgba(245,240,225,0.65);
+    font-size: 17px;
+    max-width: 680px;
+    margin: 0 0 48px;
+    line-height: 1.7;
+  }
+  .strain-db-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+  .strain-db-type-tabs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .sdb-tab {
+    background: transparent;
+    border: 1px solid rgba(82,183,136,0.3);
+    color: rgba(245,240,225,0.6);
+    padding: 9px 22px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .sdb-tab:hover { border-color: var(--bright-green); color: var(--bright-green); }
+  .sdb-tab.active { background: var(--bright-green); border-color: var(--bright-green); color: var(--warm-black); }
+  .sdb-tab.sdb-indica.active { background: #7b61c4; border-color: #7b61c4; color: #fff; }
+  .sdb-tab.sdb-sativa.active { background: #e8903c; border-color: #e8903c; color: #fff; }
+  .sdb-tab.sdb-hybrid.active { background: var(--bright-green); border-color: var(--bright-green); color: var(--warm-black); }
+  .strain-db-effect-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .sdb-chip {
+    background: transparent;
+    border: 1px solid rgba(201,151,58,0.25);
+    color: rgba(245,240,225,0.5);
+    padding: 5px 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all 0.2s;
+  }
+  .sdb-chip:hover { border-color: var(--gold); color: var(--gold); }
+  .sdb-chip.active { background: rgba(201,151,58,0.15); border-color: var(--gold); color: var(--gold); }
+  .strain-db-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .sdb-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px;
+    padding: 24px 20px;
+    cursor: pointer;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .sdb-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    transition: opacity 0.25s;
+  }
+  .sdb-card.type-indica::before { background: linear-gradient(90deg, #7b61c4, #9b81e4); }
+  .sdb-card.type-sativa::before { background: linear-gradient(90deg, #e8903c, #f0a85c); }
+  .sdb-card.type-hybrid::before { background: linear-gradient(90deg, var(--bright-green), #7ecfa0); }
+  .sdb-card:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.15);
+    transform: translateY(-2px);
+  }
+  .sdb-card.active {
+    background: rgba(82,183,136,0.08);
+    border-color: rgba(82,183,136,0.3);
+  }
+  .sdb-card-type {
+    font-size: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .type-indica .sdb-card-type { color: #9b81e4; }
+  .type-sativa .sdb-card-type { color: #f0a85c; }
+  .type-hybrid .sdb-card-type { color: var(--bright-green); }
+  .sdb-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .sdb-card-thc {
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    color: rgba(245,240,225,0.45);
+    margin-bottom: 14px;
+  }
+  .sdb-card-effects {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .sdb-card-eff {
+    font-size: 10px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 3px 9px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.06);
+    color: rgba(245,240,225,0.6);
+    letter-spacing: 0.05em;
+  }
+  .sdb-card-hidden { display: none; }
+
+  /* Detail Panel */
+  .strain-db-detail {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(82,183,136,0.2);
+    border-radius: 6px;
+    padding: 48px;
+    display: none;
+    animation: fadeSlideUp 0.3s ease;
+  }
+  .strain-db-detail.visible { display: block; }
+  .sdb-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .sdb-detail-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 600;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .sdb-detail-subtitle {
+    font-size: 13px;
+    font-family: 'Montserrat', sans-serif;
+    color: rgba(245,240,225,0.5);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .sdb-detail-badges { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-start; }
+  .sdb-badge {
+    padding: 8px 18px;
+    border-radius: 3px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .sdb-badge-indica { background: rgba(123,97,196,0.2); color: #9b81e4; border: 1px solid rgba(123,97,196,0.4); }
+  .sdb-badge-sativa { background: rgba(232,144,60,0.2); color: #f0a85c; border: 1px solid rgba(232,144,60,0.4); }
+  .sdb-badge-hybrid { background: rgba(82,183,136,0.2); color: var(--bright-green); border: 1px solid rgba(82,183,136,0.4); }
+  .sdb-badge-thc { background: rgba(255,255,255,0.05); color: rgba(245,240,225,0.7); border: 1px solid rgba(255,255,255,0.1); }
+  .sdb-badge-cbd { background: rgba(82,183,136,0.08); color: rgba(82,183,136,0.8); border: 1px solid rgba(82,183,136,0.2); }
+  .sdb-detail-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    margin-bottom: 36px;
+  }
+  .sdb-detail-desc {
+    color: rgba(245,240,225,0.75);
+    font-size: 16px;
+    line-height: 1.8;
+    grid-column: 1 / -1;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding-bottom: 28px;
+    margin-bottom: 4px;
+  }
+  .sdb-detail-col h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .sdb-detail-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+  .sdb-detail-tag {
+    padding: 5px 13px;
+    border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    background: rgba(255,255,255,0.06);
+    color: rgba(245,240,225,0.7);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .sdb-detail-terpene-tag {
+    padding: 5px 13px;
+    border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    background: rgba(201,151,58,0.1);
+    color: var(--gold);
+    border: 1px solid rgba(201,151,58,0.2);
+  }
+  .sdb-detail-list {
+    list-style: none;
+    padding: 0; margin: 0;
+  }
+  .sdb-detail-list li {
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 14px;
+    color: rgba(245,240,225,0.7);
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .sdb-detail-list li::before { content: '·'; color: var(--bright-green); font-size: 18px; line-height: 1; }
+  .sdb-fun-fact {
+    background: rgba(201,151,58,0.06);
+    border: 1px solid rgba(201,151,58,0.15);
+    border-left: 3px solid var(--gold);
+    border-radius: 4px;
+    padding: 20px 24px;
+    grid-column: 1 / -1;
+  }
+  .sdb-fun-fact-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .sdb-fun-fact p {
+    font-size: 14px;
+    color: rgba(245,240,225,0.7);
+    line-height: 1.7;
+    margin: 0;
+  }
+  .sdb-detail-close {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(245,240,225,0.5);
+    padding: 8px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+    display: block;
+    margin-top: 28px;
+  }
+  .sdb-detail-close:hover { border-color: rgba(255,255,255,0.4); color: var(--cream); }
+  .sdb-no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: rgba(245,240,225,0.35);
+    font-size: 15px;
+  }
+  @media (max-width: 1100px) { .strain-db-grid { grid-template-columns: repeat(3,1fr); } }
+  @media (max-width: 768px) {
+    .strain-db-section { padding: 60px 24px; }
+    .strain-db-grid { grid-template-columns: repeat(2,1fr); }
+    .sdb-detail-body { grid-template-columns: 1fr; }
+    .sdb-detail-desc { grid-column: 1; }
+    .sdb-fun-fact { grid-column: 1; }
+    .sdb-detail-name { font-size: 36px; }
+    .strain-db-detail { padding: 28px 20px; }
+  }
+  @media (max-width: 480px) { .strain-db-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -3032,6 +3350,30 @@
     </div>
   </div>
 </div>
+
+<!-- STRAIN DATABASE -->
+<div id="strain-database" class="strain-db-section">
+  <div class="strain-db-inner">
+    <div class="section-label">✦ Strain Database</div>
+    <div class="section-title">Every strain. <em>Full profiles.</em></div>
+    <p class="strain-db-intro">Browse the Cannascenti strain encyclopedia. Filter by type, click any strain for the full profile — genetics, terpenes, effects, flavor, best use, and more.</p>
+
+    <div class="strain-db-filters">
+      <div class="strain-db-type-tabs">
+        <button class="sdb-tab active" onclick="sdbFilter('all')">All</button>
+        <button class="sdb-tab sdb-indica" onclick="sdbFilter('indica')">Indica</button>
+        <button class="sdb-tab sdb-hybrid" onclick="sdbFilter('hybrid')">Hybrid</button>
+        <button class="sdb-tab sdb-sativa" onclick="sdbFilter('sativa')">Sativa</button>
+      </div>
+      <div class="strain-db-effect-chips" id="sdbEffectChips"></div>
+    </div>
+
+    <div class="strain-db-grid" id="sdbGrid"></div>
+    <div class="strain-db-detail" id="sdbDetail"></div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
 
 <!-- CANNALOGY -->
 <div id="cannalogy" class="cannalogy">
@@ -5153,6 +5495,440 @@
       document.getElementById('mjSend').disabled = false;
     }
   }
+
+  // ─── STRAIN DATABASE ───────────────────────────────────────────────────────
+  const SDB_DATA = [
+    // INDICA
+    {
+      name: 'Granddaddy Purple',
+      type: 'indica',
+      thc: '17–23%', cbd: '<1%',
+      genetics: 'Big Bud × Purple Urkle',
+      terpenes: ['Myrcene','Caryophyllene','Pinene'],
+      effects: ['Relaxed','Sleepy','Euphoric','Happy','Hungry'],
+      flavors: ['Grape','Berry','Sweet','Floral','Earthy'],
+      medical: ['Insomnia','Pain','Stress','Muscle Spasms','Appetite Loss'],
+      bestFor: 'Nighttime wind-down, deep sleep, chronic pain relief',
+      funFact: 'Ken Estes created GDP in 2003 in Oakland, CA. The vivid purple coloring comes from cold temperatures during the flowering stage triggering anthocyanin pigment production — not genetics alone.',
+      desc: 'The godfather of purple cannabis. Granddaddy Purple delivers a potent one-two punch of cerebral euphoria and full-body relaxation. When the body high takes hold, it can lead to couch-lock and heavy sedation. The grape and berry flavors are unmistakable — one of the most recognizable strains in cannabis.'
+    },
+    {
+      name: 'Northern Lights',
+      type: 'indica',
+      thc: '16–21%', cbd: '<1%',
+      genetics: 'Afghani × Thai',
+      terpenes: ['Myrcene','Caryophyllene','Linalool'],
+      effects: ['Relaxed','Sleepy','Happy','Euphoric','Hungry'],
+      flavors: ['Earthy','Sweet','Pine','Spicy','Pungent'],
+      medical: ['Insomnia','Pain','Stress','Anxiety','Depression'],
+      bestFor: 'Evening relaxation, deep sleep, stress relief',
+      funFact: 'Northern Lights is one of the most awarded cannabis strains in history — winning the High Times Cannabis Cup in 1988, 1989, and 1990. It was bred in Seattle in the 1970s before being brought to the Netherlands by Sensi Seeds.',
+      desc: 'One of the most legendary strains ever cultivated. Northern Lights is the backbone of countless modern hybrids and a benchmark for indica excellence. Pure physical relaxation washes over the body with dreamy, mind-numbing euphoria. Famous for exceptional resin production and ease of cultivation.'
+    },
+    {
+      name: 'Hindu Kush',
+      type: 'indica',
+      thc: '15–20%', cbd: '1%',
+      genetics: 'Pure Afghani landrace',
+      terpenes: ['Myrcene','Caryophyllene','Limonene'],
+      effects: ['Relaxed','Sleepy','Happy','Calm','Body High'],
+      flavors: ['Earthy','Sandalwood','Woody','Spicy','Sweet'],
+      medical: ['Pain','Stress','Anxiety','Nausea','Insomnia'],
+      bestFor: 'Hash making, deep body relaxation, pain management',
+      funFact: 'One of the oldest cannabis strains on Earth — a pure landrace from the Hindu Kush mountain range spanning Afghanistan and Pakistan. Traditional hash cultures have cultivated this strain for thousands of years. It\'s the genetic foundation of most modern indica strains.',
+      desc: 'A pure landrace from the mountains between Afghanistan and Pakistan — this is ancient cannabis in its most authentic form. Hindu Kush produces thick resin coatings that made it the original hash plant. The effect is heavy, sedating, and intensely physical — a true mountain indica.'
+    },
+    {
+      name: 'Bubba Kush',
+      type: 'indica',
+      thc: '15–22%', cbd: '<1%',
+      genetics: 'OG Kush × unknown indica',
+      terpenes: ['Myrcene','Caryophyllene','Limonene'],
+      effects: ['Relaxed','Sleepy','Happy','Euphoric','Hungry'],
+      flavors: ['Coffee','Chocolate','Hash','Sweet','Earthy'],
+      medical: ['Insomnia','Pain','Stress','Anxiety','Muscle Spasms'],
+      bestFor: 'After-dinner relaxation, nighttime use, treating insomnia',
+      funFact: 'Bubba Kush originated in New Orleans in the mid-1990s when a mysterious indica pollinated an OG Kush plant. The unknown pollen donor is still called simply "Bubba" — one of cannabis\'s great mysteries.',
+      desc: 'Bubba Kush is the quintessential late-night indica. Its coffee and chocolate flavor profile is unlike any other cannabis strain — rich, earthy, and indulgent. The body high is heavy and sedating, with a tranquil euphoria that melts stress and tension completely.'
+    },
+    {
+      name: 'Blueberry',
+      type: 'indica',
+      thc: '15–20%', cbd: '<1%',
+      genetics: 'Afghani × Thai × Purple Thai',
+      terpenes: ['Myrcene','Pinene','Caryophyllene'],
+      effects: ['Relaxed','Happy','Euphoric','Sleepy','Creative'],
+      flavors: ['Blueberry','Berry','Sweet','Vanilla','Floral'],
+      medical: ['Stress','Depression','Pain','Insomnia','Anxiety'],
+      bestFor: 'Mood elevation, creative evenings, stress relief',
+      funFact: 'DJ Short created Blueberry in the 1970s and it won the 2000 High Times Cannabis Cup for best indica. It\'s one of the most influential genetics in cannabis history — responsible for the Berry family of strains including Blue Dream, Blue Cheese, and many more.',
+      desc: 'DJ Short\'s masterpiece and one of the most beloved strains in cannabis history. Blueberry\'s sweet, fruity aroma is iconic — the smell alone triggers nostalgia. The high is euphoric and relaxing, with a gentle body buzz that eases into serene sedation. A timeless classic.'
+    },
+    {
+      name: 'Afghani',
+      type: 'indica',
+      thc: '15–21%', cbd: '<1%',
+      genetics: 'Pure Afghan landrace',
+      terpenes: ['Myrcene','Pinene','Linalool'],
+      effects: ['Relaxed','Sleepy','Euphoric','Happy','Body High'],
+      flavors: ['Earthy','Woody','Hash','Sweet','Pungent'],
+      medical: ['Pain','Insomnia','Stress','Anxiety','Nausea'],
+      bestFor: 'Heavy relaxation, sleep, traditional hash production',
+      funFact: 'Afghani is one of the purest indica landraces on Earth — used in the breeding of virtually every commercially significant indica strain. Afghan farmers have cultivated it for centuries, primarily for charas (hand-rolled hash) production.',
+      desc: 'Straight from the mountains of Afghanistan — one of the founding genetics of the entire cannabis industry. Dense, resin-heavy, and powerfully sedating. The hash-like aroma and taste are authentic expressions of centuries of cultivation. This is where indica genetics began.'
+    },
+    {
+      name: 'Purple Punch',
+      type: 'indica',
+      thc: '18–25%', cbd: '<1%',
+      genetics: 'Larry OG × Granddaddy Purple',
+      terpenes: ['Caryophyllene','Linalool','Ocimene'],
+      effects: ['Relaxed','Sleepy','Happy','Euphoric','Hungry'],
+      flavors: ['Grape','Blueberry','Vanilla','Sweet','Candy'],
+      medical: ['Insomnia','Stress','Pain','Anxiety','Depression'],
+      bestFor: 'Dessert-time smoke, nighttime relaxation, sleep',
+      funFact: 'Purple Punch smells so much like blueberry muffins and grape candy that many first-time users can\'t believe it\'s cannabis. It consistently wins awards for bag appeal and aroma — often rated as one of the most visually stunning strains to look at.',
+      desc: 'Purple Punch hits like a one-two knockout — the name says it all. A dessert-forward indica that smells and tastes like grape candy and blueberry muffins. The high is heavy, full-body, and deeply sedating. Outstanding bag appeal with dense purple-tinted buds coated in trichomes.'
+    },
+    {
+      name: 'Master Kush',
+      type: 'indica',
+      thc: '16–20%', cbd: '<1%',
+      genetics: 'Hindu Kush × Skunk #1',
+      terpenes: ['Myrcene','Caryophyllene','Limonene'],
+      effects: ['Relaxed','Happy','Sleepy','Euphoric','Focused'],
+      flavors: ['Earthy','Citrus','Incense','Pine','Pungent'],
+      medical: ['Pain','Stress','Insomnia','Anxiety','Depression'],
+      bestFor: 'End of day relaxation, pain relief without heavy sedation',
+      funFact: 'Master Kush was originally called "High Rise" when developed in the famous Dutch cannabis scene of the 1990s. It was renamed after winning multiple awards — including the Amsterdam Cannabis Cup — and became one of the defining strains of the Dutch coffeeshop era.',
+      desc: 'A classic Dutch coffeeshop staple that became a global icon. Master Kush offers the best of Hindu Kush genetics refined for modern use — hash-like earthiness, a sharp citrus edge, and a smooth indica body high that relaxes without completely incapacitating. Versatile and timeless.'
+    },
+
+    // SATIVA
+    {
+      name: 'Sour Diesel',
+      type: 'sativa',
+      thc: '19–25%', cbd: '<1%',
+      genetics: 'Chemdawg 91 × Super Skunk',
+      terpenes: ['Caryophyllene','Myrcene','Limonene'],
+      effects: ['Energetic','Euphoric','Creative','Focused','Happy'],
+      flavors: ['Diesel','Pungent','Citrus','Earthy','Skunky'],
+      medical: ['Depression','Anxiety','Stress','Pain','Fatigue'],
+      bestFor: 'Daytime energy, creative work, social situations',
+      funFact: 'The exact origins of Sour Diesel are shrouded in New York City cannabis lore from the early 1990s. Two competing theories claim it was either an accident involving Chemdawg 91, or a deliberate creation. Its rise coincided with the explosion of New York\'s underground cannabis scene.',
+      desc: 'The East Coast legend that defined a generation. Sour Diesel\'s pungent, fuel-forward aroma is unmistakable and unforgettable. The high is fast-acting, dreamy, and cerebral — a burst of energetic euphoria that sharpens creativity and lifts mood without sedation. A pure sativa classic.'
+    },
+    {
+      name: 'Jack Herer',
+      type: 'sativa',
+      thc: '18–24%', cbd: '<1%',
+      genetics: 'Haze × Northern Lights #5 × Shiva Skunk',
+      terpenes: ['Terpinolene','Pinene','Ocimene'],
+      effects: ['Energetic','Creative','Happy','Focused','Euphoric'],
+      flavors: ['Pine','Earthy','Sweet','Woody','Spicy'],
+      medical: ['Stress','Depression','Anxiety','Fatigue','ADHD'],
+      bestFor: 'Morning use, creative projects, daytime productivity',
+      funFact: 'Named after the legendary cannabis activist and author of "The Emperor Wears No Clothes" — Jack Herer dedicated his life to cannabis legalization. The strain was created in the Netherlands in the 1980s and has won 9 Cannabis Cup awards. It\'s been so influential that a phenotype called "The Jack" is considered the benchmark for sativa quality.',
+      desc: 'Named after the emperor of hemp himself. Jack Herer is a blissful, clear-headed sativa that fires creativity and focus without anxiety. The piney, earthy aroma is invigorating. One of the most awarded strains in history — and rightfully so. The perfect companion for a productive morning.'
+    },
+    {
+      name: 'Green Crack',
+      type: 'sativa',
+      thc: '17–24%', cbd: '<1%',
+      genetics: 'Skunk #1 (selected phenotype)',
+      terpenes: ['Myrcene','Caryophyllene','Ocimene'],
+      effects: ['Energetic','Focused','Happy','Euphoric','Creative'],
+      flavors: ['Mango','Citrus','Sweet','Earthy','Fruity'],
+      medical: ['Fatigue','Depression','Stress','Anxiety','ADHD'],
+      bestFor: 'Morning wake-up, energy boost, creative work sessions',
+      funFact: 'Originally called "Cush" — Snoop Dogg reportedly renamed it "Green Crack" after smoking it in the 1990s because of its potent, energetic effects. The name stuck despite controversies. It\'s actually a phenotype of Skunk #1 that was selected for its exceptional sativa characteristics.',
+      desc: 'Don\'t let the name fool you — this is pure cannabis energy in its finest form. Green Crack delivers razor-sharp mental focus and invigorating stimulation that keeps you going and going. Tropical mango and citrus flavors make it as pleasant to smoke as it is effective. The quintessential daytime strain.'
+    },
+    {
+      name: 'Durban Poison',
+      type: 'sativa',
+      thc: '15–20%', cbd: '<1%',
+      genetics: 'South African landrace',
+      terpenes: ['Terpinolene','Myrcene','Ocimene'],
+      effects: ['Energetic','Euphoric','Creative','Focused','Happy'],
+      flavors: ['Sweet','Earthy','Anise','Pine','Spicy'],
+      medical: ['Depression','Fatigue','Stress','Anxiety','ADHD'],
+      bestFor: 'Daytime productivity, outdoor activities, creative work',
+      funFact: 'A pure landrace sativa from Durban, South Africa — one of the few true pure sativas still in regular use. Ed Rosenthal brought seeds back from Africa in the 1970s. Durban Poison has unusually large trichomes for a sativa, making it surprisingly resinous for a landrace.',
+      desc: 'The espresso of cannabis — a pure African landrace sativa delivering clean, energetic, clear-headed elevation. Durban Poison is the genetic backbone of Girl Scout Cookies, and that lineage shows in its unique sweet anise flavor. Perfect for the active, social cannabis consumer who wants to stay sharp.'
+    },
+    {
+      name: 'Super Silver Haze',
+      type: 'sativa',
+      thc: '18–23%', cbd: '<1%',
+      genetics: 'Haze × Northern Lights #5 × Skunk #1',
+      terpenes: ['Myrcene','Terpinolene','Limonene'],
+      effects: ['Energetic','Euphoric','Creative','Happy','Focused'],
+      flavors: ['Citrus','Earthy','Sweet','Skunk','Spicy'],
+      medical: ['Stress','Depression','Anxiety','Fatigue','Nausea'],
+      bestFor: 'Daytime elevation, creative flow, socializing',
+      funFact: 'Super Silver Haze won the High Times Cannabis Cup in 1997, 1998, and 1999 — three consecutive years, making it one of the most decorated competition strains ever. It was created by Green House Seeds and is considered the pinnacle of Haze genetics expression.',
+      desc: 'A three-time Cannabis Cup champion and the peak expression of Haze genetics. Super Silver Haze fires on all cylinders — energetic, euphoric, and deeply creative. The citrusy, skunky flavor is bold and complex. A long-lasting cerebral high that makes everything more interesting.'
+    },
+    {
+      name: 'Strawberry Cough',
+      type: 'sativa',
+      thc: '15–20%', cbd: '<1%',
+      genetics: 'Haze × Strawberry Fields',
+      terpenes: ['Myrcene','Pinene','Caryophyllene'],
+      effects: ['Happy','Euphoric','Energetic','Uplifted','Creative'],
+      flavors: ['Strawberry','Sweet','Berry','Earthy','Herbal'],
+      medical: ['Anxiety','Stress','Depression','ADHD','Fatigue'],
+      bestFor: 'Social settings, daytime mood lift, anxiety management',
+      funFact: 'The strain gets its name from its incredibly smooth, sweet strawberry flavor that still somehow makes even experienced smokers cough from expansion. Kyle Kushman is credited with popularizing the strain in the early 2000s after finding it in a Connecticut field.',
+      desc: 'Strawberry Cough lives up to its name in every way — the sweet, distinctive strawberry aroma and flavor are exceptional, and yes, it will make you cough. The cerebral, uplifting high is perfect for social anxiety and mood elevation. An approachable, flavorful sativa beloved by all experience levels.'
+    },
+    {
+      name: 'Ghost Train Haze',
+      type: 'sativa',
+      thc: '20–28%', cbd: '<1%',
+      genetics: 'Ghost OG × Neville\'s Wreck',
+      terpenes: ['Terpinolene','Ocimene','Myrcene'],
+      effects: ['Euphoric','Creative','Energetic','Focused','Uplifted'],
+      flavors: ['Citrus','Floral','Pine','Earthy','Sweet'],
+      medical: ['Depression','Fatigue','ADHD','Stress','Pain'],
+      bestFor: 'Experienced users, creative deep dives, daytime stimulation',
+      funFact: 'Ghost Train Haze consistently tests among the highest-THC strains on the market — regularly hitting 25–28% THC. It won multiple Cannabis Cup awards including High Times\' "Most Potent Strain" in 2012. It\'s not recommended for anxiety-prone or new users due to its intensity.',
+      desc: 'One of the most potent sativas on Earth — not for the inexperienced. Ghost Train Haze delivers an overwhelming rush of cerebral euphoria and creative energy that borders on psychedelic at high doses. Citrus and floral notes lead into a long, complex finish. Approach with respect.'
+    },
+    {
+      name: 'Lemon Haze',
+      type: 'sativa',
+      thc: '17–22%', cbd: '<1%',
+      genetics: 'Silver Haze × Lemon Skunk',
+      terpenes: ['Terpinolene','Limonene','Caryophyllene'],
+      effects: ['Happy','Euphoric','Energetic','Uplifted','Creative'],
+      flavors: ['Lemon','Citrus','Sweet','Earthy','Herbal'],
+      medical: ['Stress','Depression','Anxiety','Fatigue','Pain'],
+      bestFor: 'Morning use, mood elevation, outdoor activities',
+      funFact: 'The intense lemon flavor in Lemon Haze comes primarily from the terpene limonene — the same compound found in lemon rinds. Limonene is known for its mood-elevating, anti-anxiety properties, which may explain why citrus-forward strains are so consistently popular for daytime use.',
+      desc: 'Sunshine in a bud. Lemon Haze bursts with bright citrus flavors — fresh lemon zest with herbal undertones. The effect is uplifting and euphoric, lifting mood and sharpening focus without sedation. A beautiful daytime strain for outdoor adventures, creative work, or simply enjoying a good day.'
+    },
+
+    // HYBRID
+    {
+      name: 'OG Kush',
+      type: 'hybrid',
+      thc: '20–26%', cbd: '<1%',
+      genetics: 'Chemdawg × Lemon Thai × Hindu Kush',
+      terpenes: ['Myrcene','Limonene','Caryophyllene'],
+      effects: ['Euphoric','Relaxed','Happy','Creative','Sleepy'],
+      flavors: ['Fuel','Citrus','Pine','Earthy','Woody'],
+      medical: ['Stress','Anxiety','Depression','Pain','Insomnia'],
+      bestFor: 'Versatile all-day use, stress relief, the OG experience',
+      funFact: 'OG Kush is the most influential strain in modern cannabis history — it\'s the direct genetic ancestor of Bubba Kush, Girl Scout Cookies, Gelato, Wedding Cake, and hundreds of other popular strains. The "OG" stands for either "Ocean Grown" (from SoCal beach towns) or "Original Gangster" — debate continues.',
+      desc: 'The strain that defined California cannabis and changed the world. OG Kush is the foundation of the modern premium cannabis market — its genetics run through virtually every elite strain produced in the last 30 years. Complex, pungent fuel and citrus aromas lead to a potent hybrid high that\'s both cerebral and physical. The original standard.'
+    },
+    {
+      name: 'Girl Scout Cookies',
+      type: 'hybrid',
+      thc: '19–28%', cbd: '<1%',
+      genetics: 'OG Kush × Durban Poison',
+      terpenes: ['Caryophyllene','Linalool','Limonene'],
+      effects: ['Euphoric','Happy','Relaxed','Creative','Hungry'],
+      flavors: ['Sweet','Earthy','Mint','Cherry','Chocolate'],
+      medical: ['Stress','Depression','Pain','Anxiety','Appetite Loss'],
+      bestFor: 'Creative evenings, mood elevation, appetite stimulation',
+      funFact: 'GSC was created by the Cookie Fam collective in San Francisco around 2010 and became the defining strain of the 2010s cannabis explosion. Berner, a Bay Area rapper and cannabis entrepreneur, helped popularize it nationally. Its Thin Mint and Platinum Cookies phenotypes became legendary in their own right.',
+      desc: 'The strain that sparked the Cookie era. Girl Scout Cookies is a perfect hybrid — delivering blissful, full-force euphoria alongside a heavy body buzz that keeps you functional but deeply relaxed. The sweet, minty, earthy flavor is uniquely compelling. This is the strain that elevated premium cannabis from product to culture.'
+    },
+    {
+      name: 'Gelato',
+      type: 'hybrid',
+      thc: '20–26%', cbd: '<1%',
+      genetics: 'Sunset Sherbet × Thin Mint GSC',
+      terpenes: ['Caryophyllene','Limonene','Humulene'],
+      effects: ['Euphoric','Happy','Relaxed','Creative','Energetic'],
+      flavors: ['Sweet','Citrus','Berry','Lavender','Earthy'],
+      medical: ['Stress','Anxiety','Depression','Pain','Fatigue'],
+      bestFor: 'Evening socializing, creative projects, stress relief',
+      funFact: 'Gelato was developed by Cookie Fam / Sherbinski in the Bay Area around 2014. Named after Italian ice cream, its various numbered phenotypes (Gelato #33, #41, #45) became some of the most sought-after cannabis in America. The Gelato family spawned Bacio Gelato, Mochi, and dozens of other beloved strains.',
+      desc: 'Italian ice cream in cannabis form. Gelato\'s sweet, dessert-like flavor — citrus, berry, lavender — is extraordinary. The balanced hybrid high delivers an immediate rush of euphoric energy followed by a relaxing body buzz. Dense, colorful buds with exceptional bag appeal. One of the most copied strain profiles in modern cannabis.'
+    },
+    {
+      name: 'Blue Dream',
+      type: 'hybrid',
+      thc: '17–24%', cbd: '<1%',
+      genetics: 'Blueberry × Haze',
+      terpenes: ['Myrcene','Pinene','Caryophyllene'],
+      effects: ['Happy','Euphoric','Creative','Relaxed','Energetic'],
+      flavors: ['Blueberry','Sweet','Herbal','Vanilla','Earthy'],
+      medical: ['Stress','Depression','Anxiety','Pain','Fatigue'],
+      bestFor: 'All-day use, beginners, social settings',
+      funFact: 'Blue Dream became the best-selling strain in every legal cannabis market in the United States for most of the 2010s. It\'s the most popular recreational strain in history by sales volume — beloved for its approachability, consistent effects, and forgiving nature for new users.',
+      desc: 'The people\'s champion. Blue Dream is the best-selling strain in American history for a reason — it delivers balanced euphoria and full-body relaxation without heavy sedation. Approachable for beginners, satisfying for veterans. The sweet blueberry flavor is welcoming and the effects are reliably pleasant. The perfect all-purpose hybrid.'
+    },
+    {
+      name: 'Wedding Cake',
+      type: 'hybrid',
+      thc: '22–27%', cbd: '<1%',
+      genetics: 'Triangle Kush × Animal Mints',
+      terpenes: ['Caryophyllene','Limonene','Myrcene'],
+      effects: ['Relaxed','Euphoric','Happy','Hungry','Sleepy'],
+      flavors: ['Sweet','Vanilla','Tangy','Earthy','Pepper'],
+      medical: ['Stress','Pain','Depression','Anxiety','Appetite Loss'],
+      bestFor: 'Evening relaxation, celebrations, appetite stimulation',
+      funFact: 'Wedding Cake\'s actual genetics are disputed — Seed Junky Genetics, who developed it, maintains it\'s Triangle Kush × Animal Mints, not a Girl Scout Cookies derivative as widely assumed. The confusion arises from the similar flavor profile to Cookie strains, causing many to incorrectly list GSC as a parent.',
+      desc: 'Rich, tangy, and indulgent — Wedding Cake lives up to its name as a premium dessert strain. Dense buds with a vanilla-pepper-earth flavor profile that\'s deeply satisfying. The high is powerfully relaxing with euphoric undertones, making it perfect for unwinding after a long day. One of the most popular premium strains of the 2020s.'
+    },
+    {
+      name: 'Runtz',
+      type: 'hybrid',
+      thc: '19–29%', cbd: '<1%',
+      genetics: 'Zkittlez × Gelato',
+      terpenes: ['Caryophyllene','Limonene','Linalool'],
+      effects: ['Euphoric','Happy','Relaxed','Uplifted','Hungry'],
+      flavors: ['Candy','Sweet','Tropical','Fruity','Earthy'],
+      medical: ['Stress','Anxiety','Depression','Pain','Appetite Loss'],
+      bestFor: 'Evening elevation, mood boost, dessert smoking',
+      funFact: 'Runtz was developed by Cookies and Berner in LA around 2017. Rapper Yung Bans and Lil Uzi Vert both popularized it in hip-hop culture. It won Leafly\'s Strain of the Year in 2020 and has spawned an enormous family of offspring strains, including White Runtz, Pink Runtz, and Runtz OG.',
+      desc: 'The sweet-tooth strain. Runtz smells and tastes like a bag of fruity candy — pure sugar, tropical fruit, and earthy undertones. The effects are equally enjoyable: a long-lasting, balancing euphoria that\'s both physically relaxing and mentally uplifting. One of the defining strains of the 2020s premium cannabis market.'
+    },
+    {
+      name: 'Pineapple Express',
+      type: 'hybrid',
+      thc: '19–25%', cbd: '<1%',
+      genetics: 'Trainwreck × Hawaiian',
+      terpenes: ['Ocimene','Myrcene','Caryophyllene'],
+      effects: ['Happy','Euphoric','Energetic','Creative','Relaxed'],
+      flavors: ['Pineapple','Tropical','Mango','Cedar','Pine'],
+      medical: ['Stress','Depression','Anxiety','Fatigue','Pain'],
+      bestFor: 'Daytime activities, creative sessions, social use',
+      funFact: 'The 2008 Seth Rogen and James Franco film "Pineapple Express" was named after this strain and brought it to international recognition overnight. Interestingly, the strain existed before the movie — but the film made it a household name and permanently changed cannabis pop culture marketing.',
+      desc: 'Made famous by Hollywood but earned its reputation on its own merits. Pineapple Express delivers an energetic buzz alongside a long-lasting body high. The tropical pineapple and cedar flavor profile is distinct and enjoyable. Keeps you alert and creative while melting tension — a true workhorse hybrid for the active consumer.'
+    },
+    {
+      name: 'Zkittlez',
+      type: 'hybrid',
+      thc: '15–23%', cbd: '<1%',
+      genetics: 'Grape Ape × Grapefruit',
+      terpenes: ['Caryophyllene','Humulene','Linalool'],
+      effects: ['Happy','Relaxed','Euphoric','Uplifted','Focused'],
+      flavors: ['Grape','Berry','Tropical','Candy','Sweet'],
+      medical: ['Stress','Depression','Anxiety','Pain','Insomnia'],
+      bestFor: 'Evening relaxation, flavor chasers, mood elevation',
+      funFact: 'Zkittlez won the 2015 and 2016 Cannabis Cups in both San Francisco and Michigan — an unprecedented sweep that announced it as a powerhouse genetics line. It was developed by 3rd Gen Family and Terp Hogz, and its incredible flavor profile started the "Candy/Dessert" strain trend that still dominates the market today.',
+      desc: 'Taste the rainbow — Zkittlez is one of the most flavor-forward strains ever created. The candy-sweet, tropical fruit aroma and taste are genuinely remarkable. The effect is calming and euphoric, settling into a relaxed focus that\'s perfect for evening unwinding. Dense, beautiful buds with extraordinary terpene expression.'
+    },
+  ];
+
+  const ALL_EFFECTS = [...new Set(SDB_DATA.flatMap(s => s.effects))].sort();
+  let sdbActiveType = 'all';
+  let sdbActiveEffect = null;
+
+  function renderSdbChips() {
+    const el = document.getElementById('sdbEffectChips');
+    if (!el) return;
+    el.innerHTML = ALL_EFFECTS.map(e =>
+      `<button class="sdb-chip${sdbActiveEffect===e?' active':''}" onclick="sdbEffectFilter('${e}')">${e}</button>`
+    ).join('');
+  }
+
+  function renderSdbGrid() {
+    const el = document.getElementById('sdbGrid');
+    if (!el) return;
+    const filtered = SDB_DATA.filter(s => {
+      const typeMatch = sdbActiveType === 'all' || s.type === sdbActiveType;
+      const effMatch = !sdbActiveEffect || s.effects.includes(sdbActiveEffect);
+      return typeMatch && effMatch;
+    });
+    if (!filtered.length) {
+      el.innerHTML = '<div class="sdb-no-results">No strains match those filters. Try adjusting your search.</div>';
+      return;
+    }
+    el.innerHTML = filtered.map(s => `
+      <div class="sdb-card type-${s.type}" onclick="sdbOpen('${s.name.replace(/'/g,"\\'")}')" id="sdbCard-${s.name.replace(/\s+/g,'-').replace(/'/g,'')}">
+        <div class="sdb-card-type">${s.type}</div>
+        <div class="sdb-card-name">${s.name}</div>
+        <div class="sdb-card-thc">THC ${s.thc}</div>
+        <div class="sdb-card-effects">${s.effects.slice(0,3).map(e=>`<span class="sdb-card-eff">${e}</span>`).join('')}</div>
+      </div>
+    `).join('');
+  }
+
+  function sdbFilter(type) {
+    sdbActiveType = type;
+    document.querySelectorAll('.sdb-tab').forEach(t => t.classList.remove('active'));
+    const tab = [...document.querySelectorAll('.sdb-tab')].find(t => t.textContent.toLowerCase() === type || (type==='all' && t.textContent==='All') || (type==='indica'&&t.textContent==='Indica') || (type==='hybrid'&&t.textContent==='Hybrid') || (type==='sativa'&&t.textContent==='Sativa'));
+    if (tab) tab.classList.add('active');
+    renderSdbGrid();
+    document.getElementById('sdbDetail').classList.remove('visible');
+  }
+
+  function sdbEffectFilter(eff) {
+    sdbActiveEffect = sdbActiveEffect === eff ? null : eff;
+    renderSdbChips();
+    renderSdbGrid();
+    document.getElementById('sdbDetail').classList.remove('visible');
+  }
+
+  function sdbOpen(name) {
+    const s = SDB_DATA.find(x => x.name === name);
+    if (!s) return;
+    document.querySelectorAll('.sdb-card').forEach(c => c.classList.remove('active'));
+    const card = document.getElementById('sdbCard-' + name.replace(/\s+/g,'-').replace(/'/g,''));
+    if (card) card.classList.add('active');
+    const badgeClass = `sdb-badge-${s.type}`;
+    const detail = document.getElementById('sdbDetail');
+    detail.innerHTML = `
+      <div class="sdb-detail-header">
+        <div>
+          <div class="sdb-detail-name">${s.name}</div>
+          <div class="sdb-detail-subtitle">${s.genetics}</div>
+        </div>
+        <div class="sdb-detail-badges">
+          <span class="sdb-badge ${badgeClass}">${s.type.charAt(0).toUpperCase()+s.type.slice(1)}</span>
+          <span class="sdb-badge sdb-badge-thc">THC ${s.thc}</span>
+          <span class="sdb-badge sdb-badge-cbd">CBD ${s.cbd}</span>
+        </div>
+      </div>
+      <div class="sdb-detail-body">
+        <p class="sdb-detail-desc">${s.desc}</p>
+        <div class="sdb-detail-col">
+          <h4>Effects</h4>
+          <div class="sdb-detail-tags">${s.effects.map(e=>`<span class="sdb-detail-tag">${e}</span>`).join('')}</div>
+        </div>
+        <div class="sdb-detail-col">
+          <h4>Flavors</h4>
+          <div class="sdb-detail-tags">${s.flavors.map(f=>`<span class="sdb-detail-tag">${f}</span>`).join('')}</div>
+        </div>
+        <div class="sdb-detail-col">
+          <h4>Terpenes</h4>
+          <div class="sdb-detail-tags">${s.terpenes.map(t=>`<span class="sdb-detail-terpene-tag">${t}</span>`).join('')}</div>
+        </div>
+        <div class="sdb-detail-col">
+          <h4>Medical Uses</h4>
+          <ul class="sdb-detail-list">${s.medical.map(m=>`<li>${m}</li>`).join('')}</ul>
+        </div>
+        <div class="sdb-detail-col" style="grid-column:1/-1">
+          <h4>Best For</h4>
+          <p style="color:rgba(245,240,225,0.7);font-size:14px;margin:0">${s.bestFor}</p>
+        </div>
+        <div class="sdb-fun-fact">
+          <div class="sdb-fun-fact-label">✦ The Cannascenti Take</div>
+          <p>${s.funFact}</p>
+        </div>
+      </div>
+      <button class="sdb-detail-close" onclick="sdbClose()">↑ Close Profile</button>
+    `;
+    detail.classList.add('visible');
+    setTimeout(() => detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+  }
+
+  function sdbClose() {
+    document.getElementById('sdbDetail').classList.remove('visible');
+    document.querySelectorAll('.sdb-card').forEach(c => c.classList.remove('active'));
+  }
+
+  // Init strain database
+  renderSdbChips();
+  renderSdbGrid();
+
 </script>
 
 </body>
