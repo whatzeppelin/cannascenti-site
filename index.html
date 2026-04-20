@@ -1741,6 +1741,21 @@
   #molPanel[data-type="thc"] .isv-strain { border: 1px solid rgba(232,92,92,0.3);  }
   #molPanel[data-type="cbd"] .isv-strain { border: 1px solid rgba(92,160,232,0.3); }
   #molPanel[data-type="cbg"] .isv-strain { border: 1px solid rgba(232,192,92,0.3); }
+  .mol-tab-cbc.active  { border-color: #5ce8b4 !important; box-shadow: 0 4px 24px rgba(92,232,180,0.3) !important; }
+  .mol-tab-thcv.active { border-color: #b45ce8 !important; box-shadow: 0 4px 24px rgba(180,92,232,0.3) !important; }
+  .mol-tab-cbn.active  { border-color: #7fa8d4 !important; box-shadow: 0 4px 24px rgba(127,168,212,0.3) !important; }
+  #molPanel[data-type="cbc"]  { background: linear-gradient(180deg, rgba(92,232,180,0.07) 0%, rgba(0,0,0,0) 120px), var(--card-bg); }
+  #molPanel[data-type="thcv"] { background: linear-gradient(180deg, rgba(180,92,232,0.07) 0%, rgba(0,0,0,0) 120px), var(--card-bg); }
+  #molPanel[data-type="cbn"]  { background: linear-gradient(180deg, rgba(127,168,212,0.07) 0%, rgba(0,0,0,0) 120px), var(--card-bg); }
+  #molPanel[data-type="cbc"]  .isv-header-badge { background: rgba(92,232,180,0.2);  color: #9af5d8; border: 1px solid rgba(92,232,180,0.3); }
+  #molPanel[data-type="thcv"] .isv-header-badge { background: rgba(180,92,232,0.2);  color: #d4a0f5; border: 1px solid rgba(180,92,232,0.3); }
+  #molPanel[data-type="cbn"]  .isv-header-badge { background: rgba(127,168,212,0.2); color: #aac8e8; border: 1px solid rgba(127,168,212,0.3); }
+  #molPanel[data-type="cbc"]  .isv-effect-tag { background: rgba(92,232,180,0.15);  color: #9af5d8; }
+  #molPanel[data-type="thcv"] .isv-effect-tag { background: rgba(180,92,232,0.15);  color: #d4a0f5; }
+  #molPanel[data-type="cbn"]  .isv-effect-tag { background: rgba(127,168,212,0.15); color: #aac8e8; }
+  #molPanel[data-type="cbc"]  .isv-strain { border: 1px solid rgba(92,232,180,0.3);  }
+  #molPanel[data-type="thcv"] .isv-strain { border: 1px solid rgba(180,92,232,0.3);  }
+  #molPanel[data-type="cbn"]  .isv-strain { border: 1px solid rgba(127,168,212,0.3); }
 
   /* ===================== CONSUMPTION METHODS ===================== */
   .consume-section { margin-top: 80px; }
@@ -3012,6 +3027,21 @@
           <span class="isv-tab-name">CBG</span>
           <span class="isv-tab-sub">The Mother · Emerging</span>
         </button>
+        <button class="isv-tab mol-tab-cbc" onclick="molSelect('cbc')">
+          <span class="isv-tab-icon">🛡️</span>
+          <span class="isv-tab-name">CBC</span>
+          <span class="isv-tab-sub">Anti-Inflammatory · Pain</span>
+        </button>
+        <button class="isv-tab mol-tab-thcv" onclick="molSelect('thcv')">
+          <span class="isv-tab-icon">⚡</span>
+          <span class="isv-tab-name">THCV</span>
+          <span class="isv-tab-sub">Energetic · Appetite Control</span>
+        </button>
+        <button class="isv-tab mol-tab-cbn" onclick="molSelect('cbn')">
+          <span class="isv-tab-icon">🌙</span>
+          <span class="isv-tab-name">CBN</span>
+          <span class="isv-tab-sub">Sleep · Aged Cannabis</span>
+        </button>
       </div>
       <div class="isv-panel" id="molPanel"></div>
     </div>
@@ -3659,12 +3689,54 @@
         { label: 'The Future',    val: { strong: 'One of the most researched emerging cannabinoids', detail: 'As extraction techniques improve and CBG-dominant strains become more available, expect CBG to become a standalone wellness product category.' } },
       ],
       strains: ['White CBG', 'Jack Frost CBG', 'Super Glue CBG', 'Stem Cell CBG', 'Lemon Cream Diesel'],
-    }
+    },
+    cbc: {
+      icon: '🛡️', title: 'CBC', badge: 'Cannabichromene',
+      tagline: 'Non-psychoactive · Anti-inflammatory · Neuroprotective',
+      effects: ['Anti-Inflammatory', 'Pain Relief', 'Antidepressant', 'Neuroprotective', 'Antifungal', 'No High'],
+      rows: [
+        { label: 'What It Is',   val: { strong: 'Third most abundant cannabinoid in cannabis', detail: 'CBC is produced from the same CBGA precursor as THC and CBD. It doesn\'t produce a high on its own, but amplifies the effects of other cannabinoids through the entourage effect.' } },
+        { label: 'Receptor',     val: { strong: 'TRP Channels + CB2 (indirect)', detail: 'CBC doesn\'t bind strongly to CB1 or CB2. Instead it activates TRPA1 and TRPV1 pain receptors — the same channels targeted by many pain medications.' } },
+        { label: 'Medical Uses', val: { strong: 'Pain · Depression · Neurogenesis · Fungal Infection', detail: 'CBC promotes neurogenesis (new brain cell growth) — rare among cannabinoids. Also shows strong antifungal and antibacterial properties in early research.' } },
+        { label: 'Entourage',    val: { strong: 'Amplifies THC and CBD — stronger together', detail: 'CBC pairs powerfully with CBD for anti-inflammatory effects and with THC for mood enhancement. One reason full-spectrum products outperform isolates.' } },
+        { label: 'Neurogenesis', val: { strong: 'Promotes new brain cell growth', detail: 'A 2013 study found CBC increased the viability of neural stem progenitor cells — the cells responsible for brain development and repair. Potential applications for Alzheimer\'s and neurological disorders.' } },
+        { label: 'Availability', val: { strong: 'Low concentration — usually under 1%', detail: 'CBC is present in most cannabis strains but at low levels. Young cannabis and hemp plants tend to have higher CBC before it converts to other cannabinoids.' } },
+      ],
+      strains: ['Charlotte\'s Web', 'Remedy', 'ACDC', 'Jorge\'s Diamonds', 'Harlequin'],
+    },
+    thcv: {
+      icon: '⚡', title: 'THCV', badge: 'Tetrahydrocannabivarin',
+      tagline: 'Energetic · Appetite-suppressing · Fast-acting',
+      effects: ['Energetic', 'Clear-headed', 'Appetite Suppression', 'Focus', 'Bone Growth', 'Fast Onset'],
+      rows: [
+        { label: 'What It Is',   val: { strong: 'Structural cousin of THC — very different effects', detail: 'THCV has a similar molecular structure to THC but a shorter side chain. At low doses it\'s non-psychoactive; at high doses it produces a clear, energetic, fast-onset high that fades quickly.' } },
+        { label: 'Receptor',     val: { strong: 'CB1 Antagonist (low dose) → Agonist (high dose)', detail: 'Uniquely, THCV blocks CB1 receptors at low doses (suppressing appetite, reducing anxiety) but activates them at high doses — producing a sharp, clear-headed high.' } },
+        { label: 'The Feel',     val: { strong: 'Sharp, cerebral, energetic — appetite disappears', detail: 'Called "diet weed" — THCV actively suppresses appetite rather than stimulating it. The high is more clear-headed and shorter-lasting than THC.' } },
+        { label: 'Medical Uses', val: { strong: 'Diabetes · Appetite Control · Bone Density · PTSD', detail: 'GW Pharmaceuticals has studied THCV for Type 2 diabetes — it improves insulin sensitivity and glucose tolerance. Also studied for bone density and Parkinson\'s.' } },
+        { label: 'Duration',     val: { strong: 'Fast onset, short duration — 1–2 hours', detail: 'THCV produces effects faster than THC and fades more quickly. Users describe it as "clean" energy without the lingering body load of high-THC strains.' } },
+        { label: 'Where to Find', val: { strong: 'Highest in African sativa landrace strains', detail: 'Durban Poison is the most famous high-THCV strain. Generally found in African landrace sativas and strains bred specifically for THCV content.' } },
+      ],
+      strains: ['Durban Poison', 'Pineapple Purps', 'Jack the Ripper', 'Doug\'s Varin', 'Skunk #1'],
+    },
+    cbn: {
+      icon: '🌙', title: 'CBN', badge: 'Cannabinol — The Sleep Cannabinoid',
+      tagline: 'Aged THC · The most sedating cannabinoid',
+      effects: ['Sedating', 'Sleep Aid', 'Appetite', 'Antibacterial', 'Neuroprotective', 'Pain Relief'],
+      rows: [
+        { label: 'What It Is',    val: { strong: 'THC that has oxidized over time', detail: 'CBN is not produced directly by the plant — it forms when THC is exposed to air, heat, and light over time. Old cannabis is high in CBN. The more THC degrades, the more CBN is produced.' } },
+        { label: 'Receptor',      val: { strong: 'CB1 + CB2 — Weak Partial Agonist', detail: 'CBN binds both CB1 and CB2 receptors but with much weaker affinity than THC. Its sedating effects come partly from terpenoid residues and partly from ECS interaction.' } },
+        { label: 'Sleep',         val: { strong: 'Most sedating cannabinoid currently studied', detail: 'Research suggests 5mg CBN is roughly equivalent to 10mg diazepam (Valium) for sedation. Widely sold as a sleep aid — more clinical studies are underway.' } },
+        { label: 'Medical Uses',  val: { strong: 'Insomnia · Pain · Appetite · MRSA · ALS', detail: 'Beyond sleep, CBN shows antibacterial effects against MRSA and potential neuroprotective properties in ALS research. Also stimulates appetite similarly to THC without the psychoactive effects.' } },
+        { label: 'Psychoactive?', val: { strong: 'Mildly — about 25% as strong as THC', detail: 'At typical sleep product doses (5–10mg), the effect is primarily sedation without intoxication. At very high doses, mild euphoria is possible.' } },
+        { label: 'How to Get It', val: { strong: 'Aged flower or CBN-specific extracts', detail: 'Leave high-THC cannabis in a warm, slightly open container for a few weeks — THC gradually converts to CBN. Commercially available as CBN isolate oils and sleep-specific gummies.' } },
+      ],
+      strains: ['Aged high-THC strains', 'CBN Sleep products', 'Respect My Region CBN', 'Level CBN'],
+    },
   };
 
   function molSelect(type) {
     document.querySelectorAll('.isv-tab').forEach(t => {
-      if (t.classList.contains('mol-tab-thc') || t.classList.contains('mol-tab-cbd') || t.classList.contains('mol-tab-cbg')) {
+      if (['mol-tab-thc','mol-tab-cbd','mol-tab-cbg','mol-tab-cbc','mol-tab-thcv','mol-tab-cbn'].some(c => t.classList.contains(c))) {
         t.classList.remove('active');
       }
     });
