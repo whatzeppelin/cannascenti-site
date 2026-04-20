@@ -1724,6 +1724,252 @@
     .isv-header-badge { display: none; }
   }
 
+  /* ===================== CANNABINOIDS ===================== */
+  .canna-mol-section { margin-top: 80px; }
+  .mol-tab-thc.active  { border-color: #e85c5c !important; box-shadow: 0 4px 24px rgba(232,92,92,0.3) !important; }
+  .mol-tab-cbd.active  { border-color: #5ca0e8 !important; box-shadow: 0 4px 24px rgba(92,160,232,0.3) !important; }
+  .mol-tab-cbg.active  { border-color: #e8c05c !important; box-shadow: 0 4px 24px rgba(232,192,92,0.3) !important; }
+  #molPanel[data-type="thc"] { background: linear-gradient(180deg, rgba(232,92,92,0.07) 0%, rgba(0,0,0,0) 120px), var(--card-bg); }
+  #molPanel[data-type="cbd"] { background: linear-gradient(180deg, rgba(92,160,232,0.07) 0%, rgba(0,0,0,0) 120px), var(--card-bg); }
+  #molPanel[data-type="cbg"] { background: linear-gradient(180deg, rgba(232,192,92,0.07) 0%, rgba(0,0,0,0) 120px), var(--card-bg); }
+  #molPanel[data-type="thc"] .isv-header-badge { background: rgba(232,92,92,0.2);  color: #f5a0a0; border: 1px solid rgba(232,92,92,0.3); }
+  #molPanel[data-type="cbd"] .isv-header-badge { background: rgba(92,160,232,0.2); color: #a0c8f5; border: 1px solid rgba(92,160,232,0.3); }
+  #molPanel[data-type="cbg"] .isv-header-badge { background: rgba(232,192,92,0.2); color: #f5d8a0; border: 1px solid rgba(232,192,92,0.3); }
+  #molPanel[data-type="thc"] .isv-effect-tag { background: rgba(232,92,92,0.15);  color: #f5a0a0; }
+  #molPanel[data-type="cbd"] .isv-effect-tag { background: rgba(92,160,232,0.15); color: #a0c8f5; }
+  #molPanel[data-type="cbg"] .isv-effect-tag { background: rgba(232,192,92,0.15); color: #f5d8a0; }
+  #molPanel[data-type="thc"] .isv-strain { border: 1px solid rgba(232,92,92,0.3);  }
+  #molPanel[data-type="cbd"] .isv-strain { border: 1px solid rgba(92,160,232,0.3); }
+  #molPanel[data-type="cbg"] .isv-strain { border: 1px solid rgba(232,192,92,0.3); }
+
+  /* ===================== CONSUMPTION METHODS ===================== */
+  .consume-section { margin-top: 80px; }
+  .consume-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 14px;
+    margin: 36px 0 28px;
+  }
+  .consume-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 20px 12px;
+    border-radius: 12px;
+    border: 2px solid rgba(255,255,255,0.08);
+    background: var(--card-bg);
+    cursor: pointer;
+    transition: all 0.25s;
+    color: var(--cream);
+    font-family: 'Montserrat', sans-serif;
+    opacity: 0.65;
+  }
+  .consume-btn:hover { opacity: 0.85; transform: translateY(-2px); }
+  .consume-btn.active {
+    opacity: 1;
+    border-color: var(--bright-green);
+    box-shadow: 0 4px 20px rgba(122,184,80,0.25);
+    transform: translateY(-3px);
+  }
+  .consume-btn-icon { font-size: 1.8rem; }
+  .consume-btn-name { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .consume-detail {
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: var(--card-bg);
+    overflow: hidden;
+    min-height: 60px;
+    transition: all 0.3s;
+  }
+  .consume-detail-inner { padding: 28px 32px; }
+  .consume-detail-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .consume-detail-icon { font-size: 2.5rem; }
+  .consume-detail-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--cream);
+  }
+  .consume-detail-sub {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-top: 2px;
+  }
+  .consume-bars { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
+  .consume-bar-row { display: grid; grid-template-columns: 100px 1fr 60px; align-items: center; gap: 12px; }
+  .consume-bar-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.55; text-align: right; }
+  .consume-bar-track { height: 8px; border-radius: 4px; background: rgba(255,255,255,0.08); overflow: hidden; }
+  .consume-bar-fill { height: 100%; border-radius: 4px; background: var(--bright-green); transition: width 0.6s cubic-bezier(.4,0,.2,1); }
+  .consume-bar-val { font-size: 0.75rem; font-weight: 700; color: var(--bright-green); }
+  .consume-desc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .consume-desc-item { background: rgba(255,255,255,0.04); border-radius: 10px; padding: 16px; }
+  .consume-desc-item strong { display: block; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bright-green); margin-bottom: 6px; }
+  .consume-desc-item p { font-size: 0.85rem; line-height: 1.5; opacity: 0.8; margin: 0; }
+  @media(max-width:600px) {
+    .consume-bar-row { grid-template-columns: 80px 1fr 50px; }
+    .consume-desc-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===================== CANNABIS BY THE NUMBERS ===================== */
+  .numbers-section { margin-top: 80px; }
+  .numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+    margin-top: 40px;
+  }
+  .numbers-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 28px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    transition: transform 0.25s, border-color 0.25s;
+  }
+  .numbers-card:hover { transform: translateY(-3px); border-color: rgba(122,184,80,0.3); }
+  .num-big {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: var(--bright-green);
+    line-height: 1;
+  }
+  .num-plus {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-top: -4px;
+    min-height: 20px;
+  }
+  .num-label {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    opacity: 0.6;
+    margin-top: 8px;
+    letter-spacing: 0.03em;
+  }
+
+  /* ===================== CANNABIS & YOUR BODY ===================== */
+  .body-section { margin-top: 80px; padding-bottom: 20px; }
+  .body-diagram-wrap {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    margin-top: 40px;
+  }
+  .body-diagram {
+    position: relative;
+    width: 260px;
+    flex-shrink: 0;
+  }
+  .body-svg { width: 100%; height: auto; display: block; }
+  .body-hotspot {
+    position: absolute;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+  }
+  .body-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--bright-green);
+    border: 2px solid rgba(122,184,80,0.5);
+    position: relative;
+    z-index: 2;
+    transition: transform 0.2s;
+  }
+  .body-hotspot:hover .body-dot,
+  .body-hotspot.active .body-dot { transform: scale(1.4); background: var(--gold); }
+  .body-dot-ring {
+    position: absolute;
+    top: -5px; left: -5px;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(122,184,80,0.4);
+    animation: bodyPulse 2s infinite;
+  }
+  @keyframes bodyPulse {
+    0%   { transform: scale(0.8); opacity: 0.8; }
+    70%  { transform: scale(1.5); opacity: 0; }
+    100% { transform: scale(0.8); opacity: 0; }
+  }
+  .body-label {
+    position: absolute;
+    top: -3px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cream);
+    white-space: nowrap;
+    opacity: 0.7;
+  }
+  .body-label-right { left: 20px; }
+  .body-label-left  { right: 20px; }
+  .body-info-panel {
+    flex: 1;
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
+  .body-info-placeholder { text-align: center; color: var(--cream); opacity: 0.5; padding: 20px; }
+  .body-info-content { padding: 28px 32px; width: 100%; }
+  .body-info-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+  .body-info-receptor {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bright-green);
+    margin-bottom: 16px;
+  }
+  .body-info-text {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    opacity: 0.85;
+    margin-bottom: 16px;
+  }
+  .body-info-fact {
+    background: rgba(122,184,80,0.08);
+    border-left: 3px solid var(--bright-green);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    font-style: italic;
+    color: var(--cream);
+    opacity: 0.8;
+  }
+  @media(max-width:700px) {
+    .body-diagram-wrap { flex-direction: column; }
+    .body-diagram { width: 100%; max-width: 260px; margin: 0 auto; }
+    .body-info-panel { min-height: auto; }
+  }
+
   /* ===================== TERPENE WHEEL ===================== */
   .terpene-wheel-wrap {
     display: flex;
@@ -2742,6 +2988,171 @@
       </div>
     </div>
 
+    <!-- CANNABINOIDS: THC vs CBD vs CBG -->
+    <div class="canna-mol-section">
+      <div class="terpene-intro">
+        <div class="section-label">✦ Cannabinoids</div>
+        <div class="terpene-intro-title">THC · CBD · CBG — <em>what each one actually does</em></div>
+        <p class="terpene-intro-desc">Cannabis produces over 100 cannabinoids. Three define the experience most people are chasing — or avoiding. Click each one to understand what's happening in your body.</p>
+      </div>
+
+      <div class="isv-tabs">
+        <button class="isv-tab mol-tab-thc active" onclick="molSelect('thc')">
+          <span class="isv-tab-icon">🔥</span>
+          <span class="isv-tab-name">THC</span>
+          <span class="isv-tab-sub">Psychoactive · High</span>
+        </button>
+        <button class="isv-tab mol-tab-cbd" onclick="molSelect('cbd')">
+          <span class="isv-tab-icon">🌊</span>
+          <span class="isv-tab-name">CBD</span>
+          <span class="isv-tab-sub">Non-Psych · Therapeutic</span>
+        </button>
+        <button class="isv-tab mol-tab-cbg" onclick="molSelect('cbg')">
+          <span class="isv-tab-icon">🔬</span>
+          <span class="isv-tab-name">CBG</span>
+          <span class="isv-tab-sub">The Mother · Emerging</span>
+        </button>
+      </div>
+      <div class="isv-panel" id="molPanel"></div>
+    </div>
+
+    <!-- CONSUMPTION METHODS -->
+    <div class="consume-section">
+      <div class="terpene-intro">
+        <div class="section-label">✦ Consumption Methods</div>
+        <div class="terpene-intro-title">How you consume <em>changes everything</em></div>
+        <p class="terpene-intro-desc">Same cannabis. Completely different experience depending on how you consume it. Onset time, duration, intensity, and best use case — all different. Click any method to see the full breakdown.</p>
+      </div>
+
+      <div class="consume-grid" id="consumeGrid"></div>
+      <div class="consume-detail" id="consumeDetail"></div>
+    </div>
+
+    <!-- CANNABIS BY THE NUMBERS -->
+    <div class="numbers-section">
+      <div class="terpene-intro">
+        <div class="section-label">✦ Cannabis by the Numbers</div>
+        <div class="terpene-intro-title">The plant in <em>plain numbers</em></div>
+        <p class="terpene-intro-desc">The cannabis industry and the plant itself tell a story best understood through data. These are the numbers worth knowing.</p>
+      </div>
+
+      <div class="numbers-grid">
+        <div class="numbers-card">
+          <div class="num-big" data-target="100">0</div>
+          <div class="num-plus">+</div>
+          <div class="num-label">Cannabinoids identified in cannabis</div>
+        </div>
+        <div class="numbers-card">
+          <div class="num-big" data-target="200">0</div>
+          <div class="num-plus">+</div>
+          <div class="num-label">Terpenes found in the plant</div>
+        </div>
+        <div class="numbers-card">
+          <div class="num-big" data-target="30">0</div>
+          <div class="num-plus">%</div>
+          <div class="num-label">Max THC potency in top-shelf flower</div>
+        </div>
+        <div class="numbers-card">
+          <div class="num-big" data-target="70">0</div>
+          <div class="num-plus">%</div>
+          <div class="num-label">Of the ECS endocannabinoid system still being studied</div>
+        </div>
+        <div class="numbers-card">
+          <div class="num-big" data-target="50">0</div>
+          <div class="num-plus">K+</div>
+          <div class="num-label">Years cannabis has been used by humans</div>
+        </div>
+        <div class="numbers-card">
+          <div class="num-big" data-target="38">0</div>
+          <div class="num-plus"></div>
+          <div class="num-label">US states with legal cannabis (medical or recreational)</div>
+        </div>
+        <div class="numbers-card">
+          <div class="num-big" data-target="57">0</div>
+          <div class="num-plus">B</div>
+          <div class="num-label">Dollar US cannabis market projected by 2030</div>
+        </div>
+        <div class="numbers-card">
+          <div class="num-big" data-target="4">0</div>
+          <div class="num-plus">hrs</div>
+          <div class="num-label">Average duration of an edible experience</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CANNABIS & YOUR BODY -->
+    <div class="body-section">
+      <div class="terpene-intro">
+        <div class="section-label">✦ Cannabis &amp; Your Body</div>
+        <div class="terpene-intro-title">What's actually <em>happening inside you</em></div>
+        <p class="terpene-intro-desc">Your body has an entire system built to receive cannabis — the Endocannabinoid System. CB1 and CB2 receptors are distributed throughout your brain, organs, and nervous system. Cannabis doesn't hijack your brain. It plugs into a system that was always there.</p>
+      </div>
+
+      <div class="body-diagram-wrap">
+        <div class="body-diagram">
+          <!-- hotspots -->
+          <div class="body-hotspot" style="top:8%;left:42%;" data-zone="brain" onclick="bodySelect('brain')">
+            <div class="body-dot"></div><div class="body-dot-ring"></div>
+            <div class="body-label body-label-right">Brain</div>
+          </div>
+          <div class="body-hotspot" style="top:22%;left:60%;" data-zone="eyes" onclick="bodySelect('eyes')">
+            <div class="body-dot"></div><div class="body-dot-ring"></div>
+            <div class="body-label body-label-right">Eyes</div>
+          </div>
+          <div class="body-hotspot" style="top:28%;left:38%;" data-zone="lungs" onclick="bodySelect('lungs')">
+            <div class="body-dot"></div><div class="body-dot-ring"></div>
+            <div class="body-label body-label-left">Lungs</div>
+          </div>
+          <div class="body-hotspot" style="top:35%;left:48%;" data-zone="heart" onclick="bodySelect('heart')">
+            <div class="body-dot"></div><div class="body-dot-ring"></div>
+            <div class="body-label body-label-right">Heart</div>
+          </div>
+          <div class="body-hotspot" style="top:42%;left:40%;" data-zone="gut" onclick="bodySelect('gut')">
+            <div class="body-dot"></div><div class="body-dot-ring"></div>
+            <div class="body-label body-label-left">Gut</div>
+          </div>
+          <div class="body-hotspot" style="top:55%;left:44%;" data-zone="muscles" onclick="bodySelect('muscles')">
+            <div class="body-dot"></div><div class="body-dot-ring"></div>
+            <div class="body-label body-label-left">Muscles</div>
+          </div>
+          <div class="body-hotspot" style="top:68%;left:50%;" data-zone="joints" onclick="bodySelect('joints')">
+            <div class="body-dot"></div><div class="body-dot-ring"></div>
+            <div class="body-label body-label-right">Joints</div>
+          </div>
+
+          <!-- simple SVG body outline -->
+          <svg viewBox="0 0 200 480" xmlns="http://www.w3.org/2000/svg" class="body-svg">
+            <!-- head -->
+            <ellipse cx="100" cy="45" rx="34" ry="40" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+            <!-- neck -->
+            <rect x="88" y="82" width="24" height="18" rx="4" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+            <!-- torso -->
+            <path d="M60 100 Q50 130 52 180 L70 200 L130 200 L148 180 Q150 130 140 100 Z" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+            <!-- left arm -->
+            <path d="M60 105 Q40 130 38 175 Q37 185 44 190" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+            <!-- right arm -->
+            <path d="M140 105 Q160 130 162 175 Q163 185 156 190" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+            <!-- left leg -->
+            <path d="M70 200 Q65 260 64 320 Q63 350 68 380" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+            <!-- right leg -->
+            <path d="M130 200 Q135 260 136 320 Q137 350 132 380" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+            <!-- left foot -->
+            <path d="M68 380 Q60 390 55 395 Q62 400 78 398 L82 380" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+            <!-- right foot -->
+            <path d="M132 380 Q140 390 145 395 Q138 400 122 398 L118 380" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+          </svg>
+        </div>
+
+        <div class="body-info-panel" id="bodyInfoPanel">
+          <div class="body-info-placeholder">
+            <div style="font-size:2rem;margin-bottom:12px;">👆</div>
+            <div style="font-size:1rem;font-weight:700;margin-bottom:8px;">Tap any hotspot</div>
+            <div style="font-size:0.8rem;opacity:0.55;">Explore how cannabis interacts with each part of your body</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -3204,6 +3615,310 @@
 
   // Init on load
   isvSelect('indica');
+
+  // ─── Cannabinoids: THC / CBD / CBG ───────────────────────────────────────────
+  const MOL_DATA = {
+    thc: {
+      icon: '🔥', title: 'THC', badge: 'Δ9-Tetrahydrocannabinol',
+      tagline: 'The primary psychoactive compound in cannabis',
+      effects: ['Euphoric', 'Psychoactive', 'Appetite', 'Pain Relief', 'Relaxed', 'Creative'],
+      rows: [
+        { label: 'Receptor',      val: { strong: 'CB1 (Brain) + CB2 (Body)', detail: 'Binds powerfully to CB1 receptors in the brain — the binding that creates the psychoactive "high." Also engages CB2 for body-wide effects.' } },
+        { label: 'The High',      val: { strong: 'Euphoria, altered perception, heightened senses', detail: 'Time distortion, enhanced music and food, laughter, creativity, relaxation — or anxiety and paranoia at high doses.' } },
+        { label: 'Medical Uses',  val: { strong: 'Pain · Nausea · Appetite · PTSD · Glaucoma', detail: 'FDA-approved dronabinol is synthetic THC. Used in chemotherapy patients for nausea, HIV/AIDS for appetite, and chronic pain management.' } },
+        { label: 'Potency',       val: { strong: '1970s: ~2% → Today: up to 30%+', detail: 'Modern breeding and extraction has dramatically increased THC concentration. Understanding your tolerance is more important than ever.' } },
+        { label: 'Duration',      val: { strong: 'Smoked: 2–3 hrs · Edible: 4–8 hrs', detail: 'Edibles are processed through the liver — producing 11-hydroxy-THC, which is more potent and longer-lasting than inhaled THC.' } },
+        { label: 'Microdosing',   val: { strong: '2–5mg = therapeutic without psychoactive effect', detail: 'Sub-threshold doses produce calm, focus, and mild pain relief without intoxication. Used by many professionals and medical patients.' } },
+      ],
+      strains: ['Gorilla Glue #4', 'Bruce Banner', 'Ghost OG', 'Strawberry Banana', 'Chemdawg'],
+    },
+    cbd: {
+      icon: '🌊', title: 'CBD', badge: 'Cannabidiol',
+      tagline: 'Non-psychoactive · Deeply therapeutic',
+      effects: ['Anti-Anxiety', 'Anti-Inflammatory', 'Neuroprotective', 'Calming', 'No High', 'Sleep'],
+      rows: [
+        { label: 'Receptor',      val: { strong: 'CB2 + Serotonin + GABA Receptors', detail: 'Does NOT strongly bind CB1 — why it doesn\'t get you high. Works through serotonin (5-HT1A), GABA, and indirectly modulates CB2.' } },
+        { label: 'The Feel',      val: { strong: 'Calm, clear, grounded — no intoxication', detail: 'Reduces racing thoughts, body tension, and inflammation without altering cognition. The "take the edge off" without the high.' } },
+        { label: 'Medical Uses',  val: { strong: 'Epilepsy · Anxiety · Inflammation · Autism · PTSD', detail: 'Epidiolex — the first FDA-approved CBD drug — treats rare childhood epilepsy. Studied extensively for anxiety, inflammation, and neuroprotection.' } },
+        { label: 'THC Synergy',   val: { strong: 'Reduces THC anxiety and paranoia', detail: 'CBD acts as a natural buffer against THC\'s overstimulation of CB1. High-CBD strains and 1:1 ratios are ideal for THC-sensitive consumers.' } },
+        { label: 'Potency',       val: { strong: 'No psychoactive threshold — dose affects intensity of relief', detail: 'Standard doses: 10–30mg for anxiety/sleep, 300–600mg for clinical anxiety, up to 1500mg/day in seizure research.' } },
+        { label: 'Forms',         val: { strong: 'Oils · Capsules · Topicals · Flower · Edibles', detail: 'Topical CBD works locally — joints, muscles, skin. Sublingual (under tongue) absorbs in 15–30 min. Oral takes 30–90 min.' } },
+      ],
+      strains: ['ACDC', 'Harlequin', 'Charlotte\'s Web', 'Cannatonic', 'Ringo\'s Gift'],
+    },
+    cbg: {
+      icon: '🔬', title: 'CBG', badge: 'Cannabigerol — The Mother Cannabinoid',
+      tagline: 'The precursor all cannabinoids are made from',
+      effects: ['Neuroprotective', 'Anti-Bacterial', 'Focus', 'Anti-Inflammatory', 'Appetite', 'IBS Relief'],
+      rows: [
+        { label: 'What It Is',    val: { strong: 'The cannabinoid all others are derived from', detail: 'CBGA (the acidic precursor to CBG) is the first cannabinoid the plant makes. As the plant matures, enzymes convert it into THCA, CBDA, and CBCA. Very little CBG remains in mature flower.' } },
+        { label: 'Receptor',      val: { strong: 'CB1 + CB2 + Alpha-2 adrenoreceptors', detail: 'Low binding affinity at CB1 — mostly non-intoxicating. Also targets receptors involved in pain modulation and vascular tone.' } },
+        { label: 'Medical Uses',  val: { strong: 'Glaucoma · IBD · Huntington\'s · MRSA · Bladder', detail: 'CBG reduces intraocular pressure (glaucoma), shows antibacterial activity against MRSA, and reduces gut inflammation in IBD research.' } },
+        { label: 'Rarity',        val: { strong: 'Less than 1% in most strains', detail: 'Because most CBG converts to THC/CBD as the plant matures, it\'s expensive to extract. Harvesting early preserves more CBG — "CBG-dominant" strains are being bred specifically for this.' } },
+        { label: 'Focus Effect',  val: { strong: 'Clear-headed energy without anxiety', detail: 'Users report laser focus, energy, and motivation without the psychoactive edge of THC or the sedation of CBD-heavy products.' } },
+        { label: 'The Future',    val: { strong: 'One of the most researched emerging cannabinoids', detail: 'As extraction techniques improve and CBG-dominant strains become more available, expect CBG to become a standalone wellness product category.' } },
+      ],
+      strains: ['White CBG', 'Jack Frost CBG', 'Super Glue CBG', 'Stem Cell CBG', 'Lemon Cream Diesel'],
+    }
+  };
+
+  function molSelect(type) {
+    document.querySelectorAll('.isv-tab').forEach(t => {
+      if (t.classList.contains('mol-tab-thc') || t.classList.contains('mol-tab-cbd') || t.classList.contains('mol-tab-cbg')) {
+        t.classList.remove('active');
+      }
+    });
+    document.querySelector(`.mol-tab-${type}`).classList.add('active');
+
+    const d = MOL_DATA[type];
+    const panel = document.getElementById('molPanel');
+    panel.setAttribute('data-type', type);
+
+    const rowsHtml = d.rows.map(r => `
+      <div class="isv-row">
+        <div class="isv-row-label">${r.label}</div>
+        <div class="isv-row-value"><strong>${r.val.strong}</strong>${r.val.detail}</div>
+      </div>
+    `).join('');
+
+    const effectTags = d.effects.map(e => `<span class="isv-effect-tag">${e}</span>`).join('');
+    const strainPills = d.strains.map(s => `<span class="isv-strain">${s}</span>`).join('');
+
+    panel.innerHTML = `
+      <div class="isv-header">
+        <div class="isv-header-icon">${d.icon}</div>
+        <div>
+          <div class="isv-header-title">${d.title}</div>
+          <div class="isv-header-tagline">${d.tagline}</div>
+        </div>
+        <div class="isv-header-badge">${d.badge}</div>
+      </div>
+      <div class="isv-row">
+        <div class="isv-row-label">Effects &amp; Uses</div>
+        <div class="isv-row-value"><div class="isv-effects">${effectTags}</div></div>
+      </div>
+      ${rowsHtml}
+      <div class="isv-row">
+        <div class="isv-row-label">Notable Strains</div>
+        <div class="isv-row-value"><div class="isv-strains">${strainPills}</div></div>
+      </div>
+    `;
+  }
+  molSelect('thc');
+
+  // ─── Consumption Methods ─────────────────────────────────────────────────────
+  const CONSUME_DATA = [
+    {
+      id: 'flower', icon: '🌿', name: 'Flower',
+      sub: 'The classic · Smoked or vaporized',
+      onset: { val: 85, label: '1–5 min' },
+      duration: { val: 45, label: '2–3 hrs' },
+      intensity: { val: 70, label: 'Moderate–High' },
+      control: { val: 90, label: 'High control' },
+      bestFor: 'Experienced users, social settings, precise dosing by feel.',
+      howTo: 'Roll, pipe, bong, or dry-herb vaporizer. Inhaling activates cannabinoids instantly via the lungs into the bloodstream.',
+      pros: 'Fast onset, easy to control dose, full terpene experience, widest strain selection.',
+      cons: 'Combustion byproducts (smoking), smell, shorter duration than edibles.',
+    },
+    {
+      id: 'vape', icon: '💨', name: 'Vape',
+      sub: 'Discreet · Concentrated · Fast',
+      onset: { val: 85, label: '1–5 min' },
+      duration: { val: 40, label: '1–2 hrs' },
+      intensity: { val: 75, label: 'Moderate–High' },
+      control: { val: 80, label: 'Good control' },
+      bestFor: 'Discreet use, on-the-go, terpene-forward experience without smoke.',
+      howTo: 'Cartridge vapes (oil) or dry-herb vaporizers. Oil carts are concentrated — 1–2 puffs is often enough.',
+      pros: 'Discreet, no combustion, portable, fast acting.',
+      cons: 'Battery dependent, cart quality varies widely, loses some terpene complexity.',
+    },
+    {
+      id: 'edible', icon: '🍫', name: 'Edible',
+      sub: 'Slow · Long-lasting · Powerful',
+      onset: { val: 20, label: '30–120 min' },
+      duration: { val: 90, label: '4–8 hrs' },
+      intensity: { val: 90, label: 'High–Very High' },
+      control: { val: 30, label: 'Low control' },
+      bestFor: 'Sleep, deep relaxation, full-body relief, medical use, experienced consumers.',
+      howTo: 'Digested through the gut → liver converts THC to 11-hydroxy-THC — more potent and longer-lasting. Start low (5–10mg). Wait 2 hours before redosing.',
+      pros: 'Long duration, no inhalation, body-wide effect, discreet.',
+      cons: 'Delayed onset leads to overconsumption. Highly variable between people and products.',
+    },
+    {
+      id: 'dab', icon: '🔶', name: 'Dab / Concentrate',
+      sub: 'High potency · Instant · Expert level',
+      onset: { val: 95, label: 'Immediate' },
+      duration: { val: 40, label: '1–2 hrs' },
+      intensity: { val: 98, label: 'Very High' },
+      control: { val: 50, label: 'Experienced only' },
+      bestFor: 'Experienced consumers, high-tolerance users, medical patients needing strong relief.',
+      howTo: 'Wax, shatter, rosin, live resin — applied to a heated nail or e-rig. Extremely potent. 50–90% THC concentrates. Tiny amounts go very far.',
+      pros: 'Fastest, most potent, full terpene spectrum in quality extracts.',
+      cons: 'High barrier to entry, easy to overconsume, equipment required.',
+    },
+    {
+      id: 'tincture', icon: '💧', name: 'Tincture',
+      sub: 'Precise · Sublingual · Medical',
+      onset: { val: 65, label: '15–45 min' },
+      duration: { val: 60, label: '2–4 hrs' },
+      intensity: { val: 55, label: 'Low–Moderate' },
+      control: { val: 95, label: 'Precise dosing' },
+      bestFor: 'Medical patients, beginners, microdosing, anyone wanting alcohol-free precise dosing.',
+      howTo: 'Drops under the tongue (sublingual) absorb directly into the bloodstream. Hold 60–90 seconds before swallowing for fastest onset.',
+      pros: 'Most precise dosing, no inhalation, fast-ish onset, discreet.',
+      cons: 'Taste can be strong, fewer product options than flower or edibles.',
+    },
+    {
+      id: 'topical', icon: '🧴', name: 'Topical',
+      sub: 'No high · Local relief · Targeted',
+      onset: { val: 50, label: '15–30 min' },
+      duration: { val: 55, label: '2–6 hrs' },
+      intensity: { val: 10, label: 'No psychoactive effect' },
+      control: { val: 99, label: 'Non-intoxicating' },
+      bestFor: 'Localized pain, inflammation, skin conditions, arthritis, muscle soreness — without any high.',
+      howTo: 'Applied directly to skin. Cannabinoids bind CB2 receptors locally without entering bloodstream (unless transdermal formulation).',
+      pros: 'Zero intoxication, targeted relief, no drug test concerns, easy to use.',
+      cons: 'No systemic effect, limited to the application area.',
+    },
+  ];
+
+  function renderConsumeGrid() {
+    const grid = document.getElementById('consumeGrid');
+    grid.innerHTML = CONSUME_DATA.map(m => `
+      <button class="consume-btn" id="cbtn-${m.id}" onclick="consumeSelect('${m.id}')">
+        <span class="consume-btn-icon">${m.icon}</span>
+        <span class="consume-btn-name">${m.name}</span>
+      </button>
+    `).join('');
+  }
+
+  function consumeSelect(id) {
+    document.querySelectorAll('.consume-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('cbtn-' + id).classList.add('active');
+    const m = CONSUME_DATA.find(x => x.id === id);
+    const detail = document.getElementById('consumeDetail');
+    detail.innerHTML = `
+      <div class="consume-detail-inner">
+        <div class="consume-detail-header">
+          <div class="consume-detail-icon">${m.icon}</div>
+          <div>
+            <div class="consume-detail-title">${m.name}</div>
+            <div class="consume-detail-sub">${m.sub}</div>
+          </div>
+        </div>
+        <div class="consume-bars">
+          <div class="consume-bar-row">
+            <div class="consume-bar-label">Onset</div>
+            <div class="consume-bar-track"><div class="consume-bar-fill" style="width:${m.onset.val}%"></div></div>
+            <div class="consume-bar-val">${m.onset.label}</div>
+          </div>
+          <div class="consume-bar-row">
+            <div class="consume-bar-label">Duration</div>
+            <div class="consume-bar-track"><div class="consume-bar-fill" style="width:${m.duration.val}%"></div></div>
+            <div class="consume-bar-val">${m.duration.label}</div>
+          </div>
+          <div class="consume-bar-row">
+            <div class="consume-bar-label">Intensity</div>
+            <div class="consume-bar-track"><div class="consume-bar-fill" style="width:${m.intensity.val}%"></div></div>
+            <div class="consume-bar-val">${m.intensity.label}</div>
+          </div>
+          <div class="consume-bar-row">
+            <div class="consume-bar-label">Precision</div>
+            <div class="consume-bar-track"><div class="consume-bar-fill" style="width:${m.control.val}%"></div></div>
+            <div class="consume-bar-val">${m.control.label}</div>
+          </div>
+        </div>
+        <div class="consume-desc-grid">
+          <div class="consume-desc-item"><strong>Best For</strong><p>${m.bestFor}</p></div>
+          <div class="consume-desc-item"><strong>How It Works</strong><p>${m.howTo}</p></div>
+          <div class="consume-desc-item"><strong>Pros</strong><p>${m.pros}</p></div>
+          <div class="consume-desc-item"><strong>Considerations</strong><p>${m.cons}</p></div>
+        </div>
+      </div>`;
+  }
+
+  renderConsumeGrid();
+  consumeSelect('flower');
+
+  // ─── Cannabis by the Numbers — counter animation ──────────────────────────────
+  function animateCounters() {
+    document.querySelectorAll('.num-big[data-target]').forEach(el => {
+      const target = parseInt(el.dataset.target);
+      const dur = 1800;
+      const step = 16;
+      const inc = target / (dur / step);
+      let cur = 0;
+      const timer = setInterval(() => {
+        cur = Math.min(cur + inc, target);
+        el.textContent = Math.floor(cur);
+        if (cur >= target) clearInterval(timer);
+      }, step);
+    });
+  }
+  const numbersObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { animateCounters(); numbersObs.disconnect(); } });
+  }, { threshold: 0.3 });
+  const numbersSection = document.querySelector('.numbers-section');
+  if (numbersSection) numbersObs.observe(numbersSection);
+
+  // ─── Cannabis & Your Body ─────────────────────────────────────────────────────
+  const BODY_DATA = {
+    brain: {
+      title: 'Brain & Mind',
+      receptor: 'CB1 Receptors — Highest Concentration Here',
+      text: 'The brain has the highest density of CB1 receptors in the body — concentrated in areas controlling mood (amygdala), memory (hippocampus), movement (basal ganglia), and perception (cerebral cortex). THC binding here produces euphoria, altered time perception, and heightened senses. CBD modulates these effects without the psychoactive response.',
+      fact: 'The short-term memory effect of cannabis? THC temporarily reduces acetylcholine signaling in the hippocampus. Pinene terpene counteracts this — pine-forward strains stay sharper.',
+    },
+    eyes: {
+      title: 'Eyes',
+      receptor: 'CB1 Receptors — Aqueous Humor Regulation',
+      text: 'Cannabis reduces intraocular (eye) pressure by activating CB1 receptors in the ciliary body, which regulates fluid production in the eye. This is the basis for cannabis in glaucoma treatment — documented since the 1970s.',
+      fact: 'Red eyes from cannabis aren\'t from smoke irritation — they\'re from THC dilating blood vessels in the eye, reducing pressure. It\'s a feature, not a bug, for glaucoma patients.',
+    },
+    lungs: {
+      title: 'Lungs',
+      receptor: 'Direct Entry Point — Bloodstream in Seconds',
+      text: 'Inhaled cannabis reaches the bloodstream through the lungs\' alveoli within seconds — faster than any other method. Cannabinoids cross the lung membrane and enter the bloodstream directly, bypassing the digestive system. Onset: 1–5 minutes. Vaporizing produces fewer combustion byproducts than smoking.',
+      fact: 'Unlike tobacco, moderate cannabis use has not been shown to cause lung cancer. However, combustion does produce some irritants. Vaporizing at lower temps reduces this significantly.',
+    },
+    heart: {
+      title: 'Heart & Circulation',
+      receptor: 'CB1 + CB2 — Cardiovascular System',
+      text: 'Cannabis temporarily increases heart rate (10–20 bpm) and dilates blood vessels — reducing blood pressure. CB1 and CB2 receptors are present throughout the cardiovascular system. For healthy people, this is mild and short-lived. Those with existing heart conditions should consult a doctor.',
+      fact: 'The "cannabis makes your heart race" sensation peaks 10–20 minutes after smoking and normalizes within the hour. CBD alone tends to lower heart rate and blood pressure — the opposite of THC.',
+    },
+    gut: {
+      title: 'Gut & Digestion',
+      receptor: 'CB1 + CB2 — Entire GI Tract',
+      text: 'The gut contains a dense network of CB1 and CB2 receptors throughout the digestive tract. Cannabis activates these to regulate gut motility, reduce inflammation, and stimulate appetite (the munchies). This is why cannabis is studied extensively for IBS, Crohn\'s disease, and chemotherapy-induced nausea.',
+      fact: 'Edibles hit hardest because the liver converts THC into 11-hydroxy-THC — a metabolite 2–3x more potent and longer-lasting than inhaled THC. Same plant, completely different experience.',
+    },
+    muscles: {
+      title: 'Muscles',
+      receptor: 'CB2 Receptors — Anti-Inflammatory Response',
+      text: 'CB2 receptors throughout muscle tissue respond to cannabinoids by reducing inflammation and muscle spasms. This drives cannabis use for athletes, fibromyalgia, MS, and post-workout recovery. CBD topicals work directly at the muscle level without systemic effects.',
+      fact: 'The muscle relaxation from indica-dominant strains is largely driven by high myrcene content enhancing CB1 binding — plus caryophyllene directly engaging CB2 anti-inflammatory receptors.',
+    },
+    joints: {
+      title: 'Joints & Bones',
+      receptor: 'CB2 Receptors — Inflammation & Pain Signaling',
+      text: 'CB2 receptors are heavily present in joint tissue and bone marrow. Cannabinoids — especially CBD and CBG — reduce the inflammatory cascade responsible for arthritis pain. CBG shows particularly strong results in reducing joint inflammation in early research.',
+      fact: 'CBD doesn\'t just mask pain — it reduces the underlying inflammatory signaling. Patients with rheumatoid arthritis often report reduced morning stiffness, not just reduced pain perception.',
+    },
+  };
+
+  function bodySelect(zone) {
+    document.querySelectorAll('.body-hotspot').forEach(h => h.classList.remove('active'));
+    document.querySelector(`.body-hotspot[data-zone="${zone}"]`).classList.add('active');
+    const d = BODY_DATA[zone];
+    document.getElementById('bodyInfoPanel').innerHTML = `
+      <div class="body-info-content">
+        <div class="body-info-title">${d.title}</div>
+        <div class="body-info-receptor">${d.receptor}</div>
+        <div class="body-info-text">${d.text}</div>
+        <div class="body-info-fact">${d.fact}</div>
+      </div>`;
+  }
 
   // ─── Terpene Wheel ───────────────────────────────────────────────────────────
   (function buildTerpeneWheel() {
