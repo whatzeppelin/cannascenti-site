@@ -1756,6 +1756,11 @@
   #molPanel[data-type="cbc"]  .isv-strain { border: 1px solid rgba(92,232,180,0.3);  }
   #molPanel[data-type="thcv"] .isv-strain { border: 1px solid rgba(180,92,232,0.3);  }
   #molPanel[data-type="cbn"]  .isv-strain { border: 1px solid rgba(127,168,212,0.3); }
+  .mol-tab-entourage.active { border-color: var(--gold) !important; box-shadow: 0 4px 24px rgba(212,175,55,0.35) !important; }
+  #molPanel[data-type="entourage"] { background: linear-gradient(180deg, rgba(212,175,55,0.07) 0%, rgba(0,0,0,0) 120px), var(--card-bg); }
+  #molPanel[data-type="entourage"] .isv-header-badge { background: rgba(212,175,55,0.2); color: #f0d070; border: 1px solid rgba(212,175,55,0.3); }
+  #molPanel[data-type="entourage"] .isv-effect-tag   { background: rgba(212,175,55,0.15); color: #f0d070; }
+  #molPanel[data-type="entourage"] .isv-strain        { border: 1px solid rgba(212,175,55,0.3); }
 
   /* ===================== CONSUMPTION METHODS ===================== */
   .consume-section { margin-top: 80px; }
@@ -3042,6 +3047,11 @@
           <span class="isv-tab-name">CBN</span>
           <span class="isv-tab-sub">Sleep · Aged Cannabis</span>
         </button>
+        <button class="isv-tab mol-tab-entourage" onclick="molSelect('entourage')">
+          <span class="isv-tab-icon">🔗</span>
+          <span class="isv-tab-name">Entourage Effect</span>
+          <span class="isv-tab-sub">Stronger Together</span>
+        </button>
       </div>
       <div class="isv-panel" id="molPanel"></div>
     </div>
@@ -3732,11 +3742,26 @@
       ],
       strains: ['Aged high-THC strains', 'CBN Sleep products', 'Respect My Region CBN', 'Level CBN'],
     },
+    entourage: {
+      icon: '🔗', title: 'The Entourage Effect', badge: 'Whole Plant > Isolate',
+      tagline: 'Every cannabinoid and terpene works better together than alone',
+      effects: ['Amplified Relief', 'Balanced High', 'Reduced Anxiety', 'Enhanced Potency', 'Full Spectrum', 'Synergy'],
+      rows: [
+        { label: 'What It Is',     val: { strong: 'The whole plant is more powerful than any single compound', detail: 'Discovered by Israeli researcher Dr. Raphael Mechoulam in 1998. Cannabinoids, terpenes, and flavonoids interact synergistically — each amplifying and modulating the others. Isolated THC alone is harsher and less effective than full-spectrum cannabis.' } },
+        { label: 'THC + CBD',      val: { strong: 'CBD reduces THC anxiety and lengthens its therapeutic window', detail: 'CBD acts as a CB1 modulator — softening THC\'s psychoactive edge while extending pain relief. This is why 1:1 THC:CBD products are ideal for medical patients and THC-sensitive consumers.' } },
+        { label: 'THC + Myrcene',  val: { strong: 'Myrcene enhances THC crossing the blood-brain barrier', detail: 'Myrcene increases the permeability of cell membranes, allowing THC to reach the brain faster and in higher concentrations. The "eat a mango before smoking" advice has real biochemistry behind it.' } },
+        { label: 'CBD + Linalool', val: { strong: 'The most potent natural anxiety stack', detail: 'CBD\'s serotonin interaction combined with linalool\'s GABA activation creates a dual-pathway anxiolytic effect. Together they outperform either compound alone in calming the nervous system.' } },
+        { label: 'CBC + THC',      val: { strong: 'Dramatically enhanced antidepressant effect', detail: 'A 2010 study found THC and CBC together produced antidepressant effects far beyond either compound alone. CBC amplifies THC\'s mood-lifting properties through synergistic receptor activity.' } },
+        { label: 'Full Spectrum',  val: { strong: 'Full-spectrum > broad-spectrum > isolate', detail: 'Full-spectrum products retain all cannabinoids, terpenes, and flavonoids. Broad-spectrum removes THC. Isolate is a single compound. Each step down the spectrum loses entourage synergy — and therapeutic value.' } },
+        { label: 'Why It Matters', val: { strong: 'It\'s why strain matters more than THC %', detail: 'A 30% THC strain with no terpenes will hit differently — and often worse — than a 20% strain rich in myrcene, limonene, and caryophyllene. Chasing THC percentage alone misses the entire picture.' } },
+      ],
+      strains: ['Any Full-Spectrum Product', 'Live Resin', 'Whole Flower', 'Full-Spectrum Tinctures', 'Live Rosin'],
+    },
   };
 
   function molSelect(type) {
     document.querySelectorAll('.isv-tab').forEach(t => {
-      if (['mol-tab-thc','mol-tab-cbd','mol-tab-cbg','mol-tab-cbc','mol-tab-thcv','mol-tab-cbn'].some(c => t.classList.contains(c))) {
+      if (['mol-tab-thc','mol-tab-cbd','mol-tab-cbg','mol-tab-cbc','mol-tab-thcv','mol-tab-cbn','mol-tab-entourage'].some(c => t.classList.contains(c))) {
         t.classList.remove('active');
       }
     });
