@@ -1576,6 +1576,154 @@
     font-style: italic;
   }
 
+  /* ===================== INDICA / SATIVA / HYBRID ===================== */
+  .isv-section {
+    margin-top: 80px;
+    padding-bottom: 20px;
+  }
+  .isv-tabs {
+    display: flex;
+    gap: 16px;
+    margin: 40px 0 32px;
+    flex-wrap: wrap;
+  }
+  .isv-tab {
+    flex: 1;
+    min-width: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 22px 16px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    background: var(--card-bg);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--cream);
+    opacity: 0.65;
+  }
+  .isv-tab:hover { opacity: 0.85; transform: translateY(-2px); }
+  .isv-tab.active { opacity: 1; transform: translateY(-3px); }
+  .isv-tab-indica.active  { border-color: #9b7fd4; box-shadow: 0 4px 24px rgba(155,127,212,0.3); }
+  .isv-tab-hybrid.active  { border-color: var(--bright-green); box-shadow: 0 4px 24px rgba(122,184,80,0.3); }
+  .isv-tab-sativa.active  { border-color: #e8a84c; box-shadow: 0 4px 24px rgba(232,168,76,0.3); }
+  .isv-tab-icon { font-size: 1.8rem; }
+  .isv-tab-name { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  .isv-tab-sub  { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.65; }
+
+  .isv-panel {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* ── panel rows ── */
+  .isv-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.3s;
+  }
+  .isv-row:last-child { border-bottom: none; }
+  .isv-row-label {
+    padding: 18px 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(244,241,229,0.45);
+    display: flex;
+    align-items: center;
+    border-right: 1px solid rgba(255,255,255,0.06);
+    background: rgba(0,0,0,0.15);
+  }
+  .isv-row-value {
+    padding: 18px 24px;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--cream);
+  }
+  .isv-row-value strong {
+    font-weight: 700;
+    display: block;
+    margin-bottom: 3px;
+    font-size: 0.95rem;
+  }
+
+  /* accent colors per type */
+  .isv-panel[data-type="indica"]  { background: linear-gradient(180deg, rgba(155,127,212,0.07) 0%, rgba(0,0,0,0) 120px), var(--card-bg); }
+  .isv-panel[data-type="hybrid"]  { background: linear-gradient(180deg, rgba(122,184,80,0.07) 0%, rgba(0,0,0,0) 120px), var(--card-bg); }
+  .isv-panel[data-type="sativa"]  { background: linear-gradient(180deg, rgba(232,168,76,0.07) 0%, rgba(0,0,0,0) 120px), var(--card-bg); }
+
+  .isv-header {
+    padding: 32px 28px 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .isv-header-icon { font-size: 3rem; line-height: 1; }
+  .isv-header-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--cream);
+  }
+  .isv-header-tagline {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    opacity: 0.6;
+  }
+  .isv-header-badge {
+    margin-left: auto;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  [data-type="indica"]  .isv-header-badge { background: rgba(155,127,212,0.2); color: #c4a8f5; border: 1px solid rgba(155,127,212,0.3); }
+  [data-type="hybrid"]  .isv-header-badge { background: rgba(122,184,80,0.2);  color: #a4d87a; border: 1px solid rgba(122,184,80,0.3); }
+  [data-type="sativa"]  .isv-header-badge { background: rgba(232,168,76,0.2);  color: #f0c476; border: 1px solid rgba(232,168,76,0.3); }
+
+  .isv-strains { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+  .isv-strain {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    background: rgba(255,255,255,0.07);
+    color: var(--cream);
+  }
+  [data-type="indica"]  .isv-strain { border: 1px solid rgba(155,127,212,0.3); }
+  [data-type="hybrid"]  .isv-strain { border: 1px solid rgba(122,184,80,0.3); }
+  [data-type="sativa"]  .isv-strain { border: 1px solid rgba(232,168,76,0.3); }
+
+  .isv-effects { display: flex; flex-wrap: wrap; gap: 8px; }
+  .isv-effect-tag {
+    padding: 5px 13px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+  [data-type="indica"]  .isv-effect-tag { background: rgba(155,127,212,0.15); color: #c4a8f5; }
+  [data-type="hybrid"]  .isv-effect-tag { background: rgba(122,184,80,0.15);  color: #a4d87a; }
+  [data-type="sativa"]  .isv-effect-tag { background: rgba(232,168,76,0.15);  color: #f0c476; }
+
+  @media(max-width:600px) {
+    .isv-tabs { gap: 10px; }
+    .isv-tab  { padding: 16px 10px; min-width: 100px; }
+    .isv-row  { grid-template-columns: 110px 1fr; }
+    .isv-header-badge { display: none; }
+  }
+
   /* ===================== TERPENE WHEEL ===================== */
   .terpene-wheel-wrap {
     display: flex;
@@ -2497,6 +2645,37 @@
 
     </div>
 
+    <!-- INDICA VS SATIVA VS HYBRID -->
+    <div class="isv-section">
+      <div class="terpene-intro">
+        <div class="section-label">✦ Know Your Cannabis</div>
+        <div class="terpene-intro-title">Indica, Sativa &amp; Hybrid — <em>visually explained</em></div>
+        <p class="terpene-intro-desc">These three categories are the foundation of every strain conversation. Click any column to explore what makes each one distinct — from the plant itself to the experience it delivers.</p>
+      </div>
+
+      <!-- TYPE SELECTOR TABS -->
+      <div class="isv-tabs">
+        <button class="isv-tab isv-tab-indica active" onclick="isvSelect('indica')">
+          <span class="isv-tab-icon">🌿</span>
+          <span class="isv-tab-name">Indica</span>
+          <span class="isv-tab-sub">Body · Night · Relax</span>
+        </button>
+        <button class="isv-tab isv-tab-hybrid" onclick="isvSelect('hybrid')">
+          <span class="isv-tab-icon">⚖️</span>
+          <span class="isv-tab-name">Hybrid</span>
+          <span class="isv-tab-sub">Balanced · Any Time</span>
+        </button>
+        <button class="isv-tab isv-tab-sativa" onclick="isvSelect('sativa')">
+          <span class="isv-tab-icon">☀️</span>
+          <span class="isv-tab-name">Sativa</span>
+          <span class="isv-tab-sub">Mind · Day · Create</span>
+        </button>
+      </div>
+
+      <!-- COMPARISON PANEL -->
+      <div class="isv-panel" id="isvPanel"></div>
+    </div>
+
     <!-- TERPENES -->
     <div class="terpene-section">
       <div class="terpene-intro">
@@ -2919,6 +3098,112 @@
   document.getElementById('strainInput').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') findStrains();
   });
+
+  // ─── Indica / Sativa / Hybrid Comparison ────────────────────────────────────
+  const ISV_DATA = {
+    indica: {
+      icon: '🌿',
+      title: 'Indica',
+      tagline: 'Body High · Nighttime · Deep Relaxation',
+      badge: 'Indica Dominant',
+      height: { strong: '2 – 4 feet', detail: 'Short, bushy, wide-spreading plant. Built for cooler mountain climates.' },
+      leaves: { strong: 'Broad, dark green leaves', detail: 'Wide fan leaves with thick, overlapping leaflets. Dark, rich green coloring.' },
+      buds: { strong: 'Dense, heavy, tight clusters', detail: 'Compact, resinous buds. Often purple-tinged. Heavy with trichomes.' },
+      flower: { strong: '6 – 8 weeks', detail: 'Faster flowering than sativa. Ideal for indoor grows with shorter light cycles.' },
+      effects: ['Relaxed', 'Sedating', 'Body High', 'Euphoric', 'Sleepy', 'Munchies'],
+      bestFor: { strong: 'Nighttime use', detail: 'Wind-down, deep sleep, pain relief, stress, anxiety, muscle tension, appetite.' },
+      flavor: { strong: 'Sweet · Berry · Earthy · Grape · Fuel', detail: 'Musky, deep, often fruity or dessert-like. Rich and full-bodied on the palate.' },
+      medical: { strong: 'Insomnia · Chronic Pain · Anxiety · PTSD', detail: 'Higher CBD ratios common. Used widely for physical ailments, sleep disorders, and calming overactive nervous systems.' },
+      origin: { strong: 'Hindu Kush Mountain Range', detail: 'Turkey · Morocco · Afghanistan · India. Harsh mountain climates shaped its hardy, resinous structure.' },
+      strains: ['Northern Lights', 'Granddaddy Purple', 'White Rhino', 'Master Kush', 'G-13', 'Bubba Kush'],
+    },
+    hybrid: {
+      icon: '⚖️',
+      title: 'Hybrid',
+      tagline: 'Balanced · Versatile · Any Time of Day',
+      badge: 'Balanced Hybrid',
+      height: { strong: '3 – 10 feet', detail: 'Varies widely depending on parent genetics. Often inherits the best structural traits of both lineages.' },
+      leaves: { strong: 'Mix of broad and narrow', detail: 'Leaf shape depends on dominant genetics — can lean indica or sativa or sit perfectly between.' },
+      buds: { strong: 'Variable — dense to airy', detail: 'Hybrid structure depends on parent ratio. Can carry both indica density and sativa stretch.' },
+      flower: { strong: '7 – 10 weeks', detail: 'Generally between both parents. Modern hybrids are bred for faster flowering without sacrificing yield.' },
+      effects: ['Balanced', 'Uplifting', 'Relaxed', 'Creative', 'Focused', 'Happy'],
+      bestFor: { strong: 'All-day versatility', detail: 'Customizable experience depending on the specific strain. Great starting point for new users exploring what works.' },
+      flavor: { strong: 'Depends on lineage · Endlessly varied', detail: 'Hybrids carry flavor profiles from both parents — can be fruity, earthy, citrus, diesel, sweet, or any combination.' },
+      medical: { strong: 'Flexible medical applications', detail: 'The most common commercial cannabis today. Breeders craft hybrids to hit specific medical targets — pain + focus, anxiety + energy, sleep + mood.' },
+      origin: { strong: 'Bred everywhere — modern creation', detail: 'Most commercial cannabis today is hybrid. Decades of selective breeding across California, the Netherlands, Canada, and beyond.' },
+      strains: ['Blue Dream', 'OG Kush', 'Girl Scout Cookies', 'Gorilla Glue', 'Wedding Cake', 'Gelato'],
+    },
+    sativa: {
+      icon: '☀️',
+      title: 'Sativa',
+      tagline: 'Head High · Daytime · Energy & Creativity',
+      badge: 'Sativa Dominant',
+      height: { strong: '6 – 20 feet', detail: 'Tall, stretchy, open-branched. Needs space and loves long warm seasons.' },
+      leaves: { strong: 'Long, narrow, light green leaves', detail: 'Thin, slender leaflets spread wide. Lighter, almost lime green coloring compared to indica.' },
+      buds: { strong: 'Long, airy, loose structure', detail: 'Elongated buds — less dense than indica. Bright, sometimes orange-tinted. Lighter visual weight.' },
+      flower: { strong: '9 – 12 weeks', detail: 'Longer flowering period. Bred near the equator where warm seasons are long. Challenging indoors but worth it.' },
+      effects: ['Energetic', 'Uplifted', 'Creative', 'Focused', 'Euphoric', 'Social'],
+      bestFor: { strong: 'Daytime use', detail: 'Creative work, socializing, exercise, focus sessions, mood lift, depression, fatigue.' },
+      flavor: { strong: 'Earthy · Piney · Citrus · Tropical · Diesel', detail: 'Bright, sharp, and complex. Often herbal, sometimes sweet-citrus. The "fresh" side of cannabis.' },
+      medical: { strong: 'Depression · Fatigue · ADHD · Mood Disorders', detail: 'Higher THC ratios common. Used for mental health, energy, focus, and mood regulation. Known for cerebral, therapeutic effects.' },
+      origin: { strong: 'Equatorial Regions', detail: 'Colombia · Mexico · Thailand · Southeast Asia. Long-season, warm, humid climates shaped its tall, airy structure.' },
+      strains: ['Sour Diesel', 'Jack Herer', 'Silver Haze', 'Durban Poison', 'Green Crack', 'White Widow'],
+    }
+  };
+
+  function isvSelect(type) {
+    // update tabs
+    document.querySelectorAll('.isv-tab').forEach(t => t.classList.remove('active'));
+    document.querySelector(`.isv-tab-${type}`).classList.add('active');
+
+    const d = ISV_DATA[type];
+    const panel = document.getElementById('isvPanel');
+    panel.setAttribute('data-type', type);
+
+    const rows = [
+      { label: 'Plant Height',    val: d.height },
+      { label: 'Leaf Shape',      val: d.leaves },
+      { label: 'Bud Structure',   val: d.buds },
+      { label: 'Flower Time',     val: d.flower },
+      { label: 'Best For',        val: d.bestFor },
+      { label: 'Flavor Profile',  val: d.flavor },
+      { label: 'Medical Uses',    val: d.medical },
+      { label: 'Origin',          val: d.origin },
+    ];
+
+    const rowsHtml = rows.map(r => `
+      <div class="isv-row">
+        <div class="isv-row-label">${r.label}</div>
+        <div class="isv-row-value"><strong>${r.val.strong}</strong>${r.val.detail}</div>
+      </div>
+    `).join('');
+
+    const effectTags = d.effects.map(e => `<span class="isv-effect-tag">${e}</span>`).join('');
+    const strainPills = d.strains.map(s => `<span class="isv-strain">${s}</span>`).join('');
+
+    panel.innerHTML = `
+      <div class="isv-header">
+        <div class="isv-header-icon">${d.icon}</div>
+        <div>
+          <div class="isv-header-title">${d.title}</div>
+          <div class="isv-header-tagline">${d.tagline}</div>
+        </div>
+        <div class="isv-header-badge">${d.badge}</div>
+      </div>
+      <div class="isv-row">
+        <div class="isv-row-label">Effects</div>
+        <div class="isv-row-value"><div class="isv-effects">${effectTags}</div></div>
+      </div>
+      ${rowsHtml}
+      <div class="isv-row">
+        <div class="isv-row-label">Famous Strains</div>
+        <div class="isv-row-value"><div class="isv-strains">${strainPills}</div></div>
+      </div>
+    `;
+  }
+
+  // Init on load
+  isvSelect('indica');
 
   // ─── Terpene Wheel ───────────────────────────────────────────────────────────
   (function buildTerpeneWheel() {
