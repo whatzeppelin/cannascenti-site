@@ -1990,6 +1990,200 @@
     .body-info-panel { min-height: auto; }
   }
 
+  /* ===================== HASH & CONCENTRATES ===================== */
+  .hash-section { margin-top: 80px; }
+
+  /* ===================== GROWING STAGES ===================== */
+  .grow-section { margin-top: 80px; }
+  .grow-timeline {
+    display: flex;
+    gap: 12px;
+    margin: 36px 0 28px;
+    flex-wrap: wrap;
+  }
+  .grow-btn {
+    flex: 1;
+    min-width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 20px 12px;
+    border-radius: 12px;
+    border: 2px solid rgba(255,255,255,0.08);
+    background: var(--card-bg);
+    cursor: pointer;
+    transition: all 0.25s;
+    color: var(--cream);
+    font-family: 'Montserrat', sans-serif;
+    opacity: 0.65;
+    position: relative;
+  }
+  .grow-btn:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255,255,255,0.2);
+    font-size: 1rem;
+    z-index: 1;
+  }
+  .grow-btn:hover { opacity: 0.85; transform: translateY(-2px); }
+  .grow-btn.active { opacity: 1; border-color: var(--bright-green); box-shadow: 0 4px 20px rgba(122,184,80,0.25); transform: translateY(-3px); }
+  .grow-btn-icon { font-size: 1.8rem; }
+  .grow-btn-name { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  .grow-btn-days { font-size: 0.65rem; opacity: 0.55; }
+
+  /* ===================== DOSING GUIDE ===================== */
+  .dose-section { margin-top: 80px; }
+  .dose-tab-new.active    { border-color: #7dd87d !important; box-shadow: 0 4px 24px rgba(125,216,125,0.3) !important; }
+  .dose-tab-casual.active { border-color: #e8c05c !important; box-shadow: 0 4px 24px rgba(232,192,92,0.3) !important; }
+  .dose-tab-regular.active{ border-color: #e8925c !important; box-shadow: 0 4px 24px rgba(232,146,92,0.3) !important; }
+  .dose-tab-heavy.active  { border-color: #9b7fd4 !important; box-shadow: 0 4px 24px rgba(155,127,212,0.3) !important; }
+  #dosePanel[data-type="new"]     { background: linear-gradient(180deg,rgba(125,216,125,0.07) 0%,rgba(0,0,0,0) 120px),var(--card-bg); }
+  #dosePanel[data-type="casual"]  { background: linear-gradient(180deg,rgba(232,192,92,0.07) 0%,rgba(0,0,0,0) 120px),var(--card-bg); }
+  #dosePanel[data-type="regular"] { background: linear-gradient(180deg,rgba(232,146,92,0.07) 0%,rgba(0,0,0,0) 120px),var(--card-bg); }
+  #dosePanel[data-type="heavy"]   { background: linear-gradient(180deg,rgba(155,127,212,0.07) 0%,rgba(0,0,0,0) 120px),var(--card-bg); }
+  #dosePanel[data-type="new"]     .isv-header-badge { background:rgba(125,216,125,0.2); color:#a8f0a8; border:1px solid rgba(125,216,125,0.3); }
+  #dosePanel[data-type="casual"]  .isv-header-badge { background:rgba(232,192,92,0.2);  color:#f5d8a0; border:1px solid rgba(232,192,92,0.3); }
+  #dosePanel[data-type="regular"] .isv-header-badge { background:rgba(232,146,92,0.2);  color:#f5c0a0; border:1px solid rgba(232,146,92,0.3); }
+  #dosePanel[data-type="heavy"]   .isv-header-badge { background:rgba(155,127,212,0.2); color:#c4a8f5; border:1px solid rgba(155,127,212,0.3); }
+  #dosePanel[data-type="new"]     .isv-effect-tag { background:rgba(125,216,125,0.15); color:#a8f0a8; }
+  #dosePanel[data-type="casual"]  .isv-effect-tag { background:rgba(232,192,92,0.15);  color:#f5d8a0; }
+  #dosePanel[data-type="regular"] .isv-effect-tag { background:rgba(232,146,92,0.15);  color:#f5c0a0; }
+  #dosePanel[data-type="heavy"]   .isv-effect-tag { background:rgba(155,127,212,0.15); color:#c4a8f5; }
+  #dosePanel .isv-strain { border: 1px solid rgba(255,255,255,0.15); }
+
+  /* ===================== HISTORY TIMELINE ===================== */
+  .history-section { margin-top: 80px; }
+  .history-timeline { margin-top: 40px; position: relative; padding-left: 32px; }
+  .history-timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--bright-green), transparent);
+  }
+  .history-item {
+    position: relative;
+    margin-bottom: 32px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .history-item::before {
+    content: '';
+    position: absolute;
+    left: -28px;
+    top: 6px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--bright-green);
+    border: 2px solid var(--warm-black);
+    transition: all 0.2s;
+  }
+  .history-item:hover::before { transform: scale(1.4); background: var(--gold); }
+  .history-year {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--bright-green);
+    margin-bottom: 4px;
+  }
+  .history-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+  .history-desc {
+    font-size: 0.85rem;
+    line-height: 1.55;
+    opacity: 0.65;
+    max-width: 680px;
+  }
+  .history-item:hover .history-desc { opacity: 0.9; }
+
+  /* ===================== COA ===================== */
+  .coa-section { margin-top: 80px; }
+  .coa-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 14px;
+    margin: 36px 0 28px;
+  }
+
+  /* ===================== CONDITIONS ===================== */
+  .conditions-section { margin-top: 80px; }
+  .conditions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+    margin: 36px 0 28px;
+  }
+  .condition-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 18px 10px;
+    border-radius: 12px;
+    border: 2px solid rgba(255,255,255,0.08);
+    background: var(--card-bg);
+    cursor: pointer;
+    transition: all 0.25s;
+    color: var(--cream);
+    font-family: 'Montserrat', sans-serif;
+    opacity: 0.65;
+  }
+  .condition-btn:hover { opacity: 0.85; transform: translateY(-2px); }
+  .condition-btn.active { opacity: 1; border-color: var(--bright-green); box-shadow: 0 4px 20px rgba(122,184,80,0.25); transform: translateY(-3px); }
+  .condition-btn-icon { font-size: 1.6rem; }
+  .condition-btn-name { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; }
+
+  /* ===================== LEGAL MAP ===================== */
+  .legal-section { margin-top: 80px; }
+  .legal-legend {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 24px 0 32px;
+  }
+  .legal-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+  }
+  .legal-rec  { background: #7dd87d; }
+  .legal-med  { background: #5ca0e8; }
+  .legal-dec  { background: #e8c05c; }
+  .legal-ill  { background: rgba(255,255,255,0.2); }
+  .legal-legend-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.8; margin-right: 12px; }
+  .legal-states-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+  }
+  .legal-state {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: transform 0.2s;
+  }
+  .legal-state:hover { transform: translateY(-2px); }
+  .legal-state-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .legal-state-name { font-size: 0.78rem; font-weight: 600; color: var(--cream); }
+  .legal-state-status { font-size: 0.62rem; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.06em; }
+
   /* ===================== TERPENE WHEEL ===================== */
   .terpene-wheel-wrap {
     display: flex;
@@ -3193,6 +3387,92 @@
       </div>
     </div>
 
+    <!-- HASH & CONCENTRATES -->
+    <div class="hash-section">
+      <div class="terpene-intro">
+        <div class="section-label">✦ Hash &amp; Concentrates</div>
+        <div class="terpene-intro-title">The art of extraction — <em>solventless to solvent</em></div>
+        <p class="terpene-intro-desc">Concentrates are cannabis stripped to its essence. From hand-rolled hash made for thousands of years to modern cold-water bubble hash and live rosin pressed at precise temperatures — this is where the plant meets the craft. Click any concentrate to go deep.</p>
+      </div>
+      <div class="consume-grid" id="hashGrid"></div>
+      <div class="consume-detail" id="hashDetail"></div>
+    </div>
+
+    <!-- GROWING STAGES -->
+    <div class="grow-section">
+      <div class="terpene-intro">
+        <div class="section-label">✦ Growing Cannabis</div>
+        <div class="terpene-intro-title">Seed to harvest — <em>the full lifecycle</em></div>
+        <p class="terpene-intro-desc">Every great cannabis experience starts here. Understanding the plant's lifecycle makes you a better consumer and a smarter buyer. Click each stage to see what's happening inside the plant.</p>
+      </div>
+      <div class="grow-timeline" id="growTimeline"></div>
+      <div class="consume-detail" id="growDetail"></div>
+    </div>
+
+    <!-- DOSING GUIDE -->
+    <div class="dose-section">
+      <div class="terpene-intro">
+        <div class="section-label">✦ Dosing Guide</div>
+        <div class="terpene-intro-title">Find your <em>sweet spot</em></div>
+        <p class="terpene-intro-desc">Too much is the most common mistake in cannabis. Too little leaves people thinking it doesn't work. The right dose is the one that delivers your intended experience — and it's different for everyone. Click your experience level to see the full guide.</p>
+      </div>
+      <div class="isv-tabs">
+        <button class="isv-tab dose-tab-new active" onclick="doseSelect('new')"><span class="isv-tab-icon">🌱</span><span class="isv-tab-name">New User</span><span class="isv-tab-sub">First time or rarely</span></button>
+        <button class="isv-tab dose-tab-casual" onclick="doseSelect('casual')"><span class="isv-tab-icon">😌</span><span class="isv-tab-name">Casual</span><span class="isv-tab-sub">Occasional use</span></button>
+        <button class="isv-tab dose-tab-regular" onclick="doseSelect('regular')"><span class="isv-tab-icon">🔥</span><span class="isv-tab-name">Regular</span><span class="isv-tab-sub">Daily or near-daily</span></button>
+        <button class="isv-tab dose-tab-heavy" onclick="doseSelect('heavy')"><span class="isv-tab-icon">💎</span><span class="isv-tab-name">Experienced</span><span class="isv-tab-sub">High tolerance</span></button>
+      </div>
+      <div class="isv-panel" id="dosePanel"></div>
+    </div>
+
+    <!-- CANNABIS HISTORY TIMELINE -->
+    <div class="history-section">
+      <div class="terpene-intro">
+        <div class="section-label">✦ Cannabis History</div>
+        <div class="terpene-intro-title">10,000 years of <em>the plant</em></div>
+        <p class="terpene-intro-desc">Cannabis is one of the oldest cultivated plants in human history. Before it was illegal, it was medicine, rope, fabric, and ritual. Here's the real story.</p>
+      </div>
+      <div class="history-timeline" id="historyTimeline"></div>
+    </div>
+
+    <!-- HOW TO READ A COA -->
+    <div class="coa-section">
+      <div class="terpene-intro">
+        <div class="section-label">✦ Lab Reports &amp; COAs</div>
+        <div class="terpene-intro-title">What the label <em>actually means</em></div>
+        <p class="terpene-intro-desc">A Certificate of Analysis (COA) is the most important document in cannabis — and almost nobody knows how to read one. Click each panel to decode what you're actually buying.</p>
+      </div>
+      <div class="coa-grid" id="coaGrid"></div>
+      <div class="consume-detail" id="coaDetail"></div>
+    </div>
+
+    <!-- CANNABIS & CONDITIONS -->
+    <div class="conditions-section">
+      <div class="terpene-intro">
+        <div class="section-label">✦ Cannabis &amp; Conditions</div>
+        <div class="terpene-intro-title">What actually <em>helps what</em></div>
+        <p class="terpene-intro-desc">Cannabis isn't one-size-fits-all medicine. Different conditions respond to different cannabinoid and terpene combinations. Click any condition to see what the research and experience point to.</p>
+      </div>
+      <div class="conditions-grid" id="conditionsGrid"></div>
+      <div class="consume-detail" id="conditionsDetail"></div>
+    </div>
+
+    <!-- LEGALIZATION MAP -->
+    <div class="legal-section">
+      <div class="terpene-intro">
+        <div class="section-label">✦ Legal Status by State</div>
+        <div class="terpene-intro-title">Where cannabis stands <em>right now</em></div>
+        <p class="terpene-intro-desc">The legal landscape has shifted dramatically in the last decade. Here's exactly where every US state stands — recreational, medical-only, decriminalized, or still fully illegal.</p>
+      </div>
+      <div class="legal-legend">
+        <span class="legal-dot legal-rec"></span><span class="legal-legend-label">Recreational</span>
+        <span class="legal-dot legal-med"></span><span class="legal-legend-label">Medical Only</span>
+        <span class="legal-dot legal-dec"></span><span class="legal-legend-label">Decriminalized</span>
+        <span class="legal-dot legal-ill"></span><span class="legal-legend-label">Illegal</span>
+      </div>
+      <div class="legal-states-grid" id="legalGrid"></div>
+    </div>
+
   </div>
 </div>
 
@@ -4016,6 +4296,455 @@
         <div class="body-info-fact">${d.fact}</div>
       </div>`;
   }
+
+  // ─── Hash & Concentrates ─────────────────────────────────────────────────────
+  const HASH_DATA = [
+    { id:'bubble', icon:'💧', name:'Bubble Hash', sub:'Solventless · Ice Water Extraction',
+      onset:{val:90,label:'Immediate'}, duration:{val:55,label:'2–3 hrs'}, intensity:{val:80,label:'High'},control:{val:75,label:'Manageable'},
+      bestFor:'Connoisseurs who want solventless purity. Incredible for flavor and full-spectrum effect.',
+      howTo:'Cannabis is agitated in ice-cold water. Trichomes freeze and break off, sink through micron screens. The collected resin is dried and pressed into hash. No solvents ever touch the plant.',
+      pros:'Solventless, full-spectrum, incredible terpene preservation, can be pressed into rosin.',
+      cons:'Labor intensive, requires proper drying to avoid mold, quality varies by micron screen size.' },
+    { id:'rosin', icon:'🫧', name:'Live Rosin', sub:'Solventless · Heat & Pressure',
+      onset:{val:90,label:'Immediate'}, duration:{val:60,label:'2–3 hrs'}, intensity:{val:90,label:'Very High'},control:{val:65,label:'Experienced'},
+      bestFor:'The pinnacle of solventless cannabis. Maximum flavor, maximum effect, zero solvents.',
+      howTo:'Fresh-frozen or bubble hash is pressed between heated plates at precise temperature and pressure. The resin squeezes out as a pure, terpene-rich concentrate. Nothing added, nothing removed.',
+      pros:'The cleanest, most flavorful concentrate available. Full entourage effect. No residual solvents.',
+      cons:'Most expensive concentrate per gram. Temperature-sensitive. Short shelf life compared to BHO.' },
+    { id:'drysift', icon:'🌾', name:'Dry Sift / Kief', sub:'Solventless · Mechanical Separation',
+      onset:{val:88,label:'Immediate'}, duration:{val:50,label:'2 hrs'}, intensity:{val:70,label:'Moderate–High'},control:{val:80,label:'Easy'},
+      bestFor:'Topping bowls, pressing into hash coins, or sprinkling on flower for potency boost.',
+      howTo:'Dried cannabis is tumbled or sifted over fine mesh screens. Trichome heads break off and fall through. The collected powder (kief) can be used as-is or pressed into hash using heat and pressure.',
+      pros:'Easiest solventless method, versatile, can be pressed into hash coins, great for everyday use.',
+      cons:'Less pure than bubble hash or rosin. Lower-quality sifts contain more plant material.' },
+    { id:'liveresin', icon:'🧬', name:'Live Resin', sub:'Solvent-Based · Fresh Frozen',
+      onset:{val:92,label:'Immediate'}, duration:{val:55,label:'2–3 hrs'}, intensity:{val:88,label:'Very High'},control:{val:60,label:'Experienced'},
+      bestFor:'Best terpene profile in solvent-based extracts. The closest to fresh flower experience in a concentrate.',
+      howTo:'Cannabis is flash-frozen immediately after harvest (preserving all terpenes), then extracted with butane or propane. The solvent is purged under vacuum. Terpenes that would be lost in drying are captured.',
+      pros:'Exceptional flavor and aroma. Higher terpene content than any dried-and-cured extract.',
+      cons:'Requires solvent extraction. More expensive than standard BHO. Needs professional equipment.' },
+    { id:'bho', icon:'🟡', name:'BHO / Wax / Shatter', sub:'Solvent-Based · Butane Extraction',
+      onset:{val:92,label:'Immediate'}, duration:{val:50,label:'1–2 hrs'}, intensity:{val:92,label:'Very High'},control:{val:55,label:'Experienced'},
+      bestFor:'High-potency dabbing, experienced consumers, medical patients needing strong relief.',
+      howTo:'Butane is passed through cannabis, stripping cannabinoids and terpenes. The solution is then purged of butane using heat and vacuum. Result: wax (whipped), shatter (glass-like), or budder (creamy).',
+      pros:'Very high potency (60–90% THC), widely available, multiple textures, relatively affordable.',
+      cons:'Solvent residue possible in poorly purged products. Always buy lab-tested BHO.' },
+    { id:'diamonds', icon:'💎', name:'THC Diamonds', sub:'Crystalline · THCA Isolate',
+      onset:{val:95,label:'Immediate'}, duration:{val:55,label:'2–3 hrs'}, intensity:{val:98,label:'Extreme'},control:{val:40,label:'Expert only'},
+      bestFor:'Experienced dabbers, medical patients needing maximum potency, special occasions.',
+      howTo:'THCA crystallizes out of a supersaturated solution of cannabis extract over time — like rock candy. The crystals (diamonds) can be up to 99% pure THCA. Often served in "sauce" — the terpene-rich liquid they form in.',
+      pros:'Highest potency available. Can be combined with terpene sauce for the ultimate flavor+potency combo.',
+      cons:'Extremely potent — only for very experienced users. Easy to overconsume significantly.' },
+    { id:'hashish', icon:'🟤', name:'Traditional Hash', sub:'Solventless · Hand-Pressed',
+      onset:{val:80,label:'2–5 min'}, duration:{val:65,label:'2–4 hrs'}, intensity:{val:65,label:'Moderate'},control:{val:85,label:'Forgiving'},
+      bestFor:'Hash culture enthusiasts, Old World cannabis experience, joints and pipes.',
+      howTo:'The oldest form of cannabis concentrate. Trichomes collected by hand-rubbing the plant (charas) or dry sifting, then pressed by hand or with tools into bricks, balls, or coins. Made for thousands of years in Afghanistan, Morocco, India, and Lebanon.',
+      pros:'Deep cultural history. Smooth, complex flavor. More forgiving to dose than modern concentrates.',
+      cons:'Potency varies widely. Quality is highly dependent on source material and maker\'s skill.' },
+  ];
+
+  function renderHashGrid() {
+    document.getElementById('hashGrid').innerHTML = HASH_DATA.map(m => `
+      <button class="consume-btn" id="hbtn-${m.id}" onclick="hashSelect('${m.id}')">
+        <span class="consume-btn-icon">${m.icon}</span>
+        <span class="consume-btn-name">${m.name}</span>
+      </button>`).join('');
+  }
+  function hashSelect(id) {
+    document.querySelectorAll('#hashGrid .consume-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('hbtn-'+id).classList.add('active');
+    const m = HASH_DATA.find(x => x.id===id);
+    document.getElementById('hashDetail').innerHTML = `
+      <div class="consume-detail-inner">
+        <div class="consume-detail-header">
+          <div class="consume-detail-icon">${m.icon}</div>
+          <div><div class="consume-detail-title">${m.name}</div><div class="consume-detail-sub">${m.sub}</div></div>
+        </div>
+        <div class="consume-bars">
+          <div class="consume-bar-row"><div class="consume-bar-label">Onset</div><div class="consume-bar-track"><div class="consume-bar-fill" style="width:${m.onset.val}%"></div></div><div class="consume-bar-val">${m.onset.label}</div></div>
+          <div class="consume-bar-row"><div class="consume-bar-label">Duration</div><div class="consume-bar-track"><div class="consume-bar-fill" style="width:${m.duration.val}%"></div></div><div class="consume-bar-val">${m.duration.label}</div></div>
+          <div class="consume-bar-row"><div class="consume-bar-label">Intensity</div><div class="consume-bar-track"><div class="consume-bar-fill" style="width:${m.intensity.val}%"></div></div><div class="consume-bar-val">${m.intensity.label}</div></div>
+          <div class="consume-bar-row"><div class="consume-bar-label">Accessibility</div><div class="consume-bar-track"><div class="consume-bar-fill" style="width:${m.control.val}%"></div></div><div class="consume-bar-val">${m.control.label}</div></div>
+        </div>
+        <div class="consume-desc-grid">
+          <div class="consume-desc-item"><strong>Best For</strong><p>${m.bestFor}</p></div>
+          <div class="consume-desc-item"><strong>How It's Made</strong><p>${m.howTo}</p></div>
+          <div class="consume-desc-item"><strong>Pros</strong><p>${m.pros}</p></div>
+          <div class="consume-desc-item"><strong>Considerations</strong><p>${m.cons}</p></div>
+        </div>
+      </div>`;
+  }
+  renderHashGrid();
+  hashSelect('bubble');
+
+  // ─── Growing Stages ──────────────────────────────────────────────────────────
+  const GROW_DATA = [
+    { id:'seed', icon:'🌰', name:'Germination', days:'1–7 days',
+      bestFor:'The beginning of everything. The seed cracks open and the taproot emerges.',
+      howTo:'Place seed in moist paper towel or directly in starter medium. Keep warm (70–85°F) and dark. Taproot emerges in 1–7 days. Plant root-down, 1/2 inch deep.',
+      pros:'Indicators of a viable seed: dark brown, hard shell, waxy coat. White or pale green seeds are immature.',
+      cons:'Keep moisture consistent — not soaking wet, not dry. Temperature is critical. Cold = slow germination or failure.' },
+    { id:'seedling', icon:'🌱', name:'Seedling', days:'2–3 weeks',
+      bestFor:'First true leaves develop. The plant establishes its root system and begins photosynthesis.',
+      howTo:'18 hours of light / 6 hours dark. Keep humidity high (65–70%). Small amounts of water — overwatering is the #1 killer at this stage. No nutrients yet.',
+      pros:'First round leaves (cotyledons) feed the seedling. Then 3-fingered fan leaves appear — the plant is officially a seedling.',
+      cons:'Extremely sensitive to overwatering, temperature swings, and strong nutrients. Gentle hands only.' },
+    { id:'veg', icon:'🌿', name:'Vegetative', days:'3–16 weeks',
+      bestFor:'The growth phase. The plant builds its full structure — height, branches, and leaf mass. No flowers yet.',
+      howTo:'18+ hours of light. Heavy feeding — nitrogen is essential. Train the plant (LST, topping, FIM) to maximize future yield. Water when top inch of soil is dry.',
+      pros:'Longer veg = bigger plant = larger potential yield. This is where you shape the final plant. Topping creates multiple colas instead of one.',
+      cons:'Must maintain 18+ hours of light — any light leak can trigger premature flowering. Nitrogen deficiency shows as yellowing lower leaves.' },
+    { id:'flower', icon:'🌸', name:'Flowering', days:'6–12 weeks',
+      bestFor:'The magic stage. Buds form, terpenes develop, and THC/CBD content builds to peak levels.',
+      howTo:'Switch to 12 hours light / 12 hours dark to trigger flowering. Reduce nitrogen, increase phosphorus and potassium. Watch for pistils (white hairs) turning orange/red as harvest approaches.',
+      pros:'Early flower: white pistils, small buds. Mid flower: rapid bud swell. Late flower: pistils darken, trichomes cloud over, smell intensifies dramatically.',
+      cons:'Light leaks cause hermaphroditism. Humidity must drop to 40–50% to prevent mold on dense buds. Watch for nutrient burn.' },
+    { id:'harvest', icon:'✂️', name:'Harvest', days:'1–3 days',
+      bestFor:'The moment of truth. Timing the harvest determines the final cannabinoid and terpene profile.',
+      howTo:'Check trichomes under a jeweler\'s loupe or microscope. Clear trichomes = not ready. Cloudy white = peak THC. Amber = THC degrading to CBN (more sedating). Most prefer mostly cloudy with 10–20% amber.',
+      pros:'Harvest at peak cloudy for cerebral/energetic effect. Let more amber develop for heavier body/sedating effect. The grower controls the final experience.',
+      cons:'Harvesting too early = low potency, harsh smoke. Too late = degraded THC, couch-lock effect regardless of strain.' },
+    { id:'dry', icon:'🌬️', name:'Drying', days:'7–14 days',
+      bestFor:'Preserving terpenes and preventing mold while reducing moisture content from ~80% to ~15%.',
+      howTo:'Hang whole branches or trim and rack dry in a dark room at 60°F / 60% humidity. Slow drying = better flavor. Fast drying destroys terpenes and produces harsh smoke.',
+      pros:'The "slow dry" in cool, dark conditions preserves the full terpene and cannabinoid profile. Patience here pays dividends in flavor and smoothness.',
+      cons:'Too humid = mold. Too hot/dry = terpene evaporation and harsh flower. 60/60 rule: 60°F, 60% humidity.' },
+    { id:'cure', icon:'🫙', name:'Curing', days:'2–8 weeks',
+      bestFor:'The finishing process that transforms good cannabis into exceptional cannabis.',
+      howTo:'Dried buds go into airtight glass jars at 62% humidity. Open jars daily for 1–2 weeks ("burping") to release CO2 and moisture. After 2+ weeks, burp every few days. The longer the cure, the better the final product.',
+      pros:'Curing continues to break down chlorophyll, develop complex terpenes, and smooth out the smoke. A 6–8 week cure produces noticeably superior cannabis to a 2-week cure.',
+      cons:'Humidity too high in jars = mold. Too low = over-dried, loses weight and terps. Boveda packs at 62% RH make this foolproof.' },
+  ];
+
+  function renderGrowTimeline() {
+    document.getElementById('growTimeline').innerHTML = GROW_DATA.map(s => `
+      <button class="grow-btn" id="gbtn-${s.id}" onclick="growSelect('${s.id}')">
+        <span class="grow-btn-icon">${s.icon}</span>
+        <span class="grow-btn-name">${s.name}</span>
+        <span class="grow-btn-days">${s.days}</span>
+      </button>`).join('');
+  }
+  function growSelect(id) {
+    document.querySelectorAll('.grow-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('gbtn-'+id).classList.add('active');
+    const s = GROW_DATA.find(x => x.id===id);
+    document.getElementById('growDetail').innerHTML = `
+      <div class="consume-detail-inner">
+        <div class="consume-detail-header">
+          <div class="consume-detail-icon">${s.icon}</div>
+          <div><div class="consume-detail-title">${s.name}</div><div class="consume-detail-sub">${s.days}</div></div>
+        </div>
+        <div class="consume-desc-grid">
+          <div class="consume-desc-item"><strong>What's Happening</strong><p>${s.bestFor}</p></div>
+          <div class="consume-desc-item"><strong>What To Do</strong><p>${s.howTo}</p></div>
+          <div class="consume-desc-item"><strong>What To Look For</strong><p>${s.pros}</p></div>
+          <div class="consume-desc-item"><strong>Watch Out For</strong><p>${s.cons}</p></div>
+        </div>
+      </div>`;
+  }
+  renderGrowTimeline();
+  growSelect('seed');
+
+  // ─── Dosing Guide ────────────────────────────────────────────────────────────
+  const DOSE_DATA = {
+    new: {
+      icon:'🌱', title:'New User', badge:'Start Low, Go Slow',
+      tagline:'Your endocannabinoid system is unprimed — less is genuinely more',
+      effects:['Start: 2–5mg THC','Wait 2 Hours','No Redosing','CBD Helps','Set & Setting','Stay Hydrated'],
+      rows:[
+        {label:'Flower',     val:{strong:'1–2 puffs maximum',           detail:'Wait 10–15 minutes between hits. One puff is often enough for a first-timer. The effect builds — don\'t chase it in the moment.'}},
+        {label:'Vape',       val:{strong:'1 small puff, wait 15 min',   detail:'Vape carts are concentrated. A single 2-second draw is a real dose for a new user. Treat it like flower — one and wait.'}},
+        {label:'Edible',     val:{strong:'2.5–5mg THC maximum',         detail:'The golden rule: 2.5mg if available. 5mg max. Wait a full 2 hours before even considering more. Edibles are the #1 way new users overconsume.'}},
+        {label:'Tincture',   val:{strong:'1–2mg sublingual',            detail:'Tinctures allow the most precise dosing. Start with 1–2 drops of a 10mg/mL tincture. Hold under tongue for 90 seconds.'}},
+        {label:'If Too Much', val:{strong:'CBD, water, black pepper, breathe',detail:'CBD counteracts THC anxiety. Black pepper to smell/chew. Cold water. Lie down, close your eyes. It will pass — you cannot overdose on cannabis. This feeling ends.'}},
+        {label:'Best Strains', val:{strong:'Low-THC, high-CBD, indica or hybrid',detail:'Look for strains under 15% THC with some CBD present. Harlequin, ACDC, Cannatonic, or any dispensary "beginner-friendly" option. Avoid anything above 20% THC.'}},
+      ],
+      strains:['Harlequin','ACDC','Cannatonic','Charlotte\'s Web','Remedy'],
+    },
+    casual: {
+      icon:'😌', title:'Casual User', badge:'Occasional · Building Tolerance',
+      tagline:'You know your baseline — now learn to dial it in',
+      effects:['5–15mg THC','Know Your Setting','Pick Your Method','Strain Matters','Terpenes First','Stay Intentional'],
+      rows:[
+        {label:'Flower',     val:{strong:'2–4 hits, pace yourself',     detail:'You have some tolerance but don\'t assume you can match a daily user. Pace between sessions. Strains hit differently — a new strain always deserves respect.'}},
+        {label:'Edible',     val:{strong:'5–10mg THC',                  detail:'5mg is the standard recreational dose in legal markets for a reason. 10mg for a fuller experience. Still wait 90 minutes before assessing.'}},
+        {label:'Vape',       val:{strong:'2–4 puffs, quality matters',  detail:'Cartridge quality varies enormously. Full-spectrum carts hit differently than distillate. Expect variation between brands.'}},
+        {label:'Concentrate', val:{strong:'Try it carefully — start with a grain of rice size', detail:'If you haven\'t dabbed before, your tolerance doesn\'t transfer 1:1. Concentrates are 3–5x more potent than flower. A tiny amount is a real dose.'}},
+        {label:'Best Time',   val:{strong:'Know your window and intention', detail:'Casual users often get more from cannabis when they choose intentionally — evening relaxation, creative projects, social settings. Random use can blur the benefit.'}},
+        {label:'Best Strains', val:{strong:'Explore beyond indica/sativa labels', detail:'Start chasing terpenes, not THC percentage. A 20% limonene-forward hybrid might be better for your Friday night than a 28% mystery strain.'}},
+      ],
+      strains:['Blue Dream','Gelato','Wedding Cake','Pineapple Express','Sour Diesel'],
+    },
+    regular: {
+      icon:'🔥', title:'Regular User', badge:'Daily or Near-Daily',
+      tagline:'Tolerance is real — manage it or it manages you',
+      effects:['15–30mg THC','Tolerance Breaks','Full-Spectrum','Terpene Stacking','Microdose Reset','Track Your Use'],
+      rows:[
+        {label:'Flower',     val:{strong:'However much you need — but question it', detail:'Regular users often smoke out of habit rather than intention. Before every session ask: what\'s my goal right now? That awareness alone improves the experience.'}},
+        {label:'Edible',     val:{strong:'10–25mg typical, up to 50mg for high tolerance', detail:'Tolerance with edibles builds more slowly than with smoking. A 2-day break from edibles noticeably resets sensitivity.'}},
+        {label:'Tolerance Break', val:{strong:'2–7 day break resets sensitivity dramatically', detail:'After a 3-day T-break, regular users report effects from half their usual dose. After 7 days, some users are near-new-user sensitivity. The break pays dividends.'}},
+        {label:'Microdosing', val:{strong:'2–5mg sublingual to maintain function', detail:'Many daily users switch to microdosing for daytime and heavier use in evenings. Microdosing preserves cognitive function while maintaining mood benefits.'}},
+        {label:'Concentrate', val:{strong:'Full gram dabs are common — but watch quality', detail:'High-tolerance users often prefer concentrates. Prioritize solventless or lab-tested products. Consistent quality matters more than THC number.'}},
+        {label:'Best Strains', val:{strong:'Rotate strains to prevent tolerance stacking', detail:'Using the same strain daily builds tolerance faster. Rotating between different terpene profiles keeps each more effective and prevents habituation.'}},
+      ],
+      strains:['OG Kush','Gorilla Glue #4','Girl Scout Cookies','Sherbet','MAC'],
+    },
+    heavy: {
+      icon:'💎', title:'Experienced / High Tolerance', badge:'Connoisseur Level',
+      tagline:'At this level, quality and intention separate great experiences from wasted ones',
+      effects:['Quality Over Quantity','Solventless Priority','Terpene Hunting','Set Intentions','Tolerance Management','Full Entourage'],
+      rows:[
+        {label:'Flower',     val:{strong:'Premium indoor, solventless hash, or live rosin', detail:'At high tolerance, quality is the only lever that moves the needle. A gram of exceptional bubble hash or live rosin often outperforms multiple grams of average flower.'}},
+        {label:'Concentrate', val:{strong:'Solventless or live resin preferred', detail:'High-tolerance consumers can appreciate the full flavor spectrum of quality concentrates. Diamonds and sauce, live rosin, or aged hash offer experiences regular flower no longer provides.'}},
+        {label:'Microdose Strategy', val:{strong:'Strategic low doses throughout the day', detail:'Many experienced consumers find that microdosing 3–5mg every few hours provides sustained benefit without blunting cognition. Reserve heavier use for specific intentions.'}},
+        {label:'T-Break',    val:{strong:'2 weeks delivers a near-complete reset', detail:'A full 2-week tolerance break for high-tolerance users is transformative. The first session back is genuinely like the early days. Many experienced consumers do this quarterly.'}},
+        {label:'CBD Pairing', val:{strong:'High-CBD strains alongside high-THC for balance', detail:'Adding a CBD-rich product to high-THC use creates a smoother, longer-lasting effect. Many experienced users develop a 2:1 or 1:1 THC:CBD protocol for daytime use.'}},
+        {label:'Best Products', val:{strong:'Chase terpenes, not THC numbers', detail:'At your level, a 22% strain with exceptional terpene profile will outperform a 32% strain with poor terps. The number stopped mattering to you — use that knowledge.'}},
+      ],
+      strains:['Bubba Kush','GMO','Runtz','Papaya','Zkittlez','Live Rosin products'],
+    },
+  };
+
+  function doseSelect(type) {
+    document.querySelectorAll('.isv-tab').forEach(t => {
+      if(['dose-tab-new','dose-tab-casual','dose-tab-regular','dose-tab-heavy'].some(c=>t.classList.contains(c))) t.classList.remove('active');
+    });
+    document.querySelector(`.dose-tab-${type}`).classList.add('active');
+    const d = DOSE_DATA[type];
+    const panel = document.getElementById('dosePanel');
+    panel.setAttribute('data-type', type);
+    const rowsHtml = d.rows.map(r=>`<div class="isv-row"><div class="isv-row-label">${r.label}</div><div class="isv-row-value"><strong>${r.val.strong}</strong>${r.val.detail}</div></div>`).join('');
+    const effectTags = d.effects.map(e=>`<span class="isv-effect-tag">${e}</span>`).join('');
+    const strainPills = d.strains.map(s=>`<span class="isv-strain">${s}</span>`).join('');
+    panel.innerHTML = `
+      <div class="isv-header"><div class="isv-header-icon">${d.icon}</div><div><div class="isv-header-title">${d.title}</div><div class="isv-header-tagline">${d.tagline}</div></div><div class="isv-header-badge">${d.badge}</div></div>
+      <div class="isv-row"><div class="isv-row-label">Key Rules</div><div class="isv-row-value"><div class="isv-effects">${effectTags}</div></div></div>
+      ${rowsHtml}
+      <div class="isv-row"><div class="isv-row-label">Good Strains</div><div class="isv-row-value"><div class="isv-strains">${strainPills}</div></div></div>`;
+  }
+  doseSelect('new');
+
+  // ─── Cannabis History Timeline ────────────────────────────────────────────────
+  const HISTORY = [
+    { year:'~10,000 BC', title:'Cannabis cultivation begins in Central Asia', desc:'Among the earliest cultivated plants in human history. Ancient nomadic tribes in what is now Taiwan and China used cannabis for fiber, food, and ritual.' },
+    { year:'~2700 BC',   title:'Emperor Shen Nung documents cannabis as medicine', desc:'Chinese Emperor Shen Nung prescribes cannabis tea for gout, rheumatism, malaria, and memory. The first written record of medical cannabis.' },
+    { year:'~2000 BC',   title:'Vedic texts describe cannabis in India', desc:'The Atharva Veda names cannabis (bhang) as one of the five sacred plants. Used in Hindu religious ceremony, Ayurvedic medicine, and as a sacred offering to Shiva.' },
+    { year:'~1450 BC',   title:'Cannabis found in Egyptian archaeological sites', desc:'Pollen and residue discovered at ancient Egyptian sites, including the tomb of Ramesses II. Used medicinally and potentially in religious ritual.' },
+    { year:'~500 BC',    title:'Herodotus describes Scythian cannabis steam baths', desc:'Greek historian Herodotus describes Scythian nomads throwing cannabis seeds on hot rocks in enclosed tents, inhaling the vapor and "howling with pleasure." Possibly the oldest documented inhalation ritual.' },
+    { year:'1492',       title:'Columbus brings cannabis to the Americas', desc:'Spanish and Portuguese explorers brought cannabis to the Americas as a source of rope fiber and sail canvas. Hemp farming became economically vital within decades.' },
+    { year:'1619',       title:'Virginia law requires cannabis cultivation', desc:'The Virginia Assembly mandates that all farmers grow hemp. George Washington and Thomas Jefferson both grew cannabis on their plantations — primarily for industrial fiber use.' },
+    { year:'1840s',      title:'Cannabis tinctures enter Western medicine', desc:'Irish physician William O\'Shaughnessy introduces cannabis tinctures to Western medicine after studying their use in India. Used for pain, seizures, nausea, and rheumatism. Widely sold in American pharmacies.' },
+    { year:'1910–1920s', title:'Mexican Revolution brings recreational use to the US', desc:'Immigrants fleeing the Mexican Revolution brought the recreational smoking tradition northward. Anti-immigrant sentiment tied to the Spanish word "marihuana" fueled early prohibition movements.' },
+    { year:'1937',       title:'The Marihuana Tax Act — federal prohibition begins', desc:'The Marihuana Tax Act effectively criminalized cannabis in the United States. Pushed by Harry Anslinger of the Federal Bureau of Narcotics. Driven by racism, industrial hemp competition, and pharmaceutical lobbying.' },
+    { year:'1964',       title:'Dr. Raphael Mechoulam isolates THC', desc:'Israeli chemist Raphael Mechoulam identifies and synthesizes THC for the first time, beginning modern cannabinoid science. He would later discover the endocannabinoid system and anandamide (the "bliss molecule").' },
+    { year:'1970',       title:'Controlled Substances Act — Schedule I classification', desc:'Nixon\'s Controlled Substances Act classifies cannabis as Schedule I — "no accepted medical use." The Shafer Commission recommended decriminalization in 1972. Nixon ignored them. His aide later admitted the war on drugs targeted Black people and anti-war protesters.' },
+    { year:'1996',       title:'California legalizes medical cannabis', desc:'Proposition 215 makes California the first US state to legalize medical cannabis. Despite federal opposition, the patient access movement was unstoppable. Oregon, Alaska, and Washington followed in 1998.' },
+    { year:'2012',       title:'Colorado and Washington legalize recreational cannabis', desc:'Amendment 64 (Colorado) and Initiative 502 (Washington) pass — the first legal recreational cannabis markets in the United States. The modern legal era begins.' },
+    { year:'2018',       title:'The Farm Bill legalizes hemp federally', desc:'The Agriculture Improvement Act removes hemp (cannabis with less than 0.3% THC) from the Controlled Substances Act. CBD products explode nationally. A $12 billion industry is born overnight.' },
+    { year:'2024–25',    title:'38+ states legal, federal rescheduling underway', desc:'The DEA proposed rescheduling cannabis from Schedule I to Schedule III in 2024 — the most significant federal shift in 50 years. 38+ states have legal medical or recreational cannabis. Full federal legalization is a matter of when, not if.' },
+  ];
+
+  document.getElementById('historyTimeline').innerHTML = HISTORY.map(h => `
+    <div class="history-item">
+      <div class="history-year">${h.year}</div>
+      <div class="history-title">${h.title}</div>
+      <div class="history-desc">${h.desc}</div>
+    </div>`).join('');
+
+  // ─── How to Read a COA ───────────────────────────────────────────────────────
+  const COA_DATA = [
+    { id:'potency', icon:'💪', name:'Potency Panel',
+      bestFor:'The most important panel. Shows THC, THCA, CBD, CBDA, and minor cannabinoids as percentages.',
+      howTo:'THCA converts to THC when heated (decarboxylation). Total THC = THC + (THCA × 0.877). The number on the package is often THCA — not active THC. "Total Active THC" is the real potency number.',
+      pros:'Look for: Total Active THC, CBD content, minor cannabinoids (CBG, CBN, CBC). These tell the real story of how it will feel.',
+      cons:'THC % alone tells you almost nothing about the quality of the experience. A 30% distillate hits differently than a 22% terpene-rich flower.' },
+    { id:'terpenes', icon:'🌸', name:'Terpene Panel',
+      bestFor:'The panel that predicts your experience more accurately than THC %. Total terpene content and individual profile.',
+      howTo:'Good flower has 1–3% total terpenes. Premium craft cannabis can hit 3–5%+. Below 0.5% total terpenes usually means degraded or improperly stored product.',
+      pros:'Look for: which terpenes dominate and at what percentage. Cross-reference with the terpene section to predict effects. Myrcene + linalool = sedating. Limonene + pinene = energetic.',
+      cons:'Terpenes are volatile — they degrade with heat, light, and time. A terpene panel from harvest tells you less if the product is 6+ months old.' },
+    { id:'pesticides', icon:'🚫', name:'Pesticide Screening',
+      bestFor:'Safety panel. Tests for residual pesticides from cultivation. Critical for medical patients and anyone who cares what they\'re inhaling.',
+      howTo:'Legal state testing requires screening for 50–100+ pesticides. "Pass" means all tested compounds are below action limits. Look for "ND" (not detected) across the board.',
+      pros:'Red flags: any failed pesticides, missing pesticide panel, or results from an unaccredited lab. Always buy tested cannabis.',
+      cons:'Different states test for different pesticides. Some legal markets have weaker requirements than others. Third-party tested products from reputable labs are the gold standard.' },
+    { id:'microbials', icon:'🦠', name:'Microbial Testing',
+      bestFor:'Tests for mold, yeast, bacteria (E. coli, Salmonella). Essential for immunocompromised patients and anyone who doesn\'t want to inhale mold spores.',
+      howTo:'Total Yeast and Mold (TYMC) and Total Aerobic Microbial Count (TAMC) must fall below action levels. Aspergillus testing is especially important for medical cannabis.',
+      pros:'Any product with a failed microbial test is dangerous and should not be consumed. This is non-negotiable for immune-compromised patients.',
+      cons:'Visual mold inspection at home: white powdery coating (powdery mildew), dark spots (botrytis/bud rot), or musty smell are red flags regardless of a lab pass.' },
+    { id:'metals', icon:'⚗️', name:'Heavy Metals',
+      bestFor:'Cannabis bioaccumulates heavy metals from soil — lead, cadmium, arsenic, mercury. Especially relevant for concentrates.',
+      howTo:'Concentrates concentrate everything — cannabinoids, terpenes, and unfortunately, any metals in the plant. Always verify concentrates have passed heavy metals testing.',
+      pros:'Organic cultivation and clean soil dramatically reduce metal risk. Look for "Pass" on lead, cadmium, arsenic, and mercury specifically.',
+      cons:'Hemp (CBD) products have had the most heavy metals issues historically. Cannabis cultivated in polluted industrial soil carries real risk.' },
+    { id:'labinfo', icon:'🏛️', name:'Lab & Batch Info',
+      bestFor:'Who tested it, when, and which batch. The authenticity of the COA itself.',
+      howTo:'A legitimate COA includes: accredited lab name and license number, sample ID, batch number, harvest/test date, and QR code or URL to verify online. If it can\'t be verified online, be skeptical.',
+      pros:'Look for: ISO/IEC 17025 accreditation (the gold standard for testing labs). Results older than 6 months for flower or 12 months for concentrates should be viewed skeptically.',
+      cons:'COA fraud exists — some brands photoshop or fabricate results. Always scan the QR code or visit the lab\'s website to verify the actual report matches what\'s on the package.' },
+  ];
+
+  function renderCoaGrid() {
+    document.getElementById('coaGrid').innerHTML = COA_DATA.map(m => `
+      <button class="consume-btn" id="coabtn-${m.id}" onclick="coaSelect('${m.id}')">
+        <span class="consume-btn-icon">${m.icon}</span>
+        <span class="consume-btn-name">${m.name}</span>
+      </button>`).join('');
+  }
+  function coaSelect(id) {
+    document.querySelectorAll('#coaGrid .consume-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('coabtn-'+id).classList.add('active');
+    const m = COA_DATA.find(x => x.id===id);
+    document.getElementById('coaDetail').innerHTML = `
+      <div class="consume-detail-inner">
+        <div class="consume-detail-header">
+          <div class="consume-detail-icon">${m.icon}</div>
+          <div><div class="consume-detail-title">${m.name}</div></div>
+        </div>
+        <div class="consume-desc-grid">
+          <div class="consume-desc-item"><strong>What It Is</strong><p>${m.bestFor}</p></div>
+          <div class="consume-desc-item"><strong>How to Read It</strong><p>${m.howTo}</p></div>
+          <div class="consume-desc-item"><strong>What to Look For</strong><p>${m.pros}</p></div>
+          <div class="consume-desc-item"><strong>Red Flags</strong><p>${m.cons}</p></div>
+        </div>
+      </div>`;
+  }
+  renderCoaGrid();
+  coaSelect('potency');
+
+  // ─── Cannabis & Conditions ────────────────────────────────────────────────────
+  const CONDITIONS_DATA = [
+    { id:'anxiety',    icon:'😰', name:'Anxiety',
+      bestFor:'CBD-dominant or balanced 1:1 products. High-THC can worsen anxiety in some people.',
+      howTo:'Best cannabinoids: CBD (primary), low-dose THC, CBG. Best terpenes: Linalool, Myrcene, Caryophyllene. Avoid high-THC sativas — limonene can amplify anxiety in sensitive users.',
+      pros:'Start with CBD tincture (25–50mg). If adding THC, never exceed 5mg until you know your response. Microdosing THC with CBD is the most consistently effective protocol.',
+      cons:'High-THC cannabis is a common anxiety trigger. If you\'ve had panic attacks from cannabis, stay below 5mg THC and prioritize CBD and linalool-rich strains.' },
+    { id:'sleep',      icon:'😴', name:'Insomnia / Sleep',
+      bestFor:'Indica-dominant, high-myrcene, high-CBN products taken 30–60 minutes before bed.',
+      howTo:'Best cannabinoids: CBN (most sedating), THC (shortens sleep onset), CBD (improves sleep quality). Best terpenes: Myrcene, Linalool, Terpinolene. Edible 30–45 min before bed is ideal.',
+      pros:'CBN 5–10mg + low-dose THC (5–10mg) + myrcene-rich strain = most effective sleep stack. Indica edible taken 45 min before bed produces 4–6 hours of restful sleep for most users.',
+      cons:'High-THC use before sleep can suppress REM sleep over time. Tolerance breaks help reset the sleep benefit. Use sleep cannabis intentionally, not habitually.' },
+    { id:'pain',       icon:'🤕', name:'Chronic Pain',
+      bestFor:'Full-spectrum cannabis addressing both the pain signal and inflammation simultaneously.',
+      howTo:'Best cannabinoids: THC (pain relief), CBD (anti-inflammatory), CBG (bone/joint), CBC (pain signaling via TRP channels). Best terpenes: Caryophyllene (CB2 anti-inflammatory), Myrcene (analgesic).',
+      pros:'For localized pain: CBD topicals directly on the site. For systemic pain: full-spectrum tincture or edible. Many chronic pain patients use a high-CBD daytime protocol with THC added at night.',
+      cons:'Cannabis addresses pain symptomatically — it doesn\'t heal underlying tissue damage. It\'s most effective as part of a broader pain management protocol.' },
+    { id:'depression',  icon:'🌧️', name:'Depression',
+      bestFor:'Uplifting sativas and hybrids with limonene, pinene, and moderate THC for daytime mood lift.',
+      howTo:'Best cannabinoids: THC (mood elevation), CBD (supports serotonin pathway), CBC (antidepressant synergy). Best terpenes: Limonene (serotonin/dopamine), Pinene (alertness), Linalool (GABA calm).',
+      pros:'Microdosing THC (2–5mg) with a limonene-forward strain is the most widely reported daytime depression protocol. Avoids intoxication while improving mood and motivation.',
+      cons:'Heavy daily use can blunt motivation and deepen depression over time. The relationship between cannabis and depression is dose-dependent — less is often more.' },
+    { id:'ptsd',       icon:'🛡️', name:'PTSD',
+      bestFor:'Cannabis is one of the most studied plant medicines for PTSD. Nightmares, hypervigilance, and anxiety respond well.',
+      howTo:'Best cannabinoids: THC (reduces nightmare frequency), CBD (anxiety reduction), CBN (sleep). Best terpenes: Myrcene, Linalool, Caryophyllene. Indica or hybrid at night. Low-dose CBD during day.',
+      pros:'THC has been shown to reduce REM sleep disturbances and nightmare frequency. The VA and multiple clinical trials have documented cannabis benefit in PTSD patients.',
+      cons:'High-THC use can cause hypervigilance and paranoia in some PTSD patients. Start extremely low and prioritize strains with balanced cannabinoid profiles.' },
+    { id:'nausea',     icon:'🤢', name:'Nausea',
+      bestFor:'One of the oldest documented medical uses of cannabis. Fast-acting inhalation is most effective.',
+      howTo:'Best cannabinoids: THC (directly reduces nausea via CB1), CBD (anti-emetic at high doses). Best terpenes: Limonene (digestive), Ginger-adjacent terpenes. Inhalation works faster than edibles for acute nausea.',
+      pros:'Dronabinol (synthetic THC) is FDA-approved specifically for chemotherapy-induced nausea. Even a single puff can stop nausea within minutes for most users.',
+      cons:'Cannabinoid Hyperemesis Syndrome (CHS) is a rare condition where heavy, long-term cannabis use paradoxically causes severe nausea. Hot showers temporarily relieve CHS — a key diagnostic indicator.' },
+    { id:'adhd',       icon:'⚡', name:'ADHD / Focus',
+      bestFor:'Low-dose THCV, sativa-dominant strains, and microdosed THC can improve focus — but heavy use worsens it.',
+      howTo:'Best cannabinoids: THCV (clear-headed energy), low-dose THC, CBD (reduces anxiety that disrupts focus). Best terpenes: Pinene (acetylcholinesterase inhibitor — memory/focus), Limonene (motivation).',
+      pros:'Microdosing 2–5mg THC with a pinene/limonene-dominant strain before focused work is a commonly reported protocol. THCV specifically is being studied for ADHD.',
+      cons:'High-THC use reliably impairs working memory and attention. The ADHD/cannabis relationship is highly dose-dependent — the therapeutic window is narrow.' },
+    { id:'inflammation', icon:'🔥', name:'Inflammation',
+      bestFor:'CBD and caryophyllene are the most evidence-backed anti-inflammatory cannabis compounds.',
+      howTo:'Best cannabinoids: CBD (broad anti-inflammatory), CBG (gut/joint inflammation), CBC (TRP channel pain signaling), Caryophyllene (direct CB2 activation). Topicals for localized, edibles/tinctures for systemic.',
+      pros:'CBD + caryophyllene is the most studied anti-inflammatory stack. Many athletes and arthritis patients use CBD topicals for localized inflammation with high success rates.',
+      cons:'Cannabis reduces inflammation but doesn\'t address root causes. Most effective as part of an anti-inflammatory lifestyle (diet, sleep, stress management).' },
+  ];
+
+  function renderConditionsGrid() {
+    document.getElementById('conditionsGrid').innerHTML = CONDITIONS_DATA.map(c => `
+      <button class="condition-btn" id="condbtn-${c.id}" onclick="conditionSelect('${c.id}')">
+        <span class="condition-btn-icon">${c.icon}</span>
+        <span class="condition-btn-name">${c.name}</span>
+      </button>`).join('');
+  }
+  function conditionSelect(id) {
+    document.querySelectorAll('.condition-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('condbtn-'+id).classList.add('active');
+    const c = CONDITIONS_DATA.find(x => x.id===id);
+    document.getElementById('conditionsDetail').innerHTML = `
+      <div class="consume-detail-inner">
+        <div class="consume-detail-header">
+          <div class="consume-detail-icon">${c.icon}</div>
+          <div><div class="consume-detail-title">${c.name}</div></div>
+        </div>
+        <div class="consume-desc-grid">
+          <div class="consume-desc-item"><strong>Best Approach</strong><p>${c.bestFor}</p></div>
+          <div class="consume-desc-item"><strong>Cannabinoids &amp; Terpenes</strong><p>${c.howTo}</p></div>
+          <div class="consume-desc-item"><strong>Protocol</strong><p>${c.pros}</p></div>
+          <div class="consume-desc-item"><strong>Important Notes</strong><p>${c.cons}</p></div>
+        </div>
+      </div>`;
+  }
+  renderConditionsGrid();
+  conditionSelect('anxiety');
+
+  // ─── Legalization Map ─────────────────────────────────────────────────────────
+  const LEGAL_STATES = [
+    {name:'Alabama',status:'med',label:'Medical'},
+    {name:'Alaska',status:'rec',label:'Recreational'},
+    {name:'Arizona',status:'rec',label:'Recreational'},
+    {name:'Arkansas',status:'med',label:'Medical'},
+    {name:'California',status:'rec',label:'Recreational'},
+    {name:'Colorado',status:'rec',label:'Recreational'},
+    {name:'Connecticut',status:'rec',label:'Recreational'},
+    {name:'Delaware',status:'rec',label:'Recreational'},
+    {name:'Florida',status:'med',label:'Medical'},
+    {name:'Georgia',status:'dec',label:'Decriminalized'},
+    {name:'Hawaii',status:'med',label:'Medical'},
+    {name:'Idaho',status:'ill',label:'Illegal'},
+    {name:'Illinois',status:'rec',label:'Recreational'},
+    {name:'Indiana',status:'ill',label:'Illegal'},
+    {name:'Iowa',status:'med',label:'Medical'},
+    {name:'Kansas',status:'ill',label:'Illegal'},
+    {name:'Kentucky',status:'med',label:'Medical'},
+    {name:'Louisiana',status:'med',label:'Medical'},
+    {name:'Maine',status:'rec',label:'Recreational'},
+    {name:'Maryland',status:'rec',label:'Recreational'},
+    {name:'Massachusetts',status:'rec',label:'Recreational'},
+    {name:'Michigan',status:'rec',label:'Recreational'},
+    {name:'Minnesota',status:'rec',label:'Recreational'},
+    {name:'Mississippi',status:'med',label:'Medical'},
+    {name:'Missouri',status:'rec',label:'Recreational'},
+    {name:'Montana',status:'rec',label:'Recreational'},
+    {name:'Nebraska',status:'dec',label:'Decriminalized'},
+    {name:'Nevada',status:'rec',label:'Recreational'},
+    {name:'New Hampshire',status:'dec',label:'Decriminalized'},
+    {name:'New Jersey',status:'rec',label:'Recreational'},
+    {name:'New Mexico',status:'rec',label:'Recreational'},
+    {name:'New York',status:'rec',label:'Recreational'},
+    {name:'North Carolina',status:'dec',label:'Decriminalized'},
+    {name:'North Dakota',status:'med',label:'Medical'},
+    {name:'Ohio',status:'rec',label:'Recreational'},
+    {name:'Oklahoma',status:'med',label:'Medical'},
+    {name:'Oregon',status:'rec',label:'Recreational'},
+    {name:'Pennsylvania',status:'med',label:'Medical'},
+    {name:'Rhode Island',status:'rec',label:'Recreational'},
+    {name:'South Carolina',status:'ill',label:'Illegal'},
+    {name:'South Dakota',status:'med',label:'Medical'},
+    {name:'Tennessee',status:'ill',label:'Illegal'},
+    {name:'Texas',status:'med',label:'Medical'},
+    {name:'Utah',status:'med',label:'Medical'},
+    {name:'Vermont',status:'rec',label:'Recreational'},
+    {name:'Virginia',status:'rec',label:'Recreational'},
+    {name:'Washington',status:'rec',label:'Recreational'},
+    {name:'West Virginia',status:'med',label:'Medical'},
+    {name:'Wisconsin',status:'dec',label:'Decriminalized'},
+    {name:'Wyoming',status:'ill',label:'Illegal'},
+    {name:'Washington DC',status:'rec',label:'Recreational'},
+  ];
+
+  document.getElementById('legalGrid').innerHTML = LEGAL_STATES.map(s => `
+    <div class="legal-state">
+      <div class="legal-state-dot legal-${s.status}"></div>
+      <div><div class="legal-state-name">${s.name}</div><div class="legal-state-status">${s.label}</div></div>
+    </div>`).join('');
 
   // ─── Terpene Wheel ───────────────────────────────────────────────────────────
   (function buildTerpeneWheel() {
