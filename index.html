@@ -450,64 +450,72 @@
   .explore-tiles {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 14px;
+    gap: 18px 14px;
   }
 
+  /* Hexagon tile — clip-path creates the shape, drop-shadow glows around it */
   .explore-tile {
+    aspect-ratio: 1;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     background: var(--card-bg);
-    border: 1px solid rgba(82,183,136,0.1);
-    padding: 36px 12px 28px;
+    border: none;
+    border-radius: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    justify-content: center;
+    gap: 13px;
     cursor: pointer;
     text-decoration: none;
-    border-radius: 3px;
-    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    filter: drop-shadow(0 0 2px rgba(82,183,136,0.18));
+    transition: filter 0.28s, transform 0.28s, background 0.28s;
   }
 
   .explore-tile:hover {
-    border-color: rgba(82,183,136,0.4);
-    transform: translateY(-6px);
-    box-shadow: 0 14px 36px rgba(0,0,0,0.35), 0 0 24px rgba(82,183,136,0.07);
+    transform: translateY(-8px) scale(1.04);
+    background: rgba(45,106,79,0.28);
+    filter: drop-shadow(0 8px 22px rgba(0,0,0,0.45)) drop-shadow(0 0 16px rgba(82,183,136,0.45));
   }
 
   .explore-tile-icon {
-    width: 42px;
-    height: 42px;
+    width: 38px;
+    height: 38px;
     color: var(--bright-green);
-    transition: color 0.25s;
+    transition: color 0.28s;
     display: flex;
     align-items: center;
     justify-content: center;
+    /* shift up slightly to stay in the wide middle band of the hex */
+    margin-top: 14%;
   }
 
   .explore-tile:hover .explore-tile-icon { color: var(--light-green); }
   .explore-tile-icon svg { width: 100%; height: 100%; }
 
   .explore-tile-label {
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 500;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--cream);
     text-align: center;
     opacity: 0.68;
     line-height: 1.5;
-    transition: opacity 0.25s;
+    transition: opacity 0.28s;
+    max-width: 70%;
+    margin-bottom: 14%;
   }
 
   .explore-tile:hover .explore-tile-label { opacity: 1; }
 
   @media (max-width: 900px) {
-    .explore-tiles { grid-template-columns: repeat(5, 1fr); gap: 10px; }
-    .explore-tile { padding: 28px 8px 22px; gap: 12px; }
+    .explore-tiles { grid-template-columns: repeat(5, 1fr); gap: 14px 10px; }
     .stats-strip { padding: 22px 30px; }
   }
 
   @media (max-width: 640px) {
-    .explore-tiles { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .explore-tiles { grid-template-columns: repeat(3, 1fr); gap: 12px 10px; }
     .stats-strip-inner { flex-wrap: wrap; gap: 16px; justify-content: center; }
     .stat-sep { display: none; }
     .stat-item { min-width: 80px; flex: none; }
