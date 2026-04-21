@@ -4515,6 +4515,201 @@
     .hashenc-panel-title { font-size: 32px; }
   }
   @media (max-width: 480px) { .hashenc-quality-grid { grid-template-columns: 1fr; } }
+
+  /* ===================== ENCYCLOPEDIA HUB ===================== */
+  .enc-hub { background: #080e08; padding: 100px 60px; }
+  .enc-hub-inner { max-width: 1200px; margin: 0 auto; }
+  .enc-hub-header { max-width: 720px; margin-bottom: 50px; }
+  .enc-hub-header p { color: rgba(255,255,255,0.6); font-size: 16px; line-height: 1.7; margin-top: 16px; }
+  .enc-hub-nav { display: flex; gap: 0; flex-wrap: wrap; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 48px; overflow-x: auto; }
+  .enc-hub-tab { padding: 14px 24px; background: none; border: none; border-bottom: 2px solid transparent; color: rgba(255,255,255,0.4); font-family: 'Montserrat', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: all 0.2s; white-space: nowrap; margin-bottom: -1px; display: flex; align-items: center; gap: 8px; }
+  .enc-hub-tab:hover { color: rgba(255,255,255,0.7); }
+  .enc-hub-tab.active { color: var(--bright-green); border-bottom-color: var(--bright-green); }
+  .enc-hub-tab-icon { font-size: 15px; }
+  .enc-hub-panel { min-height: 500px; animation: fadeSlideUp 0.3s ease; }
+  .enc-terp-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-bottom: 28px; }
+  .enc-terp-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 22px 18px; cursor: pointer; transition: all 0.25s; position: relative; overflow: hidden; }
+  .enc-terp-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 12px 12px 0 0; }
+  .enc-terp-card.tc-myrcene::before { background: linear-gradient(90deg,#a855f7,#7c3aed); }
+  .enc-terp-card.tc-limonene::before { background: linear-gradient(90deg,#f59e0b,#f97316); }
+  .enc-terp-card.tc-caryophyllene::before { background: linear-gradient(90deg,#ef4444,#dc2626); }
+  .enc-terp-card.tc-linalool::before { background: linear-gradient(90deg,#ec4899,#be185d); }
+  .enc-terp-card.tc-pinene::before { background: linear-gradient(90deg,#22c55e,#16a34a); }
+  .enc-terp-card.tc-terpinolene::before { background: linear-gradient(90deg,#06b6d4,#0284c7); }
+  .enc-terp-card.tc-humulene::before { background: linear-gradient(90deg,#d97706,#92400e); }
+  .enc-terp-card.tc-ocimene::before { background: linear-gradient(90deg,#84cc16,#65a30d); }
+  .enc-terp-card:hover, .enc-terp-card.active { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.18); transform: translateY(-2px); }
+  .enc-terp-dot { width: 9px; height: 9px; border-radius: 50%; margin-bottom: 12px; }
+  .tc-myrcene .enc-terp-dot { background: #a855f7; }
+  .tc-limonene .enc-terp-dot { background: #f59e0b; }
+  .tc-caryophyllene .enc-terp-dot { background: #ef4444; }
+  .tc-linalool .enc-terp-dot { background: #ec4899; }
+  .tc-pinene .enc-terp-dot { background: #22c55e; }
+  .tc-terpinolene .enc-terp-dot { background: #06b6d4; }
+  .tc-humulene .enc-terp-dot { background: #d97706; }
+  .tc-ocimene .enc-terp-dot { background: #84cc16; }
+  .enc-terp-name { font-family: 'Cormorant Garamond', serif; font-size: 21px; color: var(--cream); margin-bottom: 5px; }
+  .enc-terp-aroma { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); margin-bottom: 10px; }
+  .enc-terp-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+  .enc-terp-tag { font-size: 10px; padding: 2px 7px; border-radius: 20px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5); }
+  .enc-detail { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; padding: 36px; margin-top: 4px; display: none; }
+  .enc-detail.open { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; }
+  .enc-detail-name { font-family: 'Cormorant Garamond', serif; font-size: 38px; color: var(--cream); grid-column: 1/-1; margin-bottom: 4px; }
+  .enc-detail-sub { color: rgba(255,255,255,0.45); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; grid-column: 1/-1; margin-bottom: 14px; }
+  .enc-detail-col h4 { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.38); margin-bottom: 8px; }
+  .enc-detail-col p, .enc-detail-col ul { color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.7; }
+  .enc-detail-col ul { padding-left: 16px; }
+  .enc-detail-col ul li { margin-bottom: 4px; }
+  .enc-boiling { display: inline-block; padding: 5px 12px; border-radius: 20px; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.55); font-size: 11px; font-family: monospace; margin-top: 8px; }
+  .enc-cannab-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+  .enc-cannab-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 28px 24px; transition: all 0.25s; }
+  .enc-cannab-card:hover { border-color: rgba(255,255,255,0.16); transform: translateY(-3px); box-shadow: 0 10px 36px rgba(0,0,0,0.4); }
+  .enc-cannab-abbr { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 700; line-height: 1; margin-bottom: 3px; }
+  .cannab-thc .enc-cannab-abbr { color: #c084fc; }
+  .cannab-cbd .enc-cannab-abbr { color: #67e8f9; }
+  .cannab-cbg .enc-cannab-abbr { color: #86efac; }
+  .cannab-cbn .enc-cannab-abbr { color: #fcd34d; }
+  .cannab-thcv .enc-cannab-abbr { color: #fb923c; }
+  .cannab-d8 .enc-cannab-abbr { color: #f472b6; }
+  .enc-cannab-fullname { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.38); margin-bottom: 18px; }
+  .enc-cannab-psycho { margin-bottom: 18px; }
+  .enc-cannab-psycho-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.32); margin-bottom: 5px; }
+  .enc-cannab-track { height: 4px; background: rgba(255,255,255,0.07); border-radius: 4px; overflow: hidden; }
+  .enc-cannab-fill { height: 100%; border-radius: 4px; }
+  .cannab-thc .enc-cannab-fill { background: #c084fc; width: 95%; }
+  .cannab-cbd .enc-cannab-fill { background: #67e8f9; width: 5%; }
+  .cannab-cbg .enc-cannab-fill { background: #86efac; width: 15%; }
+  .cannab-cbn .enc-cannab-fill { background: #fcd34d; width: 20%; }
+  .cannab-thcv .enc-cannab-fill { background: #fb923c; width: 40%; }
+  .cannab-d8 .enc-cannab-fill { background: #f472b6; width: 60%; }
+  .enc-cannab-desc { color: rgba(255,255,255,0.68); font-size: 13px; line-height: 1.7; margin-bottom: 16px; }
+  .enc-cannab-uses { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
+  .enc-cannab-use { font-size: 10px; padding: 3px 9px; border-radius: 20px; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.5); }
+  .enc-cannab-found { font-size: 12px; color: rgba(255,255,255,0.35); }
+  .enc-cannab-found span { color: rgba(255,255,255,0.6); }
+  .enc-consume-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .enc-consume-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 13px; padding: 24px; cursor: pointer; transition: all 0.25s; }
+  .enc-consume-card:hover, .enc-consume-card.active { border-color: var(--gold); background: rgba(212,175,55,0.05); }
+  .enc-consume-icon { font-size: 28px; margin-bottom: 12px; }
+  .enc-consume-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--cream); margin-bottom: 4px; }
+  .enc-consume-tagline { font-size: 11px; color: rgba(255,255,255,0.38); margin-bottom: 14px; }
+  .enc-consume-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .enc-consume-stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.32); margin-bottom: 2px; }
+  .enc-consume-stat-val { font-size: 13px; color: var(--cream); }
+  .enc-consume-detail { grid-column: 1/-1; background: rgba(212,175,55,0.04); border: 1px solid rgba(212,175,55,0.15); border-radius: 14px; padding: 32px; display: none; }
+  .enc-consume-detail.open { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .enc-consume-detail-title { font-family: 'Cormorant Garamond', serif; font-size: 32px; color: var(--cream); grid-column: 1/-1; margin-bottom: 4px; }
+  .enc-consume-detail-sub { color: rgba(255,255,255,0.4); font-size: 12px; grid-column: 1/-1; margin-bottom: 18px; }
+  .enc-consume-col h4 { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.33); margin-bottom: 8px; }
+  .enc-consume-col p, .enc-consume-col ul { color: rgba(255,255,255,0.68); font-size: 13px; line-height: 1.7; }
+  .enc-consume-col ul { padding-left: 16px; }
+  .enc-consume-col ul li { margin-bottom: 4px; }
+  .enc-bio-bar { margin-top: 10px; }
+  .enc-bio-label { font-size: 11px; color: rgba(255,255,255,0.38); margin-bottom: 4px; }
+  .enc-bio-track { height: 5px; background: rgba(255,255,255,0.06); border-radius: 5px; overflow: hidden; }
+  .enc-bio-fill { height: 100%; background: linear-gradient(90deg,var(--gold),#f0a500); border-radius: 5px; }
+  .enc-cultiv-stages { display: grid; grid-template-columns: repeat(6,1fr); position: relative; margin-bottom: 40px; }
+  .enc-cultiv-stages::before { content: ''; position: absolute; top: 38px; left: 8%; right: 8%; height: 2px; background: linear-gradient(90deg,rgba(79,192,79,0.15),rgba(79,192,79,0.5),rgba(79,192,79,0.15)); z-index: 0; }
+  .enc-cultiv-stage { text-align: center; padding: 0 6px; cursor: pointer; transition: all 0.2s; position: relative; z-index: 1; }
+  .enc-cultiv-num { width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.04); border: 2px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-family: 'Cormorant Garamond', serif; font-size: 18px; color: rgba(255,255,255,0.45); transition: all 0.25s; }
+  .enc-cultiv-stage:hover .enc-cultiv-num, .enc-cultiv-stage.active .enc-cultiv-num { background: var(--bright-green); border-color: var(--bright-green); color: #000; }
+  .enc-cultiv-stage-name { font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em; color: rgba(255,255,255,0.4); transition: color 0.2s; }
+  .enc-cultiv-stage:hover .enc-cultiv-stage-name, .enc-cultiv-stage.active .enc-cultiv-stage-name { color: var(--bright-green); }
+  .enc-cultiv-stage-dur { font-size: 9px; color: rgba(255,255,255,0.22); margin-top: 3px; }
+  .enc-cultiv-panel { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 36px; display: none; animation: fadeSlideUp 0.3s ease; }
+  .enc-cultiv-panel.open { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; }
+  .enc-cultiv-panel-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; color: var(--cream); grid-column: 1/-1; margin-bottom: 3px; }
+  .enc-cultiv-panel-dur { font-size: 11px; color: rgba(255,255,255,0.32); letter-spacing: 0.1em; text-transform: uppercase; grid-column: 1/-1; margin-bottom: 18px; }
+  .enc-cultiv-col h4 { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.33); margin-bottom: 8px; }
+  .enc-cultiv-col p, .enc-cultiv-col ul { color: rgba(255,255,255,0.68); font-size: 13px; line-height: 1.7; }
+  .enc-cultiv-col ul { padding-left: 14px; }
+  .enc-cultiv-col ul li { margin-bottom: 4px; }
+  .enc-cultiv-tip { background: rgba(79,192,79,0.06); border-left: 3px solid var(--bright-green); border-radius: 0 8px 8px 0; padding: 12px 14px; font-size: 13px; color: rgba(255,255,255,0.6); grid-column: 1/-1; margin-top: 4px; }
+  .enc-cultiv-tip strong { color: var(--bright-green); }
+  .enc-cultiv-enviro { margin-top: 48px; }
+  .enc-cultiv-enviro-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--cream); margin-bottom: 24px; }
+  .enc-env-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .enc-env-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 22px; }
+  .enc-env-icon { font-size: 26px; margin-bottom: 10px; }
+  .enc-env-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--cream); margin-bottom: 7px; }
+  .enc-env-body { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+  .enc-history { position: relative; max-width: 860px; }
+  .enc-history::before { content: ''; position: absolute; left: 120px; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, transparent, rgba(212,175,55,0.25) 3%, rgba(212,175,55,0.25) 97%, transparent); }
+  .enc-history-era { font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.22); margin: 24px 0 14px 150px; }
+  .enc-history-event { display: grid; grid-template-columns: 120px 1fr; align-items: start; margin-bottom: 8px; position: relative; }
+  .enc-history-event::before { content: ''; position: absolute; left: 114px; top: 14px; width: 13px; height: 13px; border-radius: 50%; background: rgba(212,175,55,0.7); border: 2px solid #080e08; z-index: 1; }
+  .enc-history-event.major::before { width: 17px; height: 17px; left: 112px; top: 12px; background: var(--bright-green); box-shadow: 0 0 10px rgba(79,192,79,0.4); border-color: #080e08; }
+  .enc-history-date { font-family: 'Cormorant Garamond', serif; font-size: 15px; color: rgba(212,175,55,0.75); padding-top: 8px; text-align: right; padding-right: 32px; }
+  .enc-history-card { background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.055); border-radius: 10px; padding: 14px 18px; margin-left: 28px; margin-bottom: 5px; }
+  .enc-history-event.major .enc-history-card { border-color: rgba(79,192,79,0.12); background: rgba(79,192,79,0.04); }
+  .enc-history-card-tag { display: inline-block; font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; padding: 2px 7px; border-radius: 10px; margin-bottom: 5px; }
+  .enc-history-card-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: var(--cream); margin-bottom: 3px; }
+  .enc-history-card-body { font-size: 12px; color: rgba(255,255,255,0.52); line-height: 1.6; }
+  .history-tag-ancient { background: rgba(212,175,55,0.1); color: rgba(212,175,55,0.7); }
+  .history-tag-medicine { background: rgba(103,232,249,0.08); color: rgba(103,232,249,0.65); }
+  .history-tag-prohibition { background: rgba(239,68,68,0.08); color: rgba(239,68,68,0.6); }
+  .history-tag-culture { background: rgba(168,85,247,0.08); color: rgba(168,85,247,0.65); }
+  .history-tag-legalization { background: rgba(79,192,79,0.08); color: rgba(79,192,79,0.65); }
+  .history-tag-science { background: rgba(251,191,36,0.08); color: rgba(251,191,36,0.6); }
+  .enc-extract-filter { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 28px; }
+  .enc-extract-filter-btn { padding: 7px 16px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: rgba(255,255,255,0.45); font-size: 11px; cursor: pointer; transition: all 0.2s; font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 0.06em; }
+  .enc-extract-filter-btn:hover { color: var(--cream); border-color: rgba(255,255,255,0.22); }
+  .enc-extract-filter-btn.active { background: rgba(255,255,255,0.07); color: var(--cream); border-color: rgba(255,255,255,0.22); }
+  .enc-extract-filter-btn.f-solventless.active { background: rgba(79,192,79,0.08); border-color: rgba(79,192,79,0.35); color: #4fc04f; }
+  .enc-extract-filter-btn.f-solvent.active { background: rgba(239,68,68,0.07); border-color: rgba(239,68,68,0.25); color: #ef4444; }
+  .enc-extract-filter-btn.f-traditional.active { background: rgba(212,175,55,0.07); border-color: rgba(212,175,55,0.25); color: var(--gold); }
+  .enc-extract-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+  .enc-extract-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 13px; padding: 26px; transition: all 0.25s; }
+  .enc-extract-card:hover { border-color: rgba(255,255,255,0.14); transform: translateY(-2px); }
+  .enc-extract-card.hidden { display: none; }
+  .enc-extract-badge { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 20px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+  .tier-solventless { background: rgba(79,192,79,0.08); color: #4fc04f; border: 1px solid rgba(79,192,79,0.18); }
+  .tier-solvent { background: rgba(239,68,68,0.07); color: #ef4444; border: 1px solid rgba(239,68,68,0.14); }
+  .tier-traditional { background: rgba(212,175,55,0.07); color: var(--gold); border: 1px solid rgba(212,175,55,0.18); }
+  .enc-extract-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--cream); margin-bottom: 6px; }
+  .enc-extract-sub { font-size: 11px; color: rgba(255,255,255,0.38); margin-bottom: 14px; }
+  .enc-extract-desc { font-size: 13px; color: rgba(255,255,255,0.62); line-height: 1.7; margin-bottom: 14px; }
+  .enc-extract-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .enc-extract-meta-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.28); margin-bottom: 2px; }
+  .enc-extract-meta-val { font-size: 12px; color: rgba(255,255,255,0.65); }
+  .enc-extract-stars { color: var(--gold); font-size: 12px; letter-spacing: 2px; }
+  .enc-tab-intro { margin-bottom: 36px; }
+  .enc-tab-intro p { color: rgba(255,255,255,0.6); font-size: 15px; line-height: 1.7; max-width: 720px; }
+  @media (max-width: 900px) {
+    .enc-terp-grid { grid-template-columns: repeat(2,1fr); }
+    .enc-detail.open { grid-template-columns: 1fr 1fr; }
+    .enc-cannab-grid { grid-template-columns: repeat(2,1fr); }
+    .enc-consume-grid { grid-template-columns: repeat(2,1fr); }
+    .enc-consume-detail.open { grid-template-columns: 1fr; }
+    .enc-cultiv-stages { grid-template-columns: repeat(3,1fr); }
+    .enc-cultiv-stages::before { display: none; }
+    .enc-cultiv-panel.open { grid-template-columns: 1fr 1fr; }
+    .enc-env-grid { grid-template-columns: 1fr 1fr; }
+    .enc-extract-grid { grid-template-columns: repeat(2,1fr); }
+  }
+  @media (max-width: 700px) {
+    .enc-history::before { left: 65px; }
+    .enc-history-event { grid-template-columns: 65px 1fr; }
+    .enc-history-event::before { left: 59px; }
+    .enc-history-event.major::before { left: 57px; }
+    .enc-history-date { font-size: 12px; padding-right: 16px; }
+    .enc-history-card { margin-left: 14px; }
+    .enc-history-era { margin-left: 90px; }
+  }
+  @media (max-width: 600px) {
+    .enc-hub { padding: 60px 24px; }
+    .enc-hub-tab { padding: 12px 14px; font-size: 10px; }
+    .enc-terp-grid { grid-template-columns: 1fr 1fr; }
+    .enc-detail.open { grid-template-columns: 1fr; }
+    .enc-detail-name { font-size: 28px; }
+    .enc-cannab-grid { grid-template-columns: 1fr; }
+    .enc-consume-grid { grid-template-columns: 1fr; }
+    .enc-cultiv-stages { grid-template-columns: repeat(2,1fr); gap: 10px; }
+    .enc-cultiv-panel.open { grid-template-columns: 1fr; }
+    .enc-env-grid { grid-template-columns: 1fr; }
+    .enc-extract-grid { grid-template-columns: 1fr; }
+  }
+
 </style>
 </head>
 <body>
@@ -5729,6 +5924,22 @@
 
   </div>
 </div>
+
+<div class="full-divider"></div>
+
+<!-- ENCYCLOPEDIA HUB -->
+<div id="encyclopedia-hub" class="enc-hub">
+  <div class="enc-hub-inner">
+    <div class="enc-hub-header">
+      <div class="section-label">✦ The Cannascenti Encyclopedia</div>
+      <h2 class="section-title" style="color:var(--cream)">The Complete Cannabis Reference</h2>
+      <p>Every terpene, cannabinoid, consumption method, cultivation stage, historical milestone, and extraction technique — the most comprehensive cannabis reference anywhere. Click a topic to explore.</p>
+    </div>
+    <div class="enc-hub-nav" id="enc-hub-nav"></div>
+    <div class="enc-hub-panel" id="enc-hub-panel"></div>
+  </div>
+</div>
+
 
 <div class="full-divider"></div>
 
@@ -8269,6 +8480,333 @@
       </div>
     `;
   }
+
+  // ─── ENCYCLOPEDIA HUB ─────────────────────────────────────────────────────────
+  const TERPENES = [
+    { id:'myrcene', cls:'tc-myrcene', name:'Myrcene', aroma:'Earthy · Musky · Cloves', tags:['Relaxing','Sedating','Body High'], bp:'167°C / 332°F', found:'Hops, Mangoes, Thyme, Lemongrass', effects:'The most abundant terpene in cannabis. Myrcene produces a sedating, couch-lock body effect and significantly amplifies THC by increasing cell membrane permeability, allowing cannabinoids to cross the blood-brain barrier more easily.', medical:['Pain relief','Anti-inflammatory','Muscle relaxant','Sleep aid','Anxiety reduction'], strains:['OG Kush','Blue Dream','Granddaddy Purple','Mango Kush','Grape Ape','White Widow'], note:'High-myrcene strains are associated with the classic indica sedation. The mango trick — eating a ripe mango before cannabis — works because mangoes are loaded with myrcene.' },
+    { id:'limonene', cls:'tc-limonene', name:'Limonene', aroma:'Citrus · Lemon · Orange', tags:['Uplifting','Energetic','Mood'], bp:'176°C / 349°F', found:'Citrus peel, Juniper, Rosemary', effects:'The second most common terpene in cannabis. Limonene produces an elevated, euphoric, anxiety-reducing effect and is strongly associated with daytime sativa profiles. Known for antifungal and antibacterial properties.', medical:['Anxiety & depression','Acid reflux','Antifungal','Immune support','Anti-tumor (research)'], strains:['Lemon Haze','Durban Poison','Super Lemon OG','Banana OG','Strawberry Banana','Wedding Cake'], note:"Limonene is the smell of cleaning products — that sharp citrus burst. In cannabis, it's the terpene most directly correlated with mood elevation and stress relief." },
+    { id:'caryophyllene', cls:'tc-caryophyllene', name:'Caryophyllene', aroma:'Spicy · Pepper · Woody', tags:['Anti-inflammatory','Pain Relief','Calming'], bp:'130°C / 266°F', found:'Black pepper, Cloves, Cinnamon', effects:"The only terpene known to directly bind to cannabinoid receptors (CB2). Acts as a dietary cannabinoid with anti-inflammatory effects. Does not produce psychoactive effects on its own but significantly modifies the overall experience.", medical:['Anti-inflammatory','Chronic pain','Anxiety','Alcohol cravings','Ulcer protection'], strains:['Girl Scout Cookies','Sour Diesel','Bubba Kush','Chemdawg','Original Glue','Purple Punch'], note:'Because it binds to CB2 receptors, caryophyllene is legally classified as a dietary supplement. Black pepper is loaded with it — some people use it to reduce an overwhelming high.' },
+    { id:'linalool', cls:'tc-linalool', name:'Linalool', aroma:'Floral · Lavender · Sweet', tags:['Calming','Sedating','Anxiety'], bp:'198°C / 388°F', found:'Lavender, Basil, Mint, Cinnamon', effects:'Linalool is best known from lavender aromatherapy. In cannabis it produces calming, anti-anxiety, and mildly sedating effects. Strong anticonvulsant and neuroprotective properties are being actively researched.', medical:['Anxiety & stress','Insomnia','Epilepsy (research)','Depression','Pain'], strains:['Lavender','LA Confidential','Amnesia Haze','Do-Si-Dos','Scooby Snacks','Master Kush'], note:"Linalool is why lavender aromatherapy works. Strains dominant in linalool tend to be the true 'chill and sleep' indicas — less heavy, more peacefully sedating." },
+    { id:'pinene', cls:'tc-pinene', name:'Pinene', aroma:'Pine · Fresh · Earthy', tags:['Alert','Memory','Respiratory'], bp:'155°C / 311°F', found:'Pine needles, Rosemary, Basil, Dill', effects:'The most widely encountered terpene in nature. Alpha-pinene promotes alertness and memory retention, and is a bronchodilator — it helps open airways. It also counteracts some of the short-term memory impairment from THC.', medical:['Memory retention','Asthma','Anti-inflammatory','Antiseptic','Anxiety'], strains:['Jack Herer','Trainwreck','Blue Dream','Island Sweet Skunk','Dutch Treat'], note:"Pinene is a natural bronchodilator — it opens airways. Strains high in pinene are often used by medical patients for respiratory conditions. It's also why a walk through a pine forest feels so mentally clarifying." },
+    { id:'terpinolene', cls:'tc-terpinolene', name:'Terpinolene', aroma:'Fresh · Piney · Floral', tags:['Uplifting','Creative','Antioxidant'], bp:'186°C / 367°F', found:'Apples, Cumin, Lilac, Nutmeg', effects:'Terpinolene is relatively rare as a dominant terpene but highly valued for its complex, multidimensional aroma and uplifting effects. It appears across the scent spectrum from piney to floral to herbaceous, making it difficult to pin down by smell alone.', medical:['Antioxidant','Antibacterial','Antifungal','Mild sedative','Anti-tumor (research)'], strains:['Jack Herer','Ghost Train Haze','Golden Goat','XJ-13','Dutch Treat','Orange Cookies'], note:"Terpinolene is paradoxical: it smells invigorating but has mild sedative properties. It's one of the markers of the classic Jack Herer lineage — that piney-floral-fresh profile." },
+    { id:'humulene', cls:'tc-humulene', name:'Humulene', aroma:'Woody · Earthy · Spicy', tags:['Appetite Suppressant','Anti-inflammatory','Antibacterial'], bp:'106°C / 223°F', found:'Hops, Basil, Cloves, Coriander', effects:"Humulene is notable for being one of the only cannabis terpenes associated with appetite suppression — the opposite of the typical 'munchies' effect. It's a primary component of hops (beer) and contributes significantly to the herbaceous, earthy, spicy profiles of many classic strains.", medical:['Appetite suppression','Anti-inflammatory','Antibacterial','Anti-tumor (research)','Analgesic'], strains:['Girl Scout Cookies','Headband','White Widow','Skywalker OG','Death Star'], note:"Humulene is found in high concentrations in hops, which is why some hoppy IPAs and certain cannabis strains share an earthy, herbal quality. It's the terpene that undermines the munchies." },
+    { id:'ocimene', cls:'tc-ocimene', name:'Ocimene', aroma:'Sweet · Herbal · Woody', tags:['Uplifting','Antiviral','Antifungal'], bp:'65°C / 149°F', found:'Mint, Parsley, Basil, Orchids', effects:'Ocimene is a fragrant, sweet terpene with a complex aroma that varies from sweet and floral to herbaceous and woody. Found in small quantities but contributing significantly to aroma complexity. Research suggests antiviral, antifungal, and decongestant properties.', medical:['Antiviral','Antifungal','Decongestant','Anti-inflammatory','Antibacterial'], strains:['Clementine','Golden Goat','Space Queen','Dutch Treat','Strawberry Cough'], note:"Ocimene has one of the lowest boiling points of all cannabis terpenes, making it highly volatile — it's often what you smell when you first open a jar. Fresh, fleeting, and complex." }
+  ];
+
+  const CANNABINOIDS = [
+    { cls:'cannab-thc', abbr:'THC', full:'Tetrahydrocannabinol', psycho:95, desc:'The primary psychoactive compound in cannabis. THC binds directly to CB1 receptors in the brain, producing the euphoria, altered perception, and heightened sensory awareness associated with cannabis intoxication. Also the most clinically studied cannabinoid for pain, nausea, and appetite.', uses:['Euphoria','Pain relief','Appetite stimulation','Anti-nausea','Glaucoma'], found:'10–35% in modern cultivars. Trace amounts in hemp.' },
+    { cls:'cannab-cbd', abbr:'CBD', full:'Cannabidiol', psycho:5, desc:'The second most abundant cannabinoid — and the most therapeutically versatile. CBD is non-intoxicating, modulates the activity of THC through allosteric receptor action, and has demonstrated efficacy for epilepsy treatment (FDA-approved as Epidiolex). A powerful anti-inflammatory and anxiolytic.', uses:['Anxiety reduction','Epilepsy','Anti-inflammatory','Pain','Nausea'], found:'High in hemp. 0–25% in cannabis. Dominant in Charlotte's Web, ACDC, Harlequin.' },
+    { cls:'cannab-cbg', abbr:'CBG', full:'Cannabigerol', psycho:15, desc:"Often called the 'mother cannabinoid' because CBGA is the biosynthetic precursor to THC, CBD, and CBC. Non-intoxicating. Shows strong antibacterial activity against MRSA, and early research suggests promise for inflammatory bowel disease, glaucoma, and Huntington's disease.", uses:['Antibacterial','Glaucoma','IBD','Neuroprotection','Appetite'], found:'Usually <1% in mature plants. Highest in early-harvest hemp.' },
+    { cls:'cannab-cbn', abbr:'CBN', full:'Cannabinol', psycho:20, desc:'CBN is a degradation product of THC — as THC oxidizes over time, it converts to CBN. Mildly psychoactive. Heavily marketed as a sleep aid, though the scientific evidence for this is limited. More established are its antibacterial properties and potential as an appetite stimulant.', uses:['Sleep aid','Antibacterial','Appetite','Anticonvulsant','Mild pain'], found:'Highest in aged, oxidized cannabis. Forms when THC degrades.' },
+    { cls:'cannab-thcv', abbr:'THCV', full:'Tetrahydrocannabivarin', psycho:40, desc:"A structural analog of THC with notably different effects. At low doses THCV actually blocks CB1 receptors (opposing THC's effects) and suppresses appetite — remarkable in cannabis. At higher doses it becomes mildly euphoric. Associated with clear-headed, energetic, short-duration highs.", uses:['Appetite suppression','Diabetes (research)','Panic attacks','Bone growth','Energy'], found:'Rare. Highest in African landrace sativas: Durban Poison, Pineapple Purps.' },
+    { cls:'cannab-d8', abbr:'Δ8', full:'Delta-8 THC', psycho:60, desc:"Delta-8 THC is an isomer of Delta-9 THC with a double bond on the 8th carbon chain instead of the 9th. Produces similar but notably milder psychoactive effects — often described as a 'lighter', clearer, less anxiety-prone version of the standard cannabis experience. Naturally occurring in trace amounts.", uses:['Mild euphoria','Antiemetic','Appetite','Anxiety reduction','Neuroprotection'], found:'Trace amounts naturally. Most commercial Δ8 is synthesized from CBD.' }
+  ];
+
+  const CONSUME_METHODS = [
+    { id:'smoking', icon:'🔥', name:'Smoking', tagline:'The classic, immediate, ritualistic method', onset:'2–10 min', duration:'1–3 hours', bio:'15–25%', best:'Flower, kief, hash', how:'Combustion at 600–900°C releases cannabinoids and terpenes instantly. The fastest onset of any method. Bioavailability is moderate — much is lost to sidestream smoke and incomplete combustion. Flavor profiles are best on the first hit, degrading as heat builds.', pros:['Instant onset','Social ritual','Precise dose control','Full spectrum of flavors on first hit'], cons:['Combustion byproducts','Harshest on lungs','Burns plant material inefficiently','Smell'], tips:'Use a screen to prevent ash inhalation. Corner your bowl to preserve flavor. Clean glass weekly for the best taste. Never hold smoke in — cannabinoids absorb in seconds.' },
+    { id:'vaping', icon:'💨', name:'Vaporizing', tagline:'The cleaner, more efficient, flavor-forward method', onset:'2–10 min', duration:'1–3 hours', bio:'45–60%', best:'Flower (180–210°C), concentrates, oil', how:"Vaporization heats cannabis below combustion temperature, releasing cannabinoids and terpenes as vapor rather than smoke. Significantly reduces harmful combustion byproducts. Bioavailability is roughly double that of smoking. Terpene expression at lower temps (170–185°C) is exceptional.", pros:['Reduced combustion toxins','Higher bioavailability','Superior terpene expression','Discreet'], cons:['Device cost','Requires charging','Different experience than smoking','Battery dependency'], tips:'For flower vaping, start at 170°C for terpene flavor and work up to 210°C for stronger effect. Desktop vaporizers (Volcano, Crafty) outperform portables for quality.' },
+    { id:'edibles', icon:'🍫', name:'Edibles', tagline:'The most potent, longest-lasting method — and the easiest to overdo', onset:'30–120 min', duration:'4–8 hours', bio:'4–12%', best:'Infused food, capsules, tinctures', how:"When cannabis is consumed orally, THC is metabolized by the liver into 11-hydroxy-THC — a more potent, longer-lasting compound that crosses the blood-brain barrier more effectively. This is why edibles hit harder and last longer than smoking, despite lower bioavailability.", pros:['Longest duration','No respiratory impact','Discreet','Most potent experience'], cons:['Unpredictable onset','Easy to over-consume','3–4x longer to kick in','Hard to dose precisely'], tips:"Start with 2.5–5mg THC if you're new. Wait a full 2 hours before redosing. A high-fat meal significantly increases absorption. Tinctures under the tongue absorb in 15–45 min, bypassing first-pass metabolism." },
+    { id:'dabbing', icon:'💎', name:'Dabbing', tagline:'Maximum potency, maximum flavor — the concentrate specialist's method', onset:'Immediate', duration:'1–2 hours', bio:'50–80%', best:'Rosin, live resin, BHO, THCA diamonds', how:'Dabbing vaporizes cannabis concentrates (typically 60–95% THC) on a heated surface (nail or banger), producing intensely potent vapor. The highest-bioavailability consumption method. At low temperatures (400–500°F), the terpene expression of high-quality concentrates is extraordinary.', pros:['Maximum potency','Best expression of high-quality concentrates','Fast onset','Full flavor at low temps'], cons:['Very high tolerance building','Equipment complexity','High cost of entry','Dangerous if done improperly'], tips:"Low-temp dabs (400–450°F) preserve terpenes and are far more pleasant than hot dabs. Use a carb cap. Hash rosin at low temp is the pinnacle of the dab experience. Start with a rice-grain sized dab." },
+    { id:'tinctures', icon:'💧', name:'Tinctures', tagline:'Precise, fast, discreet — the medical patient's preferred method', onset:'15–45 min', duration:'2–4 hours', bio:'20–35%', best:'Alcohol or oil-based extracts', how:'Tinctures are cannabis extracts administered sublingually (under the tongue). The mucous membranes absorb cannabinoids directly into the bloodstream, bypassing first-pass liver metabolism for faster onset than edibles. Highly controllable dosing with a dropper.', pros:['Precise dosing','No respiratory impact','Sublingual absorption is fast','Discreet'], cons:['Taste (alcohol-based)','Less potent than dabbing','Cost per dose','Limited availability'], tips:'Hold under tongue for 60–90 seconds before swallowing for best sublingual absorption. Oil-based tinctures (MCT, olive oil) are gentler. Start with 2.5mg THC and titrate up slowly.' },
+    { id:'topicals', icon:'🧴', name:'Topicals', tagline:'Localized relief without any psychoactive effect', onset:'5–20 min', duration:'2–4 hours', bio:'<5% systemic', best:'Creams, balms, transdermal patches', how:"Topicals deliver cannabinoids directly to localized tissue via skin absorption. Standard topicals (creams, balms) do not enter the bloodstream and produce no psychoactive effect — they bind to CB2 receptors in skin, muscle, and nerve tissue. Transdermal patches can achieve systemic absorption.", pros:['No psychoactive effect','Targeted relief','No respiratory impact','Discreet'], cons:['Minimal systemic effect','Not effective for internal conditions','Cost','Variable quality'], tips:"For genuine pain relief, look for topicals with both THC and CBD — they work synergistically on CB2 receptors. Transdermal patches are the exception: they do enter the bloodstream and can be mildly psychoactive." }
+  ];
+
+  const CULTIV_STAGES = [
+    { name:'Germination', dur:'1–7 days', desc:'The seed awakens. The taproot emerges, seeking water and darkness. This is the most delicate phase — temperature and moisture are everything.', environment:'Temp: 70–85°F / Humidity: 70–90% / Light: 18h (seedling)', nutrients:'None — seed contains all it needs', tips:['Keep medium moist, not soaking','Temperature consistency critical','Darkness or very low light during germination','Transplant when taproot reaches 1/2 inch'], watch:'Damping off (stem rot from overwatering). Use a humidity dome. Never let the medium dry out completely.', tip:'The paper towel method between two damp plates in a warm dark place is foolproof for germination.' },
+    { name:'Seedling', dur:'2–3 weeks', desc:'The first set of true leaves emerge. The plant is establishing its root system and vascular structure. Handle with extreme care.', environment:'Temp: 68–77°F / Humidity: 60–70% / Light: 18h fluorescent or LED', nutrients:'Very light — 1/4 strength veg nutrients at week 2', tips:['Avoid overwatering — let medium dry slightly between waterings','Use small pots to prevent overwatering','Gentle airflow strengthens stems','Watch for early signs of nutrient burn or deficiency'], watch:"Cotyledons yellowing (normal after week 2). Stretched seedlings mean insufficient light — move it closer. Root-bound seedlings stunt: don't delay transplanting.", tip:'Seedlings in solo cups with drainage holes is the classic method. Transplant when you can see roots coming out the bottom.' },
+    { name:'Vegetative', dur:'3–16 weeks', desc:'Explosive growth. The plant builds its structural framework — all the branches, nodes, and root mass that will support the eventual flower load.', environment:'Temp: 70–85°F / Humidity: 40–70% / Light: 18/6 or 20/4 hours', nutrients:'High nitrogen, moderate phosphorus and potassium. Heavy feeder.', tips:['Top or FIM at 5th node for bushier plants','LST (low-stress training) maximizes canopy evenness','SCROG nets maximize light penetration','Root mass determines yield ceiling — bigger pot, bigger plant'], watch:'Nitrogen toxicity (clawed, dark green leaves). Spider mite infestations start here. Males begin showing pre-flowers — remove immediately in a mixed-sex garden.', tip:'Topping creates an exponential node count. Top once, you get 2 mains. Top those, you get 4. Manifolding creates 8 perfectly even colas.' },
+    { name:'Pre-Flower', dur:'1–2 weeks', desc:'The transition period. The plant shifts hormonal production toward reproduction. Sex becomes clearly visible. Vertical growth slows, lateral branching increases.', environment:'Temp: 65–80°F / Humidity: 40–50% / Light: 12/12 switch triggers flowering', nutrients:'Taper nitrogen, begin increasing phosphorus and potassium', tips:['Confirm sex immediately','Remove males before pollen sacs open','Apply any remaining training before stretch begins','Flush any salt buildup before the bloom phase'], watch:"The 'stretch' — plants can double in height in 2 weeks during pre-flower. Stake tall plants before they get unmanageable. Hermaphrodites develop under stress — check for nanners (banana-shaped pollen sacs).", tip:"Pre-flower is your last chance to train heavily. Once stretch begins, it's hands off. Get your trellis net in place now." },
+    { name:'Flowering', dur:'6–12 weeks', desc:'The main event. The plant's entire energy is devoted to producing resinous flowers. Trichome development, terpene production, and cannabinoid synthesis all peak here.', environment:'Temp: 65–80°F (cooler = better color) / Humidity: 40–50% / Light: 12/12', nutrients:'High phosphorus and potassium, declining nitrogen. Specialized bloom nutrients.', tips:['Defoliate moderately at week 3 and week 6','Maintain strict 12/12 — any light leak causes hermaphroditism','Stake heavy colas to prevent breakage','Monitor trichomes with a loupe from week 6'], watch:'Bud rot (Botrytis) in dense colas — the most devastating late-stage threat. Reduce humidity, increase airflow. Powdery mildew. Spider mites explode in hot/dry conditions.', tip:'Color change under cooler temps is controlled by genetics (anthocyanins), not nutrients. To get purple, grow strains bred for it at cooler night temps (60°F).' },
+    { name:'Harvest', dur:'1–3 days', desc:'The moment of truth. Trichome observation determines the perfect harvest window — the difference between a heady, clear high and a body-heavy sedative effect.', environment:'Temp: 60–70°F / Humidity: 45–55% / Complete darkness 24–48h before harvest (debated)', nutrients:'Flush with plain water 1–2 weeks before harvest (debated but common)', tips:['Trichomes: clear = early, cloudy = peak THC, amber = degraded THC/more CBD','Harvest in the morning for peak terpene content','Cut in sections for large plants','Use sharp, clean scissors — dull blades crush trichomes'], watch:'Mold at harvest. Harvest in cool, dry conditions. Wet trim vs dry trim — both valid; wet trim in humid climates, dry trim in dry climates.', tip:'A 40–60x loupe or jeweler's scope is mandatory for serious trichome observation. The naked eye cannot tell you when to harvest accurately.' }
+  ];
+
+  const CULTIV_ENVIROS = [
+    { icon:'☀️', name:'Outdoor', body:'The oldest and most natural method. Sun-grown cannabis can reach 15+ feet tall and produce multiple pounds per plant. Completely dependent on climate, season, and region. Best quality/cost ratio when done right. Pests and weather are the primary challenges.' },
+    { icon:'💡', name:'Indoor', body:'Full environmental control. Artificial lighting (HPS, LED, CMH) replicates sunlight. Year-round production, multiple harvests per year. Higher setup costs but precise control over temperature, humidity, light spectrum, and CO2. The standard for high-quality commercial production.' },
+    { icon:'🏠', name:'Greenhouse', body:'The best of both worlds. Natural sunlight supplemented or replaced by artificial light. Season extension without full indoor power costs. Light-deprivation greenhouses allow multiple harvests per year by controlling the photoperiod. Increasingly popular for large-scale craft production.' }
+  ];
+
+  const HISTORY_EVENTS = [
+    { era:'Ancient World', date:'~10,000 BCE', major:true, tag:'ancient', title:'First Cultivation', body:'Archaeological evidence from Taiwan indicates cannabis is among the first crops ever cultivated by humans — alongside wheat and rice. Used for fiber, seed oil, and ritual.' },
+    { era:'Ancient World', date:'2700 BCE', major:false, tag:'medicine', title:'Chinese Medical Canon', body:"Emperor Shen Nung's pharmacopeia documents cannabis (Ma) for gout, malaria, and absent-mindedness. The earliest written record of medical cannabis use." },
+    { era:'Ancient World', date:'1000 BCE', major:false, tag:'ancient', title:'Bhang in India', body:"Cannabis preparations called 'bhang' appear in the Atharva Veda as one of five sacred plants. Used in religious ceremonies, Ayurvedic medicine, and as an offering to Shiva. The tradition continues today." },
+    { era:'Ancient World', date:'450 BCE', major:false, tag:'culture', title:'Scythian Ritual Steam Baths', body:'Greek historian Herodotus documents the Scythians throwing cannabis seeds onto hot stones in enclosed tents, howling with pleasure. One of the earliest recorded recreational cannabis uses.' },
+    { era:'Medieval & Colonial', date:'900 CE', major:false, tag:'culture', title:'Hashish Spreads Through the Middle East', body:'Hash culture flourishes in Persia, Arabia, and North Africa. The word "assassin" is etymologically linked to "hashishin" — the politically-motivated hash consumers in medieval legend.' },
+    { era:'Medieval & Colonial', date:'1545', major:false, tag:'ancient', title:'Cannabis Arrives in the Americas', body:'Spanish conquistadors bring cannabis hemp to Chile for rope and textile production. Hemp cultivation spreads rapidly through North and South America over the next century.' },
+    { era:'19th Century', date:'1839', major:true, tag:'medicine', title:'Western Medicine Discovers Cannabis', body:"Irish physician W.B. O'Shaughnessy publishes landmark research after studying cannabis use in India. Introduces cannabis tinctures to Western medicine for cholera, tetanus, and pain. Cannabis enters the British Pharmacopoeia." },
+    { era:'19th Century', date:'1850', major:false, tag:'medicine', title:'US Pharmacopeia Listing', body:'Cannabis is added to the United States Pharmacopeia, legitimizing its medical use. Dozens of cannabis tincture products become available at American pharmacies.' },
+    { era:'Prohibition Era', date:'1910', major:false, tag:'culture', title:'Cannabis Enters the US via Mexico', body:'Mexican Revolution refugees bring recreational cannabis smoking to the United States. The practice spreads through border cities and, via jazz musicians, into African American urban culture.' },
+    { era:'Prohibition Era', date:'1936', major:false, tag:'prohibition', title:'"Reefer Madness"', body:'The anti-cannabis propaganda film Reefer Madness premieres, depicting cannabis causing murder, insanity, and moral depravity. Part of a broader campaign to criminalize cannabis nationally.' },
+    { era:'Prohibition Era', date:'1937', major:true, tag:'prohibition', title:'Marihuana Tax Act', body:'The US Marihuana Tax Act effectively criminalizes cannabis. Hemp Czar Harry Anslinger leads a campaign linking cannabis to violence and racial minorities. Cannabis is removed from the US Pharmacopeia in 1942.' },
+    { era:'Counterculture', date:'1960s', major:false, tag:'culture', title:'The Counterculture Embrace', body:"Cannabis becomes the symbol of the 1960s counterculture — inseparable from the Vietnam War protest movement, psychedelic music, and the sexual revolution. It moves from the margins to mainstream youth culture." },
+    { era:'Counterculture', date:'1970', major:true, tag:'prohibition', title:'Controlled Substances Act', body:'Nixon signs the Controlled Substances Act, placing cannabis in Schedule I alongside heroin — defined as having no medical value and high abuse potential. Sets the framework for the next 50 years of US drug policy.' },
+    { era:'Modern Era', date:'1988', major:false, tag:'science', title:'CB1 Receptor Discovered', body:'Allyn Howlett discovers the CB1 cannabinoid receptor in rat brains, proving cannabis works through a specific biological mechanism. The foundation for all subsequent endocannabinoid research.' },
+    { era:'Modern Era', date:'1992', major:true, tag:'science', title:'Endocannabinoid System Identified', body:"Raphael Mechoulam's team discovers anandamide — the brain's own 'bliss molecule' — revealing the endocannabinoid system. Cannabis works by mimicking molecules the body already produces." },
+    { era:'Modern Era', date:'1996', major:true, tag:'legalization', title:'California Legalizes Medical Cannabis', body:'Proposition 215 makes California the first US state to legalize medical cannabis. The beginning of the state-by-state decriminalization movement.' },
+    { era:'Modern Era', date:'2012', major:true, tag:'legalization', title:'First Recreational Legalization', body:'Colorado and Washington become the first US states to legalize recreational cannabis, passing ballot measures despite federal Schedule I status. A watershed moment in global cannabis policy.' },
+    { era:'Modern Era', date:'2018', major:false, tag:'legalization', title:'Canada Goes Fully Legal', body:'Canada becomes the first G7 nation to federally legalize recreational cannabis nationwide, creating a regulated commercial market from coast to coast.' },
+    { era:'Modern Era', date:'2024', major:false, tag:'legalization', title:'US Rescheduling Movement', body:'The DEA proposes moving cannabis from Schedule I to Schedule III — the most significant federal shift in US cannabis policy since the 1970 Controlled Substances Act.' }
+  ];
+
+  const EXTRACT_METHODS = [
+    { tier:'solventless', name:'Ice Water Hash', sub:'Bubble hash · Full melt · Cold water agitation', desc:"One of the oldest concentrate forms. Cannabis is agitated in ice water, causing trichome heads to break off and sink. Collected through a series of mesh bags in increasingly fine micron sizes. Full-melt 6-star ice water hash is among the purest expressions of the plant.", quality:'★★★★★', solvent:'None', yield:'3–8%', safety:'Completely safe', process:['Cold water + ice bath agitation','Progressive micron bag filtration','Wet hash dried and pressed or freeze-dried','6-star = full melt on a nail with no residue'], notes:"The 73 and 90 micron bags produce the finest 'heads-only' hash. Freeze-drying has revolutionized water hash quality, preserving terpenes that were lost in traditional air-drying." },
+    { tier:'solventless', name:'Rosin', sub:'Heat + pressure extraction · Solventless concentrate', desc:"Rosin is produced by applying heat and pressure to cannabis flower, kief, or ice water hash — squeezing out a sap-like concentrate. Zero solvents, instant results, full spectrum, and exceptional flavor. Flower rosin is beginner-accessible; hash rosin is the apex of the craft.", quality:'★★★★★', solvent:'None', yield:'10–25% (flower), 40–70% (hash)', safety:'Completely safe', process:['Press between heated plates at 160–220°F','Lower temps = better flavor/lower yield','Higher temps = higher yield/less flavor','Can be pressed live for live rosin'], notes:"Hash rosin from 6-star water hash is the most prized concentrate in the current market. Pressing at 160°F for 90 seconds yields the most terpene-rich, flavorful product. Dab at 450°F max." },
+    { tier:'solventless', name:'Dry Sift', sub:'Mechanical trichome separation · Kief collection', desc:"The most ancient form of concentration — mechanically separating trichome heads from plant material through screens. Quality ranges from full-plant kief to hyper-refined 'pure gold' dry sift that rivals the best hash in purity. Used for centuries in Morocco, Lebanon, and Afghanistan.", quality:'★★★★☆', solvent:'None', yield:'5–15%', safety:'Completely safe', process:['Frozen cannabis tumbled over fine mesh screens','Progressive screening for higher purity','Full melt achieved at 70–90 micron range','Can be pressed into temple balls or used raw'], notes:'Traditional Moroccan dry sift is worked with bare hands, using body heat to cold-press the kief into the dark exterior, lighter interior slabs. The smell and flavor of properly made dry sift is irreplaceable.' },
+    { tier:'solvent', name:'BHO / PHO', sub:'Butane or Propane Hash Oil · Hydrocarbon extraction', desc:"Hydrocarbon extraction uses butane or propane as a solvent to strip cannabinoids and terpenes from plant material under pressure. The most versatile extraction method — produces everything from shatter to live resin, budder, wax, and sauce. Professional closed-loop systems are safe; open blasting is extremely dangerous.", quality:'★★★★★', solvent:'Butane / Propane', yield:'15–30%', safety:'Professional use only — explosion risk', process:['Solvent passed through column of frozen cannabis','Collected in receiving vessel','Residual solvent purged via vacuum oven','Post-processing determines final texture'], notes:'Live resin BHO — made from fresh-frozen cannabis — preserves a terpene profile closer to the living plant than any other method. The gold standard for terpene-forward concentrates at scale.' },
+    { tier:'solvent', name:'CO₂ Extraction', sub:'Supercritical carbon dioxide extraction', desc:"CO₂ becomes supercritical (both liquid and gas) under specific temperature and pressure conditions, making it an effective solvent. Highly selective, tunable extraction that leaves no solvent residue. The dominant method for oil cartridges and commercial extract production. Capital-intensive but scalable.", quality:'★★★★☆', solvent:'CO₂ (no residue)', yield:'10–20%', safety:'Safe — no flammable solvents', process:['CO₂ compressed to supercritical state','Passed through cannabis at precise temp/pressure','Extract collected in separator','Fractionation possible for specific compounds'], notes:'CO₂ oil has lower terpene content than hydrocarbon extracts but is more consumer-safe and infinitely scalable. Most vape cartridges use CO₂ oil with added botanical terpenes.' },
+    { tier:'solvent', name:'Ethanol Extraction', sub:'High-proof alcohol wash · QWET / QWISO', desc:"Ethanol is a food-safe solvent that efficiently extracts cannabinoids and terpenes. Quick-wash ethanol extraction (QWET) minimizes chlorophyll and lipid co-extraction. The preferred method for large-scale edibles production and RSO (Rick Simpson Oil). Post-processing produces tinctures, RSO, or distillate.", quality:'★★★☆☆', solvent:'Food-grade ethanol', yield:'15–25%', safety:'Flammable — ventilation required', process:['Cannabis soaked in cold ethanol','Quick wash (1–3 min) minimizes chlorophyll','Ethanol evaporated under vacuum or heat','Further processing into RSO, distillate, or tincture'], notes:"RSO (Rick Simpson Oil) is full-spectrum ethanol extract consumed orally for cancer treatment in alternative medicine contexts. The scientific evidence is limited but the cultural significance is substantial." },
+    { tier:'solvent', name:'Distillate', sub:'Fractional distillation · THC isolate', desc:"Distillate is the final step in refining cannabis oil — short-path fractional distillation purifies and concentrates specific cannabinoids to 90%+ purity. Nearly odorless and tasteless on its own. The backbone of the commercial vape cartridge industry. Terpenes are added back post-distillation.", quality:'★★★☆☆', solvent:'Process-dependent', yield:'Depends on source oil', safety:'Safe — final product is solvent-free', process:['Crude extract winterized (waxes removed)','Decarboxylated to activate cannabinoids','Short-path distillation fractionates compounds','THC distillate: 85–99% purity'], notes:"Distillate is a blank canvas. It's why most vape cartridges taste identical out of the box — pure THC with added botanical terpenes. High-quality live resin cartridges use the actual plant terpenes instead." },
+    { tier:'traditional', name:'Charas', sub:'Hand-rubbed live resin · Ancient Indian tradition', desc:"The oldest known concentrate. Made by rubbing fresh, living cannabis plants between the palms, collecting the resin that adheres to the hands. Then scraped and rolled into balls. Produced in the Himalayas (Malana, Kashmir, Parvati Valley) and passed down through generations of hash makers.", quality:'★★★★☆', solvent:'None', yield:'Very low — grams per hour', safety:'Completely safe', process:['Hands rubbed along living cannabis plants','Resin accumulates on palms and fingers','Scraped and rolled into balls','Cured or consumed fresh'], notes:"Malana Cream from the Parvati Valley is considered among the finest charas in the world. The isolation of the village and the specific landrace genetics create a product that cannot be replicated elsewhere." },
+    { tier:'traditional', name:'Temple Balls', sub:'Traditional Himalayan / Afghani pressed hash', desc:"Temple balls are made by warming and working dry sift or ice water hash by hand until it takes on the characteristic dark, shiny exterior and lighter, blonde interior. The heat and pressure activate a slow curing process that develops complex flavors over months and years. Some collector temple balls are decades old.", quality:'★★★★★', solvent:'None', yield:'Dependent on starting material', safety:'Completely safe', process:['High-quality dry sift or water hash','Worked by hand with body heat','Formed into a sphere','Aged from weeks to years'], notes:"A properly made temple ball improves dramatically with age — like a fine wine. The exterior oxidizes and develops complexity while the interior remains fresh. The finest examples are cultural artifacts." }
+  ];
+
+  const ENC_TABS = [
+    { id:'terpenes', label:'Terpenes', icon:'🌿' },
+    { id:'cannabinoids', label:'Cannabinoids', icon:'🔬' },
+    { id:'consumption', label:'Consumption', icon:'💨' },
+    { id:'cultivation', label:'Cultivation', icon:'🌱' },
+    { id:'history', label:'History', icon:'📜' },
+    { id:'extractions', label:'Extractions', icon:'💎' }
+  ];
+
+  let encActiveTab = 'terpenes';
+  let encActiveTerp = null;
+  let encActiveConsume = null;
+  let encActiveCultiv = null;
+  let encActiveExtractFilter = 'all';
+
+  function encTab(id) {
+    encActiveTab = id;
+    encActiveTerp = null;
+    encActiveConsume = null;
+    encActiveCultiv = null;
+    document.querySelectorAll('.enc-hub-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === id));
+    const panel = document.getElementById('enc-hub-panel');
+    panel.innerHTML = encContent(id);
+    panel.style.animation = 'none';
+    requestAnimationFrame(() => { panel.style.animation = ''; });
+  }
+
+  function encContent(id) {
+    switch(id) {
+      case 'terpenes': return `
+        <div class="enc-tab-intro"><p>Over 200 terpenes have been identified in cannabis. These eight define the most common and well-studied aroma and effect profiles. Click any card to expand its full profile.</p></div>
+        <div class="enc-terp-grid">
+          ${TERPENES.map(t => `
+            <div class="enc-terp-card ${t.cls}" onclick="encTerpOpen('${t.id}')" id="tc-${t.id}">
+              <div class="enc-terp-dot"></div>
+              <div class="enc-terp-name">${t.name}</div>
+              <div class="enc-terp-aroma">${t.aroma}</div>
+              <div class="enc-terp-tags">${t.tags.map(tag => `<span class="enc-terp-tag">${tag}</span>`).join('')}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="enc-detail" id="enc-terp-detail"></div>
+      `;
+      case 'cannabinoids': return `
+        <div class="enc-tab-intro"><p>Cannabis produces over 100 cannabinoids. These six are the most clinically significant — each binding differently to the endocannabinoid system with distinct effects, therapeutic applications, and pharmacological profiles.</p></div>
+        <div class="enc-cannab-grid">
+          ${CANNABINOIDS.map(c => `
+            <div class="enc-cannab-card ${c.cls}">
+              <div class="enc-cannab-abbr">${c.abbr}</div>
+              <div class="enc-cannab-fullname">${c.full}</div>
+              <div class="enc-cannab-psycho">
+                <div class="enc-cannab-psycho-label">Psychoactivity</div>
+                <div class="enc-cannab-track"><div class="enc-cannab-fill"></div></div>
+              </div>
+              <div class="enc-cannab-desc">${c.desc}</div>
+              <div class="enc-cannab-uses">${c.uses.map(u => `<span class="enc-cannab-use">${u}</span>`).join('')}</div>
+              <div class="enc-cannab-found"><span>Found in: </span>${c.found}</div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+      case 'consumption': return `
+        <div class="enc-tab-intro"><p>The same cannabis, consumed differently, produces dramatically different experiences. Onset, duration, bioavailability, and intensity all vary by method. Click any card to expand the full breakdown.</p></div>
+        <div class="enc-consume-grid" id="enc-consume-grid">
+          ${CONSUME_METHODS.map(m => `
+            <div class="enc-consume-card" onclick="encConsumeOpen('${m.id}')" id="cc-${m.id}">
+              <div class="enc-consume-icon">${m.icon}</div>
+              <div class="enc-consume-name">${m.name}</div>
+              <div class="enc-consume-tagline">${m.tagline}</div>
+              <div class="enc-consume-stats">
+                <div><div class="enc-consume-stat-label">Onset</div><div class="enc-consume-stat-val">${m.onset}</div></div>
+                <div><div class="enc-consume-stat-label">Duration</div><div class="enc-consume-stat-val">${m.duration}</div></div>
+                <div><div class="enc-consume-stat-label">Bioavail.</div><div class="enc-consume-stat-val">${m.bio}</div></div>
+                <div><div class="enc-consume-stat-label">Best for</div><div class="enc-consume-stat-val">${m.best}</div></div>
+              </div>
+            </div>
+            <div class="enc-consume-detail" id="cd-${m.id}">
+              <div class="enc-consume-detail-title">${m.name}</div>
+              <div class="enc-consume-detail-sub">${m.tagline}</div>
+              <div class="enc-consume-col"><h4>How It Works</h4><p>${m.how}</p></div>
+              <div class="enc-consume-col"><h4>Advantages</h4><ul>${m.pros.map(p=>`<li>${p}</li>`).join('')}</ul><h4 style="margin-top:16px">Disadvantages</h4><ul>${m.cons.map(c=>`<li>${c}</li>`).join('')}</ul></div>
+              <div class="enc-consume-col" style="grid-column:1/-1"><h4>Pro Tips</h4><p>${m.tips}</p></div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+      case 'cultivation': return `
+        <div class="enc-tab-intro"><p>Every stage of the cannabis life cycle demands different care. Click a stage to explore its requirements, common issues, and expert tips.</p></div>
+        <div class="enc-cultiv-stages">
+          ${CULTIV_STAGES.map((s,i) => `
+            <div class="enc-cultiv-stage" onclick="encCultivOpen(${i})" id="cs-${i}">
+              <div class="enc-cultiv-num">${i+1}</div>
+              <div class="enc-cultiv-stage-name">${s.name}</div>
+              <div class="enc-cultiv-stage-dur">${s.dur}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="enc-cultiv-panel" id="enc-cultiv-panel"></div>
+        <div class="enc-cultiv-enviro">
+          <div class="enc-cultiv-enviro-title">Choosing Your Environment</div>
+          <div class="enc-env-grid">
+            ${CULTIV_ENVIROS.map(e => `
+              <div class="enc-env-card">
+                <div class="enc-env-icon">${e.icon}</div>
+                <div class="enc-env-name">${e.name}</div>
+                <div class="enc-env-body">${e.body}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+      case 'history': return `
+        <div class="enc-tab-intro"><p>Cannabis has been cultivated, consumed, and contested for at least 12,000 years. From ancient Chinese medicine to modern legalization — the complete story of humanity's oldest relationship with a plant.</p></div>
+        <div class="enc-history">
+          ${(() => {
+            let html = '';
+            let lastEra = '';
+            HISTORY_EVENTS.forEach(e => {
+              if (e.era !== lastEra) {
+                html += `<div class="enc-history-era">${e.era}</div>`;
+                lastEra = e.era;
+              }
+              html += `
+                <div class="enc-history-event${e.major ? ' major' : ''}">
+                  <div class="enc-history-date">${e.date}</div>
+                  <div class="enc-history-card">
+                    <span class="enc-history-card-tag history-tag-${e.tag}">${e.tag}</span>
+                    <div class="enc-history-card-title">${e.title}</div>
+                    <div class="enc-history-card-body">${e.body}</div>
+                  </div>
+                </div>
+              `;
+            });
+            return html;
+          })()}
+        </div>
+      `;
+      case 'extractions': return `
+        <div class="enc-tab-intro"><p>From ancient hand-rubbed charas to modern THCA diamonds — extraction is where cannabis transforms into concentrate. Method determines flavor, potency, safety, and character.</p></div>
+        <div class="enc-extract-filter">
+          <button class="enc-extract-filter-btn active" onclick="encApplyExtractFilter('all',this)">All Methods</button>
+          <button class="enc-extract-filter-btn f-solventless" onclick="encApplyExtractFilter('solventless',this)">Solventless</button>
+          <button class="enc-extract-filter-btn f-solvent" onclick="encApplyExtractFilter('solvent',this)">Solvent-Based</button>
+          <button class="enc-extract-filter-btn f-traditional" onclick="encApplyExtractFilter('traditional',this)">Traditional</button>
+        </div>
+        <div class="enc-extract-grid">
+          ${EXTRACT_METHODS.map(m => `
+            <div class="enc-extract-card" data-tier="${m.tier}">
+              <div class="enc-extract-badge tier-${m.tier}">${m.tier === 'solventless' ? '✦ Solventless' : m.tier === 'solvent' ? '⚗ Solvent-Based' : '🏛 Traditional'}</div>
+              <div class="enc-extract-name">${m.name}</div>
+              <div class="enc-extract-sub">${m.sub}</div>
+              <div class="enc-extract-desc">${m.desc}</div>
+              <div class="enc-extract-meta">
+                <div><div class="enc-extract-meta-label">Quality</div><div class="enc-extract-stars">${m.quality}</div></div>
+                <div><div class="enc-extract-meta-label">Solvent</div><div class="enc-extract-meta-val">${m.solvent}</div></div>
+                <div><div class="enc-extract-meta-label">Yield</div><div class="enc-extract-meta-val">${m.yield}</div></div>
+                <div><div class="enc-extract-meta-label">Safety</div><div class="enc-extract-meta-val" style="font-size:11px">${m.safety}</div></div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+  }
+
+  function encTerpOpen(id) {
+    const t = TERPENES.find(x => x.id === id);
+    if (!t) return;
+    const detail = document.getElementById('enc-terp-detail');
+    if (encActiveTerp === id) {
+      encActiveTerp = null;
+      detail.classList.remove('open');
+      document.getElementById('tc-' + id)?.classList.remove('active');
+      return;
+    }
+    if (encActiveTerp) document.getElementById('tc-' + encActiveTerp)?.classList.remove('active');
+    encActiveTerp = id;
+    document.getElementById('tc-' + id)?.classList.add('active');
+    detail.classList.add('open');
+    detail.innerHTML = `
+      <div class="enc-detail-name">${t.name}</div>
+      <div class="enc-detail-sub">${t.aroma} &nbsp;·&nbsp; Boiling Point: <span class="enc-boiling">${t.bp}</span></div>
+      <div class="enc-detail-col"><h4>Effects & Experience</h4><p>${t.effects}</p></div>
+      <div class="enc-detail-col"><h4>Medical Applications</h4><ul>${t.medical.map(m=>`<li>${m}</li>`).join('')}</ul></div>
+      <div class="enc-detail-col"><h4>Also Found In</h4><p style="margin-bottom:10px">${t.found}</p><h4>Notable Strains</h4><p>${t.strains.join(', ')}</p></div>
+      <div class="enc-detail-col" style="grid-column:1/-1;background:rgba(255,255,255,0.02);border-radius:8px;padding:16px"><h4>Cannascenti Notes</h4><p>${t.note}</p></div>
+    `;
+    detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function encConsumeOpen(id) {
+    if (encActiveConsume === id) {
+      encActiveConsume = null;
+      document.getElementById('cd-' + id)?.classList.remove('open');
+      document.getElementById('cc-' + id)?.classList.remove('active');
+      return;
+    }
+    if (encActiveConsume) {
+      document.getElementById('cd-' + encActiveConsume)?.classList.remove('open');
+      document.getElementById('cc-' + encActiveConsume)?.classList.remove('active');
+    }
+    encActiveConsume = id;
+    document.getElementById('cc-' + id)?.classList.add('active');
+    document.getElementById('cd-' + id)?.classList.add('open');
+  }
+
+  function encCultivOpen(idx) {
+    const s = CULTIV_STAGES[idx];
+    const panel = document.getElementById('enc-cultiv-panel');
+    if (encActiveCultiv === idx) {
+      encActiveCultiv = null;
+      panel.classList.remove('open');
+      document.getElementById('cs-' + idx)?.classList.remove('active');
+      return;
+    }
+    if (encActiveCultiv !== null) document.getElementById('cs-' + encActiveCultiv)?.classList.remove('active');
+    encActiveCultiv = idx;
+    document.getElementById('cs-' + idx)?.classList.add('active');
+    panel.classList.add('open');
+    panel.innerHTML = `
+      <div class="enc-cultiv-panel-title">${s.name}</div>
+      <div class="enc-cultiv-panel-dur">${s.dur}</div>
+      <div class="enc-cultiv-col"><h4>What's Happening</h4><p>${s.desc}</p></div>
+      <div class="enc-cultiv-col"><h4>Environment</h4><p>${s.environment}</p><h4 style="margin-top:14px">Nutrients</h4><p>${s.nutrients}</p></div>
+      <div class="enc-cultiv-col"><h4>Key Actions</h4><ul>${s.tips.map(t=>`<li>${t}</li>`).join('')}</ul></div>
+      <div class="enc-cultiv-tip"><strong>Watch out:</strong> ${s.watch}</div>
+      <div class="enc-cultiv-tip" style="margin-top:8px"><strong>Pro tip:</strong> ${s.tip}</div>
+    `;
+  }
+
+  function encApplyExtractFilter(tier, btn) {
+    encActiveExtractFilter = tier;
+    document.querySelectorAll('.enc-extract-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.enc-extract-card').forEach(card => {
+      card.classList.toggle('hidden', tier !== 'all' && card.dataset.tier !== tier);
+    });
+  }
+
+  // Init encyclopedia hub
+  (function() {
+    const nav = document.getElementById('enc-hub-nav');
+    if (!nav) return;
+    nav.innerHTML = ENC_TABS.map(t => `<button class="enc-hub-tab${t.id === encActiveTab ? ' active' : ''}" data-tab="${t.id}" onclick="encTab('${t.id}')"><span class="enc-hub-tab-icon">${t.icon}</span>${t.label}</button>`).join('');
+    document.getElementById('enc-hub-panel').innerHTML = encContent(encActiveTab);
+  })();
+
 
   // Init hash encyclopedia
   hashRegionSelect('morocco');
