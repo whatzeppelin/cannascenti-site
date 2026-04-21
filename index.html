@@ -4675,6 +4675,21 @@
   .enc-extract-stars { color: var(--gold); font-size: 12px; letter-spacing: 2px; }
   .enc-tab-intro { margin-bottom: 36px; }
   .enc-tab-intro p { color: rgba(255,255,255,0.6); font-size: 15px; line-height: 1.7; max-width: 720px; }
+  .enc-globe-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; margin-bottom: 60px; }
+  .enc-globe-canvas-wrap { position: relative; }
+  #enc-globe { display: block; width: 100%; border-radius: 50%; cursor: grab; }
+  #enc-globe:active { cursor: grabbing; }
+  .enc-globe-info { background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 28px; min-height: 280px; position: sticky; top: 100px; }
+  .enc-globe-info-placeholder { display: flex; align-items: center; justify-content: center; min-height: 280px; color: rgba(255,255,255,0.2); font-size: 13px; text-align: center; line-height: 1.6; }
+  .enc-globe-title-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 8px; }
+  .enc-globe-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--cream); margin-bottom: 14px; line-height: 1.2; }
+  .enc-globe-desc { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.7; margin-bottom: 18px; }
+  .enc-globe-strains-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); margin-bottom: 8px; }
+  .enc-globe-strains { display: flex; flex-wrap: wrap; gap: 5px; }
+  .enc-globe-strain { font-size: 11px; padding: 3px 10px; border-radius: 20px; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.6); }
+  .enc-globe-hint { font-size: 11px; color: rgba(255,255,255,0.22); margin-top: 14px; text-align: center; }
+  @media (max-width: 900px) { .enc-globe-wrap { grid-template-columns: 1fr; } .enc-globe-info { position: static; } }
+
   @media (max-width: 900px) {
     .enc-terp-grid { grid-template-columns: repeat(2,1fr); }
     .enc-detail.open { grid-template-columns: 1fr 1fr; }
@@ -8560,6 +8575,21 @@
     { tier:'traditional', name:'Temple Balls', sub:'Traditional Himalayan / Afghani pressed hash', desc:"Temple balls are made by warming and working dry sift or ice water hash by hand until it takes on the characteristic dark, shiny exterior and lighter, blonde interior. The heat and pressure activate a slow curing process that develops complex flavors over months and years. Some collector temple balls are decades old.", quality:'★★★★★', solvent:'None', yield:'Dependent on starting material', safety:'Completely safe', process:['High-quality dry sift or water hash','Worked by hand with body heat','Formed into a sphere','Aged from weeks to years'], notes:"A properly made temple ball improves dramatically with age — like a fine wine. The exterior oxidizes and develops complexity while the interior remains fresh. The finest examples are cultural artifacts." }
   ];
 
+  const GLOBE_ORIGINS = [
+    { id:'hindu-kush', name:'Hindu Kush', lat:35, lon:70, region:'Afghanistan / Pakistan', color:'#c084fc', strains:['Afghan Kush','Mazar-i-Sharif','Hindu Kush OG'], info:"The Hindu Kush mountain range is the birthplace of the classic indica. Thousands of years of harsh climate and isolation produced short, resinous plants with heavy sedating effects. The genetic foundation of most modern indica hybrids — if it puts you on the couch, it probably has Kush in its lineage." },
+    { id:'parvati', name:'Parvati Valley', lat:32, lon:77, region:'Himachal Pradesh, India', color:'#fb923c', strains:['Malana Cream','Parvati Charas','Himalayan Gold'], info:"One of the most celebrated cannabis regions on earth. The Parvati Valley produces some of the finest hand-rubbed charas in existence. Malana Cream — from the isolated village of Malana — is considered among the rarest and most prized hash in the world. The village remains largely inaccessible and the genetics are fiercely protected." },
+    { id:'morocco', name:'Rif Mountains', lat:35, lon:-5, region:'Morocco', color:'#d4af37', strains:['Ketama Gold','Moroccan Hash','Rif Kif'], info:"The Rif Mountains of northern Morocco have produced cannabis and hashish for centuries. The Ketama region is the epicenter — dry-sift kif pressed into the characteristic brown Moroccan slabs. One of the world's oldest commercial hash cultures, still producing millions of pounds annually for European markets." },
+    { id:'lebanon', name:'Bekaa Valley', lat:33.5, lon:36, region:'Lebanon', color:'#ef4444', strains:['Lebanese Red','Lebanese Blonde','Red Leb'], info:"Lebanese hash — both Red and Blonde varieties — was among the most prized cannabis imports of the 1970s. The Bekaa Valley's unique terroir produces a light, spicy, cerebral hash unlike anything from the Kush or Moroccan traditions. Lebanese Red is made from late-harvest, oxidized plants; Blonde from earlier harvests." },
+    { id:'colombia', name:'Sierra Nevada', lat:11, lon:-74, region:'Colombia', color:'#86efac', strains:['Santa Marta Gold','Colombian Gold','Punto Rojo'], info:"Colombia's Sierra Nevada de Santa Marta produced the legendary Colombian Gold — a towering, golden sativa that defined the 1970s American cannabis market. Long-season equatorial genetics with soaring cerebral effects and a distinctive sweet, earthy flavor. The genetic ancestor of countless modern hybrids." },
+    { id:'mexico', name:'Oaxaca / Guerrero', lat:17, lon:-97, region:'Mexico', color:'#f59e0b', strains:['Acapulco Gold','Oaxacan Highland','Mexican Sativa'], info:"Acapulco Gold is one of the most legendary strains ever grown — a golden, caramel-colored sativa from the mountains above Acapulco with a burnt toffee aroma and a distinctly psychedelic, soaring high. Mexican landrace genetics are the backbone of many classic American hybrids from the 1970s era." },
+    { id:'south-africa', name:'KwaZulu-Natal', lat:-29.8, lon:31, region:'South Africa', color:'#4fc04f', strains:['Durban Poison','Swazi Gold','Natal'], info:"Durban Poison — from the port city of Durban — is one of the few African sativa landraces to achieve global recognition. Known for unusually high THCV content, a sweet anise aroma, and a clear, energetic, almost psychedelic effect. One of the highest-testing natural cannabis plants ever recorded. A key parent in many modern hybrids." },
+    { id:'thailand', name:'Northern Thailand', lat:18, lon:99, region:'Thailand / SE Asia', color:'#67e8f9', strains:['Thai Stick','Chocolate Thai','Juicy Fruit'], info:"Thai landraces — particularly the iconic Thai Stick — were legendary in the 1970s American market. Flowers tied to bamboo sticks, sometimes soaked in opium. Chocolate Thai is among the most sought-after extinct landrace genetics. Southeast Asian sativas are characterized by extreme height, long flowering times, and intensely psychedelic, near-hallucinogenic effects." },
+    { id:'jamaica', name:'Blue Mountains', lat:18.1, lon:-76.8, region:'Jamaica', color:'#fcd34d', strains:["Lamb's Bread",'Jamaican','King Jamaican'], info:"Jamaica's Blue Mountains produce cannabis deeply intertwined with Rastafarian culture and spiritual practice. Lamb's Bread was reputedly Bob Marley's preferred strain — a bright green, energetic, uplifting sativa. Jamaican genetics are characterized by long, airy colas, creative euphoria, and a bright, citrus-forward aroma unique to the island's terroir." },
+    { id:'malawi', name:'Lake Malawi Region', lat:-13, lon:34, region:'Malawi, East Africa', color:'#a855f7', strains:['Malawi Gold','Malawi Cob','East African Sativa'], info:"Malawi Gold is one of the most potent African landraces ever documented — some samples have tested over 27% THC naturally. Traditionally cob-cured (flower wrapped around a corn cob and slowly dried), producing a dark, compressed product with a unique fermented flavor and extraordinarily long-lasting effect. A true collector's genetics." },
+    { id:'panama', name:'Panama', lat:9, lon:-80, region:'Central America', color:'#f472b6', strains:['Panama Red','Panama Gold'], info:"Panama Red was one of the most celebrated cannabis strains of the late 1960s — a slow-flowering equatorial sativa with brilliant red pistils, earthy-spicy flavor, and a distinctively cerebral, psychedelic high that lasted for hours. Now essentially extinct as a pure landrace, but its legacy lives in the genetics of dozens of modern hybrids." },
+    { id:'hawaii', name:'Maui / Big Island', lat:20.8, lon:-156.3, region:'Hawaii, USA', color:'#22c55e', strains:['Maui Wowie','Hawaiian','Puna Budder'], info:"Hawaii's volcanic soil, tropical climate, and natural isolation produced some of the most unique cannabis genetics in the world. Maui Wowie — sweet, tropical, pineapple-forward — became one of the signature strains of 1970s American cannabis culture. Hawaiian genetics contributed significantly to modern tropical hybrid breeding and remain prized by serious breeders." }
+  ];
+
   const ENC_TABS = [
     { id:'terpenes', label:'Terpenes', icon:'🌿' },
     { id:'cannabinoids', label:'Cannabinoids', icon:'🔬' },
@@ -8575,7 +8605,9 @@
   let encActiveCultiv = null;
   let encActiveExtractFilter = 'all';
 
+  let globeCleanup = null;
   function encTab(id) {
+    if (globeCleanup) { globeCleanup(); globeCleanup = null; }
     encActiveTab = id;
     encActiveTerp = null;
     encActiveConsume = null;
@@ -8584,7 +8616,10 @@
     const panel = document.getElementById('enc-hub-panel');
     panel.innerHTML = encContent(id);
     panel.style.animation = 'none';
-    requestAnimationFrame(() => { panel.style.animation = ''; });
+    requestAnimationFrame(() => {
+      panel.style.animation = '';
+      if (id === 'history') globeCleanup = initEncGlobe();
+    });
   }
 
   function encContent(id) {
@@ -8673,6 +8708,15 @@
       `;
       case 'history': return `
         <div class="enc-tab-intro"><p>Cannabis has been cultivated, consumed, and contested for at least 12,000 years. From ancient Chinese medicine to modern legalization — the complete story of humanity's oldest relationship with a plant.</p></div>
+        <div class="enc-globe-wrap">
+          <div class="enc-globe-canvas-wrap">
+            <canvas id="enc-globe"></canvas>
+            <div class="enc-globe-hint">Click any origin to explore · Drag to rotate</div>
+          </div>
+          <div class="enc-globe-info" id="enc-globe-info">
+            <div class="enc-globe-info-placeholder">Click any glowing dot on the globe to explore a cannabis origin region</div>
+          </div>
+        </div>
         <div class="enc-history">
           ${(() => {
             let html = '';
@@ -8788,6 +8832,160 @@
       <div class="enc-cultiv-tip"><strong>Watch out:</strong> ${s.watch}</div>
       <div class="enc-cultiv-tip" style="margin-top:8px"><strong>Pro tip:</strong> ${s.tip}</div>
     `;
+  }
+
+
+  function initEncGlobe() {
+    const canvas = document.getElementById('enc-globe');
+    if (!canvas) return null;
+    const ctx = canvas.getContext('2d');
+    const SIZE = Math.min(canvas.parentElement.offsetWidth || 480, 480);
+    canvas.width = canvas.height = SIZE;
+    const cx = SIZE / 2, cy = SIZE / 2, R = SIZE * 0.42;
+    let rotLon = 20, isSpinning = true, hoveredId = null, selectedId = null, animId = null;
+    let isDragging = false, lastDragX = 0;
+
+    function project(lat, lon) {
+      const phi = lat * Math.PI / 180;
+      const lam = (lon - rotLon) * Math.PI / 180;
+      const cp = 12 * Math.PI / 180;
+      const x = R * Math.cos(phi) * Math.sin(lam);
+      const y = R * (Math.cos(cp) * Math.sin(phi) - Math.sin(cp) * Math.cos(phi) * Math.cos(lam));
+      const vis = Math.sin(cp) * Math.sin(phi) + Math.cos(cp) * Math.cos(phi) * Math.cos(lam) > 0;
+      return { x: cx + x, y: cy - y, vis };
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, SIZE, SIZE);
+      // Ocean
+      const og = ctx.createRadialGradient(cx - R*.25, cy - R*.25, 0, cx, cy, R);
+      og.addColorStop(0, '#0d2440'); og.addColorStop(1, '#040c1a');
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2); ctx.fillStyle = og; ctx.fill();
+      // Grid
+      ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2); ctx.clip();
+      ctx.strokeStyle = 'rgba(255,255,255,0.055)'; ctx.lineWidth = 0.5;
+      for (let lat = -80; lat <= 80; lat += 20) {
+        ctx.beginPath(); let s = false;
+        for (let lon = -180; lon <= 180; lon += 2) {
+          const p = project(lat, lon);
+          if (p.vis) { s ? ctx.lineTo(p.x,p.y) : ctx.moveTo(p.x,p.y); s = true; } else s = false;
+        } ctx.stroke();
+      }
+      for (let lon = -180; lon < 180; lon += 20) {
+        ctx.beginPath(); let s = false;
+        for (let lat = -90; lat <= 90; lat += 2) {
+          const p = project(lat, lon);
+          if (p.vis) { s ? ctx.lineTo(p.x,p.y) : ctx.moveTo(p.x,p.y); s = true; } else s = false;
+        } ctx.stroke();
+      }
+      ctx.restore();
+      // Border
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2);
+      ctx.strokeStyle = 'rgba(255,255,255,0.1)'; ctx.lineWidth = 1; ctx.stroke();
+      // Atmosphere glow
+      const ag = ctx.createRadialGradient(cx, cy, R*.88, cx, cy, R*1.1);
+      ag.addColorStop(0, 'rgba(79,192,79,0)'); ag.addColorStop(1, 'rgba(79,192,79,0.07)');
+      ctx.beginPath(); ctx.arc(cx, cy, R*1.08, 0, Math.PI*2); ctx.fillStyle = ag; ctx.fill();
+      // Markers
+      const now = Date.now();
+      const sorted = GLOBE_ORIGINS.map(o => ({ ...o, p: project(o.lat, o.lon) })).sort((a,b) => a.p.vis - b.p.vis);
+      sorted.forEach(o => {
+        const { p } = o;
+        if (!p.vis) {
+          ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, Math.PI*2);
+          ctx.fillStyle = 'rgba(255,255,255,0.07)'; ctx.fill(); return;
+        }
+        const hot = hoveredId === o.id || selectedId === o.id;
+        const pulse = Math.sin(now * 0.0025 + o.lat * 0.5) * 0.5 + 0.5;
+        // Glow
+        const gg = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, hot ? 22 : 14);
+        gg.addColorStop(0, o.color + '55'); gg.addColorStop(1, o.color + '00');
+        ctx.beginPath(); ctx.arc(p.x, p.y, hot ? 22 : 14, 0, Math.PI*2); ctx.fillStyle = gg; ctx.fill();
+        // Pulse ring
+        const rr = (hot ? 12 : 7) + pulse * 5;
+        ctx.beginPath(); ctx.arc(p.x, p.y, rr, 0, Math.PI*2);
+        ctx.strokeStyle = o.color + (hot ? 'aa' : '44'); ctx.lineWidth = 1; ctx.stroke();
+        // Core
+        ctx.beginPath(); ctx.arc(p.x, p.y, hot ? 6 : 4, 0, Math.PI*2);
+        ctx.fillStyle = hot ? '#ffffff' : o.color; ctx.fill();
+        // Label
+        ctx.font = (hot ? 'bold 11px' : '9px') + " 'Montserrat',sans-serif";
+        ctx.fillStyle = hot ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.45)';
+        ctx.textAlign = 'left'; ctx.fillText(o.name, p.x + 9, p.y - 3);
+      });
+      // Specular
+      const sg = ctx.createRadialGradient(cx-R*.38, cy-R*.38, 0, cx-R*.3, cy-R*.3, R*.75);
+      sg.addColorStop(0, 'rgba(255,255,255,0.045)'); sg.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2); ctx.fillStyle = sg; ctx.fill();
+    }
+
+    function animate() {
+      if (isSpinning && !isDragging) rotLon = (rotLon + 0.12) % 360;
+      draw();
+      animId = requestAnimationFrame(animate);
+    }
+
+    function hitTest(mx, my) {
+      for (const o of GLOBE_ORIGINS) {
+        const p = project(o.lat, o.lon);
+        if (p.vis && Math.hypot(mx - p.x, my - p.y) < 18) return o;
+      }
+      return null;
+    }
+
+    function canvasCoords(e) {
+      const r = canvas.getBoundingClientRect();
+      const scale = SIZE / r.width;
+      const src = e.touches ? e.touches[0] : e;
+      return { mx: (src.clientX - r.left) * scale, my: (src.clientY - r.top) * scale };
+    }
+
+    function showInfo(o) {
+      const panel = document.getElementById('enc-globe-info');
+      if (!panel) return;
+      panel.innerHTML = `
+        <div class="enc-globe-title-label" style="color:${o.color}">${o.region}</div>
+        <div class="enc-globe-title">${o.name}</div>
+        <div class="enc-globe-desc">${o.info}</div>
+        <div class="enc-globe-strains-label">Notable Genetics</div>
+        <div class="enc-globe-strains">${o.strains.map(s=>`<span class="enc-globe-strain">${s}</span>`).join('')}</div>
+      `;
+    }
+
+    canvas.addEventListener('mousemove', e => {
+      if (isDragging) {
+        rotLon -= (e.clientX - lastDragX) * 0.4;
+        lastDragX = e.clientX; return;
+      }
+      const { mx, my } = canvasCoords(e);
+      const hit = hitTest(mx, my);
+      hoveredId = hit ? hit.id : null;
+      canvas.style.cursor = hit ? 'pointer' : 'grab';
+      if (hit && hit.id !== selectedId) showInfo(hit);
+    });
+
+    canvas.addEventListener('mousedown', e => {
+      isDragging = true; isSpinning = false; lastDragX = e.clientX;
+      canvas.style.cursor = 'grabbing';
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (isDragging) { isDragging = false; canvas.style.cursor = hoveredId ? 'pointer' : 'grab'; }
+    });
+
+    canvas.addEventListener('click', e => {
+      const { mx, my } = canvasCoords(e);
+      const hit = hitTest(mx, my);
+      if (hit) { selectedId = hit.id; isSpinning = false; showInfo(hit); }
+      else if (!isDragging) { selectedId = null; isSpinning = true; }
+    });
+
+    canvas.addEventListener('touchstart', e => { isDragging = true; isSpinning = false; lastDragX = e.touches[0].clientX; }, {passive:true});
+    canvas.addEventListener('touchmove', e => { rotLon -= (e.touches[0].clientX - lastDragX) * 0.4; lastDragX = e.touches[0].clientX; e.preventDefault(); }, {passive:false});
+    canvas.addEventListener('touchend', () => { isDragging = false; });
+
+    animate();
+    return () => cancelAnimationFrame(animId);
   }
 
   function encApplyExtractFilter(tier, btn) {
