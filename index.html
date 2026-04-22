@@ -5638,85 +5638,11 @@
   </div>
 </div>
 
-<div class="full-divider"></div>
-
-<!-- THE CRAFT -->
-<div id="the-craft" class="craft">
-  <div class="craft-inner">
-    <div class="section-label"><span class="pg">06</span> ✦ The Craft</div>
-    <div class="section-title">From <em>seed to extract</em> — the full picture</div>
-    <p style="font-size:14px; line-height:1.9; color:var(--cream); opacity:0.5; max-width:680px; margin-top:16px;">Most people experience cannabis as a final product. Very few understand what it takes to grow it, process it, and transform it. This is where that changes — cultivation, extraction, and infusion explained from the ground up.</p>
-
-    <!-- GROWING CANNABIS -->
-    <div class="grow-section" style="margin-bottom: 80px;">
-      <div class="terpene-intro">
-        <div class="section-label">✦ Growing Cannabis</div>
-        <div class="terpene-intro-title">Seed to harvest — <em>the full lifecycle</em></div>
-        <p class="terpene-intro-desc">Every great cannabis experience starts here. Understanding the plant's lifecycle makes you a better consumer and a smarter buyer. Click each stage to see what's happening inside the plant.</p>
-      </div>
-      <div class="grow-timeline" id="growTimeline"></div>
-      <div class="consume-detail" id="growDetail"></div>
-    </div>
-
-    <div class="craft-pillars">
-
-      <div class="craft-pillar">
-        <div class="craft-pillar-icon">🌱</div>
-        <div class="craft-pillar-title">Cultivation — <em>Seed to Harvest</em></div>
-        <p class="craft-pillar-desc">Whether you're growing in a closet or running a commercial facility, understanding how cannabis is cultivated changes how you experience it forever. From your first seed to building a genetics program that defines a generation.</p>
-        <ul class="craft-topics">
-          <li>Home growing — tents, lights, soil vs. hydro</li>
-          <li>Understanding plant stages — veg, flower, harvest</li>
-          <li>Commercial cultivation & facility design</li>
-          <li>Licensing & entering the industry as a grower</li>
-          <li>Genetics & breeding — creating new strains</li>
-          <li>Phenotype hunting — finding the one</li>
-          <li>Cloning & maintaining a mother plant library</li>
-          <li>Seed hunting around the world — landraces & preservation</li>
-        </ul>
-      </div>
-
-      <div class="craft-pillar">
-        <div class="craft-pillar-icon">⚗️</div>
-        <div class="craft-pillar-title">Extractions — <em>Concentrates & Beyond</em></div>
-        <p class="craft-pillar-desc">Concentrates aren't just a product category — they're a craft. Understanding how rosin, live resin, distillate, and diamonds are made gives you a completely new lens on quality, pricing, and what you're actually consuming.</p>
-        <ul class="craft-topics">
-          <li>Solventless vs. solvent-based extraction — the real difference</li>
-          <li>Rosin pressing — home and commercial scale</li>
-          <li>Bubble hash & ice water extraction</li>
-          <li>Live resin & live rosin — why fresh-frozen matters</li>
-          <li>Distillate, BHO & THCA diamonds explained</li>
-          <li>Home extraction basics & safety</li>
-          <li>Building a commercial extraction operation</li>
-          <li>Reading a COA — what lab results actually mean</li>
-        </ul>
-      </div>
-
-      <div class="craft-pillar">
-        <div class="craft-pillar-icon">🍫</div>
-        <div class="craft-pillar-title">Edibles & <em>Infusions</em></div>
-        <p class="craft-pillar-desc">Edibles are one of the most misunderstood categories in cannabis. Dosing, consistency, and bioavailability separate a great product from a disaster. Whether you're cooking at home or launching a brand, this is where it starts.</p>
-        <ul class="craft-topics">
-          <li>Decarboxylation — why it's the most important step</li>
-          <li>Infusing oils, butters & tinctures at home</li>
-          <li>Bioavailability — why edibles hit differently</li>
-          <li>Dosing consistency & how to measure accurately</li>
-          <li>Nano-emulsification & fast-acting technology</li>
-          <li>Commercial edible production & compliance</li>
-          <li>Beverages, tinctures & sublingual products</li>
-          <li>Launching an edible brand — what you need to know</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</div>
-
 <!-- CANNABIS & FOOD -->
 <div id="cannabis-food" class="cannafood-section">
   <div class="cannafood-inner">
 
-    <div class="section-label"><span class="pg">07</span> ✦ Cannabis &amp; Food</div>
+    <div class="section-label"><span class="pg">06</span> ✦ Cannabis &amp; Food</div>
     <div class="section-title">Cook with intention. <em>Dose with precision.</em></div>
     <p class="cannafood-intro">Edibles are the most misunderstood consumption method in cannabis — and the most powerful. The difference between a transcendent experience and a terrible afternoon comes down to three things: decarboxylation, infusion, and dosing. Master all three.</p>
 
@@ -6037,7 +5963,7 @@
 
     <div class="bpro-header-row">
       <div>
-        <div class="section-label"><span class="pg">08</span> ✦ Budtender Pro</div>
+        <div class="section-label"><span class="pg">07</span> ✦ Budtender Pro</div>
         <div class="section-title">The tool built for <em>the floor.</em></div>
         <p class="bpro-intro">Fast, practical cannabis intelligence for dispensary professionals. Customer intake, instant strain matching, terminology reference, and ready-to-use customer scripts — everything you need to give exceptional service on every transaction.</p>
       </div>
@@ -6843,9 +6769,6 @@
         </div>
       </div>`;
   }
-  renderGrowTimeline();
-  growSelect('seed');
-
   // ─── Dosing Guide ────────────────────────────────────────────────────────────
   const DOSE_DATA = {
     new: {
@@ -8835,6 +8758,7 @@
       if (id === 'terpenes') initTerpeneWheel();
       if (id === 'cannabinoids') molSelect('thc');
       if (id === 'consumption') { renderConsumeGrid(); consumeSelect('flower'); }
+      if (id === 'cultivation') { renderGrowTimeline(); growSelect('seed'); }
     });
   }
 
@@ -9022,6 +8946,74 @@
                 <div class="enc-env-body">${e.body}</div>
               </div>
             `).join('')}
+          </div>
+        </div>
+
+        <div style="margin-top: 80px; padding-top: 60px; border-top: 1px solid rgba(82,183,136,0.12);">
+          <div class="terpene-intro">
+            <div class="section-label">✦ Seed to Extract — The Full Picture</div>
+            <div class="terpene-intro-title">From <em>seed to extract</em> — the full picture</div>
+            <p class="terpene-intro-desc">Most people experience cannabis as a final product. Very few understand what it takes to grow it, process it, and transform it. This is where that changes — cultivation, extraction, and infusion explained from the ground up.</p>
+          </div>
+
+          <div class="terpene-intro" style="margin-top: 40px;">
+            <div class="section-label">✦ Growing Cannabis</div>
+            <div class="terpene-intro-title">Seed to harvest — <em>the full lifecycle</em></div>
+            <p class="terpene-intro-desc">Every great cannabis experience starts here. Understanding the plant's lifecycle makes you a better consumer and a smarter buyer. Click each stage to see what's happening inside the plant.</p>
+          </div>
+          <div class="grow-timeline" id="growTimeline"></div>
+          <div class="consume-detail" id="growDetail"></div>
+
+          <div class="craft-pillars" style="margin-top: 60px;">
+
+            <div class="craft-pillar">
+              <div class="craft-pillar-icon">🌱</div>
+              <div class="craft-pillar-title">Cultivation — <em>Seed to Harvest</em></div>
+              <p class="craft-pillar-desc">Whether you're growing in a closet or running a commercial facility, understanding how cannabis is cultivated changes how you experience it forever. From your first seed to building a genetics program that defines a generation.</p>
+              <ul class="craft-topics">
+                <li>Home growing — tents, lights, soil vs. hydro</li>
+                <li>Understanding plant stages — veg, flower, harvest</li>
+                <li>Commercial cultivation & facility design</li>
+                <li>Licensing & entering the industry as a grower</li>
+                <li>Genetics & breeding — creating new strains</li>
+                <li>Phenotype hunting — finding the one</li>
+                <li>Cloning & maintaining a mother plant library</li>
+                <li>Seed hunting around the world — landraces & preservation</li>
+              </ul>
+            </div>
+
+            <div class="craft-pillar">
+              <div class="craft-pillar-icon">⚗️</div>
+              <div class="craft-pillar-title">Extractions — <em>Concentrates & Beyond</em></div>
+              <p class="craft-pillar-desc">Concentrates aren't just a product category — they're a craft. Understanding how rosin, live resin, distillate, and diamonds are made gives you a completely new lens on quality, pricing, and what you're actually consuming.</p>
+              <ul class="craft-topics">
+                <li>Solventless vs. solvent-based extraction — the real difference</li>
+                <li>Rosin pressing — home and commercial scale</li>
+                <li>Bubble hash & ice water extraction</li>
+                <li>Live resin & live rosin — why fresh-frozen matters</li>
+                <li>Distillate, BHO & THCA diamonds explained</li>
+                <li>Home extraction basics & safety</li>
+                <li>Building a commercial extraction operation</li>
+                <li>Reading a COA — what lab results actually mean</li>
+              </ul>
+            </div>
+
+            <div class="craft-pillar">
+              <div class="craft-pillar-icon">🍫</div>
+              <div class="craft-pillar-title">Edibles & <em>Infusions</em></div>
+              <p class="craft-pillar-desc">Edibles are one of the most misunderstood categories in cannabis. Dosing, consistency, and bioavailability separate a great product from a disaster. Whether you're cooking at home or launching a brand, this is where it starts.</p>
+              <ul class="craft-topics">
+                <li>Decarboxylation — why it's the most important step</li>
+                <li>Infusing oils, butters & tinctures at home</li>
+                <li>Bioavailability — why edibles hit differently</li>
+                <li>Dosing consistency & how to measure accurately</li>
+                <li>Nano-emulsification & fast-acting technology</li>
+                <li>Commercial edible production & compliance</li>
+                <li>Beverages, tinctures & sublingual products</li>
+                <li>Launching an edible brand — what you need to know</li>
+              </ul>
+            </div>
+
           </div>
         </div>
       `;
