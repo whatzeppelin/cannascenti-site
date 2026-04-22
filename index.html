@@ -60,10 +60,22 @@
   .quiz-label { font-size: 11px; font-weight: 500; letter-spacing: 0.5em; text-transform: uppercase; color: var(--bright-green); margin-bottom: 20px; }
   .quiz-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4vw, 48px); color: var(--cream); line-height: 1.2; margin-bottom: 12px; }
   .quiz-subtitle { font-size: 15px; color: rgba(242,234,216,0.5); margin-bottom: 56px; line-height: 1.7; }
-  .quiz-progress-bar { display: flex; gap: 6px; margin-bottom: 52px; }
+  .quiz-progress-wrap { margin-bottom: 52px; }
+  .quiz-progress-bar { display: flex; gap: 6px; margin-bottom: 10px; }
   .quiz-progress-dot { flex: 1; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; transition: background 0.3s; }
   .quiz-progress-dot.done { background: var(--bright-green); }
   .quiz-progress-dot.active { background: rgba(82,183,136,0.5); }
+  .quiz-progress-label { font-size: 11px; color: rgba(242,234,216,0.3); letter-spacing: 0.15em; text-transform: uppercase; }
+  .quiz-analyzing { text-align: center; padding: 80px 20px; }
+  .quiz-analyzing-icon { font-size: 40px; margin-bottom: 24px; animation: pulse 1.2s ease-in-out infinite; }
+  .quiz-analyzing-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--cream); margin-bottom: 24px; font-style: italic; }
+  .quiz-analyzing-dots { display: flex; justify-content: center; gap: 8px; }
+  .quiz-analyzing-dots span { width: 8px; height: 8px; background: var(--bright-green); border-radius: 50%; animation: dotBounce 1.2s ease-in-out infinite; }
+  .quiz-analyzing-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .quiz-analyzing-dots span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes dotBounce { 0%,80%,100%{transform:scale(0.6);opacity:0.4} 40%{transform:scale(1);opacity:1} }
+  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
+  .quiz-profile-name { font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(242,234,216,0.4); margin-bottom: 8px; }
   .quiz-question { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 3vw, 32px); color: var(--cream); margin-bottom: 36px; font-style: italic; line-height: 1.4; }
   .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .quiz-option { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 20px 24px; cursor: pointer; transition: all 0.2s; text-align: left; }
@@ -5074,12 +5086,15 @@
       <div class="quiz-label">✦ The Cannascenti Match</div>
       <h2 class="quiz-title">The smartest way to<br>choose cannabis.</h2>
       <p class="quiz-subtitle">Answer 5 questions and we'll tell you exactly what to look for — strains, terpenes, and why they'll work for you.</p>
-      <div class="quiz-progress-bar" id="quizProgress">
-        <div class="quiz-progress-dot active"></div>
-        <div class="quiz-progress-dot"></div>
-        <div class="quiz-progress-dot"></div>
-        <div class="quiz-progress-dot"></div>
-        <div class="quiz-progress-dot"></div>
+      <div class="quiz-progress-wrap">
+        <div class="quiz-progress-bar" id="quizProgress">
+          <div class="quiz-progress-dot active"></div>
+          <div class="quiz-progress-dot"></div>
+          <div class="quiz-progress-dot"></div>
+          <div class="quiz-progress-dot"></div>
+          <div class="quiz-progress-dot"></div>
+        </div>
+        <div class="quiz-progress-label" id="quizProgressLabel">Question 1 of 5</div>
       </div>
       <div id="quizStepWrap"></div>
     </div>
@@ -9210,6 +9225,7 @@
   const QUIZ_RESULTS = {
     relax: {
       badge: 'Your Match — Relax',
+      profileName: 'The Relaxed Evening Unwinder',
       title: 'Unwind. Release. Breathe.',
       desc: 'You want to decompress — fully. Not half-asleep, not foggy. Just that feeling where your shoulders drop and the week stops mattering. Look for strains heavy in myrcene and linalool — they\'re the ones that signal your body it\'s safe to let go.',
       guidance: 'If you want something stronger, ask for higher myrcene content or a true indica. If you\'re newer to cannabis, start with Northern Lights — it\'s smooth, predictable, and won\'t overwhelm.',
@@ -9221,6 +9237,7 @@
     },
     focus: {
       badge: 'Your Match — Focus',
+      profileName: 'The Sharp Daytime Achiever',
       title: 'Sharp. Clear. In the zone.',
       desc: 'You want your brain actually working for you — locked in, getting things done, without the anxious jitter that caffeine gives you. Look for terpinolene and pinene. They keep you sharp without the edge. The kind of high where you sit down to work and actually do it.',
       guidance: 'If you want something more energetic, go for Durban Poison — it\'s one of the most purely focused strains on the market. If you\'re newer, start with Jack Herer — it\'s a classic for a reason.',
@@ -9232,6 +9249,7 @@
     },
     sleep: {
       badge: 'Your Match — Sleep',
+      profileName: 'The Deep Rest Seeker',
       title: 'Power down. Deep rest.',
       desc: 'You\'re done lying awake. Done with the 2am brain spiral. These strains are built to quiet your mind, relax your muscles, and guide you into the kind of sleep you\'ve been missing. Myrcene-heavy, body-forward, and deeply sedating.',
       guidance: 'If you want maximum sedation, go for 9 Pound Hammer — it hits hard and fast. If you\'re newer or sensitive to THC, start with Bubba Kush — it\'s heavy but steady.',
@@ -9243,6 +9261,7 @@
     },
     creative: {
       badge: 'Your Match — Creative',
+      profileName: 'The Creative Mind Explorer',
       title: 'Open up. Make things.',
       desc: 'You want to see things a little differently. Make something. Think sideways. The kind of high where ideas just keep coming and nothing feels impossible. Look for limonene and ocimene — the terpenes that lift your mood and unlock lateral thinking without putting you to sleep.',
       guidance: 'If you want a stronger creative push, try Amnesia Haze — it\'s intense but legendary for it. If you\'re newer, Blue Dream is the most forgiving creative strain there is.',
@@ -9254,6 +9273,7 @@
     },
     uplift: {
       badge: 'Your Match — Uplift',
+      profileName: 'The Social Energy Seeker',
       title: 'Light. Euphoric. Alive.',
       desc: 'You want to feel good — genuinely, socially, fully alive. The kind of energy that makes you want to call someone and actually go outside. Limonene-dominant strains drive that bright, mood-elevated high. They interact directly with your serotonin and dopamine receptors — the same pathways that make a good day feel great.',
       guidance: 'If you want max euphoria, Sour Diesel is the gold standard. If you\'re newer to sativa energy, Super Lemon Haze is smoother and more manageable.',
@@ -9265,6 +9285,7 @@
     },
     balanced: {
       badge: 'Your Match — Balanced',
+      profileName: 'The Balanced Everyday Smoker',
       title: 'The best of both worlds.',
       desc: 'You don\'t want to be knocked out. You don\'t want to be wired. You want something smooth that works in any situation without going too far in either direction. Hybrid strains with caryophyllene and limonene give you relaxation and mood lift at the same time — the most versatile experience in cannabis.',
       guidance: 'If you want to dial up the relaxation, try Girl Scout Cookies. If you want something with less THC that\'s still effective, Cannatonic is perfect — lower intensity, same quality.',
@@ -9275,6 +9296,9 @@
       ]
     }
   };
+
+  // Q1 (feeling) and Q4 (goal) count double — they're the most predictive
+  const QUIZ_WEIGHTS = [2, 1, 1, 2, 1];
 
   let quizScores = {relax:0, focus:0, sleep:0, creative:0, uplift:0};
   let quizStep = 0;
@@ -9287,6 +9311,8 @@
       if (i < quizStep) d.classList.add('done');
       else if (i === quizStep) d.classList.add('active');
     });
+    const label = document.getElementById('quizProgressLabel');
+    if (label) label.textContent = `Question ${quizStep + 1} of ${QUIZ_STEPS.length}`;
     document.getElementById('quizStepWrap').innerHTML = `
       <div class="quiz-question">${step.q}</div>
       <div class="quiz-options">
@@ -9303,10 +9329,11 @@
 
   function quizAnswer(idx) {
     const scores = QUIZ_STEPS[quizStep].options[idx].scores;
-    for (const k in scores) quizScores[k] = (quizScores[k]||0) + scores[k];
+    const weight = QUIZ_WEIGHTS[quizStep] || 1;
+    for (const k in scores) quizScores[k] = (quizScores[k]||0) + scores[k] * weight;
     quizStep++;
     if (quizStep >= QUIZ_STEPS.length) {
-      quizShowResult();
+      quizShowAnalyzing();
     } else {
       quizRender();
     }
@@ -9319,14 +9346,29 @@
     quizRender();
   }
 
-  function quizShowResult() {
-    const top = Object.entries(quizScores).sort((a,b) => b[1]-a[1])[0];
-    const key = top[1] > 0 ? top[0] : 'balanced';
-    const r = QUIZ_RESULTS[key];
+  function quizShowAnalyzing() {
     document.getElementById('quizFlow').style.display = 'none';
     const el = document.getElementById('quizResult');
     el.style.display = 'block';
     el.innerHTML = `
+      <div class="quiz-analyzing">
+        <div class="quiz-analyzing-icon">🌿</div>
+        <div class="quiz-analyzing-title">Analyzing your preferences…</div>
+        <div class="quiz-analyzing-dots">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    `;
+    setTimeout(quizShowResult, 1600);
+  }
+
+  function quizShowResult() {
+    const sorted = Object.entries(quizScores).sort((a,b) => b[1]-a[1]);
+    const key = sorted[0][1] > 0 ? sorted[0][0] : 'balanced';
+    const r = QUIZ_RESULTS[key];
+    const el = document.getElementById('quizResult');
+    el.innerHTML = `
+      <div class="quiz-profile-name">${r.profileName}</div>
       <div class="quiz-result-badge">${r.badge}</div>
       <h2 class="quiz-result-title">${r.title}</h2>
       <p class="quiz-result-desc">${r.desc}</p>
