@@ -109,7 +109,36 @@
     .quiz-section { padding: 60px 24px; }
     .quiz-options { grid-template-columns: 1fr; }
     .quiz-strains { grid-template-columns: 1fr; }
+    .quiz-email-form { flex-direction: column; }
   }
+  /* Welcome back */
+  .quiz-welcome-back { background: rgba(82,183,136,0.06); border: 1px solid rgba(82,183,136,0.18); border-radius: 10px; padding: 14px 20px; margin-bottom: 28px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .quiz-welcome-back-text { font-size: 13px; color: rgba(242,234,216,0.65); }
+  .quiz-welcome-back-name { color: var(--bright-green); font-weight: 600; }
+  .quiz-welcome-back-btn { font-size: 11px; letter-spacing: 0.1em; color: var(--bright-green); background: none; border: 1px solid rgba(82,183,136,0.3); border-radius: 20px; padding: 7px 16px; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+  .quiz-welcome-back-btn:hover { background: rgba(82,183,136,0.1); }
+  /* Refine results */
+  .quiz-refine-wrap { margin: 32px 0 0; }
+  .quiz-refine-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(242,234,216,0.3); margin-bottom: 12px; }
+  .quiz-refine-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+  .quiz-refine-btn { background: none; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; color: rgba(242,234,216,0.55); font-family: 'Montserrat', sans-serif; font-size: 12px; padding: 9px 20px; cursor: pointer; transition: all 0.2s; }
+  .quiz-refine-btn:hover { border-color: rgba(82,183,136,0.4); color: var(--cream); }
+  /* Save profile */
+  .quiz-save-wrap { margin: 24px 0 0; }
+  .quiz-save-btn { background: none; border: 1px solid rgba(82,183,136,0.25); border-radius: 20px; color: rgba(82,183,136,0.8); font-family: 'Montserrat', sans-serif; font-size: 12px; padding: 9px 20px; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+  .quiz-save-btn:hover:not(.saved) { background: rgba(82,183,136,0.08); border-color: rgba(82,183,136,0.5); }
+  .quiz-save-btn.saved { opacity: 0.5; cursor: default; }
+  /* Email capture */
+  .quiz-email-capture { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 32px 28px; margin: 36px 0; text-align: center; }
+  .quiz-email-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--cream); margin-bottom: 6px; }
+  .quiz-email-sub { font-size: 13px; color: rgba(242,234,216,0.45); margin-bottom: 22px; line-height: 1.6; }
+  .quiz-email-form { display: flex; gap: 10px; max-width: 420px; margin: 0 auto; }
+  .quiz-email-input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 12px 16px; color: var(--cream); font-family: 'Montserrat', sans-serif; font-size: 14px; outline: none; min-width: 0; }
+  .quiz-email-input::placeholder { color: rgba(242,234,216,0.28); }
+  .quiz-email-input:focus { border-color: rgba(82,183,136,0.4); }
+  .quiz-email-submit { background: var(--bright-green); color: #0a0e06; border: none; border-radius: 8px; padding: 12px 22px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; transition: opacity 0.2s; }
+  .quiz-email-submit:hover { opacity: 0.85; }
+  .quiz-email-success { color: var(--bright-green); font-size: 14px; padding: 8px 0; }
 
   /* ===================== NAV ===================== */
   nav {
@@ -5083,6 +5112,7 @@
 <section id="quiz" class="quiz-section">
   <div class="quiz-inner">
     <div id="quizFlow">
+      <div id="quizWelcomeBack"></div>
       <div class="quiz-label">✦ The Cannascenti Match</div>
       <h2 class="quiz-title">The smartest way to<br>choose cannabis.</h2>
       <p class="quiz-subtitle">Answer 5 questions and we'll tell you exactly what to look for — strains, terpenes, and why they'll work for you.</p>
@@ -9302,6 +9332,7 @@
 
   let quizScores = {relax:0, focus:0, sleep:0, creative:0, uplift:0};
   let quizStep = 0;
+  let quizFinalKey = null;
 
   function quizRender() {
     const step = QUIZ_STEPS[quizStep];
@@ -9365,7 +9396,9 @@
   function quizShowResult() {
     const sorted = Object.entries(quizScores).sort((a,b) => b[1]-a[1]);
     const key = sorted[0][1] > 0 ? sorted[0][0] : 'balanced';
+    quizFinalKey = key;
     const r = QUIZ_RESULTS[key];
+    const alreadySaved = (() => { try { return JSON.parse(localStorage.getItem('cannascenti_profile'))?.key === key; } catch(e) { return false; } })();
     const el = document.getElementById('quizResult');
     el.innerHTML = `
       <div class="quiz-profile-name">${r.profileName}</div>
@@ -9381,11 +9414,32 @@
             <div class="quiz-strain-thc">THC ${s.thc}</div>
             <div class="quiz-strain-effects">${s.effects.map(e=>`<span class="quiz-strain-effect">${e}</span>`).join('')}</div>
             <div class="quiz-strain-terps">${s.terps}</div>
-            <a class="quiz-strain-find" href="${s.link}" target="_blank" rel="noopener">Find near you →</a>
+            <a class="quiz-strain-find" href="${s.link}" target="_blank" rel="noopener">View available near you →</a>
           </div>`).join('')}
       </div>
       <div class="quiz-guidance">💡 ${r.guidance}</div>
-      <div class="quiz-result-actions">
+      <div class="quiz-refine-wrap">
+        <div class="quiz-refine-label">Tweak your results</div>
+        <div class="quiz-refine-btns">
+          <button class="quiz-refine-btn" onclick="quizRefine('light')">Less intense</button>
+          <button class="quiz-refine-btn" onclick="quizRefine('energy')">More energy</button>
+          <button class="quiz-refine-btn" onclick="quizRefine('relax')">More relaxing</button>
+        </div>
+      </div>
+      <div class="quiz-email-capture">
+        <div class="quiz-email-title">Get personalized picks every week</div>
+        <div class="quiz-email-sub">We'll send you strain recommendations, new arrivals, and cannabis guidance — tailored to your profile.</div>
+        <form class="quiz-email-form" id="quizEmailForm" onsubmit="quizSubmitEmail(event)">
+          <input class="quiz-email-input" id="quizEmailInput" type="email" placeholder="your@email.com" required>
+          <button class="quiz-email-submit" type="submit">Subscribe</button>
+        </form>
+      </div>
+      <div class="quiz-save-wrap">
+        <button class="quiz-save-btn${alreadySaved ? ' saved' : ''}" id="quizSaveBtn" onclick="quizSaveProfile()" ${alreadySaved ? 'disabled' : ''}>
+          ${alreadySaved ? '✓ Profile Saved' : '🔖 Save Your Profile'}
+        </button>
+      </div>
+      <div class="quiz-result-actions" style="margin-top:24px">
         <button class="quiz-restart" onclick="quizRestart()">Retake Quiz</button>
         <a href="#strain-finder" class="btn-primary" style="display:inline-block;text-decoration:none">Search All Strains</a>
       </div>
@@ -9395,12 +9449,85 @@
   function quizRestart() {
     quizScores = {relax:0, focus:0, sleep:0, creative:0, uplift:0};
     quizStep = 0;
+    quizFinalKey = null;
     document.getElementById('quizFlow').style.display = 'block';
     document.getElementById('quizResult').style.display = 'none';
     quizRender();
   }
 
+  function quizSaveProfile() {
+    if (!quizFinalKey) return;
+    const r = QUIZ_RESULTS[quizFinalKey];
+    try {
+      localStorage.setItem('cannascenti_profile', JSON.stringify({
+        key: quizFinalKey,
+        profileName: r.profileName,
+        savedAt: Date.now()
+      }));
+    } catch(e) {}
+    const btn = document.getElementById('quizSaveBtn');
+    if (btn) { btn.textContent = '✓ Profile Saved'; btn.classList.add('saved'); btn.disabled = true; }
+  }
+
+  function quizLoadSavedProfile() {
+    try {
+      const saved = JSON.parse(localStorage.getItem('cannascenti_profile'));
+      if (!saved || !QUIZ_RESULTS[saved.key]) return;
+      const wrap = document.getElementById('quizWelcomeBack');
+      if (!wrap) return;
+      wrap.innerHTML = `
+        <div class="quiz-welcome-back">
+          <div class="quiz-welcome-back-text">Welcome back — <span class="quiz-welcome-back-name">${saved.profileName}</span></div>
+          <button class="quiz-welcome-back-btn" onclick="quizShowSavedResult()">See your results →</button>
+        </div>`;
+    } catch(e) {}
+  }
+
+  function quizShowSavedResult() {
+    try {
+      const saved = JSON.parse(localStorage.getItem('cannascenti_profile'));
+      if (!saved) return;
+      quizFinalKey = saved.key;
+      document.getElementById('quizFlow').style.display = 'none';
+      const el = document.getElementById('quizResult');
+      el.style.display = 'block';
+      quizShowResult();
+    } catch(e) {}
+  }
+
+  function quizRefine(direction) {
+    const base = {...quizScores};
+    if (direction === 'energy') {
+      base.focus = (base.focus||0) + 4;
+      base.uplift = (base.uplift||0) + 4;
+    } else if (direction === 'relax') {
+      base.relax = (base.relax||0) + 4;
+      base.sleep = (base.sleep||0) + 2;
+    } else if (direction === 'light') {
+      // Keep same profile, just boost toward balanced/beginner
+      base.relax = (base.relax||0) + 3;
+    }
+    const sorted = Object.entries(base).sort((a,b) => b[1]-a[1]);
+    quizScores = base;
+    document.getElementById('quizResult').style.display = 'block';
+    quizShowResult();
+  }
+
+  function quizSubmitEmail(e) {
+    e.preventDefault();
+    const input = document.getElementById('quizEmailInput');
+    if (!input || !input.value.trim()) return;
+    fetch('/api/email', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({email: input.value.trim(), profile: quizFinalKey})
+    }).catch(()=>{});
+    const form = document.getElementById('quizEmailForm');
+    if (form) form.outerHTML = '<div class="quiz-email-success">✓ You\'re in — personalized picks coming your way.</div>';
+  }
+
   quizRender();
+  quizLoadSavedProfile();
 
 
 

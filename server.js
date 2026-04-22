@@ -350,6 +350,33 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  if (req.method === "POST" && req.url === "/api/email") {
+    let body = "";
+    req.on("data", chunk => { body += chunk; });
+    req.on("end", () => {
+      try {
+        const { email, profile } = JSON.parse(body);
+        if (!email || typeof email !== "string" || !email.includes("@") || email.length > 200) {
+          res.writeHead(400, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Invalid email" }));
+          return;
+        }
+        const entry = JSON.stringify({ email: email.trim(), profile: profile || null, ts: new Date().toISOString() }) + "\n";
+        fs.appendFile(path.join(__dirname, "subscribers.jsonl"), entry, err => {
+          if (err) console.error("Email save error:", err.message);
+        });
+        console.log(`New subscriber: ${email.trim()} (${profile || "unknown"})`);
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ ok: true }));
+      } catch (err) {
+        console.error("Email error:", err.message);
+        res.writeHead(500, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ error: "Failed" }));
+      }
+    });
+    return;
+  }
+
   let filePath = req.url === "/" ? "/index.html" : req.url;
   filePath = path.join(__dirname, filePath);
 
