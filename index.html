@@ -539,6 +539,21 @@
     text-transform: uppercase;
     color: var(--bright-green);
     margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .pg {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: rgba(82,183,136,0.35);
+    background: rgba(82,183,136,0.07);
+    border: 1px solid rgba(82,183,136,0.15);
+    border-radius: 4px;
+    padding: 2px 7px;
+    flex-shrink: 0;
   }
 
   .section-title {
@@ -4916,8 +4931,8 @@
     <span class="nav-wordmark">Cannascenti</span>
   </a>
   <ul class="nav-links">
-    <li><a href="#cannalogy">Cannalogy 101</a></li>
-    <li><a href="#cannalogy-201">Cannalogy 201</a></li>
+    <li><a href="#strain-finder">Cannalogy 101</a></li>
+    <li><a href="#encyclopedia-hub">Cannalogy 201</a></li>
     <li><a href="#consulting">CannaQuant</a></li>
     <li><a href="#the-craft">The Craft</a></li>
     <li><a href="#hash">Hash Culture</a></li>
@@ -5055,7 +5070,7 @@
 <div class="explore-section">
   <div class="explore-inner">
     <div class="explore-heading">
-      <div class="section-label">&#10022; Navigate Cannascenti</div>
+      <div class="section-label"><span class="pg">02</span> &#10022; Navigate Cannascenti</div>
       <div class="explore-title">Learn &amp; Experience <em>by Category</em></div>
     </div>
     <div class="explore-tiles">
@@ -5221,7 +5236,7 @@
   <div class="strain-db-inner">
     <div class="sdb-db-header">
       <div>
-        <div class="section-label">✦ Strain Database</div>
+        <div class="section-label"><span class="pg">03</span> ✦ Strain Database</div>
         <div class="section-title" style="margin-bottom:16px;">Every strain. <em>Full profiles.</em></div>
         <p class="strain-db-intro">Filter by type or effect — click any strain card for the complete encyclopedia entry.</p>
       </div>
@@ -5245,10 +5260,25 @@
 
 <div class="full-divider"></div>
 
+<!-- ENCYCLOPEDIA HUB -->
+<div id="encyclopedia-hub" class="enc-hub">
+  <div class="enc-hub-inner">
+    <div class="enc-hub-header">
+      <div class="section-label"><span class="pg">04</span> ✦ The Cannascenti Encyclopedia</div>
+      <h2 class="section-title" style="color:var(--cream)">The Complete Cannabis Reference</h2>
+      <p>Every terpene, cannabinoid, consumption method, cultivation stage, historical milestone, and extraction technique — the most comprehensive cannabis reference anywhere. Click a topic to explore.</p>
+    </div>
+    <div class="enc-hub-nav" id="enc-hub-nav"></div>
+    <div class="enc-hub-panel" id="enc-hub-panel"></div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
 <!-- CANNALOGY -->
 <div id="cannalogy" class="cannalogy">
   <div class="cannalogy-inner">
-    <div class="section-label">✦ The Cannalogy</div>
+    <div class="section-label"><span class="pg">05</span> ✦ The Cannalogy</div>
     <div class="section-title">Cannabis education for <em>everyone</em></div>
 
     <div class="cannalogy-grid">
@@ -5346,72 +5376,6 @@
 
       <!-- COMPARISON PANEL -->
       <div class="isv-panel" id="isvPanel"></div>
-    </div>
-
-    <!-- TERPENES -->
-    <div class="terpene-section">
-      <div class="terpene-intro">
-        <div class="section-label">✦ Terpenes</div>
-        <div class="terpene-intro-title">The molecules that make you <em>feel everything</em></div>
-        <p class="terpene-intro-desc">Terpenes aren't just cannabis compounds — they exist all around us in nature. Every time you've smelled a lemon, walked through a pine forest, or felt calm holding lavender, your endocannabinoid system was already responding. Cannabis just delivers them in high concentration — and your body already knows exactly what to do with them.</p>
-      </div>
-
-      <!-- INTERACTIVE TERPENE WHEEL -->
-      <div class="terpene-wheel-wrap">
-        <svg id="terpeneWheel" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"></svg>
-        <div class="terpene-wheel-info" id="terpeneInfo">
-          <div class="twi-name" id="twiName">Click a terpene</div>
-          <div class="twi-tag" id="twiTag">Explore the wheel</div>
-          <div class="twi-aroma" id="twiAroma"></div>
-          <div class="twi-effect" id="twiEffect"></div>
-          <div class="twi-found" id="twiFound"></div>
-          <div class="twi-boiling" id="twiBoiling"></div>
-        </div>
-      </div>
-
-      <div class="terpene-grid">
-
-        <div class="terpene-card">
-          <div class="terpene-name">Myrcene</div>
-          <span class="terpene-tag">Most Common in Cannabis</span>
-          <p class="terpene-found">Found in: mangoes, hops, lemongrass, thyme, bay leaves. That tropical, musky, earthy smell — that's myrcene.</p>
-          <p class="terpene-effect">The most abundant terpene in most cannabis strains. Produces that heavy, relaxed, couch-lock feeling. High myrcene = indica-leaning experience regardless of strain type.</p>
-          <p class="terpene-ecs">Enhances CB1 receptor binding — helps cannabinoids cross the blood-brain barrier faster. Eating a mango before smoking? The myrcene increases absorption. That's real science.</p>
-        </div>
-
-        <div class="terpene-card">
-          <div class="terpene-name">Limonene</div>
-          <span class="terpene-tag">The Mood Lifter</span>
-          <p class="terpene-found">Found in: lemon rinds, orange peel, limes, grapefruit, juniper berries. That bright citrus punch — pure limonene.</p>
-          <p class="terpene-effect">Uplifting, euphoric, anxiety-reducing. The reason citrus makes you feel awake and positive. In cannabis, it drives that bright, social, happy high.</p>
-          <p class="terpene-ecs">Interacts with serotonin and dopamine receptors — the same pathways antidepressants target. Your body recognizes citrus as a mood signal. Cannabis with limonene amplifies that response dramatically.</p>
-        </div>
-
-        <div class="terpene-card">
-          <div class="terpene-name">Caryophyllene</div>
-          <span class="terpene-tag">The Only Terpene That Binds CB2</span>
-          <p class="terpene-found">Found in: black pepper, cloves, cinnamon, basil, oregano. That spicy, woody bite in black pepper — that's caryophyllene.</p>
-          <p class="terpene-effect">Anti-inflammatory, pain-relieving, calming. Why cracking black pepper under your nose can take the edge off a too-intense high. It's not a myth — it's chemistry.</p>
-          <p class="terpene-ecs">The only terpene that directly binds to CB2 receptors — the same receptors that regulate inflammation and immune response. It's technically a cannabinoid and a terpene simultaneously.</p>
-        </div>
-
-        <div class="terpene-card">
-          <div class="terpene-name">Linalool</div>
-          <span class="terpene-tag">Nature's Anxiety Reducer</span>
-          <p class="terpene-found">Found in: lavender, mint, cinnamon, birch trees, coriander. The reason lavender has been used for sleep and calm for thousands of years.</p>
-          <p class="terpene-effect">Deeply calming, sedating, anxiolytic. The floral, slightly spicy note in certain cannabis strains. Strong linalool presence = serious stress and anxiety relief.</p>
-          <p class="terpene-ecs">Activates GABA receptors — the same system that benzodiazepines target. Your nervous system evolved to respond to linalool as a relaxation signal. Cannabis concentrates it to therapeutic levels.</p>
-        </div>
-
-        <div class="terpene-card">
-          <div class="terpene-name">Pinene</div>
-          <span class="terpene-tag">The Alertness Terpene</span>
-          <p class="terpene-found">Found in: pine needles, rosemary, dill, basil, parsley. That crisp, fresh forest air smell — alpha-pinene in its purest form.</p>
-          <p class="terpene-effect">Promotes alertness, memory retention, and airway openness. One of the few terpenes that can actually counteract some of THC's short-term memory effects. Pine strains keep you sharp.</p>
-          <p class="terpene-ecs">Inhibits acetylcholinesterase — the enzyme that breaks down the neurotransmitter responsible for memory and focus. Your brain reads pinene as a signal to stay alert. That's why a pine forest feels clarifying.</p>
-        </div>
-
-      </div>
     </div>
 
     <!-- CANNABINOIDS: THC vs CBD vs CBG -->
@@ -5692,7 +5656,7 @@
 
 <!-- CANNALOGY 201 -->
 <div id="cannalogy-201" style="padding: 100px 60px; max-width: 1280px; margin: 0 auto; position: relative; z-index: 2;">
-  <div class="section-label">✦ Cannalogy 201</div>
+  <div class="section-label"><span class="pg">06</span> ✦ Cannalogy 201</div>
   <div class="section-title">Advanced cannabis knowledge. <em>Coming soon.</em></div>
   <p style="font-size:15px; font-weight:300; line-height:1.9; color:var(--cream); opacity:0.6; max-width:560px;">
     Cannalogy 201 is where the deep dives live — advanced terpene chemistry, cultivation science, extraction techniques, and everything else for the serious student. Content is being added here now.
@@ -5706,7 +5670,7 @@
   <div class="consulting-inner">
 
     <div class="consulting-left">
-      <div class="section-label">✦ CannaQuant</div>
+      <div class="section-label"><span class="pg">07</span> ✦ CannaQuant</div>
       <div class="consulting-title">I'm your personal <em>CannaQuant.</em> Your budtender for life.</div>
       <p class="consulting-desc">Think of me as your cannabis financial advisor — except instead of money, we're talking about your experience, your body, your goals, and your plant. Whether you're brand new or a seasoned connoisseur, I meet you exactly where you are. Real conversations. Real answers. No guesswork.</p>
 
@@ -5854,72 +5818,11 @@
 
 <div class="full-divider"></div>
 
-<!-- THE CRAFT -->
-<div id="the-craft" class="craft">
-  <div class="craft-inner">
-    <div class="section-label">✦ The Craft</div>
-    <div class="section-title">From <em>seed to extract</em> — the full picture</div>
-    <p style="font-size:14px; line-height:1.9; color:var(--cream); opacity:0.5; max-width:680px; margin-top:16px;">Most people experience cannabis as a final product. Very few understand what it takes to grow it, process it, and transform it. This is where that changes — cultivation, extraction, and infusion explained from the ground up.</p>
-
-    <div class="craft-pillars">
-
-      <div class="craft-pillar">
-        <div class="craft-pillar-icon">🌱</div>
-        <div class="craft-pillar-title">Cultivation — <em>Seed to Harvest</em></div>
-        <p class="craft-pillar-desc">Whether you're growing in a closet or running a commercial facility, understanding how cannabis is cultivated changes how you experience it forever. From your first seed to building a genetics program that defines a generation.</p>
-        <ul class="craft-topics">
-          <li>Home growing — tents, lights, soil vs. hydro</li>
-          <li>Understanding plant stages — veg, flower, harvest</li>
-          <li>Commercial cultivation & facility design</li>
-          <li>Licensing & entering the industry as a grower</li>
-          <li>Genetics & breeding — creating new strains</li>
-          <li>Phenotype hunting — finding the one</li>
-          <li>Cloning & maintaining a mother plant library</li>
-          <li>Seed hunting around the world — landraces & preservation</li>
-        </ul>
-      </div>
-
-      <div class="craft-pillar">
-        <div class="craft-pillar-icon">⚗️</div>
-        <div class="craft-pillar-title">Extractions — <em>Concentrates & Beyond</em></div>
-        <p class="craft-pillar-desc">Concentrates aren't just a product category — they're a craft. Understanding how rosin, live resin, distillate, and diamonds are made gives you a completely new lens on quality, pricing, and what you're actually consuming.</p>
-        <ul class="craft-topics">
-          <li>Solventless vs. solvent-based extraction — the real difference</li>
-          <li>Rosin pressing — home and commercial scale</li>
-          <li>Bubble hash & ice water extraction</li>
-          <li>Live resin & live rosin — why fresh-frozen matters</li>
-          <li>Distillate, BHO & THCA diamonds explained</li>
-          <li>Home extraction basics & safety</li>
-          <li>Building a commercial extraction operation</li>
-          <li>Reading a COA — what lab results actually mean</li>
-        </ul>
-      </div>
-
-      <div class="craft-pillar">
-        <div class="craft-pillar-icon">🍫</div>
-        <div class="craft-pillar-title">Edibles & <em>Infusions</em></div>
-        <p class="craft-pillar-desc">Edibles are one of the most misunderstood categories in cannabis. Dosing, consistency, and bioavailability separate a great product from a disaster. Whether you're cooking at home or launching a brand, this is where it starts.</p>
-        <ul class="craft-topics">
-          <li>Decarboxylation — why it's the most important step</li>
-          <li>Infusing oils, butters & tinctures at home</li>
-          <li>Bioavailability — why edibles hit differently</li>
-          <li>Dosing consistency & how to measure accurately</li>
-          <li>Nano-emulsification & fast-acting technology</li>
-          <li>Commercial edible production & compliance</li>
-          <li>Beverages, tinctures & sublingual products</li>
-          <li>Launching an edible brand — what you need to know</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</div>
-
 <!-- HASH ENCYCLOPEDIA -->
 <div id="hash-encyclopedia" class="hashenc-section">
   <div class="hashenc-inner">
 
-    <div class="section-label">✦ Hash Encyclopedia</div>
+    <div class="section-label"><span class="pg">08</span> ✦ Hash Culture</div>
     <div class="section-title">3,000 years of <em>the original concentrate.</em></div>
     <p class="hashenc-intro">Before CO₂ extractors, before BHO rigs, before every dispensary shelf filled with distillate cartridges — humans were making hash for three millennia. From the Rif Mountains of Morocco to the Hindu Kush of Afghanistan to the sacred charas of the Himalayas. This is the full story.</p>
 
@@ -5985,11 +5888,74 @@
   </div>
 </div>
 
+<div class="full-divider"></div>
+
+<!-- THE CRAFT -->
+<div id="the-craft" class="craft">
+  <div class="craft-inner">
+    <div class="section-label"><span class="pg">09</span> ✦ The Craft</div>
+    <div class="section-title">From <em>seed to extract</em> — the full picture</div>
+    <p style="font-size:14px; line-height:1.9; color:var(--cream); opacity:0.5; max-width:680px; margin-top:16px;">Most people experience cannabis as a final product. Very few understand what it takes to grow it, process it, and transform it. This is where that changes — cultivation, extraction, and infusion explained from the ground up.</p>
+
+    <div class="craft-pillars">
+
+      <div class="craft-pillar">
+        <div class="craft-pillar-icon">🌱</div>
+        <div class="craft-pillar-title">Cultivation — <em>Seed to Harvest</em></div>
+        <p class="craft-pillar-desc">Whether you're growing in a closet or running a commercial facility, understanding how cannabis is cultivated changes how you experience it forever. From your first seed to building a genetics program that defines a generation.</p>
+        <ul class="craft-topics">
+          <li>Home growing — tents, lights, soil vs. hydro</li>
+          <li>Understanding plant stages — veg, flower, harvest</li>
+          <li>Commercial cultivation & facility design</li>
+          <li>Licensing & entering the industry as a grower</li>
+          <li>Genetics & breeding — creating new strains</li>
+          <li>Phenotype hunting — finding the one</li>
+          <li>Cloning & maintaining a mother plant library</li>
+          <li>Seed hunting around the world — landraces & preservation</li>
+        </ul>
+      </div>
+
+      <div class="craft-pillar">
+        <div class="craft-pillar-icon">⚗️</div>
+        <div class="craft-pillar-title">Extractions — <em>Concentrates & Beyond</em></div>
+        <p class="craft-pillar-desc">Concentrates aren't just a product category — they're a craft. Understanding how rosin, live resin, distillate, and diamonds are made gives you a completely new lens on quality, pricing, and what you're actually consuming.</p>
+        <ul class="craft-topics">
+          <li>Solventless vs. solvent-based extraction — the real difference</li>
+          <li>Rosin pressing — home and commercial scale</li>
+          <li>Bubble hash & ice water extraction</li>
+          <li>Live resin & live rosin — why fresh-frozen matters</li>
+          <li>Distillate, BHO & THCA diamonds explained</li>
+          <li>Home extraction basics & safety</li>
+          <li>Building a commercial extraction operation</li>
+          <li>Reading a COA — what lab results actually mean</li>
+        </ul>
+      </div>
+
+      <div class="craft-pillar">
+        <div class="craft-pillar-icon">🍫</div>
+        <div class="craft-pillar-title">Edibles & <em>Infusions</em></div>
+        <p class="craft-pillar-desc">Edibles are one of the most misunderstood categories in cannabis. Dosing, consistency, and bioavailability separate a great product from a disaster. Whether you're cooking at home or launching a brand, this is where it starts.</p>
+        <ul class="craft-topics">
+          <li>Decarboxylation — why it's the most important step</li>
+          <li>Infusing oils, butters & tinctures at home</li>
+          <li>Bioavailability — why edibles hit differently</li>
+          <li>Dosing consistency & how to measure accurately</li>
+          <li>Nano-emulsification & fast-acting technology</li>
+          <li>Commercial edible production & compliance</li>
+          <li>Beverages, tinctures & sublingual products</li>
+          <li>Launching an edible brand — what you need to know</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <!-- CANNABIS & FOOD -->
 <div id="cannabis-food" class="cannafood-section">
   <div class="cannafood-inner">
 
-    <div class="section-label">✦ Cannabis &amp; Food</div>
+    <div class="section-label"><span class="pg">10</span> ✦ Cannabis &amp; Food</div>
     <div class="section-title">Cook with intention. <em>Dose with precision.</em></div>
     <p class="cannafood-intro">Edibles are the most misunderstood consumption method in cannabis — and the most powerful. The difference between a transcendent experience and a terrible afternoon comes down to three things: decarboxylation, infusion, and dosing. Master all three.</p>
 
@@ -6159,7 +6125,7 @@
 
     <div class="bpro-header-row">
       <div>
-        <div class="section-label">✦ Budtender Pro</div>
+        <div class="section-label"><span class="pg">11</span> ✦ Budtender Pro</div>
         <div class="section-title">The tool built for <em>the floor.</em></div>
         <p class="bpro-intro">Fast, practical cannabis intelligence for dispensary professionals. Customer intake, instant strain matching, terminology reference, and ready-to-use customer scripts — everything you need to give exceptional service on every transaction.</p>
       </div>
@@ -6282,22 +6248,6 @@
 
   </div>
 </div>
-
-<div class="full-divider"></div>
-
-<!-- ENCYCLOPEDIA HUB -->
-<div id="encyclopedia-hub" class="enc-hub">
-  <div class="enc-hub-inner">
-    <div class="enc-hub-header">
-      <div class="section-label">✦ The Cannascenti Encyclopedia</div>
-      <h2 class="section-title" style="color:var(--cream)">The Complete Cannabis Reference</h2>
-      <p>Every terpene, cannabinoid, consumption method, cultivation stage, historical milestone, and extraction technique — the most comprehensive cannabis reference anywhere. Click a topic to explore.</p>
-    </div>
-    <div class="enc-hub-nav" id="enc-hub-nav"></div>
-    <div class="enc-hub-panel" id="enc-hub-panel"></div>
-  </div>
-</div>
-
 
 <div class="full-divider"></div>
 
@@ -7278,7 +7228,7 @@
     </div>`).join('');
 
   // ─── Terpene Wheel ───────────────────────────────────────────────────────────
-  (function buildTerpeneWheel() {
+  function initTerpeneWheel() {
     const terpenes = [
       // ── SOUR ──
       { name: 'Myrcene',        tag: 'Sour · Most Common in Cannabis',         color: '#E07B39', aroma: 'Sour · Earthy, musky, tropical, mango, hops', effect: 'Heavy relaxation, couch-lock, sedating. High myrcene = indica-leaning experience regardless of strain type. Enhances CB1 receptor binding — helps cannabinoids cross the blood-brain barrier faster.', found: 'Found in: mangoes, hops, lemongrass, parsley leaf, grapefruit, orange, cedarwood, citronella, juniper', boiling: 'Boiling point: 168°C / 334°F' },
@@ -7399,7 +7349,7 @@
 
     // Auto-select first on load
     selectTerpene(0, svg.querySelectorAll('.terpene-slice')[0]);
-  })();
+  }
 
   function searchExample(el) {
     document.getElementById('strainInput').value = el.textContent;
@@ -8962,13 +8912,67 @@
     requestAnimationFrame(() => {
       panel.style.animation = '';
       if (id === 'history') globeCleanup = initEncGlobe();
+      if (id === 'terpenes') initTerpeneWheel();
     });
   }
 
   function encContent(id) {
     switch(id) {
       case 'terpenes': return `
-        <div class="enc-tab-intro"><p>Over 200 terpenes have been identified in cannabis. These eight define the most common and well-studied aroma and effect profiles. Click any card to expand its full profile.</p></div>
+        <div class="terpene-intro">
+          <div class="section-label">✦ Terpenes</div>
+          <div class="terpene-intro-title">The molecules that make you <em>feel everything</em></div>
+          <p class="terpene-intro-desc">Terpenes aren't just cannabis compounds — they exist all around us in nature. Every time you've smelled a lemon, walked through a pine forest, or felt calm holding lavender, your endocannabinoid system was already responding. Cannabis just delivers them in high concentration — and your body already knows exactly what to do with them.</p>
+        </div>
+        <div class="terpene-wheel-wrap">
+          <svg id="terpeneWheel" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"></svg>
+          <div class="terpene-wheel-info" id="terpeneInfo">
+            <div class="twi-name" id="twiName">Click a terpene</div>
+            <div class="twi-tag" id="twiTag">Explore the wheel</div>
+            <div class="twi-aroma" id="twiAroma"></div>
+            <div class="twi-effect" id="twiEffect"></div>
+            <div class="twi-found" id="twiFound"></div>
+            <div class="twi-boiling" id="twiBoiling"></div>
+          </div>
+        </div>
+        <div class="terpene-grid">
+          <div class="terpene-card">
+            <div class="terpene-name">Myrcene</div>
+            <span class="terpene-tag">Most Common in Cannabis</span>
+            <p class="terpene-found">Found in: mangoes, hops, lemongrass, thyme, bay leaves. That tropical, musky, earthy smell — that's myrcene.</p>
+            <p class="terpene-effect">The most abundant terpene in most cannabis strains. Produces that heavy, relaxed, couch-lock feeling. High myrcene = indica-leaning experience regardless of strain type.</p>
+            <p class="terpene-ecs">Enhances CB1 receptor binding — helps cannabinoids cross the blood-brain barrier faster. Eating a mango before smoking? The myrcene increases absorption. That's real science.</p>
+          </div>
+          <div class="terpene-card">
+            <div class="terpene-name">Limonene</div>
+            <span class="terpene-tag">The Mood Lifter</span>
+            <p class="terpene-found">Found in: lemon rinds, orange peel, limes, grapefruit, juniper berries. That bright citrus punch — pure limonene.</p>
+            <p class="terpene-effect">Uplifting, euphoric, anxiety-reducing. The reason citrus makes you feel awake and positive. In cannabis, it drives that bright, social, happy high.</p>
+            <p class="terpene-ecs">Interacts with serotonin and dopamine receptors — the same pathways antidepressants target. Your body recognizes citrus as a mood signal. Cannabis with limonene amplifies that response dramatically.</p>
+          </div>
+          <div class="terpene-card">
+            <div class="terpene-name">Caryophyllene</div>
+            <span class="terpene-tag">The Only Terpene That Binds CB2</span>
+            <p class="terpene-found">Found in: black pepper, cloves, cinnamon, basil, oregano. That spicy, woody bite in black pepper — that's caryophyllene.</p>
+            <p class="terpene-effect">Anti-inflammatory, pain-relieving, calming. Why cracking black pepper under your nose can take the edge off a too-intense high. It's not a myth — it's chemistry.</p>
+            <p class="terpene-ecs">The only terpene that directly binds to CB2 receptors — the same receptors that regulate inflammation and immune response. It's technically a cannabinoid and a terpene simultaneously.</p>
+          </div>
+          <div class="terpene-card">
+            <div class="terpene-name">Linalool</div>
+            <span class="terpene-tag">Nature's Anxiety Reducer</span>
+            <p class="terpene-found">Found in: lavender, mint, cinnamon, birch trees, coriander. The reason lavender has been used for sleep and calm for thousands of years.</p>
+            <p class="terpene-effect">Deeply calming, sedating, anxiolytic. The floral, slightly spicy note in certain cannabis strains. Strong linalool presence = serious stress and anxiety relief.</p>
+            <p class="terpene-ecs">Activates GABA receptors — the same system that benzodiazepines target. Your nervous system evolved to respond to linalool as a relaxation signal. Cannabis concentrates it to therapeutic levels.</p>
+          </div>
+          <div class="terpene-card">
+            <div class="terpene-name">Pinene</div>
+            <span class="terpene-tag">The Alertness Terpene</span>
+            <p class="terpene-found">Found in: pine needles, rosemary, dill, basil, parsley. That crisp, fresh forest air smell — alpha-pinene in its purest form.</p>
+            <p class="terpene-effect">Promotes alertness, memory retention, and airway openness. One of the few terpenes that can actually counteract some of THC's short-term memory effects. Pine strains keep you sharp.</p>
+            <p class="terpene-ecs">Inhibits acetylcholinesterase — the enzyme that breaks down the neurotransmitter responsible for memory and focus. Your brain reads pinene as a signal to stay alert. That's why a pine forest feels clarifying.</p>
+          </div>
+        </div>
+        <div class="enc-tab-intro" style="margin-top:60px;"><p>Over 200 terpenes have been identified in cannabis. These eight define the most common and well-studied aroma and effect profiles. Click any card to expand its full profile.</p></div>
         <div class="enc-terp-grid">
           ${TERPENES.map(t => `
             <div class="enc-terp-card ${t.cls}" onclick="encTerpOpen('${t.id}')" id="tc-${t.id}">
