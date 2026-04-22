@@ -80,6 +80,7 @@
   .quiz-result-desc { font-size: 15px; color: rgba(242,234,216,0.6); line-height: 1.8; max-width: 560px; margin-bottom: 52px; }
   .quiz-strains { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
   .quiz-strain-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; padding: 24px; }
+  .quiz-strain-tag { font-size: 11px; font-weight: 500; color: var(--amber); margin-bottom: 10px; }
   .quiz-strain-type { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--bright-green); margin-bottom: 10px; }
   .quiz-strain-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--cream); margin-bottom: 6px; }
   .quiz-strain-thc { font-size: 11px; color: rgba(242,234,216,0.4); margin-bottom: 14px; }
@@ -88,6 +89,7 @@
   .quiz-strain-terps { font-size: 11px; color: rgba(242,234,216,0.35); margin-bottom: 20px; line-height: 1.6; }
   .quiz-strain-find { display: block; text-align: center; background: rgba(82,183,136,0.1); border: 1px solid rgba(82,183,136,0.25); color: var(--bright-green); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; padding: 10px; border-radius: 2px; text-decoration: none; transition: all 0.2s; }
   .quiz-strain-find:hover { background: rgba(82,183,136,0.2); border-color: var(--bright-green); }
+  .quiz-guidance { background: rgba(255,255,255,0.03); border-left: 2px solid rgba(82,183,136,0.4); padding: 16px 20px; font-size: 14px; color: rgba(242,234,216,0.6); line-height: 1.7; margin-bottom: 32px; border-radius: 0 4px 4px 0; }
   .quiz-result-actions { display: flex; gap: 14px; flex-wrap: wrap; }
   .quiz-restart { background: none; border: 1px solid rgba(255,255,255,0.15); color: rgba(242,234,216,0.5); font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; padding: 14px 28px; border-radius: 2px; cursor: pointer; transition: all 0.2s; }
   .quiz-restart:hover { border-color: rgba(255,255,255,0.3); color: var(--cream); }
@@ -5042,7 +5044,8 @@
     <div class="hero-tagline">Cannabis, personalized.</div>
     <p class="hero-desc">Discover strains, products, and effects tailored to how you want to feel — without the guesswork.</p>
     <div class="hero-actions">
-      <a href="#quiz" class="btn-primary btn-primary--lg">Find Your Match</a>
+      <a href="#quiz" class="btn-primary btn-primary--lg">Find Your Perfect Cannabis Match</a>
+      <p style="font-size:12px;color:rgba(242,234,216,0.4);margin-top:14px;letter-spacing:0.08em;">Takes 30 seconds. Surprisingly accurate.</p>
     </div>
     <div class="hero-search-wrap">
       <input id="strainInput" class="hero-search-input" type="text" placeholder="Search strains — mood, flavor, vibe, or name..." maxlength="200" />
@@ -5068,9 +5071,9 @@
 <section id="quiz" class="quiz-section">
   <div class="quiz-inner">
     <div id="quizFlow">
-      <div class="quiz-label">✦ Find Your Match</div>
-      <h2 class="quiz-title">What kind of experience<br>are you looking for?</h2>
-      <p class="quiz-subtitle">5 quick questions. We'll match you with the right strains, effects, and products.</p>
+      <div class="quiz-label">✦ The Cannascenti Match</div>
+      <h2 class="quiz-title">The smartest way to<br>choose cannabis.</h2>
+      <p class="quiz-subtitle">Answer 5 questions and we'll tell you exactly what to look for — strains, terpenes, and why they'll work for you.</p>
       <div class="quiz-progress-bar" id="quizProgress">
         <div class="quiz-progress-dot active"></div>
         <div class="quiz-progress-dot"></div>
@@ -9208,61 +9211,67 @@
     relax: {
       badge: 'Your Match — Relax',
       title: 'Unwind. Release. Breathe.',
-      desc: 'You\'re looking to decompress. These strains are rich in myrcene and linalool — the terpenes that signal your body to let go. Indica-dominant, smooth, and deeply calming.',
+      desc: 'You want to decompress — fully. Not half-asleep, not foggy. Just that feeling where your shoulders drop and the week stops mattering. Look for strains heavy in myrcene and linalool — they\'re the ones that signal your body it\'s safe to let go.',
+      guidance: 'If you want something stronger, ask for higher myrcene content or a true indica. If you\'re newer to cannabis, start with Northern Lights — it\'s smooth, predictable, and won\'t overwhelm.',
       strains: [
-        { name:'Wedding Cake', type:'Indica Hybrid', thc:'24–27%', effects:['Relaxed','Euphoric','Sleepy'], terps:'Caryophyllene · Limonene · Myrcene', link:'https://weedmaps.com/strains/wedding-cake' },
-        { name:'Granddaddy Purple', type:'Indica', thc:'17–23%', effects:['Relaxed','Sleepy','Happy'], terps:'Myrcene · Caryophyllene · Pinene', link:'https://weedmaps.com/strains/grand-daddy-purple' },
-        { name:'Northern Lights', type:'Indica', thc:'16–21%', effects:['Relaxed','Sleepy','Euphoric'], terps:'Myrcene · Terpinolene · Caryophyllene', link:'https://weedmaps.com/strains/northern-lights' },
+        { tag:'⭐ Best Overall', name:'Wedding Cake', type:'Indica Hybrid', thc:'24–27%', effects:['Relaxed','Euphoric','Sleepy'], terps:'Caryophyllene · Limonene · Myrcene', link:'https://weedmaps.com/strains/wedding-cake' },
+        { tag:'🔥 Stronger Option', name:'Granddaddy Purple', type:'Indica', thc:'17–23%', effects:['Relaxed','Sleepy','Happy'], terps:'Myrcene · Caryophyllene · Pinene', link:'https://weedmaps.com/strains/grand-daddy-purple' },
+        { tag:'🌿 Beginner-Friendly', name:'Northern Lights', type:'Indica', thc:'16–21%', effects:['Relaxed','Sleepy','Euphoric'], terps:'Myrcene · Terpinolene · Caryophyllene', link:'https://weedmaps.com/strains/northern-lights' },
       ]
     },
     focus: {
       badge: 'Your Match — Focus',
       title: 'Sharp. Clear. In the zone.',
-      desc: 'You want your mind firing on all cylinders. These sativa-dominant strains are high in terpinolene and pinene — known for mental clarity, alertness, and clean energy without the jitter.',
+      desc: 'You want your brain actually working for you — locked in, getting things done, without the anxious jitter that caffeine gives you. Look for terpinolene and pinene. They keep you sharp without the edge. The kind of high where you sit down to work and actually do it.',
+      guidance: 'If you want something more energetic, go for Durban Poison — it\'s one of the most purely focused strains on the market. If you\'re newer, start with Jack Herer — it\'s a classic for a reason.',
       strains: [
-        { name:'Jack Herer', type:'Sativa', thc:'18–23%', effects:['Focused','Energetic','Creative'], terps:'Terpinolene · Pinene · Myrcene', link:'https://weedmaps.com/strains/jack-herer' },
-        { name:'Durban Poison', type:'Sativa', thc:'20–26%', effects:['Focused','Energetic','Uplifted'], terps:'Terpinolene · Myrcene · Ocimene', link:'https://weedmaps.com/strains/durban-poison' },
-        { name:'Green Crack', type:'Sativa', thc:'17–24%', effects:['Focused','Energetic','Alert'], terps:'Myrcene · Caryophyllene · Ocimene', link:'https://weedmaps.com/strains/green-crack' },
+        { tag:'⭐ Best Overall', name:'Jack Herer', type:'Sativa', thc:'18–23%', effects:['Focused','Energetic','Creative'], terps:'Terpinolene · Pinene · Myrcene', link:'https://weedmaps.com/strains/jack-herer' },
+        { tag:'🔥 Stronger Option', name:'Durban Poison', type:'Sativa', thc:'20–26%', effects:['Focused','Energetic','Uplifted'], terps:'Terpinolene · Myrcene · Ocimene', link:'https://weedmaps.com/strains/durban-poison' },
+        { tag:'🌿 Beginner-Friendly', name:'Green Crack', type:'Sativa', thc:'17–24%', effects:['Focused','Energetic','Alert'], terps:'Myrcene · Caryophyllene · Ocimene', link:'https://weedmaps.com/strains/green-crack' },
       ]
     },
     sleep: {
       badge: 'Your Match — Sleep',
       title: 'Power down. Deep rest.',
-      desc: 'Heavy myrcene and linalool strains with sedating body effects. These will quiet your mind, relax your muscles, and guide you into the kind of sleep you\'ve been missing.',
+      desc: 'You\'re done lying awake. Done with the 2am brain spiral. These strains are built to quiet your mind, relax your muscles, and guide you into the kind of sleep you\'ve been missing. Myrcene-heavy, body-forward, and deeply sedating.',
+      guidance: 'If you want maximum sedation, go for 9 Pound Hammer — it hits hard and fast. If you\'re newer or sensitive to THC, start with Bubba Kush — it\'s heavy but steady.',
       strains: [
-        { name:'Bubba Kush', type:'Indica', thc:'14–22%', effects:['Sleepy','Relaxed','Happy'], terps:'Myrcene · Limonene · Caryophyllene', link:'https://weedmaps.com/strains/bubba-kush' },
-        { name:'Purple Punch', type:'Indica', thc:'18–23%', effects:['Sleepy','Relaxed','Euphoric'], terps:'Myrcene · Caryophyllene · Pinene', link:'https://weedmaps.com/strains/purple-punch' },
-        { name:'9 Pound Hammer', type:'Indica', thc:'17–21%', effects:['Sleepy','Relaxed','Sedated'], terps:'Myrcene · Caryophyllene · Limonene', link:'https://weedmaps.com/strains/9-pound-hammer' },
+        { tag:'⭐ Best Overall', name:'Bubba Kush', type:'Indica', thc:'14–22%', effects:['Sleepy','Relaxed','Happy'], terps:'Myrcene · Limonene · Caryophyllene', link:'https://weedmaps.com/strains/bubba-kush' },
+        { tag:'🔥 Stronger Option', name:'9 Pound Hammer', type:'Indica', thc:'17–21%', effects:['Sleepy','Relaxed','Sedated'], terps:'Myrcene · Caryophyllene · Limonene', link:'https://weedmaps.com/strains/9-pound-hammer' },
+        { tag:'🌿 Beginner-Friendly', name:'Purple Punch', type:'Indica', thc:'18–23%', effects:['Sleepy','Relaxed','Euphoric'], terps:'Myrcene · Caryophyllene · Pinene', link:'https://weedmaps.com/strains/purple-punch' },
       ]
     },
     creative: {
       badge: 'Your Match — Creative',
       title: 'Open up. Make things.',
-      desc: 'Balanced hybrids that stimulate without overwhelming. Rich in limonene and ocimene — terpenes that lift mood and unlock lateral thinking. Great for art, music, writing, or just seeing differently.',
+      desc: 'You want to see things a little differently. Make something. Think sideways. The kind of high where ideas just keep coming and nothing feels impossible. Look for limonene and ocimene — the terpenes that lift your mood and unlock lateral thinking without putting you to sleep.',
+      guidance: 'If you want a stronger creative push, try Amnesia Haze — it\'s intense but legendary for it. If you\'re newer, Blue Dream is the most forgiving creative strain there is.',
       strains: [
-        { name:'Blue Dream', type:'Sativa Hybrid', thc:'19–24%', effects:['Creative','Uplifted','Relaxed'], terps:'Myrcene · Caryophyllene · Pinene', link:'https://weedmaps.com/strains/blue-dream' },
-        { name:'Strawberry Cough', type:'Sativa', thc:'18–23%', effects:['Creative','Uplifted','Energetic'], terps:'Myrcene · Caryophyllene · Pinene', link:'https://weedmaps.com/strains/strawberry-cough' },
-        { name:'Amnesia Haze', type:'Sativa', thc:'20–25%', effects:['Creative','Euphoric','Energetic'], terps:'Terpinolene · Myrcene · Ocimene', link:'https://weedmaps.com/strains/amnesia-haze' },
+        { tag:'⭐ Best Overall', name:'Blue Dream', type:'Sativa Hybrid', thc:'19–24%', effects:['Creative','Uplifted','Relaxed'], terps:'Myrcene · Caryophyllene · Pinene', link:'https://weedmaps.com/strains/blue-dream' },
+        { tag:'🔥 Stronger Option', name:'Amnesia Haze', type:'Sativa', thc:'20–25%', effects:['Creative','Euphoric','Energetic'], terps:'Terpinolene · Myrcene · Ocimene', link:'https://weedmaps.com/strains/amnesia-haze' },
+        { tag:'🌿 Beginner-Friendly', name:'Strawberry Cough', type:'Sativa', thc:'18–23%', effects:['Creative','Uplifted','Energetic'], terps:'Myrcene · Caryophyllene · Pinene', link:'https://weedmaps.com/strains/strawberry-cough' },
       ]
     },
     uplift: {
       badge: 'Your Match — Uplift',
       title: 'Light. Euphoric. Alive.',
-      desc: 'These are the classic feel-good strains. High limonene content for mood elevation, perfect for social settings, outdoor adventures, or any time you want to turn it up a notch.',
+      desc: 'You want to feel good — genuinely, socially, fully alive. The kind of energy that makes you want to call someone and actually go outside. Limonene-dominant strains drive that bright, mood-elevated high. They interact directly with your serotonin and dopamine receptors — the same pathways that make a good day feel great.',
+      guidance: 'If you want max euphoria, Sour Diesel is the gold standard. If you\'re newer to sativa energy, Super Lemon Haze is smoother and more manageable.',
       strains: [
-        { name:'Sour Diesel', type:'Sativa', thc:'20–25%', effects:['Uplifted','Energetic','Happy'], terps:'Caryophyllene · Myrcene · Limonene', link:'https://weedmaps.com/strains/sour-diesel' },
-        { name:'Super Lemon Haze', type:'Sativa', thc:'19–25%', effects:['Uplifted','Happy','Energetic'], terps:'Terpinolene · Caryophyllene · Myrcene', link:'https://weedmaps.com/strains/super-lemon-haze' },
-        { name:'Trainwreck', type:'Sativa Hybrid', thc:'18–25%', effects:['Uplifted','Euphoric','Creative'], terps:'Terpinolene · Ocimene · Myrcene', link:'https://weedmaps.com/strains/trainwreck' },
+        { tag:'⭐ Best Overall', name:'Sour Diesel', type:'Sativa', thc:'20–25%', effects:['Uplifted','Energetic','Happy'], terps:'Caryophyllene · Myrcene · Limonene', link:'https://weedmaps.com/strains/sour-diesel' },
+        { tag:'🔥 Stronger Option', name:'Trainwreck', type:'Sativa Hybrid', thc:'18–25%', effects:['Uplifted','Euphoric','Creative'], terps:'Terpinolene · Ocimene · Myrcene', link:'https://weedmaps.com/strains/trainwreck' },
+        { tag:'🌿 Beginner-Friendly', name:'Super Lemon Haze', type:'Sativa', thc:'19–25%', effects:['Uplifted','Happy','Energetic'], terps:'Terpinolene · Caryophyllene · Myrcene', link:'https://weedmaps.com/strains/super-lemon-haze' },
       ]
     },
     balanced: {
       badge: 'Your Match — Balanced',
       title: 'The best of both worlds.',
-      desc: 'Not too heavy, not too light. These hybrid strains offer well-rounded effects — a little of everything without going too deep in any one direction. Perfect for any situation.',
+      desc: 'You don\'t want to be knocked out. You don\'t want to be wired. You want something smooth that works in any situation without going too far in either direction. Hybrid strains with caryophyllene and limonene give you relaxation and mood lift at the same time — the most versatile experience in cannabis.',
+      guidance: 'If you want to dial up the relaxation, try Girl Scout Cookies. If you want something with less THC that\'s still effective, Cannatonic is perfect — lower intensity, same quality.',
       strains: [
-        { name:'Girl Scout Cookies', type:'Hybrid', thc:'19–28%', effects:['Relaxed','Happy','Euphoric'], terps:'Caryophyllene · Limonene · Humulene', link:'https://weedmaps.com/strains/girl-scout-cookies' },
-        { name:'Pineapple Express', type:'Sativa Hybrid', thc:'19–25%', effects:['Happy','Uplifted','Creative'], terps:'Caryophyllene · Limonene · Ocimene', link:'https://weedmaps.com/strains/pineapple-express' },
-        { name:'Cannatonic', type:'Hybrid', thc:'7–15%', effects:['Relaxed','Focused','Happy'], terps:'Myrcene · Pinene · Caryophyllene', link:'https://weedmaps.com/strains/cannatonic' },
+        { tag:'⭐ Best Overall', name:'Girl Scout Cookies', type:'Hybrid', thc:'19–28%', effects:['Relaxed','Happy','Euphoric'], terps:'Caryophyllene · Limonene · Humulene', link:'https://weedmaps.com/strains/girl-scout-cookies' },
+        { tag:'🔥 Stronger Option', name:'Pineapple Express', type:'Sativa Hybrid', thc:'19–25%', effects:['Happy','Uplifted','Creative'], terps:'Caryophyllene · Limonene · Ocimene', link:'https://weedmaps.com/strains/pineapple-express' },
+        { tag:'🌿 Beginner-Friendly', name:'Cannatonic', type:'Hybrid', thc:'7–15%', effects:['Relaxed','Focused','Happy'], terps:'Myrcene · Pinene · Caryophyllene', link:'https://weedmaps.com/strains/cannatonic' },
       ]
     }
   };
@@ -9324,6 +9333,7 @@
       <div class="quiz-strains">
         ${r.strains.map(s => `
           <div class="quiz-strain-card">
+            <div class="quiz-strain-tag">${s.tag}</div>
             <div class="quiz-strain-type">${s.type}</div>
             <div class="quiz-strain-name">${s.name}</div>
             <div class="quiz-strain-thc">THC ${s.thc}</div>
@@ -9332,6 +9342,7 @@
             <a class="quiz-strain-find" href="${s.link}" target="_blank" rel="noopener">Find near you →</a>
           </div>`).join('')}
       </div>
+      <div class="quiz-guidance">💡 ${r.guidance}</div>
       <div class="quiz-result-actions">
         <button class="quiz-restart" onclick="quizRestart()">Retake Quiz</button>
         <a href="#strain-finder" class="btn-primary" style="display:inline-block;text-decoration:none">Search All Strains</a>
