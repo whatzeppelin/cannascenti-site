@@ -5379,53 +5379,6 @@
     </div>
 
     <!-- CANNABINOIDS: THC vs CBD vs CBG -->
-    <div class="canna-mol-section">
-      <div class="terpene-intro">
-        <div class="section-label">✦ Cannabinoids</div>
-        <div class="terpene-intro-title">THC · CBD · CBG — <em>what each one actually does</em></div>
-        <p class="terpene-intro-desc">Cannabis produces over 100 cannabinoids. Three define the experience most people are chasing — or avoiding. Click each one to understand what's happening in your body.</p>
-      </div>
-
-      <div class="isv-tabs">
-        <button class="isv-tab mol-tab-thc active" onclick="molSelect('thc')">
-          <span class="isv-tab-icon">🔥</span>
-          <span class="isv-tab-name">THC</span>
-          <span class="isv-tab-sub">Psychoactive · High</span>
-        </button>
-        <button class="isv-tab mol-tab-cbd" onclick="molSelect('cbd')">
-          <span class="isv-tab-icon">🌊</span>
-          <span class="isv-tab-name">CBD</span>
-          <span class="isv-tab-sub">Non-Psych · Therapeutic</span>
-        </button>
-        <button class="isv-tab mol-tab-cbg" onclick="molSelect('cbg')">
-          <span class="isv-tab-icon">🔬</span>
-          <span class="isv-tab-name">CBG</span>
-          <span class="isv-tab-sub">The Mother · Emerging</span>
-        </button>
-        <button class="isv-tab mol-tab-cbc" onclick="molSelect('cbc')">
-          <span class="isv-tab-icon">🛡️</span>
-          <span class="isv-tab-name">CBC</span>
-          <span class="isv-tab-sub">Anti-Inflammatory · Pain</span>
-        </button>
-        <button class="isv-tab mol-tab-thcv" onclick="molSelect('thcv')">
-          <span class="isv-tab-icon">⚡</span>
-          <span class="isv-tab-name">THCV</span>
-          <span class="isv-tab-sub">Energetic · Appetite Control</span>
-        </button>
-        <button class="isv-tab mol-tab-cbn" onclick="molSelect('cbn')">
-          <span class="isv-tab-icon">🌙</span>
-          <span class="isv-tab-name">CBN</span>
-          <span class="isv-tab-sub">Sleep · Aged Cannabis</span>
-        </button>
-        <button class="isv-tab mol-tab-entourage" onclick="molSelect('entourage')">
-          <span class="isv-tab-icon">🔗</span>
-          <span class="isv-tab-name">Entourage Effect</span>
-          <span class="isv-tab-sub">Stronger Together</span>
-        </button>
-      </div>
-      <div class="isv-panel" id="molPanel"></div>
-    </div>
-
     <!-- CONSUMPTION METHODS -->
     <div class="consume-section">
       <div class="terpene-intro">
@@ -6563,8 +6516,6 @@
       </div>
     `;
   }
-  molSelect('thc');
-
   // ─── Consumption Methods ─────────────────────────────────────────────────────
   const CONSUME_DATA = [
     {
@@ -8926,6 +8877,7 @@
       panel.style.animation = '';
       if (id === 'history') globeCleanup = initEncGlobe();
       if (id === 'terpenes') initTerpeneWheel();
+      if (id === 'cannabinoids') molSelect('thc');
     });
   }
 
@@ -8999,7 +8951,50 @@
         <div class="enc-detail" id="enc-terp-detail"></div>
       `;
       case 'cannabinoids': return `
-        <div class="enc-tab-intro"><p>Cannabis produces over 100 cannabinoids. These six are the most clinically significant — each binding differently to the endocannabinoid system with distinct effects, therapeutic applications, and pharmacological profiles.</p></div>
+        <div class="terpene-intro">
+          <div class="section-label">✦ Cannabinoids</div>
+          <div class="terpene-intro-title">THC · CBD · CBG — <em>what each one actually does</em></div>
+          <p class="terpene-intro-desc">Cannabis produces over 100 cannabinoids. Three define the experience most people are chasing — or avoiding. Click each one to understand what's happening in your body.</p>
+        </div>
+        <div class="isv-tabs">
+          <button class="isv-tab mol-tab-thc active" onclick="molSelect('thc')">
+            <span class="isv-tab-icon">🔥</span>
+            <span class="isv-tab-name">THC</span>
+            <span class="isv-tab-sub">Psychoactive · High</span>
+          </button>
+          <button class="isv-tab mol-tab-cbd" onclick="molSelect('cbd')">
+            <span class="isv-tab-icon">🌊</span>
+            <span class="isv-tab-name">CBD</span>
+            <span class="isv-tab-sub">Non-Psych · Therapeutic</span>
+          </button>
+          <button class="isv-tab mol-tab-cbg" onclick="molSelect('cbg')">
+            <span class="isv-tab-icon">🔬</span>
+            <span class="isv-tab-name">CBG</span>
+            <span class="isv-tab-sub">The Mother · Emerging</span>
+          </button>
+          <button class="isv-tab mol-tab-cbc" onclick="molSelect('cbc')">
+            <span class="isv-tab-icon">🛡️</span>
+            <span class="isv-tab-name">CBC</span>
+            <span class="isv-tab-sub">Anti-Inflammatory · Pain</span>
+          </button>
+          <button class="isv-tab mol-tab-thcv" onclick="molSelect('thcv')">
+            <span class="isv-tab-icon">⚡</span>
+            <span class="isv-tab-name">THCV</span>
+            <span class="isv-tab-sub">Energetic · Appetite Control</span>
+          </button>
+          <button class="isv-tab mol-tab-cbn" onclick="molSelect('cbn')">
+            <span class="isv-tab-icon">🌙</span>
+            <span class="isv-tab-name">CBN</span>
+            <span class="isv-tab-sub">Sleep · Aged Cannabis</span>
+          </button>
+          <button class="isv-tab mol-tab-entourage" onclick="molSelect('entourage')">
+            <span class="isv-tab-icon">🔗</span>
+            <span class="isv-tab-name">Entourage Effect</span>
+            <span class="isv-tab-sub">Stronger Together</span>
+          </button>
+        </div>
+        <div class="isv-panel" id="molPanel"></div>
+        <div class="enc-tab-intro" style="margin-top:60px;"><p>Cannabis produces over 100 cannabinoids. These six are the most clinically significant — each binding differently to the endocannabinoid system with distinct effects, therapeutic applications, and pharmacological profiles.</p></div>
         <div class="enc-cannab-grid">
           ${CANNABINOIDS.map(c => `
             <div class="enc-cannab-card ${c.cls}">
