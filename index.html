@@ -292,6 +292,7 @@
   }
 
   .btn-primary:hover { background: var(--light-green); transform: translateY(-2px); }
+  .btn-primary--lg { font-size: 13px; padding: 20px 52px; letter-spacing: 0.3em; border-radius: 3px; }
 
   .btn-secondary {
     font-size: 12px;
@@ -4995,8 +4996,11 @@
       <div class="hero-vert"></div>
       <div class="hero-wordmark">Cannascenti</div>
     </div>
-    <div class="hero-tagline">Mary Jane Knows What You Want Before You Do</div>
-    <p class="hero-desc">Your personal budtender for life.</p>
+    <div class="hero-tagline">Cannabis, personalized.</div>
+    <p class="hero-desc">Discover strains, products, and effects tailored to how you want to feel — without the guesswork.</p>
+    <div class="hero-actions">
+      <a href="#strain-finder" class="btn-primary btn-primary--lg">Find Your Match</a>
+    </div>
     <div class="hero-search-wrap">
       <input id="strainInput" class="hero-search-input" type="text" placeholder="Search strains — mood, flavor, vibe, or name..." maxlength="200" />
       <button id="strainSearchBtn" class="hero-search-btn" onclick="findStrains()">Find Strains</button>
