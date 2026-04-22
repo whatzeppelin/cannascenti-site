@@ -5379,18 +5379,6 @@
     </div>
 
     <!-- CANNABINOIDS: THC vs CBD vs CBG -->
-    <!-- CONSUMPTION METHODS -->
-    <div class="consume-section">
-      <div class="terpene-intro">
-        <div class="section-label">✦ Consumption Methods</div>
-        <div class="terpene-intro-title">How you consume <em>changes everything</em></div>
-        <p class="terpene-intro-desc">Same cannabis. Completely different experience depending on how you consume it. Onset time, duration, intensity, and best use case — all different. Click any method to see the full breakdown.</p>
-      </div>
-
-      <div class="consume-grid" id="consumeGrid"></div>
-      <div class="consume-detail" id="consumeDetail"></div>
-    </div>
-
     <!-- CANNABIS BY THE NUMBERS -->
     <div class="numbers-section">
       <div class="terpene-intro">
@@ -6658,9 +6646,6 @@
         </div>
       </div>`;
   }
-
-  renderConsumeGrid();
-  consumeSelect('flower');
 
   // ─── Cannabis by the Numbers — counter animation ──────────────────────────────
   function animateCounters() {
@@ -8878,6 +8863,7 @@
       if (id === 'history') globeCleanup = initEncGlobe();
       if (id === 'terpenes') initTerpeneWheel();
       if (id === 'cannabinoids') molSelect('thc');
+      if (id === 'consumption') { renderConsumeGrid(); consumeSelect('flower'); }
     });
   }
 
@@ -9012,7 +8998,14 @@
         </div>
       `;
       case 'consumption': return `
-        <div class="enc-tab-intro"><p>The same cannabis, consumed differently, produces dramatically different experiences. Onset, duration, bioavailability, and intensity all vary by method. Click any card to expand the full breakdown.</p></div>
+        <div class="terpene-intro">
+          <div class="section-label">✦ Consumption Methods</div>
+          <div class="terpene-intro-title">How you consume <em>changes everything</em></div>
+          <p class="terpene-intro-desc">Same cannabis. Completely different experience depending on how you consume it. Onset time, duration, intensity, and best use case — all different. Click any method to see the full breakdown.</p>
+        </div>
+        <div class="consume-grid" id="consumeGrid"></div>
+        <div class="consume-detail" id="consumeDetail"></div>
+        <div class="enc-tab-intro" style="margin-top:60px;"><p>The same cannabis, consumed differently, produces dramatically different experiences. Onset, duration, bioavailability, and intensity all vary by method. Click any card to expand the full breakdown.</p></div>
         <div class="enc-consume-grid" id="enc-consume-grid">
           ${CONSUME_METHODS.map(m => `
             <div class="enc-consume-card" onclick="encConsumeOpen('${m.id}')" id="cc-${m.id}">
