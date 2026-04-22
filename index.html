@@ -4935,7 +4935,7 @@
     <li><a href="#encyclopedia-hub">Cannalogy 201</a></li>
     <li><a href="#consulting">CannaQuant</a></li>
     <li><a href="#the-craft">The Craft</a></li>
-    <li><a href="#hash">Hash Culture</a></li>
+    <li><a href="#cannascenti-encyclopedia" onclick="setTimeout(()=>encTab('extractions'),100)">Hash Culture</a></li>
     <li><a href="#newsletter" class="nav-cta">Subscribe</a></li>
   </ul>
 </nav>
@@ -5058,7 +5058,7 @@
       </a>
 
       <!-- Hash Culture -->
-      <a class="explore-tile" href="#hash-encyclopedia">
+      <a class="explore-tile" href="#cannascenti-encyclopedia" onclick="setTimeout(()=>encTab('extractions'),100)">
         <div class="explore-tile-icon">
           <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <polygon points="20,5 33,16 20,35 7,16" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
@@ -5400,89 +5400,6 @@
   </div>
 </div>
 
-<!-- HASH ENCYCLOPEDIA (end of Cannalogy) -->
-<div id="hash-encyclopedia" class="hashenc-section">
-  <div class="hashenc-inner">
-
-    <div class="section-label">✦ Hash Culture</div>
-    <div class="section-title">3,000 years of <em>the original concentrate.</em></div>
-    <p class="hashenc-intro">Before CO₂ extractors, before BHO rigs, before every dispensary shelf filled with distillate cartridges — humans were making hash for three millennia. From the Rif Mountains of Morocco to the Hindu Kush of Afghanistan to the sacred charas of the Himalayas. This is the full story.</p>
-
-    <!-- HASH & CONCENTRATES -->
-    <div class="hash-section" style="margin-bottom: 80px;">
-      <div class="terpene-intro">
-        <div class="section-label">✦ Hash &amp; Concentrates</div>
-        <div class="terpene-intro-title">The art of extraction — <em>solventless to solvent</em></div>
-        <p class="terpene-intro-desc">Concentrates are cannabis stripped to its essence. From hand-rolled hash made for thousands of years to modern cold-water bubble hash and live rosin pressed at precise temperatures — this is where the plant meets the craft. Click any concentrate to go deep.</p>
-      </div>
-      <div class="consume-grid" id="hashGrid"></div>
-      <div class="consume-detail" id="hashDetail"></div>
-    </div>
-
-    <!-- REGIONS -->
-    <div class="hashenc-sub-label">✦ Hash by Region</div>
-    <div class="hashenc-sub-title">Every culture found its own way to the same plant.</div>
-
-    <div class="hashenc-region-tabs" id="hashRegionTabs">
-      <button class="hashenc-tab active" onclick="hashRegionSelect('morocco')">
-        <span class="hashenc-tab-flag">🇲🇦</span>
-        <span class="hashenc-tab-name">Morocco</span>
-        <span class="hashenc-tab-type">Moroccan Slate</span>
-      </button>
-      <button class="hashenc-tab" onclick="hashRegionSelect('afghanistan')">
-        <span class="hashenc-tab-flag">🇦🇫</span>
-        <span class="hashenc-tab-name">Afghanistan</span>
-        <span class="hashenc-tab-type">Afghani Black</span>
-      </button>
-      <button class="hashenc-tab" onclick="hashRegionSelect('nepal')">
-        <span class="hashenc-tab-flag">🇳🇵</span>
-        <span class="hashenc-tab-name">Nepal</span>
-        <span class="hashenc-tab-type">Temple Balls</span>
-      </button>
-      <button class="hashenc-tab" onclick="hashRegionSelect('india')">
-        <span class="hashenc-tab-flag">🇮🇳</span>
-        <span class="hashenc-tab-name">India</span>
-        <span class="hashenc-tab-type">Charas</span>
-      </button>
-      <button class="hashenc-tab" onclick="hashRegionSelect('lebanon')">
-        <span class="hashenc-tab-flag">🇱🇧</span>
-        <span class="hashenc-tab-name">Lebanon</span>
-        <span class="hashenc-tab-type">Lebanese Blonde</span>
-      </button>
-      <button class="hashenc-tab" onclick="hashRegionSelect('modern')">
-        <span class="hashenc-tab-flag">🧪</span>
-        <span class="hashenc-tab-name">Modern USA</span>
-        <span class="hashenc-tab-type">Bubble · Rosin</span>
-      </button>
-    </div>
-    <div class="hashenc-panel" id="hashEncPanel"></div>
-
-    <!-- QUALITY GUIDE -->
-    <div class="hashenc-quality">
-      <div class="hashenc-sub-label">✦ How to Evaluate Hash</div>
-      <div class="hashenc-sub-title">Five things that separate premium from mediocre.</div>
-      <div class="hashenc-quality-grid" id="hashQualityGrid"></div>
-    </div>
-
-    <!-- SOLVENTLESS REVOLUTION -->
-    <div class="hashenc-solv">
-      <div class="hashenc-solv-left">
-        <div class="hashenc-sub-label">✦ The Solventless Revolution</div>
-        <div class="hashenc-solv-title">No chemicals. No shortcuts.<br><em>Pure craft.</em></div>
-        <p class="hashenc-solv-body">For decades, BHO — butane hash oil — dominated the concentrate market. Cheap, scalable, and efficient. But something was lost. The terpenes. The nuance. The craft. Then the ice water movement changed everything.</p>
-        <p class="hashenc-solv-body">Solventless extraction — using only ice, water, heat, and pressure — produces the most faithful representation of the cannabis plant that exists. No residual solvents. No degraded terpenes. Just the pure expression of the genetics, preserved at every stage.</p>
-        <p class="hashenc-solv-body">The best bubble hash on the market today — "full melt" — rivals wine and whisky in complexity. A single dab of fresh-pressed live rosin from a premium cultivar can contain 80+ distinct terpene compounds. The connoisseur era is here.</p>
-      </div>
-      <div class="hashenc-solv-right">
-        <div class="hashenc-solv-types" id="hashSolvTypes"></div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<div class="full-divider"></div>
-
 <!-- CANNABIS & FOOD -->
 <div id="cannabis-food" class="cannafood-section">
   <div class="cannafood-inner">
@@ -5570,84 +5487,6 @@
       <div class="cannafood-recipe-grid" id="cannaRecipes"></div>
     </div>
 
-  </div>
-</div>
-
-<div class="full-divider"></div>
-
-<!-- HASH CULTURE -->
-<div id="hash" class="hash-section">
-  <div class="hash-inner">
-    <span class="hash-label">✦ Hash Culture</span>
-    <div class="hash-title">The oldest cannabis tradition.<br><em>Finally respected.</em></div>
-    <p class="hash-intro">Before dispensaries, before pre-rolls, before flower became a commodity — there was hash. The most concentrated, most storied, most misunderstood form of cannabis. We're bringing it back to the forefront, and giving it the stage it deserves.</p>
-
-    <div class="hash-events">
-
-      <div class="hash-event">
-        <div class="hash-event-glow"></div>
-        <span class="hash-event-label">✦ Signature Experience</span>
-        <div class="hash-event-name"><em>Taste the Courage</em></div>
-        <p class="hash-event-desc">A curated hash tasting experience for the true connoisseur. Multiple expressions — different regions, different techniques, different profiles — presented and guided by someone who actually knows what they're talking about. Like a whisky flight, but elevated.</p>
-        <div class="hash-event-details">
-          <span class="hash-event-detail">Bubblehash · Dry Sift · Rosin · Live Hash</span>
-          <span class="hash-event-detail">Guided tasting with full terpene breakdowns</span>
-          <span class="hash-event-detail">Small groups — intimate, educational, unforgettable</span>
-        </div>
-        <a href="https://calendly.com/cannascenti" target="_blank" class="hash-btn">Reserve Your Seat</a>
-      </div>
-
-      <div class="hash-event">
-        <div class="hash-event-glow"></div>
-        <span class="hash-event-label">✦ Exclusive Event</span>
-        <div class="hash-event-name"><em>Solventless</em> Sessions</div>
-        <p class="hash-event-desc">A hash-only evening for people who actually appreciate the craft. No flower, no vapes. Just the finest solventless expressions available, expertly presented to a room of people who get it.</p>
-        <div class="hash-event-details">
-          <span class="hash-event-detail">Hash-only format</span>
-          <span class="hash-event-detail">Private invite and public events</span>
-          <span class="hash-event-detail">Education + experience combined</span>
-        </div>
-        <a href="https://calendly.com/cannascenti" target="_blank" class="hash-btn">Join the List</a>
-      </div>
-
-      <div class="hash-event">
-        <div class="hash-event-glow"></div>
-        <span class="hash-event-label">✦ Community Night</span>
-        <div class="hash-event-name">Hash <em>Nights</em></div>
-        <p class="hash-event-desc">A recurring gathering for the hash community. Monthly sessions where enthusiasts, connoisseurs, and the hash-curious all come together. The culture lives here.</p>
-        <div class="hash-event-details">
-          <span class="hash-event-detail">Monthly recurring events</span>
-          <span class="hash-event-detail">Open to all levels — beginners welcome</span>
-          <span class="hash-event-detail">Community-driven, expert-guided</span>
-        </div>
-        <a href="https://calendly.com/cannascenti" target="_blank" class="hash-btn">Attend a Night</a>
-      </div>
-
-    </div>
-
-    <div class="hash-classes">
-      <div>
-        <div class="hash-classes-intro">Master every form of hash — <em>from pressing to rolling to tasting</em></div>
-      </div>
-      <div class="hash-class-grid">
-        <div class="hash-class-card">
-          <div class="hash-class-name">Hash 101</div>
-          <p class="hash-class-desc">History, types, and how hash is made. The foundation every enthusiast needs. Covers kief, dry sift, bubble, rosin, and live hash.</p>
-        </div>
-        <div class="hash-class-card">
-          <div class="hash-class-name">Rolling with Hash</div>
-          <p class="hash-class-desc">How to properly incorporate hash into joints — from sprinkling kief to building a proper hash rod or snake. Technique matters.</p>
-        </div>
-        <div class="hash-class-card">
-          <div class="hash-class-name">Pressing & Extraction</div>
-          <p class="hash-class-desc">Understanding how solventless concentrates are made. Bubble hash, rosin pressing — demystified for the serious enthusiast.</p>
-        </div>
-        <div class="hash-class-card">
-          <div class="hash-class-name">The Connoisseur's Eye</div>
-          <p class="hash-class-desc">How to evaluate hash quality — color, texture, melt, aroma, and terpene expression. What separates premium from average.</p>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -6546,8 +6385,6 @@
         </div>
       </div>`;
   }
-  renderHashGrid();
-  hashSelect('bubble');
 
   // ─── Growing Stages ──────────────────────────────────────────────────────────
   const GROW_DATA = [
@@ -8577,7 +8414,8 @@
     { id:'consumption', label:'Consumption', icon:'💨' },
     { id:'cultivation', label:'Cultivation', icon:'🌱' },
     { id:'history', label:'History', icon:'📜' },
-    { id:'extractions', label:'Extractions', icon:'💎' }
+    { id:'extractions', label:'Extractions', icon:'💎' },
+    { id:'cooking', label:'Cooking', icon:'🍳' }
   ];
 
   let encActiveTab = 'terpenes';
@@ -8604,7 +8442,56 @@
       if (id === 'cannabinoids') molSelect('thc');
       if (id === 'consumption') { renderConsumeGrid(); consumeSelect('flower'); doseSelect('new'); }
       if (id === 'cultivation') { renderGrowTimeline(); growSelect('seed'); }
+      if (id === 'extractions') {
+        renderHashGrid(); hashSelect('bubble'); hashRegionSelect('morocco');
+        document.getElementById('hashQualityGrid').innerHTML = HASH_QUALITY.map(q => `<div class="hashenc-quality-card"><div class="hashenc-quality-num">${q.num}</div><div class="hashenc-quality-name">${q.name}</div><div class="hashenc-quality-desc">${q.desc}</div><div class="hashenc-quality-pro">${q.pro}</div></div>`).join('');
+        document.getElementById('hashSolvTypes').innerHTML = HASH_SOLV_TYPES.map(t => `<div class="hashenc-solv-type"><div class="hashenc-solv-type-name">${t.name}</div><div class="hashenc-solv-type-desc">${t.desc}</div><span class="hashenc-solv-type-grade">${t.grade}</span></div>`).join('');
+      }
+      if (id === 'cooking') {
+        document.getElementById('enc-cannaDecarb').innerHTML = DECARB_DATA.map(d => `<div class="cannafood-decarb-card"><div class="cannafood-decarb-temp">${d.temp}</div><div class="cannafood-decarb-time">${d.tempC} · ${d.time}</div><div class="cannafood-decarb-name">${d.name}</div><div class="cannafood-decarb-desc">${d.desc}</div><span class="cannafood-decarb-badge ${d.badge}">${d.badgeLabel}</span></div>`).join('');
+        document.getElementById('enc-cannaMethodTabs').innerHTML = INFUSION_METHODS.map(m => `<button class="cannafood-method-tab${m.id==='butter'?' active':''}" onclick="encCannaMethodSelect('${m.id}')"><span class="cannafood-method-tab-icon">${m.icon}</span><span class="cannafood-method-tab-name">${m.name}</span></button>`).join('');
+        encCannaMethodSelect('butter');
+        document.getElementById('enc-cannaDoseBars').innerHTML = DOSE_BARS.map(d => `<div class="cannafood-dose-bar-row"><span class="cannafood-dose-bar-label">${d.label}</span><div class="cannafood-dose-bar-track"><div class="cannafood-dose-bar-fill" style="width:${d.pct}%;background:${d.color}"></div></div><span class="cannafood-dose-bar-mg">${d.mg}</span></div>`).join('');
+        document.getElementById('enc-cannaDoseRules').innerHTML = DOSE_RULES.map(r => `<div class="cannafood-dose-rule"><div class="cannafood-dose-rule-num">${r.num}</div><div class="cannafood-dose-rule-title">${r.title}</div><div class="cannafood-dose-rule-body">${r.body}</div></div>`).join('');
+        document.getElementById('enc-cannaRecipes').innerHTML = RECIPES.map(r => `<div class="cannafood-recipe-card"><div class="cannafood-recipe-icon">${r.icon}</div><div class="cannafood-recipe-name">${r.name}</div><div class="cannafood-recipe-yield">${r.yield}</div><ul class="cannafood-recipe-ingredients">${r.ingredients.map(i=>`<li>${i}</li>`).join('')}</ul><div class="cannafood-recipe-method">${r.method}</div><div class="cannafood-recipe-use">${r.use}</div></div>`).join('');
+        encCalcPotency();
+      }
     });
+  }
+
+  function encCannaMethodSelect(id) {
+    document.querySelectorAll('#enc-cannaMethodTabs .cannafood-method-tab').forEach(t => t.classList.remove('active'));
+    const tabs = document.querySelectorAll('#enc-cannaMethodTabs .cannafood-method-tab');
+    const idx = INFUSION_METHODS.findIndex(m => m.id === id);
+    if (tabs[idx]) tabs[idx].classList.add('active');
+    const m = INFUSION_METHODS.find(x => x.id === id);
+    document.getElementById('enc-cannaMethodPanel').innerHTML = `
+      <div class="cfmp-header">
+        <div><div class="cfmp-title">${m.icon} ${m.name}</div><div class="cfmp-sub">${m.sub}</div></div>
+        <div class="cfmp-tags">${m.tags.map(t=>`<span class="cfmp-tag">${t}</span>`).join('')}</div>
+      </div>
+      <div class="cfmp-body">
+        <p class="cfmp-desc">${m.desc}</p>
+        <div class="cfmp-col"><h4>Step-by-Step Method</h4><ol class="cfmp-steps">${m.steps.map(s=>`<li>${s}</li>`).join('')}</ol></div>
+        <div class="cfmp-col"><h4>Best Uses</h4><div class="cfmp-uses">${m.uses.map(u=>`<span class="cfmp-use-tag">${u}</span>`).join('')}</div></div>
+        <div class="cfmp-tip">💡 ${m.tip}</div>
+      </div>
+    `;
+  }
+
+  function encCalcPotency() {
+    const g = parseFloat(document.getElementById('enc-calcGrams').value) || 0;
+    const thc = parseFloat(document.getElementById('enc-calcThc').value) || 0;
+    const servings = parseInt(document.getElementById('enc-calcServings').value) || 1;
+    const totalMg = g * (thc / 100) * 1000 * 0.88;
+    const perServing = totalMg / servings;
+    let note = '';
+    if (perServing <= 2.5) note = 'Microdose — ideal for new users or daytime use.';
+    else if (perServing <= 5) note = 'Low dose — beginner-friendly, gentle effect.';
+    else if (perServing <= 15) note = 'Moderate dose — solid effect for regular consumers.';
+    else if (perServing <= 30) note = 'High dose — experienced users only.';
+    else note = '⚠️ Very high dose — approach with caution. Consider more servings.';
+    document.getElementById('enc-calcResult').innerHTML = `<div class="calc-result-big">${perServing.toFixed(1)}mg</div><div class="calc-result-label">THC per serving</div><div class="calc-result-note">${note}<br><br>Total batch: <strong>${totalMg.toFixed(0)}mg THC</strong> · 88% decarb efficiency assumed.</div>`;
   }
 
   function encContent(id) {
@@ -8945,6 +8832,184 @@
             </div>
           `).join('')}
         </div>
+
+        <div style="margin-top: 80px; padding-top: 60px; border-top: 1px solid rgba(201,163,75,0.15);">
+          <div class="section-label">✦ Hash Culture</div>
+          <div class="section-title" style="margin-bottom:16px;">3,000 years of <em>the original concentrate.</em></div>
+          <p class="hashenc-intro">Before CO₂ extractors, before BHO rigs, before every dispensary shelf filled with distillate cartridges — humans were making hash for three millennia. From the Rif Mountains of Morocco to the Hindu Kush of Afghanistan to the sacred charas of the Himalayas. This is the full story.</p>
+
+          <!-- HASH & CONCENTRATES -->
+          <div class="hash-section" style="margin-bottom: 80px;">
+            <div class="terpene-intro">
+              <div class="section-label">✦ Hash &amp; Concentrates</div>
+              <div class="terpene-intro-title">The art of extraction — <em>solventless to solvent</em></div>
+              <p class="terpene-intro-desc">Concentrates are cannabis stripped to its essence. From hand-rolled hash made for thousands of years to modern cold-water bubble hash and live rosin pressed at precise temperatures — this is where the plant meets the craft. Click any concentrate to go deep.</p>
+            </div>
+            <div class="consume-grid" id="hashGrid"></div>
+            <div class="consume-detail" id="hashDetail"></div>
+          </div>
+
+          <!-- REGIONS -->
+          <div class="hashenc-sub-label">✦ Hash by Region</div>
+          <div class="hashenc-sub-title">Every culture found its own way to the same plant.</div>
+          <div class="hashenc-region-tabs" id="hashRegionTabs">
+            <button class="hashenc-tab active" onclick="hashRegionSelect('morocco')"><span class="hashenc-tab-flag">🇲🇦</span><span class="hashenc-tab-name">Morocco</span><span class="hashenc-tab-type">Moroccan Slate</span></button>
+            <button class="hashenc-tab" onclick="hashRegionSelect('afghanistan')"><span class="hashenc-tab-flag">🇦🇫</span><span class="hashenc-tab-name">Afghanistan</span><span class="hashenc-tab-type">Afghani Black</span></button>
+            <button class="hashenc-tab" onclick="hashRegionSelect('nepal')"><span class="hashenc-tab-flag">🇳🇵</span><span class="hashenc-tab-name">Nepal</span><span class="hashenc-tab-type">Temple Balls</span></button>
+            <button class="hashenc-tab" onclick="hashRegionSelect('india')"><span class="hashenc-tab-flag">🇮🇳</span><span class="hashenc-tab-name">India</span><span class="hashenc-tab-type">Charas</span></button>
+            <button class="hashenc-tab" onclick="hashRegionSelect('lebanon')"><span class="hashenc-tab-flag">🇱🇧</span><span class="hashenc-tab-name">Lebanon</span><span class="hashenc-tab-type">Lebanese Blonde</span></button>
+            <button class="hashenc-tab" onclick="hashRegionSelect('modern')"><span class="hashenc-tab-flag">🧪</span><span class="hashenc-tab-name">Modern USA</span><span class="hashenc-tab-type">Bubble · Rosin</span></button>
+          </div>
+          <div class="hashenc-panel" id="hashEncPanel"></div>
+
+          <!-- QUALITY GUIDE -->
+          <div class="hashenc-quality">
+            <div class="hashenc-sub-label">✦ How to Evaluate Hash</div>
+            <div class="hashenc-sub-title">Five things that separate premium from mediocre.</div>
+            <div class="hashenc-quality-grid" id="hashQualityGrid"></div>
+          </div>
+
+          <!-- SOLVENTLESS REVOLUTION -->
+          <div class="hashenc-solv">
+            <div class="hashenc-solv-left">
+              <div class="hashenc-sub-label">✦ The Solventless Revolution</div>
+              <div class="hashenc-solv-title">No chemicals. No shortcuts.<br><em>Pure craft.</em></div>
+              <p class="hashenc-solv-body">For decades, BHO — butane hash oil — dominated the concentrate market. Cheap, scalable, and efficient. But something was lost. The terpenes. The nuance. The craft. Then the ice water movement changed everything.</p>
+              <p class="hashenc-solv-body">Solventless extraction — using only ice, water, heat, and pressure — produces the most faithful representation of the cannabis plant that exists. No residual solvents. No degraded terpenes. Just the pure expression of the genetics, preserved at every stage.</p>
+              <p class="hashenc-solv-body">The best bubble hash on the market today — "full melt" — rivals wine and whisky in complexity. A single dab of fresh-pressed live rosin from a premium cultivar can contain 80+ distinct terpene compounds. The connoisseur era is here.</p>
+            </div>
+            <div class="hashenc-solv-right">
+              <div class="hashenc-solv-types" id="hashSolvTypes"></div>
+            </div>
+          </div>
+
+          <div style="margin-top: 80px; padding-top: 60px; border-top: 1px solid rgba(201,163,75,0.15);">
+            <span class="hash-label">✦ Hash Culture</span>
+            <div class="hash-title">The oldest cannabis tradition.<br><em>Finally respected.</em></div>
+            <p class="hash-intro">Before dispensaries, before pre-rolls, before flower became a commodity — there was hash. The most concentrated, most storied, most misunderstood form of cannabis. We're bringing it back to the forefront, and giving it the stage it deserves.</p>
+            <div class="hash-events">
+              <div class="hash-event">
+                <div class="hash-event-glow"></div>
+                <span class="hash-event-label">✦ Signature Experience</span>
+                <div class="hash-event-name"><em>Taste the Courage</em></div>
+                <p class="hash-event-desc">A curated hash tasting experience for the true connoisseur. Multiple expressions — different regions, different techniques, different profiles — presented and guided by someone who actually knows what they're talking about. Like a whisky flight, but elevated.</p>
+                <div class="hash-event-details">
+                  <span class="hash-event-detail">Bubblehash · Dry Sift · Rosin · Live Hash</span>
+                  <span class="hash-event-detail">Guided tasting with full terpene breakdowns</span>
+                  <span class="hash-event-detail">Small groups — intimate, educational, unforgettable</span>
+                </div>
+                <a href="https://calendly.com/cannascenti" target="_blank" class="hash-btn">Reserve Your Seat</a>
+              </div>
+              <div class="hash-event">
+                <div class="hash-event-glow"></div>
+                <span class="hash-event-label">✦ Exclusive Event</span>
+                <div class="hash-event-name"><em>Solventless</em> Sessions</div>
+                <p class="hash-event-desc">A hash-only evening for people who actually appreciate the craft. No flower, no vapes. Just the finest solventless expressions available, expertly presented to a room of people who get it.</p>
+                <div class="hash-event-details">
+                  <span class="hash-event-detail">Hash-only format</span>
+                  <span class="hash-event-detail">Private invite and public events</span>
+                  <span class="hash-event-detail">Education + experience combined</span>
+                </div>
+                <a href="https://calendly.com/cannascenti" target="_blank" class="hash-btn">Join the List</a>
+              </div>
+              <div class="hash-event">
+                <div class="hash-event-glow"></div>
+                <span class="hash-event-label">✦ Community Night</span>
+                <div class="hash-event-name">Hash <em>Nights</em></div>
+                <p class="hash-event-desc">A recurring gathering for the hash community. Monthly sessions where enthusiasts, connoisseurs, and the hash-curious all come together. The culture lives here.</p>
+                <div class="hash-event-details">
+                  <span class="hash-event-detail">Monthly recurring events</span>
+                  <span class="hash-event-detail">Open to all levels — beginners welcome</span>
+                  <span class="hash-event-detail">Community-driven, expert-guided</span>
+                </div>
+                <a href="https://calendly.com/cannascenti" target="_blank" class="hash-btn">Attend a Night</a>
+              </div>
+            </div>
+            <div class="hash-classes">
+              <div>
+                <div class="hash-classes-intro">Master every form of hash — <em>from pressing to rolling to tasting</em></div>
+              </div>
+              <div class="hash-class-grid">
+                <div class="hash-class-card">
+                  <div class="hash-class-name">Hash 101</div>
+                  <p class="hash-class-desc">History, types, and how hash is made. The foundation every enthusiast needs. Covers kief, dry sift, bubble, rosin, and live hash.</p>
+                </div>
+                <div class="hash-class-card">
+                  <div class="hash-class-name">Rolling with Hash</div>
+                  <p class="hash-class-desc">How to properly incorporate hash into joints — from sprinkling kief to building a proper hash rod or snake. Technique matters.</p>
+                </div>
+                <div class="hash-class-card">
+                  <div class="hash-class-name">Pressing & Extraction</div>
+                  <p class="hash-class-desc">Understanding how solventless concentrates are made. Bubble hash, rosin pressing — demystified for the serious enthusiast.</p>
+                </div>
+                <div class="hash-class-card">
+                  <div class="hash-class-name">The Connoisseur's Eye</div>
+                  <p class="hash-class-desc">How to evaluate hash quality — color, texture, melt, aroma, and terpene expression. What separates premium from average.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      case 'cooking': return `
+        <div class="enc-tab-intro"><p>Cannabis cooking is equal parts science and craft. Master decarboxylation, choose the right infusion, dose with precision — and every recipe becomes intentional.</p></div>
+
+        <div class="terpene-intro" style="margin-bottom:48px;">
+          <div class="section-label">✦ Step 1 — Decarboxylation</div>
+          <div class="terpene-intro-title">Activate before you infuse — <em>or nothing works</em></div>
+          <p class="terpene-intro-desc">Raw cannabis contains THCA and CBDA — non-psychoactive acid precursors. Decarboxylation converts them to THC and CBD through heat. Skip this step and your edibles will have zero effect. This is the most common and most costly mistake in cannabis cooking.</p>
+        </div>
+        <div class="cannafood-decarb-grid" id="enc-cannaDecarb"></div>
+        <div class="cannafood-decarb-note">
+          <span class="cannafood-note-icon">⚠️</span>
+          <p><strong>Pro tip:</strong> Lower temperature + longer time = more terpene preservation. 240°F / 115°C for 40 minutes is the gold standard for THC edibles. Use an oven thermometer — most ovens run hot.</p>
+        </div>
+
+        <div class="terpene-intro" style="margin-top:80px; margin-bottom:32px;">
+          <div class="section-label">✦ Step 2 — Infusion Methods</div>
+          <div class="terpene-intro-title">Choose your carrier — <em>fat binds everything</em></div>
+          <p class="terpene-intro-desc">THC is fat-soluble — it binds to lipids, not water. The right fat carrier determines potency, flavor, and application. Click each method to see the full process.</p>
+        </div>
+        <div class="cannafood-method-tabs" id="enc-cannaMethodTabs"></div>
+        <div class="cannafood-method-panel" id="enc-cannaMethodPanel"></div>
+
+        <div class="terpene-intro" style="margin-top:80px; margin-bottom:32px;">
+          <div class="section-label">✦ Step 3 — Potency Calculator</div>
+          <div class="terpene-intro-title">Know exactly what's in every serving — <em>before you eat it</em></div>
+          <p class="terpene-intro-desc">The formula: grams × THC% × 1,000 × 0.88 (decarb efficiency) = total mg THC. Divide by servings. This is the math every home infuser needs.</p>
+        </div>
+        <div class="cannafood-calc">
+          <div class="cannafood-calc-inputs">
+            <div class="cannafood-calc-field">
+              <label class="cannafood-calc-label">Cannabis (grams)</label>
+              <input id="enc-calcGrams" type="number" class="cannafood-calc-input" value="3.5" min="0.1" max="28" step="0.1" oninput="encCalcPotency()">
+            </div>
+            <div class="cannafood-calc-field">
+              <label class="cannafood-calc-label">THC % on label</label>
+              <input id="enc-calcThc" type="number" class="cannafood-calc-input" value="20" min="1" max="35" step="0.5" oninput="encCalcPotency()">
+            </div>
+            <div class="cannafood-calc-field">
+              <label class="cannafood-calc-label">Number of servings</label>
+              <input id="enc-calcServings" type="number" class="cannafood-calc-input" value="12" min="1" max="100" oninput="encCalcPotency()">
+            </div>
+          </div>
+          <div class="cannafood-calc-result" id="enc-calcResult"></div>
+        </div>
+
+        <div class="terpene-intro" style="margin-top:80px; margin-bottom:32px;">
+          <div class="section-label">✦ Dosing Guide</div>
+          <div class="terpene-intro-title">The spectrum — <em>from microdose to extreme</em></div>
+          <p class="terpene-intro-desc">11-hydroxy-THC — the edible metabolite — is more potent and longer-lasting than inhaled THC. Start low. Wait two hours. Eat before you dose.</p>
+        </div>
+        <div id="enc-cannaDoseBars" style="margin-bottom:40px;"></div>
+        <div class="cannafood-dose-rules" id="enc-cannaDoseRules"></div>
+
+        <div class="terpene-intro" style="margin-top:80px; margin-bottom:32px;">
+          <div class="section-label">✦ Starter Recipes</div>
+          <div class="terpene-intro-title">Three foundational recipes — <em>master these first</em></div>
+          <p class="terpene-intro-desc">Every advanced cannabis dish builds on one of these three foundations. Master the butter, the oil, and the tincture — everything else follows.</p>
+        </div>
+        <div class="cannafood-recipe-grid" id="enc-cannaRecipes"></div>
       `;
     }
   }
@@ -9187,25 +9252,6 @@
   })();
 
 
-  // Init hash encyclopedia
-  hashRegionSelect('morocco');
-
-  document.getElementById('hashQualityGrid').innerHTML = HASH_QUALITY.map(q => `
-    <div class="hashenc-quality-card">
-      <div class="hashenc-quality-num">${q.num}</div>
-      <div class="hashenc-quality-name">${q.name}</div>
-      <div class="hashenc-quality-desc">${q.desc}</div>
-      <div class="hashenc-quality-pro">${q.pro}</div>
-    </div>
-  `).join('');
-
-  document.getElementById('hashSolvTypes').innerHTML = HASH_SOLV_TYPES.map(t => `
-    <div class="hashenc-solv-type">
-      <div class="hashenc-solv-type-name">${t.name}</div>
-      <div class="hashenc-solv-type-desc">${t.desc}</div>
-      <span class="hashenc-solv-type-grade">${t.grade}</span>
-    </div>
-  `).join('');
 
 </script>
 
