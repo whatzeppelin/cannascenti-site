@@ -9328,6 +9328,15 @@
     }
   };
 
+  // ─── Analytics ───────────────────────────────────────────────────────────
+  function track(event, data) {
+    fetch('/api/track', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({event, data: data || {}})
+    }).catch(()=>{});
+  }
+
   // Q1 (feeling) and Q4 (goal) count double — they're the most predictive
   const QUIZ_WEIGHTS = [2, 1, 1, 2, 1];
 
@@ -9398,6 +9407,7 @@
     const sorted = Object.entries(quizScores).sort((a,b) => b[1]-a[1]);
     const key = sorted[0][1] > 0 ? sorted[0][0] : 'balanced';
     quizFinalKey = key;
+    track('quiz_result', {profile: key});
     const r = QUIZ_RESULTS[key];
     const alreadySaved = (() => { try { return JSON.parse(localStorage.getItem('cannascenti_profile'))?.key === key; } catch(e) { return false; } })();
     const el = document.getElementById('quizResult');
@@ -9415,16 +9425,16 @@
             <div class="quiz-strain-thc">THC ${s.thc}</div>
             <div class="quiz-strain-effects">${s.effects.map(e=>`<span class="quiz-strain-effect">${e}</span>`).join('')}</div>
             <div class="quiz-strain-terps">${s.terps}</div>
-            <a class="quiz-strain-find" href="${s.link}" target="_blank" rel="noopener">View available near you →</a>
+            <a class="quiz-strain-find" href="${s.link}" target="_blank" rel="noopener" onclick="track('strain_click',{strain:'${s.name}',profile:'${key}'})">View available near you →</a>
           </div>`).join('')}
       </div>
       <div class="quiz-guidance">💡 ${r.guidance}</div>
       <div class="quiz-refine-wrap">
         <div class="quiz-refine-label">Tweak your results</div>
         <div class="quiz-refine-btns">
-          <button class="quiz-refine-btn" onclick="quizRefine('light')">Less intense</button>
-          <button class="quiz-refine-btn" onclick="quizRefine('energy')">More energy</button>
-          <button class="quiz-refine-btn" onclick="quizRefine('relax')">More relaxing</button>
+          <button class="quiz-refine-btn" onclick="quizRefine('light');track('refine_click',{direction:'light'})">Less intense</button>
+          <button class="quiz-refine-btn" onclick="quizRefine('energy');track('refine_click',{direction:'energy'})">More energy</button>
+          <button class="quiz-refine-btn" onclick="quizRefine('relax');track('refine_click',{direction:'relax'})">More relaxing</button>
         </div>
       </div>
       <div class="quiz-email-capture">

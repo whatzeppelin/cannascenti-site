@@ -350,6 +350,129 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // ─── Analytics tracking ────────────────────────────────────────────────────
+  if (req.method === "POST" && req.url === "/api/track") {
+    let body = "";
+    req.on("data", chunk => { body += chunk; });
+    req.on("end", () => {
+      try {
+        const { event, data } = JSON.parse(body);
+        if (!event || typeof event !== "string" || event.length > 100) {
+          res.writeHead(400); res.end(); return;
+        }
+        const entry = JSON.stringify({ event, data: data || {}, ts: new Date().toISOString() }) + "\n";
+        fs.appendFile(path.join(__dirname, "analytics.jsonl"), entry, () => {});
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ ok: true }));
+      } catch (err) {
+        res.writeHead(400); res.end();
+      }
+    });
+    return;
+  }
+
+  // ─── Admin dashboard ───────────────────────────────────────────────────────
+  if (req.method === "GET" && req.url.startsWith("/admin")) {
+    const adminKey = process.env.ADMIN_KEY || "cannascenti2025";
+    const url = new URL(req.url, "http://localhost");
+    if (url.searchParams.get("key") !== adminKey) {
+      res.writeHead(401, { "Content-Type": "text/plain" });
+      res.end("Unauthorized"); return;
+    }
+    const analyticsPath = path.join(__dirname, "analytics.jsonl");
+    const subsPath = path.join(__dirname, "subscribers.jsonl");
+    const readLines = (filePath) => {
+      try {
+        return fs.readFileSync(filePath, "utf8").split("\n").filter(Boolean).map(l => JSON.parse(l));
+      } catch { return []; }
+    };
+    const events = readLines(analyticsPath);
+    const subs = readLines(subsPath);
+    const profiles = {relax:0, focus:0, sleep:0, creative:0, uplift:0, balanced:0};
+    const strains = {};
+    const refines = {light:0, energy:0, relax_dir:0};
+    events.forEach(e => {
+      if (e.event === "quiz_result" && e.data.profile) {
+        profiles[e.data.profile] = (profiles[e.data.profile]||0) + 1;
+      }
+      if (e.event === "strain_click" && e.data.strain) {
+        strains[e.data.strain] = (strains[e.data.strain]||0) + 1;
+      }
+      if (e.event === "refine_click") {
+        const d = e.data.direction;
+        if (d === "light") refines.light++;
+        else if (d === "energy") refines.energy++;
+        else if (d === "relax") refines.relax_dir++;
+      }
+    });
+    const totalQuiz = events.filter(e => e.event === "quiz_result").length;
+    const totalClicks = events.filter(e => e.event === "strain_click").length;
+    const topStrains = Object.entries(strains).sort((a,b) => b[1]-a[1]).slice(0, 10);
+    const profileColors = {relax:"#52b788",focus:"#f4a261",sleep:"#7b9ccc",creative:"#c084fc",uplift:"#fbbf24",balanced:"#9ca3af"};
+    const maxProfile = Math.max(...Object.values(profiles), 1);
+    const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Cannascenti Analytics</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#0a120a;color:#e8e0ce;font-family:system-ui,sans-serif;padding:40px 32px;max-width:960px;margin:0 auto}
+  h1{font-size:24px;font-weight:700;margin-bottom:4px;color:#fff}
+  .sub{font-size:13px;color:rgba(232,224,206,0.4);margin-bottom:40px}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:40px}
+  .stat{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:20px}
+  .stat-num{font-size:36px;font-weight:700;color:#52b788;margin-bottom:4px}
+  .stat-label{font-size:12px;color:rgba(232,224,206,0.45);letter-spacing:0.1em;text-transform:uppercase}
+  h2{font-size:16px;font-weight:600;color:#fff;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.07)}
+  .section{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:24px;margin-bottom:24px}
+  .bar-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+  .bar-label{width:100px;font-size:13px;color:rgba(232,224,206,0.7);text-transform:capitalize}
+  .bar-track{flex:1;height:8px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:4px;transition:width 0.6s}
+  .bar-count{font-size:13px;color:rgba(232,224,206,0.5);width:30px;text-align:right}
+  .strain-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:14px}
+  .strain-row:last-child{border-bottom:none}
+  .strain-count{color:#52b788;font-weight:600}
+  .refine-row{display:flex;gap:16px;flex-wrap:wrap}
+  .refine-chip{background:rgba(255,255,255,0.05);border-radius:20px;padding:8px 18px;font-size:13px;color:rgba(232,224,206,0.7)}
+  .refine-chip span{color:#52b788;font-weight:700;margin-left:6px}
+  .ts{font-size:11px;color:rgba(232,224,206,0.3);margin-top:16px}
+  @media(max-width:600px){.grid{grid-template-columns:1fr 1fr}}
+</style></head><body>
+<h1>Cannascenti Analytics</h1>
+<div class="sub">Live data — refreshes on reload</div>
+<div class="grid">
+  <div class="stat"><div class="stat-num">${totalQuiz}</div><div class="stat-label">Quiz Completions</div></div>
+  <div class="stat"><div class="stat-num">${totalClicks}</div><div class="stat-label">Strain Clicks</div></div>
+  <div class="stat"><div class="stat-num">${subs.length}</div><div class="stat-label">Subscribers</div></div>
+  <div class="stat"><div class="stat-num">${events.length}</div><div class="stat-label">Total Events</div></div>
+</div>
+<div class="section">
+  <h2>Profile Distribution</h2>
+  ${Object.entries(profiles).map(([k,v]) => `
+    <div class="bar-row">
+      <div class="bar-label">${k}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${Math.round(v/maxProfile*100)}%;background:${profileColors[k]||'#52b788'}"></div></div>
+      <div class="bar-count">${v}</div>
+    </div>`).join("")}
+</div>
+<div class="section">
+  <h2>Top Strain Clicks</h2>
+  ${topStrains.length ? topStrains.map(([name,count]) => `
+    <div class="strain-row"><span>${name}</span><span class="strain-count">${count}</span></div>`).join("") : '<div style="color:rgba(232,224,206,0.35);font-size:14px">No clicks yet</div>'}
+</div>
+<div class="section">
+  <h2>Refine Button Usage</h2>
+  <div class="refine-row">
+    <div class="refine-chip">Less intense<span>${refines.light}</span></div>
+    <div class="refine-chip">More energy<span>${refines.energy}</span></div>
+    <div class="refine-chip">More relaxing<span>${refines.relax_dir}</span></div>
+  </div>
+</div>
+<div class="ts">Last updated: ${new Date().toLocaleString()}</div>
+</body></html>`;
+    res.writeHead(200, { "Content-Type": "text/html" });
+    res.end(html);
+    return;
+  }
+
   if (req.method === "POST" && req.url === "/api/email") {
     let body = "";
     req.on("data", chunk => { body += chunk; });
