@@ -5299,6 +5299,66 @@
     <div class="enc-hub-nav" id="enc-hub-nav"></div>
     <div class="enc-hub-panel" id="enc-hub-panel"></div>
   </div>
+
+  <!-- CANNABIS & YOUR BODY -->
+  <div class="body-section" style="padding: 80px 60px 100px; max-width: 1200px; margin: 0 auto;">
+    <div class="terpene-intro">
+      <div class="section-label">✦ Cannabis &amp; Your Body</div>
+      <div class="terpene-intro-title">What's actually <em>happening inside you</em></div>
+      <p class="terpene-intro-desc">Your body has an entire system built to receive cannabis — the Endocannabinoid System. CB1 and CB2 receptors are distributed throughout your brain, organs, and nervous system. Cannabis doesn't hijack your brain. It plugs into a system that was always there.</p>
+    </div>
+    <div class="body-diagram-wrap">
+      <div class="body-diagram">
+        <div class="body-hotspot" style="top:8%;left:42%;" data-zone="brain" onclick="bodySelect('brain')">
+          <div class="body-dot"></div><div class="body-dot-ring"></div>
+          <div class="body-label body-label-right">Brain</div>
+        </div>
+        <div class="body-hotspot" style="top:22%;left:60%;" data-zone="eyes" onclick="bodySelect('eyes')">
+          <div class="body-dot"></div><div class="body-dot-ring"></div>
+          <div class="body-label body-label-right">Eyes</div>
+        </div>
+        <div class="body-hotspot" style="top:28%;left:38%;" data-zone="lungs" onclick="bodySelect('lungs')">
+          <div class="body-dot"></div><div class="body-dot-ring"></div>
+          <div class="body-label body-label-left">Lungs</div>
+        </div>
+        <div class="body-hotspot" style="top:35%;left:48%;" data-zone="heart" onclick="bodySelect('heart')">
+          <div class="body-dot"></div><div class="body-dot-ring"></div>
+          <div class="body-label body-label-right">Heart</div>
+        </div>
+        <div class="body-hotspot" style="top:42%;left:40%;" data-zone="gut" onclick="bodySelect('gut')">
+          <div class="body-dot"></div><div class="body-dot-ring"></div>
+          <div class="body-label body-label-left">Gut</div>
+        </div>
+        <div class="body-hotspot" style="top:55%;left:44%;" data-zone="muscles" onclick="bodySelect('muscles')">
+          <div class="body-dot"></div><div class="body-dot-ring"></div>
+          <div class="body-label body-label-left">Muscles</div>
+        </div>
+        <div class="body-hotspot" style="top:68%;left:50%;" data-zone="joints" onclick="bodySelect('joints')">
+          <div class="body-dot"></div><div class="body-dot-ring"></div>
+          <div class="body-label body-label-right">Joints</div>
+        </div>
+        <svg viewBox="0 0 200 480" xmlns="http://www.w3.org/2000/svg" class="body-svg">
+          <ellipse cx="100" cy="45" rx="34" ry="40" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+          <rect x="88" y="82" width="24" height="18" rx="4" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+          <path d="M60 100 Q50 130 52 180 L70 200 L130 200 L148 180 Q150 130 140 100 Z" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+          <path d="M60 105 Q40 130 38 175 Q37 185 44 190" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+          <path d="M140 105 Q160 130 162 175 Q163 185 156 190" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+          <path d="M70 200 Q65 260 64 320 Q63 350 68 380" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+          <path d="M130 200 Q135 260 136 320 Q137 350 132 380" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+          <path d="M68 380 Q60 390 55 395 Q62 400 78 398 L82 380" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+          <path d="M132 380 Q140 390 145 395 Q138 400 122 398 L118 380" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="body-info-panel" id="bodyInfoPanel">
+        <div class="body-info-placeholder">
+          <div style="font-size:2rem;margin-bottom:12px;">👆</div>
+          <div style="font-size:1rem;font-weight:700;margin-bottom:8px;">Tap any hotspot</div>
+          <div style="font-size:0.8rem;opacity:0.55;">Explore how cannabis interacts with each part of your body</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <div class="full-divider"></div>
@@ -5424,79 +5484,6 @@
           <div class="num-big" data-target="4">0</div>
           <div class="num-plus">hrs</div>
           <div class="num-label">Average duration of an edible experience</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CANNABIS & YOUR BODY -->
-    <div class="body-section">
-      <div class="terpene-intro">
-        <div class="section-label">✦ Cannabis &amp; Your Body</div>
-        <div class="terpene-intro-title">What's actually <em>happening inside you</em></div>
-        <p class="terpene-intro-desc">Your body has an entire system built to receive cannabis — the Endocannabinoid System. CB1 and CB2 receptors are distributed throughout your brain, organs, and nervous system. Cannabis doesn't hijack your brain. It plugs into a system that was always there.</p>
-      </div>
-
-      <div class="body-diagram-wrap">
-        <div class="body-diagram">
-          <!-- hotspots -->
-          <div class="body-hotspot" style="top:8%;left:42%;" data-zone="brain" onclick="bodySelect('brain')">
-            <div class="body-dot"></div><div class="body-dot-ring"></div>
-            <div class="body-label body-label-right">Brain</div>
-          </div>
-          <div class="body-hotspot" style="top:22%;left:60%;" data-zone="eyes" onclick="bodySelect('eyes')">
-            <div class="body-dot"></div><div class="body-dot-ring"></div>
-            <div class="body-label body-label-right">Eyes</div>
-          </div>
-          <div class="body-hotspot" style="top:28%;left:38%;" data-zone="lungs" onclick="bodySelect('lungs')">
-            <div class="body-dot"></div><div class="body-dot-ring"></div>
-            <div class="body-label body-label-left">Lungs</div>
-          </div>
-          <div class="body-hotspot" style="top:35%;left:48%;" data-zone="heart" onclick="bodySelect('heart')">
-            <div class="body-dot"></div><div class="body-dot-ring"></div>
-            <div class="body-label body-label-right">Heart</div>
-          </div>
-          <div class="body-hotspot" style="top:42%;left:40%;" data-zone="gut" onclick="bodySelect('gut')">
-            <div class="body-dot"></div><div class="body-dot-ring"></div>
-            <div class="body-label body-label-left">Gut</div>
-          </div>
-          <div class="body-hotspot" style="top:55%;left:44%;" data-zone="muscles" onclick="bodySelect('muscles')">
-            <div class="body-dot"></div><div class="body-dot-ring"></div>
-            <div class="body-label body-label-left">Muscles</div>
-          </div>
-          <div class="body-hotspot" style="top:68%;left:50%;" data-zone="joints" onclick="bodySelect('joints')">
-            <div class="body-dot"></div><div class="body-dot-ring"></div>
-            <div class="body-label body-label-right">Joints</div>
-          </div>
-
-          <!-- simple SVG body outline -->
-          <svg viewBox="0 0 200 480" xmlns="http://www.w3.org/2000/svg" class="body-svg">
-            <!-- head -->
-            <ellipse cx="100" cy="45" rx="34" ry="40" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-            <!-- neck -->
-            <rect x="88" y="82" width="24" height="18" rx="4" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-            <!-- torso -->
-            <path d="M60 100 Q50 130 52 180 L70 200 L130 200 L148 180 Q150 130 140 100 Z" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-            <!-- left arm -->
-            <path d="M60 105 Q40 130 38 175 Q37 185 44 190" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-            <!-- right arm -->
-            <path d="M140 105 Q160 130 162 175 Q163 185 156 190" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-            <!-- left leg -->
-            <path d="M70 200 Q65 260 64 320 Q63 350 68 380" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-            <!-- right leg -->
-            <path d="M130 200 Q135 260 136 320 Q137 350 132 380" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-            <!-- left foot -->
-            <path d="M68 380 Q60 390 55 395 Q62 400 78 398 L82 380" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-            <!-- right foot -->
-            <path d="M132 380 Q140 390 145 395 Q138 400 122 398 L118 380" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-          </svg>
-        </div>
-
-        <div class="body-info-panel" id="bodyInfoPanel">
-          <div class="body-info-placeholder">
-            <div style="font-size:2rem;margin-bottom:12px;">👆</div>
-            <div style="font-size:1rem;font-weight:700;margin-bottom:8px;">Tap any hotspot</div>
-            <div style="font-size:0.8rem;opacity:0.55;">Explore how cannabis interacts with each part of your body</div>
-          </div>
         </div>
       </div>
     </div>
