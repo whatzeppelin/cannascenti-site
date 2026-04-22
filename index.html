@@ -6199,6 +6199,7 @@
               <button class="bpro-chip" onclick="bproSelect('cons','flower')">🌿 Flower</button>
               <button class="bpro-chip" onclick="bproSelect('cons','vape')">💨 Vape</button>
               <button class="bpro-chip" onclick="bproSelect('cons','edible')">🍪 Edible</button>
+              <button class="bpro-chip" onclick="bproSelect('cons','capsule')">💊 Capsule / Softgel</button>
               <button class="bpro-chip" onclick="bproSelect('cons','concentrate')">💎 Concentrate</button>
               <button class="bpro-chip" onclick="bproSelect('cons','any')">No Preference</button>
             </div>
@@ -6625,6 +6626,18 @@
       howTo: 'Drops under the tongue (sublingual) absorb directly into the bloodstream. Hold 60–90 seconds before swallowing for fastest onset.',
       pros: 'Most precise dosing, no inhalation, fast-ish onset, discreet.',
       cons: 'Taste can be strong, fewer product options than flower or edibles.',
+    },
+    {
+      id: 'capsule', icon: '💊', name: 'Capsule / Softgel',
+      sub: 'Precise · No calories · No taste',
+      onset: { val: 25, label: '30–90 min' },
+      duration: { val: 88, label: '4–8 hrs' },
+      intensity: { val: 75, label: 'Moderate–High' },
+      control: { val: 97, label: 'Exact dosing' },
+      bestFor: 'Medical patients, microdosers, health-conscious consumers who want edible-style effects without sugar, calories, or food additives.',
+      howTo: 'Swallowed like a vitamin — available as tablets, pills, or softgels. Digested through the gut just like an edible. Come in 5mg, 10mg, 25mg, 50mg, and 100mg sizes. Formulations include THC-only, CBD-only, THC+CBD, or full-spectrum. Start low and wait the full 90 minutes.',
+      pros: 'Exact pre-measured dose every time, zero sugar and zero calories, no food allergens, tasteless, discreet as a vitamin. Going straight to the source — no food matrix to interfere with absorption.',
+      cons: 'Same delayed onset as edibles — patience required. Effects can still vary based on metabolism, body weight, and whether taken with food.',
     },
     {
       id: 'topical', icon: '🧴', name: 'Topical',
@@ -9350,6 +9363,7 @@
     if (!nav) return;
     nav.innerHTML = ENC_TABS.map(t => `<button class="enc-hub-tab${t.id === encActiveTab ? ' active' : ''}" data-tab="${t.id}" onclick="encTab('${t.id}')"><span class="enc-hub-tab-icon">${t.icon}</span>${t.label}</button>`).join('');
     document.getElementById('enc-hub-panel').innerHTML = encContent(encActiveTab);
+    if (encActiveTab === 'terpenes') requestAnimationFrame(() => initTerpeneWheel());
   })();
 
 
