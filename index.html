@@ -5125,7 +5125,7 @@
       </a>
 
       <!-- Edibles -->
-      <a class="explore-tile" href="#cannabis-food">
+      <a class="explore-tile" href="#encyclopedia" onclick="setTimeout(()=>encTab('cooking'),200)">
         <div class="explore-tile-icon">
           <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8 23 Q8 34 20 34 Q32 34 32 23 L8 23Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
@@ -5407,94 +5407,6 @@
 </div>
 
 <!-- CANNABIS & FOOD -->
-<div id="cannabis-food" class="cannafood-section">
-  <div class="cannafood-inner">
-
-    <div class="section-label"><span class="pg">05</span> ✦ Cannabis &amp; Food</div>
-    <div class="section-title">Cook with intention. <em>Dose with precision.</em></div>
-    <p class="cannafood-intro">Edibles are the most misunderstood consumption method in cannabis — and the most powerful. The difference between a transcendent experience and a terrible afternoon comes down to three things: decarboxylation, infusion, and dosing. Master all three.</p>
-
-    <!-- DECARB GUIDE -->
-    <div class="cannafood-block">
-      <div class="cannafood-block-header">
-        <div class="cannafood-block-icon">🌡️</div>
-        <div>
-          <div class="cannafood-block-label">✦ Step 1</div>
-          <div class="cannafood-block-title">Decarboxylation — <em>activate before you infuse</em></div>
-        </div>
-      </div>
-      <p class="cannafood-block-body">Raw cannabis contains THCA and CBDA — the acid precursors of THC and CBD. These forms are non-psychoactive. Decarboxylation is the process of applying heat to remove the carboxyl group (the "A"), converting THCA → THC and CBDA → CBD. Without this step, your edibles will not get you high. Period. This is the most common mistake in home cooking with cannabis.</p>
-      <div class="cannafood-decarb-grid" id="cannaDecarb"></div>
-      <div class="cannafood-decarb-note">
-        <span class="cannafood-note-icon">⚠️</span>
-        <p><strong>Pro tip:</strong> Lower temperature, longer time = more terpene preservation + THCA conversion. Higher temperature, shorter time = faster but risks degrading THC into CBN (sedating but less potent). For edibles, 240°F / 115°C for 40 minutes is the gold standard.</p>
-      </div>
-    </div>
-
-    <!-- INFUSION METHODS -->
-    <div class="cannafood-block">
-      <div class="cannafood-block-header">
-        <div class="cannafood-block-icon">🫙</div>
-        <div>
-          <div class="cannafood-block-label">✦ Step 2</div>
-          <div class="cannafood-block-title">Infusion Methods — <em>choose your carrier</em></div>
-        </div>
-      </div>
-      <p class="cannafood-block-body">THC and CBD are fat-soluble — they bind to fat, not water. This is why you infuse into a fat carrier: butter, oil, cream, or alcohol. The carrier you choose determines what you can cook with it and how quickly it activates. Click each method to see the full guide.</p>
-      <div class="cannafood-method-tabs" id="cannaMethodTabs"></div>
-      <div class="cannafood-method-panel" id="cannaMethodPanel"></div>
-    </div>
-
-    <!-- DOSING -->
-    <div class="cannafood-block">
-      <div class="cannafood-block-header">
-        <div class="cannafood-block-icon">⚖️</div>
-        <div>
-          <div class="cannafood-block-label">✦ Step 3</div>
-          <div class="cannafood-block-title">Dosing — <em>start low, go slow, take notes</em></div>
-        </div>
-      </div>
-      <p class="cannafood-block-body">Edibles are processed through the liver and converted into 11-hydroxy-THC — a metabolite that is 2–3× more potent and 4–6× longer-lasting than inhaled THC. Onset takes 30 minutes to 2 hours. The golden rule: dose intentionally, wait the full 2 hours before re-dosing, and never let impatience ruin your night.</p>
-      <div class="cannafood-dose-calc">
-        <div class="cannafood-calc-left">
-          <div class="cannafood-calc-title">Potency Calculator</div>
-          <p class="cannafood-calc-sub">Estimate the THC per serving in your homemade edibles.</p>
-          <div class="cannafood-calc-row">
-            <label>Cannabis weight (grams)</label>
-            <input type="number" id="calcGrams" value="3.5" min="0.1" max="30" step="0.1" oninput="calcPotency()" />
-          </div>
-          <div class="cannafood-calc-row">
-            <label>Estimated THC % of flower</label>
-            <input type="number" id="calcThc" value="20" min="1" max="35" step="0.5" oninput="calcPotency()" />
-          </div>
-          <div class="cannafood-calc-row">
-            <label>Number of servings</label>
-            <input type="number" id="calcServings" value="12" min="1" max="100" oninput="calcPotency()" />
-          </div>
-          <div class="cannafood-calc-result" id="calcResult"></div>
-        </div>
-        <div class="cannafood-dose-guide">
-          <div class="cannafood-dose-title">Standard Dosing Guide</div>
-          <div class="cannafood-dose-bars" id="cannaDoseBars"></div>
-        </div>
-      </div>
-      <div class="cannafood-dose-rules" id="cannaDoseRules"></div>
-    </div>
-
-    <!-- RECIPES -->
-    <div class="cannafood-block cannafood-recipes-block">
-      <div class="cannafood-block-header">
-        <div class="cannafood-block-icon">📋</div>
-        <div>
-          <div class="cannafood-block-label">✦ Foundation Recipes</div>
-          <div class="cannafood-block-title">Three recipes <em>every cannabis cook needs</em></div>
-        </div>
-      </div>
-      <div class="cannafood-recipe-grid" id="cannaRecipes"></div>
-    </div>
-
-  </div>
-</div>
 
 <!-- BUDTENDER PRO -->
 <div id="budtender-pro" class="bpro-section">
