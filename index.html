@@ -5504,16 +5504,6 @@
       <div class="isv-panel" id="dosePanel"></div>
     </div>
 
-    <!-- CANNABIS HISTORY TIMELINE -->
-    <div class="history-section">
-      <div class="terpene-intro">
-        <div class="section-label">✦ Cannabis History</div>
-        <div class="terpene-intro-title">10,000 years of <em>the plant</em></div>
-        <p class="terpene-intro-desc">Cannabis is one of the oldest cultivated plants in human history. Before it was illegal, it was medicine, rope, fabric, and ritual. Here's the real story.</p>
-      </div>
-      <div class="history-timeline" id="historyTimeline"></div>
-    </div>
-
     <!-- HOW TO READ A COA -->
     <div class="coa-section">
       <div class="terpene-intro">
@@ -6868,12 +6858,14 @@
     { year:'2024–25',    title:'38+ states legal, federal rescheduling underway', desc:'The DEA proposed rescheduling cannabis from Schedule I to Schedule III in 2024 — the most significant federal shift in 50 years. 38+ states have legal medical or recreational cannabis. Full federal legalization is a matter of when, not if.' },
   ];
 
-  document.getElementById('historyTimeline').innerHTML = HISTORY.map(h => `
-    <div class="history-item">
-      <div class="history-year">${h.year}</div>
-      <div class="history-title">${h.title}</div>
-      <div class="history-desc">${h.desc}</div>
-    </div>`).join('');
+  function renderHistoryTimeline() {
+    document.getElementById('historyTimeline').innerHTML = HISTORY.map(h => `
+      <div class="history-item">
+        <div class="history-year">${h.year}</div>
+        <div class="history-title">${h.title}</div>
+        <div class="history-desc">${h.desc}</div>
+      </div>`).join('');
+  }
 
   // ─── How to Read a COA ───────────────────────────────────────────────────────
   const COA_DATA = [
@@ -8754,7 +8746,7 @@
     panel.style.animation = 'none';
     requestAnimationFrame(() => {
       panel.style.animation = '';
-      if (id === 'history') globeCleanup = initEncGlobe();
+      if (id === 'history') { globeCleanup = initEncGlobe(); renderHistoryTimeline(); }
       if (id === 'terpenes') initTerpeneWheel();
       if (id === 'cannabinoids') molSelect('thc');
       if (id === 'consumption') { renderConsumeGrid(); consumeSelect('flower'); }
@@ -9050,6 +9042,15 @@
             });
             return html;
           })()}
+        </div>
+
+        <div style="margin-top: 80px; padding-top: 60px; border-top: 1px solid rgba(82,183,136,0.12);">
+          <div class="terpene-intro">
+            <div class="section-label">✦ Cannabis History</div>
+            <div class="terpene-intro-title">10,000 years of <em>the plant</em></div>
+            <p class="terpene-intro-desc">Cannabis is one of the oldest cultivated plants in human history. Before it was illegal, it was medicine, rope, fabric, and ritual. Here's the real story.</p>
+          </div>
+          <div class="history-timeline" id="historyTimeline"></div>
         </div>
       `;
       case 'extractions': return `
