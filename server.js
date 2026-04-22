@@ -2,10 +2,28 @@ import Anthropic from "@anthropic-ai/sdk";
 import http from "http";
 import fs from "fs";
 import path from "path";
+import zlib from "zlib";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const client = new Anthropic();
+
+// ─── Gzip cache (populated on first request, lives in memory) ─────────────────
+const gzipCache = new Map();
+
+// Cache durations by file type
+const CACHE_TTL = {
+  ".html":  "no-cache, no-store, must-revalidate",  // always fresh
+  ".ttf":   "public, max-age=31536000, immutable",   // 1 year — font never changes
+  ".woff":  "public, max-age=31536000, immutable",
+  ".woff2": "public, max-age=31536000, immutable",
+  ".json":  "public, max-age=3600",                  // 1 hour
+  ".js":    "public, max-age=86400",                 // 1 day
+  ".css":   "public, max-age=86400",
+  ".png":   "public, max-age=604800",                // 7 days
+  ".jpg":   "public, max-age=604800",
+  ".svg":   "public, max-age=604800",
+};
 
 // ─── Load local strain database ───────────────────────────────────────────────
 const STRAINS_DB = JSON.parse(fs.readFileSync(path.join(__dirname, "strains.json"), "utf8"));
@@ -350,6 +368,32 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // ─── Legal pages ──────────────────────────────────────────────────────────
+  if (req.method === "GET" && (req.url === "/privacy" || req.url === "/terms")) {
+    const isPrivacy = req.url === "/privacy";
+    const html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${isPrivacy ? "Privacy Policy" : "Terms of Use"} — Cannascenti</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}body{background:#081c15;color:#e8e0ce;font-family:system-ui,sans-serif;padding:60px 32px;max-width:760px;margin:0 auto;line-height:1.7}h1{font-size:28px;margin-bottom:8px;color:#fff}h2{font-size:17px;margin:32px 0 10px;color:#fff}p,li{font-size:15px;color:rgba(232,224,206,0.7);margin-bottom:12px}ul{padding-left:20px}a{color:#52b788}nav{margin-bottom:40px;font-size:13px}<style>
+</head><body>
+<nav><a href="/" style="color:#52b788;text-decoration:none;">← Back to Cannascenti</a></nav>
+${isPrivacy ? `<h1>Privacy Policy</h1><p>Last updated: April 2026</p>
+<h2>What We Collect</h2><p>When you subscribe to our newsletter, we collect your email address and your quiz result profile (e.g., "Relax", "Focus"). We do not collect names, payment information, or precise location data.</p>
+<h2>How We Use It</h2><p>Your email is used only to send cannabis recommendations and educational content from Cannascenti. We do not sell, rent, or share your email with third parties.</p>
+<h2>Analytics</h2><p>We collect anonymous event data (e.g., which quiz profiles are popular, which strain cards are clicked). This data contains no personally identifiable information.</p>
+<h2>Cookies & Local Storage</h2><p>We use your browser's localStorage to save your quiz profile for a better return experience. No third-party tracking cookies are used.</p>
+<h2>Your Rights</h2><p>You can unsubscribe from emails at any time. To request deletion of your data, contact us at hello@cannascenti.com.</p>
+<h2>Contact</h2><p>Questions? Email us at hello@cannascenti.com.</p>` : `<h1>Terms of Use</h1><p>Last updated: April 2026</p>
+<h2>Educational Content Only</h2><p>Cannascenti provides cannabis education, strain information, and recommendations for informational purposes only. We do not sell cannabis or cannabis products.</p>
+<h2>Age Requirement</h2><p>By using this site you confirm you are 21 years of age or older (or the legal age in your jurisdiction). Cannabis laws vary by location — it is your responsibility to know and follow local laws.</p>
+<h2>No Medical Advice</h2><p>Nothing on this site constitutes medical advice. Consult a healthcare professional before using cannabis for medical purposes.</p>
+<h2>Affiliate Links</h2><p>Some strain links on this site may be affiliate links. We may earn a small commission if you purchase through them, at no cost to you.</p>
+<h2>Limitation of Liability</h2><p>Cannascenti is not liable for any decisions made based on content found on this site. Use information responsibly.</p>
+<h2>Contact</h2><p>Questions? Email us at hello@cannascenti.com.</p>`}
+</body></html>`;
+    res.writeHead(200, { "Content-Type": "text/html", "Cache-Control": "public, max-age=86400" });
+    res.end(html);
+    return;
+  }
+
   // ─── Analytics tracking ────────────────────────────────────────────────────
   if (req.method === "POST" && req.url === "/api/track") {
     let body = "";
@@ -500,14 +544,37 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  let filePath = req.url === "/" ? "/index.html" : req.url;
+  // Strip query strings for file path resolution
+  const urlPath = req.url.split("?")[0];
+  let filePath = urlPath === "/" ? "/index.html" : urlPath;
   filePath = path.join(__dirname, filePath);
 
   fs.readFile(filePath, (err, data) => {
     if (err) { res.writeHead(404); res.end("Not found"); return; }
     const ext = path.extname(filePath);
-    res.writeHead(200, { "Content-Type": MIME[ext] || "application/octet-stream" });
-    res.end(data);
+    const mime = MIME[ext] || "application/octet-stream";
+    const cacheControl = CACHE_TTL[ext] || "public, max-age=3600";
+    const acceptsGzip = (req.headers["accept-encoding"] || "").includes("gzip");
+
+    const sendResponse = (body, compressed) => {
+      const headers = { "Content-Type": mime, "Cache-Control": cacheControl };
+      if (compressed) { headers["Content-Encoding"] = "gzip"; headers["Vary"] = "Accept-Encoding"; }
+      res.writeHead(200, headers);
+      res.end(body);
+    };
+
+    if (!acceptsGzip) { sendResponse(data, false); return; }
+
+    // Serve from gzip cache if available (don't cache HTML — it deploys frequently)
+    if (ext !== ".html" && gzipCache.has(filePath)) {
+      sendResponse(gzipCache.get(filePath), true); return;
+    }
+
+    zlib.gzip(data, { level: 6 }, (gzipErr, compressed) => {
+      if (gzipErr) { sendResponse(data, false); return; }
+      if (ext !== ".html") gzipCache.set(filePath, compressed);
+      sendResponse(compressed, true);
+    });
   });
 });
 
