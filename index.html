@@ -5488,22 +5488,6 @@
       </div>
     </div>
 
-    <!-- DOSING GUIDE -->
-    <div class="dose-section">
-      <div class="terpene-intro">
-        <div class="section-label">✦ Dosing Guide</div>
-        <div class="terpene-intro-title">Find your <em>sweet spot</em></div>
-        <p class="terpene-intro-desc">Too much is the most common mistake in cannabis. Too little leaves people thinking it doesn't work. The right dose is the one that delivers your intended experience — and it's different for everyone. Click your experience level to see the full guide.</p>
-      </div>
-      <div class="isv-tabs">
-        <button class="isv-tab dose-tab-new active" onclick="doseSelect('new')"><span class="isv-tab-icon">🌱</span><span class="isv-tab-name">New User</span><span class="isv-tab-sub">First time or rarely</span></button>
-        <button class="isv-tab dose-tab-casual" onclick="doseSelect('casual')"><span class="isv-tab-icon">😌</span><span class="isv-tab-name">Casual</span><span class="isv-tab-sub">Occasional use</span></button>
-        <button class="isv-tab dose-tab-regular" onclick="doseSelect('regular')"><span class="isv-tab-icon">🔥</span><span class="isv-tab-name">Regular</span><span class="isv-tab-sub">Daily or near-daily</span></button>
-        <button class="isv-tab dose-tab-heavy" onclick="doseSelect('heavy')"><span class="isv-tab-icon">💎</span><span class="isv-tab-name">Experienced</span><span class="isv-tab-sub">High tolerance</span></button>
-      </div>
-      <div class="isv-panel" id="dosePanel"></div>
-    </div>
-
     <!-- HOW TO READ A COA -->
     <div class="coa-section">
       <div class="terpene-intro">
@@ -6836,8 +6820,6 @@
       ${rowsHtml}
       <div class="isv-row"><div class="isv-row-label">Good Strains</div><div class="isv-row-value"><div class="isv-strains">${strainPills}</div></div></div>`;
   }
-  doseSelect('new');
-
   // ─── Cannabis History Timeline ────────────────────────────────────────────────
   const HISTORY = [
     { year:'~10,000 BC', title:'Cannabis cultivation begins in Central Asia', desc:'Among the earliest cultivated plants in human history. Ancient nomadic tribes in what is now Taiwan and China used cannabis for fiber, food, and ritual.' },
@@ -8749,7 +8731,7 @@
       if (id === 'history') { globeCleanup = initEncGlobe(); renderHistoryTimeline(); }
       if (id === 'terpenes') initTerpeneWheel();
       if (id === 'cannabinoids') molSelect('thc');
-      if (id === 'consumption') { renderConsumeGrid(); consumeSelect('flower'); }
+      if (id === 'consumption') { renderConsumeGrid(); consumeSelect('flower'); doseSelect('new'); }
       if (id === 'cultivation') { renderGrowTimeline(); growSelect('seed'); }
     });
   }
@@ -8914,6 +8896,21 @@
               <div class="enc-consume-col" style="grid-column:1/-1"><h4>Pro Tips</h4><p>${m.tips}</p></div>
             </div>
           `).join('')}
+        </div>
+
+        <div style="margin-top: 80px; padding-top: 60px; border-top: 1px solid rgba(82,183,136,0.12);">
+          <div class="terpene-intro">
+            <div class="section-label">✦ Dosing Guide</div>
+            <div class="terpene-intro-title">Find your <em>sweet spot</em></div>
+            <p class="terpene-intro-desc">Too much is the most common mistake in cannabis. Too little leaves people thinking it doesn't work. The right dose is the one that delivers your intended experience — and it's different for everyone. Click your experience level to see the full guide.</p>
+          </div>
+          <div class="isv-tabs">
+            <button class="isv-tab dose-tab-new active" onclick="doseSelect('new')"><span class="isv-tab-icon">🌱</span><span class="isv-tab-name">New User</span><span class="isv-tab-sub">First time or rarely</span></button>
+            <button class="isv-tab dose-tab-casual" onclick="doseSelect('casual')"><span class="isv-tab-icon">😌</span><span class="isv-tab-name">Casual</span><span class="isv-tab-sub">Occasional use</span></button>
+            <button class="isv-tab dose-tab-regular" onclick="doseSelect('regular')"><span class="isv-tab-icon">🔥</span><span class="isv-tab-name">Regular</span><span class="isv-tab-sub">Daily or near-daily</span></button>
+            <button class="isv-tab dose-tab-heavy" onclick="doseSelect('heavy')"><span class="isv-tab-icon">💎</span><span class="isv-tab-name">Experienced</span><span class="isv-tab-sub">High tolerance</span></button>
+          </div>
+          <div class="isv-panel" id="dosePanel"></div>
         </div>
       `;
       case 'cultivation': return `
