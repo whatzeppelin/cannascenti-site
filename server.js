@@ -450,7 +450,8 @@ ${isPrivacy ? `<h1>Privacy Policy</h1><p>Last updated: April 2026</p>
       }
     });
     const totalQuiz = events.filter(e => e.event === "quiz_result").length;
-    const totalClicks = events.filter(e => e.event === "strain_click").length;
+    const totalClicks = events.filter(e => e.event === "strain_click" || e.event === "featured_click").length;
+    const totalShares = events.filter(e => e.event === "share").length;
     const topStrains = Object.entries(strains).sort((a,b) => b[1]-a[1]).slice(0, 10);
     const profileColors = {relax:"#52b788",focus:"#f4a261",sleep:"#7b9ccc",creative:"#c084fc",uplift:"#fbbf24",balanced:"#9ca3af"};
     const maxProfile = Math.max(...Object.values(profiles), 1);
@@ -486,7 +487,7 @@ ${isPrivacy ? `<h1>Privacy Policy</h1><p>Last updated: April 2026</p>
   <div class="stat"><div class="stat-num">${totalQuiz}</div><div class="stat-label">Quiz Completions</div></div>
   <div class="stat"><div class="stat-num">${totalClicks}</div><div class="stat-label">Strain Clicks</div></div>
   <div class="stat"><div class="stat-num">${subs.length}</div><div class="stat-label">Subscribers</div></div>
-  <div class="stat"><div class="stat-num">${events.length}</div><div class="stat-label">Total Events</div></div>
+  <div class="stat"><div class="stat-num">${totalShares}</div><div class="stat-label">Shares</div></div>
 </div>
 <div class="section">
   <h2>Profile Distribution</h2>

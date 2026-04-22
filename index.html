@@ -124,6 +124,32 @@
     .quiz-strains { grid-template-columns: 1fr; }
     .quiz-email-form { flex-direction: column; }
   }
+  /* ── Featured Picks ───────────────────────────────────────────────────── */
+  .featured-section { padding: 80px 60px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .featured-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; flex-wrap: wrap; gap: 16px; }
+  .featured-label { font-size: 11px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--bright-green); margin-bottom: 10px; }
+  .featured-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 3.5vw, 42px); color: var(--cream); font-style: italic; line-height: 1.2; }
+  .featured-subtitle { font-size: 13px; color: rgba(242,234,216,0.4); margin-top: 8px; }
+  .featured-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .featured-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 4px; padding: 32px; display: flex; flex-direction: column; transition: border-color 0.25s, transform 0.25s; }
+  .featured-card:hover { border-color: rgba(82,183,136,0.3); transform: translateY(-3px); }
+  .featured-card-badge { display: inline-block; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; padding: 5px 12px; border-radius: 2px; margin-bottom: 24px; font-weight: 500; }
+  .featured-card-badge.pick-week { background: rgba(82,183,136,0.12); color: var(--bright-green); border: 1px solid rgba(82,183,136,0.25); }
+  .featured-card-badge.pick-sleep { background: rgba(123,156,204,0.12); color: #7b9ccc; border: 1px solid rgba(123,156,204,0.25); }
+  .featured-card-badge.pick-energy { background: rgba(244,162,97,0.12); color: #f4a261; border: 1px solid rgba(244,162,97,0.25); }
+  .featured-card-type { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(242,234,216,0.35); margin-bottom: 8px; }
+  .featured-card-name { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--cream); margin-bottom: 6px; line-height: 1.2; }
+  .featured-card-thc { font-size: 11px; color: rgba(242,234,216,0.35); margin-bottom: 18px; }
+  .featured-card-desc { font-size: 13px; color: rgba(242,234,216,0.55); line-height: 1.75; margin-bottom: 24px; flex: 1; }
+  .featured-card-terps { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 28px; }
+  .featured-card-terp { font-size: 10px; background: rgba(255,255,255,0.04); border-radius: 2px; padding: 4px 9px; color: rgba(242,234,216,0.45); }
+  .featured-card-cta { display: block; text-align: center; background: rgba(82,183,136,0.1); border: 1px solid rgba(82,183,136,0.2); color: var(--bright-green); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; padding: 12px; border-radius: 2px; text-decoration: none; transition: all 0.2s; margin-top: auto; }
+  .featured-card-cta:hover { background: rgba(82,183,136,0.2); border-color: var(--bright-green); }
+  @media (max-width: 900px) { .featured-section { padding: 60px 24px; } .featured-grid { grid-template-columns: 1fr; } }
+  /* ── Share result ─────────────────────────────────────────────────────── */
+  .quiz-share-wrap { margin: 20px 0 0; display: flex; gap: 10px; flex-wrap: wrap; }
+  .quiz-share-btn { background: none; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; color: rgba(242,234,216,0.5); font-family: 'Montserrat', sans-serif; font-size: 12px; padding: 9px 18px; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 7px; }
+  .quiz-share-btn:hover { border-color: rgba(255,255,255,0.25); color: var(--cream); }
   /* Welcome back */
   .quiz-welcome-back { background: rgba(82,183,136,0.06); border: 1px solid rgba(82,183,136,0.18); border-radius: 10px; padding: 14px 20px; margin-bottom: 28px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
   .quiz-welcome-back-text { font-size: 13px; color: rgba(242,234,216,0.65); }
@@ -5122,6 +5148,19 @@
   </div>
 </section>
 
+<!-- FEATURED PICKS -->
+<section class="featured-section">
+  <div class="featured-header">
+    <div>
+      <div class="featured-label">✦ Staff Curated</div>
+      <h2 class="featured-title">This week's top picks.</h2>
+      <p class="featured-subtitle">Chosen by our team for effect, quality, and cultural relevance.</p>
+    </div>
+    <a href="#quiz" style="font-size:12px;color:var(--bright-green);text-decoration:none;letter-spacing:0.1em;white-space:nowrap;">Get your personal match →</a>
+  </div>
+  <div class="featured-grid" id="featuredGrid"></div>
+</section>
+
 <!-- QUIZ -->
 <section id="quiz" class="quiz-section">
   <div class="quiz-inner">
@@ -9344,6 +9383,60 @@
     }
   };
 
+  // ─── Featured Picks ──────────────────────────────────────────────────────
+  // Update this object each week to refresh the editorial picks
+  const FEATURED_PICKS = [
+    {
+      badge: '⭐ Top Pick This Week',
+      badgeClass: 'pick-week',
+      type: 'Hybrid · Indica-Leaning',
+      name: 'Wedding Cake',
+      thc: 'THC 24–27%  ·  Caryophyllene · Limonene · Myrcene',
+      desc: 'The strain everyone keeps coming back to. Heavy relaxation that never feels sloppy — it hits your body first, then quiets your mind. Perfect for a long evening or winding down after a demanding week.',
+      terps: ['Caryophyllene', 'Limonene', 'Myrcene'],
+      link: 'https://weedmaps.com/strains/wedding-cake',
+      cta: 'Find near you →'
+    },
+    {
+      badge: '🌙 Best for Sleep Right Now',
+      badgeClass: 'pick-sleep',
+      type: 'Indica · Sedating',
+      name: 'Bubba Kush',
+      thc: 'THC 14–22%  ·  Myrcene · Limonene · Caryophyllene',
+      desc: 'Old school for a reason. Myrcene-heavy, muscle-relaxing, and steady — it doesn\'t knock you out fast, it walks you there. If you\'ve been struggling with sleep, this is the most reliable recommendation we make.',
+      terps: ['Myrcene', 'Limonene', 'Caryophyllene'],
+      link: 'https://weedmaps.com/strains/bubba-kush',
+      cta: 'Find near you →'
+    },
+    {
+      badge: '⚡ Best Daytime Energy',
+      badgeClass: 'pick-energy',
+      type: 'Sativa · Energizing',
+      name: 'Jack Herer',
+      thc: 'THC 18–23%  ·  Terpinolene · Pinene · Myrcene',
+      desc: 'Named after the cannabis activist and author for a reason — this strain represents the best of what sativa can be. Sharp, clear, creative, and social. The one you reach for when you actually need to get things done.',
+      terps: ['Terpinolene', 'Pinene', 'Myrcene'],
+      link: 'https://weedmaps.com/strains/jack-herer',
+      cta: 'Find near you →'
+    }
+  ];
+
+  (function renderFeatured() {
+    const grid = document.getElementById('featuredGrid');
+    if (!grid) return;
+    grid.innerHTML = FEATURED_PICKS.map(p => `
+      <div class="featured-card">
+        <div class="featured-card-badge ${p.badgeClass}">${p.badge}</div>
+        <div class="featured-card-type">${p.type}</div>
+        <div class="featured-card-name">${p.name}</div>
+        <div class="featured-card-thc">${p.thc}</div>
+        <p class="featured-card-desc">${p.desc}</p>
+        <div class="featured-card-terps">${p.terps.map(t=>`<span class="featured-card-terp">${t}</span>`).join('')}</div>
+        <a class="featured-card-cta" href="${p.link}" target="_blank" rel="noopener"
+           onclick="track('featured_click',{strain:'${p.name}'})">${p.cta}</a>
+      </div>`).join('');
+  })();
+
   // ─── Analytics ───────────────────────────────────────────────────────────
   function track(event, data) {
     fetch('/api/track', {
@@ -9461,6 +9554,10 @@
           <button class="quiz-email-submit" type="submit">Subscribe</button>
         </form>
       </div>
+      <div class="quiz-share-wrap">
+        <button class="quiz-share-btn" onclick="quizShare('twitter')">𝕏 Share your result</button>
+        <button class="quiz-share-btn" onclick="quizShare('copy')">🔗 Copy link</button>
+      </div>
       <div class="quiz-save-wrap">
         <button class="quiz-save-btn${alreadySaved ? ' saved' : ''}" id="quizSaveBtn" onclick="quizSaveProfile()" ${alreadySaved ? 'disabled' : ''}>
           ${alreadySaved ? '✓ Profile Saved' : '🔖 Save Your Profile'}
@@ -9538,6 +9635,23 @@
     quizScores = base;
     document.getElementById('quizResult').style.display = 'block';
     quizShowResult();
+  }
+
+  function quizShare(platform) {
+    const r = quizFinalKey ? QUIZ_RESULTS[quizFinalKey] : null;
+    const text = r
+      ? `I just got my cannabis profile: "${r.profileName}" on Cannascenti. Take the quiz → `
+      : 'Find your perfect cannabis match on Cannascenti → ';
+    const url = window.location.origin + '/#quiz';
+    if (platform === 'twitter') {
+      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text + url)}`, '_blank');
+    } else {
+      navigator.clipboard.writeText(text + url).then(() => {
+        const btns = document.querySelectorAll('.quiz-share-btn');
+        btns.forEach(b => { if (b.textContent.includes('Copy')) { b.textContent = '✓ Copied!'; setTimeout(() => { b.innerHTML = '🔗 Copy link'; }, 2000); } });
+      }).catch(() => { window.prompt('Copy this link:', text + url); });
+    }
+    track('share', {platform, profile: quizFinalKey});
   }
 
   function quizSubmitEmail(e) {
