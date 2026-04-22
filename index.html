@@ -8810,30 +8810,8 @@
       `;
       case 'extractions': return `
         <div class="enc-tab-intro"><p>From ancient hand-rubbed charas to modern THCA diamonds — extraction is where cannabis transforms into concentrate. Method determines flavor, potency, safety, and character.</p></div>
-        <div class="enc-extract-filter">
-          <button class="enc-extract-filter-btn active" onclick="encApplyExtractFilter('all',this)">All Methods</button>
-          <button class="enc-extract-filter-btn f-solventless" onclick="encApplyExtractFilter('solventless',this)">Solventless</button>
-          <button class="enc-extract-filter-btn f-solvent" onclick="encApplyExtractFilter('solvent',this)">Solvent-Based</button>
-          <button class="enc-extract-filter-btn f-traditional" onclick="encApplyExtractFilter('traditional',this)">Traditional</button>
-        </div>
-        <div class="enc-extract-grid">
-          ${EXTRACT_METHODS.map(m => `
-            <div class="enc-extract-card" data-tier="${m.tier}">
-              <div class="enc-extract-badge tier-${m.tier}">${m.tier === 'solventless' ? '✦ Solventless' : m.tier === 'solvent' ? '⚗ Solvent-Based' : '🏛 Traditional'}</div>
-              <div class="enc-extract-name">${m.name}</div>
-              <div class="enc-extract-sub">${m.sub}</div>
-              <div class="enc-extract-desc">${m.desc}</div>
-              <div class="enc-extract-meta">
-                <div><div class="enc-extract-meta-label">Quality</div><div class="enc-extract-stars">${m.quality}</div></div>
-                <div><div class="enc-extract-meta-label">Solvent</div><div class="enc-extract-meta-val">${m.solvent}</div></div>
-                <div><div class="enc-extract-meta-label">Yield</div><div class="enc-extract-meta-val">${m.yield}</div></div>
-                <div><div class="enc-extract-meta-label">Safety</div><div class="enc-extract-meta-val" style="font-size:11px">${m.safety}</div></div>
-              </div>
-            </div>
-          `).join('')}
-        </div>
 
-        <div style="margin-top: 80px; padding-top: 60px; border-top: 1px solid rgba(201,163,75,0.15);">
+        <div>
           <div class="section-label">✦ Hash Culture</div>
           <div class="section-title" style="margin-bottom:16px;">3,000 years of <em>the original concentrate.</em></div>
           <p class="hashenc-intro">Before CO₂ extractors, before BHO rigs, before every dispensary shelf filled with distillate cartridges — humans were making hash for three millennia. From the Rif Mountains of Morocco to the Hindu Kush of Afghanistan to the sacred charas of the Himalayas. This is the full story.</p>
@@ -8948,6 +8926,34 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 80px; padding-top: 60px; border-top: 1px solid rgba(201,163,75,0.15);">
+          <div class="section-label">✦ Extraction Methods</div>
+          <div class="section-title" style="margin-bottom:16px;">Every method. <em>Ranked and explained.</em></div>
+          <p class="hashenc-intro" style="margin-bottom:40px;">From ancient dry sift to modern THCA diamonds — a complete reference for every extraction technique, ranked by quality, yield, and safety.</p>
+          <div class="enc-extract-filter">
+            <button class="enc-extract-filter-btn active" onclick="encApplyExtractFilter('all',this)">All Methods</button>
+            <button class="enc-extract-filter-btn f-solventless" onclick="encApplyExtractFilter('solventless',this)">Solventless</button>
+            <button class="enc-extract-filter-btn f-solvent" onclick="encApplyExtractFilter('solvent',this)">Solvent-Based</button>
+            <button class="enc-extract-filter-btn f-traditional" onclick="encApplyExtractFilter('traditional',this)">Traditional</button>
+          </div>
+          <div class="enc-extract-grid">
+            ${EXTRACT_METHODS.map(m => `
+              <div class="enc-extract-card" data-tier="${m.tier}">
+                <div class="enc-extract-badge tier-${m.tier}">${m.tier === 'solventless' ? '✦ Solventless' : m.tier === 'solvent' ? '⚗ Solvent-Based' : '🏛 Traditional'}</div>
+                <div class="enc-extract-name">${m.name}</div>
+                <div class="enc-extract-sub">${m.sub}</div>
+                <div class="enc-extract-desc">${m.desc}</div>
+                <div class="enc-extract-meta">
+                  <div><div class="enc-extract-meta-label">Quality</div><div class="enc-extract-stars">${m.quality}</div></div>
+                  <div><div class="enc-extract-meta-label">Solvent</div><div class="enc-extract-meta-val">${m.solvent}</div></div>
+                  <div><div class="enc-extract-meta-label">Yield</div><div class="enc-extract-meta-val">${m.yield}</div></div>
+                  <div><div class="enc-extract-meta-label">Safety</div><div class="enc-extract-meta-val" style="font-size:11px">${m.safety}</div></div>
+                </div>
+              </div>
+            `).join('')}
           </div>
         </div>
       `;
