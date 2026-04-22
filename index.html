@@ -5447,8 +5447,120 @@
       </div>
     </div>
 
+    <!-- TABS -->
+    <div class="bpro-tabs">
+      <button class="bpro-tab active" onclick="bproTab('intake')">
+        <span class="bpro-tab-icon">🧑‍💼</span>Customer Intake
+      </button>
+      <button class="bpro-tab" onclick="bproTab('glossary')">
+        <span class="bpro-tab-icon">📖</span>Glossary
+      </button>
+      <button class="bpro-tab" onclick="bproTab('scripts')">
+        <span class="bpro-tab-icon">💬</span>Talking Points
+      </button>
+      <button class="bpro-tab" onclick="bproTab('dosing')">
+        <span class="bpro-tab-icon">⚖️</span>Dosing Quick Ref
+      </button>
+    </div>
+
+    <!-- INTAKE PANEL -->
+    <div class="bpro-panel" id="bproIntake">
+      <div class="bpro-intake-grid">
+        <div class="bpro-intake-form">
+          <div class="bpro-form-title">Customer Profile</div>
+
+          <div class="bpro-field">
+            <div class="bpro-field-label">Experience Level</div>
+            <div class="bpro-chips" id="bproExpChips">
+              <button class="bpro-chip" onclick="bproSelect('exp','first')">First Time</button>
+              <button class="bpro-chip" onclick="bproSelect('exp','occasional')">Occasional</button>
+              <button class="bpro-chip" onclick="bproSelect('exp','regular')">Regular</button>
+              <button class="bpro-chip" onclick="bproSelect('exp','heavy')">Heavy User</button>
+            </div>
+          </div>
+
+          <div class="bpro-field">
+            <div class="bpro-field-label">Primary Goal <span class="bpro-field-hint">(select up to 2)</span></div>
+            <div class="bpro-chips" id="bproGoalChips">
+              <button class="bpro-chip" onclick="bproMulti('goal','sleep')">😴 Sleep</button>
+              <button class="bpro-chip" onclick="bproMulti('goal','pain')">💊 Pain Relief</button>
+              <button class="bpro-chip" onclick="bproMulti('goal','anxiety')">🧘 Anxiety</button>
+              <button class="bpro-chip" onclick="bproMulti('goal','energy')">⚡ Energy</button>
+              <button class="bpro-chip" onclick="bproMulti('goal','creativity')">🎨 Creativity</button>
+              <button class="bpro-chip" onclick="bproMulti('goal','mood')">😊 Mood Lift</button>
+              <button class="bpro-chip" onclick="bproMulti('goal','appetite')">🍽️ Appetite</button>
+              <button class="bpro-chip" onclick="bproMulti('goal','focus')">🎯 Focus</button>
+              <button class="bpro-chip" onclick="bproMulti('goal','social')">🎉 Social</button>
+              <button class="bpro-chip" onclick="bproMulti('goal','relax')">🛋️ Relax</button>
+            </div>
+          </div>
+
+          <div class="bpro-field">
+            <div class="bpro-field-label">Time of Use</div>
+            <div class="bpro-chips" id="bproTimeChips">
+              <button class="bpro-chip" onclick="bproSelect('time','morning')">Morning</button>
+              <button class="bpro-chip" onclick="bproSelect('time','afternoon')">Afternoon</button>
+              <button class="bpro-chip" onclick="bproSelect('time','evening')">Evening</button>
+              <button class="bpro-chip" onclick="bproSelect('time','nighttime')">Nighttime</button>
+            </div>
+          </div>
+
+          <div class="bpro-field">
+            <div class="bpro-field-label">Consumption Preference</div>
+            <div class="bpro-chips" id="bproConsChips">
+              <button class="bpro-chip" onclick="bproSelect('cons','flower')">🌿 Flower</button>
+              <button class="bpro-chip" onclick="bproSelect('cons','vape')">💨 Vape</button>
+              <button class="bpro-chip" onclick="bproSelect('cons','edible')">🍪 Edible</button>
+              <button class="bpro-chip" onclick="bproSelect('cons','capsule')">💊 Capsule / Softgel</button>
+              <button class="bpro-chip" onclick="bproSelect('cons','concentrate')">💎 Concentrate</button>
+              <button class="bpro-chip" onclick="bproSelect('cons','any')">No Preference</button>
+            </div>
+          </div>
+
+          <div class="bpro-field">
+            <div class="bpro-field-label">Any Concerns?</div>
+            <div class="bpro-chips" id="bproConcernChips">
+              <button class="bpro-chip" onclick="bproMulti('concern','anxious')">Anxiety-prone</button>
+              <button class="bpro-chip" onclick="bproMulti('concern','sensitive')">THC sensitive</button>
+              <button class="bpro-chip" onclick="bproMulti('concern','medication')">On medication</button>
+              <button class="bpro-chip" onclick="bproMulti('concern','driving')">Driving later</button>
+              <button class="bpro-chip" onclick="bproMulti('concern','none')">None</button>
+            </div>
+          </div>
+
+          <button class="bpro-recommend-btn" onclick="bproGenRec()">Generate Recommendation →</button>
+        </div>
+
+        <div class="bpro-rec-panel" id="bproRecPanel">
+          <div class="bpro-rec-placeholder">
+            <div class="bpro-rec-placeholder-icon">🌿</div>
+            <p>Fill in the customer profile and hit <strong>Generate Recommendation</strong> to see matched strains and talking points.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GLOSSARY PANEL -->
+    <div class="bpro-panel bpro-panel-hidden" id="bproGlossary">
+      <div class="bpro-glossary-search-row">
+        <input class="bpro-glossary-input" id="bproGlossSearch" type="text" placeholder="Search terms..." oninput="bproFilterGloss()" />
+        <div class="bpro-gloss-cats" id="bproGlossCats"></div>
+      </div>
+      <div class="bpro-glossary-grid" id="bproGlossGrid"></div>
+    </div>
+
+    <!-- SCRIPTS PANEL -->
+    <div class="bpro-panel bpro-panel-hidden" id="bproScripts">
+      <div class="bpro-scripts-grid" id="bproScriptsGrid"></div>
+    </div>
+
+    <!-- DOSING REF PANEL -->
+    <div class="bpro-panel bpro-panel-hidden" id="bproDosing">
+      <div class="bpro-dosing-grid" id="bproDosingGrid"></div>
+    </div>
+
     <!-- CannaQuant -->
-    <div id="consulting" class="consulting" style="margin-bottom: 80px; padding-bottom: 80px; border-bottom: 1px solid rgba(82,183,136,0.12);">
+    <div id="consulting" class="consulting" style="margin-top: 80px; margin-bottom: 80px; padding-bottom: 80px; border-top: 1px solid rgba(82,183,136,0.12); padding-top: 80px;">
       <div class="consulting-inner">
 
         <div class="consulting-left">
@@ -5596,118 +5708,6 @@
         </div>
 
       </div>
-    </div>
-
-    <!-- TABS -->
-    <div class="bpro-tabs">
-      <button class="bpro-tab active" onclick="bproTab('intake')">
-        <span class="bpro-tab-icon">🧑‍💼</span>Customer Intake
-      </button>
-      <button class="bpro-tab" onclick="bproTab('glossary')">
-        <span class="bpro-tab-icon">📖</span>Glossary
-      </button>
-      <button class="bpro-tab" onclick="bproTab('scripts')">
-        <span class="bpro-tab-icon">💬</span>Talking Points
-      </button>
-      <button class="bpro-tab" onclick="bproTab('dosing')">
-        <span class="bpro-tab-icon">⚖️</span>Dosing Quick Ref
-      </button>
-    </div>
-
-    <!-- INTAKE PANEL -->
-    <div class="bpro-panel" id="bproIntake">
-      <div class="bpro-intake-grid">
-        <div class="bpro-intake-form">
-          <div class="bpro-form-title">Customer Profile</div>
-
-          <div class="bpro-field">
-            <div class="bpro-field-label">Experience Level</div>
-            <div class="bpro-chips" id="bproExpChips">
-              <button class="bpro-chip" onclick="bproSelect('exp','first')">First Time</button>
-              <button class="bpro-chip" onclick="bproSelect('exp','occasional')">Occasional</button>
-              <button class="bpro-chip" onclick="bproSelect('exp','regular')">Regular</button>
-              <button class="bpro-chip" onclick="bproSelect('exp','heavy')">Heavy User</button>
-            </div>
-          </div>
-
-          <div class="bpro-field">
-            <div class="bpro-field-label">Primary Goal <span class="bpro-field-hint">(select up to 2)</span></div>
-            <div class="bpro-chips" id="bproGoalChips">
-              <button class="bpro-chip" onclick="bproMulti('goal','sleep')">😴 Sleep</button>
-              <button class="bpro-chip" onclick="bproMulti('goal','pain')">💊 Pain Relief</button>
-              <button class="bpro-chip" onclick="bproMulti('goal','anxiety')">🧘 Anxiety</button>
-              <button class="bpro-chip" onclick="bproMulti('goal','energy')">⚡ Energy</button>
-              <button class="bpro-chip" onclick="bproMulti('goal','creativity')">🎨 Creativity</button>
-              <button class="bpro-chip" onclick="bproMulti('goal','mood')">😊 Mood Lift</button>
-              <button class="bpro-chip" onclick="bproMulti('goal','appetite')">🍽️ Appetite</button>
-              <button class="bpro-chip" onclick="bproMulti('goal','focus')">🎯 Focus</button>
-              <button class="bpro-chip" onclick="bproMulti('goal','social')">🎉 Social</button>
-              <button class="bpro-chip" onclick="bproMulti('goal','relax')">🛋️ Relax</button>
-            </div>
-          </div>
-
-          <div class="bpro-field">
-            <div class="bpro-field-label">Time of Use</div>
-            <div class="bpro-chips" id="bproTimeChips">
-              <button class="bpro-chip" onclick="bproSelect('time','morning')">Morning</button>
-              <button class="bpro-chip" onclick="bproSelect('time','afternoon')">Afternoon</button>
-              <button class="bpro-chip" onclick="bproSelect('time','evening')">Evening</button>
-              <button class="bpro-chip" onclick="bproSelect('time','nighttime')">Nighttime</button>
-            </div>
-          </div>
-
-          <div class="bpro-field">
-            <div class="bpro-field-label">Consumption Preference</div>
-            <div class="bpro-chips" id="bproConsChips">
-              <button class="bpro-chip" onclick="bproSelect('cons','flower')">🌿 Flower</button>
-              <button class="bpro-chip" onclick="bproSelect('cons','vape')">💨 Vape</button>
-              <button class="bpro-chip" onclick="bproSelect('cons','edible')">🍪 Edible</button>
-              <button class="bpro-chip" onclick="bproSelect('cons','capsule')">💊 Capsule / Softgel</button>
-              <button class="bpro-chip" onclick="bproSelect('cons','concentrate')">💎 Concentrate</button>
-              <button class="bpro-chip" onclick="bproSelect('cons','any')">No Preference</button>
-            </div>
-          </div>
-
-          <div class="bpro-field">
-            <div class="bpro-field-label">Any Concerns?</div>
-            <div class="bpro-chips" id="bproConcernChips">
-              <button class="bpro-chip" onclick="bproMulti('concern','anxious')">Anxiety-prone</button>
-              <button class="bpro-chip" onclick="bproMulti('concern','sensitive')">THC sensitive</button>
-              <button class="bpro-chip" onclick="bproMulti('concern','medication')">On medication</button>
-              <button class="bpro-chip" onclick="bproMulti('concern','driving')">Driving later</button>
-              <button class="bpro-chip" onclick="bproMulti('concern','none')">None</button>
-            </div>
-          </div>
-
-          <button class="bpro-recommend-btn" onclick="bproGenRec()">Generate Recommendation →</button>
-        </div>
-
-        <div class="bpro-rec-panel" id="bproRecPanel">
-          <div class="bpro-rec-placeholder">
-            <div class="bpro-rec-placeholder-icon">🌿</div>
-            <p>Fill in the customer profile and hit <strong>Generate Recommendation</strong> to see matched strains and talking points.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- GLOSSARY PANEL -->
-    <div class="bpro-panel bpro-panel-hidden" id="bproGlossary">
-      <div class="bpro-glossary-search-row">
-        <input class="bpro-glossary-input" id="bproGlossSearch" type="text" placeholder="Search terms..." oninput="bproFilterGloss()" />
-        <div class="bpro-gloss-cats" id="bproGlossCats"></div>
-      </div>
-      <div class="bpro-glossary-grid" id="bproGlossGrid"></div>
-    </div>
-
-    <!-- SCRIPTS PANEL -->
-    <div class="bpro-panel bpro-panel-hidden" id="bproScripts">
-      <div class="bpro-scripts-grid" id="bproScriptsGrid"></div>
-    </div>
-
-    <!-- DOSING REF PANEL -->
-    <div class="bpro-panel bpro-panel-hidden" id="bproDosing">
-      <div class="bpro-dosing-grid" id="bproDosingGrid"></div>
     </div>
 
   </div>
