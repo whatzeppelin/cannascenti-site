@@ -7081,7 +7081,7 @@
     </div>
     <div class="mj-header-info">
       <div class="mj-name">Mary Jane</div>
-      <div class="mj-status">Online · Cannabis Intelligence</div>
+      <div class="mj-status" id="mjStatus">Online · Cannabis Intelligence</div>
     </div>
     <button class="mj-close" onclick="toggleMJ()">×</button>
   </div>
@@ -7095,7 +7095,7 @@
           <polygon points="80,28 52,38 64,62 80,52" fill="#B7E4C7" opacity="0.8"/>
         </svg>
       </div>
-      <div class="mj-msg-bubble">Hey — I'm Mary Jane. Your personal guide to everything cannabis. Whether you need the right strain, want to understand terpenes, book a seminar, or just have a question — I've got you. What can I help you with?</div>
+      <div class="mj-msg-bubble" id="mjGreeting">Hey — I'm Mary Jane. Your personal guide to everything cannabis. Whether you need the right strain, want to understand terpenes, book a seminar, or just have a question — I've got you. What can I help you with?</div>
     </div>
   </div>
 
@@ -7130,12 +7130,75 @@
   const mjHistory = [];
   let mjOpen = false;
   let mjStreaming = false;
+  let mjInitialized = false;
+
+  // Profile-specific suggestions
+  const MJ_SUGGESTIONS = {
+    relax:    ['Why does Wedding Cake hit so hard?', 'Best indica for a long weekend?', 'How much myrcene is too much?'],
+    focus:    ['Best strain for deep work?', 'Does CBD cancel out THC?', 'Sativa vs hybrid for focus?'],
+    sleep:    ['When should I smoke before bed?', 'Will Bubba Kush make me groggy?', 'What\'s better than melatonin?'],
+    creative: ['Best strain for making music?', 'Why does weed make you creative?', 'Sativa or hybrid for art?'],
+    uplift:   ['Best strain for a social night out?', 'Why does Sour Diesel feel so different?', 'How do I avoid anxiety?'],
+    balanced: ['What\'s the most versatile strain?', 'Hybrid vs balanced indica?', 'Good strain for any occasion?'],
+  };
+
+  const MJ_GREETINGS = {
+    relax:    (name) => `Hey — I already know a bit about you. You're ${name}, and you're here to unwind. I've got you. Ask me anything — or tell me what you tried and how it felt.`,
+    focus:    (name) => `Hey — you're ${name}. You want to stay sharp and get things done. Let's find you exactly the right tool for that. What are you working on?`,
+    sleep:    (name) => `Hey — you're ${name}. Sleep is serious and you deserve real help with it. Tell me what's been going on — trouble falling asleep, staying asleep, or both?`,
+    creative: (name) => `Hey — you're ${name}. Let's talk about getting your mind into that zone. What kind of creative work are we fueling here?`,
+    uplift:   (name) => `Hey — you're ${name}. You're here for good energy and a good time. Tell me what the occasion is and I'll point you exactly where to go.`,
+    balanced: (name) => `Hey — you're ${name}. You want something smooth that works without going too far either direction. Smart. What situation are you shopping for?`,
+  };
+
+  function mjGetProfile() {
+    try { return JSON.parse(localStorage.getItem('cannascenti_profile')); } catch { return null; }
+  }
+
+  function mjGetMemory() {
+    try { return JSON.parse(localStorage.getItem('cannascenti_memory')) || []; } catch { return []; }
+  }
+
+  function mjSaveMemory(entry) {
+    try {
+      const mem = mjGetMemory();
+      mem.unshift(entry);
+      localStorage.setItem('cannascenti_memory', JSON.stringify(mem.slice(0, 10)));
+    } catch {}
+  }
 
   function toggleMJ() {
     mjOpen = !mjOpen;
     document.getElementById('mjPanel').classList.toggle('open', mjOpen);
     document.getElementById('mjUnread').style.display = 'none';
-    if (mjOpen) document.getElementById('mjInput').focus();
+    if (mjOpen) {
+      if (!mjInitialized) mjInit();
+      document.getElementById('mjInput').focus();
+    }
+  }
+
+  function mjInit() {
+    mjInitialized = true;
+    const profile = mjGetProfile();
+    if (!profile) return;
+
+    // Update status line
+    const status = document.getElementById('mjStatus');
+    if (status) status.textContent = `Knows your profile · ${profile.profileName}`;
+
+    // Swap greeting
+    const greeting = document.getElementById('mjGreeting');
+    const greetFn = MJ_GREETINGS[profile.key];
+    if (greeting && greetFn) greeting.textContent = greetFn(profile.profileName);
+
+    // Swap suggestion chips
+    const chips = MJ_SUGGESTIONS[profile.key];
+    const suggestEl = document.getElementById('mjSuggestions');
+    if (chips && suggestEl) {
+      suggestEl.innerHTML = chips.map(c =>
+        `<span class="mj-suggestion" onclick="mjSuggest(this)">${c}</span>`
+      ).join('');
+    }
   }
 
   function mjSuggest(el) {
@@ -7212,11 +7275,21 @@
 
     showTyping();
 
+    // Auto-save strain mentions to memory (e.g. "I tried Blue Dream and it was great")
+    const strainMentionRe = /(?:tried|smoked|used|had|love|liked?|hated?|didn't like|works? for me|too strong|too weak|perfect for me)\s+(.+?)(?:\s+and|\s+but|,|\.)/i;
+    const memMatch = text.match(strainMentionRe);
+    if (memMatch) mjSaveMemory(text.slice(0, 200));
+
     try {
+      const profile = mjGetProfile();
+      const memory = mjGetMemory();
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: mjHistory })
+        body: JSON.stringify({
+          messages: mjHistory,
+          context: { profile: profile?.key || null, memory }
+        })
       });
 
       if (!res.ok) throw new Error('Server error');

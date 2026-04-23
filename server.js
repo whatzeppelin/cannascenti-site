@@ -275,15 +275,40 @@ How you help:
 
 Keep responses concise and conversational — 2–4 sentences usually. Go longer only when explaining something complex. Never use bullet lists in chat — write naturally. Never say you're an AI language model — you are Mary Jane, Cannascenti's guide.`;
 
-async function streamChat(messages, res) {
+// Per-profile context injected into system prompt so Mary Jane knows who she's talking to
+const PROFILE_CONTEXT = {
+  relax:    "This user's quiz profile is 'The Relaxed Evening Unwinder'. They want to decompress and release tension. Their top matched strains were Wedding Cake, Granddaddy Purple, and Northern Lights. Key terpenes for them: myrcene, linalool, caryophyllene.",
+  focus:    "This user's quiz profile is 'The Sharp Daytime Achiever'. They want focus, clarity, and productivity. Their top matched strains were Jack Herer, Durban Poison, and Green Crack. Key terpenes: terpinolene, pinene.",
+  sleep:    "This user's quiz profile is 'The Deep Rest Seeker'. They struggle with sleep and want full sedation. Their top matched strains were Bubba Kush, 9 Pound Hammer, and Purple Punch. Key terpenes: myrcene, caryophyllene.",
+  creative: "This user's quiz profile is 'The Creative Mind Explorer'. They want to make things and think differently. Their top matched strains were Blue Dream, Amnesia Haze, and Strawberry Cough. Key terpenes: limonene, ocimene.",
+  uplift:   "This user's quiz profile is 'The Social Energy Seeker'. They want euphoria, social energy, and a bright mood. Their top matched strains were Sour Diesel, Trainwreck, and Super Lemon Haze. Key terpenes: limonene, caryophyllene.",
+  balanced: "This user's quiz profile is 'The Balanced Everyday Smoker'. They want a smooth, versatile effect — not too sedating, not too wired. Their top matched strains were Girl Scout Cookies, Pineapple Express, and Cannatonic.",
+};
+
+async function streamChat(messages, res, context) {
   res.setHeader("Content-Type", "text/event-stream");
   res.setHeader("Cache-Control", "no-cache");
   res.setHeader("Connection", "keep-alive");
 
+  // Build personalized system prompt if we have profile context
+  let system = MJ_SYSTEM;
+  if (context) {
+    const parts = [];
+    if (context.profile && PROFILE_CONTEXT[context.profile]) {
+      parts.push(`\n\nUSER PROFILE CONTEXT:\n${PROFILE_CONTEXT[context.profile]}`);
+      parts.push("Reference their profile naturally when relevant — don't announce it every message, but use it to give personalized recommendations.");
+    }
+    if (context.memory && context.memory.length > 0) {
+      parts.push(`\nUSER STRAIN MEMORY (what they've told you about past experiences):\n${context.memory.join('\n')}`);
+      parts.push("Use this memory to give smarter, more personalized recommendations.");
+    }
+    if (parts.length > 0) system += parts.join('\n');
+  }
+
   const stream = client.messages.stream({
     model: "claude-opus-4-6",
     max_tokens: 600,
-    system: MJ_SYSTEM,
+    system,
     messages,
   });
 
@@ -327,7 +352,7 @@ const server = http.createServer(async (req, res) => {
     req.on("data", chunk => { body += chunk; });
     req.on("end", async () => {
       try {
-        const { messages } = JSON.parse(body);
+        const { messages, context } = JSON.parse(body);
         if (!Array.isArray(messages) || messages.length === 0) {
           res.writeHead(400); res.end("Bad request"); return;
         }
@@ -336,7 +361,12 @@ const server = http.createServer(async (req, res) => {
           typeof m.content === "string" &&
           m.content.length <= 2000
         );
-        await streamChat(safe, res);
+        // Sanitize context — only allow known profile keys and short memory strings
+        const safeContext = context && typeof context === "object" ? {
+          profile: typeof context.profile === "string" && PROFILE_CONTEXT[context.profile] ? context.profile : null,
+          memory: Array.isArray(context.memory) ? context.memory.slice(0, 10).filter(m => typeof m === "string" && m.length <= 200) : []
+        } : null;
+        await streamChat(safe, res, safeContext);
       } catch (err) {
         console.error("Chat error:", err.message);
         if (!res.headersSent) { res.writeHead(500); res.end("Error"); }
