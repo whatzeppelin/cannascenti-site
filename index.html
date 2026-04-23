@@ -5070,6 +5070,136 @@
     .enc-extract-grid { grid-template-columns: 1fr; }
   }
 
+  /* ═══════════════════════════════════════════════════════════════
+     IPHONE-FIRST MOBILE OVERRIDES  (max-width: 480px)
+     ═══════════════════════════════════════════════════════════════ */
+  @media (max-width: 480px) {
+
+    /* ── Prevent iOS input zoom (font-size must be ≥ 16px) ──────── */
+    .hero-search-input,
+    .mj-input,
+    .quiz-email-input,
+    input[type="email"],
+    input[type="text"],
+    textarea { font-size: 16px !important; }
+
+    /* ── Hero ───────────────────────────────────────────────────── */
+    .hero { padding: 80px 20px 60px; }
+    .hero-tagline { font-size: clamp(28px, 8vw, 38px); line-height: 1.15; }
+    .hero-desc { font-size: 14px; }
+    .btn-primary--lg { width: 100%; text-align: center; padding: 18px 24px; font-size: 12px; box-sizing: border-box; }
+    .hero-search-wrap { flex-direction: column; gap: 0; border-radius: 4px; overflow: hidden; }
+    .hero-search-input { border-bottom: 1px solid rgba(82,183,136,0.15); }
+    .hero-search-btn { width: 100%; padding: 16px; text-align: center; border-radius: 0; }
+    .hero-pills { gap: 8px; }
+    .hero-social-proof { justify-content: center; }
+
+    /* ── Quiz ───────────────────────────────────────────────────── */
+    .quiz-section { padding: 48px 20px; }
+    .quiz-inner { padding: 0; }
+    .quiz-options { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .quiz-option { padding: 16px 14px; min-height: 44px; }
+    .quiz-option-icon { font-size: 20px; margin-bottom: 8px; }
+    .quiz-option-label { font-size: 13px; }
+    .quiz-option-sub { font-size: 11px; }
+    .quiz-title { font-size: clamp(26px, 7vw, 36px); }
+    .quiz-strains { grid-template-columns: 1fr; }
+    .quiz-refine-btns { flex-direction: column; gap: 8px; }
+    .quiz-refine-btn { width: 100%; padding: 14px; }
+    .quiz-result-actions { flex-direction: column; gap: 12px; }
+    .quiz-result-actions a, .quiz-result-actions button { width: 100%; text-align: center; box-sizing: border-box; }
+
+    /* ── Mary Jane — bottom sheet on iPhone ─────────────────────── */
+    .mj-panel {
+      width: 100vw !important;
+      right: 0 !important;
+      left: 0 !important;
+      bottom: 0 !important;
+      border-radius: 20px 20px 0 0;
+      border-left: none;
+      border-right: none;
+      border-bottom: none;
+      height: 82dvh;
+      height: 82vh;
+    }
+    .mj-bubble {
+      right: 16px;
+      bottom: calc(16px + env(safe-area-inset-bottom));
+    }
+    .mj-input-area {
+      padding-bottom: calc(14px + env(safe-area-inset-bottom));
+    }
+
+    /* ── Sections ───────────────────────────────────────────────── */
+    .hiw-section { padding: 48px 20px; }
+    .hiw-title { margin-bottom: 36px; }
+    .featured-section { padding: 48px 20px; }
+    .featured-grid { grid-template-columns: 1fr; }
+
+    /* ── How It Works ───────────────────────────────────────────── */
+    .hiw-steps { gap: 28px; }
+    .hiw-step-heading { font-size: 20px; }
+
+    /* ── Strain search ──────────────────────────────────────────── */
+    .strain-db-section { padding: 60px 20px; }
+    .strain-cards { grid-template-columns: 1fr; }
+    .strain-results-nudge { flex-direction: column; align-items: flex-start; gap: 12px; padding: 20px; }
+  }
+
+  /* ── Sticky bottom quiz CTA (mobile only) ───────────────────────── */
+  .sticky-quiz-cta {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9000;
+    background: linear-gradient(135deg, #0d2b1f, #0a1f15);
+    border-top: 1px solid rgba(82,183,136,0.25);
+    padding: 14px 20px;
+    padding-bottom: calc(14px + env(safe-area-inset-bottom));
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+  .sticky-quiz-cta.visible { display: flex; }
+  .sticky-quiz-cta-text { flex: 1; font-size: 13px; color: rgba(242,234,216,0.7); line-height: 1.4; }
+  .sticky-quiz-cta-text strong { color: var(--cream); font-weight: 600; display: block; font-size: 14px; }
+  .sticky-quiz-cta-btn {
+    background: var(--bright-green);
+    color: #060f0a;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 13px 18px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    min-height: 44px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+  .sticky-quiz-dismiss {
+    background: none;
+    border: none;
+    color: rgba(242,234,216,0.3);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 4px;
+    min-width: 32px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  @media (min-width: 481px) { .sticky-quiz-cta { display: none !important; } }
+
 </style>
 </head>
 <body>
@@ -7131,6 +7261,16 @@
     }
   }
 </script>
+
+<!-- STICKY BOTTOM QUIZ CTA (mobile only) -->
+<div class="sticky-quiz-cta" id="stickyQuizCta">
+  <div class="sticky-quiz-cta-text">
+    <strong>What's your cannabis match?</strong>
+    5 questions · 30 seconds · free
+  </div>
+  <a href="#quiz" class="sticky-quiz-cta-btn" onclick="dismissStickyCta()">Take the quiz</a>
+  <button class="sticky-quiz-dismiss" onclick="dismissStickyCta()" aria-label="Dismiss">×</button>
+</div>
 
 <!-- MARY JANE CHAT WIDGET -->
 <div class="mj-bubble" id="mjBubble">
@@ -9837,8 +9977,41 @@
 
   quizRender();
   quizLoadSavedProfile();
+  mjInit();
 
+  // ─── Sticky bottom quiz CTA (mobile only) ─────────────────────────────────
+  (function initStickyCta() {
+    const cta = document.getElementById('stickyQuizCta');
+    if (!cta) return;
+    // Don't show if user already has a saved profile
+    try { if (localStorage.getItem('cannascenti_profile')) return; } catch(e) {}
+    // Don't show if dismissed this session
+    try { if (sessionStorage.getItem('stickyCtaDismissed')) return; } catch(e) {}
 
+    let shown = false;
+    const quizSection = document.getElementById('quiz');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // User reached the quiz — hide the CTA
+          cta.classList.remove('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    if (quizSection) observer.observe(quizSection);
+
+    // Show after 2s if user hasn't scrolled to quiz yet
+    setTimeout(() => {
+      if (!shown) { cta.classList.add('visible'); shown = true; }
+    }, 2000);
+  })();
+
+  function dismissStickyCta() {
+    const cta = document.getElementById('stickyQuizCta');
+    if (cta) cta.classList.remove('visible');
+    try { sessionStorage.setItem('stickyCtaDismissed', '1'); } catch(e) {}
+  }
 
 </script>
 
