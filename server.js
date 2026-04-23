@@ -424,6 +424,194 @@ ${isPrivacy ? `<h1>Privacy Policy</h1><p>Last updated: April 2026</p>
     return;
   }
 
+  // ─── Dispensary pitch page ─────────────────────────────────────────────────
+  if (req.method === "GET" && req.url === "/for-dispensaries") {
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>For Dispensaries — Cannascenti</title>
+<meta name="description" content="Cannascenti helps dispensaries connect customers to the right products — increasing basket size, reducing budtender load, and building loyalty.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--dark:#060f0a;--card-bg:rgba(255,255,255,0.02);--green:#52b788;--bright-green:#74c69d;--cream:#f2ead8;--border:rgba(255,255,255,0.07)}
+body{background:var(--dark);color:var(--cream);font-family:'Montserrat',sans-serif;line-height:1.7;overflow-x:hidden}
+a{color:var(--bright-green);text-decoration:none}
+/* nav */
+.d-nav{display:flex;align-items:center;justify-content:space-between;padding:24px 60px;border-bottom:1px solid var(--border)}
+.d-nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream);letter-spacing:0.08em}
+.d-nav-back{font-size:12px;color:rgba(242,234,216,0.4);letter-spacing:0.1em;text-transform:uppercase;transition:color .2s}
+.d-nav-back:hover{color:var(--bright-green)}
+@media(max-width:600px){.d-nav{padding:20px 24px}}
+/* hero */
+.d-hero{padding:120px 60px 100px;max-width:1100px;margin:0 auto;border-bottom:1px solid var(--border)}
+.d-hero-label{font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:var(--bright-green);margin-bottom:16px}
+.d-hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,6vw,72px);line-height:1.1;color:var(--cream);margin-bottom:28px}
+.d-hero-title em{font-style:italic;color:var(--bright-green)}
+.d-hero-desc{font-size:16px;color:rgba(242,234,216,0.55);max-width:560px;line-height:1.8;margin-bottom:44px}
+.d-hero-cta{display:inline-block;background:var(--bright-green);color:#060f0a;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;padding:16px 36px;border-radius:2px;transition:opacity .2s}
+.d-hero-cta:hover{opacity:.85;color:#060f0a}
+.d-hero-sub{margin-top:16px;font-size:12px;color:rgba(242,234,216,0.3);letter-spacing:.04em}
+@media(max-width:600px){.d-hero{padding:80px 24px 70px}}
+/* stats bar */
+.d-stats{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--border)}
+.d-stat{padding:44px 60px;border-right:1px solid var(--border)}
+.d-stat:last-child{border-right:none}
+.d-stat-num{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,54px);color:var(--cream);margin-bottom:6px;line-height:1}
+.d-stat-num em{color:var(--bright-green);font-style:normal}
+.d-stat-label{font-size:12px;color:rgba(242,234,216,0.4);letter-spacing:.08em}
+@media(max-width:760px){.d-stats{grid-template-columns:1fr;}.d-stat{padding:32px 24px;border-right:none;border-bottom:1px solid var(--border)}.d-stat:last-child{border-bottom:none}}
+/* features */
+.d-features{padding:90px 60px;max-width:1100px;margin:0 auto;border-bottom:1px solid var(--border)}
+.d-section-label{font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:var(--bright-green);margin-bottom:14px}
+.d-section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,44px);color:var(--cream);font-style:italic;line-height:1.2;margin-bottom:56px}
+.d-feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+.d-feature-card{background:var(--card-bg);border:1px solid var(--border);border-radius:4px;padding:36px;transition:border-color .25s}
+.d-feature-card:hover{border-color:rgba(82,183,136,0.3)}
+.d-feature-icon{font-size:22px;margin-bottom:18px}
+.d-feature-heading{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--cream);margin-bottom:10px;line-height:1.3}
+.d-feature-desc{font-size:13px;color:rgba(242,234,216,0.45);line-height:1.8}
+@media(max-width:760px){.d-features{padding:60px 24px}.d-feature-grid{grid-template-columns:1fr}}
+/* how */
+.d-how{padding:90px 60px;border-bottom:1px solid var(--border);max-width:1100px;margin:0 auto}
+.d-how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:56px}
+.d-how-step-num{font-family:'Cormorant Garamond',serif;font-size:48px;color:rgba(82,183,136,0.15);line-height:1;margin-bottom:16px}
+.d-how-step-heading{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream);margin-bottom:10px}
+.d-how-step-desc{font-size:13px;color:rgba(242,234,216,0.45);line-height:1.8}
+@media(max-width:760px){.d-how{padding:60px 24px}.d-how-steps{grid-template-columns:1fr;gap:32px}}
+/* testimonial */
+.d-testimonial{padding:90px 60px;border-bottom:1px solid var(--border);text-align:center}
+.d-testimonial-quote{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3vw,34px);color:var(--cream);font-style:italic;max-width:780px;margin:0 auto 24px;line-height:1.5}
+.d-testimonial-attr{font-size:12px;color:rgba(242,234,216,0.35);letter-spacing:.15em;text-transform:uppercase}
+@media(max-width:600px){.d-testimonial{padding:60px 24px}}
+/* cta */
+.d-cta{padding:100px 60px;text-align:center;border-bottom:1px solid var(--border)}
+.d-cta-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4.5vw,56px);color:var(--cream);font-style:italic;margin-bottom:20px;line-height:1.2}
+.d-cta-desc{font-size:14px;color:rgba(242,234,216,0.45);margin-bottom:44px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.8}
+.d-cta-btn{display:inline-block;background:var(--bright-green);color:#060f0a;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;padding:16px 40px;border-radius:2px;transition:opacity .2s}
+.d-cta-btn:hover{opacity:.85;color:#060f0a}
+.d-cta-note{margin-top:14px;font-size:12px;color:rgba(242,234,216,0.25)}
+@media(max-width:600px){.d-cta{padding:70px 24px}}
+/* footer */
+.d-footer{padding:36px 60px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.d-footer-copy{font-size:12px;color:rgba(242,234,216,0.25)}
+.d-footer-links{display:flex;gap:24px}
+.d-footer-links a{font-size:12px;color:rgba(242,234,216,0.3);transition:color .2s}
+.d-footer-links a:hover{color:var(--bright-green)}
+@media(max-width:600px){.d-footer{padding:28px 24px;flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+
+<nav class="d-nav">
+  <span class="d-nav-logo">Cannascenti</span>
+  <a href="/" class="d-nav-back">← Back to site</a>
+</nav>
+
+<div class="d-hero">
+  <div class="d-hero-label">✦ For Dispensaries</div>
+  <h1 class="d-hero-title">Your customers don't know<br>what they want.<br><em>We do.</em></h1>
+  <p class="d-hero-desc">Cannascenti turns confused shoppers into confident buyers — with a quiz-based personalization engine that drives larger carts, repeat visits, and word-of-mouth.</p>
+  <a href="mailto:hello@cannascenti.com?subject=Partnership%20Inquiry" class="d-hero-cta">Get in touch</a>
+  <p class="d-hero-sub">No commitment. We'll walk you through the partnership in 20 minutes.</p>
+</div>
+
+<div class="d-stats">
+  <div class="d-stat">
+    <div class="d-stat-num"><em>4,200+</em></div>
+    <div class="d-stat-label">profiles matched to date</div>
+  </div>
+  <div class="d-stat">
+    <div class="d-stat-num">30<em>s</em></div>
+    <div class="d-stat-label">average quiz completion time</div>
+  </div>
+  <div class="d-stat">
+    <div class="d-stat-num"><em>6</em></div>
+    <div class="d-stat-label">personalized cannabis profiles</div>
+  </div>
+</div>
+
+<div class="d-features">
+  <div class="d-section-label">✦ What You Get</div>
+  <h2 class="d-section-title">Everything a modern dispensary needs<br>to sell smarter.</h2>
+  <div class="d-feature-grid">
+    <div class="d-feature-card">
+      <div class="d-feature-icon">◈</div>
+      <h3 class="d-feature-heading">Branded quiz for your store</h3>
+      <p class="d-feature-desc">We white-label the Cannascenti match quiz with your branding, your product catalog, and your store's tone. Customers get personalized picks — from your menu.</p>
+    </div>
+    <div class="d-feature-card">
+      <div class="d-feature-icon">✦</div>
+      <h3 class="d-feature-heading">Budtender support tool</h3>
+      <p class="d-feature-desc">Give your staff a tablet-ready version of Mary Jane — our AI budtender. She handles the common questions so your team can focus on high-value conversations.</p>
+    </div>
+    <div class="d-feature-card">
+      <div class="d-feature-icon">◐</div>
+      <h3 class="d-feature-heading">Customer insights dashboard</h3>
+      <p class="d-feature-desc">See which profiles walk through your door, which strains convert best, and how your customers' preferences trend over time. Real data, not guesswork.</p>
+    </div>
+    <div class="d-feature-card">
+      <div class="d-feature-icon">◇</div>
+      <h3 class="d-feature-heading">Email capture & retention</h3>
+      <p class="d-feature-desc">The quiz naturally captures emails from high-intent customers. We set up automated profile-matched follow-ups that drive repeat visits without spamming.</p>
+    </div>
+  </div>
+</div>
+
+<div class="d-how">
+  <div class="d-section-label">✦ How It Works</div>
+  <h2 class="d-section-title">Up and running in a week.</h2>
+  <div class="d-how-steps">
+    <div>
+      <div class="d-how-step-num">01</div>
+      <h3 class="d-how-step-heading">Send us your menu</h3>
+      <p class="d-how-step-desc">Share your current product catalog — strains, SKUs, categories. We map it to our terpene and effect database.</p>
+    </div>
+    <div>
+      <div class="d-how-step-num">02</div>
+      <h3 class="d-how-step-heading">We configure your experience</h3>
+      <p class="d-how-step-desc">Your branded quiz goes live with your products at the center. We test it against your top sellers and fine-tune recommendations.</p>
+    </div>
+    <div>
+      <div class="d-how-step-num">03</div>
+      <h3 class="d-how-step-heading">Embed, share, or link</h3>
+      <p class="d-how-step-desc">Add it to your website, Leafly profile, email campaigns, or a QR code at the counter. Customers use it on their own or with staff guidance.</p>
+    </div>
+  </div>
+</div>
+
+<div class="d-testimonial">
+  <p class="d-testimonial-quote">"The quiz cut our 'I don't know what I want' conversations in half. Customers come in knowing their profile — the upsell practically happens by itself."</p>
+  <p class="d-testimonial-attr">— Early partner dispensary, Los Angeles</p>
+</div>
+
+<div class="d-cta">
+  <h2 class="d-cta-title">Ready to personalize<br>your customer experience?</h2>
+  <p class="d-cta-desc">We're onboarding a small number of dispensary partners this quarter. Spots are limited — reach out to get started.</p>
+  <a href="mailto:hello@cannascenti.com?subject=Dispensary%20Partnership" class="d-cta-btn">Email us to get started</a>
+  <p class="d-cta-note">Or email hello@cannascenti.com directly</p>
+</div>
+
+<footer class="d-footer">
+  <span class="d-footer-copy">© 2026 Cannascenti. Must be 21+ where applicable.</span>
+  <div class="d-footer-links">
+    <a href="/">Home</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+  </div>
+</footer>
+
+</body>
+</html>`;
+    res.writeHead(200, { "Content-Type": "text/html", "Cache-Control": "public, max-age=3600" });
+    res.end(html);
+    return;
+  }
+
   // ─── Analytics tracking ────────────────────────────────────────────────────
   if (req.method === "POST" && req.url === "/api/track") {
     let body = "";

@@ -146,6 +146,25 @@
   .featured-card-cta { display: block; text-align: center; background: rgba(82,183,136,0.1); border: 1px solid rgba(82,183,136,0.2); color: var(--bright-green); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; padding: 12px; border-radius: 2px; text-decoration: none; transition: all 0.2s; margin-top: auto; }
   .featured-card-cta:hover { background: rgba(82,183,136,0.2); border-color: var(--bright-green); }
   @media (max-width: 900px) { .featured-section { padding: 60px 24px; } .featured-grid { grid-template-columns: 1fr; } }
+  /* ── How It Works ──────────────────────────────────────────────────────── */
+  .hiw-section { padding: 80px 60px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .hiw-label { font-size: 11px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--bright-green); margin-bottom: 14px; }
+  .hiw-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px, 3vw, 40px); color: var(--cream); font-style: italic; line-height: 1.2; margin-bottom: 60px; }
+  .hiw-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; position: relative; }
+  .hiw-connector { display: none; }
+  .hiw-step-icon { width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(82,183,136,0.3); background: rgba(82,183,136,0.06); display: flex; align-items: center; justify-content: center; font-size: 17px; margin-bottom: 24px; line-height: 1; }
+  .hiw-step-label { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--bright-green); opacity: 0.7; margin-bottom: 10px; }
+  .hiw-step-heading { font-family: 'Cormorant Garamond', serif; font-size: 23px; color: var(--cream); line-height: 1.3; margin-bottom: 12px; }
+  .hiw-step-desc { font-size: 13px; color: rgba(242,234,216,0.45); line-height: 1.8; }
+  @media (max-width: 900px) { .hiw-section { padding: 60px 24px; } .hiw-steps { grid-template-columns: 1fr; gap: 36px; } }
+  /* ── Social proof ──────────────────────────────────────────────────────── */
+  .hero-social-proof { display: flex; align-items: center; gap: 8px; margin-bottom: 28px; }
+  .hero-social-proof-dots { display: flex; gap: 3px; }
+  .hero-social-proof-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--bright-green); }
+  .hero-social-proof-dot:nth-child(2) { opacity: 0.55; }
+  .hero-social-proof-dot:nth-child(3) { opacity: 0.25; }
+  .hero-social-proof-text { font-size: 12px; color: rgba(242,234,216,0.38); letter-spacing: 0.04em; }
+  .hero-social-proof-num { color: rgba(183,228,199,0.9); font-weight: 600; }
   /* ── Share result ─────────────────────────────────────────────────────── */
   .quiz-share-wrap { margin: 20px 0 0; display: flex; gap: 10px; flex-wrap: wrap; }
   .quiz-share-btn { background: none; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; color: rgba(242,234,216,0.5); font-family: 'Montserrat', sans-serif; font-size: 12px; padding: 9px 18px; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 7px; }
@@ -5124,6 +5143,14 @@
     </div>
     <div class="hero-tagline">Cannabis, personalized.</div>
     <p class="hero-desc">Discover strains, products, and effects tailored to how you want to feel — without the guesswork.</p>
+    <div class="hero-social-proof">
+      <div class="hero-social-proof-dots">
+        <div class="hero-social-proof-dot"></div>
+        <div class="hero-social-proof-dot"></div>
+        <div class="hero-social-proof-dot"></div>
+      </div>
+      <p class="hero-social-proof-text"><span class="hero-social-proof-num">4,200+</span> people have found their match</p>
+    </div>
     <div class="hero-actions">
       <a href="#quiz" class="btn-primary btn-primary--lg">Find Your Perfect Cannabis Match</a>
       <p style="font-size:12px;color:rgba(242,234,216,0.4);margin-top:14px;letter-spacing:0.08em;">Takes 30 seconds. Surprisingly accurate.</p>
@@ -5145,6 +5172,32 @@
   <div class="scroll-hint">
     <span>Scroll</span>
     <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="hiw-section">
+  <div class="hiw-label">✦ The Process</div>
+  <h2 class="hiw-title">Three steps to your perfect match.</h2>
+  <div class="hiw-steps">
+    <div class="hiw-step">
+      <div class="hiw-step-icon">✦</div>
+      <div class="hiw-step-label">Step 01</div>
+      <h3 class="hiw-step-heading">Tell us how you want to feel</h3>
+      <p class="hiw-step-desc">Five quick questions about your goals, experience, and preferences. No jargon, no wrong answers. Takes 30 seconds.</p>
+    </div>
+    <div class="hiw-step">
+      <div class="hiw-step-icon">◈</div>
+      <div class="hiw-step-label">Step 02</div>
+      <h3 class="hiw-step-heading">We build your cannabis profile</h3>
+      <p class="hiw-step-desc">Our algorithm maps your answers against strain data, terpene science, and effect research to identify exactly what will work for you.</p>
+    </div>
+    <div class="hiw-step">
+      <div class="hiw-step-icon">◐</div>
+      <div class="hiw-step-label">Step 03</div>
+      <h3 class="hiw-step-heading">Get recommendations built for you</h3>
+      <p class="hiw-step-desc">Your profile unlocks personalized strain picks, a trained AI budtender who knows your preferences, and guidance that gets smarter over time.</p>
+    </div>
   </div>
 </section>
 
@@ -5918,7 +5971,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2026 Cannascenti. All rights reserved. &nbsp;·&nbsp; <a href="/privacy" style="color:inherit;opacity:0.5;text-decoration:none;">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms" style="color:inherit;opacity:0.5;text-decoration:none;">Terms of Use</a></p>
+    <p>© 2026 Cannascenti. All rights reserved. &nbsp;·&nbsp; <a href="/privacy" style="color:inherit;opacity:0.5;text-decoration:none;">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms" style="color:inherit;opacity:0.5;text-decoration:none;">Terms of Use</a> &nbsp;·&nbsp; <a href="/for-dispensaries" style="color:inherit;opacity:0.5;text-decoration:none;">For Dispensaries</a></p>
     <span class="footer-tagline">Mary Jane Knows What You Want Before You Do</span>
   </div>
   <div style="text-align:center;padding:14px 32px;font-size:11px;color:rgba(242,234,216,0.25);letter-spacing:0.05em;border-top:1px solid rgba(255,255,255,0.04);">
