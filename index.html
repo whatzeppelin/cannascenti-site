@@ -1395,6 +1395,14 @@
     margin-top: 14px;
     opacity: 0.75;
   }
+  .strain-card-rank { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--bright-green); margin-bottom: 10px; }
+  .strain-card-find { display: block; margin-top: 18px; font-size: 11px; letter-spacing: 0.12em; color: var(--bright-green); text-decoration: none; opacity: 0.7; transition: opacity 0.2s; }
+  .strain-card-find:hover { opacity: 1; }
+  .strain-results-nudge { grid-column: 1 / -1; margin-top: 8px; padding: 28px 32px; background: rgba(82,183,136,0.04); border: 1px solid rgba(82,183,136,0.15); border-radius: 4px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .strain-nudge-text { font-size: 14px; color: rgba(242,234,216,0.55); line-height: 1.5; }
+  .strain-nudge-text em { font-style: normal; color: var(--cream); }
+  .strain-nudge-btn { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--bright-green); text-decoration: none; white-space: nowrap; transition: opacity 0.2s; }
+  .strain-nudge-btn:hover { opacity: 0.75; }
 
   .strain-loading {
     display: none;
@@ -7079,10 +7087,15 @@
           'Hybrid': 'type-hybrid'
         }[strain.type] || 'type-hybrid';
 
+        const slug = strain.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+        const weedmapsLink = `https://weedmaps.com/strains/${slug}`;
+        const rankLabel = i === 0 ? '⭐ Top Match' : `#${i + 1}`;
+
         const card = document.createElement('div');
         card.className = 'strain-card';
         card.style.animationDelay = `${i * 0.06}s`;
         card.innerHTML = `
+          <div class="strain-card-rank">${rankLabel}</div>
           <div class="strain-card-header">
             <div class="strain-card-name">${strain.name}</div>
             <span class="strain-card-type ${typeClass}">${strain.type}</span>
@@ -7092,9 +7105,20 @@
             ${strain.effects.map(e => `<span class="strain-tag">${e}</span>`).join('')}
           </div>
           <div class="strain-card-thc">THC ${strain.thc} · CBD ${strain.cbd}</div>
+          <a class="strain-card-find" href="${weedmapsLink}" target="_blank" rel="noopener"
+             onclick="track('strain_search_click',{strain:'${strain.name}',query:'${query.replace(/'/g,"\\'")}',rank:${i+1}})">Find this near you →</a>
         `;
         cards.appendChild(card);
       });
+
+      // Post-results quiz nudge
+      const nudge = document.createElement('div');
+      nudge.className = 'strain-results-nudge';
+      nudge.innerHTML = `
+        <p class="strain-nudge-text">Want results tailored to <em>exactly</em> how you want to feel?</p>
+        <a href="#quiz" class="strain-nudge-btn">Take the 30-second match quiz →</a>
+      `;
+      cards.appendChild(nudge);
 
       results.classList.add('visible');
       document.getElementById('strain-finder').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -7154,16 +7178,16 @@
           <polygon points="80,28 52,38 64,62 80,52" fill="#B7E4C7" opacity="0.8"/>
         </svg>
       </div>
-      <div class="mj-msg-bubble" id="mjGreeting">Hey — I'm Mary Jane. Your personal guide to everything cannabis. Whether you need the right strain, want to understand terpenes, book a seminar, or just have a question — I've got you. What can I help you with?</div>
+      <div class="mj-msg-bubble" id="mjGreeting">Hey — I'm Mary Jane. I know cannabis better than most budtenders do. Tell me how you want to feel, and I'll tell you exactly what to use.</div>
     </div>
   </div>
 
   <div class="mj-suggestions" id="mjSuggestions">
-    <span class="mj-suggestion" onclick="mjSuggest(this)">Find me a strain</span>
-    <span class="mj-suggestion" onclick="mjSuggest(this)">What are Solventless Sessions?</span>
-    <span class="mj-suggestion" onclick="mjSuggest(this)">I want to learn to roll</span>
-    <span class="mj-suggestion" onclick="mjSuggest(this)">Book a consultation</span>
-    <span class="mj-suggestion" onclick="mjSuggest(this)">Explain terpenes</span>
+    <span class="mj-suggestion" onclick="mjSuggest(this)">What's good for sleep?</span>
+    <span class="mj-suggestion" onclick="mjSuggest(this)">THC makes me anxious — help</span>
+    <span class="mj-suggestion" onclick="mjSuggest(this)">Best strains for focus</span>
+    <span class="mj-suggestion" onclick="mjSuggest(this)">Indica vs hybrid — what's the difference?</span>
+    <span class="mj-suggestion" onclick="mjSuggest(this)">I want something mild to start</span>
   </div>
 
   <div class="mj-input-area">
@@ -9391,51 +9415,51 @@
     {
       q: 'How do you want to feel?',
       options: [
-        { icon:'😌', label:'Relaxed', sub:'Melt the tension away', scores:{relax:3,sleep:1} },
-        { icon:'⚡', label:'Focused', sub:'Sharp, clear-headed, productive', scores:{focus:3,uplift:1} },
-        { icon:'😴', label:'Sleepy', sub:'Wind down and drift off', scores:{sleep:3,relax:1} },
-        { icon:'🎨', label:'Creative', sub:'Open the mind, spark ideas', scores:{creative:3,uplift:1} },
-        { icon:'😄', label:'Uplifted', sub:'Euphoric, social, energetic', scores:{uplift:3,creative:1} },
-        { icon:'⚖️', label:'Balanced', sub:'Gentle effect, nothing intense', scores:{relax:2,focus:1} },
+        { icon:'😌', label:'Relaxed', sub:'Take the edge off. Shoulders down, brain quiet.', scores:{relax:3,sleep:1} },
+        { icon:'⚡', label:'Focused', sub:'Locked in and actually getting things done.', scores:{focus:3,uplift:1} },
+        { icon:'😴', label:'Sleepy', sub:'Stop lying awake. Real, deep sleep.', scores:{sleep:3,relax:1} },
+        { icon:'🎨', label:'Creative', sub:'Think sideways. Make something. See it differently.', scores:{creative:3,uplift:1} },
+        { icon:'😄', label:'Uplifted', sub:'Feel genuinely, fully good. Social and alive.', scores:{uplift:3,creative:1} },
+        { icon:'⚖️', label:'Balanced', sub:'Something smooth — no extremes, no surprises.', scores:{relax:2,focus:1} },
       ]
     },
     {
-      q: 'When are you using it?',
+      q: 'When are you planning to use it?',
       options: [
-        { icon:'🌅', label:'Morning', sub:'Wake-and-bake energy', scores:{focus:2,uplift:1} },
-        { icon:'☀️', label:'Afternoon', sub:'Midday boost or unwind', scores:{creative:1,relax:1} },
-        { icon:'🌆', label:'Evening', sub:'After work, winding down', scores:{relax:2,sleep:1} },
-        { icon:'🌙', label:'Bedtime', sub:'Lights out, deep rest', scores:{sleep:3,relax:1} },
+        { icon:'🌅', label:'Morning', sub:'Start the day with intention and energy.', scores:{focus:2,uplift:1} },
+        { icon:'☀️', label:'Afternoon', sub:'Bridge the gap. Keep going or reset.', scores:{creative:1,relax:1} },
+        { icon:'🌆', label:'Evening', sub:'The day is done. Time to decompress.', scores:{relax:2,sleep:1} },
+        { icon:'🌙', label:'Bedtime', sub:'I just need to actually sleep tonight.', scores:{sleep:3,relax:1} },
       ]
     },
     {
-      q: 'What\'s your experience level?',
+      q: 'How much experience do you have with cannabis?',
       options: [
-        { icon:'🌱', label:'First Timer', sub:'New to cannabis entirely', scores:{relax:1} },
-        { icon:'🌿', label:'Occasional', sub:'A few times a year', scores:{relax:1} },
-        { icon:'💨', label:'Regular', sub:'A few times a week', scores:{focus:1,creative:1} },
-        { icon:'🔥', label:'Daily', sub:'Part of my routine', scores:{focus:2,creative:1} },
+        { icon:'🌱', label:'First Timer', sub:'I\'ve never done this before — or almost never.', scores:{relax:1} },
+        { icon:'🌿', label:'Occasional', sub:'A handful of times a year. Still learning.', scores:{relax:1} },
+        { icon:'💨', label:'Regular', sub:'A few times a week. I know what I like.', scores:{focus:1,creative:1} },
+        { icon:'🔥', label:'Daily', sub:'Every day. Cannabis is part of my routine.', scores:{focus:2,creative:1} },
       ]
     },
     {
-      q: 'What\'s your main goal?',
+      q: 'What are you actually trying to do?',
       options: [
-        { icon:'🧘', label:'Unwind & De-stress', sub:'Switch off and breathe', scores:{relax:3} },
-        { icon:'💡', label:'Productivity', sub:'Get things done, stay sharp', scores:{focus:3} },
-        { icon:'💤', label:'Better Sleep', sub:'Fall asleep, stay asleep', scores:{sleep:3} },
-        { icon:'🎭', label:'Boost Creativity', sub:'Art, music, writing, ideas', scores:{creative:3} },
-        { icon:'🤝', label:'Social & Fun', sub:'Laugh, connect, enjoy', scores:{uplift:3} },
-        { icon:'💪', label:'Pain & Tension', sub:'Body relief, physical comfort', scores:{relax:2,sleep:1} },
+        { icon:'🧘', label:'Unwind & De-stress', sub:'I need to actually turn my brain off.', scores:{relax:3} },
+        { icon:'💡', label:'Productivity', sub:'Work, create, focus — without the brain fog.', scores:{focus:3} },
+        { icon:'💤', label:'Better Sleep', sub:'I\'m tired of lying awake at 2am.', scores:{sleep:3} },
+        { icon:'🎭', label:'Boost Creativity', sub:'Art, music, writing. I want to make things.', scores:{creative:3} },
+        { icon:'🤝', label:'Social & Fun', sub:'Be present, laugh more, feel alive.', scores:{uplift:3} },
+        { icon:'💪', label:'Pain & Tension', sub:'My body needs a break. Physical relief.', scores:{relax:2,sleep:1} },
       ]
     },
     {
-      q: 'How do you like to consume?',
+      q: 'How do you prefer to use it?',
       options: [
-        { icon:'🌿', label:'Flower', sub:'Classic smoke, full spectrum', scores:{} },
-        { icon:'💨', label:'Vape', sub:'Clean and discreet', scores:{} },
-        { icon:'🍫', label:'Edibles', sub:'Long-lasting body effect', scores:{sleep:1,relax:1} },
-        { icon:'💧', label:'Tincture', sub:'Precise and controlled dosing', scores:{focus:1} },
-        { icon:'🤷', label:'Open to anything', sub:'Show me the best option', scores:{} },
+        { icon:'🌿', label:'Flower', sub:'Classic. I want the full, natural experience.', scores:{} },
+        { icon:'💨', label:'Vape', sub:'Clean, discreet, no smoke or smell.', scores:{} },
+        { icon:'🍫', label:'Edibles', sub:'I want it to last longer and feel deeper.', scores:{sleep:1,relax:1} },
+        { icon:'💧', label:'Tincture', sub:'I want control — precise, measured dosing.', scores:{focus:1} },
+        { icon:'🤷', label:'Open to anything', sub:'Just show me what works best for my goals.', scores:{} },
       ]
     }
   ];
