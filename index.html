@@ -6,10 +6,10 @@
 <title>Cannascenti — Cannabis, Personalized.</title>
 <meta name="description" content="Find your perfect cannabis match in 30 seconds. Strains, terpenes, and effects tailored to how you want to feel. The most authoritative cannabis education platform.">
 <meta name="theme-color" content="#081C15">
-<!-- Preconnect to font CDN so the font request starts immediately -->
+<!-- Montserrat for body text -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <!-- Open Graph / social sharing -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Cannascenti — Cannabis, Personalized.">
@@ -21,8 +21,8 @@
 <meta name="twitter:description" content="Find your perfect cannabis match in 30 seconds. Strains, terpenes, and effects tailored to how you want to feel.">
 <style>
   @font-face {
-    font-family: 'PsychodelicDemo';
-    src: url('PsychodelicDemo.ttf') format('truetype');
+    font-family: 'Angel Rhapsody';
+    src: url('/fonts/AngelRhapsody.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -71,7 +71,7 @@
   .quiz-section { background: #060c06; padding: 100px 60px; }
   .quiz-inner { max-width: 760px; margin: 0 auto; }
   .quiz-label { font-size: 11px; font-weight: 500; letter-spacing: 0.5em; text-transform: uppercase; color: var(--bright-green); margin-bottom: 20px; }
-  .quiz-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4vw, 48px); color: var(--cream); line-height: 1.2; margin-bottom: 12px; }
+  .quiz-title { font-family: 'Angel Rhapsody', serif; font-size: clamp(32px, 4vw, 48px); color: var(--cream); line-height: 1.2; margin-bottom: 12px; }
   .quiz-subtitle { font-size: 15px; color: rgba(242,234,216,0.5); margin-bottom: 56px; line-height: 1.7; }
   .quiz-progress-wrap { margin-bottom: 52px; }
   .quiz-progress-bar { display: flex; gap: 6px; margin-bottom: 10px; }
@@ -81,7 +81,7 @@
   .quiz-progress-label { font-size: 11px; color: rgba(242,234,216,0.3); letter-spacing: 0.15em; text-transform: uppercase; }
   .quiz-analyzing { text-align: center; padding: 80px 20px; }
   .quiz-analyzing-icon { font-size: 40px; margin-bottom: 24px; animation: pulse 1.2s ease-in-out infinite; }
-  .quiz-analyzing-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--cream); margin-bottom: 24px; font-style: italic; }
+  .quiz-analyzing-title { font-family: 'Angel Rhapsody', serif; font-size: 28px; color: var(--cream); margin-bottom: 24px; font-style: italic; }
   .quiz-analyzing-dots { display: flex; justify-content: center; gap: 8px; }
   .quiz-analyzing-dots span { width: 8px; height: 8px; background: var(--bright-green); border-radius: 50%; animation: dotBounce 1.2s ease-in-out infinite; }
   .quiz-analyzing-dots span:nth-child(2) { animation-delay: 0.2s; }
@@ -89,7 +89,7 @@
   @keyframes dotBounce { 0%,80%,100%{transform:scale(0.6);opacity:0.4} 40%{transform:scale(1);opacity:1} }
   @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
   .quiz-profile-name { font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(242,234,216,0.4); margin-bottom: 8px; }
-  .quiz-question { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 3vw, 32px); color: var(--cream); margin-bottom: 36px; font-style: italic; line-height: 1.4; }
+  .quiz-question { font-family: 'Angel Rhapsody', serif; font-size: clamp(22px, 3vw, 32px); color: var(--cream); margin-bottom: 36px; font-style: italic; line-height: 1.4; }
   .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .quiz-option { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 20px 24px; cursor: pointer; transition: all 0.2s; text-align: left; }
   .quiz-option:hover { border-color: rgba(82,183,136,0.5); background: rgba(82,183,136,0.06); transform: translateY(-2px); }
@@ -101,13 +101,13 @@
   /* QUIZ RESULT */
   .quiz-result { animation: fadeSlideUp 0.4s ease; }
   .quiz-result-badge { display: inline-block; background: rgba(82,183,136,0.12); border: 1px solid rgba(82,183,136,0.3); border-radius: 2px; padding: 6px 16px; font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--bright-green); margin-bottom: 20px; }
-  .quiz-result-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 44px); color: var(--cream); margin-bottom: 12px; }
+  .quiz-result-title { font-family: 'Angel Rhapsody', serif; font-size: clamp(28px, 4vw, 44px); color: var(--cream); margin-bottom: 12px; }
   .quiz-result-desc { font-size: 15px; color: rgba(242,234,216,0.6); line-height: 1.8; max-width: 560px; margin-bottom: 52px; }
   .quiz-strains { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
   .quiz-strain-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; padding: 24px; }
   .quiz-strain-tag { font-size: 11px; font-weight: 500; color: var(--amber); margin-bottom: 10px; }
   .quiz-strain-type { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--bright-green); margin-bottom: 10px; }
-  .quiz-strain-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--cream); margin-bottom: 6px; }
+  .quiz-strain-name { font-family: 'Angel Rhapsody', serif; font-size: 22px; color: var(--cream); margin-bottom: 6px; }
   .quiz-strain-thc { font-size: 11px; color: rgba(242,234,216,0.4); margin-bottom: 14px; }
   .quiz-strain-effects { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
   .quiz-strain-effect { font-size: 10px; background: rgba(255,255,255,0.05); border-radius: 2px; padding: 4px 8px; color: rgba(242,234,216,0.6); }
@@ -128,7 +128,7 @@
   .featured-section { padding: 80px 60px; border-bottom: 1px solid rgba(255,255,255,0.05); }
   .featured-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; flex-wrap: wrap; gap: 16px; }
   .featured-label { font-size: 11px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--bright-green); margin-bottom: 10px; }
-  .featured-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 3.5vw, 42px); color: var(--cream); font-style: italic; line-height: 1.2; }
+  .featured-title { font-family: 'Angel Rhapsody', serif; font-size: clamp(28px, 3.5vw, 42px); color: var(--cream); font-style: italic; line-height: 1.2; }
   .featured-subtitle { font-size: 13px; color: rgba(242,234,216,0.4); margin-top: 8px; }
   .featured-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   .featured-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 4px; padding: 32px; display: flex; flex-direction: column; transition: border-color 0.25s, transform 0.25s; }
@@ -138,7 +138,7 @@
   .featured-card-badge.pick-sleep { background: rgba(123,156,204,0.12); color: #7b9ccc; border: 1px solid rgba(123,156,204,0.25); }
   .featured-card-badge.pick-energy { background: rgba(244,162,97,0.12); color: #f4a261; border: 1px solid rgba(244,162,97,0.25); }
   .featured-card-type { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(242,234,216,0.35); margin-bottom: 8px; }
-  .featured-card-name { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--cream); margin-bottom: 6px; line-height: 1.2; }
+  .featured-card-name { font-family: 'Angel Rhapsody', serif; font-size: 28px; color: var(--cream); margin-bottom: 6px; line-height: 1.2; }
   .featured-card-thc { font-size: 11px; color: rgba(242,234,216,0.35); margin-bottom: 18px; }
   .featured-card-desc { font-size: 13px; color: rgba(242,234,216,0.55); line-height: 1.75; margin-bottom: 24px; flex: 1; }
   .featured-card-terps { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 28px; }
@@ -149,12 +149,12 @@
   /* ── How It Works ──────────────────────────────────────────────────────── */
   .hiw-section { padding: 80px 60px; border-bottom: 1px solid rgba(255,255,255,0.05); }
   .hiw-label { font-size: 11px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--bright-green); margin-bottom: 14px; }
-  .hiw-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px, 3vw, 40px); color: var(--cream); font-style: italic; line-height: 1.2; margin-bottom: 60px; }
+  .hiw-title { font-family: 'Angel Rhapsody', serif; font-size: clamp(26px, 3vw, 40px); color: var(--cream); font-style: italic; line-height: 1.2; margin-bottom: 60px; }
   .hiw-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; position: relative; }
   .hiw-connector { display: none; }
   .hiw-step-icon { width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(82,183,136,0.3); background: rgba(82,183,136,0.06); display: flex; align-items: center; justify-content: center; font-size: 17px; margin-bottom: 24px; line-height: 1; }
   .hiw-step-label { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--bright-green); opacity: 0.7; margin-bottom: 10px; }
-  .hiw-step-heading { font-family: 'Cormorant Garamond', serif; font-size: 23px; color: var(--cream); line-height: 1.3; margin-bottom: 12px; }
+  .hiw-step-heading { font-family: 'Angel Rhapsody', serif; font-size: 23px; color: var(--cream); line-height: 1.3; margin-bottom: 12px; }
   .hiw-step-desc { font-size: 13px; color: rgba(242,234,216,0.45); line-height: 1.8; }
   @media (max-width: 900px) { .hiw-section { padding: 60px 24px; } .hiw-steps { grid-template-columns: 1fr; gap: 36px; } }
   /* ── Social proof ──────────────────────────────────────────────────────── */
@@ -194,7 +194,7 @@
   .quiz-save-btn.saved { opacity: 0.5; cursor: default; }
   /* Email capture */
   .quiz-email-capture { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 32px 28px; margin: 36px 0; text-align: center; }
-  .quiz-email-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--cream); margin-bottom: 6px; }
+  .quiz-email-title { font-family: 'Angel Rhapsody', serif; font-size: 22px; color: var(--cream); margin-bottom: 6px; }
   .quiz-email-sub { font-size: 13px; color: rgba(242,234,216,0.45); margin-bottom: 22px; line-height: 1.6; }
   .quiz-email-form { display: flex; gap: 10px; max-width: 420px; margin: 0 auto; }
   .quiz-email-input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 12px 16px; color: var(--cream); font-family: 'Montserrat', sans-serif; font-size: 14px; outline: none; min-width: 0; }
@@ -228,7 +228,7 @@
   }
 
   .nav-wordmark {
-    font-family: 'PsychodelicDemo', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 28px;
     font-weight: normal;
     letter-spacing: 0.02em;
@@ -330,7 +330,7 @@
   }
 
   .hero-wordmark {
-    font-family: 'PsychodelicDemo', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: clamp(48px, 7.5vw, 88px);
     font-weight: normal;
     letter-spacing: 0.02em;
@@ -342,7 +342,7 @@
   }
 
   .hero-tagline {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-style: italic;
     font-size: clamp(18px, 2.5vw, 26px);
     color: var(--amber);
@@ -558,7 +558,7 @@
   }
 
   .stat-num {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 38px;
     font-weight: 300;
     color: var(--bright-green);
@@ -601,7 +601,7 @@
   }
 
   .explore-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: clamp(28px, 3.2vw, 46px);
     font-weight: 300;
     color: var(--cream);
@@ -721,7 +721,7 @@
   }
 
   .section-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: clamp(36px, 5vw, 60px);
     font-weight: 300;
     color: var(--cream);
@@ -797,7 +797,7 @@
   }
 
   .featured-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: clamp(26px, 3vw, 40px);
     font-weight: 400;
     line-height: 1.3;
@@ -877,7 +877,7 @@
   }
 
   .article-card-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 22px;
     font-weight: 400;
     line-height: 1.4;
@@ -955,7 +955,7 @@
   }
 
   .pro-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: clamp(32px, 4vw, 52px);
     font-weight: 300;
     line-height: 1.2;
@@ -1017,7 +1017,7 @@
   }
 
   .about-quote {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: clamp(28px, 4vw, 48px);
     font-style: italic;
     font-weight: 300;
@@ -1042,7 +1042,7 @@
   }
 
   .newsletter-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: clamp(28px, 4vw, 44px);
     font-weight: 300;
     color: var(--cream);
@@ -1118,7 +1118,7 @@
   }
 
   .footer-brand .footer-wordmark {
-    font-family: 'PsychodelicDemo', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 28px;
     font-weight: normal;
     letter-spacing: 0.02em;
@@ -1179,7 +1179,7 @@
   }
 
   .footer-tagline {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-style: italic;
     font-size: 14px;
     color: var(--light-green);
@@ -1212,7 +1212,7 @@
   }
 
   .strain-finder-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: clamp(32px, 5vw, 52px);
     font-weight: 300;
     line-height: 1.15;
@@ -1343,7 +1343,7 @@
   }
 
   .strain-card-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 22px;
     font-weight: 400;
     color: var(--cream);
@@ -1490,7 +1490,7 @@
   }
 
   .canna-card-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 24px;
     font-weight: 400;
     color: var(--cream);
@@ -1536,7 +1536,7 @@
   }
 
   .canna-featured-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 36px;
     font-weight: 300;
     line-height: 1.2;
@@ -1642,7 +1642,7 @@
   .badge-advanced { background: rgba(180,80,80,0.15); color: #e8a0a0; }
 
   .seminar-level-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 26px;
     font-weight: 400;
     color: var(--cream);
@@ -1714,7 +1714,7 @@
   }
 
   .seminar-format-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 20px;
     color: var(--cream);
     margin-bottom: 10px;
@@ -1746,7 +1746,7 @@
   .consulting-left .section-label { margin-bottom: 24px; }
 
   .consulting-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: clamp(36px, 4vw, 54px);
     font-weight: 300;
     line-height: 1.15;
@@ -1772,7 +1772,7 @@
   }
 
   .consulting-stat-num {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 42px;
     font-weight: 300;
     color: var(--bright-green);
@@ -1815,7 +1815,7 @@
   }
 
   .consulting-service-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 20px;
     color: var(--cream);
     margin-bottom: 6px;
@@ -1862,7 +1862,7 @@
   }
   .terpene-intro { max-width: 700px; margin-bottom: 48px; }
   .terpene-intro-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: clamp(28px, 4vw, 42px);
     font-weight: 300;
     line-height: 1.2;
@@ -1883,7 +1883,7 @@
   }
   .terpene-card:hover { border-color: rgba(82,183,136,0.25); }
   .terpene-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 22px;
     font-weight: 400;
     color: var(--light-green);
@@ -2011,7 +2011,7 @@
   }
   .isv-header-icon { font-size: 3rem; line-height: 1; }
   .isv-header-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 2rem;
     font-weight: 600;
     color: var(--cream);
@@ -2157,7 +2157,7 @@
   }
   .consume-detail-icon { font-size: 2.5rem; }
   .consume-detail-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 1.8rem;
     font-weight: 600;
     color: var(--cream);
@@ -2206,7 +2206,7 @@
   }
   .numbers-card:hover { transform: translateY(-3px); border-color: rgba(122,184,80,0.3); }
   .num-big {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 3.2rem;
     font-weight: 700;
     color: var(--bright-green);
@@ -2298,7 +2298,7 @@
   .body-info-placeholder { text-align: center; color: var(--cream); opacity: 0.5; padding: 20px; }
   .body-info-content { padding: 28px 32px; width: 100%; }
   .body-info-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 1.8rem;
     font-weight: 600;
     color: var(--cream);
@@ -2438,7 +2438,7 @@
     margin-bottom: 4px;
   }
   .history-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 1.2rem;
     font-weight: 600;
     color: var(--cream);
@@ -2548,7 +2548,7 @@
     min-width: 260px;
   }
   .twi-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: clamp(32px, 5vw, 52px);
     font-weight: 300;
     color: var(--light-green);
@@ -2622,7 +2622,7 @@
   .craft-pillar:hover { border-color: rgba(82,183,136,0.2); }
   .craft-pillar-icon { font-size: 28px; margin-bottom: 20px; }
   .craft-pillar-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 30px;
     font-weight: 300;
     color: var(--cream);
@@ -2688,7 +2688,7 @@
   }
 
   .hash-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: clamp(38px, 5vw, 66px);
     font-weight: 300;
     line-height: 1.1;
@@ -2744,7 +2744,7 @@
   }
 
   .hash-event-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 32px;
     font-weight: 400;
     color: var(--cream);
@@ -2816,7 +2816,7 @@
   }
 
   .hash-classes-intro {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 28px;
     font-weight: 300;
     color: var(--cream);
@@ -2842,7 +2842,7 @@
   .hash-class-card:hover { border-color: rgba(201,151,58,0.3); }
 
   .hash-class-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 19px;
     color: var(--cream);
     margin-bottom: 8px;
@@ -3351,7 +3351,7 @@
   .type-sativa .sdb-card-type { color: #f0a85c; }
   .type-hybrid .sdb-card-type { color: var(--bright-green); }
   .sdb-card-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 22px;
     font-weight: 600;
     color: var(--cream);
@@ -3399,7 +3399,7 @@
     gap: 20px;
   }
   .sdb-detail-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 52px;
     font-weight: 600;
     color: var(--cream);
@@ -3559,7 +3559,7 @@
   }
   .sdb-browse-bar-left { display: flex; flex-direction: column; gap: 5px; }
   .sdb-browse-label {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 22px;
     color: var(--cream);
   }
@@ -3705,7 +3705,7 @@
     align-items:start;
   }
   .bpro-form-title {
-    font-family:'Cormorant Garamond',serif;
+    font-family:'Angel Rhapsody',serif;
     font-size:26px;
     color:var(--cream);
     margin-bottom:28px;
@@ -3775,7 +3775,7 @@
   .bpro-rec-placeholder p { color:rgba(245,240,225,0.35); font-size:14px; line-height:1.7; max-width:280px; }
   .bpro-rec-placeholder strong { color:rgba(245,240,225,0.5); }
   .bpro-rec-title {
-    font-family:'Cormorant Garamond',serif;
+    font-family:'Angel Rhapsody',serif;
     font-size:22px;
     color:var(--cream);
     margin-bottom:6px;
@@ -3812,7 +3812,7 @@
     gap:10px;
   }
   .bpro-rec-strain-name {
-    font-family:'Cormorant Garamond',serif;
+    font-family:'Angel Rhapsody',serif;
     font-size:20px;
     color:var(--cream);
     font-weight:600;
@@ -3923,7 +3923,7 @@
   }
   .bpro-gloss-card:hover { background:rgba(201,151,58,0.04); }
   .bpro-gloss-term {
-    font-family:'Cormorant Garamond',serif;
+    font-family:'Angel Rhapsody',serif;
     font-size:20px;
     font-weight:600;
     color:var(--cream);
@@ -3965,7 +3965,7 @@
     margin-bottom:8px;
   }
   .bpro-script-title {
-    font-family:'Cormorant Garamond',serif;
+    font-family:'Angel Rhapsody',serif;
     font-size:22px;
     color:var(--cream);
     margin-bottom:14px;
@@ -4002,7 +4002,7 @@
     height:3px;
   }
   .bpro-dose-card h3 {
-    font-family:'Cormorant Garamond',serif;
+    font-family:'Angel Rhapsody',serif;
     font-size:24px;
     color:var(--cream);
     margin-bottom:4px;
@@ -4091,7 +4091,7 @@
     margin-bottom: 8px;
   }
   .cannafood-block-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 34px;
     font-weight: 500;
     color: var(--cream);
@@ -4122,7 +4122,7 @@
   }
   .cannafood-decarb-card:hover { background: rgba(82,183,136,0.05); }
   .cannafood-decarb-temp {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 36px;
     font-weight: 600;
     color: var(--bright-green);
@@ -4229,7 +4229,7 @@
     flex-wrap: wrap;
   }
   .cfmp-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 38px;
     font-weight: 600;
     color: var(--cream);
@@ -4338,7 +4338,7 @@
     margin-bottom: 36px;
   }
   .cannafood-calc-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 26px;
     color: var(--cream);
     margin-bottom: 6px;
@@ -4384,7 +4384,7 @@
     margin-top: 8px;
   }
   .calc-result-big {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 48px;
     font-weight: 600;
     color: var(--bright-green);
@@ -4456,7 +4456,7 @@
     padding: 20px 18px;
   }
   .cannafood-dose-rule-num {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 40px;
     font-weight: 600;
     color: rgba(82,183,136,0.2);
@@ -4503,7 +4503,7 @@
   .cannafood-recipe-card:hover { background: rgba(82,183,136,0.05); }
   .cannafood-recipe-icon { font-size: 36px; margin-bottom: 16px; }
   .cannafood-recipe-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 28px;
     font-weight: 600;
     color: var(--cream);
@@ -4599,7 +4599,7 @@
     display: block;
   }
   .hashenc-sub-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 32px;
     font-weight: 500;
     color: var(--cream);
@@ -4662,7 +4662,7 @@
     flex-wrap: wrap;
   }
   .hashenc-panel-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 42px;
     font-weight: 600;
     color: var(--cream);
@@ -4763,7 +4763,7 @@
   }
   .hashenc-quality-card:hover { background: rgba(201,151,58,0.05); border-color: rgba(201,151,58,0.2); }
   .hashenc-quality-num {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 48px;
     font-weight: 600;
     color: rgba(201,151,58,0.2);
@@ -4797,7 +4797,7 @@
   /* Solventless Revolution */
   .hashenc-solv { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
   .hashenc-solv-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: 40px;
     font-weight: 500;
     color: var(--cream);
@@ -4893,13 +4893,13 @@
   .tc-terpinolene .enc-terp-dot { background: #06b6d4; }
   .tc-humulene .enc-terp-dot { background: #d97706; }
   .tc-ocimene .enc-terp-dot { background: #84cc16; }
-  .enc-terp-name { font-family: 'Cormorant Garamond', serif; font-size: 21px; color: var(--cream); margin-bottom: 5px; }
+  .enc-terp-name { font-family: 'Angel Rhapsody', serif; font-size: 21px; color: var(--cream); margin-bottom: 5px; }
   .enc-terp-aroma { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); margin-bottom: 10px; }
   .enc-terp-tags { display: flex; flex-wrap: wrap; gap: 4px; }
   .enc-terp-tag { font-size: 10px; padding: 2px 7px; border-radius: 20px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5); }
   .enc-detail { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; padding: 36px; margin-top: 4px; display: none; }
   .enc-detail.open { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; }
-  .enc-detail-name { font-family: 'Cormorant Garamond', serif; font-size: 38px; color: var(--cream); grid-column: 1/-1; margin-bottom: 4px; }
+  .enc-detail-name { font-family: 'Angel Rhapsody', serif; font-size: 38px; color: var(--cream); grid-column: 1/-1; margin-bottom: 4px; }
   .enc-detail-sub { color: rgba(255,255,255,0.45); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; grid-column: 1/-1; margin-bottom: 14px; }
   .enc-detail-col h4 { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.38); margin-bottom: 8px; }
   .enc-detail-col p, .enc-detail-col ul { color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.7; }
@@ -4909,7 +4909,7 @@
   .enc-cannab-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
   .enc-cannab-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 28px 24px; transition: all 0.25s; }
   .enc-cannab-card:hover { border-color: rgba(255,255,255,0.16); transform: translateY(-3px); box-shadow: 0 10px 36px rgba(0,0,0,0.4); }
-  .enc-cannab-abbr { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 700; line-height: 1; margin-bottom: 3px; }
+  .enc-cannab-abbr { font-family: 'Angel Rhapsody', serif; font-size: 52px; font-weight: 700; line-height: 1; margin-bottom: 3px; }
   .cannab-thc .enc-cannab-abbr { color: #c084fc; }
   .cannab-cbd .enc-cannab-abbr { color: #67e8f9; }
   .cannab-cbg .enc-cannab-abbr { color: #86efac; }
@@ -4936,14 +4936,14 @@
   .enc-consume-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 13px; padding: 24px; cursor: pointer; transition: all 0.25s; }
   .enc-consume-card:hover, .enc-consume-card.active { border-color: var(--gold); background: rgba(212,175,55,0.05); }
   .enc-consume-icon { font-size: 28px; margin-bottom: 12px; }
-  .enc-consume-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--cream); margin-bottom: 4px; }
+  .enc-consume-name { font-family: 'Angel Rhapsody', serif; font-size: 22px; color: var(--cream); margin-bottom: 4px; }
   .enc-consume-tagline { font-size: 11px; color: rgba(255,255,255,0.38); margin-bottom: 14px; }
   .enc-consume-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .enc-consume-stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.32); margin-bottom: 2px; }
   .enc-consume-stat-val { font-size: 13px; color: var(--cream); }
   .enc-consume-detail { grid-column: 1/-1; background: rgba(212,175,55,0.04); border: 1px solid rgba(212,175,55,0.15); border-radius: 14px; padding: 32px; display: none; }
   .enc-consume-detail.open { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
-  .enc-consume-detail-title { font-family: 'Cormorant Garamond', serif; font-size: 32px; color: var(--cream); grid-column: 1/-1; margin-bottom: 4px; }
+  .enc-consume-detail-title { font-family: 'Angel Rhapsody', serif; font-size: 32px; color: var(--cream); grid-column: 1/-1; margin-bottom: 4px; }
   .enc-consume-detail-sub { color: rgba(255,255,255,0.4); font-size: 12px; grid-column: 1/-1; margin-bottom: 18px; }
   .enc-consume-col h4 { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.33); margin-bottom: 8px; }
   .enc-consume-col p, .enc-consume-col ul { color: rgba(255,255,255,0.68); font-size: 13px; line-height: 1.7; }
@@ -4956,14 +4956,14 @@
   .enc-cultiv-stages { display: grid; grid-template-columns: repeat(6,1fr); position: relative; margin-bottom: 40px; }
   .enc-cultiv-stages::before { content: ''; position: absolute; top: 38px; left: 8%; right: 8%; height: 2px; background: linear-gradient(90deg,rgba(79,192,79,0.15),rgba(79,192,79,0.5),rgba(79,192,79,0.15)); z-index: 0; }
   .enc-cultiv-stage { text-align: center; padding: 0 6px; cursor: pointer; transition: all 0.2s; position: relative; z-index: 1; }
-  .enc-cultiv-num { width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.04); border: 2px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-family: 'Cormorant Garamond', serif; font-size: 18px; color: rgba(255,255,255,0.45); transition: all 0.25s; }
+  .enc-cultiv-num { width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.04); border: 2px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-family: 'Angel Rhapsody', serif; font-size: 18px; color: rgba(255,255,255,0.45); transition: all 0.25s; }
   .enc-cultiv-stage:hover .enc-cultiv-num, .enc-cultiv-stage.active .enc-cultiv-num { background: var(--bright-green); border-color: var(--bright-green); color: #000; }
   .enc-cultiv-stage-name { font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em; color: rgba(255,255,255,0.4); transition: color 0.2s; }
   .enc-cultiv-stage:hover .enc-cultiv-stage-name, .enc-cultiv-stage.active .enc-cultiv-stage-name { color: var(--bright-green); }
   .enc-cultiv-stage-dur { font-size: 9px; color: rgba(255,255,255,0.22); margin-top: 3px; }
   .enc-cultiv-panel { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 36px; display: none; animation: fadeSlideUp 0.3s ease; }
   .enc-cultiv-panel.open { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; }
-  .enc-cultiv-panel-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; color: var(--cream); grid-column: 1/-1; margin-bottom: 3px; }
+  .enc-cultiv-panel-title { font-family: 'Angel Rhapsody', serif; font-size: 36px; color: var(--cream); grid-column: 1/-1; margin-bottom: 3px; }
   .enc-cultiv-panel-dur { font-size: 11px; color: rgba(255,255,255,0.32); letter-spacing: 0.1em; text-transform: uppercase; grid-column: 1/-1; margin-bottom: 18px; }
   .enc-cultiv-col h4 { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.33); margin-bottom: 8px; }
   .enc-cultiv-col p, .enc-cultiv-col ul { color: rgba(255,255,255,0.68); font-size: 13px; line-height: 1.7; }
@@ -4972,11 +4972,11 @@
   .enc-cultiv-tip { background: rgba(79,192,79,0.06); border-left: 3px solid var(--bright-green); border-radius: 0 8px 8px 0; padding: 12px 14px; font-size: 13px; color: rgba(255,255,255,0.6); grid-column: 1/-1; margin-top: 4px; }
   .enc-cultiv-tip strong { color: var(--bright-green); }
   .enc-cultiv-enviro { margin-top: 48px; }
-  .enc-cultiv-enviro-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--cream); margin-bottom: 24px; }
+  .enc-cultiv-enviro-title { font-family: 'Angel Rhapsody', serif; font-size: 28px; color: var(--cream); margin-bottom: 24px; }
   .enc-env-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
   .enc-env-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 22px; }
   .enc-env-icon { font-size: 26px; margin-bottom: 10px; }
-  .enc-env-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--cream); margin-bottom: 7px; }
+  .enc-env-name { font-family: 'Angel Rhapsody', serif; font-size: 18px; color: var(--cream); margin-bottom: 7px; }
   .enc-env-body { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
   .enc-history { position: relative; max-width: 860px; }
   .enc-history::before { content: ''; position: absolute; left: 120px; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, transparent, rgba(212,175,55,0.25) 3%, rgba(212,175,55,0.25) 97%, transparent); }
@@ -4984,11 +4984,11 @@
   .enc-history-event { display: grid; grid-template-columns: 120px 1fr; align-items: start; margin-bottom: 8px; position: relative; }
   .enc-history-event::before { content: ''; position: absolute; left: 114px; top: 14px; width: 13px; height: 13px; border-radius: 50%; background: rgba(212,175,55,0.7); border: 2px solid #080e08; z-index: 1; }
   .enc-history-event.major::before { width: 17px; height: 17px; left: 112px; top: 12px; background: var(--bright-green); box-shadow: 0 0 10px rgba(79,192,79,0.4); border-color: #080e08; }
-  .enc-history-date { font-family: 'Cormorant Garamond', serif; font-size: 15px; color: rgba(212,175,55,0.75); padding-top: 8px; text-align: right; padding-right: 32px; }
+  .enc-history-date { font-family: 'Angel Rhapsody', serif; font-size: 15px; color: rgba(212,175,55,0.75); padding-top: 8px; text-align: right; padding-right: 32px; }
   .enc-history-card { background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.055); border-radius: 10px; padding: 14px 18px; margin-left: 28px; margin-bottom: 5px; }
   .enc-history-event.major .enc-history-card { border-color: rgba(79,192,79,0.12); background: rgba(79,192,79,0.04); }
   .enc-history-card-tag { display: inline-block; font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; padding: 2px 7px; border-radius: 10px; margin-bottom: 5px; }
-  .enc-history-card-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: var(--cream); margin-bottom: 3px; }
+  .enc-history-card-title { font-family: 'Angel Rhapsody', serif; font-size: 17px; color: var(--cream); margin-bottom: 3px; }
   .enc-history-card-body { font-size: 12px; color: rgba(255,255,255,0.52); line-height: 1.6; }
   .history-tag-ancient { background: rgba(212,175,55,0.1); color: rgba(212,175,55,0.7); }
   .history-tag-medicine { background: rgba(103,232,249,0.08); color: rgba(103,232,249,0.65); }
@@ -5011,7 +5011,7 @@
   .tier-solventless { background: rgba(79,192,79,0.08); color: #4fc04f; border: 1px solid rgba(79,192,79,0.18); }
   .tier-solvent { background: rgba(239,68,68,0.07); color: #ef4444; border: 1px solid rgba(239,68,68,0.14); }
   .tier-traditional { background: rgba(212,175,55,0.07); color: var(--gold); border: 1px solid rgba(212,175,55,0.18); }
-  .enc-extract-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--cream); margin-bottom: 6px; }
+  .enc-extract-name { font-family: 'Angel Rhapsody', serif; font-size: 22px; color: var(--cream); margin-bottom: 6px; }
   .enc-extract-sub { font-size: 11px; color: rgba(255,255,255,0.38); margin-bottom: 14px; }
   .enc-extract-desc { font-size: 13px; color: rgba(255,255,255,0.62); line-height: 1.7; margin-bottom: 14px; }
   .enc-extract-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -5027,7 +5027,7 @@
   .enc-globe-info { background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 28px; min-height: 280px; position: sticky; top: 100px; }
   .enc-globe-info-placeholder { display: flex; align-items: center; justify-content: center; min-height: 280px; color: rgba(255,255,255,0.2); font-size: 13px; text-align: center; line-height: 1.6; }
   .enc-globe-title-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 8px; }
-  .enc-globe-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--cream); margin-bottom: 14px; line-height: 1.2; }
+  .enc-globe-title { font-family: 'Angel Rhapsody', serif; font-size: 28px; color: var(--cream); margin-bottom: 14px; line-height: 1.2; }
   .enc-globe-desc { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.7; margin-bottom: 18px; }
   .enc-globe-strains-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); margin-bottom: 8px; }
   .enc-globe-strains { display: flex; flex-wrap: wrap; gap: 5px; }
@@ -5155,7 +5155,7 @@
   .strain-bible-inner { max-width: 1280px; margin: 0 auto; }
   .strain-bible-header { max-width: 640px; margin-bottom: 64px; }
   .strain-bible-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Angel Rhapsody', serif;
     font-size: clamp(36px, 4vw, 56px);
     font-weight: 300;
     line-height: 1.15;
@@ -5198,7 +5198,7 @@
   .sb-card:hover { border-color: rgba(82,183,136,0.35); background: rgba(82,183,136,0.05); transform: translateY(-2px); }
   .sb-card.active { border-color: var(--bright-green); background: rgba(82,183,136,0.07); }
   .sb-card-type { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bright-green); opacity: 0.8; margin-bottom: 8px; }
-  .sb-card-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; color: var(--cream); margin-bottom: 6px; }
+  .sb-card-name { font-family: 'Angel Rhapsody', serif; font-size: 22px; font-weight: 400; color: var(--cream); margin-bottom: 6px; }
   .sb-card-cross { font-size: 12px; color: var(--cream); opacity: 0.4; margin-bottom: 14px; font-style: italic; }
   .sb-card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .sb-card-tag { font-size: 10px; background: rgba(82,183,136,0.1); border: 1px solid rgba(82,183,136,0.2); color: var(--bright-green); padding: 3px 9px; border-radius: 20px; opacity: 0.85; }
@@ -5212,7 +5212,7 @@
   }
   .sb-detail.open { display: block; }
   .sb-detail-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; gap: 20px; }
-  .sb-detail-name { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--cream); line-height: 1.1; }
+  .sb-detail-name { font-family: 'Angel Rhapsody', serif; font-size: 36px; font-weight: 300; color: var(--cream); line-height: 1.1; }
   .sb-detail-type-badge { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bright-green); opacity: 0.7; margin-top: 6px; }
   .sb-detail-close {
     background: transparent;
@@ -5247,7 +5247,7 @@
   /* Training Quiz */
   .sb-quiz-wrap { margin-top: 80px; padding-top: 60px; border-top: 1px solid rgba(82,183,136,0.1); }
   .sb-quiz-header { max-width: 560px; margin-bottom: 36px; }
-  .sb-quiz-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 3vw, 42px); font-weight: 300; color: var(--cream); margin-bottom: 12px; }
+  .sb-quiz-title { font-family: 'Angel Rhapsody', serif; font-size: clamp(28px, 3vw, 42px); font-weight: 300; color: var(--cream); margin-bottom: 12px; }
   .sb-quiz-sub { font-size: 13px; color: var(--cream); opacity: 0.5; line-height: 1.8; }
   .sb-quiz-meta { display: flex; gap: 20px; margin-bottom: 32px; flex-wrap: wrap; }
   .sb-quiz-meta-item { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bright-green); opacity: 0.7; }
@@ -5271,7 +5271,7 @@
   .sb-q-progress { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream); opacity: 0.35; margin-bottom: 8px; }
   .sb-q-progress-bar { height: 2px; background: rgba(255,255,255,0.08); border-radius: 1px; margin-bottom: 28px; overflow: hidden; }
   .sb-q-progress-fill { height: 100%; background: var(--bright-green); border-radius: 1px; transition: width 0.3s; }
-  .sb-q-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 2.5vw, 28px); font-weight: 300; color: var(--cream); line-height: 1.3; margin-bottom: 10px; }
+  .sb-q-text { font-family: 'Angel Rhapsody', serif; font-size: clamp(20px, 2.5vw, 28px); font-weight: 300; color: var(--cream); line-height: 1.3; margin-bottom: 10px; }
   .sb-q-context { font-size: 12px; color: var(--cream); opacity: 0.4; font-style: italic; margin-bottom: 22px; }
   .sb-q-options { display: flex; flex-direction: column; gap: 10px; max-width: 580px; }
   .sb-q-option {
@@ -5299,9 +5299,9 @@
   .sb-q-next:hover { background: rgba(82,183,136,0.1); }
   .sb-result-wrap { display: none; max-width: 640px; }
   .sb-result-wrap.show { display: block; }
-  .sb-result-score { font-family: 'Cormorant Garamond', serif; font-size: 72px; font-weight: 300; color: var(--bright-green); line-height: 1; margin-bottom: 6px; }
+  .sb-result-score { font-family: 'Angel Rhapsody', serif; font-size: 72px; font-weight: 300; color: var(--bright-green); line-height: 1; margin-bottom: 6px; }
   .sb-result-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cream); opacity: 0.4; margin-bottom: 24px; }
-  .sb-result-verdict { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 2.5vw, 32px); font-weight: 300; color: var(--cream); margin-bottom: 14px; line-height: 1.2; }
+  .sb-result-verdict { font-family: 'Angel Rhapsody', serif; font-size: clamp(22px, 2.5vw, 32px); font-weight: 300; color: var(--cream); margin-bottom: 14px; line-height: 1.2; }
   .sb-result-desc { font-size: 14px; color: var(--cream); opacity: 0.55; line-height: 1.85; margin-bottom: 32px; }
   .sb-result-breakdown { margin-bottom: 32px; }
   .sb-result-breakdown-title { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cream); opacity: 0.35; margin-bottom: 14px; }
