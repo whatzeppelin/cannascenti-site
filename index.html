@@ -244,6 +244,53 @@
     background: rgba(82,183,136,0.3);
   }
 
+  /* NAV SEARCH */
+  .nav-search-wrap {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    max-width: 420px;
+    margin: 0 36px;
+    background: rgba(82,183,136,0.06);
+    border: 1px solid rgba(82,183,136,0.22);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .nav-search-wrap:focus-within {
+    border-color: rgba(82,183,136,0.5);
+    background: rgba(82,183,136,0.1);
+  }
+  .nav-search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 9px 14px;
+    color: var(--cream);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    outline: none;
+    min-width: 0;
+  }
+  .nav-search-input::placeholder { color: rgba(242,234,216,0.32); }
+  .nav-search-btn {
+    background: var(--bright-green);
+    color: #0a0e06;
+    border: none;
+    padding: 9px 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+    flex-shrink: 0;
+  }
+  .nav-search-btn:hover { opacity: 0.85; }
+
   .nav-links {
     display: flex;
     align-items: center;
@@ -3207,6 +3254,7 @@
   @media (max-width: 900px) {
     nav { padding: 16px 24px; }
     .nav-links { display: none; }
+    .nav-search-wrap { display: none; }
     .hero { padding: 120px 24px 80px; }
     .hero-logo { flex-direction: column; gap: 16px; }
     .hero-vert { display: none; }
@@ -5466,6 +5514,10 @@
     <div class="nav-vert"></div>
     <span class="nav-wordmark">Cannascenti</span>
   </a>
+  <div class="nav-search-wrap">
+    <input id="strainInput" class="nav-search-input" type="text" placeholder="Search strains — mood, flavor, vibe, or name..." maxlength="200" onkeydown="if(event.key==='Enter')findStrains()" />
+    <button id="strainSearchBtn" class="nav-search-btn" onclick="findStrains()">Find Strains</button>
+  </div>
   <ul class="nav-links">
     <li><a href="#quiz" style="color:var(--bright-green);font-weight:600">Find Your Match</a></li>
     <li><a href="#newsletter" class="nav-cta">Subscribe</a></li>
@@ -5525,10 +5577,6 @@
     <div class="hero-actions">
       <a href="#quiz" class="btn-primary btn-primary--lg">Get My Personalized Match →</a>
       <p style="font-size:12px;color:rgba(242,234,216,0.4);margin-top:14px;letter-spacing:0.08em;">Takes 30 seconds · Free · No account needed</p>
-    </div>
-    <div class="hero-search-wrap">
-      <input id="strainInput" class="hero-search-input" type="text" placeholder="Search strains — mood, flavor, vibe, or name..." maxlength="200" />
-      <button id="strainSearchBtn" class="hero-search-btn" onclick="findStrains()">Find Strains</button>
     </div>
     <div class="hero-pills">
       <span class="strain-example-pill" onclick="searchExample(this)">relaxed</span>
