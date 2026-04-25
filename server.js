@@ -26,8 +26,21 @@ const CACHE_TTL = {
 };
 
 // ─── Load local strain database ───────────────────────────────────────────────
-const STRAINS_DB = JSON.parse(fs.readFileSync(path.join(__dirname, "strains.json"), "utf8"));
+const STRAINS_PATH = path.join(__dirname, "strains.json");
+let STRAINS_DB = JSON.parse(fs.readFileSync(STRAINS_PATH, "utf8"));
 console.log(`Loaded ${STRAINS_DB.length} strains from local database.`);
+
+function reloadStrains() {
+  STRAINS_DB = JSON.parse(fs.readFileSync(STRAINS_PATH, "utf8"));
+}
+
+function saveStrains() {
+  fs.writeFileSync(STRAINS_PATH, JSON.stringify(STRAINS_DB, null, 2));
+}
+
+// Serve strain photos from /public/photos/
+const PHOTOS_DIR = path.join(__dirname, "public", "photos");
+if (!fs.existsSync(PHOTOS_DIR)) fs.mkdirSync(PHOTOS_DIR, { recursive: true });
 
 // ─── Semantic word map: query words → what to match in the DB ─────────────────
 const SEMANTIC = {
@@ -640,6 +653,469 @@ a{color:var(--bright-green);text-decoration:none}
         res.writeHead(400); res.end();
       }
     });
+    return;
+  }
+
+  // ─── Serve strain photos ──────────────────────────────────────────────────
+  if (req.method === "GET" && req.url.startsWith("/public/photos/")) {
+    const filename = path.basename(req.url);
+    const filePath = path.join(PHOTOS_DIR, filename);
+    if (fs.existsSync(filePath)) {
+      const ext = path.extname(filename).toLowerCase();
+      const mime = ext === ".jpg" || ext === ".jpeg" ? "image/jpeg"
+                 : ext === ".png" ? "image/png"
+                 : ext === ".webp" ? "image/webp" : "application/octet-stream";
+      res.writeHead(200, { "Content-Type": mime, "Cache-Control": "public, max-age=604800" });
+      fs.createReadStream(filePath).pipe(res);
+    } else {
+      res.writeHead(404); res.end("Not found");
+    }
+    return;
+  }
+
+  // ─── Add-strain API (POST) ─────────────────────────────────────────────────
+  if (req.method === "POST" && req.url === "/api/admin/add-strain") {
+    let body = "";
+    req.on("data", chunk => { body += chunk; });
+    req.on("end", () => {
+      try {
+        const { key, strain } = JSON.parse(body);
+        const adminKey = process.env.ADMIN_KEY || "cannascenti2025";
+        if (key !== adminKey) {
+          res.writeHead(401, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Unauthorized" })); return;
+        }
+        if (!strain?.name || !strain?.type) {
+          res.writeHead(400, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Name and type are required" })); return;
+        }
+
+        // Generate slug
+        const slug = strain.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+        // Handle base64 photo → save to disk
+        let photoUrl = strain.photoUrl || null;
+        if (strain.photoData && strain.photoData.startsWith("data:image")) {
+          const matches = strain.photoData.match(/^data:(image\/\w+);base64,(.+)$/);
+          if (matches) {
+            const ext = matches[1].split("/")[1] || "jpg";
+            const buf = Buffer.from(matches[2], "base64");
+            const filename = `${slug}-${Date.now()}.${ext}`;
+            fs.writeFileSync(path.join(PHOTOS_DIR, filename), buf);
+            photoUrl = `/public/photos/${filename}`;
+          }
+        }
+
+        // Build the strain object
+        const newStrain = {
+          name:        strain.name.trim(),
+          slug,
+          type:        strain.type,
+          thc_min:     strain.thc_min ? parseInt(strain.thc_min) : null,
+          thc_max:     strain.thc_max ? parseInt(strain.thc_max) : null,
+          thc:         strain.thc_min && strain.thc_max ? `${strain.thc_min}–${strain.thc_max}%` : null,
+          cbd:         strain.cbd ? parseFloat(strain.cbd) : null,
+          terpenes:    Array.isArray(strain.terpenes) ? strain.terpenes : (strain.terpenes || "").split(",").map(t => t.trim()).filter(Boolean),
+          effects:     Array.isArray(strain.effects)  ? strain.effects  : (strain.effects  || "").split(",").map(e => e.trim()).filter(Boolean),
+          flavors:     Array.isArray(strain.flavors)  ? strain.flavors  : (strain.flavors  || "").split(",").map(f => f.trim()).filter(Boolean),
+          genetics:    strain.genetics || null,
+          parents:     strain.parents  ? strain.parents.split(",").map(p => p.trim()).filter(Boolean) : [],
+          description: strain.description || null,   // Mikey's personal review
+          medical:     strain.medical   ? strain.medical.split(",").map(m => m.trim()).filter(Boolean) : [],
+          bestFor:     strain.bestFor   || null,
+          funFact:     strain.funFact   || null,
+          tags:        strain.tags      ? strain.tags.split(",").map(t => t.trim()).filter(Boolean) : [],
+          rating:      strain.rating    ? parseFloat(strain.rating) : null,
+          photoUrl,
+          leaflyUrl:   strain.leaflyUrl   || `https://www.leafly.com/strains/${slug}`,
+          weedmapsUrl: strain.weedmapsUrl || `https://weedmaps.com/strains/${slug}`,
+          erbaUrl:     strain.erbaUrl    || null,  // "Buy at Erba Sawtelle" link
+          inStockErba: !!strain.inStockErba,
+          addedBy:     "Mikey @ Erba Sawtelle",
+          addedAt:     new Date().toISOString(),
+          isStaffPick: !!strain.isStaffPick,
+        };
+
+        // Replace if already exists, else prepend (new strains first)
+        const idx = STRAINS_DB.findIndex(s => s.slug === slug || s.name.toLowerCase() === strain.name.toLowerCase().trim());
+        if (idx >= 0) {
+          STRAINS_DB[idx] = { ...STRAINS_DB[idx], ...newStrain };
+        } else {
+          STRAINS_DB.unshift(newStrain);
+        }
+
+        saveStrains();
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ ok: true, slug, total: STRAINS_DB.length }));
+      } catch (err) {
+        console.error("add-strain error:", err.message);
+        res.writeHead(500, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ error: "Failed to save strain" }));
+      }
+    });
+    return;
+  }
+
+  // ─── AI auto-fill strain info ──────────────────────────────────────────────
+  if (req.method === "POST" && req.url === "/api/admin/strain-autofill") {
+    let body = "";
+    req.on("data", chunk => { body += chunk; });
+    req.on("end", async () => {
+      try {
+        const { key, name } = JSON.parse(body);
+        const adminKey = process.env.ADMIN_KEY || "cannascenti2025";
+        if (key !== adminKey) { res.writeHead(401); res.end("Unauthorized"); return; }
+        if (!name) { res.writeHead(400); res.end("Missing name"); return; }
+
+        const msg = await client.messages.create({
+          model: "claude-opus-4-6",
+          max_tokens: 800,
+          messages: [{
+            role: "user",
+            content: `You are a cannabis encyclopedia expert. Return ONLY a JSON object (no markdown, no commentary) for the cannabis strain "${name}" with exactly these fields:
+{
+  "type": "indica|sativa|hybrid",
+  "thc_min": number,
+  "thc_max": number,
+  "cbd": number,
+  "genetics": "Parent1 × Parent2",
+  "parents": ["Parent1","Parent2"],
+  "terpenes": ["Terpene1","Terpene2","Terpene3"],
+  "effects": ["Effect1","Effect2","Effect3","Effect4","Effect5"],
+  "flavors": ["Flavor1","Flavor2","Flavor3"],
+  "medical": ["Condition1","Condition2","Condition3"],
+  "bestFor": "one sentence",
+  "funFact": "one interesting fact about genetics, origin, or cultural significance"
+}
+Only return factual, well-established information. If unsure about a field, use null.`
+          }]
+        });
+
+        const text = msg.content.find(b => b.type === "text")?.text || "{}";
+        // Extract JSON even if Claude adds any wrapper text
+        const match = text.match(/\{[\s\S]*\}/);
+        const data = match ? JSON.parse(match[0]) : {};
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(data));
+      } catch (err) {
+        console.error("autofill error:", err.message);
+        res.writeHead(500); res.end(JSON.stringify({ error: err.message }));
+      }
+    });
+    return;
+  }
+
+  // ─── Add-strain CMS page ───────────────────────────────────────────────────
+  if (req.method === "GET" && req.url.startsWith("/add-strain")) {
+    const adminKey = process.env.ADMIN_KEY || "cannascenti2025";
+    const url = new URL(req.url, "http://localhost");
+    if (url.searchParams.get("key") !== adminKey) {
+      res.writeHead(401, { "Content-Type": "text/plain" });
+      res.end("Unauthorized — add ?key=YOUR_KEY to the URL"); return;
+    }
+    const key = url.searchParams.get("key");
+    const COMMON_EFFECTS = ["Relaxed","Happy","Euphoric","Uplifted","Creative","Energetic","Focused","Sleepy","Hungry","Talkative","Giggly","Body High","Calm","Sedated","Aroused"];
+    const COMMON_TERPS   = ["Myrcene","Caryophyllene","Limonene","Linalool","Pinene","Terpinolene","Ocimene","Humulene","Bisabolol","Nerolidol","Valencene","Geraniol"];
+    const cmsHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Add Strain — Cannascenti CMS</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#060e08;color:#e8e0ce;font-family:system-ui,sans-serif;padding:24px 20px;max-width:680px;margin:0 auto;padding-bottom:80px}
+  h1{font-size:22px;font-weight:700;color:#52b788;margin-bottom:4px}
+  .sub{font-size:12px;color:rgba(232,224,206,0.4);margin-bottom:32px}
+  .section{background:rgba(82,183,136,0.04);border:1px solid rgba(82,183,136,0.15);border-radius:10px;padding:20px;margin-bottom:20px}
+  .section-title{font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:#52b788;margin-bottom:16px;font-weight:700}
+  label{display:block;font-size:12px;color:rgba(232,224,206,0.55);margin-bottom:5px;margin-top:14px;letter-spacing:0.05em}
+  label:first-of-type{margin-top:0}
+  input,textarea,select{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:11px 13px;color:#e8e0ce;font-size:15px;font-family:inherit;outline:none;transition:border-color 0.2s;-webkit-appearance:none}
+  input:focus,textarea:focus,select:focus{border-color:rgba(82,183,136,0.5)}
+  textarea{resize:vertical;min-height:90px;line-height:1.55}
+  select option{background:#0a120a}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+  .chip{padding:6px 13px;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:rgba(232,224,206,0.6);font-size:12px;cursor:pointer;transition:all 0.15s;-webkit-tap-highlight-color:transparent;user-select:none}
+  .chip.active{background:rgba(82,183,136,0.2);border-color:rgba(82,183,136,0.5);color:#52b788}
+  .chip.terp.active{background:rgba(244,162,97,0.15);border-color:rgba(244,162,97,0.4);color:#f4a261}
+  .photo-preview{width:100%;max-height:220px;object-fit:cover;border-radius:8px;margin-top:12px;display:none}
+  .toggle-row{display:flex;align-items:center;gap:12px;padding:10px 0}
+  .toggle-label{font-size:14px;color:rgba(232,224,206,0.75)}
+  .toggle{position:relative;width:44px;height:26px;flex-shrink:0}
+  .toggle input{opacity:0;width:0;height:0}
+  .slider{position:absolute;cursor:pointer;inset:0;background:rgba(255,255,255,0.1);border-radius:26px;transition:.3s}
+  .slider:before{position:absolute;content:"";height:20px;width:20px;left:3px;bottom:3px;background:#555;border-radius:50%;transition:.3s}
+  input:checked + .slider{background:#52b788}
+  input:checked + .slider:before{transform:translateX(18px);background:#fff}
+  .btn{width:100%;padding:16px;background:#52b788;color:#060e08;border:none;border-radius:8px;font-size:15px;font-weight:700;letter-spacing:0.05em;cursor:pointer;transition:opacity 0.2s;margin-top:8px}
+  .btn:active{opacity:0.8}
+  .btn-ai{background:rgba(82,183,136,0.12);color:#52b788;border:1px solid rgba(82,183,136,0.3);font-size:13px;padding:10px;border-radius:6px;margin-top:6px;width:100%;cursor:pointer;transition:all 0.2s}
+  .btn-ai:active{background:rgba(82,183,136,0.25)}
+  .btn-ai.loading{opacity:0.5;cursor:wait}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#52b788;color:#060e08;font-weight:700;font-size:14px;padding:12px 28px;border-radius:30px;box-shadow:0 4px 24px rgba(0,0,0,0.4);opacity:0;transition:opacity 0.3s;pointer-events:none;white-space:nowrap;z-index:999}
+  .toast.show{opacity:1}
+  .err{color:#f4a261;font-size:12px;margin-top:6px}
+</style>
+</head>
+<body>
+<h1>🌿 Add New Strain</h1>
+<div class="sub">Cannascenti CMS · Erba Sawtelle · Real-time updates</div>
+
+<div class="section">
+  <div class="section-title">Identity</div>
+  <label>Strain Name *</label>
+  <input id="name" type="text" placeholder="e.g. Runtz, Gelato 41, Mimosa..." autocomplete="off">
+  <button class="btn-ai" id="autofillBtn" onclick="autofill()">✦ AI Auto-Fill terpenes, genetics & effects</button>
+  <div id="autofillStatus" style="font-size:12px;color:rgba(232,224,206,0.4);margin-top:6px;min-height:16px"></div>
+
+  <label>Type *</label>
+  <select id="type">
+    <option value="">Select type...</option>
+    <option value="Indica">Indica</option>
+    <option value="Sativa">Sativa</option>
+    <option value="Hybrid">Hybrid</option>
+  </select>
+
+  <div class="row2">
+    <div>
+      <label>THC Min %</label>
+      <input id="thc_min" type="number" min="0" max="40" placeholder="20">
+    </div>
+    <div>
+      <label>THC Max %</label>
+      <input id="thc_max" type="number" min="0" max="40" placeholder="26">
+    </div>
+  </div>
+
+  <label>CBD %</label>
+  <input id="cbd" type="number" min="0" max="25" step="0.1" placeholder="0.1">
+
+  <label>Genetics / Lineage</label>
+  <input id="genetics" type="text" placeholder="e.g. Gelato 33 × Zkittlez">
+</div>
+
+<div class="section">
+  <div class="section-title">Terpenes</div>
+  <div class="chips" id="terpChips">
+    ${COMMON_TERPS.map(t => `<span class="chip terp" data-val="${t}" onclick="toggleChip(this,'terps')">${t}</span>`).join("")}
+  </div>
+  <label style="margin-top:14px">Other Terpenes (comma-separated)</label>
+  <input id="terpsCustom" type="text" placeholder="e.g. Farnesene, Guaiol">
+</div>
+
+<div class="section">
+  <div class="section-title">Effects</div>
+  <div class="chips" id="effectChips">
+    ${COMMON_EFFECTS.map(e => `<span class="chip" data-val="${e}" onclick="toggleChip(this,'effects')">${e}</span>`).join("")}
+  </div>
+  <label style="margin-top:14px">Other Effects</label>
+  <input id="effectsCustom" type="text" placeholder="e.g. Introspective, Chatty">
+</div>
+
+<div class="section">
+  <div class="section-title">Your Review</div>
+  <label>Description / Personal Review</label>
+  <textarea id="description" placeholder="Your honest take — what does it actually feel like? Who's it for? What makes it special?"></textarea>
+  <label>Best For</label>
+  <input id="bestFor" type="text" placeholder="e.g. Afternoon creativity, social events, winding down">
+  <label>Flavors (comma-separated)</label>
+  <input id="flavors" type="text" placeholder="e.g. Sweet, Citrus, Earthy, Pine">
+  <label>Cannascenti Take / Fun Fact</label>
+  <textarea id="funFact" placeholder="Cultural significance, genetics history, what makes it iconic..."></textarea>
+</div>
+
+<div class="section">
+  <div class="section-title">Availability</div>
+  <div class="toggle-row">
+    <label class="toggle">
+      <input type="checkbox" id="inStockErba">
+      <span class="slider"></span>
+    </label>
+    <span class="toggle-label">In Stock at Erba Sawtelle right now</span>
+  </div>
+  <label>Erba Sawtelle Menu Link</label>
+  <input id="erbaUrl" type="url" placeholder="https://www.erbamarkets.com/...">
+  <label>Weedmaps Link (auto-filled if blank)</label>
+  <input id="weedmapsUrl" type="url" placeholder="https://weedmaps.com/strains/...">
+  <label>Leafly Link (auto-filled if blank)</label>
+  <input id="leaflyUrl" type="url" placeholder="https://www.leafly.com/strains/...">
+  <div class="toggle-row" style="margin-top:12px">
+    <label class="toggle">
+      <input type="checkbox" id="isStaffPick">
+      <span class="slider"></span>
+    </label>
+    <span class="toggle-label">Mark as Staff Pick</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Photo</div>
+  <label>Take / Upload Photo</label>
+  <input type="file" id="photoFile" accept="image/*" capture="environment" onchange="previewPhoto(this)">
+  <img id="photoPreview" class="photo-preview" alt="Preview">
+</div>
+
+<button class="btn" onclick="submitStrain()">✦ Publish Strain to Cannascenti</button>
+<div id="errMsg" class="err"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const KEY = "${key}";
+const selectedEffects = new Set();
+const selectedTerps   = new Set();
+let photoData = null;
+
+function toggleChip(el, group) {
+  const val = el.dataset.val;
+  const set = group === 'effects' ? selectedEffects : selectedTerps;
+  if (set.has(val)) { set.delete(val); el.classList.remove('active'); }
+  else              { set.add(val);    el.classList.add('active'); }
+}
+
+function previewPhoto(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    photoData = e.target.result;
+    const img = document.getElementById('photoPreview');
+    img.src = photoData;
+    img.style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+}
+
+async function autofill() {
+  const name = document.getElementById('name').value.trim();
+  if (!name) { showToast('Enter a strain name first'); return; }
+  const btn = document.getElementById('autofillBtn');
+  const status = document.getElementById('autofillStatus');
+  btn.classList.add('loading');
+  btn.textContent = '⏳ Asking Claude...';
+  status.textContent = 'Pulling genetics, terpenes & effects from the encyclopedia...';
+  try {
+    const r = await fetch('/api/admin/strain-autofill', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ key: KEY, name })
+    });
+    const data = await r.json();
+    if (data.error) throw new Error(data.error);
+
+    // Fill type
+    if (data.type) {
+      const t = data.type.charAt(0).toUpperCase() + data.type.slice(1);
+      document.getElementById('type').value = t;
+    }
+    if (data.thc_min) document.getElementById('thc_min').value = data.thc_min;
+    if (data.thc_max) document.getElementById('thc_max').value = data.thc_max;
+    if (data.cbd)     document.getElementById('cbd').value = data.cbd;
+    if (data.genetics) document.getElementById('genetics').value = data.genetics;
+    if (data.bestFor)  document.getElementById('bestFor').value = data.bestFor;
+    if (data.funFact)  document.getElementById('funFact').value = data.funFact;
+
+    // Terpenes
+    (data.terpenes || []).forEach(t => {
+      const chip = [...document.querySelectorAll('#terpChips .chip')].find(c => c.dataset.val === t);
+      if (chip) { selectedTerps.add(t); chip.classList.add('active'); }
+      else document.getElementById('terpsCustom').value = [document.getElementById('terpsCustom').value, t].filter(Boolean).join(', ');
+    });
+
+    // Effects
+    (data.effects || []).forEach(e => {
+      const chip = [...document.querySelectorAll('#effectChips .chip')].find(c => c.dataset.val === e);
+      if (chip) { selectedEffects.add(e); chip.classList.add('active'); }
+      else document.getElementById('effectsCustom').value = [document.getElementById('effectsCustom').value, e].filter(Boolean).join(', ');
+    });
+
+    // Flavors
+    if (data.flavors?.length) document.getElementById('flavors').value = data.flavors.join(', ');
+
+    status.textContent = '✓ Auto-filled! Review and add your personal review below.';
+    status.style.color = '#52b788';
+  } catch(err) {
+    status.textContent = 'Could not auto-fill: ' + err.message;
+    status.style.color = '#f4a261';
+  } finally {
+    btn.classList.remove('loading');
+    btn.textContent = '✦ AI Auto-Fill terpenes, genetics & effects';
+  }
+}
+
+async function submitStrain() {
+  const name = document.getElementById('name').value.trim();
+  const type = document.getElementById('type').value;
+  document.getElementById('errMsg').textContent = '';
+  if (!name) { document.getElementById('errMsg').textContent = 'Strain name is required.'; return; }
+  if (!type) { document.getElementById('errMsg').textContent = 'Select a type.'; return; }
+
+  const custom_terps   = document.getElementById('terpsCustom').value.split(',').map(t=>t.trim()).filter(Boolean);
+  const custom_effects = document.getElementById('effectsCustom').value.split(',').map(e=>e.trim()).filter(Boolean);
+
+  const strain = {
+    name, type,
+    thc_min:     document.getElementById('thc_min').value || null,
+    thc_max:     document.getElementById('thc_max').value || null,
+    cbd:         document.getElementById('cbd').value     || null,
+    genetics:    document.getElementById('genetics').value.trim()     || null,
+    terpenes:    [...selectedTerps, ...custom_terps],
+    effects:     [...selectedEffects, ...custom_effects],
+    flavors:     document.getElementById('flavors').value,
+    description: document.getElementById('description').value.trim() || null,
+    bestFor:     document.getElementById('bestFor').value.trim()     || null,
+    funFact:     document.getElementById('funFact').value.trim()     || null,
+    inStockErba: document.getElementById('inStockErba').checked,
+    erbaUrl:     document.getElementById('erbaUrl').value.trim()     || null,
+    weedmapsUrl: document.getElementById('weedmapsUrl').value.trim() || null,
+    leaflyUrl:   document.getElementById('leaflyUrl').value.trim()   || null,
+    isStaffPick: document.getElementById('isStaffPick').checked,
+    photoData,
+  };
+
+  const btn = document.querySelector('.btn');
+  btn.textContent = 'Publishing...';
+  btn.disabled = true;
+
+  try {
+    const r = await fetch('/api/admin/add-strain', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ key: KEY, strain })
+    });
+    const result = await r.json();
+    if (!result.ok) throw new Error(result.error || 'Unknown error');
+    showToast('✓ ' + name + ' published! Database now has ' + result.total + ' strains.');
+    // Reset form
+    document.querySelectorAll('input[type=text],input[type=number],input[type=url],textarea').forEach(el => el.value = '');
+    document.getElementById('type').value = '';
+    document.getElementById('inStockErba').checked = false;
+    document.getElementById('isStaffPick').checked = false;
+    document.querySelectorAll('.chip.active').forEach(c => c.classList.remove('active'));
+    selectedEffects.clear(); selectedTerps.clear(); photoData = null;
+    document.getElementById('photoPreview').style.display = 'none';
+    document.getElementById('autofillStatus').textContent = '';
+    document.getElementById('autofillStatus').style.color = '';
+  } catch(err) {
+    document.getElementById('errMsg').textContent = 'Error: ' + err.message;
+  } finally {
+    btn.textContent = '✦ Publish Strain to Cannascenti';
+    btn.disabled = false;
+  }
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4000);
+}
+</script>
+</body>
+</html>`;
+    res.writeHead(200, { "Content-Type": "text/html", "Cache-Control": "no-cache" });
+    res.end(cmsHtml);
     return;
   }
 
