@@ -52,6 +52,7 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
     overflow-x: hidden;
+    padding-bottom: 54px;
   }
 
   /* GRID OVERLAY */
@@ -145,6 +146,127 @@
   .featured-card-cta { display: block; text-align: center; background: rgba(82,183,136,0.1); border: 1px solid rgba(82,183,136,0.2); color: var(--bright-green); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; padding: 12px; border-radius: 2px; text-decoration: none; transition: all 0.2s; margin-top: auto; }
   .featured-card-cta:hover { background: rgba(82,183,136,0.2); border-color: var(--bright-green); }
   @media (max-width: 900px) { .featured-section { padding: 60px 24px; } .featured-grid { grid-template-columns: 1fr; } }
+
+  /* ── Bottom Ticker ─────────────────────────────────────────────────────── */
+  .ticker-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 98;
+    height: 54px;
+    background: rgba(4,14,8,0.97);
+    border-top: 1px solid rgba(82,183,136,0.3);
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+  }
+  .ticker-label {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 18px;
+    border-right: 1px solid rgba(82,183,136,0.2);
+    background: rgba(82,183,136,0.07);
+    gap: 2px;
+    min-width: 120px;
+  }
+  .ticker-label-top {
+    font-size: 7px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--bright-green);
+    font-weight: 700;
+    opacity: 0.8;
+  }
+  .ticker-label-bot {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream);
+    font-weight: 600;
+    opacity: 0.6;
+  }
+  .ticker-track-wrap {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
+  }
+  .ticker-track {
+    display: flex;
+    align-items: center;
+    animation: tickerScroll 36s linear infinite;
+    white-space: nowrap;
+    will-change: transform;
+  }
+  .ticker-track:hover { animation-play-state: paused; }
+  @keyframes tickerScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 28px;
+  }
+  .ticker-sep {
+    color: rgba(82,183,136,0.35);
+    font-size: 14px;
+    padding: 0 4px;
+  }
+  .ticker-badge {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--bright-green);
+    font-weight: 700;
+    background: rgba(82,183,136,0.1);
+    border: 1px solid rgba(82,183,136,0.25);
+    padding: 2px 8px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .ticker-badge.tb-sleep { color: #7b9ccc; background: rgba(123,156,204,0.1); border-color: rgba(123,156,204,0.25); }
+  .ticker-badge.tb-energy { color: #f4a261; background: rgba(244,162,97,0.1); border-color: rgba(244,162,97,0.25); }
+  .ticker-strain {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--cream);
+    white-space: nowrap;
+  }
+  .ticker-meta {
+    font-size: 10px;
+    color: rgba(242,234,216,0.38);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .ticker-links {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .ticker-link {
+    font-size: 8px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .ticker-link:hover { opacity: 0.7; }
+  .tl-wm { background: rgba(82,183,136,0.12); color: var(--bright-green); border: 1px solid rgba(82,183,136,0.3); }
+  .tl-erba { background: rgba(244,162,97,0.1); color: #f4a261; border: 1px solid rgba(244,162,97,0.28); }
+
   /* ── How It Works ──────────────────────────────────────────────────────── */
   .hiw-section { padding: 80px 60px; border-bottom: 1px solid rgba(255,255,255,0.05); }
   .hiw-label { font-size: 11px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--bright-green); margin-bottom: 14px; }
@@ -5620,18 +5742,7 @@
   </div>
 </section>
 
-<!-- FEATURED PICKS -->
-<section class="featured-section">
-  <div class="featured-header">
-    <div>
-      <div class="featured-label">✦ Staff Curated</div>
-      <h2 class="featured-title">This week's top picks.</h2>
-      <p class="featured-subtitle">Chosen by our team for effect, quality, and cultural relevance.</p>
-    </div>
-    <a href="#quiz" style="font-size:12px;color:var(--bright-green);text-decoration:none;letter-spacing:0.1em;white-space:nowrap;">Get your personal match →</a>
-  </div>
-  <div class="featured-grid" id="featuredGrid"></div>
-</section>
+<!-- FEATURED PICKS → moved to bottom ticker -->
 
 <!-- QUIZ -->
 <section id="quiz" class="quiz-section">
@@ -10039,34 +10150,43 @@
     {
       badge: '⭐ Top Pick This Week',
       badgeClass: 'pick-week',
+      tickerBadgeClass: '',
       type: 'Hybrid · Indica-Leaning',
       name: 'Wedding Cake',
-      thc: 'THC 24–27%  ·  Caryophyllene · Limonene · Myrcene',
+      thc: 'THC 24–27%',
+      thcFull: 'THC 24–27%  ·  Caryophyllene · Limonene · Myrcene',
       desc: 'The strain everyone keeps coming back to. Heavy relaxation that never feels sloppy — it hits your body first, then quiets your mind. Perfect for a long evening or winding down after a demanding week.',
       terps: ['Caryophyllene', 'Limonene', 'Myrcene'],
       link: 'https://weedmaps.com/strains/wedding-cake',
+      erbaLink: 'https://www.erbamarkets.com',
       cta: 'Find near you →'
     },
     {
       badge: '🌙 Best for Sleep Right Now',
       badgeClass: 'pick-sleep',
+      tickerBadgeClass: 'tb-sleep',
       type: 'Indica · Sedating',
       name: 'Bubba Kush',
-      thc: 'THC 14–22%  ·  Myrcene · Limonene · Caryophyllene',
+      thc: 'THC 14–22%',
+      thcFull: 'THC 14–22%  ·  Myrcene · Limonene · Caryophyllene',
       desc: 'Old school for a reason. Myrcene-heavy, muscle-relaxing, and steady — it doesn\'t knock you out fast, it walks you there. If you\'ve been struggling with sleep, this is the most reliable recommendation we make.',
       terps: ['Myrcene', 'Limonene', 'Caryophyllene'],
       link: 'https://weedmaps.com/strains/bubba-kush',
+      erbaLink: 'https://www.erbamarkets.com',
       cta: 'Find near you →'
     },
     {
       badge: '⚡ Best Daytime Energy',
       badgeClass: 'pick-energy',
+      tickerBadgeClass: 'tb-energy',
       type: 'Sativa · Energizing',
       name: 'Jack Herer',
-      thc: 'THC 18–23%  ·  Terpinolene · Pinene · Myrcene',
+      thc: 'THC 18–23%',
+      thcFull: 'THC 18–23%  ·  Terpinolene · Pinene · Myrcene',
       desc: 'Named after the cannabis activist and author for a reason — this strain represents the best of what sativa can be. Sharp, clear, creative, and social. The one you reach for when you actually need to get things done.',
       terps: ['Terpinolene', 'Pinene', 'Myrcene'],
       link: 'https://weedmaps.com/strains/jack-herer',
+      erbaLink: 'https://www.erbamarkets.com',
       cta: 'Find near you →'
     }
   ];
@@ -10079,12 +10199,34 @@
         <div class="featured-card-badge ${p.badgeClass}">${p.badge}</div>
         <div class="featured-card-type">${p.type}</div>
         <div class="featured-card-name">${p.name}</div>
-        <div class="featured-card-thc">${p.thc}</div>
+        <div class="featured-card-thc">${p.thcFull || p.thc}</div>
         <p class="featured-card-desc">${p.desc}</p>
         <div class="featured-card-terps">${p.terps.map(t=>`<span class="featured-card-terp">${t}</span>`).join('')}</div>
         <a class="featured-card-cta" href="${p.link}" target="_blank" rel="noopener"
            onclick="track('featured_click',{strain:'${p.name}'})">${p.cta}</a>
       </div>`).join('');
+  })();
+
+  // ─── Bottom Ticker ────────────────────────────────────────────────────────
+  (function renderTicker() {
+    const track = document.getElementById('tickerTrack');
+    if (!track) return;
+    const buildItems = () => FEATURED_PICKS.map(p => `
+      <span class="ticker-item">
+        <span class="ticker-badge ${p.tickerBadgeClass}">${p.badge}</span>
+        <span class="ticker-strain">${p.name}</span>
+        <span class="ticker-meta">${p.thc} · ${p.type} · ${p.terps.join(' · ')}</span>
+        <span class="ticker-links">
+          <a class="ticker-link tl-wm" href="${p.link}" target="_blank" rel="noopener"
+             onclick="track('ticker_wm',{strain:'${p.name}'})">Weedmaps ↗</a>
+          <a class="ticker-link tl-erba" href="${p.erbaLink}" target="_blank" rel="noopener"
+             onclick="track('ticker_erba',{strain:'${p.name}'})">Erba Sawtelle ↗</a>
+        </span>
+      </span>
+      <span class="ticker-sep">✦</span>
+    `).join('');
+    // Duplicate for seamless infinite loop
+    track.innerHTML = buildItems() + buildItems();
   })();
 
   // ─── Analytics ───────────────────────────────────────────────────────────
@@ -11013,6 +11155,17 @@
   });
 
 </script>
+
+<!-- BOTTOM TICKER -->
+<div class="ticker-bar" id="tickerBar">
+  <div class="ticker-label">
+    <span class="ticker-label-top">This Week</span>
+    <span class="ticker-label-bot">Top Picks</span>
+  </div>
+  <div class="ticker-track-wrap">
+    <div class="ticker-track" id="tickerTrack"></div>
+  </div>
+</div>
 
 </body>
 </html>
