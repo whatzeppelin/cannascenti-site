@@ -5146,6 +5146,183 @@
     .strain-results-nudge { flex-direction: column; align-items: flex-start; gap: 12px; padding: 20px; }
   }
 
+  /* ===================== STRAIN BIBLE ===================== */
+  .strain-bible {
+    position: relative;
+    z-index: 2;
+    padding: 100px 60px;
+  }
+  .strain-bible-inner { max-width: 1280px; margin: 0 auto; }
+  .strain-bible-header { max-width: 640px; margin-bottom: 64px; }
+  .strain-bible-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--cream);
+    margin-bottom: 18px;
+  }
+  .strain-bible-title em { font-style: italic; color: var(--light-green); }
+  .strain-bible-sub {
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--cream);
+    opacity: 0.55;
+    margin-bottom: 32px;
+  }
+  .sb-tabs { display: flex; gap: 8px; margin-bottom: 40px; flex-wrap: wrap; }
+  .sb-tab {
+    background: transparent;
+    border: 1px solid rgba(82,183,136,0.2);
+    color: var(--cream);
+    opacity: 0.55;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 9px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .sb-tab:hover { opacity: 0.85; border-color: rgba(82,183,136,0.4); }
+  .sb-tab.active { background: rgba(82,183,136,0.12); border-color: var(--bright-green); color: var(--bright-green); opacity: 1; }
+  .sb-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .sb-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(82,183,136,0.12);
+    border-radius: 12px;
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .sb-card:hover { border-color: rgba(82,183,136,0.35); background: rgba(82,183,136,0.05); transform: translateY(-2px); }
+  .sb-card.active { border-color: var(--bright-green); background: rgba(82,183,136,0.07); }
+  .sb-card-type { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bright-green); opacity: 0.8; margin-bottom: 8px; }
+  .sb-card-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; color: var(--cream); margin-bottom: 6px; }
+  .sb-card-cross { font-size: 12px; color: var(--cream); opacity: 0.4; margin-bottom: 14px; font-style: italic; }
+  .sb-card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .sb-card-tag { font-size: 10px; background: rgba(82,183,136,0.1); border: 1px solid rgba(82,183,136,0.2); color: var(--bright-green); padding: 3px 9px; border-radius: 20px; opacity: 0.85; }
+  .sb-detail {
+    display: none;
+    margin-top: 28px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(82,183,136,0.18);
+    border-radius: 14px;
+    padding: 36px 40px;
+  }
+  .sb-detail.open { display: block; }
+  .sb-detail-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; gap: 20px; }
+  .sb-detail-name { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--cream); line-height: 1.1; }
+  .sb-detail-type-badge { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bright-green); opacity: 0.7; margin-top: 6px; }
+  .sb-detail-close {
+    background: transparent;
+    border: 1px solid rgba(82,183,136,0.2);
+    color: var(--cream);
+    opacity: 0.5;
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    flex-shrink: 0;
+    line-height: 34px;
+    text-align: center;
+  }
+  .sb-detail-close:hover { opacity: 1; border-color: var(--bright-green); }
+  .sb-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 24px; }
+  .sb-detail-section-title { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bright-green); opacity: 0.7; margin-bottom: 10px; }
+  .sb-detail-lineage { font-size: 14px; color: var(--cream); opacity: 0.75; line-height: 1.7; margin-bottom: 4px; }
+  .sb-detail-desc { font-size: 13px; color: var(--cream); opacity: 0.55; line-height: 1.85; }
+  .sb-terp-list { display: flex; flex-direction: column; gap: 8px; }
+  .sb-terp-item { display: flex; align-items: center; gap: 10px; font-size: 13px; }
+  .sb-terp-name { color: var(--cream); opacity: 0.8; width: 120px; flex-shrink: 0; }
+  .sb-terp-bar-wrap { flex: 1; height: 4px; background: rgba(255,255,255,0.07); border-radius: 2px; overflow: hidden; }
+  .sb-terp-bar { height: 100%; background: var(--bright-green); border-radius: 2px; opacity: 0.7; }
+  .sb-subs-list { display: flex; flex-direction: column; gap: 10px; }
+  .sb-sub-item { font-size: 13px; color: var(--cream); opacity: 0.65; line-height: 1.6; padding-left: 14px; border-left: 2px solid rgba(82,183,136,0.25); }
+  .sb-sub-item strong { color: var(--bright-green); font-weight: 600; opacity: 1; }
+  .sb-children { margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(82,183,136,0.1); }
+  .sb-children-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .sb-child-pill { font-size: 12px; background: rgba(82,183,136,0.08); border: 1px solid rgba(82,183,136,0.2); color: var(--cream); opacity: 0.7; padding: 5px 13px; border-radius: 20px; }
+  /* Training Quiz */
+  .sb-quiz-wrap { margin-top: 80px; padding-top: 60px; border-top: 1px solid rgba(82,183,136,0.1); }
+  .sb-quiz-header { max-width: 560px; margin-bottom: 36px; }
+  .sb-quiz-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 3vw, 42px); font-weight: 300; color: var(--cream); margin-bottom: 12px; }
+  .sb-quiz-sub { font-size: 13px; color: var(--cream); opacity: 0.5; line-height: 1.8; }
+  .sb-quiz-meta { display: flex; gap: 20px; margin-bottom: 32px; flex-wrap: wrap; }
+  .sb-quiz-meta-item { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bright-green); opacity: 0.7; }
+  .sb-quiz-start-btn {
+    background: var(--bright-green);
+    color: #060f0a;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 15px 32px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-transform: uppercase;
+    min-height: 44px;
+  }
+  .sb-quiz-start-btn:hover { background: var(--light-green); }
+  .sb-q-wrap { display: none; }
+  .sb-q-wrap.active { display: block; }
+  .sb-q-progress { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream); opacity: 0.35; margin-bottom: 8px; }
+  .sb-q-progress-bar { height: 2px; background: rgba(255,255,255,0.08); border-radius: 1px; margin-bottom: 28px; overflow: hidden; }
+  .sb-q-progress-fill { height: 100%; background: var(--bright-green); border-radius: 1px; transition: width 0.3s; }
+  .sb-q-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 2.5vw, 28px); font-weight: 300; color: var(--cream); line-height: 1.3; margin-bottom: 10px; }
+  .sb-q-context { font-size: 12px; color: var(--cream); opacity: 0.4; font-style: italic; margin-bottom: 22px; }
+  .sb-q-options { display: flex; flex-direction: column; gap: 10px; max-width: 580px; }
+  .sb-q-option {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(82,183,136,0.15);
+    border-radius: 8px;
+    padding: 15px 20px;
+    font-size: 14px;
+    color: var(--cream);
+    opacity: 0.8;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s;
+    min-height: 44px;
+    width: 100%;
+  }
+  .sb-q-option:hover:not(:disabled) { border-color: rgba(82,183,136,0.4); background: rgba(82,183,136,0.06); opacity: 1; }
+  .sb-q-option.correct { border-color: var(--bright-green); background: rgba(82,183,136,0.12); color: var(--bright-green); opacity: 1; }
+  .sb-q-option.wrong { border-color: rgba(255,80,80,0.5); background: rgba(255,80,80,0.06); color: rgba(255,120,120,0.9); opacity: 1; }
+  .sb-q-option.reveal { border-color: rgba(82,183,136,0.25); background: rgba(82,183,136,0.05); opacity: 0.6; }
+  .sb-q-feedback { display: none; margin-top: 16px; font-size: 13px; line-height: 1.7; color: var(--cream); opacity: 0.65; padding: 14px 18px; background: rgba(255,255,255,0.03); border-radius: 8px; border-left: 3px solid rgba(82,183,136,0.4); max-width: 580px; }
+  .sb-q-feedback.show { display: block; }
+  .sb-q-next { display: none; margin-top: 20px; background: transparent; border: 1px solid rgba(82,183,136,0.3); color: var(--bright-green); font-size: 13px; padding: 11px 24px; border-radius: 6px; cursor: pointer; transition: all 0.2s; min-height: 44px; }
+  .sb-q-next.show { display: inline-block; }
+  .sb-q-next:hover { background: rgba(82,183,136,0.1); }
+  .sb-result-wrap { display: none; max-width: 640px; }
+  .sb-result-wrap.show { display: block; }
+  .sb-result-score { font-family: 'Cormorant Garamond', serif; font-size: 72px; font-weight: 300; color: var(--bright-green); line-height: 1; margin-bottom: 6px; }
+  .sb-result-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cream); opacity: 0.4; margin-bottom: 24px; }
+  .sb-result-verdict { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 2.5vw, 32px); font-weight: 300; color: var(--cream); margin-bottom: 14px; line-height: 1.2; }
+  .sb-result-desc { font-size: 14px; color: var(--cream); opacity: 0.55; line-height: 1.85; margin-bottom: 32px; }
+  .sb-result-breakdown { margin-bottom: 32px; }
+  .sb-result-breakdown-title { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cream); opacity: 0.35; margin-bottom: 14px; }
+  .sb-result-row { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; font-size: 13px; }
+  .sb-result-row-label { color: var(--cream); opacity: 0.7; width: 160px; flex-shrink: 0; }
+  .sb-result-row-bar-wrap { flex: 1; height: 4px; background: rgba(255,255,255,0.07); border-radius: 2px; overflow: hidden; }
+  .sb-result-row-bar { height: 100%; background: var(--bright-green); border-radius: 2px; }
+  .sb-result-row-pct { color: var(--bright-green); font-size: 12px; width: 36px; text-align: right; flex-shrink: 0; }
+  .sb-retake-btn { background: transparent; border: 1px solid rgba(82,183,136,0.3); color: var(--bright-green); font-size: 13px; padding: 12px 28px; border-radius: 6px; cursor: pointer; transition: all 0.2s; min-height: 44px; }
+  .sb-retake-btn:hover { background: rgba(82,183,136,0.1); }
+  @media (max-width: 900px) {
+    .strain-bible { padding: 60px 24px; }
+    .sb-grid { grid-template-columns: 1fr 1fr; }
+    .sb-detail-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .sb-grid { grid-template-columns: 1fr; }
+    .sb-detail { padding: 24px 20px; }
+    .sb-quiz-meta { gap: 12px; }
+  }
+
   /* ── Sticky bottom quiz CTA (mobile only) ───────────────────────── */
   .sticky-quiz-cta {
     display: none;
@@ -5241,6 +5418,7 @@
     <li><a href="#consulting">CannaQuant</a></li>
     <li><a href="#the-craft">The Craft</a></li>
     <li><a href="#encyclopedia-hub" onclick="setTimeout(()=>encTab('extractions'),100)">Hash Culture</a></li>
+    <li><a href="#strain-bible">Strain Bible</a></li>
     <li><a href="#newsletter" class="nav-cta">Subscribe</a></li>
   </ul>
 </nav>
@@ -6061,6 +6239,84 @@
       </div>
     </div>
 
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<!-- STRAIN BIBLE -->
+<div id="strain-bible" class="strain-bible">
+  <div class="strain-bible-inner">
+    <div class="strain-bible-header">
+      <div class="section-label">✦ Budtender Training</div>
+      <h2 class="strain-bible-title">The <em>Strain Bible.</em></h2>
+      <p class="strain-bible-sub">The 15 cornerstone strains every cannabis professional should know by heart. Master the genetics and lineage, and you'll never be out of a recommendation — even when you're out of stock.</p>
+    </div>
+
+    <!-- Filter tabs -->
+    <div class="sb-tabs">
+      <button class="sb-tab active" onclick="sbFilter('all')">All 15</button>
+      <button class="sb-tab" onclick="sbFilter('indica')">Indica</button>
+      <button class="sb-tab" onclick="sbFilter('sativa')">Sativa</button>
+      <button class="sb-tab" onclick="sbFilter('hybrid')">Hybrid</button>
+      <button class="sb-tab" onclick="sbFilter('landrace')">Landrace / OG</button>
+    </div>
+
+    <!-- Strain grid -->
+    <div class="sb-grid" id="sbGrid"></div>
+
+    <!-- Detail drawer -->
+    <div class="sb-detail" id="sbDetail">
+      <div class="sb-detail-header">
+        <div>
+          <div class="sb-detail-name" id="sbDetailName"></div>
+          <div class="sb-detail-type-badge" id="sbDetailType"></div>
+        </div>
+        <button class="sb-detail-close" onclick="sbCloseDetail()">×</button>
+      </div>
+      <div class="sb-detail-grid" id="sbDetailGrid"></div>
+      <div class="sb-children" id="sbDetailChildren"></div>
+    </div>
+
+    <!-- Training Quiz -->
+    <div class="sb-quiz-wrap" id="sbQuizWrap">
+      <div class="sb-quiz-header">
+        <div class="section-label" style="margin-bottom:16px;">✦ Knowledge Test</div>
+        <h3 class="sb-quiz-title">Can you pass the Strain Bible quiz?</h3>
+        <p class="sb-quiz-sub">12 questions on genetics, lineage, and substitution logic. This is what separates a good budtender from a great one.</p>
+      </div>
+      <div class="sb-quiz-meta">
+        <span class="sb-quiz-meta-item">12 Questions</span>
+        <span class="sb-quiz-meta-item">·</span>
+        <span class="sb-quiz-meta-item">3 Categories</span>
+        <span class="sb-quiz-meta-item">·</span>
+        <span class="sb-quiz-meta-item">Instant Results</span>
+      </div>
+      <!-- Start screen -->
+      <div id="sbQuizStart">
+        <button class="sb-quiz-start-btn" onclick="sbStartQuiz()">Start the Quiz →</button>
+      </div>
+      <!-- Question -->
+      <div class="sb-q-wrap" id="sbQWrap">
+        <div class="sb-q-progress" id="sbQProgress">Question 1 of 12</div>
+        <div class="sb-q-progress-bar"><div class="sb-q-progress-fill" id="sbQProgressFill" style="width:0%"></div></div>
+        <div class="sb-q-text" id="sbQText"></div>
+        <div class="sb-q-context" id="sbQContext"></div>
+        <div class="sb-q-options" id="sbQOptions"></div>
+        <div class="sb-q-feedback" id="sbQFeedback"></div>
+        <button class="sb-q-next" id="sbQNext" onclick="sbNextQ()">Next question →</button>
+      </div>
+      <!-- Results -->
+      <div class="sb-result-wrap" id="sbResultWrap">
+        <div class="sb-result-score" id="sbResultScore"></div>
+        <div class="sb-result-label">Correct Answers</div>
+        <div class="sb-result-verdict" id="sbResultVerdict"></div>
+        <p class="sb-result-desc" id="sbResultDesc"></p>
+        <div class="sb-result-breakdown" id="sbResultBreakdown"></div>
+        <button class="sb-retake-btn" onclick="sbRetakeQuiz()">Retake Quiz</button>
+        <button class="sb-quiz-start-btn" onclick="document.getElementById('strain-bible').scrollIntoView({behavior:'smooth'})">Study the Bible →</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -10012,6 +10268,656 @@
     if (cta) cta.classList.remove('visible');
     try { sessionStorage.setItem('stickyCtaDismissed', '1'); } catch(e) {}
   }
+
+  // ===================== STRAIN BIBLE =====================
+  const STRAIN_BIBLE = [
+    {
+      id: 'og-kush',
+      name: 'OG Kush',
+      type: 'hybrid',
+      typeLabel: 'Hybrid',
+      cross: 'Chemdawg × Hindu Kush',
+      parents: ['Chemdawg', 'Hindu Kush'],
+      origin: 'Florida, USA (1990s)',
+      tags: ['Earthy', 'Pine', 'Fuel', 'Euphoric'],
+      terpenes: [
+        { name: 'Myrcene', pct: 90 },
+        { name: 'Limonene', pct: 70 },
+        { name: 'Caryophyllene', pct: 55 },
+      ],
+      desc: 'The foundation of modern West Coast cannabis. OG Kush set the template for the "kushy" profile — heavy euphoria, stress obliteration, and the earthy-fuel terpene signature that defines an era. Nearly every major hybrid of the last 30 years traces back here.',
+      effects: ['Euphoria', 'Stress Relief', 'Relaxation', 'Appetite'],
+      bestFor: 'Stress, anxiety, end-of-day wind-down, appetite stimulation.',
+      subs: [
+        { name: 'GSC (Girl Scout Cookies)', reason: 'Shares OG Kush lineage. Similar euphoric body effect with sweeter terpene profile.' },
+        { name: 'Wedding Cake', reason: 'OG Kush descendant via Triangle Kush. Heavier, more sedative but same foundational character.' },
+        { name: 'Headband', reason: 'Direct OG Kush × Sour Diesel cross. Keeps the OG fuel with added cerebral lift.' },
+      ],
+      children: ['GSC', 'Headband', 'Fire OG', 'SFV OG', 'Tahoe OG', 'Ghost OG', 'Triangle Kush'],
+    },
+    {
+      id: 'chemdawg',
+      name: 'Chemdawg',
+      type: 'hybrid',
+      typeLabel: 'Hybrid',
+      cross: 'Unknown (mystery bag seed)',
+      parents: [],
+      origin: 'Grateful Dead concert, 1991',
+      tags: ['Diesel', 'Chemical', 'Sharp', 'Cerebral'],
+      terpenes: [
+        { name: 'Caryophyllene', pct: 85 },
+        { name: 'Myrcene', pct: 65 },
+        { name: 'Limonene', pct: 60 },
+      ],
+      desc: 'The most influential mystery strain in cannabis history. Chemdawg\'s exact origin is unknown — a bag seed from a Grateful Dead show. It went on to parent both OG Kush and Sour Diesel, making it the genetic grandfather of modern American cannabis culture.',
+      effects: ['Cerebral', 'Introspection', 'Euphoria', 'Heavy Body'],
+      bestFor: 'Creative focus, heavy relaxation, experienced users. Not beginner-friendly.',
+      subs: [
+        { name: 'Sour Diesel', reason: 'Direct Chemdawg descendant. Keeps the diesel fuel with more energetic sativa lean.' },
+        { name: 'OG Kush', reason: 'Chemdawg is a parent of OG. Similar chemical-fuel profile with more body weight.' },
+        { name: 'Trainwreck', reason: 'Shares the sharp chemical-pine profile without full Chemdawg intensity.' },
+      ],
+      children: ['OG Kush', 'Sour Diesel', 'Stardawg', 'Tres Dawg', 'Chemdog 91'],
+    },
+    {
+      id: 'sour-diesel',
+      name: 'Sour Diesel',
+      type: 'sativa',
+      typeLabel: 'Sativa-Dominant',
+      cross: 'Chemdawg 91 × Super Skunk',
+      parents: ['Chemdawg', 'Super Skunk'],
+      origin: 'New York City, early 1990s',
+      tags: ['Diesel', 'Energetic', 'Cerebral', 'Focus'],
+      terpenes: [
+        { name: 'Caryophyllene', pct: 80 },
+        { name: 'Myrcene', pct: 50 },
+        { name: 'Limonene', pct: 75 },
+      ],
+      desc: 'The king of East Coast cannabis. Sour Diesel defined the "daytime sativa" category — sharp diesel fuel aroma, fast-acting cerebral rush, and a functional high that creative professionals swear by. Over 30 years later, nothing smells quite like it.',
+      effects: ['Energy', 'Focus', 'Euphoria', 'Creativity'],
+      bestFor: 'Daytime use, creative work, depression, fatigue.',
+      subs: [
+        { name: 'Jack Herer', reason: 'Similar energetic sativa profile. Spicier, earthier — less fuel but same functional clarity.' },
+        { name: 'Durban Poison', reason: 'Even more energetic and focused. Pure landrace sativa without the diesel edge.' },
+        { name: 'Green Crack', reason: 'Diesel-adjacent energy with fruity sweetness. Easier on those sensitive to fuel terpenes.' },
+      ],
+      children: ['NYC Diesel', 'Strawberry Diesel', 'Headband', 'Gorilla Glue #4 (partial)'],
+    },
+    {
+      id: 'northern-lights',
+      name: 'Northern Lights',
+      type: 'indica',
+      typeLabel: 'Indica',
+      cross: 'Afghani landrace × Thai landrace',
+      parents: ['Afghani', 'Thai'],
+      origin: 'Netherlands, 1980s (Sensi Seeds)',
+      tags: ['Sweet', 'Piney', 'Sedating', 'Relaxing'],
+      terpenes: [
+        { name: 'Myrcene', pct: 95 },
+        { name: 'Caryophyllene', pct: 45 },
+        { name: 'Pinene', pct: 60 },
+      ],
+      desc: 'The gold standard of pure indicas. Northern Lights is the benchmark — sweet, piney aroma; full-body relaxation that doesn\'t crush your mind; consistent, predictable effects. It won the Cannabis Cup five times in the 1980s-90s and remains the strain most used in hybrid breeding programs.',
+      effects: ['Deep Relaxation', 'Sleep Aid', 'Pain Relief', 'Calm'],
+      bestFor: 'Insomnia, pain, anxiety, end-of-day decompression.',
+      subs: [
+        { name: 'Granddaddy Purple', reason: 'NL descendant via Big Bud lineage. Adds grape/berry sweetness, similar sedation depth.' },
+        { name: 'Afghani', reason: 'Parent strain. Even more resinous, heavier, less sweet — pure landrace indica.' },
+        { name: 'Blueberry', reason: 'NL × Thai × Afghani. Berry-forward, same indica depth, slightly less sedating.' },
+      ],
+      children: ['Shiva Skunk', 'Super Silver Haze', 'Blueberry (partial)', 'White Widow (partial)'],
+    },
+    {
+      id: 'granddaddy-purple',
+      name: 'Granddaddy Purple',
+      type: 'indica',
+      typeLabel: 'Indica',
+      cross: 'Purple Urkle × Big Bud',
+      parents: ['Purple Urkle', 'Big Bud'],
+      origin: 'California, 2003 (Ken Estes)',
+      tags: ['Grape', 'Berry', 'Sedating', 'Body High'],
+      terpenes: [
+        { name: 'Myrcene', pct: 90 },
+        { name: 'Caryophyllene', pct: 60 },
+        { name: 'Pinene', pct: 40 },
+      ],
+      desc: 'The definitive purple strain. GDP took the Californian indica market by storm in 2003 — vivid purple buds, intense grape-candy aroma, and a two-part high that starts euphoric and ends in full couch-lock. Ken Estes created the benchmark for "purple" as a category descriptor.',
+      effects: ['Couch-Lock', 'Sleep', 'Euphoria First', 'Pain Relief'],
+      bestFor: 'Severe insomnia, chronic pain, muscle spasms, appetite.',
+      subs: [
+        { name: 'Northern Lights', reason: 'Shares Big Bud ancestry. Less fruit-forward but identical sedation depth.' },
+        { name: 'Purple Punch', reason: 'Larry OG × GDP. Direct descendant — even more dessert-sweet, same body sedation.' },
+        { name: 'Grape Ape', reason: 'Mendocino Purps × Skunk #1 × Afghani. Heavy grape profile, strong body, comparable to GDP.' },
+      ],
+      children: ['Purple Punch', 'GDP crosses', 'Grandpa\'s Breath'],
+    },
+    {
+      id: 'blue-dream',
+      name: 'Blue Dream',
+      type: 'hybrid',
+      typeLabel: 'Sativa-Dominant Hybrid',
+      cross: 'Blueberry × Haze',
+      parents: ['Blueberry', 'Haze'],
+      origin: 'Santa Cruz, California',
+      tags: ['Blueberry', 'Sweet', 'Balanced', 'Gentle'],
+      terpenes: [
+        { name: 'Myrcene', pct: 70 },
+        { name: 'Caryophyllene', pct: 50 },
+        { name: 'Pinene', pct: 65 },
+      ],
+      desc: 'The most universally recommended strain for beginners. Blue Dream threads the needle perfectly — calming body relaxation from Blueberry, gentle cerebral lift from Haze, sweet berry aroma that nobody dislikes. It became the #1 selling strain in legal markets for years because it rarely goes wrong.',
+      effects: ['Gentle Euphoria', 'Relaxed Focus', 'Mood Lift', 'Creative'],
+      bestFor: 'Beginners, daytime use, mild anxiety, creative flow states.',
+      subs: [
+        { name: 'Huckleberry', reason: 'Similar berry + gentle hybrid profile. Often easier to find on West Coast shelves.' },
+        { name: 'Strawberry Cough', reason: 'Shares the sweet berry character with more sativa energy. Good daytime alternative.' },
+        { name: 'Jillybean', reason: 'Sweet fruity hybrid with same approachable, balanced character as Blue Dream.' },
+      ],
+      children: ['Blue Haze', 'Blue Magoo', 'Dream Star'],
+    },
+    {
+      id: 'gsc',
+      name: 'GSC (Girl Scout Cookies)',
+      type: 'hybrid',
+      typeLabel: 'Hybrid',
+      cross: 'OG Kush × Durban Poison × Cherry Pie',
+      parents: ['OG Kush', 'Durban Poison', 'Cherry Pie'],
+      origin: 'San Francisco Bay Area, 2010s',
+      tags: ['Sweet', 'Earthy', 'Euphoric', 'Full-Body'],
+      terpenes: [
+        { name: 'Caryophyllene', pct: 85 },
+        { name: 'Limonene', pct: 70 },
+        { name: 'Humulene', pct: 55 },
+      ],
+      desc: 'The strain that changed the industry. GSC introduced the "dessert strain" era — sweet-earthy cookies aroma, powerful full-body euphoria, and a high that\'s both cerebral and deeply physical. It spawned a generation of phenotypes (Thin Mint, Platinum) and is a parent of Gelato, making it one of the most genetically influential strains ever.',
+      effects: ['Powerful Euphoria', 'Full-Body', 'Happy', 'Relaxed'],
+      bestFor: 'Stress, nausea, appetite, experienced users seeking potency.',
+      subs: [
+        { name: 'Gelato', reason: 'GSC × Sunset Sherbet. Direct descendant — creamier, sweeter, same powerful euphoria.' },
+        { name: 'Sunset Sherbet', reason: 'GSC × Pink Panties. Shares the sweet dessert profile with slightly less intensity.' },
+        { name: 'Forum Cookies', reason: 'A GSC phenotype. Almost identical — just a different expression of the same genetics.' },
+      ],
+      children: ['Gelato', 'Sunset Sherbet', 'London Pound Cake', 'Thin Mint GSC', 'Platinum Cookies'],
+    },
+    {
+      id: 'gelato',
+      name: 'Gelato',
+      type: 'hybrid',
+      typeLabel: 'Balanced Hybrid',
+      cross: 'Thin Mint GSC × Sunset Sherbet',
+      parents: ['GSC', 'Sunset Sherbet'],
+      origin: 'San Francisco (Cookie Fam), 2014',
+      tags: ['Creamy', 'Sweet', 'Citrus', 'Potent'],
+      terpenes: [
+        { name: 'Caryophyllene', pct: 80 },
+        { name: 'Limonene', pct: 75 },
+        { name: 'Myrcene', pct: 60 },
+      ],
+      desc: 'The strain of the modern era. Gelato (specifically #33 and #41) took the dessert-strain concept and perfected it — creamy-sweet aroma with citrus, a balanced high that hits hard without locking you out, and visual bag appeal that set new market standards. Cookie Fam\'s finest work, and parent of Runtz.',
+      effects: ['Euphoria', 'Body Relaxation', 'Happy', 'Creative'],
+      bestFor: 'Social settings, creative work, balanced evening use.',
+      subs: [
+        { name: 'Runtz', reason: 'Gelato × Zkittlez. Direct descendant — candy-sweet, same euphoric balance.' },
+        { name: 'Wedding Cake', reason: 'Shares the dessert profile. Heavier body effect, less cerebral brightness.' },
+        { name: 'Bacio Gelato (#41)', reason: 'Another Gelato phenotype — same genetics, slightly heavier expression.' },
+      ],
+      children: ['Runtz', 'Gelato 33', 'Gelato 41', 'Gary Payton', 'Gelonade', 'Ice Cream Cake'],
+    },
+    {
+      id: 'wedding-cake',
+      name: 'Wedding Cake',
+      type: 'indica',
+      typeLabel: 'Indica-Dominant Hybrid',
+      cross: 'Triangle Kush × Animal Mints',
+      parents: ['Triangle Kush', 'Animal Mints'],
+      origin: 'Seed Junky Genetics, California',
+      tags: ['Vanilla', 'Pepper', 'Tangy', 'Heavy'],
+      terpenes: [
+        { name: 'Caryophyllene', pct: 90 },
+        { name: 'Limonene', pct: 65 },
+        { name: 'Myrcene', pct: 70 },
+      ],
+      desc: 'The premier modern indica hybrid. Wedding Cake inherited the best of OG Kush\'s lineage (via Triangle Kush) and added Animal Mints\'s vanilla-pepper complexity. It delivers a powerful progressive high — euphoric onset that deepens into heavy relaxation — and became the dominant strain in legal markets by 2019-2020.',
+      effects: ['Progressive Euphoria', 'Body Sedation', 'Relaxation', 'Appetite'],
+      bestFor: 'End-of-day, chronic pain, insomnia, heavy relaxation needs.',
+      subs: [
+        { name: 'Ice Cream Cake', reason: 'Wedding Cake × Gelato #33. Direct descendant — adds creamier sweetness, same body effect.' },
+        { name: 'OG Kush', reason: 'Wedding Cake is an OG Kush descendant. Lighter in body, but same foundational euphoria.' },
+        { name: 'Runtz', reason: 'Different lineage but similar balance of euphoria + body. Sweeter, less earthy.' },
+      ],
+      children: ['Ice Cream Cake', 'Pink Wedding', 'Grape Cake'],
+    },
+    {
+      id: 'runtz',
+      name: 'Runtz',
+      type: 'hybrid',
+      typeLabel: 'Balanced Hybrid',
+      cross: 'Gelato × Zkittlez',
+      parents: ['Gelato', 'Zkittlez'],
+      origin: 'Runtz crew, Los Angeles, 2017',
+      tags: ['Candy', 'Tropical', 'Sweet', 'Euphoric'],
+      terpenes: [
+        { name: 'Caryophyllene', pct: 75 },
+        { name: 'Limonene', pct: 85 },
+        { name: 'Myrcene', pct: 65 },
+      ],
+      desc: 'The strain that defined the 2020s cannabis aesthetic. Runtz combined Gelato\'s potency with Zkittlez\'s candy-tropical flavor and took the market by storm — buds that smell like a bag of candy, a euphoric balanced high, and visual appeal that made it a social media sensation.',
+      effects: ['Euphoria', 'Giggles', 'Relaxed Body', 'Happy'],
+      bestFor: 'Social settings, mood elevation, creative play, casual use.',
+      subs: [
+        { name: 'Zkittlez', reason: 'Runtz parent. Similar candy-tropical profile, slightly less potent and more indica-leaning.' },
+        { name: 'Gelato', reason: 'Runtz parent. Creamier, less candy-forward, same balance of head and body.' },
+        { name: 'Candy Rain', reason: 'London Pound Cake × Gelato. Shares the sweet-euphoric Runtz experience.' },
+      ],
+      children: ['White Runtz', 'Pink Runtz', 'Runtz OG', 'Birthday Cake Runtz'],
+    },
+    {
+      id: 'durban-poison',
+      name: 'Durban Poison',
+      type: 'sativa',
+      typeLabel: 'Pure Sativa Landrace',
+      cross: 'Pure South African landrace',
+      parents: [],
+      origin: 'Durban, South Africa',
+      tags: ['Anise', 'Sweet', 'Sharp Focus', 'Alert'],
+      terpenes: [
+        { name: 'Terpinolene', pct: 95 },
+        { name: 'Ocimene', pct: 70 },
+        { name: 'Myrcene', pct: 35 },
+      ],
+      desc: 'The espresso of cannabis. Durban Poison is a pure African sativa landrace — no hybrid dilution, just clean, sharp, focused energy with a distinctive sweet anise aroma. It\'s one of the few strains that reliably delivers clear-headed productivity without anxiety. A parent of GSC, it contributed the uplifting, focus-driven half of that legendary hybrid.',
+      effects: ['Sharp Focus', 'Energy', 'Alert', 'Creative'],
+      bestFor: 'ADHD, fatigue, morning use, productivity tasks.',
+      subs: [
+        { name: 'Jack Herer', reason: 'Haze-based sativa with similar clarity and energy. Less sharp but more widely available.' },
+        { name: 'Green Crack', reason: 'Intense sativa energy, mango-sweet instead of anise. Different aroma, comparable effect.' },
+        { name: 'Sour Diesel', reason: 'Shares the functional daytime energy. More fuel/diesel character, less focused precision.' },
+      ],
+      children: ['GSC (partial)', 'Durban Thai', 'Banana Kush (partial)'],
+    },
+    {
+      id: 'white-widow',
+      name: 'White Widow',
+      type: 'hybrid',
+      typeLabel: 'Balanced Hybrid',
+      cross: 'Brazilian sativa × South Indian indica',
+      parents: ['Brazilian Sativa', 'South Indian Indica'],
+      origin: 'Netherlands, 1994 (Green House Seeds)',
+      tags: ['Earthy', 'Woody', 'Balanced', 'Classic'],
+      terpenes: [
+        { name: 'Myrcene', pct: 75 },
+        { name: 'Caryophyllene', pct: 65 },
+        { name: 'Pinene', pct: 60 },
+      ],
+      desc: 'The strain that put Dutch coffee shops on the map. White Widow was the dominant commercial strain of the 1990s — heavy white crystal coverage, a balanced energetic-then-relaxing effect profile, and consistent performance. It won the Cannabis Cup in 1995 and became the template for "beginner\'s strong" strain.',
+      effects: ['Balanced Euphoria', 'Energy then Relaxation', 'Sociable', 'Creative'],
+      bestFor: 'Social situations, creative work, balanced daytime use.',
+      subs: [
+        { name: 'Blue Dream', reason: 'Both are accessible, balanced hybrids. Blue Dream is sweeter, WW is earthier.' },
+        { name: 'White Rhino', reason: 'White Widow × North American Indica. Same WW character, heavier body effect.' },
+        { name: 'Super Silver Haze', reason: 'WW × Haze × NL. More sativa-leaning but shares the accessible balanced quality.' },
+      ],
+      children: ['White Rhino', 'Black Widow', 'Super Silver Haze (partial)'],
+    },
+    {
+      id: 'zkittlez',
+      name: 'Zkittlez',
+      type: 'indica',
+      typeLabel: 'Indica-Dominant Hybrid',
+      cross: 'Grape Ape × Grapefruit (× Unknown)',
+      parents: ['Grape Ape', 'Grapefruit'],
+      origin: '3rd Gen Family Seeds, California',
+      tags: ['Candy', 'Grape', 'Tropical', 'Calm'],
+      terpenes: [
+        { name: 'Caryophyllene', pct: 70 },
+        { name: 'Humulene', pct: 65 },
+        { name: 'Linalool', pct: 55 },
+      ],
+      desc: 'The strain that made terpene diversity a selling point. Zkittlez brought a multi-layered candy-tropical aroma to market that nobody had experienced before — grape, grapefruit, tropical fruit layered together with a relaxing, non-sedating indica effect. It became a parent of Runtz and kickstarted the "candy strain" era.',
+      effects: ['Calm', 'Happy', 'Relaxed', 'Focused'],
+      bestFor: 'Stress without sedation, social anxiety, daytime relaxation.',
+      subs: [
+        { name: 'Runtz', reason: 'Zkittlez × Gelato. Direct descendant — keeps the candy but adds potency and euphoria.' },
+        { name: 'Grape Ape', reason: 'Zkittlez parent. Heavier, more sedating — the grape-forward indica backbone of Zkittlez.' },
+        { name: 'Purple Punch', reason: 'Larry OG × GDP. Similar fruity-candy relaxation profile without the tropical edge.' },
+      ],
+      children: ['Runtz', 'Zkittlez OG', 'Watermelon Zkittlez'],
+    },
+    {
+      id: 'jack-herer',
+      name: 'Jack Herer',
+      type: 'sativa',
+      typeLabel: 'Sativa-Dominant',
+      cross: 'Haze × (Northern Lights #5 × Shiva Skunk)',
+      parents: ['Haze', 'Northern Lights #5', 'Shiva Skunk'],
+      origin: 'Netherlands, 1994 (Sensi Seeds)',
+      tags: ['Pine', 'Spice', 'Blissful', 'Clear-Headed'],
+      terpenes: [
+        { name: 'Terpinolene', pct: 80 },
+        { name: 'Caryophyllene', pct: 60 },
+        { name: 'Ocimene', pct: 55 },
+      ],
+      desc: 'Named after the cannabis legalization activist, Jack Herer is a masterwork of Dutch breeding. It delivers a clear, blissful, spicy-pine sativa high that is creative without being anxious — the rare "functional" sativa that works for nearly everyone. Sensi Seeds spent years perfecting it and it won 9 Cannabis Cups.',
+      effects: ['Blissful', 'Creative', 'Clear Focus', 'Energized'],
+      bestFor: 'Creative professionals, outdoor activities, morning use, depression.',
+      subs: [
+        { name: 'Super Lemon Haze', reason: 'Lemon Skunk × Super Silver Haze. Similar blissful sativa energy, brighter citrus profile.' },
+        { name: 'Trainwreck', reason: 'Shares the pine-spice sativa character. More cerebral intensity, less consistent profile.' },
+        { name: 'Pineapple Express', reason: 'Trainwreck × Hawaiian. Fruity-tropical take on the functional sativa concept.' },
+      ],
+      children: ['J1', 'Jillybean (partial)', 'Jack Flash'],
+    },
+    {
+      id: 'haze',
+      name: 'Haze',
+      type: 'sativa',
+      typeLabel: 'Pure Sativa',
+      cross: 'Colombian × Mexican × Thai × South Indian',
+      parents: ['Colombian', 'Mexican', 'Thai', 'South Indian'],
+      origin: 'Santa Cruz, California (Haze Brothers, 1970s)',
+      tags: ['Spicy', 'Citrus', 'Cerebral', 'Long-Lasting'],
+      terpenes: [
+        { name: 'Terpinolene', pct: 85 },
+        { name: 'Ocimene', pct: 75 },
+        { name: 'Myrcene', pct: 40 },
+      ],
+      desc: 'The genetic grandfather of all modern sativas. The original Haze was bred by combining four equatorial landrace strains in the 1970s, producing the most powerful, long-lasting sativa effect anyone had ever experienced. It became the foundation of Dutch breeding programs and is a parent of nearly every notable sativa hybrid — Super Silver Haze, Blue Dream, Jack Herer, Amnesia Haze, and hundreds more.',
+      effects: ['Long-lasting Cerebral High', 'Creative', 'Energetic', 'Psychedelic'],
+      bestFor: 'Experienced users, creative projects, daytime use — requires high tolerance.',
+      subs: [
+        { name: 'Super Silver Haze', reason: 'Haze × Northern Lights × White Widow. The accessible version of Haze — same cerebral depth, more manageable.' },
+        { name: 'Amnesia Haze', reason: 'Haze-dominant hybrid. Powerful citrus-cerebral effect for high-tolerance users.' },
+        { name: 'Jack Herer', reason: 'Haze × NL × Skunk. Takes Haze\'s ceiling and grounds it with indica stability.' },
+      ],
+      children: ['Super Silver Haze', 'Blue Dream', 'Jack Herer', 'Amnesia Haze', 'Lemon Haze', 'Neville\'s Haze', 'Super Lemon Haze'],
+    },
+  ];
+
+  // ---- Strain Bible UI ----
+  let sbActiveId = null;
+  let sbCurrentFilter = 'all';
+
+  function sbFilter(type) {
+    sbCurrentFilter = type;
+    document.querySelectorAll('.sb-tab').forEach(t => t.classList.remove('active'));
+    event.target.classList.add('active');
+    sbCloseDetail();
+    sbRenderGrid();
+  }
+
+  function sbRenderGrid() {
+    const grid = document.getElementById('sbGrid');
+    if (!grid) return;
+    const filtered = sbCurrentFilter === 'all'
+      ? STRAIN_BIBLE
+      : sbCurrentFilter === 'landrace'
+        ? STRAIN_BIBLE.filter(s => s.parents.length === 0 || s.cross.toLowerCase().includes('landrace'))
+        : STRAIN_BIBLE.filter(s => s.type === sbCurrentFilter);
+    grid.innerHTML = filtered.map(s => `
+      <div class="sb-card${sbActiveId === s.id ? ' active' : ''}" onclick="sbOpenDetail('${s.id}')">
+        <div class="sb-card-type">${s.typeLabel}</div>
+        <div class="sb-card-name">${s.name}</div>
+        <div class="sb-card-cross">${s.cross}</div>
+        <div class="sb-card-tags">${s.tags.map(t => `<span class="sb-card-tag">${t}</span>`).join('')}</div>
+      </div>
+    `).join('');
+  }
+
+  function sbOpenDetail(id) {
+    const s = STRAIN_BIBLE.find(x => x.id === id);
+    if (!s) return;
+    sbActiveId = id;
+    sbRenderGrid();
+    const detail = document.getElementById('sbDetail');
+    document.getElementById('sbDetailName').textContent = s.name;
+    document.getElementById('sbDetailType').textContent = s.typeLabel + ' · ' + s.origin;
+    document.getElementById('sbDetailGrid').innerHTML = `
+      <div>
+        <div class="sb-detail-section-title">Genetics</div>
+        <div class="sb-detail-lineage"><strong style="color:var(--bright-green)">${s.cross}</strong></div>
+        ${s.parents.length ? `<div class="sb-detail-lineage" style="margin-top:4px;opacity:0.45">Parents: ${s.parents.join(' × ')}</div>` : ''}
+        <div class="sb-detail-desc" style="margin-top:14px">${s.desc}</div>
+        <div style="margin-top:20px">
+          <div class="sb-detail-section-title">Best For</div>
+          <div class="sb-detail-desc">${s.bestFor}</div>
+        </div>
+      </div>
+      <div>
+        <div class="sb-detail-section-title" style="margin-bottom:14px">Dominant Terpenes</div>
+        <div class="sb-terp-list">
+          ${s.terpenes.map(t => `
+            <div class="sb-terp-item">
+              <span class="sb-terp-name">${t.name}</span>
+              <div class="sb-terp-bar-wrap"><div class="sb-terp-bar" style="width:${t.pct}%"></div></div>
+            </div>
+          `).join('')}
+        </div>
+        <div style="margin-top:28px">
+          <div class="sb-detail-section-title">If You\'re Out of Stock — Recommend These Instead</div>
+          <div class="sb-subs-list">
+            ${s.subs.map(sub => `
+              <div class="sb-sub-item"><strong>${sub.name}:</strong> ${sub.reason}</div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+    document.getElementById('sbDetailChildren').innerHTML = s.children.length ? `
+      <div class="sb-detail-section-title">Notable Descendants</div>
+      <div class="sb-children-list">
+        ${s.children.map(c => `<span class="sb-child-pill">${c}</span>`).join('')}
+      </div>
+    ` : '';
+    detail.classList.add('open');
+    setTimeout(() => detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+  }
+
+  function sbCloseDetail() {
+    sbActiveId = null;
+    const detail = document.getElementById('sbDetail');
+    if (detail) detail.classList.remove('open');
+    sbRenderGrid();
+  }
+
+  // ---- Training Quiz ----
+  const SB_QUIZ = [
+    {
+      cat: 'Genetics',
+      q: 'What are the parent strains of Wedding Cake?',
+      options: ['OG Kush × Chemdawg', 'Triangle Kush × Animal Mints', 'Gelato × Zkittlez', 'GSC × Northern Lights'],
+      answer: 1,
+      feedback: 'Wedding Cake was bred by Seed Junky Genetics using Triangle Kush (an OG Kush phenotype) × Animal Mints. This is why it carries that deep earthy-vanilla OG character underneath the sweetness.',
+    },
+    {
+      cat: 'Genetics',
+      q: 'Runtz is a cross of which two strains?',
+      options: ['GSC × OG Kush', 'Northern Lights × Haze', 'Gelato × Zkittlez', 'Sour Diesel × Blue Dream'],
+      answer: 2,
+      feedback: 'Runtz = Gelato × Zkittlez. Gelato provides the potent euphoria; Zkittlez provides the candy-tropical terpene explosion. Together they made the defining strain of the 2020s.',
+    },
+    {
+      cat: 'Genetics',
+      q: 'Which strain is considered the "grandfather" of almost every modern sativa hybrid?',
+      options: ['Durban Poison', 'Jack Herer', 'Haze', 'Sour Diesel'],
+      answer: 2,
+      feedback: 'Haze, bred in Santa Cruz in the 1970s from Colombian, Mexican, Thai, and South Indian landraces, is the genetic foundation of nearly all sativa hybrids — Blue Dream, Jack Herer, Super Silver Haze, Amnesia Haze, and hundreds more.',
+    },
+    {
+      cat: 'Genetics',
+      q: 'Chemdawg is the parent of which two legendary strains?',
+      options: ['Blue Dream and Gelato', 'OG Kush and Sour Diesel', 'GSC and Runtz', 'Northern Lights and White Widow'],
+      answer: 1,
+      feedback: 'Chemdawg is the parent of both OG Kush and Sour Diesel — making it the genetic grandfather of most modern West Coast and East Coast cannabis. Its exact origin remains unknown.',
+    },
+    {
+      cat: 'Genetics',
+      q: 'Girl Scout Cookies (GSC) is a major parent of which popular modern strain?',
+      options: ['Wedding Cake', 'Blue Dream', 'Gelato', 'Granddaddy Purple'],
+      answer: 2,
+      feedback: 'Gelato was bred by the Cookie Fam using Thin Mint GSC × Sunset Sherbet (which is itself a GSC descendant). GSC\'s genetics run through most of the modern "dessert strain" family tree.',
+    },
+    {
+      cat: 'Substitution',
+      q: 'A customer loves OG Kush but you\'re sold out. Which substitution makes the most sense genetically?',
+      options: ['Durban Poison', 'GSC (Girl Scout Cookies)', 'Blue Dream', 'Granddaddy Purple'],
+      answer: 1,
+      feedback: 'GSC carries OG Kush in its genetic lineage. It shares the earthy-euphoric OG character but adds sweetness. Wedding Cake and Headband are also OG descendants. Blue Dream and Durban Poison share no OG lineage.',
+    },
+    {
+      cat: 'Substitution',
+      q: 'A customer wants Sour Diesel for daytime focus but you don\'t have it. What\'s the best substitution?',
+      options: ['Granddaddy Purple', 'Wedding Cake', 'Jack Herer', 'Northern Lights'],
+      answer: 2,
+      feedback: 'Jack Herer is the closest functional substitute for Sour Diesel — both are sativa-dominant with clear-headed, energetic effects. Jack Herer is piney-spicy rather than diesel-fuel, but delivers the same daytime focus and productivity without sedation.',
+    },
+    {
+      cat: 'Substitution',
+      q: 'You\'re out of Runtz. A customer wants that candy-sweet euphoric experience. What do you recommend?',
+      options: ['Northern Lights', 'Zkittlez', 'White Widow', 'Chemdawg'],
+      answer: 1,
+      feedback: 'Zkittlez is a parent of Runtz and shares the candy-tropical terpene profile. Gelato (the other parent) is also a great substitute — creamier and more potent. Both preserve what makes Runtz unique.',
+    },
+    {
+      cat: 'Substitution',
+      q: 'A customer asks for Granddaddy Purple for sleep. You\'re sold out. What\'s the best genetic substitute?',
+      options: ['Durban Poison', 'Sour Diesel', 'Purple Punch', 'Jack Herer'],
+      answer: 2,
+      feedback: 'Purple Punch is Larry OG × Granddaddy Purple — a direct descendant. It carries the same grape-candy sweetness and powerful body sedation, plus it\'s now widely available in most markets.',
+    },
+    {
+      cat: 'Terpenes',
+      q: 'Which terpene is most dominant in Durban Poison — making it smell like anise/sweet pine rather than typical cannabis?',
+      options: ['Myrcene', 'Caryophyllene', 'Terpinolene', 'Limonene'],
+      answer: 2,
+      feedback: 'Terpinolene is the signature terpene of Durban Poison (and also Jack Herer). It produces a distinctive fresh, floral, piney-sweet aroma completely unlike the myrcene-heavy "classic cannabis" smell. Strains high in terpinolene tend to have uplifting, focused effects.',
+    },
+    {
+      cat: 'Terpenes',
+      q: 'Caryophyllene is the only terpene that also acts as a cannabinoid. What property does it have?',
+      options: ['It binds to CB1 receptors (psychoactive)', 'It binds to CB2 receptors (anti-inflammatory)', 'It blocks THC absorption', 'It increases CBD bioavailability'],
+      answer: 1,
+      feedback: 'Beta-caryophyllene uniquely binds to CB2 receptors, giving it anti-inflammatory and potentially anti-anxiety properties — without psychoactive effects. This is why high-caryophyllene strains like OG Kush, GSC, and Gelato tend to have a relaxing, stress-relieving body component.',
+    },
+    {
+      cat: 'Terpenes',
+      q: 'A customer is worried about anxiety from THC. Which terpene profile should you steer them toward?',
+      options: ['High Myrcene + High THC', 'High Terpinolene + High THC', 'High Limonene + High Caryophyllene', 'High Caryophyllene + High Linalool'],
+      answer: 3,
+      feedback: 'Caryophyllene (CB2 anti-inflammatory) and Linalool (the calming lavender terpene) are both associated with reduced anxiety. Strains like Zkittlez and GDP that are high in these terpenes tend to be more relaxing and less likely to trigger paranoia, even at higher THC levels.',
+    },
+  ];
+
+  let sbQIndex = 0;
+  let sbQScore = 0;
+  let sbQAnswered = false;
+  let sbCatScores = {};
+
+  function sbStartQuiz() {
+    sbQIndex = 0;
+    sbQScore = 0;
+    sbQAnswered = false;
+    sbCatScores = {};
+    SB_QUIZ.forEach(q => { if (!sbCatScores[q.cat]) sbCatScores[q.cat] = { correct: 0, total: 0 }; sbCatScores[q.cat].total++; });
+    document.getElementById('sbQuizStart').style.display = 'none';
+    document.getElementById('sbResultWrap').classList.remove('show');
+    document.getElementById('sbQWrap').classList.add('active');
+    sbRenderQuestion();
+  }
+
+  function sbRenderQuestion() {
+    const q = SB_QUIZ[sbQIndex];
+    sbQAnswered = false;
+    document.getElementById('sbQProgress').textContent = `Question ${sbQIndex + 1} of ${SB_QUIZ.length} · ${q.cat}`;
+    document.getElementById('sbQProgressFill').style.width = ((sbQIndex / SB_QUIZ.length) * 100) + '%';
+    document.getElementById('sbQText').textContent = q.q;
+    document.getElementById('sbQContext').textContent = '';
+    document.getElementById('sbQFeedback').classList.remove('show');
+    document.getElementById('sbQFeedback').textContent = '';
+    document.getElementById('sbQNext').classList.remove('show');
+    document.getElementById('sbQOptions').innerHTML = q.options.map((opt, i) => `
+      <button class="sb-q-option" onclick="sbAnswer(${i})">${opt}</button>
+    `).join('');
+  }
+
+  function sbAnswer(idx) {
+    if (sbQAnswered) return;
+    sbQAnswered = true;
+    const q = SB_QUIZ[sbQIndex];
+    const opts = document.querySelectorAll('.sb-q-option');
+    opts.forEach(o => o.disabled = true);
+    opts[idx].classList.add(idx === q.answer ? 'correct' : 'wrong');
+    if (idx !== q.answer) opts[q.answer].classList.add('reveal');
+    if (idx === q.answer) {
+      sbQScore++;
+      sbCatScores[q.cat].correct++;
+    }
+    const fb = document.getElementById('sbQFeedback');
+    fb.textContent = q.feedback;
+    fb.classList.add('show');
+    const nextBtn = document.getElementById('sbQNext');
+    nextBtn.textContent = sbQIndex < SB_QUIZ.length - 1 ? 'Next question →' : 'See my results →';
+    nextBtn.classList.add('show');
+  }
+
+  function sbNextQ() {
+    sbQIndex++;
+    if (sbQIndex >= SB_QUIZ.length) {
+      sbShowResults();
+    } else {
+      sbRenderQuestion();
+    }
+  }
+
+  function sbShowResults() {
+    document.getElementById('sbQWrap').classList.remove('active');
+    const wrap = document.getElementById('sbResultWrap');
+    wrap.classList.add('show');
+    document.getElementById('sbQProgressFill').style.width = '100%';
+    const pct = Math.round((sbQScore / SB_QUIZ.length) * 100);
+    document.getElementById('sbResultScore').textContent = `${sbQScore}/${SB_QUIZ.length}`;
+    let verdict, desc;
+    if (pct >= 90) {
+      verdict = 'Master Budtender. You know your genetics.';
+      desc = 'You could run a product training yourself. Your ability to make informed substitutions based on lineage is exactly what separates elite budtenders from the rest.';
+    } else if (pct >= 70) {
+      verdict = 'Solid knowledge. A few gaps to close.';
+      desc = 'You have a strong foundation. Review the strains you missed — focus on the substitution logic, not just the names. That\'s where the real customer value lives.';
+    } else if (pct >= 50) {
+      verdict = 'Good start. The foundation is there.';
+      desc = 'You know the big names but the genetic relationships are still developing. Spend time in the Strain Bible above — the "if you\'re out of stock" section for each strain is the most valuable part.';
+    } else {
+      verdict = 'Everyone starts somewhere.';
+      desc = 'This is exactly why the training exists. Study the 15 strains in the Strain Bible above — focus on the parent relationships and the substitution notes. Retake this after 30 minutes of study.';
+    }
+    document.getElementById('sbResultVerdict').textContent = verdict;
+    document.getElementById('sbResultDesc').textContent = desc;
+    const breakdown = document.getElementById('sbResultBreakdown');
+    breakdown.innerHTML = `
+      <div class="sb-result-breakdown-title">Score by Category</div>
+      ${Object.entries(sbCatScores).map(([cat, score]) => {
+        const catPct = Math.round((score.correct / score.total) * 100);
+        return `
+          <div class="sb-result-row">
+            <span class="sb-result-row-label">${cat}</span>
+            <div class="sb-result-row-bar-wrap"><div class="sb-result-row-bar" style="width:${catPct}%"></div></div>
+            <span class="sb-result-row-pct">${catPct}%</span>
+          </div>
+        `;
+      }).join('')}
+    `;
+    wrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function sbRetakeQuiz() {
+    document.getElementById('sbResultWrap').classList.remove('show');
+    document.getElementById('sbQuizStart').style.display = '';
+    document.getElementById('sbQWrap').classList.remove('active');
+  }
+
+  // Init
+  document.addEventListener('DOMContentLoaded', () => {
+    sbRenderGrid();
+  });
 
 </script>
 
