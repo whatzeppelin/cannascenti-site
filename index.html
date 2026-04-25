@@ -8003,8 +8003,10 @@
     }
   }
 
-  // ─── STRAIN DATABASE ───────────────────────────────────────────────────────
-  const SDB_DATA = [
+  // ─── STRAIN DATABASE ─────────────────────────────────────────────────────
+  // Loaded dynamically from /api/strains/all (populated by strains.json)
+  // To expand: run  node scripts/scrape-leafly.js  then  node scripts/build-strains-db.js
+  let SDB_DATA = [
     // INDICA
     {
       name: 'Granddaddy Purple',
@@ -8324,13 +8326,36 @@
     },
   ];
 
-  const ALL_EFFECTS = [...new Set(SDB_DATA.flatMap(s => s.effects))].sort();
+  let ALL_EFFECTS = [...new Set(SDB_DATA.flatMap(s => s.effects))].sort();
   let sdbActiveType = 'all';
   let sdbActiveEffect = null;
+
+  // ─── Normalize a strain from either old inline format or new API format ──
+  function normStrain(s) {
+    return {
+      name:      s.name,
+      slug:      s.slug || s.name.toLowerCase().replace(/[^a-z0-9]+/g,'-'),
+      type:      (s.type || 'hybrid').toLowerCase(),
+      thc:       s.thc || (s.thc_min && s.thc_max ? `${s.thc_min}–${s.thc_max}%` : 'N/A'),
+      cbd:       s.cbd != null ? String(s.cbd) : '<1%',
+      genetics:  s.genetics || (s.parents?.length ? s.parents.join(' × ') : 'Unknown'),
+      terpenes:  s.terpenes || [],
+      effects:   s.effects || [],
+      flavors:   s.flavors || [],
+      medical:   s.medical || [],
+      bestFor:   s.bestFor || null,
+      funFact:   s.funFact || null,
+      desc:      s.description || s.desc || null,
+      leaflyUrl: s.leaflyUrl || `https://www.leafly.com/strains/${s.slug || ''}`,
+      weedmapsUrl: s.weedmapsUrl || `https://weedmaps.com/strains/${s.slug || s.name.toLowerCase().replace(/[^a-z0-9]+/g,'-')}`,
+      rating:    s.rating || s.avgRating || null,
+    };
+  }
 
   function renderSdbChips() {
     const el = document.getElementById('sdbEffectChips');
     if (!el) return;
+    ALL_EFFECTS = [...new Set(SDB_DATA.flatMap(s => s.effects))].sort();
     el.innerHTML = ALL_EFFECTS.map(e =>
       `<button class="sdb-chip${sdbActiveEffect===e?' active':''}" onclick="sdbEffectFilter('${e}')">${e}</button>`
     ).join('');
@@ -8339,23 +8364,29 @@
   function renderSdbGrid() {
     const el = document.getElementById('sdbGrid');
     if (!el) return;
+    if (!SDB_DATA.length) {
+      el.innerHTML = '<div class="sdb-no-results" style="grid-column:1/-1;padding:40px 0;text-align:center;opacity:0.5">Loading strain database...</div>';
+      return;
+    }
     const filtered = SDB_DATA.filter(s => {
-      const typeMatch = sdbActiveType === 'all' || s.type === sdbActiveType;
-      const effMatch = !sdbActiveEffect || s.effects.includes(sdbActiveEffect);
+      const typeMatch = sdbActiveType === 'all' || (s.type || '').toLowerCase() === sdbActiveType;
+      const effMatch = !sdbActiveEffect || (s.effects || []).includes(sdbActiveEffect);
       return typeMatch && effMatch;
     });
     if (!filtered.length) {
       el.innerHTML = '<div class="sdb-no-results">No strains match those filters. Try adjusting your search.</div>';
       return;
     }
-    el.innerHTML = filtered.map(s => `
+    el.innerHTML = filtered.map(raw => {
+      const s = normStrain(raw);
+      return `
       <div class="sdb-card type-${s.type}" onclick="sdbOpen('${s.name.replace(/'/g,"\\'")}')" id="sdbCard-${s.name.replace(/\s+/g,'-').replace(/'/g,'')}">
         <div class="sdb-card-type">${s.type}</div>
         <div class="sdb-card-name">${s.name}</div>
         <div class="sdb-card-thc">THC ${s.thc}</div>
         <div class="sdb-card-effects">${s.effects.slice(0,3).map(e=>`<span class="sdb-card-eff">${e}</span>`).join('')}</div>
       </div>
-    `).join('');
+    `}).join('');
   }
 
   function sdbFilter(type) {
@@ -8375,8 +8406,9 @@
   }
 
   function sdbOpen(name) {
-    const s = SDB_DATA.find(x => x.name === name);
-    if (!s) return;
+    const raw = SDB_DATA.find(x => x.name === name);
+    if (!raw) return;
+    const s = normStrain(raw);
     document.querySelectorAll('.sdb-card').forEach(c => c.classList.remove('active'));
     const card = document.getElementById('sdbCard-' + name.replace(/\s+/g,'-').replace(/'/g,''));
     if (card) card.classList.add('active');
@@ -8395,30 +8427,16 @@
         </div>
       </div>
       <div class="sdb-detail-body">
-        <p class="sdb-detail-desc">${s.desc}</p>
-        <div class="sdb-detail-col">
-          <h4>Effects</h4>
-          <div class="sdb-detail-tags">${s.effects.map(e=>`<span class="sdb-detail-tag">${e}</span>`).join('')}</div>
-        </div>
-        <div class="sdb-detail-col">
-          <h4>Flavors</h4>
-          <div class="sdb-detail-tags">${s.flavors.map(f=>`<span class="sdb-detail-tag">${f}</span>`).join('')}</div>
-        </div>
-        <div class="sdb-detail-col">
-          <h4>Terpenes</h4>
-          <div class="sdb-detail-tags">${s.terpenes.map(t=>`<span class="sdb-detail-terpene-tag">${t}</span>`).join('')}</div>
-        </div>
-        <div class="sdb-detail-col">
-          <h4>Medical Uses</h4>
-          <ul class="sdb-detail-list">${s.medical.map(m=>`<li>${m}</li>`).join('')}</ul>
-        </div>
-        <div class="sdb-detail-col" style="grid-column:1/-1">
-          <h4>Best For</h4>
-          <p style="color:rgba(245,240,225,0.7);font-size:14px;margin:0">${s.bestFor}</p>
-        </div>
-        <div class="sdb-fun-fact">
-          <div class="sdb-fun-fact-label">✦ The Cannascenti Take</div>
-          <p>${s.funFact}</p>
+        ${s.desc ? `<p class="sdb-detail-desc">${s.desc}</p>` : '<p class="sdb-detail-desc" style="opacity:0.4;font-style:italic">Editorial description coming soon.</p>'}
+        ${s.effects.length ? `<div class="sdb-detail-col"><h4>Effects</h4><div class="sdb-detail-tags">${s.effects.map(e=>`<span class="sdb-detail-tag">${e}</span>`).join('')}</div></div>` : ''}
+        ${s.flavors.length ? `<div class="sdb-detail-col"><h4>Flavors</h4><div class="sdb-detail-tags">${s.flavors.map(f=>`<span class="sdb-detail-tag">${f}</span>`).join('')}</div></div>` : ''}
+        ${s.terpenes.length ? `<div class="sdb-detail-col"><h4>Terpenes</h4><div class="sdb-detail-tags">${s.terpenes.map(t=>`<span class="sdb-detail-terpene-tag">${t}</span>`).join('')}</div></div>` : ''}
+        ${s.medical.length ? `<div class="sdb-detail-col"><h4>Medical Uses</h4><ul class="sdb-detail-list">${s.medical.map(m=>`<li>${m}</li>`).join('')}</ul></div>` : ''}
+        ${s.bestFor ? `<div class="sdb-detail-col" style="grid-column:1/-1"><h4>Best For</h4><p style="color:rgba(245,240,225,0.7);font-size:14px;margin:0">${s.bestFor}</p></div>` : ''}
+        ${s.funFact ? `<div class="sdb-fun-fact"><div class="sdb-fun-fact-label">✦ The Cannascenti Take</div><p>${s.funFact}</p></div>` : ''}
+        <div class="sdb-detail-col" style="grid-column:1/-1;display:flex;gap:10px;margin-top:8px;">
+          <a class="featured-card-cta" href="${s.leaflyUrl}" target="_blank" rel="noopener" style="flex:1;display:block;text-align:center;">View on Leafly ↗</a>
+          <a class="featured-card-cta" href="${s.weedmapsUrl}" target="_blank" rel="noopener" style="flex:1;display:block;text-align:center;">Find on Weedmaps ↗</a>
         </div>
       </div>
       <button class="sdb-detail-close" onclick="sdbClose()">↑ Close Profile</button>
@@ -8456,9 +8474,24 @@
     if (name === 'bible') sbRenderGrid();
   }
 
-  // Init strain database
+  // Init strain database — load from API, then re-render
   renderSdbChips();
   renderSdbGrid();
+
+  // Async-load full database from server (populated by strains.json)
+  fetch('/api/strains/all')
+    .then(r => r.json())
+    .then(data => {
+      if (!Array.isArray(data) || !data.length) return;
+      // Merge: API data replaces the inline stubs for matching strains,
+      // then appends all strains not already in the inline set
+      const inlineNames = new Set(SDB_DATA.map(s => s.name.toLowerCase()));
+      const apiOnly = data.filter(s => !inlineNames.has(s.name.toLowerCase()));
+      SDB_DATA = [...SDB_DATA, ...apiOnly];
+      renderSdbChips();
+      renderSdbGrid();
+    })
+    .catch(() => { /* silently keep inline data if API fails */ });
 
   // ─── BUDTENDER PRO ────────────────────────────────────────────────────────
   const bproState = { exp: null, goal: [], time: null, cons: null, concern: [] };

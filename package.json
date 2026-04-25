@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "scrape": "node scripts/scrape-leafly.js",
+    "build-db": "node scripts/build-strains-db.js",
+    "update-strains": "node scripts/scrape-leafly.js && node scripts/build-strains-db.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.55.0",

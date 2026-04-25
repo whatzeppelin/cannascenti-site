@@ -375,6 +375,16 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // ─── Return full strain database for Browse All tab ──────────────────────
+  if (req.method === "GET" && req.url === "/api/strains/all") {
+    res.writeHead(200, {
+      "Content-Type": "application/json",
+      "Cache-Control": "public, max-age=300",  // 5-min cache
+    });
+    res.end(JSON.stringify(STRAINS_DB));
+    return;
+  }
+
   if (req.method === "POST" && req.url === "/api/strains") {
     let body = "";
     req.on("data", chunk => { body += chunk; });
