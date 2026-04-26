@@ -9192,6 +9192,7 @@
   ];
 
   const ENC_TABS = [
+    { id:'strains', label:'Strains', icon:'◈' },
     { id:'terpenes', label:'Terpenes', icon:'🌿' },
     { id:'cannabinoids', label:'Cannabinoids', icon:'🔬' },
     { id:'consumption', label:'Consumption', icon:'💨' },
@@ -9220,6 +9221,7 @@
     panel.style.animation = 'none';
     requestAnimationFrame(() => {
       panel.style.animation = '';
+      if (id === 'strains') renderEncStrains();
       if (id === 'history') { globeCleanup = initEncGlobe(); renderHistoryTimeline(); }
       if (id === 'terpenes') initTerpeneWheel();
       if (id === 'cannabinoids') molSelect('thc');
@@ -9277,8 +9279,62 @@
     document.getElementById('enc-calcResult').innerHTML = `<div class="calc-result-big">${perServing.toFixed(1)}mg</div><div class="calc-result-label">THC per serving</div><div class="calc-result-note">${note}<br><br>Total batch: <strong>${totalMg.toFixed(0)}mg THC</strong> · 88% decarb efficiency assumed.</div>`;
   }
 
+  function renderEncStrains(query, typeFilter) {
+    const q = (query || document.getElementById('encStrainSearch')?.value || '').toLowerCase().trim();
+    const tf = typeFilter || document.getElementById('encStrainTypeFilter')?.value || 'all';
+    const grid = document.getElementById('encStrainGrid');
+    const count = document.getElementById('encStrainCount');
+    if (!grid) return;
+    const results = SDB_DATA.filter(raw => {
+      const s = normStrain(raw);
+      const matchType = tf === 'all' || s.type === tf;
+      const matchQ = !q || s.name.toLowerCase().includes(q) ||
+        (s.effects||[]).some(e=>e.toLowerCase().includes(q)) ||
+        (s.terpenes||[]).some(t=>t.toLowerCase().includes(q)) ||
+        (s.flavors||[]).some(f=>f.toLowerCase().includes(q)) ||
+        (s.desc||'').toLowerCase().includes(q);
+      return matchType && matchQ;
+    });
+    if (count) count.textContent = results.length + ' strain' + (results.length !== 1 ? 's' : '');
+    grid.innerHTML = results.slice(0,120).map(raw => {
+      const s = normStrain(raw);
+      const typeClass = s.type === 'sativa' ? 'sdb-type-sativa' : s.type === 'indica' ? 'sdb-type-indica' : 'sdb-type-hybrid';
+      return `<div class="sdb-card" onclick="sdbOpen('${s.slug}')">
+        ${s.photoUrl ? `<div class="sdb-card-photo" style="background-image:url('${s.photoUrl}')"></div>` : ''}
+        <div class="sdb-card-body">
+          <div class="sdb-card-top">
+            <span class="sdb-card-type ${typeClass}">${s.type}</span>
+            ${s.thc && s.thc !== 'N/A' ? `<span class="sdb-card-thc">${s.thc} THC</span>` : ''}
+          </div>
+          <div class="sdb-card-name">${s.name}</div>
+          ${s.terpenes?.length ? `<div class="sdb-card-terps">${s.terpenes.slice(0,3).map(t=>`<span>${t}</span>`).join('')}</div>` : ''}
+        </div>
+      </div>`;
+    }).join('') || '<p style="color:rgba(242,234,216,0.4);padding:40px 0;">No strains found.</p>';
+  }
+
   function encContent(id) {
     switch(id) {
+      case 'strains': return `
+        <div class="terpene-intro">
+          <div class="section-label">✦ Strains</div>
+          <div class="terpene-intro-title">Every strain, <em>decoded</em></div>
+          <p class="terpene-intro-desc">Browse our full strain database — genetics, terpenes, effects, THC range, and everything else you need to know before you buy. Click any strain to dive deep.</p>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:28px;">
+          <input id="encStrainSearch" type="text" placeholder="Search by name, effect, terpene, flavor…" maxlength="100"
+            style="flex:1;min-width:200px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:3px;color:var(--cream);font-family:'Montserrat',sans-serif;font-size:13px;padding:10px 16px;outline:none;"
+            oninput="renderEncStrains(this.value)" onkeydown="if(event.key==='Enter')renderEncStrains(this.value)" />
+          <select id="encStrainTypeFilter" onchange="renderEncStrains()"
+            style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:3px;color:var(--cream);font-family:'Montserrat',sans-serif;font-size:12px;padding:10px 14px;outline:none;cursor:pointer;">
+            <option value="all">All Types</option>
+            <option value="sativa">Sativa</option>
+            <option value="indica">Indica</option>
+            <option value="hybrid">Hybrid</option>
+          </select>
+          <span id="encStrainCount" style="font-size:11px;color:rgba(242,234,216,0.4);letter-spacing:0.1em;white-space:nowrap;"></span>
+        </div>
+        <div id="encStrainGrid" class="sdb-grid"></div>`;
       case 'terpenes': return `
         <div class="terpene-intro">
           <div class="section-label">✦ Terpenes</div>
