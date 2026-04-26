@@ -413,6 +413,29 @@
   }
   .nav-search-btn:hover { opacity: 0.85; }
 
+  /* ── Hero Strip ── */
+  .hero-strip {
+    background: var(--warm-black);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 28px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+  .hero-strip-left { display: flex; flex-direction: column; gap: 4px; }
+  .hero-strip-eyebrow { font-size: 9px; font-weight: 500; letter-spacing: 0.45em; text-transform: uppercase; color: var(--bright-green); margin-bottom: 6px; }
+  .hero-strip-tagline { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 2.2vw, 30px); color: var(--cream); font-style: italic; line-height: 1.2; }
+  .hero-strip-sub { font-size: 12px; color: rgba(242,234,216,0.45); letter-spacing: 0.05em; margin-top: 4px; }
+  .hero-strip-right { display: flex; align-items: center; gap: 24px; flex-shrink: 0; }
+  .hero-strip-proof { font-size: 11px; color: rgba(242,234,216,0.4); letter-spacing: 0.05em; white-space: nowrap; }
+  .hero-strip-proof span { color: var(--bright-green); font-weight: 600; }
+  @media (max-width: 900px) {
+    .hero-strip { padding: 20px 24px; flex-direction: column; align-items: flex-start; gap: 16px; }
+    .hero-strip-right { width: 100%; justify-content: space-between; }
+  }
+  @media (max-width: 600px) { .hero-strip-proof { display: none; } }
+
   .nav-links {
     display: flex;
     align-items: center;
@@ -5646,8 +5669,21 @@
   </ul>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
+<!-- HERO STRIP -->
+<div class="hero-strip">
+  <div class="hero-strip-left">
+    <div class="hero-strip-eyebrow">Cannabis Intelligence · Est. 2026</div>
+    <div class="hero-strip-tagline">Find the perfect cannabis<br>for how you want to feel.</div>
+    <div class="hero-strip-sub">Your personal CannaQuant.</div>
+  </div>
+  <div class="hero-strip-right">
+    <div class="hero-strip-proof"><span>4,200+</span> people have found their match</div>
+    <a href="#quiz" class="btn-primary">Get My Personalized Match →</a>
+  </div>
+</div>
+
+<!-- HERO (removed) -->
+<section class="hero" style="display:none">
   <div class="hero-content">
     <div class="hero-eyebrow">Cannabis Intelligence · Est. 2026</div>
     <div class="hero-logo">
