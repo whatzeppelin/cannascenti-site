@@ -351,6 +351,10 @@ const MIME = {
   ".jpg": "image/jpeg",
   ".svg": "image/svg+xml",
   ".ico": "image/x-icon",
+  ".ttf": "font/ttf",
+  ".otf": "font/otf",
+  ".woff": "font/woff",
+  ".woff2": "font/woff2",
 };
 
 const server = http.createServer(async (req, res) => {
