@@ -5701,6 +5701,368 @@
       <p style="font-size:12px;color:rgba(242,234,216,0.4);margin-top:14px;letter-spacing:0.08em;">Takes 30 seconds · Free · No account needed</p>
     </div>
   </div>
+
+<div class="full-divider"></div>
+
+<!-- ENCYCLOPEDIA HUB -->
+<div id="encyclopedia-hub" class="enc-hub">
+  <div class="enc-hub-inner">
+    <div class="enc-hub-header">
+      <div class="section-label"><span class="pg">03</span> ✦ The Cannascenti Encyclopedia</div>
+      <h2 class="section-title" style="color:var(--cream)">The Complete Cannabis Reference</h2>
+      <p>Every terpene, cannabinoid, consumption method, cultivation stage, historical milestone, and extraction technique — the most comprehensive cannabis reference anywhere. Click a topic to explore.</p>
+    </div>
+    <div class="enc-hub-nav" id="enc-hub-nav"></div>
+    <div class="enc-hub-panel" id="enc-hub-panel"></div>
+  </div>
+
+  <!-- CANNABIS & YOUR BODY -->
+  <div class="body-section" style="padding: 80px 60px 100px; max-width: 1200px; margin: 0 auto;">
+    <div class="terpene-intro">
+      <div class="section-label">✦ Cannabis &amp; Your Body</div>
+      <div class="terpene-intro-title">What's actually <em>happening inside you</em></div>
+      <p class="terpene-intro-desc">Your body has an entire system built to receive cannabis — the Endocannabinoid System. CB1 and CB2 receptors are distributed throughout your brain, organs, and nervous system. Cannabis doesn't hijack your brain. It plugs into a system that was always there.</p>
+    </div>
+    <div class="body-diagram-wrap">
+      <div class="body-diagram">
+        <div class="body-hotspot" style="top:8%;left:42%;" data-zone="brain" onclick="bodySelect('brain')">
+          <div class="body-dot"></div><div class="body-dot-ring"></div>
+          <div class="body-label body-label-right">Brain</div>
+        </div>
+        <div class="body-hotspot" style="top:22%;left:60%;" data-zone="eyes" onclick="bodySelect('eyes')">
+          <div class="body-dot"></div><div class="body-dot-ring"></div>
+          <div class="body-label body-label-right">Eyes</div>
+        </div>
+        <div class="body-hotspot" style="top:28%;left:38%;" data-zone="lungs" onclick="bodySelect('lungs')">
+          <div class="body-dot"></div><div class="body-dot-ring"></div>
+          <div class="body-label body-label-left">Lungs</div>
+        </div>
+        <div class="body-hotspot" style="top:35%;left:48%;" data-zone="heart" onclick="bodySelect('heart')">
+          <div class="body-dot"></div><div class="body-dot-ring"></div>
+          <div class="body-label body-label-right">Heart</div>
+        </div>
+        <div class="body-hotspot" style="top:42%;left:40%;" data-zone="gut" onclick="bodySelect('gut')">
+          <div class="body-dot"></div><div class="body-dot-ring"></div>
+          <div class="body-label body-label-left">Gut</div>
+        </div>
+        <div class="body-hotspot" style="top:55%;left:44%;" data-zone="muscles" onclick="bodySelect('muscles')">
+          <div class="body-dot"></div><div class="body-dot-ring"></div>
+          <div class="body-label body-label-left">Muscles</div>
+        </div>
+        <div class="body-hotspot" style="top:68%;left:50%;" data-zone="joints" onclick="bodySelect('joints')">
+          <div class="body-dot"></div><div class="body-dot-ring"></div>
+          <div class="body-label body-label-right">Joints</div>
+        </div>
+        <svg viewBox="0 0 200 480" xmlns="http://www.w3.org/2000/svg" class="body-svg">
+          <ellipse cx="100" cy="45" rx="34" ry="40" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+          <rect x="88" y="82" width="24" height="18" rx="4" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+          <path d="M60 100 Q50 130 52 180 L70 200 L130 200 L148 180 Q150 130 140 100 Z" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+          <path d="M60 105 Q40 130 38 175 Q37 185 44 190" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+          <path d="M140 105 Q160 130 162 175 Q163 185 156 190" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+          <path d="M70 200 Q65 260 64 320 Q63 350 68 380" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+          <path d="M130 200 Q135 260 136 320 Q137 350 132 380" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+          <path d="M68 380 Q60 390 55 395 Q62 400 78 398 L82 380" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+          <path d="M132 380 Q140 390 145 395 Q138 400 122 398 L118 380" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="body-info-panel" id="bodyInfoPanel">
+        <div class="body-info-placeholder">
+          <div style="font-size:2rem;margin-bottom:12px;">👆</div>
+          <div style="font-size:1rem;font-weight:700;margin-bottom:8px;">Tap any hotspot</div>
+          <div style="font-size:0.8rem;opacity:0.55;">Explore how cannabis interacts with each part of your body</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- CANNABIS & FOOD -->
+
+<!-- BUDTENDER PRO -->
+<div id="budtender-pro" class="bpro-section">
+  <div class="bpro-inner">
+
+    <div class="bpro-header-row">
+      <div>
+        <div class="section-label"><span class="pg">06</span> ✦ Budtender Pro</div>
+        <div class="section-title">The tool built for <em>the floor.</em></div>
+        <p class="bpro-intro">Fast, practical cannabis intelligence for dispensary professionals. Customer intake, instant strain matching, terminology reference, and ready-to-use customer scripts — everything you need to give exceptional service on every transaction.</p>
+      </div>
+      <div class="bpro-badge">
+        <span class="bpro-badge-icon">🎓</span>
+        <span class="bpro-badge-text">Professional Reference</span>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="bpro-tabs">
+      <button class="bpro-tab active" onclick="bproTab('intake')">
+        <span class="bpro-tab-icon">🧑‍💼</span>Customer Intake
+      </button>
+      <button class="bpro-tab" onclick="bproTab('glossary')">
+        <span class="bpro-tab-icon">📖</span>Glossary
+      </button>
+      <button class="bpro-tab" onclick="bproTab('scripts')">
+        <span class="bpro-tab-icon">💬</span>Talking Points
+      </button>
+      <button class="bpro-tab" onclick="bproTab('dosing')">
+        <span class="bpro-tab-icon">⚖️</span>Dosing Quick Ref
+      </button>
+    </div>
+
+    <!-- INTAKE PANEL -->
+    <div class="bpro-panel" id="bproIntake">
+      <div class="bpro-intake-grid">
+        <div class="bpro-intake-form">
+          <div class="bpro-form-title">Customer Profile</div>
+
+          <div class="bpro-field">
+            <div class="bpro-field-label">Experience Level</div>
+            <div class="bpro-chips" id="bproExpChips">
+              <button class="bpro-chip" onclick="bproSelect('exp','first')">First Time</button>
+              <button class="bpro-chip" onclick="bproSelect('exp','occasional')">Occasional</button>
+              <button class="bpro-chip" onclick="bproSelect('exp','regular')">Regular</button>
+              <button class="bpro-chip" onclick="bproSelect('exp','heavy')">Heavy User</button>
+            </div>
+          </div>
+
+          <div class="bpro-field">
+            <div class="bpro-field-label">Primary Goal <span class="bpro-field-hint">(select up to 2)</span></div>
+            <div class="bpro-chips" id="bproGoalChips">
+              <button class="bpro-chip" onclick="bproMulti('goal','sleep')">😴 Sleep</button>
+              <button class="bpro-chip" onclick="bproMulti('goal','pain')">💊 Pain Relief</button>
+              <button class="bpro-chip" onclick="bproMulti('goal','anxiety')">🧘 Anxiety</button>
+              <button class="bpro-chip" onclick="bproMulti('goal','energy')">⚡ Energy</button>
+              <button class="bpro-chip" onclick="bproMulti('goal','creativity')">🎨 Creativity</button>
+              <button class="bpro-chip" onclick="bproMulti('goal','mood')">😊 Mood Lift</button>
+              <button class="bpro-chip" onclick="bproMulti('goal','appetite')">🍽️ Appetite</button>
+              <button class="bpro-chip" onclick="bproMulti('goal','focus')">🎯 Focus</button>
+              <button class="bpro-chip" onclick="bproMulti('goal','social')">🎉 Social</button>
+              <button class="bpro-chip" onclick="bproMulti('goal','relax')">🛋️ Relax</button>
+            </div>
+          </div>
+
+          <div class="bpro-field">
+            <div class="bpro-field-label">Time of Use</div>
+            <div class="bpro-chips" id="bproTimeChips">
+              <button class="bpro-chip" onclick="bproSelect('time','morning')">Morning</button>
+              <button class="bpro-chip" onclick="bproSelect('time','afternoon')">Afternoon</button>
+              <button class="bpro-chip" onclick="bproSelect('time','evening')">Evening</button>
+              <button class="bpro-chip" onclick="bproSelect('time','nighttime')">Nighttime</button>
+            </div>
+          </div>
+
+          <div class="bpro-field">
+            <div class="bpro-field-label">Consumption Preference</div>
+            <div class="bpro-chips" id="bproConsChips">
+              <button class="bpro-chip" onclick="bproSelect('cons','flower')">🌿 Flower</button>
+              <button class="bpro-chip" onclick="bproSelect('cons','vape')">💨 Vape</button>
+              <button class="bpro-chip" onclick="bproSelect('cons','edible')">🍪 Edible</button>
+              <button class="bpro-chip" onclick="bproSelect('cons','capsule')">💊 Capsule / Softgel</button>
+              <button class="bpro-chip" onclick="bproSelect('cons','concentrate')">💎 Concentrate</button>
+              <button class="bpro-chip" onclick="bproSelect('cons','any')">No Preference</button>
+            </div>
+          </div>
+
+          <div class="bpro-field">
+            <div class="bpro-field-label">Any Concerns?</div>
+            <div class="bpro-chips" id="bproConcernChips">
+              <button class="bpro-chip" onclick="bproMulti('concern','anxious')">Anxiety-prone</button>
+              <button class="bpro-chip" onclick="bproMulti('concern','sensitive')">THC sensitive</button>
+              <button class="bpro-chip" onclick="bproMulti('concern','medication')">On medication</button>
+              <button class="bpro-chip" onclick="bproMulti('concern','driving')">Driving later</button>
+              <button class="bpro-chip" onclick="bproMulti('concern','none')">None</button>
+            </div>
+          </div>
+
+          <button class="bpro-recommend-btn" onclick="bproGenRec()">Generate Recommendation →</button>
+        </div>
+
+        <div class="bpro-rec-panel" id="bproRecPanel">
+          <div class="bpro-rec-placeholder">
+            <div class="bpro-rec-placeholder-icon">🌿</div>
+            <p>Fill in the customer profile and hit <strong>Generate Recommendation</strong> to see matched strains and talking points.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GLOSSARY PANEL -->
+    <div class="bpro-panel bpro-panel-hidden" id="bproGlossary">
+      <div class="bpro-glossary-search-row">
+        <input class="bpro-glossary-input" id="bproGlossSearch" type="text" placeholder="Search terms..." oninput="bproFilterGloss()" />
+        <div class="bpro-gloss-cats" id="bproGlossCats"></div>
+      </div>
+      <div class="bpro-glossary-grid" id="bproGlossGrid"></div>
+    </div>
+
+    <!-- SCRIPTS PANEL -->
+    <div class="bpro-panel bpro-panel-hidden" id="bproScripts">
+      <div class="bpro-scripts-grid" id="bproScriptsGrid"></div>
+    </div>
+
+    <!-- DOSING REF PANEL -->
+    <div class="bpro-panel bpro-panel-hidden" id="bproDosing">
+      <div class="bpro-dosing-grid" id="bproDosingGrid"></div>
+    </div>
+
+    <!-- CannaQuant -->
+    <div id="consulting" class="consulting" style="margin-top: 80px; margin-bottom: 80px; padding-bottom: 80px; border-top: 1px solid rgba(82,183,136,0.12); padding-top: 80px;">
+      <div class="consulting-inner">
+
+        <div class="consulting-left">
+          <div class="section-label">✦ CannaQuant</div>
+          <div class="consulting-title">I'm your personal <em>CannaQuant.</em> Your budtender for life.</div>
+          <p class="consulting-desc">Think of me as your cannabis financial advisor — except instead of money, we're talking about your experience, your body, your goals, and your plant. Whether you're brand new or a seasoned connoisseur, I meet you exactly where you are. Real conversations. Real answers. No guesswork.</p>
+
+          <div class="consulting-stats">
+            <div>
+              <div class="consulting-stat-num">10+</div>
+              <div class="consulting-stat-label">Years on the floor</div>
+            </div>
+            <div>
+              <div class="consulting-stat-num">1000s</div>
+              <div class="consulting-stat-label">Customers helped</div>
+            </div>
+            <div>
+              <div class="consulting-stat-num">500+</div>
+              <div class="consulting-stat-label">Strains studied</div>
+            </div>
+            <div>
+              <div class="consulting-stat-num">100%</div>
+              <div class="consulting-stat-label">Real experience</div>
+            </div>
+          </div>
+
+          <a href="https://calendly.com/cannascenti" target="_blank" class="btn-primary">Book Your CannaQuant Session</a>
+        </div>
+
+        <div class="consulting-services">
+
+          <div class="consulting-service">
+            <div class="consulting-service-icon">🌿</div>
+            <div>
+              <div class="consulting-service-title">Personal Consumer Session</div>
+              <p class="consulting-service-desc">New to cannabis or just not getting the results you want? Tell me your goals, your lifestyle, your experience — I'll build you a personalized cannabis plan covering strains, products, dosing, and consumption methods. One session changes everything.</p>
+              <div class="consulting-service-price">1-on-1 · 60 minutes · Zoom or phone</div>
+            </div>
+          </div>
+
+          <div class="consulting-service">
+            <div class="consulting-service-icon">🏪</div>
+            <div>
+              <div class="consulting-service-title">Dispensary & Retail Consulting</div>
+              <p class="consulting-service-desc">Staff training, floor strategy, product curation, customer experience — built by someone who has actually managed a dispensary. Not theory. Systems that work.</p>
+              <div class="consulting-service-price">Custom packages · Multi-session programs available</div>
+            </div>
+          </div>
+
+          <div class="consulting-service">
+            <div class="consulting-service-icon">💼</div>
+            <div>
+              <div class="consulting-service-title">Cannabis Business Strategy</div>
+              <p class="consulting-service-desc">Launching a brand, entering the market, refining your positioning? Deep industry knowledge meets real commercial thinking. From startup to scale.</p>
+              <div class="consulting-service-price">Project-based · Initial call complimentary</div>
+            </div>
+          </div>
+
+          <div class="consulting-service">
+            <div class="consulting-service-icon">🎓</div>
+            <div>
+              <div class="consulting-service-title">Budtender & Staff Training</div>
+              <p class="consulting-service-desc">Your staff is your brand. Comprehensive training on strains, terpenes, customer conversations, product knowledge, and sales technique — from the floor up.</p>
+              <div class="consulting-service-price">Group sessions · In-person or virtual</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- JOINT ROLLING SEMINARS -->
+        <div style="margin-top: 80px; border-top: 1px solid rgba(82,183,136,0.12); padding-top: 60px; grid-column: 1 / -1;">
+          <div class="seminars-header">
+            <div>
+              <div class="section-label">✦ Joint Rolling Seminars</div>
+              <div class="section-title">The art of <em>the roll</em></div>
+            </div>
+            <div>
+              <p style="font-size:14px; line-height:1.9; color:var(--cream); opacity:0.5;">Most people have been smoking for years and still can't roll a proper joint. No judgment — nobody taught them. That changes here. From your first joint to a perfectly engineered cross — every level covered, every technique mastered.</p>
+            </div>
+          </div>
+
+          <div class="seminars-levels" style="margin-top: 40px;">
+
+            <div class="seminar-level">
+              <span class="seminar-level-badge badge-beginner">Beginner</span>
+              <div class="seminar-level-title">Your First Roll</div>
+              <p class="seminar-level-desc">Never rolled before? No problem. We start from zero — papers, filters, grinding, and the basics of a solid roll that burns clean.</p>
+              <ul class="seminar-techniques">
+                <li>Choosing the right papers</li>
+                <li>Grinding consistency</li>
+                <li>The classic straight joint</li>
+                <li>Making a proper filter tip</li>
+                <li>Lighting and smoking technique</li>
+              </ul>
+              <a href="https://calendly.com/cannascenti" target="_blank" class="seminar-cta">Book This Class</a>
+            </div>
+
+            <div class="seminar-level">
+              <span class="seminar-level-badge badge-intermediate">Intermediate</span>
+              <div class="seminar-level-title">Level Up Your Roll</div>
+              <p class="seminar-level-desc">You can roll, but it's not consistent. This class tightens your technique and introduces blunts, backwoods, and the cone roll.</p>
+              <ul class="seminar-techniques">
+                <li>The perfect cone joint</li>
+                <li>Blunt rolling (cigarillo & backwood)</li>
+                <li>Dutch masters technique</li>
+                <li>Pre-roll consistency tricks</li>
+                <li>Infused rolls & kief crowning</li>
+              </ul>
+              <a href="https://calendly.com/cannascenti" target="_blank" class="seminar-cta">Book This Class</a>
+            </div>
+
+            <div class="seminar-level">
+              <span class="seminar-level-badge badge-advanced">Advanced</span>
+              <div class="seminar-level-title">The Masterclass</div>
+              <p class="seminar-level-desc">For the enthusiast who wants to go all the way. Intricate rolls, showpieces, and techniques that will genuinely impress anyone in the room.</p>
+              <ul class="seminar-techniques">
+                <li>The cross joint</li>
+                <li>Tulip & cannons</li>
+                <li>Multi-paper braided rolls</li>
+                <li>Diamond & star formations</li>
+                <li>Scorpion & windmill techniques</li>
+              </ul>
+              <a href="https://calendly.com/cannascenti" target="_blank" class="seminar-cta">Book This Class</a>
+            </div>
+
+          </div>
+
+          <div class="seminars-formats" style="margin-top: 40px;">
+            <div class="seminar-format">
+              <div class="seminar-format-icon">🖥</div>
+              <div class="seminar-format-title">Live Online Sessions</div>
+              <p class="seminar-format-desc">Zoom-based classes with real-time instruction. Learn from anywhere. Sessions are small-group, interactive, and recorded for replay.</p>
+            </div>
+            <div class="seminar-format">
+              <div class="seminar-format-icon">📍</div>
+              <div class="seminar-format-title">In-Person Workshops</div>
+              <p class="seminar-format-desc">Hands-on sessions in select cities. Everything provided. The most effective way to learn — direct feedback, small groups, full experience.</p>
+            </div>
+            <div class="seminar-format">
+              <div class="seminar-format-icon">🏢</div>
+              <div class="seminar-format-title">Private Events & Groups</div>
+              <p class="seminar-format-desc">Dispensary staff training, private parties, corporate events, and group bookings. Fully customized to your occasion and audience.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
 </section>
 
 <!-- QUIZ -->
@@ -6027,80 +6389,6 @@
   </div>
 </div>
 
-<div class="full-divider"></div>
-
-<!-- ENCYCLOPEDIA HUB -->
-<div id="encyclopedia-hub" class="enc-hub">
-  <div class="enc-hub-inner">
-    <div class="enc-hub-header">
-      <div class="section-label"><span class="pg">03</span> ✦ The Cannascenti Encyclopedia</div>
-      <h2 class="section-title" style="color:var(--cream)">The Complete Cannabis Reference</h2>
-      <p>Every terpene, cannabinoid, consumption method, cultivation stage, historical milestone, and extraction technique — the most comprehensive cannabis reference anywhere. Click a topic to explore.</p>
-    </div>
-    <div class="enc-hub-nav" id="enc-hub-nav"></div>
-    <div class="enc-hub-panel" id="enc-hub-panel"></div>
-  </div>
-
-  <!-- CANNABIS & YOUR BODY -->
-  <div class="body-section" style="padding: 80px 60px 100px; max-width: 1200px; margin: 0 auto;">
-    <div class="terpene-intro">
-      <div class="section-label">✦ Cannabis &amp; Your Body</div>
-      <div class="terpene-intro-title">What's actually <em>happening inside you</em></div>
-      <p class="terpene-intro-desc">Your body has an entire system built to receive cannabis — the Endocannabinoid System. CB1 and CB2 receptors are distributed throughout your brain, organs, and nervous system. Cannabis doesn't hijack your brain. It plugs into a system that was always there.</p>
-    </div>
-    <div class="body-diagram-wrap">
-      <div class="body-diagram">
-        <div class="body-hotspot" style="top:8%;left:42%;" data-zone="brain" onclick="bodySelect('brain')">
-          <div class="body-dot"></div><div class="body-dot-ring"></div>
-          <div class="body-label body-label-right">Brain</div>
-        </div>
-        <div class="body-hotspot" style="top:22%;left:60%;" data-zone="eyes" onclick="bodySelect('eyes')">
-          <div class="body-dot"></div><div class="body-dot-ring"></div>
-          <div class="body-label body-label-right">Eyes</div>
-        </div>
-        <div class="body-hotspot" style="top:28%;left:38%;" data-zone="lungs" onclick="bodySelect('lungs')">
-          <div class="body-dot"></div><div class="body-dot-ring"></div>
-          <div class="body-label body-label-left">Lungs</div>
-        </div>
-        <div class="body-hotspot" style="top:35%;left:48%;" data-zone="heart" onclick="bodySelect('heart')">
-          <div class="body-dot"></div><div class="body-dot-ring"></div>
-          <div class="body-label body-label-right">Heart</div>
-        </div>
-        <div class="body-hotspot" style="top:42%;left:40%;" data-zone="gut" onclick="bodySelect('gut')">
-          <div class="body-dot"></div><div class="body-dot-ring"></div>
-          <div class="body-label body-label-left">Gut</div>
-        </div>
-        <div class="body-hotspot" style="top:55%;left:44%;" data-zone="muscles" onclick="bodySelect('muscles')">
-          <div class="body-dot"></div><div class="body-dot-ring"></div>
-          <div class="body-label body-label-left">Muscles</div>
-        </div>
-        <div class="body-hotspot" style="top:68%;left:50%;" data-zone="joints" onclick="bodySelect('joints')">
-          <div class="body-dot"></div><div class="body-dot-ring"></div>
-          <div class="body-label body-label-right">Joints</div>
-        </div>
-        <svg viewBox="0 0 200 480" xmlns="http://www.w3.org/2000/svg" class="body-svg">
-          <ellipse cx="100" cy="45" rx="34" ry="40" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-          <rect x="88" y="82" width="24" height="18" rx="4" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-          <path d="M60 100 Q50 130 52 180 L70 200 L130 200 L148 180 Q150 130 140 100 Z" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-          <path d="M60 105 Q40 130 38 175 Q37 185 44 190" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-          <path d="M140 105 Q160 130 162 175 Q163 185 156 190" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-          <path d="M70 200 Q65 260 64 320 Q63 350 68 380" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-          <path d="M130 200 Q135 260 136 320 Q137 350 132 380" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-          <path d="M68 380 Q60 390 55 395 Q62 400 78 398 L82 380" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-          <path d="M132 380 Q140 390 145 395 Q138 400 122 398 L118 380" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-        </svg>
-      </div>
-      <div class="body-info-panel" id="bodyInfoPanel">
-        <div class="body-info-placeholder">
-          <div style="font-size:2rem;margin-bottom:12px;">👆</div>
-          <div style="font-size:1rem;font-weight:700;margin-bottom:8px;">Tap any hotspot</div>
-          <div style="font-size:0.8rem;opacity:0.55;">Explore how cannabis interacts with each part of your body</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
 
 <div class="full-divider"></div>
 
@@ -6198,290 +6486,6 @@
         <span class="legal-dot legal-ill"></span><span class="legal-legend-label">Illegal</span>
       </div>
       <div class="legal-states-grid" id="legalGrid"></div>
-    </div>
-
-  </div>
-</div>
-
-<!-- CANNABIS & FOOD -->
-
-<!-- BUDTENDER PRO -->
-<div id="budtender-pro" class="bpro-section">
-  <div class="bpro-inner">
-
-    <div class="bpro-header-row">
-      <div>
-        <div class="section-label"><span class="pg">06</span> ✦ Budtender Pro</div>
-        <div class="section-title">The tool built for <em>the floor.</em></div>
-        <p class="bpro-intro">Fast, practical cannabis intelligence for dispensary professionals. Customer intake, instant strain matching, terminology reference, and ready-to-use customer scripts — everything you need to give exceptional service on every transaction.</p>
-      </div>
-      <div class="bpro-badge">
-        <span class="bpro-badge-icon">🎓</span>
-        <span class="bpro-badge-text">Professional Reference</span>
-      </div>
-    </div>
-
-    <!-- TABS -->
-    <div class="bpro-tabs">
-      <button class="bpro-tab active" onclick="bproTab('intake')">
-        <span class="bpro-tab-icon">🧑‍💼</span>Customer Intake
-      </button>
-      <button class="bpro-tab" onclick="bproTab('glossary')">
-        <span class="bpro-tab-icon">📖</span>Glossary
-      </button>
-      <button class="bpro-tab" onclick="bproTab('scripts')">
-        <span class="bpro-tab-icon">💬</span>Talking Points
-      </button>
-      <button class="bpro-tab" onclick="bproTab('dosing')">
-        <span class="bpro-tab-icon">⚖️</span>Dosing Quick Ref
-      </button>
-    </div>
-
-    <!-- INTAKE PANEL -->
-    <div class="bpro-panel" id="bproIntake">
-      <div class="bpro-intake-grid">
-        <div class="bpro-intake-form">
-          <div class="bpro-form-title">Customer Profile</div>
-
-          <div class="bpro-field">
-            <div class="bpro-field-label">Experience Level</div>
-            <div class="bpro-chips" id="bproExpChips">
-              <button class="bpro-chip" onclick="bproSelect('exp','first')">First Time</button>
-              <button class="bpro-chip" onclick="bproSelect('exp','occasional')">Occasional</button>
-              <button class="bpro-chip" onclick="bproSelect('exp','regular')">Regular</button>
-              <button class="bpro-chip" onclick="bproSelect('exp','heavy')">Heavy User</button>
-            </div>
-          </div>
-
-          <div class="bpro-field">
-            <div class="bpro-field-label">Primary Goal <span class="bpro-field-hint">(select up to 2)</span></div>
-            <div class="bpro-chips" id="bproGoalChips">
-              <button class="bpro-chip" onclick="bproMulti('goal','sleep')">😴 Sleep</button>
-              <button class="bpro-chip" onclick="bproMulti('goal','pain')">💊 Pain Relief</button>
-              <button class="bpro-chip" onclick="bproMulti('goal','anxiety')">🧘 Anxiety</button>
-              <button class="bpro-chip" onclick="bproMulti('goal','energy')">⚡ Energy</button>
-              <button class="bpro-chip" onclick="bproMulti('goal','creativity')">🎨 Creativity</button>
-              <button class="bpro-chip" onclick="bproMulti('goal','mood')">😊 Mood Lift</button>
-              <button class="bpro-chip" onclick="bproMulti('goal','appetite')">🍽️ Appetite</button>
-              <button class="bpro-chip" onclick="bproMulti('goal','focus')">🎯 Focus</button>
-              <button class="bpro-chip" onclick="bproMulti('goal','social')">🎉 Social</button>
-              <button class="bpro-chip" onclick="bproMulti('goal','relax')">🛋️ Relax</button>
-            </div>
-          </div>
-
-          <div class="bpro-field">
-            <div class="bpro-field-label">Time of Use</div>
-            <div class="bpro-chips" id="bproTimeChips">
-              <button class="bpro-chip" onclick="bproSelect('time','morning')">Morning</button>
-              <button class="bpro-chip" onclick="bproSelect('time','afternoon')">Afternoon</button>
-              <button class="bpro-chip" onclick="bproSelect('time','evening')">Evening</button>
-              <button class="bpro-chip" onclick="bproSelect('time','nighttime')">Nighttime</button>
-            </div>
-          </div>
-
-          <div class="bpro-field">
-            <div class="bpro-field-label">Consumption Preference</div>
-            <div class="bpro-chips" id="bproConsChips">
-              <button class="bpro-chip" onclick="bproSelect('cons','flower')">🌿 Flower</button>
-              <button class="bpro-chip" onclick="bproSelect('cons','vape')">💨 Vape</button>
-              <button class="bpro-chip" onclick="bproSelect('cons','edible')">🍪 Edible</button>
-              <button class="bpro-chip" onclick="bproSelect('cons','capsule')">💊 Capsule / Softgel</button>
-              <button class="bpro-chip" onclick="bproSelect('cons','concentrate')">💎 Concentrate</button>
-              <button class="bpro-chip" onclick="bproSelect('cons','any')">No Preference</button>
-            </div>
-          </div>
-
-          <div class="bpro-field">
-            <div class="bpro-field-label">Any Concerns?</div>
-            <div class="bpro-chips" id="bproConcernChips">
-              <button class="bpro-chip" onclick="bproMulti('concern','anxious')">Anxiety-prone</button>
-              <button class="bpro-chip" onclick="bproMulti('concern','sensitive')">THC sensitive</button>
-              <button class="bpro-chip" onclick="bproMulti('concern','medication')">On medication</button>
-              <button class="bpro-chip" onclick="bproMulti('concern','driving')">Driving later</button>
-              <button class="bpro-chip" onclick="bproMulti('concern','none')">None</button>
-            </div>
-          </div>
-
-          <button class="bpro-recommend-btn" onclick="bproGenRec()">Generate Recommendation →</button>
-        </div>
-
-        <div class="bpro-rec-panel" id="bproRecPanel">
-          <div class="bpro-rec-placeholder">
-            <div class="bpro-rec-placeholder-icon">🌿</div>
-            <p>Fill in the customer profile and hit <strong>Generate Recommendation</strong> to see matched strains and talking points.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- GLOSSARY PANEL -->
-    <div class="bpro-panel bpro-panel-hidden" id="bproGlossary">
-      <div class="bpro-glossary-search-row">
-        <input class="bpro-glossary-input" id="bproGlossSearch" type="text" placeholder="Search terms..." oninput="bproFilterGloss()" />
-        <div class="bpro-gloss-cats" id="bproGlossCats"></div>
-      </div>
-      <div class="bpro-glossary-grid" id="bproGlossGrid"></div>
-    </div>
-
-    <!-- SCRIPTS PANEL -->
-    <div class="bpro-panel bpro-panel-hidden" id="bproScripts">
-      <div class="bpro-scripts-grid" id="bproScriptsGrid"></div>
-    </div>
-
-    <!-- DOSING REF PANEL -->
-    <div class="bpro-panel bpro-panel-hidden" id="bproDosing">
-      <div class="bpro-dosing-grid" id="bproDosingGrid"></div>
-    </div>
-
-    <!-- CannaQuant -->
-    <div id="consulting" class="consulting" style="margin-top: 80px; margin-bottom: 80px; padding-bottom: 80px; border-top: 1px solid rgba(82,183,136,0.12); padding-top: 80px;">
-      <div class="consulting-inner">
-
-        <div class="consulting-left">
-          <div class="section-label">✦ CannaQuant</div>
-          <div class="consulting-title">I'm your personal <em>CannaQuant.</em> Your budtender for life.</div>
-          <p class="consulting-desc">Think of me as your cannabis financial advisor — except instead of money, we're talking about your experience, your body, your goals, and your plant. Whether you're brand new or a seasoned connoisseur, I meet you exactly where you are. Real conversations. Real answers. No guesswork.</p>
-
-          <div class="consulting-stats">
-            <div>
-              <div class="consulting-stat-num">10+</div>
-              <div class="consulting-stat-label">Years on the floor</div>
-            </div>
-            <div>
-              <div class="consulting-stat-num">1000s</div>
-              <div class="consulting-stat-label">Customers helped</div>
-            </div>
-            <div>
-              <div class="consulting-stat-num">500+</div>
-              <div class="consulting-stat-label">Strains studied</div>
-            </div>
-            <div>
-              <div class="consulting-stat-num">100%</div>
-              <div class="consulting-stat-label">Real experience</div>
-            </div>
-          </div>
-
-          <a href="https://calendly.com/cannascenti" target="_blank" class="btn-primary">Book Your CannaQuant Session</a>
-        </div>
-
-        <div class="consulting-services">
-
-          <div class="consulting-service">
-            <div class="consulting-service-icon">🌿</div>
-            <div>
-              <div class="consulting-service-title">Personal Consumer Session</div>
-              <p class="consulting-service-desc">New to cannabis or just not getting the results you want? Tell me your goals, your lifestyle, your experience — I'll build you a personalized cannabis plan covering strains, products, dosing, and consumption methods. One session changes everything.</p>
-              <div class="consulting-service-price">1-on-1 · 60 minutes · Zoom or phone</div>
-            </div>
-          </div>
-
-          <div class="consulting-service">
-            <div class="consulting-service-icon">🏪</div>
-            <div>
-              <div class="consulting-service-title">Dispensary & Retail Consulting</div>
-              <p class="consulting-service-desc">Staff training, floor strategy, product curation, customer experience — built by someone who has actually managed a dispensary. Not theory. Systems that work.</p>
-              <div class="consulting-service-price">Custom packages · Multi-session programs available</div>
-            </div>
-          </div>
-
-          <div class="consulting-service">
-            <div class="consulting-service-icon">💼</div>
-            <div>
-              <div class="consulting-service-title">Cannabis Business Strategy</div>
-              <p class="consulting-service-desc">Launching a brand, entering the market, refining your positioning? Deep industry knowledge meets real commercial thinking. From startup to scale.</p>
-              <div class="consulting-service-price">Project-based · Initial call complimentary</div>
-            </div>
-          </div>
-
-          <div class="consulting-service">
-            <div class="consulting-service-icon">🎓</div>
-            <div>
-              <div class="consulting-service-title">Budtender & Staff Training</div>
-              <p class="consulting-service-desc">Your staff is your brand. Comprehensive training on strains, terpenes, customer conversations, product knowledge, and sales technique — from the floor up.</p>
-              <div class="consulting-service-price">Group sessions · In-person or virtual</div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- JOINT ROLLING SEMINARS -->
-        <div style="margin-top: 80px; border-top: 1px solid rgba(82,183,136,0.12); padding-top: 60px; grid-column: 1 / -1;">
-          <div class="seminars-header">
-            <div>
-              <div class="section-label">✦ Joint Rolling Seminars</div>
-              <div class="section-title">The art of <em>the roll</em></div>
-            </div>
-            <div>
-              <p style="font-size:14px; line-height:1.9; color:var(--cream); opacity:0.5;">Most people have been smoking for years and still can't roll a proper joint. No judgment — nobody taught them. That changes here. From your first joint to a perfectly engineered cross — every level covered, every technique mastered.</p>
-            </div>
-          </div>
-
-          <div class="seminars-levels" style="margin-top: 40px;">
-
-            <div class="seminar-level">
-              <span class="seminar-level-badge badge-beginner">Beginner</span>
-              <div class="seminar-level-title">Your First Roll</div>
-              <p class="seminar-level-desc">Never rolled before? No problem. We start from zero — papers, filters, grinding, and the basics of a solid roll that burns clean.</p>
-              <ul class="seminar-techniques">
-                <li>Choosing the right papers</li>
-                <li>Grinding consistency</li>
-                <li>The classic straight joint</li>
-                <li>Making a proper filter tip</li>
-                <li>Lighting and smoking technique</li>
-              </ul>
-              <a href="https://calendly.com/cannascenti" target="_blank" class="seminar-cta">Book This Class</a>
-            </div>
-
-            <div class="seminar-level">
-              <span class="seminar-level-badge badge-intermediate">Intermediate</span>
-              <div class="seminar-level-title">Level Up Your Roll</div>
-              <p class="seminar-level-desc">You can roll, but it's not consistent. This class tightens your technique and introduces blunts, backwoods, and the cone roll.</p>
-              <ul class="seminar-techniques">
-                <li>The perfect cone joint</li>
-                <li>Blunt rolling (cigarillo & backwood)</li>
-                <li>Dutch masters technique</li>
-                <li>Pre-roll consistency tricks</li>
-                <li>Infused rolls & kief crowning</li>
-              </ul>
-              <a href="https://calendly.com/cannascenti" target="_blank" class="seminar-cta">Book This Class</a>
-            </div>
-
-            <div class="seminar-level">
-              <span class="seminar-level-badge badge-advanced">Advanced</span>
-              <div class="seminar-level-title">The Masterclass</div>
-              <p class="seminar-level-desc">For the enthusiast who wants to go all the way. Intricate rolls, showpieces, and techniques that will genuinely impress anyone in the room.</p>
-              <ul class="seminar-techniques">
-                <li>The cross joint</li>
-                <li>Tulip & cannons</li>
-                <li>Multi-paper braided rolls</li>
-                <li>Diamond & star formations</li>
-                <li>Scorpion & windmill techniques</li>
-              </ul>
-              <a href="https://calendly.com/cannascenti" target="_blank" class="seminar-cta">Book This Class</a>
-            </div>
-
-          </div>
-
-          <div class="seminars-formats" style="margin-top: 40px;">
-            <div class="seminar-format">
-              <div class="seminar-format-icon">🖥</div>
-              <div class="seminar-format-title">Live Online Sessions</div>
-              <p class="seminar-format-desc">Zoom-based classes with real-time instruction. Learn from anywhere. Sessions are small-group, interactive, and recorded for replay.</p>
-            </div>
-            <div class="seminar-format">
-              <div class="seminar-format-icon">📍</div>
-              <div class="seminar-format-title">In-Person Workshops</div>
-              <p class="seminar-format-desc">Hands-on sessions in select cities. Everything provided. The most effective way to learn — direct feedback, small groups, full experience.</p>
-            </div>
-            <div class="seminar-format">
-              <div class="seminar-format-icon">🏢</div>
-              <div class="seminar-format-title">Private Events & Groups</div>
-              <p class="seminar-format-desc">Dispensary staff training, private parties, corporate events, and group bookings. Fully customized to your occasion and audience.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
     </div>
 
   </div>
