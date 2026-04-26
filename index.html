@@ -6275,10 +6275,8 @@
 
 </div>
 
-<div class="full-divider"></div>
-
-<!-- STRAIN LIBRARY (unified) -->
-<div id="strain-library" class="strain-finder" style="padding-top:60px; padding-bottom:60px;">
+<!-- STRAIN LIBRARY (moved into encyclopedia Strains tab) -->
+<div id="strain-library" class="strain-finder" style="display:none;">
   <div class="strain-finder-inner">
 
     <!-- Section header -->
@@ -9196,7 +9194,7 @@
     panel.style.animation = 'none';
     requestAnimationFrame(() => {
       panel.style.animation = '';
-      if (id === 'strains') { renderEncStrains(); isvSelect('indica'); }
+      if (id === 'strains') { renderSdbChips(); renderSdbGrid(); isvSelect('indica'); }
       if (id === 'history') { globeCleanup = initEncGlobe(); renderHistoryTimeline(); }
       if (id === 'terpenes') initTerpeneWheel();
       if (id === 'cannabinoids') molSelect('thc');
@@ -9291,25 +9289,101 @@
   function encContent(id) {
     switch(id) {
       case 'strains': return `
-        <div class="terpene-intro">
-          <div class="section-label">✦ Strains</div>
-          <div class="terpene-intro-title">Every strain, <em>decoded</em></div>
-          <p class="terpene-intro-desc">Browse our full strain database — genetics, terpenes, effects, THC range, and everything else you need to know before you buy. Click any strain to dive deep.</p>
+        <div style="margin-bottom:36px;">
+          <div class="section-label" style="margin-bottom:12px;">✦ Strain Library</div>
+          <div class="terpene-intro-title">Every strain. <em>Everything about it.</em></div>
+          <p class="terpene-intro-desc">Search results, full strain profiles, genetics, and the budtender training bible — all in one place.</p>
         </div>
-        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:28px;">
-          <input id="encStrainSearch" type="text" placeholder="Search by name, effect, terpene, flavor…" maxlength="100"
-            style="flex:1;min-width:200px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:3px;color:var(--cream);font-family:'Montserrat',sans-serif;font-size:13px;padding:10px 16px;outline:none;"
-            oninput="renderEncStrains(this.value)" onkeydown="if(event.key==='Enter')renderEncStrains(this.value)" />
-          <select id="encStrainTypeFilter" onchange="renderEncStrains()"
-            style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:3px;color:var(--cream);font-family:'Montserrat',sans-serif;font-size:12px;padding:10px 14px;outline:none;cursor:pointer;">
-            <option value="all">All Types</option>
-            <option value="sativa">Sativa</option>
-            <option value="indica">Indica</option>
-            <option value="hybrid">Hybrid</option>
-          </select>
-          <span id="encStrainCount" style="font-size:11px;color:rgba(242,234,216,0.4);letter-spacing:0.1em;white-space:nowrap;"></span>
+        <div class="sl-tabs" id="slTabs">
+          <button class="sl-tab active" id="slTabSearch" onclick="slTab('search')">Search Results</button>
+          <button class="sl-tab" id="slTabBrowse" onclick="slTab('browse')">Browse All</button>
+          <button class="sl-tab" id="slTabBible" onclick="slTab('bible')">Strain Bible</button>
         </div>
-        <div id="encStrainGrid" class="sdb-grid"></div>
+        <div class="sl-panel" id="slPanelSearch">
+          <div id="strainLoading" class="strain-loading">Finding your matches...</div>
+          <div id="strainError" class="strain-error"></div>
+          <div id="strainResults" class="strain-results">
+            <div id="strainResultsHeader" class="strain-results-header"></div>
+            <div id="strainCards" class="strain-cards"></div>
+          </div>
+          <div class="sl-empty-state" id="slEmptyState">
+            <p class="sl-empty-text">No search active yet.</p>
+            <p class="sl-empty-sub">Take the quiz or search above to see your personalized strain matches here — or browse all strains in the next tab.</p>
+            <button class="sl-empty-btn" onclick="slTab('browse')">Browse All Strains →</button>
+          </div>
+        </div>
+        <div class="sl-panel" id="slPanelBrowse" style="display:none;">
+          <div class="strain-db-filters" style="margin-bottom:28px;">
+            <div class="strain-db-type-tabs">
+              <button class="sdb-tab active" onclick="sdbFilter('all')">All</button>
+              <button class="sdb-tab sdb-indica" onclick="sdbFilter('indica')">Indica</button>
+              <button class="sdb-tab sdb-hybrid" onclick="sdbFilter('hybrid')">Hybrid</button>
+              <button class="sdb-tab sdb-sativa" onclick="sdbFilter('sativa')">Sativa</button>
+            </div>
+            <div class="strain-db-effect-chips" id="sdbEffectChips"></div>
+          </div>
+          <div class="strain-db-grid" id="sdbGrid"></div>
+          <div class="strain-db-detail" id="sdbDetail"></div>
+        </div>
+        <div class="sl-panel" id="slPanelBible" style="display:none;">
+          <div class="strain-bible-header" style="margin-bottom:48px;max-width:640px;">
+            <p class="strain-bible-sub">The 15 cornerstone strains every cannabis professional should know by heart. Master the genetics and lineage, and you'll never be out of a recommendation — even when you're out of stock.</p>
+          </div>
+          <div class="sb-tabs">
+            <button class="sb-tab active" onclick="sbFilter('all', event)">All 15</button>
+            <button class="sb-tab" onclick="sbFilter('indica', event)">Indica</button>
+            <button class="sb-tab" onclick="sbFilter('sativa', event)">Sativa</button>
+            <button class="sb-tab" onclick="sbFilter('hybrid', event)">Hybrid</button>
+            <button class="sb-tab" onclick="sbFilter('landrace', event)">Landrace / OG</button>
+          </div>
+          <div class="sb-grid" id="sbGrid"></div>
+          <div class="sb-detail" id="sbDetail">
+            <div class="sb-detail-header">
+              <div>
+                <div class="sb-detail-name" id="sbDetailName"></div>
+                <div class="sb-detail-type-badge" id="sbDetailType"></div>
+              </div>
+              <button class="sb-detail-close" onclick="sbCloseDetail()">×</button>
+            </div>
+            <div class="sb-detail-grid" id="sbDetailGrid"></div>
+            <div class="sb-children" id="sbDetailChildren"></div>
+          </div>
+          <div class="sb-quiz-wrap" id="sbQuizWrap">
+            <div class="sb-quiz-header">
+              <div class="section-label" style="margin-bottom:16px;">✦ Knowledge Test</div>
+              <h3 class="sb-quiz-title">Can you pass the Strain Bible quiz?</h3>
+              <p class="sb-quiz-sub">12 questions on genetics, lineage, and substitution logic. This is what separates a good budtender from a great one.</p>
+            </div>
+            <div class="sb-quiz-meta">
+              <span class="sb-quiz-meta-item">12 Questions</span>
+              <span class="sb-quiz-meta-item">·</span>
+              <span class="sb-quiz-meta-item">3 Categories</span>
+              <span class="sb-quiz-meta-item">·</span>
+              <span class="sb-quiz-meta-item">Instant Results</span>
+            </div>
+            <div id="sbQuizStart">
+              <button class="sb-quiz-start-btn" onclick="sbStartQuiz()">Start the Quiz →</button>
+            </div>
+            <div class="sb-q-wrap" id="sbQWrap">
+              <div class="sb-q-progress" id="sbQProgress">Question 1 of 12</div>
+              <div class="sb-q-progress-bar"><div class="sb-q-progress-fill" id="sbQProgressFill" style="width:0%"></div></div>
+              <div class="sb-q-text" id="sbQText"></div>
+              <div class="sb-q-context" id="sbQContext"></div>
+              <div class="sb-q-options" id="sbQOptions"></div>
+              <div class="sb-q-feedback" id="sbQFeedback"></div>
+              <button class="sb-q-next" id="sbQNext" onclick="sbNextQ()">Next question →</button>
+            </div>
+            <div class="sb-result-wrap" id="sbResultWrap">
+              <div class="sb-result-score" id="sbResultScore"></div>
+              <div class="sb-result-label">Correct Answers</div>
+              <div class="sb-result-verdict" id="sbResultVerdict"></div>
+              <p class="sb-result-desc" id="sbResultDesc"></p>
+              <div class="sb-result-breakdown" id="sbResultBreakdown"></div>
+              <button class="sb-retake-btn" onclick="sbRetakeQuiz()">Retake Quiz</button>
+              <button class="sb-quiz-start-btn" style="margin-left:12px;" onclick="slTab('bible')">Study the Bible →</button>
+            </div>
+          </div>
+        </div>
         <div class="isv-section" style="padding: 80px 0 0;">
           <div class="terpene-intro">
             <div class="section-label">✦ Know Your Cannabis</div>
