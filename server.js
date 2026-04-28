@@ -258,9 +258,49 @@ function searchStrains(query) {
   }));
 }
 
-function getStrains(query) {
-  const results = searchStrains(query);
-  return { strains: results };
+async function generateStrainWithAI(query) {
+  const prompt = `You are a cannabis expert. Give me a strain profile for "${query}".
+Respond ONLY with a JSON array of 1–4 matching strains (or the closest real strains if the exact name isn't real). Each object must have exactly these fields:
+{
+  "name": string,
+  "type": "Indica" | "Sativa" | "Hybrid",
+  "thc": "XX–XX%",
+  "cbd": "X.X%",
+  "description": string (2 sentences max),
+  "effects": [string, string, string, string, string]
+}
+No markdown, no explanation, just the JSON array.`;
+
+  const response = await client.messages.create({
+    model: "claude-haiku-4-5-20251001",
+    max_tokens: 600,
+    messages: [{ role: "user", content: prompt }]
+  });
+
+  const text = response.content[0].text.trim();
+  const json = text.startsWith('[') ? text : text.slice(text.indexOf('['), text.lastIndexOf(']') + 1);
+  return JSON.parse(json);
+}
+
+async function getStrains(query) {
+  const localResults = searchStrains(query);
+  // If we got at least one real match (score > 0), use local data
+  const hasRealMatch = localResults.length > 0 &&
+    STRAINS_DB.some(s => {
+      const n = s.name.toLowerCase();
+      return query.toLowerCase().split(/\s+/).some(w => w.length >= 3 && n.includes(w));
+    });
+
+  if (hasRealMatch) return { strains: localResults };
+
+  // Fall back to AI generation for unknown strains
+  try {
+    const aiStrains = await generateStrainWithAI(query);
+    return { strains: aiStrains, generated: true };
+  } catch (e) {
+    console.error('AI strain generation failed:', e.message);
+    return { strains: localResults };
+  }
 }
 
 // ─── Mary Jane chat ────────────────────────────────────────────────────────────
@@ -415,9 +455,14 @@ const server = http.createServer(async (req, res) => {
           res.end(JSON.stringify({ error: "Invalid query" }));
           return;
         }
-        const data = getStrains(query.trim());
-        res.writeHead(200, { "Content-Type": "application/json" });
-        res.end(JSON.stringify(data));
+        getStrains(query.trim()).then(data => {
+          res.writeHead(200, { "Content-Type": "application/json" });
+          res.end(JSON.stringify(data));
+        }).catch(err => {
+          console.error("Strain error:", err.message);
+          res.writeHead(500, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Failed to search strains" }));
+        });
       } catch (err) {
         console.error("Strain error:", err.message);
         res.writeHead(500, { "Content-Type": "application/json" });

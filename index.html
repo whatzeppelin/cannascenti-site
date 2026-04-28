@@ -7598,9 +7598,12 @@
 
     // Make sure the encyclopedia Strains tab is open so result elements exist in DOM
     const hub = document.getElementById('encyclopedia-hub');
-    if (encActiveTab !== 'strains') {
-      encTab('strains');
-      await new Promise(r => setTimeout(r, 200));
+    encTab('strains');
+    // Poll until DOM elements exist (up to 1s)
+    let waited = 0;
+    while (!document.getElementById('strainCards') && waited < 1000) {
+      await new Promise(r => setTimeout(r, 50));
+      waited += 50;
     }
     slTab('search');
     if (hub) hub.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -7611,7 +7614,7 @@
     const error = document.getElementById('strainError');
     const cards = document.getElementById('strainCards');
     const header = document.getElementById('strainResultsHeader');
-    if (!cards || !loading || !results) return; // DOM not ready, bail
+    if (!cards || !loading || !results) return;
 
     btn.disabled = true;
     loading.classList.add('visible');
