@@ -231,9 +231,11 @@ function searchStrains(query) {
     }
 
     // ⑦ Description keyword match (light bonus)
-    const descLower = strain.description.toLowerCase();
-    for (const word of words) {
-      if (word.length >= 4 && descLower.includes(word)) score += 1;
+    if (strain.description) {
+      const descLower = strain.description.toLowerCase();
+      for (const word of words) {
+        if (word.length >= 4 && descLower.includes(word)) score += 1;
+      }
     }
 
     return { strain, score };
