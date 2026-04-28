@@ -375,20 +375,62 @@
 
   /* NAV SEARCH */
   .nav-search-wrap {
-    display: flex;
-    align-items: center;
     flex: 1;
     max-width: 420px;
     margin: 0 36px;
+    position: relative;
+  }
+  .nav-search-inner {
+    display: flex;
+    align-items: center;
     background: rgba(82,183,136,0.06);
     border: 1px solid rgba(82,183,136,0.22);
     border-radius: 6px;
     overflow: hidden;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, background 0.2s;
   }
-  .nav-search-wrap:focus-within {
+  .nav-search-wrap:focus-within .nav-search-inner {
     border-color: rgba(82,183,136,0.5);
     background: rgba(82,183,136,0.1);
+  }
+  .nav-suggest-drop {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0; right: 0;
+    background: #141a0f;
+    border: 1px solid rgba(82,183,136,0.25);
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 9999;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+  }
+  .nav-suggest-drop.open { display: block; }
+  .nav-suggest-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 16px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.12s;
+  }
+  .nav-suggest-item:last-child { border-bottom: none; }
+  .nav-suggest-item:hover, .nav-suggest-item.active {
+    background: rgba(82,183,136,0.12);
+  }
+  .nav-suggest-icon { width: 14px; height: 14px; opacity: 0.35; flex-shrink: 0; }
+  .nav-suggest-name { font-size: 13px; color: var(--cream); font-weight: 500; flex: 1; }
+  .nav-suggest-type {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 2px 7px; border-radius: 4px; flex-shrink: 0;
+  }
+  .nav-suggest-type.t-indica { background: rgba(120,80,200,0.25); color: #b89ef8; }
+  .nav-suggest-type.t-sativa { background: rgba(255,180,40,0.2); color: #f5c842; }
+  .nav-suggest-type.t-hybrid { background: rgba(82,183,136,0.2); color: #52b788; }
+  .nav-suggest-footer {
+    padding: 9px 16px; font-size: 11px; color: rgba(242,234,216,0.35);
+    background: rgba(0,0,0,0.2); display: flex; align-items: center; gap: 6px;
   }
   .nav-search-input {
     flex: 1;
@@ -5643,9 +5685,14 @@
     <div class="nav-vert"></div>
     <span class="nav-wordmark">Cannascenti</span>
   </a>
-  <div class="nav-search-wrap">
-    <input id="strainInput" class="nav-search-input" type="text" placeholder="Search strains — mood, flavor, vibe, or name..." maxlength="200" onkeydown="if(event.key==='Enter')findStrains()" />
-    <button id="strainSearchBtn" class="nav-search-btn" onclick="findStrains()">Find Strains</button>
+  <div class="nav-search-wrap" id="navSearchWrap">
+    <div class="nav-search-inner">
+      <input id="strainInput" class="nav-search-input" type="text" placeholder="Search strains — mood, flavor, vibe, or name..." maxlength="200" autocomplete="off"
+        oninput="navSuggest(event)"
+        onkeydown="navSuggestKeydown(event);if(event.key==='Enter'&&!event.defaultPrevented)findStrains()" />
+      <button id="strainSearchBtn" class="nav-search-btn" onclick="findStrains()">Find Strains</button>
+    </div>
+    <div class="nav-suggest-drop" id="navSuggestDrop"></div>
   </div>
   <ul class="nav-links">
     <li><a href="#quiz" style="color:var(--bright-green);font-weight:600">Find Your Match</a></li>
@@ -7582,6 +7629,83 @@
       loading.classList.remove('visible');
     }
   }
+
+  // ─── Live autocomplete dropdown ───────────────────────────────────────────
+  let _suggestIdx = -1;
+
+  function navSuggest(e) {
+    const q = e.target.value.trim().toLowerCase();
+    const drop = document.getElementById('navSuggestDrop');
+    if (!drop) return;
+    if (q.length < 2) {
+      drop.classList.remove('open');
+      drop.innerHTML = '';
+      _suggestIdx = -1;
+      return;
+    }
+    const pool = (typeof SDB_DATA !== 'undefined' ? SDB_DATA : []);
+    // Sort: name starts-with first, then contains
+    const starts = pool.filter(s => s.name.toLowerCase().startsWith(q));
+    const contains = pool.filter(s => !s.name.toLowerCase().startsWith(q) && s.name.toLowerCase().includes(q));
+    const matches = [...starts, ...contains].slice(0, 7);
+    if (!matches.length) {
+      drop.classList.remove('open');
+      drop.innerHTML = '';
+      return;
+    }
+    const typeClass = { indica: 't-indica', sativa: 't-sativa', hybrid: 't-hybrid' };
+    drop.innerHTML = matches.map(s => {
+      const tc = typeClass[(s.type||'hybrid').toLowerCase()] || 't-hybrid';
+      const label = (s.type||'Hybrid').charAt(0).toUpperCase()+(s.type||'hybrid').slice(1);
+      return `<div class="nav-suggest-item" data-name="${s.name.replace(/"/g,'&quot;')}" onmousedown="navSuggestPick(this)">
+        <svg class="nav-suggest-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <span class="nav-suggest-name">${s.name}</span>
+        <span class="nav-suggest-type ${tc}">${label}</span>
+      </div>`;
+    }).join('') + `<div class="nav-suggest-footer">↵ press Enter to search all strains with AI</div>`;
+    _suggestIdx = -1;
+    drop.classList.add('open');
+  }
+
+  function navSuggestPick(el) {
+    document.getElementById('strainInput').value = el.dataset.name;
+    document.getElementById('navSuggestDrop').classList.remove('open');
+    _suggestIdx = -1;
+    findStrains();
+  }
+
+  function navSuggestKeydown(e) {
+    const drop = document.getElementById('navSuggestDrop');
+    if (!drop || !drop.classList.contains('open')) return;
+    const items = drop.querySelectorAll('.nav-suggest-item');
+    if (!items.length) return;
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      _suggestIdx = Math.min(_suggestIdx + 1, items.length - 1);
+      items.forEach((el, i) => el.classList.toggle('active', i === _suggestIdx));
+      if (items[_suggestIdx]) document.getElementById('strainInput').value = items[_suggestIdx].dataset.name;
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      _suggestIdx = Math.max(_suggestIdx - 1, -1);
+      items.forEach((el, i) => el.classList.toggle('active', i === _suggestIdx));
+    } else if (e.key === 'Escape') {
+      drop.classList.remove('open');
+      _suggestIdx = -1;
+      e.preventDefault();
+    } else if (e.key === 'Enter' && _suggestIdx >= 0 && items[_suggestIdx]) {
+      e.preventDefault();
+      navSuggestPick(items[_suggestIdx]);
+    }
+  }
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('#navSearchWrap')) {
+      const drop = document.getElementById('navSuggestDrop');
+      if (drop) drop.classList.remove('open');
+      _suggestIdx = -1;
+    }
+  });
 </script>
 
 <!-- STICKY BOTTOM QUIZ CTA (mobile only) -->
