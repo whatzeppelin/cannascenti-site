@@ -7596,6 +7596,15 @@
     const query = document.getElementById('strainInput').value.trim();
     if (!query) return;
 
+    // Make sure the encyclopedia Strains tab is open so result elements exist in DOM
+    const hub = document.getElementById('encyclopedia-hub');
+    if (encActiveTab !== 'strains') {
+      encTab('strains');
+      await new Promise(r => setTimeout(r, 120));
+    }
+    slTab('search');
+    if (hub) hub.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
     const btn = document.getElementById('strainSearchBtn');
     const loading = document.getElementById('strainLoading');
     const results = document.getElementById('strainResults');
@@ -7666,8 +7675,10 @@
       `;
       cards.appendChild(nudge);
 
+      const emptyState = document.getElementById('slEmptyState');
+      if (emptyState) emptyState.style.display = 'none';
       results.classList.add('visible');
-      document.getElementById('strain-library').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (hub) hub.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } catch (err) {
       error.textContent = 'Something went wrong. Make sure the server is running.';
       error.classList.add('visible');
