@@ -7667,7 +7667,7 @@
             <p class="strain-card-desc">${strain.description || ''}</p>
             <div class="strain-card-tags">${(strain.effects || []).map(e => `<span class="strain-tag">${e}</span>`).join('')}</div>
             <div class="strain-card-thc">THC ${strain.thc} · CBD ${strain.cbd}</div>
-            <a class="strain-card-find erba-link" href="https://weedmaps.com/dispensaries/erba-2/menu?q=${encodeURIComponent(strain.name)}" target="_blank" rel="noopener">🌿 Check availability at Erba Sawtelle →</a>
+            <a class="strain-card-find erba-link" href="https://www.erbasawtelle.com/menu" target="_blank" rel="noopener">🌿 Check availability at Erba Sawtelle →</a>
           `;
           cards.appendChild(card);
         });
@@ -7687,7 +7687,10 @@
               <span>11368 Santa Monica Blvd · Open daily · Premium cannabis dispensary</span>
             </div>
           </div>
-          <a class="erba-banner-btn" href="https://weedmaps.com/dispensaries/erba-2" target="_blank" rel="noopener">Shop Full Menu →</a>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+            <a class="erba-banner-btn" href="https://www.erbasawtelle.com/menu" target="_blank" rel="noopener">Shop Menu →</a>
+            <a class="erba-banner-btn" href="https://weedmaps.com/dispensaries/erba-2" target="_blank" rel="noopener" style="background:transparent;color:#52b788;border:1px solid rgba(82,183,136,0.4);">Weedmaps ↗</a>
+          </div>
         `;
         cards.appendChild(erba);
         results.style.display = 'block';
@@ -7723,7 +7726,7 @@
               <span class="product-card-price">${p.price_range || ''}</span>
               ${p.beginner_friendly ? '<span class="product-card-beginner">Beginner Friendly</span>' : ''}
             </div>
-            <a class="product-card-find erba-link" href="https://weedmaps.com/dispensaries/erba-2/menu?q=${encodeURIComponent(p.name)}" target="_blank" rel="noopener">🌿 Check availability at Erba Sawtelle →</a>
+            <a class="product-card-find erba-link" href="https://www.erbasawtelle.com/menu" target="_blank" rel="noopener">🌿 Check availability at Erba Sawtelle →</a>
           `;
           productCards.appendChild(card);
         });
@@ -10460,7 +10463,7 @@
       desc: 'The strain everyone keeps coming back to. Heavy relaxation that never feels sloppy — it hits your body first, then quiets your mind. Perfect for a long evening or winding down after a demanding week.',
       terps: ['Caryophyllene', 'Limonene', 'Myrcene'],
       link: 'https://weedmaps.com/strains/wedding-cake',
-      erbaLink: 'https://www.erbamarkets.com',
+      erbaLink: 'https://www.erbasawtelle.com/menu',
       cta: 'Find near you →'
     },
     {
@@ -10474,7 +10477,7 @@
       desc: 'Old school for a reason. Myrcene-heavy, muscle-relaxing, and steady — it doesn\'t knock you out fast, it walks you there. If you\'ve been struggling with sleep, this is the most reliable recommendation we make.',
       terps: ['Myrcene', 'Limonene', 'Caryophyllene'],
       link: 'https://weedmaps.com/strains/bubba-kush',
-      erbaLink: 'https://www.erbamarkets.com',
+      erbaLink: 'https://www.erbasawtelle.com/menu',
       cta: 'Find near you →'
     },
     {
@@ -10488,7 +10491,7 @@
       desc: 'Named after the cannabis activist and author for a reason — this strain represents the best of what sativa can be. Sharp, clear, creative, and social. The one you reach for when you actually need to get things done.',
       terps: ['Terpinolene', 'Pinene', 'Myrcene'],
       link: 'https://weedmaps.com/strains/jack-herer',
-      erbaLink: 'https://www.erbamarkets.com',
+      erbaLink: 'https://www.erbasawtelle.com/menu',
       cta: 'Find near you →'
     }
   ];
