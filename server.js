@@ -552,10 +552,12 @@ ${isPrivacy ? `<h1>Privacy Policy</h1><p>Last updated: April 2026</p>
 <h2>Contact</h2><p>Questions? Email us at hello@cannascenti.com.</p>` : `<h1>Terms of Use</h1><p>Last updated: April 2026</p>
 <h2>Educational Content Only</h2><p>Cannascenti provides cannabis education, strain information, and recommendations for informational purposes only. We do not sell cannabis or cannabis products.</p>
 <h2>Age Requirement</h2><p>By using this site you confirm you are 21 years of age or older (or the legal age in your jurisdiction). Cannabis laws vary by location — it is your responsibility to know and follow local laws.</p>
+<h2>Intellectual Property</h2><p>All content on this site — including but not limited to text, editorial copy, strain descriptions, product guides, design, graphics, layout, code, branding, the "Cannascenti" name, and the overall look and feel of the platform — is the exclusive intellectual property of Cannascenti and is protected by United States and international copyright law.</p><p>You may not reproduce, copy, republish, upload, post, transmit, scrape, or distribute any portion of this site's content in any form without prior written permission from Cannascenti. Unauthorized use constitutes copyright infringement and may result in legal action.</p><p>"Cannascenti" is a trademark. You may not use the Cannascenti name, logo, or brand in any manner that could cause confusion, imply endorsement, or misrepresent affiliation with Cannascenti without express written consent.</p>
+<h2>No Scraping or Automated Access</h2><p>You may not use bots, scrapers, crawlers, or any automated tools to access, index, or extract content from this site. Any such activity is a violation of these Terms and may violate the Computer Fraud and Abuse Act.</p>
 <h2>No Medical Advice</h2><p>Nothing on this site constitutes medical advice. Consult a healthcare professional before using cannabis for medical purposes.</p>
-<h2>Affiliate Links</h2><p>Some strain links on this site may be affiliate links. We may earn a small commission if you purchase through them, at no cost to you.</p>
 <h2>Limitation of Liability</h2><p>Cannascenti is not liable for any decisions made based on content found on this site. Use information responsibly.</p>
-<h2>Contact</h2><p>Questions? Email us at hello@cannascenti.com.</p>`}
+<h2>Changes to These Terms</h2><p>We reserve the right to update these Terms at any time. Continued use of the site after changes constitutes acceptance of the updated Terms.</p>
+<h2>Contact</h2><p>Questions or legal inquiries? Email us at hello@cannascenti.com.</p>`}
 </body></html>`;
     res.writeHead(200, { "Content-Type": "text/html", "Cache-Control": "public, max-age=86400" });
     res.end(html);
