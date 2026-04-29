@@ -1616,6 +1616,52 @@
   .strain-card-find { display: block; margin-top: 18px; font-size: 11px; letter-spacing: 0.12em; color: var(--bright-green); text-decoration: none; opacity: 0.7; transition: opacity 0.2s; }
   .strain-card-find:hover { opacity: 1; }
   .strain-results-nudge { grid-column: 1 / -1; margin-top: 8px; padding: 28px 32px; background: rgba(82,183,136,0.04); border: 1px solid rgba(82,183,136,0.15); border-radius: 4px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+  /* ── Product Cards ─────────────────────────────────────────────────────── */
+  .product-results { margin-top: 36px; }
+  .product-results-header { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(242,234,216,0.4); margin-bottom: 18px; font-weight: 600; }
+  .product-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+  .product-card {
+    background: rgba(20,26,16,0.7);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 24px;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: strainCardIn 0.4s ease forwards;
+  }
+  .product-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+  .product-card-name { font-size: 17px; font-weight: 700; color: var(--cream); line-height: 1.25; }
+  .product-card-brand { font-size: 11px; color: rgba(242,234,216,0.4); margin-top: 3px; letter-spacing: 0.06em; }
+  .product-card-cat {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 4px 9px; border-radius: 5px; white-space: nowrap; flex-shrink: 0;
+  }
+  .pc-edibles   { background: rgba(255,140,60,0.18); color: #ffab6e; border: 1px solid rgba(255,140,60,0.25); }
+  .pc-vapes     { background: rgba(100,180,255,0.15); color: #7ac4ff; border: 1px solid rgba(100,180,255,0.2); }
+  .pc-concentrates { background: rgba(255,210,60,0.15); color: #f5c842; border: 1px solid rgba(255,210,60,0.2); }
+  .pc-pre-rolls { background: rgba(160,120,80,0.2); color: #c8a87a; border: 1px solid rgba(160,120,80,0.25); }
+  .pc-flower    { background: rgba(82,183,136,0.15); color: #52b788; border: 1px solid rgba(82,183,136,0.2); }
+  .pc-topicals  { background: rgba(180,140,220,0.15); color: #c4a0e8; border: 1px solid rgba(180,140,220,0.2); }
+  .pc-tinctures { background: rgba(80,200,180,0.15); color: #50c8b4; border: 1px solid rgba(80,200,180,0.2); }
+  .pc-capsules  { background: rgba(160,160,200,0.15); color: #b0b0d8; border: 1px solid rgba(160,160,200,0.2); }
+  .pc-other     { background: rgba(120,120,120,0.15); color: #aaa; border: 1px solid rgba(120,120,120,0.2); }
+  .product-card-desc { font-size: 13px; color: rgba(242,234,216,0.65); line-height: 1.65; margin-bottom: 14px; }
+  .product-card-meta { display: flex; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+  .product-card-pill {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 11px; color: rgba(242,234,216,0.55);
+    background: rgba(255,255,255,0.04); border-radius: 4px; padding: 4px 10px;
+  }
+  .product-card-pill strong { color: var(--cream); }
+  .product-card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .product-card-tag { font-size: 11px; padding: 3px 9px; border-radius: 20px; background: rgba(82,183,136,0.1); color: rgba(82,183,136,0.9); border: 1px solid rgba(82,183,136,0.18); }
+  .product-card-tip { font-size: 12px; color: rgba(242,234,216,0.5); font-style: italic; line-height: 1.5; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 12px; margin-top: 4px; }
+  .product-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; }
+  .product-card-price { font-size: 12px; color: rgba(242,234,216,0.45); }
+  .product-card-beginner { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; padding: 3px 8px; border-radius: 4px; background: rgba(82,183,136,0.15); color: #52b788; border: 1px solid rgba(82,183,136,0.2); }
+  .product-card-find { display: block; margin-top: 14px; font-size: 11px; letter-spacing: 0.12em; color: var(--bright-green); text-decoration: none; opacity: 0.7; transition: opacity 0.2s; }
+  .product-card-find:hover { opacity: 1; }
   .strain-nudge-text { font-size: 14px; color: rgba(242,234,216,0.55); line-height: 1.5; }
   .strain-nudge-text em { font-style: normal; color: var(--cream); }
   .strain-nudge-btn { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--bright-green); text-decoration: none; white-space: nowrap; transition: opacity 0.2s; }
@@ -7533,10 +7579,13 @@
     const query = document.getElementById('strainInput').value.trim();
     if (!query) return;
 
-    // Make sure the encyclopedia Strains tab is open so result elements exist in DOM
+    // Close autocomplete dropdown
+    const drop = document.getElementById('navSuggestDrop');
+    if (drop) drop.classList.remove('open');
+
+    // Open encyclopedia Strains tab so result elements exist in DOM
     const hub = document.getElementById('encyclopedia-hub');
     encTab('strains');
-    // Poll until DOM elements exist (up to 1s)
     let waited = 0;
     while (!document.getElementById('strainCards') && waited < 1000) {
       await new Promise(r => setTimeout(r, 50));
@@ -7551,76 +7600,108 @@
     const error = document.getElementById('strainError');
     const cards = document.getElementById('strainCards');
     const header = document.getElementById('strainResultsHeader');
+    const productResults = document.getElementById('productResults');
+    const productCards = document.getElementById('productCards');
+    const productHeader = document.getElementById('productResultsHeader');
     if (!cards || !loading || !results) return;
 
     btn.disabled = true;
     loading.classList.add('visible');
     results.classList.remove('visible');
+    results.style.display = 'none';
+    if (productResults) productResults.style.display = 'none';
     error.classList.remove('visible');
     cards.innerHTML = '';
+    if (productCards) productCards.innerHTML = '';
 
     try {
-      const res = await fetch('/api/strains', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query })
-      });
+      // Fetch strains and products in parallel
+      const [strainRes, productRes] = await Promise.all([
+        fetch('/api/strains', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ query }) }),
+        fetch('/api/products', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ query }) })
+      ]);
 
-      if (!res.ok) throw new Error('Server error');
-      const data = await res.json();
+      const strainData = strainRes.ok ? await strainRes.json() : { strains: [] };
+      const productData = productRes.ok ? await productRes.json() : { products: [] };
+      const hasStrains = strainData.strains && strainData.strains.length > 0;
+      const hasProducts = productData.products && productData.products.length > 0;
 
-      if (!data.strains || data.strains.length === 0) {
-        error.textContent = 'No strains found for that search. Try different words.';
+      if (!hasStrains && !hasProducts) {
+        error.textContent = 'Nothing found for that search. Try a strain name, mood, or product type.';
         error.classList.add('visible');
         return;
       }
 
-      header.textContent = `${data.strains.length} strains matched for "${query}"`;
-      data.strains.forEach((strain, i) => {
-        const typeClass = {
-          'Sativa': 'type-sativa',
-          'Indica': 'type-indica',
-          'Hybrid': 'type-hybrid'
-        }[strain.type] || 'type-hybrid';
+      // ── Render strain cards ──
+      if (hasStrains) {
+        header.textContent = `${strainData.strains.length} strain${strainData.strains.length > 1 ? 's' : ''} matched for "${query}"`;
+        strainData.strains.forEach((strain, i) => {
+          const typeClass = { 'Sativa': 'type-sativa', 'Indica': 'type-indica', 'Hybrid': 'type-hybrid' }[strain.type] || 'type-hybrid';
+          const slug = strain.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+          const card = document.createElement('div');
+          card.className = 'strain-card';
+          card.style.animationDelay = `${i * 0.06}s`;
+          card.innerHTML = `
+            <div class="strain-card-rank">${i === 0 ? '⭐ Top Match' : '#' + (i + 1)}</div>
+            <div class="strain-card-header">
+              <div class="strain-card-name">${strain.name}</div>
+              <span class="strain-card-type ${typeClass}">${strain.type}</span>
+            </div>
+            <p class="strain-card-desc">${strain.description || ''}</p>
+            <div class="strain-card-tags">${(strain.effects || []).map(e => `<span class="strain-tag">${e}</span>`).join('')}</div>
+            <div class="strain-card-thc">THC ${strain.thc} · CBD ${strain.cbd}</div>
+            <a class="strain-card-find" href="https://weedmaps.com/strains/${slug}" target="_blank" rel="noopener">Find this near you →</a>
+          `;
+          cards.appendChild(card);
+        });
+        const nudge = document.createElement('div');
+        nudge.className = 'strain-results-nudge';
+        nudge.innerHTML = `<p class="strain-nudge-text">Want results tailored to <em>exactly</em> how you want to feel?</p><a href="#quiz" class="strain-nudge-btn">Take the 30-second match quiz →</a>`;
+        cards.appendChild(nudge);
+        results.style.display = 'block';
+        results.classList.add('visible');
+      }
 
-        const slug = strain.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-        const weedmapsLink = `https://weedmaps.com/strains/${slug}`;
-        const rankLabel = i === 0 ? '⭐ Top Match' : `#${i + 1}`;
-
-        const card = document.createElement('div');
-        card.className = 'strain-card';
-        card.style.animationDelay = `${i * 0.06}s`;
-        card.innerHTML = `
-          <div class="strain-card-rank">${rankLabel}</div>
-          <div class="strain-card-header">
-            <div class="strain-card-name">${strain.name}</div>
-            <span class="strain-card-type ${typeClass}">${strain.type}</span>
-          </div>
-          <p class="strain-card-desc">${strain.description || ''}</p>
-          <div class="strain-card-tags">
-            ${strain.effects.map(e => `<span class="strain-tag">${e}</span>`).join('')}
-          </div>
-          <div class="strain-card-thc">THC ${strain.thc} · CBD ${strain.cbd}</div>
-          <a class="strain-card-find" href="${weedmapsLink}" target="_blank" rel="noopener"
-             onclick="track('strain_search_click',{strain:'${strain.name}',query:'${query.replace(/'/g,"\\'")}',rank:${i+1}})">Find this near you →</a>
-        `;
-        cards.appendChild(card);
-      });
-
-      // Post-results quiz nudge
-      const nudge = document.createElement('div');
-      nudge.className = 'strain-results-nudge';
-      nudge.innerHTML = `
-        <p class="strain-nudge-text">Want results tailored to <em>exactly</em> how you want to feel?</p>
-        <a href="#quiz" class="strain-nudge-btn">Take the 30-second match quiz →</a>
-      `;
-      cards.appendChild(nudge);
+      // ── Render product cards ──
+      if (hasProducts && productCards && productResults && productHeader) {
+        const catClass = { 'Edibles': 'pc-edibles', 'Vapes': 'pc-vapes', 'Concentrates': 'pc-concentrates', 'Pre-Rolls': 'pc-pre-rolls', 'Flower': 'pc-flower', 'Topicals': 'pc-topicals', 'Tinctures': 'pc-tinctures', 'Capsules': 'pc-capsules' };
+        productHeader.textContent = `${productData.products.length} product type${productData.products.length > 1 ? 's' : ''} matched`;
+        productData.products.forEach((p, i) => {
+          const cc = catClass[p.category] || 'pc-other';
+          const slug = (p.name).toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+          const card = document.createElement('div');
+          card.className = 'product-card';
+          card.style.animationDelay = `${i * 0.08}s`;
+          card.innerHTML = `
+            <div class="product-card-top">
+              <div>
+                <div class="product-card-name">${p.name}</div>
+                ${p.brand ? `<div class="product-card-brand">${p.brand}</div>` : ''}
+              </div>
+              <span class="product-card-cat ${cc}">${p.category}</span>
+            </div>
+            <p class="product-card-desc">${p.description || ''}</p>
+            <div class="product-card-meta">
+              <div class="product-card-pill">Onset <strong>${p.onset || '—'}</strong></div>
+              <div class="product-card-pill">Duration <strong>${p.duration || '—'}</strong></div>
+            </div>
+            <div class="product-card-tags">${(p.best_for || []).map(t => `<span class="product-card-tag">${t}</span>`).join('')}</div>
+            <p class="product-card-tip">💡 ${p.dosing_tip || ''}</p>
+            <div class="product-card-footer">
+              <span class="product-card-price">${p.price_range || ''}</span>
+              ${p.beginner_friendly ? '<span class="product-card-beginner">Beginner Friendly</span>' : ''}
+            </div>
+            <a class="product-card-find" href="https://weedmaps.com/products?q=${encodeURIComponent(p.name)}" target="_blank" rel="noopener">Find products near you →</a>
+          `;
+          productCards.appendChild(card);
+        });
+        productResults.style.display = 'block';
+      }
 
       const emptyState = document.getElementById('slEmptyState');
       if (emptyState) emptyState.style.display = 'none';
-      results.style.display = 'block';
-      results.classList.add('visible');
       if (hub) hub.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
     } catch (err) {
       error.textContent = 'Something went wrong. Make sure the server is running.';
       error.classList.add('visible');
@@ -9330,9 +9411,13 @@
             <div id="strainResultsHeader" class="strain-results-header"></div>
             <div id="strainCards" class="strain-cards"></div>
           </div>
+          <div class="product-results" id="productResults" style="display:none;">
+            <div id="productResultsHeader" class="product-results-header"></div>
+            <div id="productCards" class="product-cards"></div>
+          </div>
           <div class="sl-empty-state" id="slEmptyState">
             <p class="sl-empty-text">No search active yet.</p>
-            <p class="sl-empty-sub">Take the quiz or search above to see your personalized strain matches here — or browse all strains in the next tab.</p>
+            <p class="sl-empty-sub">Search for a strain, product type, or brand above — or browse all strains in the next tab.</p>
             <button class="sl-empty-btn" onclick="slTab('browse')">Browse All Strains →</button>
           </div>
         </div>

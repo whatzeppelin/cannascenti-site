@@ -282,6 +282,42 @@ No markdown, no explanation, just the JSON array.`;
   return JSON.parse(json);
 }
 
+async function generateProductsWithAI(query) {
+  const prompt = `You are a cannabis retail expert. A user searched for: "${query}"
+
+Is this a cannabis PRODUCT search? Products include: edibles (gummies, chocolates, beverages, baked goods), vapes/cartridges, concentrates (wax, shatter, rosin, live resin, distillate, hash, kief), pre-rolls/joints, flower/bud, topicals (creams, patches, balms), tinctures, capsules/pills, or specific cannabis brands (Stiiizy, Kiva, Wyld, Wana, Raw Garden, Cookies, Select, Heavy Hitters, etc.).
+
+If this is a PURE strain name search (like "Blue Dream", "OG Kush", "Gorilla Glue") with no product type context — respond with exactly: []
+
+If YES it's a product query, respond with a JSON array of 1–3 relevant product results:
+[{
+  "name": string (product name or category, e.g. "Cannabis Gummies" or "Stiiizy Pod"),
+  "category": one of "Edibles" | "Vapes" | "Concentrates" | "Pre-Rolls" | "Flower" | "Topicals" | "Tinctures" | "Capsules",
+  "brand": string or null,
+  "description": string (2 sentences about this product type or brand),
+  "onset": string (e.g. "30–90 min" for edibles, "Immediate" for vapes),
+  "duration": string (e.g. "4–8 hours"),
+  "best_for": [string, string, string],
+  "dosing_tip": string (1 practical sentence),
+  "beginner_friendly": boolean,
+  "price_range": string (e.g. "$15–35 per unit")
+}]
+
+No markdown, no explanation — only the JSON array.`;
+
+  const response = await client.messages.create({
+    model: "claude-haiku-4-5-20251001",
+    max_tokens: 1000,
+    messages: [{ role: "user", content: prompt }]
+  });
+
+  const text = response.content[0].text.trim();
+  const start = text.indexOf('[');
+  const end = text.lastIndexOf(']') + 1;
+  if (start === -1) return [];
+  return JSON.parse(text.slice(start, end));
+}
+
 async function getStrains(query) {
   const localResults = searchStrains(query);
   // If we got at least one real match (score > 0), use local data
@@ -467,6 +503,34 @@ const server = http.createServer(async (req, res) => {
         console.error("Strain error:", err.message);
         res.writeHead(500, { "Content-Type": "application/json" });
         res.end(JSON.stringify({ error: "Failed to search strains" }));
+      }
+    });
+    return;
+  }
+
+  // ─── Product search ────────────────────────────────────────────────────────
+  if (req.method === "POST" && req.url === "/api/products") {
+    let body = "";
+    req.on("data", chunk => { body += chunk; });
+    req.on("end", () => {
+      try {
+        const { query } = JSON.parse(body);
+        if (!query || typeof query !== "string" || query.length > 200) {
+          res.writeHead(400, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Invalid query" }));
+          return;
+        }
+        generateProductsWithAI(query.trim()).then(data => {
+          res.writeHead(200, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ products: data }));
+        }).catch(err => {
+          console.error("Product error:", err.message);
+          res.writeHead(200, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ products: [] }));
+        });
+      } catch (err) {
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ products: [] }));
       }
     });
     return;
