@@ -1662,6 +1662,23 @@
   .product-card-beginner { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; padding: 3px 8px; border-radius: 4px; background: rgba(82,183,136,0.15); color: #52b788; border: 1px solid rgba(82,183,136,0.2); }
   .product-card-find { display: block; margin-top: 14px; font-size: 11px; letter-spacing: 0.12em; color: var(--bright-green); text-decoration: none; opacity: 0.7; transition: opacity 0.2s; }
   .product-card-find:hover { opacity: 1; }
+  .erba-link { color: #52b788 !important; }
+  .erba-banner {
+    margin-top: 28px; padding: 20px 24px;
+    background: linear-gradient(135deg, rgba(82,183,136,0.08) 0%, rgba(20,26,16,0.6) 100%);
+    border: 1px solid rgba(82,183,136,0.22); border-radius: 10px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  }
+  .erba-banner-left { display: flex; align-items: center; gap: 14px; }
+  .erba-banner-dot { width: 10px; height: 10px; border-radius: 50%; background: #52b788; box-shadow: 0 0 8px rgba(82,183,136,0.6); flex-shrink: 0; }
+  .erba-banner-text strong { display: block; font-size: 13px; color: var(--cream); font-weight: 700; margin-bottom: 2px; }
+  .erba-banner-text span { font-size: 11px; color: rgba(242,234,216,0.45); }
+  .erba-banner-btn {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: #0a0e06; background: #52b788; padding: 9px 18px; border-radius: 5px;
+    text-decoration: none; white-space: nowrap; transition: opacity 0.2s; flex-shrink: 0;
+  }
+  .erba-banner-btn:hover { opacity: 0.85; }
   .strain-nudge-text { font-size: 14px; color: rgba(242,234,216,0.55); line-height: 1.5; }
   .strain-nudge-text em { font-style: normal; color: var(--cream); }
   .strain-nudge-btn { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--bright-green); text-decoration: none; white-space: nowrap; transition: opacity 0.2s; }
@@ -7650,7 +7667,7 @@
             <p class="strain-card-desc">${strain.description || ''}</p>
             <div class="strain-card-tags">${(strain.effects || []).map(e => `<span class="strain-tag">${e}</span>`).join('')}</div>
             <div class="strain-card-thc">THC ${strain.thc} · CBD ${strain.cbd}</div>
-            <a class="strain-card-find" href="https://weedmaps.com/strains/${slug}" target="_blank" rel="noopener">Find this near you →</a>
+            <a class="strain-card-find erba-link" href="https://weedmaps.com/dispensaries/erba-2/menu?q=${encodeURIComponent(strain.name)}" target="_blank" rel="noopener">🌿 Check availability at Erba Sawtelle →</a>
           `;
           cards.appendChild(card);
         });
@@ -7658,6 +7675,21 @@
         nudge.className = 'strain-results-nudge';
         nudge.innerHTML = `<p class="strain-nudge-text">Want results tailored to <em>exactly</em> how you want to feel?</p><a href="#quiz" class="strain-nudge-btn">Take the 30-second match quiz →</a>`;
         cards.appendChild(nudge);
+
+        // Erba dispensary banner
+        const erba = document.createElement('div');
+        erba.className = 'erba-banner';
+        erba.innerHTML = `
+          <div class="erba-banner-left">
+            <div class="erba-banner-dot"></div>
+            <div class="erba-banner-text">
+              <strong>Erba Sawtelle — Los Angeles</strong>
+              <span>11368 Santa Monica Blvd · Open daily · Premium cannabis dispensary</span>
+            </div>
+          </div>
+          <a class="erba-banner-btn" href="https://weedmaps.com/dispensaries/erba-2" target="_blank" rel="noopener">Shop Full Menu →</a>
+        `;
+        cards.appendChild(erba);
         results.style.display = 'block';
         results.classList.add('visible');
       }
@@ -7691,7 +7723,7 @@
               <span class="product-card-price">${p.price_range || ''}</span>
               ${p.beginner_friendly ? '<span class="product-card-beginner">Beginner Friendly</span>' : ''}
             </div>
-            <a class="product-card-find" href="https://weedmaps.com/products?q=${encodeURIComponent(p.name)}" target="_blank" rel="noopener">Find products near you →</a>
+            <a class="product-card-find erba-link" href="https://weedmaps.com/dispensaries/erba-2/menu?q=${encodeURIComponent(p.name)}" target="_blank" rel="noopener">🌿 Check availability at Erba Sawtelle →</a>
           `;
           productCards.appendChild(card);
         });
