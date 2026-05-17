@@ -536,6 +536,89 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // ─── Product Scanner (Vision API) ─────────────────────────────────────────
+  if (req.method === "POST" && req.url === "/api/scan") {
+    let body = "";
+    req.on("data", chunk => { body += chunk; });
+    req.on("end", async () => {
+      try {
+        const { image, mediaType } = JSON.parse(body);
+        const validTypes = ["image/jpeg", "image/png", "image/webp", "image/gif"];
+        if (!image || typeof image !== "string" || !validTypes.includes(mediaType)) {
+          res.writeHead(400, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Invalid image data" }));
+          return;
+        }
+        if (image.length > 6_000_000) {
+          res.writeHead(400, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Image too large. Please use a photo under 4MB." }));
+          return;
+        }
+
+        const response = await client.messages.create({
+          model: "claude-opus-4-6",
+          max_tokens: 1024,
+          system: `You are Mary Jane — the AI cannabis intelligence guide for Cannascenti, the world's most authoritative cannabis platform. You are analyzing a cannabis product photo.
+
+Identify the product and return a full product intelligence card. Be specific where label text is legible. Use expert strain knowledge to fill in terpenes, effects, and flavors when they aren't explicitly shown.
+
+Respond with ONLY valid JSON — no markdown, no explanation, no code fences. Just the raw JSON object.
+
+Return this exact structure:
+{
+  "productName": "product name as shown on label",
+  "brand": "brand name",
+  "category": "Flower | Concentrate | Edible | Vape | Pre-roll | Tincture | Topical | Unknown",
+  "strainType": "Indica | Sativa | Hybrid | CBD | Unknown",
+  "strainName": "strain name if visible, else empty string",
+  "lineage": "parent strains if known e.g. OG Kush × Durban Poison, else empty string",
+  "thc": "THC% if visible e.g. 24.3%, else Not visible",
+  "cbd": "CBD% if visible, else Not visible",
+  "terpenes": ["3 to 5 terpene names"],
+  "effects": ["4 to 6 expected effect labels"],
+  "flavors": ["3 to 5 flavor notes"],
+  "pairings": ["3 to 4 activity or pairing suggestions"],
+  "reviewSummary": "2 to 3 sentence Mary Jane expert take on this product — what makes it special, who it's for, how to enjoy it best",
+  "confidence": "High | Medium | Low"
+}
+
+If no cannabis product is visible, return:
+{"error": "No cannabis product detected. Try a clearer photo of the label or packaging."}`,
+          messages: [{
+            role: "user",
+            content: [
+              {
+                type: "image",
+                source: { type: "base64", media_type: mediaType, data: image }
+              },
+              { type: "text", text: "Analyze this cannabis product and return the JSON intelligence card." }
+            ]
+          }]
+        });
+
+        const raw = response.content[0].text.trim();
+        let parsed;
+        try {
+          parsed = JSON.parse(raw);
+        } catch {
+          const match = raw.match(/\{[\s\S]*\}/);
+          if (match) parsed = JSON.parse(match[0]);
+          else throw new Error("No JSON in vision response");
+        }
+
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(parsed));
+      } catch (err) {
+        console.error("Scan error:", err.message);
+        if (!res.headersSent) {
+          res.writeHead(500, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Failed to analyze image. Please try again." }));
+        }
+      }
+    });
+    return;
+  }
+
   // ─── Legal pages ──────────────────────────────────────────────────────────
   if (req.method === "GET" && (req.url === "/privacy" || req.url === "/terms")) {
     const isPrivacy = req.url === "/privacy";
