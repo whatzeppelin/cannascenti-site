@@ -2133,6 +2133,18 @@
     .consulting-inner { grid-template-columns: 1fr; gap: 48px; }
     .consulting-stats { grid-template-columns: 1fr 1fr; }
   }
+  @media (max-width: 480px) {
+    /* Joint Rolling */
+    .seminars { padding: 48px 16px; }
+    .seminars-header { gap: 16px; }
+    .seminar-level { padding: 24px 16px; }
+    .seminars-formats { padding-top: 32px; }
+    /* CannaQuant */
+    .consulting { padding: 48px 16px; }
+    .consulting-inner { gap: 32px; }
+    .consulting-stats { grid-template-columns: 1fr; }
+    .consulting-service { padding: 20px 16px; }
+  }
 
   /* ===================== TERPENES ===================== */
   .terpene-section {
@@ -4326,11 +4338,17 @@
   }
   @media(max-width:768px) {
     .bpro-section { padding:60px 24px; }
+    .bpro-header-row { flex-direction:column; gap:20px; align-items:flex-start; }
     .bpro-scripts-grid { grid-template-columns:1fr; }
     .bpro-glossary-grid { grid-template-columns:1fr 1fr; }
-    .bpro-tabs { overflow-x:auto; }
+    .bpro-tabs { overflow-x:auto; -webkit-overflow-scrolling:touch; flex-wrap:nowrap; }
+    .bpro-tab { flex-shrink:0; }
   }
-  @media(max-width:480px) { .bpro-glossary-grid { grid-template-columns:1fr; } }
+  @media(max-width:480px) {
+    .bpro-section { padding:48px 16px; }
+    .bpro-glossary-grid { grid-template-columns:1fr; }
+    .bpro-dosing-grid { grid-template-columns:1fr; }
+  }
 
   /* ===================== CANNABIS & FOOD ===================== */
   .cannafood-section {
@@ -6248,6 +6266,32 @@
     .hero-orb-1, .hero-orb-2 { display: none; }
   }
 
+  /* ===================== INLINE SECTION OVERRIDES ===================== */
+  /* CannaQuant inline (inside bpro) */
+  .consulting--inline {
+    margin-top: 80px;
+    margin-bottom: 80px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  /* Joint rolling wrapper (inside consulting grid, spans full width) */
+  .joint-rolling-wrap {
+    margin-top: 80px;
+    border-top: 1px solid rgba(82,183,136,0.12);
+    padding-top: 60px;
+    grid-column: 1 / -1;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  @media (max-width: 768px) {
+    .consulting--inline { margin-top: 48px; margin-bottom: 48px; padding-top: 48px; padding-bottom: 48px; }
+    .joint-rolling-wrap { margin-top: 48px; padding-top: 40px; grid-column: unset; }
+  }
+  @media (max-width: 480px) {
+    .consulting--inline { margin-top: 32px; margin-bottom: 32px; padding-top: 32px; padding-bottom: 32px; }
+    .joint-rolling-wrap { margin-top: 32px; padding-top: 28px; }
+  }
+
   /* ===================== MARY JANE SPOTLIGHT ===================== */
   .mj-spotlight {
     background: #060d08;
@@ -6704,7 +6748,7 @@
     </div>
 
     <!-- CannaQuant -->
-    <div id="consulting" class="consulting" style="margin-top: 80px; margin-bottom: 80px; padding-bottom: 80px; border-top: 1px solid rgba(82,183,136,0.12); padding-top: 80px;">
+    <div id="consulting" class="consulting consulting--inline" style="border-top: 1px solid rgba(82,183,136,0.12);">
       <div class="consulting-inner">
 
         <div class="consulting-left">
@@ -6775,7 +6819,7 @@
         </div>
 
         <!-- JOINT ROLLING SEMINARS -->
-        <div style="margin-top: 80px; border-top: 1px solid rgba(82,183,136,0.12); padding-top: 60px; grid-column: 1 / -1;">
+        <div class="joint-rolling-wrap">
           <div class="seminars-header">
             <div>
               <div class="section-label">✦ Joint Rolling Seminars</div>
