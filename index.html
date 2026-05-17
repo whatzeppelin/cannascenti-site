@@ -6033,6 +6033,221 @@
 
   @media (max-width: 900px) { .scanner-section { padding: 60px 24px; } }
 
+  /* ===================== VISUAL OVERHAUL ===================== */
+
+  /* Hero ambient glow layers */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 80%, rgba(27,67,50,0.45) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 50% at 80% 20%, rgba(82,183,136,0.06) 0%, transparent 55%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Animated hero orb */
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    animation: orbFloat 8s ease-in-out infinite;
+  }
+  .hero-orb-1 {
+    width: 600px; height: 600px;
+    top: -120px; left: -180px;
+    background: radial-gradient(circle, rgba(27,67,50,0.3) 0%, transparent 70%);
+    animation-delay: 0s;
+  }
+  .hero-orb-2 {
+    width: 500px; height: 500px;
+    bottom: -80px; right: -120px;
+    background: radial-gradient(circle, rgba(82,183,136,0.08) 0%, transparent 70%);
+    animation-delay: -4s;
+  }
+  @keyframes orbFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%       { transform: translate(20px, -30px) scale(1.05); }
+  }
+
+  /* Hero CTA buttons */
+  .hero-ctas {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.9s;
+  }
+
+  .hero-cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bright-green);
+    color: #020b05;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 15px 32px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: 0 0 28px rgba(82,183,136,0.35), 0 4px 16px rgba(0,0,0,0.3);
+  }
+  .hero-cta-primary:hover {
+    background: var(--light-green);
+    box-shadow: 0 0 40px rgba(82,183,136,0.55), 0 6px 20px rgba(0,0,0,0.3);
+    transform: translateY(-2px);
+  }
+
+  .hero-cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    color: var(--cream);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 15px 32px;
+    border-radius: 4px;
+    text-decoration: none;
+    border: 1px solid rgba(242,234,216,0.18);
+    transition: all 0.2s;
+  }
+  .hero-cta-secondary:hover {
+    border-color: rgba(82,183,136,0.5);
+    color: var(--light-green);
+    box-shadow: 0 0 20px rgba(82,183,136,0.1);
+  }
+
+  /* Hero social proof */
+  .hero-proof {
+    margin-top: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1.1s;
+    flex-wrap: wrap;
+  }
+  .hero-proof-item {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(242,234,216,0.3);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hero-proof-dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--bright-green);
+    opacity: 0.6;
+  }
+
+  /* Enhanced body hotspots */
+  .body-dot {
+    box-shadow: 0 0 10px rgba(82,183,136,0.4);
+  }
+  .body-hotspot:hover .body-dot,
+  .body-hotspot.active .body-dot {
+    box-shadow: 0 0 18px rgba(201,151,58,0.7);
+  }
+  .body-dot-ring-2 {
+    position: absolute;
+    top: -12px; left: -12px;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba(82,183,136,0.18);
+    animation: bodyPulse 2s infinite 0.6s;
+  }
+
+  /* Glowing neon accents on key buttons */
+  .nav-cta, .quiz-submit-btn, .newsletter-btn {
+    box-shadow: 0 0 16px rgba(82,183,136,0.25);
+    transition: box-shadow 0.2s, transform 0.2s, opacity 0.2s;
+  }
+  .nav-cta:hover, .quiz-submit-btn:hover, .newsletter-btn:hover {
+    box-shadow: 0 0 28px rgba(82,183,136,0.45);
+    transform: translateY(-1px);
+  }
+
+  /* Glowing section labels */
+  .section-label {
+    text-shadow: 0 0 20px rgba(82,183,136,0.3);
+  }
+
+  /* Card hover glow */
+  .feat-card:hover, .numbers-card:hover {
+    box-shadow: 0 8px 40px rgba(0,0,0,0.3), 0 0 24px rgba(82,183,136,0.08);
+  }
+
+  /* Terpene wheel glow on active */
+  #terpeneWheel .terpene-slice.active {
+    filter: drop-shadow(0 0 8px rgba(82,183,136,0.5));
+  }
+
+  /* Numbers cards glow */
+  .numbers-card {
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  }
+  .numbers-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(82,183,136,0.3) !important;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3), 0 0 24px rgba(82,183,136,0.1);
+  }
+
+  /* Mary Jane bubble pulse */
+  .mj-toggle::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(82,183,136,0.3);
+    animation: mjPulse 2.5s infinite;
+  }
+  .mj-toggle::after {
+    content: '';
+    position: absolute;
+    inset: -14px;
+    border-radius: 50%;
+    border: 1px solid rgba(82,183,136,0.12);
+    animation: mjPulse 2.5s infinite 0.5s;
+  }
+  @keyframes mjPulse {
+    0%   { transform: scale(0.9); opacity: 0.8; }
+    70%  { transform: scale(1.3); opacity: 0; }
+    100% { transform: scale(0.9); opacity: 0; }
+  }
+
+  /* Scroll-reveal fade-up for sections */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 640px) {
+    .hero-ctas { flex-direction: column; align-items: center; }
+    .hero-proof { gap: 16px; }
+    .hero-orb-1, .hero-orb-2 { display: none; }
+  }
+
 </style>
 </head>
 <body>
@@ -6084,6 +6299,8 @@
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
   <div class="hero-content">
     <div class="hero-eyebrow">Cannabis Intelligence · Est. 2026</div>
     <div class="hero-logo">
@@ -6123,6 +6340,17 @@
       <div class="hero-wordmark">Cannascenti</div>
     </div>
     <div class="hero-tagline">Find the perfect cannabis<br>for how you want to feel.</div>
+    <div class="hero-ctas">
+      <a href="#quiz" class="btn-primary--lg hero-cta-primary">Take the Quiz →</a>
+      <a href="#encyclopedia-hub" class="btn-secondary--lg hero-cta-secondary">Explore the Encyclopedia</a>
+    </div>
+    <div class="hero-proof">
+      <span>12+ years expertise</span>
+      <span class="hero-proof-dot">·</span>
+      <span>Zero upsells</span>
+      <span class="hero-proof-dot">·</span>
+      <span>Built for real people</span>
+    </div>
   </div>
 
 <div class="full-divider"></div>
@@ -6130,7 +6358,7 @@
 <!-- ENCYCLOPEDIA HUB -->
 <div id="encyclopedia-hub" class="enc-hub">
   <div class="enc-hub-inner">
-    <div class="enc-hub-header">
+    <div class="enc-hub-header reveal">
       <div class="section-label"><span class="pg">03</span> ✦ The Cannascenti Encyclopedia</div>
       <h2 class="section-title" style="color:var(--cream)">The Complete Cannabis Reference</h2>
       <p>Every terpene, cannabinoid, consumption method, cultivation stage, historical milestone, and extraction technique — the most comprehensive cannabis reference anywhere. Click a topic to explore.</p>
@@ -6141,7 +6369,7 @@
 
   <!-- CANNABIS & YOUR BODY -->
   <div class="body-section" style="padding: 80px 60px 100px; max-width: 1200px; margin: 0 auto;">
-    <div class="terpene-intro">
+    <div class="terpene-intro reveal">
       <div class="section-label">✦ Cannabis &amp; Your Body</div>
       <div class="terpene-intro-title">What's actually <em>happening inside you</em></div>
       <p class="terpene-intro-desc">Your body has an entire system built to receive cannabis — the Endocannabinoid System. CB1 and CB2 receptors are distributed throughout your brain, organs, and nervous system. Cannabis doesn't hijack your brain. It plugs into a system that was always there.</p>
@@ -6493,8 +6721,8 @@
   <div class="quiz-inner">
     <div id="quizFlow">
       <div id="quizWelcomeBack"></div>
-      <div class="quiz-label">✦ The Cannascenti Match</div>
-      <h2 class="quiz-title">Find what actually<br>works for you.</h2>
+      <div class="quiz-label reveal">✦ The Cannascenti Match</div>
+      <h2 class="quiz-title reveal">Find what actually<br>works for you.</h2>
       <p class="quiz-subtitle">5 questions. 30 seconds. A personalized cannabis profile — with specific strains, terpenes, and exactly why they'll work for you.</p>
       <div class="quiz-progress-wrap">
         <div class="quiz-progress-bar" id="quizProgress">
@@ -6706,8 +6934,8 @@
 <!-- CANNALOGY -->
 <div id="cannalogy" class="cannalogy">
   <div class="cannalogy-inner">
-    <div class="section-label"><span class="pg">04</span> ✦ The Cannalogy</div>
-    <div class="section-title">Cannabis education for <em>everyone</em></div>
+    <div class="section-label reveal"><span class="pg">04</span> ✦ The Cannalogy</div>
+    <div class="section-title reveal">Cannabis education for <em>everyone</em></div>
 
     <!-- CANNABIS BY THE NUMBERS -->
     <div class="numbers-section">
@@ -12061,5 +12289,21 @@ function renderScanCard(d) {
   </div>
 </div>
 
+<script>
+  // Scroll-reveal for .reveal elements
+  (function() {
+    const revealEls = document.querySelectorAll('.reveal');
+    if (!revealEls.length) return;
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => obs.observe(el));
+  })();
+</script>
 </body>
 </html>
