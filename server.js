@@ -647,6 +647,169 @@ ${isPrivacy ? `<h1>Privacy Policy</h1><p>Last updated: April 2026</p>
     return;
   }
 
+  // ─── Joint Rolling Seminars page ──────────────────────────────────────────
+  if (req.method === "GET" && req.url === "/seminars") {
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Joint Rolling Seminars — Cannascenti</title>
+<meta name="description" content="Learn to roll from scratch or master advanced techniques. Three levels: Beginner, Intermediate, and Masterclass. Taught by a 12-year cannabis veteran.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--dark:#060f0a;--green:#52b788;--bright-green:#74c69d;--cream:#f2ead8;--gold:#c9973a;--border:rgba(255,255,255,0.07);--card:rgba(255,255,255,0.025)}
+body{background:var(--dark);color:var(--cream);font-family:'Montserrat',sans-serif;font-weight:300;line-height:1.75;overflow-x:hidden}
+a{color:var(--bright-green);text-decoration:none}
+/* nav */
+.s-nav{display:flex;align-items:center;justify-content:space-between;padding:24px 60px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(6,15,10,0.9);backdrop-filter:blur(12px);z-index:100}
+.s-nav-logo{font-family:'Great Vibes',cursive;font-size:26px;color:var(--cream)}
+.s-nav-back{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(242,234,216,0.4);transition:color .2s}
+.s-nav-back:hover{color:var(--bright-green)}
+@media(max-width:600px){.s-nav{padding:20px 20px}}
+/* hero */
+.s-hero{padding:100px 60px 80px;max-width:900px;margin:0 auto;text-align:center}
+.s-label{font-size:10px;letter-spacing:0.65em;text-transform:uppercase;color:var(--bright-green);margin-bottom:20px}
+.s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,7vw,80px);font-weight:300;line-height:1.1;color:var(--cream);margin-bottom:24px}
+.s-title em{font-style:italic;color:var(--bright-green)}
+.s-desc{font-size:16px;color:rgba(242,234,216,0.55);max-width:580px;margin:0 auto 48px;line-height:1.85}
+.s-cta{display:inline-block;background:var(--bright-green);color:#060f0a;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:16px 40px;border-radius:2px;box-shadow:0 0 28px rgba(82,183,136,0.3);transition:box-shadow .2s,transform .2s}
+.s-cta:hover{box-shadow:0 0 44px rgba(82,183,136,0.5);transform:translateY(-2px);color:#060f0a}
+@media(max-width:600px){.s-hero{padding:72px 24px 60px}}
+/* divider */
+.s-divider{height:1px;background:rgba(82,183,136,0.1);max-width:1200px;margin:0 auto}
+/* levels */
+.s-levels{padding:80px 60px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.s-level{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:40px 32px;display:flex;flex-direction:column;transition:border-color .25s,transform .25s}
+.s-level:hover{border-color:rgba(82,183,136,0.3);transform:translateY(-4px)}
+.s-badge{display:inline-block;font-size:9px;letter-spacing:0.25em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:24px;font-weight:500;align-self:flex-start}
+.badge-beginner{background:rgba(82,183,136,0.12);color:var(--bright-green)}
+.badge-intermediate{background:rgba(201,151,58,0.15);color:var(--gold)}
+.badge-advanced{background:rgba(180,80,80,0.15);color:#e8a0a0}
+.s-level-title{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:var(--cream);margin-bottom:14px}
+.s-level-desc{font-size:13px;color:rgba(242,234,216,0.5);line-height:1.8;margin-bottom:24px;flex:1}
+.s-techniques{list-style:none;margin-bottom:32px}
+.s-techniques li{font-size:12px;color:rgba(82,183,136,0.7);padding:7px 0;border-bottom:1px solid rgba(82,183,136,0.07)}
+.s-techniques li::before{content:'→ ';color:var(--bright-green);opacity:0.5}
+.s-level-cta{display:block;text-align:center;border:1px solid rgba(82,183,136,0.3);color:var(--bright-green);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;padding:12px;border-radius:4px;transition:background .2s,border-color .2s}
+.s-level-cta:hover{background:rgba(82,183,136,0.08);border-color:var(--bright-green)}
+@media(max-width:900px){.s-levels{grid-template-columns:1fr;padding:60px 24px}}
+@media(max-width:480px){.s-levels{padding:48px 16px}.s-level{padding:28px 20px}}
+/* formats */
+.s-formats-wrap{background:rgba(255,255,255,0.015);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:72px 60px}
+.s-formats-inner{max-width:1200px;margin:0 auto}
+.s-formats-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,42px);font-weight:300;color:var(--cream);margin-bottom:48px;text-align:center}
+.s-formats{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;border-top:1px solid var(--border);padding-top:40px}
+.s-format{padding:32px 28px;border-right:1px solid var(--border)}
+.s-format:last-child{border-right:none}
+.s-format-icon{font-size:24px;margin-bottom:16px}
+.s-format-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--cream);margin-bottom:10px}
+.s-format-desc{font-size:12px;color:rgba(242,234,216,0.45);line-height:1.75}
+@media(max-width:900px){.s-formats-wrap{padding:60px 24px}.s-formats{grid-template-columns:1fr}.s-format{border-right:none;border-bottom:1px solid var(--border)}.s-format:last-child{border-bottom:none}}
+/* bottom cta */
+.s-bottom{text-align:center;padding:100px 60px}
+.s-bottom-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,56px);font-weight:300;color:var(--cream);margin-bottom:16px}
+.s-bottom-title em{font-style:italic;color:var(--bright-green)}
+.s-bottom-sub{font-size:14px;color:rgba(242,234,216,0.45);margin-bottom:40px}
+@media(max-width:600px){.s-bottom{padding:72px 24px}}
+</style>
+</head>
+<body>
+<nav class="s-nav">
+  <a href="/" class="s-nav-logo">Cannascenti</a>
+  <a href="/" class="s-nav-back">← Back to site</a>
+</nav>
+
+<div class="s-hero">
+  <div class="s-label">✦ Joint Rolling Seminars</div>
+  <h1 class="s-title">The art of<br><em>the roll</em></h1>
+  <p class="s-desc">Most people have been smoking for years and still can't roll a proper joint. No judgment — nobody taught them. That changes here. From your first joint to a perfectly engineered cross — every level covered, every technique mastered.</p>
+  <a href="https://calendly.com/cannascenti" target="_blank" class="s-cta">Book a Seminar</a>
+</div>
+
+<div class="s-divider"></div>
+
+<div class="s-levels">
+  <div class="s-level">
+    <span class="s-badge badge-beginner">Beginner</span>
+    <div class="s-level-title">Your First Roll</div>
+    <p class="s-level-desc">Never rolled before? No problem. We start from zero — papers, filters, grinding, and the basics of a solid roll that burns clean.</p>
+    <ul class="s-techniques">
+      <li>Choosing the right papers</li>
+      <li>Grinding consistency</li>
+      <li>The classic straight joint</li>
+      <li>Making a proper filter tip</li>
+      <li>Lighting and smoking technique</li>
+    </ul>
+    <a href="https://calendly.com/cannascenti" target="_blank" class="s-level-cta">Book This Class</a>
+  </div>
+  <div class="s-level">
+    <span class="s-badge badge-intermediate">Intermediate</span>
+    <div class="s-level-title">Level Up Your Roll</div>
+    <p class="s-level-desc">You can roll, but it's not consistent. This class tightens your technique and introduces blunts, backwoods, and the cone roll.</p>
+    <ul class="s-techniques">
+      <li>The perfect cone joint</li>
+      <li>Blunt rolling (cigarillo & backwood)</li>
+      <li>Dutch masters technique</li>
+      <li>Pre-roll consistency tricks</li>
+      <li>Infused rolls & kief crowning</li>
+    </ul>
+    <a href="https://calendly.com/cannascenti" target="_blank" class="s-level-cta">Book This Class</a>
+  </div>
+  <div class="s-level">
+    <span class="s-badge badge-advanced">Advanced</span>
+    <div class="s-level-title">The Masterclass</div>
+    <p class="s-level-desc">For the enthusiast who wants to go all the way. Intricate rolls, showpieces, and techniques that will genuinely impress anyone in the room.</p>
+    <ul class="s-techniques">
+      <li>The cross joint</li>
+      <li>Tulip &amp; cannons</li>
+      <li>Multi-paper braided rolls</li>
+      <li>Diamond &amp; star formations</li>
+      <li>Scorpion &amp; windmill techniques</li>
+    </ul>
+    <a href="https://calendly.com/cannascenti" target="_blank" class="s-level-cta">Book This Class</a>
+  </div>
+</div>
+
+<div class="s-formats-wrap">
+  <div class="s-formats-inner">
+    <div class="s-formats-title">How we teach</div>
+    <div class="s-formats">
+      <div class="s-format">
+        <div class="s-format-icon">🖥</div>
+        <div class="s-format-title">Live Online Sessions</div>
+        <p class="s-format-desc">Zoom-based classes with real-time instruction. Learn from anywhere. Sessions are small-group, interactive, and recorded for replay.</p>
+      </div>
+      <div class="s-format">
+        <div class="s-format-icon">📍</div>
+        <div class="s-format-title">In-Person Workshops</div>
+        <p class="s-format-desc">Hands-on sessions in select cities. Everything provided. The most effective way to learn — direct feedback, small groups, full experience.</p>
+      </div>
+      <div class="s-format">
+        <div class="s-format-icon">🏢</div>
+        <div class="s-format-title">Private Events &amp; Groups</div>
+        <p class="s-format-desc">Dispensary staff training, private parties, corporate events, and group bookings. Fully customized to your occasion and audience.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="s-bottom">
+  <div class="s-bottom-title">Ready to <em>roll?</em></div>
+  <p class="s-bottom-sub">Pick your level and book a session. First-timers always welcome.</p>
+  <a href="https://calendly.com/cannascenti" target="_blank" class="s-cta">Book Now</a>
+</div>
+
+</body>
+</html>`;
+    res.writeHead(200, { "Content-Type": "text/html" });
+    res.end(html);
+    return;
+  }
+
   // ─── Dispensary pitch page ─────────────────────────────────────────────────
   if (req.method === "GET" && req.url === "/for-dispensaries") {
     const html = `<!DOCTYPE html>

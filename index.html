@@ -6444,6 +6444,63 @@
     overflow-x: hidden;
     box-sizing: border-box;
   }
+  /* Seminars teaser card */
+  .seminars-teaser {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    background: rgba(82,183,136,0.05);
+    border: 1px solid rgba(82,183,136,0.14);
+    border-radius: 16px;
+    padding: 48px 52px;
+    box-sizing: border-box;
+  }
+  .seminars-teaser-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 600;
+    color: var(--cream);
+    margin: 10px 0 14px;
+    line-height: 1.2;
+  }
+  .seminars-teaser-title em {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--bright-green);
+  }
+  .seminars-teaser-desc {
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--cream);
+    opacity: 0.6;
+    margin-bottom: 28px;
+    max-width: 480px;
+  }
+  .seminars-teaser-cta {
+    display: inline-block;
+    padding: 12px 28px;
+    border: 1px solid var(--bright-green);
+    color: var(--bright-green);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.25s, color 0.25s;
+  }
+  .seminars-teaser-cta:hover { background: var(--bright-green); color: var(--warm-black); }
+  .seminars-teaser-badges {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+  @media (max-width: 640px) {
+    .seminars-teaser { flex-direction: column; padding: 32px 24px; gap: 28px; }
+    .seminars-teaser-badges { flex-direction: row; flex-wrap: wrap; }
+  }
   @media (max-width: 768px) {
     .consulting--inline { margin-top: 48px; padding-top: 48px; padding-bottom: 48px; }
     .joint-rolling-wrap { margin-top: 40px; padding-top: 36px; }
@@ -6989,79 +7046,19 @@
 
         </div>
 
-        <!-- JOINT ROLLING SEMINARS -->
+        <!-- JOINT ROLLING SEMINARS TEASER -->
         <div class="joint-rolling-wrap">
-          <div class="seminars-header">
-            <div>
+          <div class="seminars-teaser reveal">
+            <div class="seminars-teaser-text">
               <div class="section-label">✦ Joint Rolling Seminars</div>
-              <div class="section-title">The art of <em>the roll</em></div>
+              <h3 class="seminars-teaser-title">Master the art of <em>the perfect roll.</em></h3>
+              <p class="seminars-teaser-desc">Three skill levels — Beginner to Masterclass. Live online, in-person &amp; private events. Taught by a master budtender who's helped millions learn the craft.</p>
+              <a href="/seminars" class="seminars-teaser-cta">View Seminars →</a>
             </div>
-            <div>
-              <p style="font-size:14px; line-height:1.9; color:var(--cream); opacity:0.5;">Most people have been smoking for years and still can't roll a proper joint. No judgment — nobody taught them. That changes here. From your first joint to a perfectly engineered cross — every level covered, every technique mastered.</p>
-            </div>
-          </div>
-
-          <div class="seminars-levels" style="margin-top: 40px;">
-
-            <div class="seminar-level">
+            <div class="seminars-teaser-badges">
               <span class="seminar-level-badge badge-beginner">Beginner</span>
-              <div class="seminar-level-title">Your First Roll</div>
-              <p class="seminar-level-desc">Never rolled before? No problem. We start from zero — papers, filters, grinding, and the basics of a solid roll that burns clean.</p>
-              <ul class="seminar-techniques">
-                <li>Choosing the right papers</li>
-                <li>Grinding consistency</li>
-                <li>The classic straight joint</li>
-                <li>Making a proper filter tip</li>
-                <li>Lighting and smoking technique</li>
-              </ul>
-              <a href="https://calendly.com/cannascenti" target="_blank" class="seminar-cta">Book This Class</a>
-            </div>
-
-            <div class="seminar-level">
               <span class="seminar-level-badge badge-intermediate">Intermediate</span>
-              <div class="seminar-level-title">Level Up Your Roll</div>
-              <p class="seminar-level-desc">You can roll, but it's not consistent. This class tightens your technique and introduces blunts, backwoods, and the cone roll.</p>
-              <ul class="seminar-techniques">
-                <li>The perfect cone joint</li>
-                <li>Blunt rolling (cigarillo & backwood)</li>
-                <li>Dutch masters technique</li>
-                <li>Pre-roll consistency tricks</li>
-                <li>Infused rolls & kief crowning</li>
-              </ul>
-              <a href="https://calendly.com/cannascenti" target="_blank" class="seminar-cta">Book This Class</a>
-            </div>
-
-            <div class="seminar-level">
               <span class="seminar-level-badge badge-advanced">Advanced</span>
-              <div class="seminar-level-title">The Masterclass</div>
-              <p class="seminar-level-desc">For the enthusiast who wants to go all the way. Intricate rolls, showpieces, and techniques that will genuinely impress anyone in the room.</p>
-              <ul class="seminar-techniques">
-                <li>The cross joint</li>
-                <li>Tulip & cannons</li>
-                <li>Multi-paper braided rolls</li>
-                <li>Diamond & star formations</li>
-                <li>Scorpion & windmill techniques</li>
-              </ul>
-              <a href="https://calendly.com/cannascenti" target="_blank" class="seminar-cta">Book This Class</a>
-            </div>
-
-          </div>
-
-          <div class="seminars-formats" style="margin-top: 40px;">
-            <div class="seminar-format">
-              <div class="seminar-format-icon">🖥</div>
-              <div class="seminar-format-title">Live Online Sessions</div>
-              <p class="seminar-format-desc">Zoom-based classes with real-time instruction. Learn from anywhere. Sessions are small-group, interactive, and recorded for replay.</p>
-            </div>
-            <div class="seminar-format">
-              <div class="seminar-format-icon">📍</div>
-              <div class="seminar-format-title">In-Person Workshops</div>
-              <p class="seminar-format-desc">Hands-on sessions in select cities. Everything provided. The most effective way to learn — direct feedback, small groups, full experience.</p>
-            </div>
-            <div class="seminar-format">
-              <div class="seminar-format-icon">🏢</div>
-              <div class="seminar-format-title">Private Events & Groups</div>
-              <p class="seminar-format-desc">Dispensary staff training, private parties, corporate events, and group bookings. Fully customized to your occasion and audience.</p>
             </div>
           </div>
         </div>
