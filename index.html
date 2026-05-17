@@ -2880,6 +2880,16 @@
   .terpene-slice:hover { opacity: 0.85; }
   .terpene-slice.active { opacity: 1; }
 
+  @media (max-width: 640px) {
+    .terpene-wheel-wrap { flex-direction: column; align-items: flex-start; gap: 32px; }
+    #terpeneWheel { width: 100%; max-width: 340px; align-self: center; }
+    .terpene-wheel-info { min-width: unset; width: 100%; }
+  }
+
+  @media (max-width: 480px) {
+    .terpene-grid { grid-template-columns: 1fr; }
+  }
+
   /* ===================== THE CRAFT ===================== */
   .craft {
     position: relative;
@@ -5143,8 +5153,8 @@
   @media (max-width: 480px) { .hashenc-quality-grid { grid-template-columns: 1fr; } }
 
   /* ===================== ENCYCLOPEDIA HUB ===================== */
-  .enc-hub { background: #080e08; padding: 100px 60px; }
-  .enc-hub-inner { max-width: 1200px; margin: 0 auto; }
+  .enc-hub { background: #080e08; padding: 100px 60px; overflow-x: hidden; }
+  .enc-hub-inner { max-width: 1200px; margin: 0 auto; overflow-x: hidden; }
   .enc-hub-header { max-width: 720px; margin-bottom: 50px; }
   .enc-hub-header p { color: rgba(255,255,255,0.6); font-size: 16px; line-height: 1.7; margin-top: 16px; }
   .enc-hub-nav { display: flex; gap: 0; flex-wrap: wrap; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 48px; overflow-x: auto; }
