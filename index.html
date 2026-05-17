@@ -6248,6 +6248,119 @@
     .hero-orb-1, .hero-orb-2 { display: none; }
   }
 
+  /* ===================== MARY JANE SPOTLIGHT ===================== */
+  .mj-spotlight {
+    background: #060d08;
+    border-top: 1px solid rgba(82,183,136,0.08);
+    border-bottom: 1px solid rgba(82,183,136,0.08);
+    padding: 100px 60px;
+    overflow: hidden;
+  }
+  .mj-spotlight-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .mj-spotlight-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 56px);
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .mj-spotlight-title em { color: var(--bright-green); font-style: italic; }
+  .mj-spotlight-desc {
+    font-size: 15px;
+    color: rgba(242,234,216,0.55);
+    line-height: 1.85;
+    margin-bottom: 36px;
+    max-width: 460px;
+  }
+  .mj-spotlight-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bright-green);
+    color: #020b05;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 16px 32px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    box-shadow: 0 0 28px rgba(82,183,136,0.35);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .mj-spotlight-cta:hover {
+    box-shadow: 0 0 44px rgba(82,183,136,0.55);
+    transform: translateY(-2px);
+  }
+  /* Chat preview mock */
+  .mj-chat-preview {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(82,183,136,0.12);
+    border-radius: 12px;
+    padding: 28px 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .mj-chat-msg {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .mj-chat-msg--user { justify-content: flex-end; }
+  .mj-chat-msg--user .mj-chat-bubble {
+    background: rgba(82,183,136,0.12);
+    border-color: rgba(82,183,136,0.25);
+    color: var(--cream);
+  }
+  .mj-chat-avatar {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: rgba(82,183,136,0.1);
+    border: 1px solid rgba(82,183,136,0.2);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .mj-chat-bubble {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: rgba(242,234,216,0.75);
+    line-height: 1.6;
+    max-width: 320px;
+  }
+  .mj-chat-cta {
+    text-align: center;
+    margin-top: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bright-green);
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid rgba(82,183,136,0.2);
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+  .mj-chat-cta:hover { background: rgba(82,183,136,0.08); }
+  @media (max-width: 860px) {
+    .mj-spotlight { padding: 72px 24px; }
+    .mj-spotlight-inner { grid-template-columns: 1fr; gap: 48px; }
+    .mj-chat-preview { max-width: 520px; }
+  }
+
 </style>
 </head>
 <body>
@@ -6355,6 +6468,38 @@
 
 <div class="full-divider"></div>
 
+<!-- MARY JANE FEATURE SPOTLIGHT -->
+<section class="mj-spotlight">
+  <div class="mj-spotlight-inner reveal">
+    <div class="mj-spotlight-text">
+      <div class="section-label">✦ Mary Jane Vision</div>
+      <h2 class="mj-spotlight-title">Your personal<br><em>cannabis sommelier</em></h2>
+      <p class="mj-spotlight-desc">Ask Mary Jane anything — she knows your taste profile, explains every terpene and cannabinoid in plain language, and recommends exactly what you need for how you want to feel. No dispensary pressure. No upsells. Just honest guidance.</p>
+      <button class="mj-spotlight-cta" onclick="toggleMJ()">Talk to Mary Jane →</button>
+    </div>
+    <div class="mj-spotlight-visual">
+      <div class="mj-chat-preview">
+        <div class="mj-chat-msg mj-chat-msg--mj">
+          <div class="mj-chat-avatar">
+            <svg width="18" height="23" viewBox="0 0 160 200" fill="none"><polygon points="80,4 92,32 80,52 68,32" fill="#B7E4C7" opacity="0.95"/><polygon points="80,28 108,38 96,62 80,52" fill="#74C69D" opacity="0.9"/><polygon points="80,28 52,38 64,62 80,52" fill="#B7E4C7" opacity="0.9"/><polygon points="80,50 118,58 104,84 80,74" fill="#74C69D" opacity="0.8"/><polygon points="80,50 42,58 56,84 80,74" fill="#B7E4C7" opacity="0.8"/></svg>
+          </div>
+          <div class="mj-chat-bubble">Hey — what are you going for tonight? Energy, calm, focus, or just vibing?</div>
+        </div>
+        <div class="mj-chat-msg mj-chat-msg--user">
+          <div class="mj-chat-bubble">Something for relaxing after work, not too sedating</div>
+        </div>
+        <div class="mj-chat-msg mj-chat-msg--mj">
+          <div class="mj-chat-avatar">
+            <svg width="18" height="23" viewBox="0 0 160 200" fill="none"><polygon points="80,4 92,32 80,52 68,32" fill="#B7E4C7" opacity="0.95"/><polygon points="80,28 108,38 96,62 80,52" fill="#74C69D" opacity="0.9"/><polygon points="80,28 52,38 64,62 80,52" fill="#B7E4C7" opacity="0.9"/><polygon points="80,50 118,58 104,84 80,74" fill="#74C69D" opacity="0.8"/><polygon points="80,50 42,58 56,84 80,74" fill="#B7E4C7" opacity="0.8"/></svg>
+          </div>
+          <div class="mj-chat-bubble">Perfect — look for something linalool-forward. It's the same compound in lavender; unwinding without the couch lock. Blue Dream or Lavender Kush would be my picks.</div>
+        </div>
+        <div class="mj-chat-cta" onclick="toggleMJ()">Start your conversation →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ENCYCLOPEDIA HUB -->
 <div id="encyclopedia-hub" class="enc-hub">
   <div class="enc-hub-inner">
@@ -6377,31 +6522,31 @@
     <div class="body-diagram-wrap">
       <div class="body-diagram">
         <div class="body-hotspot" style="top:8%;left:42%;" data-zone="brain" onclick="bodySelect('brain')">
-          <div class="body-dot"></div><div class="body-dot-ring"></div>
+          <div class="body-dot"></div><div class="body-dot-ring"></div><div class="body-dot-ring-2"></div>
           <div class="body-label body-label-right">Brain</div>
         </div>
         <div class="body-hotspot" style="top:22%;left:60%;" data-zone="eyes" onclick="bodySelect('eyes')">
-          <div class="body-dot"></div><div class="body-dot-ring"></div>
+          <div class="body-dot"></div><div class="body-dot-ring"></div><div class="body-dot-ring-2"></div>
           <div class="body-label body-label-right">Eyes</div>
         </div>
         <div class="body-hotspot" style="top:28%;left:38%;" data-zone="lungs" onclick="bodySelect('lungs')">
-          <div class="body-dot"></div><div class="body-dot-ring"></div>
+          <div class="body-dot"></div><div class="body-dot-ring"></div><div class="body-dot-ring-2"></div>
           <div class="body-label body-label-left">Lungs</div>
         </div>
         <div class="body-hotspot" style="top:35%;left:48%;" data-zone="heart" onclick="bodySelect('heart')">
-          <div class="body-dot"></div><div class="body-dot-ring"></div>
+          <div class="body-dot"></div><div class="body-dot-ring"></div><div class="body-dot-ring-2"></div>
           <div class="body-label body-label-right">Heart</div>
         </div>
         <div class="body-hotspot" style="top:42%;left:40%;" data-zone="gut" onclick="bodySelect('gut')">
-          <div class="body-dot"></div><div class="body-dot-ring"></div>
+          <div class="body-dot"></div><div class="body-dot-ring"></div><div class="body-dot-ring-2"></div>
           <div class="body-label body-label-left">Gut</div>
         </div>
         <div class="body-hotspot" style="top:55%;left:44%;" data-zone="muscles" onclick="bodySelect('muscles')">
-          <div class="body-dot"></div><div class="body-dot-ring"></div>
+          <div class="body-dot"></div><div class="body-dot-ring"></div><div class="body-dot-ring-2"></div>
           <div class="body-label body-label-left">Muscles</div>
         </div>
         <div class="body-hotspot" style="top:68%;left:50%;" data-zone="joints" onclick="bodySelect('joints')">
-          <div class="body-dot"></div><div class="body-dot-ring"></div>
+          <div class="body-dot"></div><div class="body-dot-ring"></div><div class="body-dot-ring-2"></div>
           <div class="body-label body-label-right">Joints</div>
         </div>
         <svg viewBox="0 0 200 480" xmlns="http://www.w3.org/2000/svg" class="body-svg">
