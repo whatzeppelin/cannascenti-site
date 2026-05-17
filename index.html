@@ -61,7 +61,6 @@
     line-height: 1.75;
     letter-spacing: 0.01em;
     overflow-x: hidden;
-    padding-bottom: 54px;
   }
 
   /* GRID OVERLAY */
@@ -7132,8 +7131,8 @@
 <!-- FEATURED PICKS: hidden until real weekly content is ready -->
 <!-- <section class="featured-section">...</section> -->
 
-<!-- EXPLORE BY CATEGORY (removed) -->
-<div class="explore-section" style="display:none">
+<!-- EXPLORE BY CATEGORY: removed
+<div class="explore-section">
   <div class="explore-inner">
     <div class="explore-heading">
       <div class="section-label">&#10022; Navigate Cannascenti</div>
@@ -7277,8 +7276,7 @@
 
 </div>
 
-<!-- STRAIN LIBRARY: removed static copy — content now lives inside encyclopedia Strains tab -->
-
+-->
 
 <div class="full-divider"></div>
 
@@ -11440,90 +11438,7 @@
     }
   };
 
-  // ─── Featured Picks ──────────────────────────────────────────────────────
-  // Update this object each week to refresh the editorial picks
-  const FEATURED_PICKS = [
-    {
-      badge: '⭐ Top Pick This Week',
-      badgeClass: 'pick-week',
-      tickerBadgeClass: '',
-      type: 'Hybrid · Indica-Leaning',
-      name: 'Wedding Cake',
-      thc: 'THC 24–27%',
-      thcFull: 'THC 24–27%  ·  Caryophyllene · Limonene · Myrcene',
-      desc: 'The strain everyone keeps coming back to. Heavy relaxation that never feels sloppy — it hits your body first, then quiets your mind. Perfect for a long evening or winding down after a demanding week.',
-      terps: ['Caryophyllene', 'Limonene', 'Myrcene'],
-      link: 'https://weedmaps.com/strains/wedding-cake',
-      erbaLink: 'https://www.erbasawtelle.com/menu',
-      cta: 'Find near you →'
-    },
-    {
-      badge: '🌙 Best for Sleep Right Now',
-      badgeClass: 'pick-sleep',
-      tickerBadgeClass: 'tb-sleep',
-      type: 'Indica · Sedating',
-      name: 'Bubba Kush',
-      thc: 'THC 14–22%',
-      thcFull: 'THC 14–22%  ·  Myrcene · Limonene · Caryophyllene',
-      desc: 'Old school for a reason. Myrcene-heavy, muscle-relaxing, and steady — it doesn\'t knock you out fast, it walks you there. If you\'ve been struggling with sleep, this is the most reliable recommendation we make.',
-      terps: ['Myrcene', 'Limonene', 'Caryophyllene'],
-      link: 'https://weedmaps.com/strains/bubba-kush',
-      erbaLink: 'https://www.erbasawtelle.com/menu',
-      cta: 'Find near you →'
-    },
-    {
-      badge: '⚡ Best Daytime Energy',
-      badgeClass: 'pick-energy',
-      tickerBadgeClass: 'tb-energy',
-      type: 'Sativa · Energizing',
-      name: 'Jack Herer',
-      thc: 'THC 18–23%',
-      thcFull: 'THC 18–23%  ·  Terpinolene · Pinene · Myrcene',
-      desc: 'Named after the cannabis activist and author for a reason — this strain represents the best of what sativa can be. Sharp, clear, creative, and social. The one you reach for when you actually need to get things done.',
-      terps: ['Terpinolene', 'Pinene', 'Myrcene'],
-      link: 'https://weedmaps.com/strains/jack-herer',
-      erbaLink: 'https://www.erbasawtelle.com/menu',
-      cta: 'Find near you →'
-    }
-  ];
-
-  (function renderFeatured() {
-    const grid = document.getElementById('featuredGrid');
-    if (!grid) return;
-    grid.innerHTML = FEATURED_PICKS.map(p => `
-      <div class="featured-card">
-        <div class="featured-card-badge ${p.badgeClass}">${p.badge}</div>
-        <div class="featured-card-type">${p.type}</div>
-        <div class="featured-card-name">${p.name}</div>
-        <div class="featured-card-thc">${p.thcFull || p.thc}</div>
-        <p class="featured-card-desc">${p.desc}</p>
-        <div class="featured-card-terps">${p.terps.map(t=>`<span class="featured-card-terp">${t}</span>`).join('')}</div>
-        <a class="featured-card-cta" href="${p.link}" target="_blank" rel="noopener"
-           onclick="track('featured_click',{strain:'${p.name}'})">${p.cta}</a>
-      </div>`).join('');
-  })();
-
-  // ─── Bottom Ticker ────────────────────────────────────────────────────────
-  (function renderTicker() {
-    const track = document.getElementById('tickerTrack');
-    if (!track) return;
-    const buildItems = () => FEATURED_PICKS.map(p => `
-      <span class="ticker-item">
-        <span class="ticker-badge ${p.tickerBadgeClass}">${p.badge}</span>
-        <span class="ticker-strain">${p.name}</span>
-        <span class="ticker-meta">${p.thc} · ${p.type} · ${p.terps.join(' · ')}</span>
-        <span class="ticker-links">
-          <a class="ticker-link tl-wm" href="${p.link}" target="_blank" rel="noopener"
-             onclick="track('ticker_wm',{strain:'${p.name}'})">Weedmaps ↗</a>
-          <a class="ticker-link tl-erba" href="${p.erbaLink}" target="_blank" rel="noopener"
-             onclick="track('ticker_erba',{strain:'${p.name}'})">Erba Sawtelle ↗</a>
-        </span>
-      </span>
-      <span class="ticker-sep">✦</span>
-    `).join('');
-    // Duplicate for seamless infinite loop
-    track.innerHTML = buildItems() + buildItems();
-  })();
+  // ─── Featured Picks & Ticker: removed (re-add when weekly curation is ready) ───
 
   // ─── Analytics ───────────────────────────────────────────────────────────
   function track(event, data) {
@@ -12629,16 +12544,6 @@ function renderScanCard(d) {
 }
 </script>
 
-<!-- BOTTOM TICKER -->
-<div class="ticker-bar" id="tickerBar">
-  <div class="ticker-label">
-    <span class="ticker-label-top">This Week</span>
-    <span class="ticker-label-bot">Top Picks</span>
-  </div>
-  <div class="ticker-track-wrap">
-    <div class="ticker-track" id="tickerTrack"></div>
-  </div>
-</div>
 
 <script>
   // Scroll-reveal for .reveal elements
