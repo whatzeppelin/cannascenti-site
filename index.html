@@ -6270,6 +6270,116 @@
     .hero-orb-1, .hero-orb-2 { display: none; }
   }
 
+  /* ===================== ENCYCLOPEDIA SEARCH ===================== */
+  .enc-search-wrap {
+    margin-bottom: 40px;
+  }
+  .enc-search-bar-row {
+    margin-bottom: 20px;
+  }
+  .enc-search-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(82,183,136,0.2);
+    border-radius: 6px;
+    padding: 0 18px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .enc-search-bar:focus-within {
+    border-color: rgba(82,183,136,0.5);
+    box-shadow: 0 0 20px rgba(82,183,136,0.1);
+  }
+  .enc-search-icon { color: rgba(82,183,136,0.5); flex-shrink: 0; }
+  .enc-search-input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--cream);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.03em;
+    padding: 18px 0;
+  }
+  .enc-search-input::placeholder { color: rgba(242,234,216,0.3); }
+  .enc-search-clear {
+    background: none;
+    border: none;
+    color: rgba(242,234,216,0.25);
+    cursor: pointer;
+    font-size: 12px;
+    padding: 4px;
+    transition: color 0.2s;
+    display: none;
+  }
+  .enc-search-clear.visible { display: block; }
+  .enc-search-clear:hover { color: rgba(242,234,216,0.6); }
+
+  /* Feeling chips */
+  .enc-feeling-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .enc-feeling-label {
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(242,234,216,0.35);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .enc-feeling-chips {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .enc-feeling-chip {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 100px;
+    color: rgba(242,234,216,0.55);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .enc-feeling-chip:hover {
+    border-color: rgba(82,183,136,0.35);
+    color: var(--cream);
+    background: rgba(82,183,136,0.06);
+  }
+  .enc-feeling-chip.active {
+    background: rgba(82,183,136,0.12);
+    border-color: rgba(82,183,136,0.5);
+    color: var(--bright-green);
+    box-shadow: 0 0 14px rgba(82,183,136,0.15);
+  }
+
+  /* Search result banner */
+  .enc-search-result-banner {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: rgba(82,183,136,0.7);
+    margin-bottom: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(82,183,136,0.1);
+  }
+
+  @media (max-width: 600px) {
+    .enc-feeling-row { gap: 10px; }
+    .enc-feeling-label { width: 100%; }
+    .enc-search-input { font-size: 16px; } /* prevent iOS zoom */
+  }
+
   /* ===================== INLINE SECTION OVERRIDES ===================== */
   /* CannaQuant inline (inside bpro) */
   .consulting--inline {
@@ -6556,7 +6666,34 @@
       <h2 class="section-title" style="color:var(--cream)">The Complete Cannabis Reference</h2>
       <p>Every terpene, cannabinoid, consumption method, cultivation stage, historical milestone, and extraction technique — the most comprehensive cannabis reference anywhere. Click a topic to explore.</p>
     </div>
+    <!-- Encyclopedia Search + Feeling Filters -->
+    <div class="enc-search-wrap">
+      <div class="enc-search-bar-row">
+        <div class="enc-search-bar">
+          <svg class="enc-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="encGlobalSearch" class="enc-search-input" placeholder="Search strains, terpenes, effects, cannabinoids…" oninput="onEncSearch(this.value)" autocomplete="off">
+          <button class="enc-search-clear" id="encSearchClear" onclick="clearEncSearch()" aria-label="Clear search">✕</button>
+        </div>
+      </div>
+      <div class="enc-feeling-row">
+        <span class="enc-feeling-label">How do you want to feel?</span>
+        <div class="enc-feeling-chips" id="encFeelingChips">
+          <button class="enc-feeling-chip" data-feel="relaxed" onclick="onEncFeel(this,'relaxed')">😌 Relax</button>
+          <button class="enc-feeling-chip" data-feel="sleepy" onclick="onEncFeel(this,'sleepy')">😴 Sleep</button>
+          <button class="enc-feeling-chip" data-feel="creative" onclick="onEncFeel(this,'creative')">✨ Creative</button>
+          <button class="enc-feeling-chip" data-feel="focused" onclick="onEncFeel(this,'focused')">🎯 Focus</button>
+          <button class="enc-feeling-chip" data-feel="euphoric" onclick="onEncFeel(this,'euphoric')">🌟 Euphoric</button>
+          <button class="enc-feeling-chip" data-feel="pain" onclick="onEncFeel(this,'pain')">💊 Pain Relief</button>
+          <button class="enc-feeling-chip" data-feel="happy" onclick="onEncFeel(this,'happy')">😊 Happy</button>
+          <button class="enc-feeling-chip" data-feel="energetic" onclick="onEncFeel(this,'energetic')">⚡ Energy</button>
+          <button class="enc-feeling-chip" data-feel="hungry" onclick="onEncFeel(this,'hungry')">🍕 Hungry</button>
+          <button class="enc-feeling-chip" data-feel="talkative" onclick="onEncFeel(this,'talkative')">💬 Social</button>
+        </div>
+      </div>
+    </div>
+
     <div class="enc-hub-nav" id="enc-hub-nav"></div>
+    <div class="enc-search-result-banner" id="encSearchBanner" style="display:none"></div>
     <div class="enc-hub-panel" id="enc-hub-panel"></div>
   </div>
 
@@ -12497,6 +12634,87 @@ function renderScanCard(d) {
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     revealEls.forEach(el => obs.observe(el));
   })();
+
+  // ── Encyclopedia global search + feeling filters ──────────────────────
+  let _encSearchTimer = null;
+
+  function onEncSearch(val) {
+    const clear = document.getElementById('encSearchClear');
+    if (clear) clear.classList.toggle('visible', val.length > 0);
+
+    // Clear any active feeling chip
+    document.querySelectorAll('.enc-feeling-chip').forEach(c => c.classList.remove('active'));
+
+    clearTimeout(_encSearchTimer);
+    _encSearchTimer = setTimeout(() => {
+      if (!val.trim()) {
+        hideBanner();
+        return;
+      }
+      // Switch to strains (best beginner landing point for any query)
+      if (typeof encTab === 'function') {
+        if (encActiveTab !== 'strains') encTab('strains');
+        setTimeout(() => applyStrainSearch(val.trim(), 'all', 'Showing results for "' + val.trim() + '"'), 60);
+      }
+    }, 200);
+  }
+
+  function onEncFeel(btn, feel) {
+    const wasActive = btn.classList.contains('active');
+    document.querySelectorAll('.enc-feeling-chip').forEach(c => c.classList.remove('active'));
+    const input = document.getElementById('encGlobalSearch');
+    const clear = document.getElementById('encSearchClear');
+
+    if (wasActive) {
+      // Toggle off — reset
+      if (input) input.value = '';
+      if (clear) clear.classList.remove('visible');
+      hideBanner();
+      if (typeof encTab === 'function') {
+        if (encActiveTab !== 'strains') encTab('strains');
+        setTimeout(() => applyStrainSearch('', 'all', null), 60);
+      }
+      return;
+    }
+
+    btn.classList.add('active');
+    if (input) input.value = '';
+    if (clear) clear.classList.remove('visible');
+
+    if (typeof encTab === 'function') {
+      if (encActiveTab !== 'strains') encTab('strains');
+      const label = '✦ Strains that make you feel ' + btn.textContent.replace(/^.{1,2}\s/, '').toLowerCase();
+      setTimeout(() => applyStrainSearch(feel, 'all', label), 60);
+    }
+  }
+
+  function clearEncSearch() {
+    const input = document.getElementById('encGlobalSearch');
+    const clear = document.getElementById('encSearchClear');
+    if (input) input.value = '';
+    if (clear) clear.classList.remove('visible');
+    document.querySelectorAll('.enc-feeling-chip').forEach(c => c.classList.remove('active'));
+    hideBanner();
+    if (typeof renderEncStrains === 'function') renderEncStrains('', 'all');
+  }
+
+  function applyStrainSearch(q, typeFilter, bannerText) {
+    if (typeof renderEncStrains === 'function') renderEncStrains(q, typeFilter);
+    const banner = document.getElementById('encSearchBanner');
+    if (banner) {
+      if (bannerText) {
+        banner.textContent = bannerText;
+        banner.style.display = 'block';
+      } else {
+        hideBanner();
+      }
+    }
+  }
+
+  function hideBanner() {
+    const banner = document.getElementById('encSearchBanner');
+    if (banner) banner.style.display = 'none';
+  }
 </script>
 </body>
 </html>
