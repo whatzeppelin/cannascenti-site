@@ -998,6 +998,239 @@ a{color:var(--bright-green);text-decoration:none}
     return;
   }
 
+  // ─── Learn page ───────────────────────────────────────────────────────────
+  if (req.method === "GET" && req.url === "/learn") {
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cannabis Education — Cannascenti</title>
+<meta name="description" content="The most comprehensive cannabis education resource. Numbers, lab reports, conditions, and legal status — all in one place.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--dark:#060f0a;--green:#52b788;--bright-green:#74c69d;--light-green:#b7e4c7;--cream:#f2ead8;--gold:#c9973a;--amber:#e8a84c;--warm-black:#060f0a;--card-bg:rgba(255,255,255,0.025);--border:rgba(255,255,255,0.07)}
+body{background:var(--dark);color:var(--cream);font-family:'Montserrat',sans-serif;font-weight:300;line-height:1.75;overflow-x:hidden}
+a{color:var(--bright-green);text-decoration:none}
+
+.s-nav{display:flex;align-items:center;justify-content:space-between;padding:24px 60px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(6,15,10,0.9);backdrop-filter:blur(12px);z-index:100}
+.s-nav-logo{font-family:'Great Vibes',cursive;font-size:26px;color:var(--cream)}
+.s-nav-back{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(242,234,216,0.4);transition:color .2s}
+.s-nav-back:hover{color:var(--bright-green)}
+@media(max-width:600px){.s-nav{padding:20px 20px}}
+
+.s-hero{padding:80px 60px 60px;max-width:900px;margin:0 auto;text-align:center}
+.s-label{font-size:10px;letter-spacing:0.65em;text-transform:uppercase;color:var(--bright-green);margin-bottom:20px}
+.s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,6vw,72px);font-weight:300;line-height:1.1;color:var(--cream);margin-bottom:20px}
+.s-title em{font-family:'Playfair Display',serif;font-style:italic;color:var(--bright-green)}
+.s-desc{font-size:15px;color:rgba(242,234,216,0.55);max-width:560px;margin:0 auto;line-height:1.85}
+@media(max-width:600px){.s-hero{padding:60px 24px 40px}}
+
+.learn-inner{max-width:1280px;margin:0 auto;padding:0 60px 120px}
+@media(max-width:768px){.learn-inner{padding:0 24px 80px}}
+
+.learn-section{margin-top:80px;padding-top:60px;border-top:1px solid rgba(82,183,136,0.08)}
+.learn-section:first-child{border-top:none;margin-top:0;padding-top:20px}
+
+.section-label{font-size:10px;letter-spacing:0.5em;text-transform:uppercase;color:var(--bright-green);margin-bottom:16px;display:block}
+.terpene-intro{max-width:700px;margin-bottom:48px}
+.terpene-intro-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,44px);font-weight:300;line-height:1.2;color:var(--cream);margin-bottom:12px}
+.terpene-intro-title em{font-family:'Playfair Display',serif;font-style:italic;color:var(--light-green)}
+.terpene-intro-desc{font-size:14px;line-height:1.9;color:var(--cream);opacity:.6}
+
+/* numbers */
+.numbers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;margin-top:40px}
+.numbers-card{background:var(--card-bg);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:28px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px;transition:transform .25s,border-color .25s}
+.numbers-card:hover{transform:translateY(-3px);border-color:rgba(122,184,80,0.3)}
+.num-big{font-family:'Cormorant Garamond',serif;font-size:3.2rem;font-weight:700;color:var(--bright-green);line-height:1}
+.num-plus{font-size:1.1rem;font-weight:700;color:var(--gold);margin-top:-4px;min-height:20px}
+.num-label{font-size:.75rem;line-height:1.4;opacity:.6;margin-top:8px;letter-spacing:.03em}
+
+/* consume btns & detail */
+.consume-btn{display:flex;flex-direction:column;align-items:center;gap:8px;padding:20px 12px;border-radius:12px;border:2px solid rgba(255,255,255,0.08);background:var(--card-bg);cursor:pointer;transition:all .25s;color:var(--cream);font-family:'Montserrat',sans-serif;opacity:.65}
+.consume-btn:hover{opacity:.85;transform:translateY(-2px)}
+.consume-btn.active{opacity:1;border-color:var(--bright-green);box-shadow:0 4px 20px rgba(122,184,80,0.25);transform:translateY(-3px)}
+.consume-btn-icon{font-size:1.8rem}
+.consume-btn-name{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-align:center}
+.consume-detail{border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:var(--card-bg);overflow:hidden;min-height:60px;transition:all .3s}
+.consume-detail-inner{padding:28px 32px}
+.consume-detail-header{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.consume-detail-icon{font-size:2.5rem}
+.consume-detail-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;color:var(--cream)}
+.consume-desc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.consume-desc-item{background:rgba(255,255,255,0.04);border-radius:10px;padding:16px}
+.consume-desc-item strong{display:block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--bright-green);margin-bottom:6px}
+.consume-desc-item p{font-size:.85rem;line-height:1.5;opacity:.8;margin:0}
+@media(max-width:600px){.consume-desc-grid{grid-template-columns:1fr}}
+
+/* coa grid */
+.coa-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px;margin:36px 0 28px}
+
+/* conditions */
+.conditions-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin:36px 0 28px}
+.condition-btn{display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 10px;border-radius:12px;border:2px solid rgba(255,255,255,0.08);background:var(--card-bg);cursor:pointer;transition:all .25s;color:var(--cream);font-family:'Montserrat',sans-serif;opacity:.65}
+.condition-btn:hover{opacity:.85;transform:translateY(-2px)}
+.condition-btn.active{opacity:1;border-color:var(--bright-green);box-shadow:0 4px 20px rgba(122,184,80,0.25);transform:translateY(-3px)}
+.condition-btn-icon{font-size:1.6rem}
+.condition-btn-name{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-align:center}
+
+/* legal map */
+.legal-legend{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin:24px 0 32px}
+.legal-dot{width:12px;height:12px;border-radius:50%;display:inline-block;margin-right:6px}
+.legal-rec{background:#7dd87d}
+.legal-med{background:#5ca0e8}
+.legal-dec{background:#e8c05c}
+.legal-ill{background:rgba(255,255,255,0.2)}
+.legal-legend-label{font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.8;margin-right:12px}
+.legal-states-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.legal-state{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px;background:var(--card-bg);border:1px solid rgba(255,255,255,0.06);transition:transform .2s}
+.legal-state:hover{transform:translateY(-2px)}
+.legal-state-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.legal-state-name{font-size:.78rem;font-weight:600;color:var(--cream)}
+.legal-state-status{font-size:.62rem;opacity:.5;text-transform:uppercase;letter-spacing:.06em}
+</style>
+</head>
+<body>
+
+<nav class="s-nav">
+  <a href="/" class="s-nav-logo">Cannascenti</a>
+  <a href="/" class="s-nav-back">← Back to Home</a>
+</nav>
+
+<div class="s-hero">
+  <div class="s-label">✦ The Cannalogy</div>
+  <h1 class="s-title">Cannabis education for <em>everyone</em></h1>
+  <p class="s-desc">Numbers, lab reports, conditions, and legal status. Everything you need to actually understand what you're buying and putting in your body.</p>
+</div>
+
+<div class="learn-inner">
+
+  <!-- NUMBERS -->
+  <div class="learn-section">
+    <div class="terpene-intro">
+      <span class="section-label">✦ Cannabis by the Numbers</span>
+      <div class="terpene-intro-title">The plant in <em>plain numbers</em></div>
+      <p class="terpene-intro-desc">The cannabis industry and the plant itself tell a story best understood through data. These are the numbers worth knowing.</p>
+    </div>
+    <div class="numbers-grid">
+      <div class="numbers-card"><div class="num-big">100</div><div class="num-plus">+</div><div class="num-label">Cannabinoids identified in cannabis</div></div>
+      <div class="numbers-card"><div class="num-big">200</div><div class="num-plus">+</div><div class="num-label">Terpenes found in the plant</div></div>
+      <div class="numbers-card"><div class="num-big">30</div><div class="num-plus">%</div><div class="num-label">Max THC potency in top-shelf flower</div></div>
+      <div class="numbers-card"><div class="num-big">70</div><div class="num-plus">%</div><div class="num-label">Of the endocannabinoid system still being actively studied</div></div>
+      <div class="numbers-card"><div class="num-big">50</div><div class="num-plus">K+</div><div class="num-label">Years cannabis has been used by humans</div></div>
+      <div class="numbers-card"><div class="num-big">38</div><div class="num-plus"></div><div class="num-label">US states with legal cannabis (medical or recreational)</div></div>
+      <div class="numbers-card"><div class="num-big">57</div><div class="num-plus">B</div><div class="num-label">Dollar US cannabis market projected by 2030</div></div>
+      <div class="numbers-card"><div class="num-big">4</div><div class="num-plus">hrs</div><div class="num-label">Average duration of an edible experience</div></div>
+    </div>
+  </div>
+
+  <!-- COA -->
+  <div class="learn-section">
+    <div class="terpene-intro">
+      <span class="section-label">✦ Lab Reports &amp; COAs</span>
+      <div class="terpene-intro-title">What the label <em>actually means</em></div>
+      <p class="terpene-intro-desc">A Certificate of Analysis (COA) is the most important document in cannabis — and almost nobody knows how to read one. Click each panel to decode what you're actually buying.</p>
+    </div>
+    <div class="coa-grid" id="coaGrid"></div>
+    <div class="consume-detail" id="coaDetail"></div>
+  </div>
+
+  <!-- CONDITIONS -->
+  <div class="learn-section">
+    <div class="terpene-intro">
+      <span class="section-label">✦ Cannabis &amp; Conditions</span>
+      <div class="terpene-intro-title">What actually <em>helps what</em></div>
+      <p class="terpene-intro-desc">Cannabis isn't one-size-fits-all medicine. Different conditions respond to different cannabinoid and terpene combinations. Click any condition to see what the research and experience point to.</p>
+    </div>
+    <div class="conditions-grid" id="conditionsGrid"></div>
+    <div class="consume-detail" id="conditionsDetail"></div>
+  </div>
+
+  <!-- LEGAL MAP -->
+  <div class="learn-section">
+    <div class="terpene-intro">
+      <span class="section-label">✦ Legal Status by State</span>
+      <div class="terpene-intro-title">Where cannabis stands <em>right now</em></div>
+      <p class="terpene-intro-desc">The legal landscape has shifted dramatically in the last decade. Here's exactly where every US state stands — recreational, medical-only, decriminalized, or still fully illegal.</p>
+    </div>
+    <div class="legal-legend">
+      <span class="legal-dot legal-rec"></span><span class="legal-legend-label">Recreational</span>
+      <span class="legal-dot legal-med"></span><span class="legal-legend-label">Medical Only</span>
+      <span class="legal-dot legal-dec"></span><span class="legal-legend-label">Decriminalized</span>
+      <span class="legal-dot legal-ill"></span><span class="legal-legend-label">Illegal</span>
+    </div>
+    <div class="legal-states-grid" id="legalGrid"></div>
+  </div>
+
+</div>
+
+<script>
+// COA
+const COA_DATA = [
+  {id:'potency',icon:'💪',name:'Potency Panel',bestFor:'The most important panel. Shows THC, THCA, CBD, CBDA, and minor cannabinoids as percentages.',howTo:'THCA converts to THC when heated (decarboxylation). Total THC = THC + (THCA × 0.877). The number on the package is often THCA — not active THC.',pros:'Look for: Total Active THC, CBD content, minor cannabinoids (CBG, CBN, CBC).',cons:'THC % alone tells you almost nothing about quality. A 30% distillate hits differently than a 22% terpene-rich flower.'},
+  {id:'terpenes',icon:'🌸',name:'Terpene Panel',bestFor:'The panel that predicts your experience more accurately than THC %. Total terpene content and individual profile.',howTo:'Good flower has 1–3% total terpenes. Premium craft cannabis can hit 3–5%+. Below 0.5% usually means degraded product.',pros:'Look for: which terpenes dominate and at what percentage. Myrcene + linalool = sedating. Limonene + pinene = energetic.',cons:'Terpenes are volatile — they degrade with heat, light, and time.'},
+  {id:'pesticides',icon:'🚫',name:'Pesticide Screening',bestFor:'Safety panel. Tests for residual pesticides from cultivation. Critical for medical patients and anyone who cares what they\'re inhaling.',howTo:'"Pass" means all tested compounds are below action limits. Look for "ND" (not detected) across the board.',pros:'Always buy tested cannabis from accredited labs.',cons:'Different states test for different pesticides. Third-party tested products from reputable labs are the gold standard.'},
+  {id:'microbials',icon:'🦠',name:'Microbial Testing',bestFor:'Tests for mold, yeast, bacteria (E. coli, Salmonella). Essential for immunocompromised patients.',howTo:'Total Yeast and Mold (TYMC) and Total Aerobic Microbial Count (TAMC) must fall below action levels.',pros:'Any product with a failed microbial test is dangerous and should not be consumed.',cons:'Visual red flags: white powdery coating, dark spots, or musty smell — regardless of a lab pass.'},
+  {id:'metals',icon:'⚗️',name:'Heavy Metals',bestFor:'Cannabis bioaccumulates heavy metals from soil — lead, cadmium, arsenic, mercury. Especially relevant for concentrates.',howTo:'Concentrates concentrate everything — including any metals in the plant. Always verify concentrates have passed heavy metals testing.',pros:'Look for "Pass" on lead, cadmium, arsenic, and mercury specifically.',cons:'Hemp (CBD) products have had the most heavy metals issues historically.'},
+  {id:'labinfo',icon:'🏛️',name:'Lab & Batch Info',bestFor:'Who tested it, when, and which batch. The authenticity of the COA itself.',howTo:'A legitimate COA includes: accredited lab name and license number, sample ID, batch number, harvest/test date, and QR code to verify online.',pros:'Look for: ISO/IEC 17025 accreditation — the gold standard for testing labs.',cons:'COA fraud exists. Always scan the QR code or visit the lab\'s website to verify the actual report.'},
+];
+function renderCoaGrid() {
+  document.getElementById('coaGrid').innerHTML = COA_DATA.map(m =>
+    '<button class="consume-btn" id="coabtn-'+m.id+'" onclick="coaSelect(\''+m.id+'\')"><span class="consume-btn-icon">'+m.icon+'</span><span class="consume-btn-name">'+m.name+'</span></button>'
+  ).join('');
+}
+function coaSelect(id) {
+  document.querySelectorAll('#coaGrid .consume-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('coabtn-'+id).classList.add('active');
+  const m = COA_DATA.find(x => x.id===id);
+  document.getElementById('coaDetail').innerHTML = '<div class="consume-detail-inner"><div class="consume-detail-header"><div class="consume-detail-icon">'+m.icon+'</div><div><div class="consume-detail-title">'+m.name+'</div></div></div><div class="consume-desc-grid"><div class="consume-desc-item"><strong>What It Is</strong><p>'+m.bestFor+'</p></div><div class="consume-desc-item"><strong>How to Read It</strong><p>'+m.howTo+'</p></div><div class="consume-desc-item"><strong>What to Look For</strong><p>'+m.pros+'</p></div><div class="consume-desc-item"><strong>Red Flags</strong><p>'+m.cons+'</p></div></div></div>';
+}
+renderCoaGrid();
+coaSelect('potency');
+
+// Conditions
+const CONDITIONS_DATA = [
+  {id:'anxiety',icon:'😰',name:'Anxiety',bestFor:'CBD-dominant or balanced 1:1 products. High-THC can worsen anxiety in some people.',howTo:'Best cannabinoids: CBD (primary), low-dose THC, CBG. Best terpenes: Linalool, Myrcene, Caryophyllene.',pros:'Start with CBD tincture (25–50mg). If adding THC, never exceed 5mg until you know your response.',cons:'High-THC cannabis is a common anxiety trigger. If you\'ve had panic attacks from cannabis, stay below 5mg THC.'},
+  {id:'sleep',icon:'😴',name:'Insomnia / Sleep',bestFor:'Indica-dominant, high-myrcene, high-CBN products taken 30–60 minutes before bed.',howTo:'Best cannabinoids: CBN (most sedating), THC (shortens sleep onset), CBD (improves sleep quality). Best terpenes: Myrcene, Linalool, Terpinolene.',pros:'CBN 5–10mg + low-dose THC (5–10mg) + myrcene-rich strain = most effective sleep stack.',cons:'High-THC use before sleep can suppress REM sleep over time. Use intentionally, not habitually.'},
+  {id:'pain',icon:'🤕',name:'Chronic Pain',bestFor:'Full-spectrum cannabis addressing both the pain signal and inflammation simultaneously.',howTo:'Best cannabinoids: THC (pain relief), CBD (anti-inflammatory), CBG (bone/joint), CBC. Best terpenes: Caryophyllene, Myrcene.',pros:'For localized pain: CBD topicals. For systemic pain: full-spectrum tincture or edible.',cons:'Cannabis addresses pain symptomatically — it doesn\'t heal underlying tissue damage.'},
+  {id:'depression',icon:'🌧️',name:'Depression',bestFor:'Uplifting sativas and hybrids with limonene, pinene, and moderate THC for daytime mood lift.',howTo:'Best cannabinoids: THC (mood elevation), CBD, CBC. Best terpenes: Limonene (serotonin/dopamine), Pinene (alertness), Linalool.',pros:'Microdosing THC (2–5mg) with a limonene-forward strain is the most widely reported daytime protocol.',cons:'Heavy daily use can blunt motivation and deepen depression over time.'},
+  {id:'ptsd',icon:'🛡️',name:'PTSD',bestFor:'Cannabis is one of the most studied plant medicines for PTSD. Nightmares, hypervigilance, and anxiety respond well.',howTo:'Best cannabinoids: THC (reduces nightmare frequency), CBD, CBN. Best terpenes: Myrcene, Linalool, Caryophyllene.',pros:'THC has been shown to reduce REM sleep disturbances and nightmare frequency.',cons:'High-THC can cause hypervigilance and paranoia in some PTSD patients. Start extremely low.'},
+  {id:'nausea',icon:'🤢',name:'Nausea',bestFor:'One of the oldest documented medical uses. Fast-acting inhalation is most effective.',howTo:'Best cannabinoids: THC (directly reduces nausea via CB1), CBD (anti-emetic). Best terpenes: Limonene.',pros:'Even a single puff can stop nausea within minutes for most users.',cons:'Cannabinoid Hyperemesis Syndrome (CHS) is rare but real — heavy long-term use can paradoxically cause severe nausea.'},
+  {id:'adhd',icon:'⚡',name:'ADHD / Focus',bestFor:'Low-dose THCV, sativa-dominant strains, and microdosed THC can improve focus — heavy use worsens it.',howTo:'Best cannabinoids: THCV, low-dose THC, CBD. Best terpenes: Pinene (acetylcholinesterase inhibitor), Limonene.',pros:'Microdosing 2–5mg THC with a pinene/limonene-dominant strain before focused work is widely reported.',cons:'High-THC reliably impairs working memory and attention. The therapeutic window is narrow.'},
+  {id:'inflammation',icon:'🔥',name:'Inflammation',bestFor:'CBD and caryophyllene are the most evidence-backed anti-inflammatory cannabis compounds.',howTo:'Best cannabinoids: CBD, CBG, CBC, Caryophyllene (direct CB2 activation). Topicals for localized, edibles for systemic.',pros:'CBD + caryophyllene is the most studied anti-inflammatory stack.',cons:'Cannabis reduces inflammation but doesn\'t address root causes.'},
+];
+function renderConditionsGrid() {
+  document.getElementById('conditionsGrid').innerHTML = CONDITIONS_DATA.map(c =>
+    '<button class="condition-btn" id="condbtn-'+c.id+'" onclick="conditionSelect(\''+c.id+'\')"><span class="condition-btn-icon">'+c.icon+'</span><span class="condition-btn-name">'+c.name+'</span></button>'
+  ).join('');
+}
+function conditionSelect(id) {
+  document.querySelectorAll('.condition-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('condbtn-'+id).classList.add('active');
+  const c = CONDITIONS_DATA.find(x => x.id===id);
+  document.getElementById('conditionsDetail').innerHTML = '<div class="consume-detail-inner"><div class="consume-detail-header"><div class="consume-detail-icon">'+c.icon+'</div><div><div class="consume-detail-title">'+c.name+'</div></div></div><div class="consume-desc-grid"><div class="consume-desc-item"><strong>Best Approach</strong><p>'+c.bestFor+'</p></div><div class="consume-desc-item"><strong>Cannabinoids &amp; Terpenes</strong><p>'+c.howTo+'</p></div><div class="consume-desc-item"><strong>Protocol</strong><p>'+c.pros+'</p></div><div class="consume-desc-item"><strong>Important Notes</strong><p>'+c.cons+'</p></div></div></div>';
+}
+renderConditionsGrid();
+conditionSelect('anxiety');
+
+// Legal Map
+const LEGAL_STATES = [
+  {name:'Alabama',status:'med',label:'Medical'},{name:'Alaska',status:'rec',label:'Recreational'},{name:'Arizona',status:'rec',label:'Recreational'},{name:'Arkansas',status:'med',label:'Medical'},{name:'California',status:'rec',label:'Recreational'},{name:'Colorado',status:'rec',label:'Recreational'},{name:'Connecticut',status:'rec',label:'Recreational'},{name:'Delaware',status:'rec',label:'Recreational'},{name:'Florida',status:'med',label:'Medical'},{name:'Georgia',status:'dec',label:'Decriminalized'},{name:'Hawaii',status:'med',label:'Medical'},{name:'Idaho',status:'ill',label:'Illegal'},{name:'Illinois',status:'rec',label:'Recreational'},{name:'Indiana',status:'ill',label:'Illegal'},{name:'Iowa',status:'med',label:'Medical'},{name:'Kansas',status:'ill',label:'Illegal'},{name:'Kentucky',status:'med',label:'Medical'},{name:'Louisiana',status:'med',label:'Medical'},{name:'Maine',status:'rec',label:'Recreational'},{name:'Maryland',status:'rec',label:'Recreational'},{name:'Massachusetts',status:'rec',label:'Recreational'},{name:'Michigan',status:'rec',label:'Recreational'},{name:'Minnesota',status:'rec',label:'Recreational'},{name:'Mississippi',status:'med',label:'Medical'},{name:'Missouri',status:'rec',label:'Recreational'},{name:'Montana',status:'rec',label:'Recreational'},{name:'Nebraska',status:'dec',label:'Decriminalized'},{name:'Nevada',status:'rec',label:'Recreational'},{name:'New Hampshire',status:'dec',label:'Decriminalized'},{name:'New Jersey',status:'rec',label:'Recreational'},{name:'New Mexico',status:'rec',label:'Recreational'},{name:'New York',status:'rec',label:'Recreational'},{name:'North Carolina',status:'dec',label:'Decriminalized'},{name:'North Dakota',status:'med',label:'Medical'},{name:'Ohio',status:'rec',label:'Recreational'},{name:'Oklahoma',status:'med',label:'Medical'},{name:'Oregon',status:'rec',label:'Recreational'},{name:'Pennsylvania',status:'med',label:'Medical'},{name:'Rhode Island',status:'rec',label:'Recreational'},{name:'South Carolina',status:'ill',label:'Illegal'},{name:'South Dakota',status:'med',label:'Medical'},{name:'Tennessee',status:'ill',label:'Illegal'},{name:'Texas',status:'med',label:'Medical'},{name:'Utah',status:'med',label:'Medical'},{name:'Vermont',status:'rec',label:'Recreational'},{name:'Virginia',status:'rec',label:'Recreational'},{name:'Washington',status:'rec',label:'Recreational'},{name:'West Virginia',status:'med',label:'Medical'},{name:'Wisconsin',status:'dec',label:'Decriminalized'},{name:'Wyoming',status:'ill',label:'Illegal'},{name:'Washington DC',status:'rec',label:'Recreational'},
+];
+document.getElementById('legalGrid').innerHTML = LEGAL_STATES.map(s =>
+  '<div class="legal-state"><div class="legal-state-dot legal-'+s.status+'"></div><div><div class="legal-state-name">'+s.name+'</div><div class="legal-state-status">'+s.label+'</div></div></div>'
+).join('');
+</script>
+</body>
+</html>`;
+    res.writeHead(200, { "Content-Type": "text/html" });
+    res.end(html);
+    return;
+  }
+
   // ─── Mary Jane Vision — Product Scanner page ──────────────────────────────
   if (req.method === "GET" && req.url === "/scan") {
     const html = `<!DOCTYPE html>
