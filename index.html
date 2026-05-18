@@ -5186,7 +5186,7 @@
   .enc-hub-header { max-width: 720px; margin-bottom: 50px; }
   .enc-hub-header p { color: rgba(255,255,255,0.6); font-size: 16px; line-height: 1.7; margin-top: 16px; }
   .enc-hub-nav { display: flex; gap: 0; flex-wrap: wrap; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 48px; overflow-x: auto; }
-  .enc-hub-tab { padding: 14px 24px; background: none; border: none; border-bottom: 2px solid transparent; color: rgba(255,255,255,0.4); font-family: 'Montserrat', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: all 0.2s; white-space: nowrap; margin-bottom: -1px; display: flex; align-items: center; gap: 8px; }
+  .enc-hub-tab { padding: 14px 24px; background: none; border: none; border-bottom: 2px solid transparent; color: rgba(255,255,255,0.4); font-family: 'Montserrat', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: all 0.2s; white-space: nowrap; margin-bottom: -1px; display: flex; align-items: center; gap: 8px; text-decoration: none; }
   .enc-hub-tab:hover { color: rgba(255,255,255,0.7); }
   .enc-hub-tab.active { color: var(--bright-green); border-bottom-color: var(--bright-green); }
   .enc-hub-tab-icon { font-size: 15px; }
@@ -6853,17 +6853,60 @@
     </div>
 
     <div class="enc-hub-nav" id="enc-hub-nav">
-      <button class="enc-hub-tab active" data-tab="strains" onclick="encTab('strains')"><span class="enc-hub-tab-icon">◈</span>Strains</button>
-      <button class="enc-hub-tab" data-tab="terpenes" onclick="encTab('terpenes')"><span class="enc-hub-tab-icon">🌿</span>Terpenes</button>
-      <button class="enc-hub-tab" data-tab="cannabinoids" onclick="encTab('cannabinoids')"><span class="enc-hub-tab-icon">🔬</span>Cannabinoids</button>
-      <button class="enc-hub-tab" data-tab="consumption" onclick="encTab('consumption')"><span class="enc-hub-tab-icon">💨</span>Consumption</button>
-      <button class="enc-hub-tab" data-tab="cultivation" onclick="encTab('cultivation')"><span class="enc-hub-tab-icon">🌱</span>Cultivation</button>
-      <button class="enc-hub-tab" data-tab="history" onclick="encTab('history')"><span class="enc-hub-tab-icon">📜</span>History</button>
-      <button class="enc-hub-tab" data-tab="extractions" onclick="encTab('extractions')"><span class="enc-hub-tab-icon">💎</span>Extractions</button>
-      <button class="enc-hub-tab" data-tab="cooking" onclick="encTab('cooking')"><span class="enc-hub-tab-icon">🍳</span>Cooking</button>
+      <a class="enc-hub-tab active" href="/strains"><span class="enc-hub-tab-icon">◈</span>Strains</a>
+      <a class="enc-hub-tab" href="/terpenes"><span class="enc-hub-tab-icon">🌿</span>Terpenes</a>
+      <a class="enc-hub-tab" href="/cannabinoids"><span class="enc-hub-tab-icon">🔬</span>Cannabinoids</a>
+      <a class="enc-hub-tab" href="/consumption"><span class="enc-hub-tab-icon">💨</span>Consumption</a>
+      <a class="enc-hub-tab" href="/cultivation"><span class="enc-hub-tab-icon">🌱</span>Cultivation</a>
+      <a class="enc-hub-tab" href="/history"><span class="enc-hub-tab-icon">📜</span>History</a>
+      <a class="enc-hub-tab" href="/extractions"><span class="enc-hub-tab-icon">💎</span>Extractions</a>
+      <a class="enc-hub-tab" href="/cooking"><span class="enc-hub-tab-icon">🍳</span>Cooking</a>
     </div>
     <div class="enc-search-result-banner" id="encSearchBanner" style="display:none"></div>
-    <div class="enc-hub-panel" id="enc-hub-panel"></div>
+    <div class="enc-hub-panel" id="enc-hub-panel">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;padding:32px 0;">
+        <a href="/strains" style="display:block;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+          <div style="font-size:28px;margin-bottom:10px;">◈</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--bright-green);margin-bottom:6px;">Strains</div>
+          <div style="font-size:13px;color:rgba(242,234,216,0.6);line-height:1.5;">Browse all 61 strains with effects, terpenes, THC/CBD profiles and growing info.</div>
+        </a>
+        <a href="/terpenes" style="display:block;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+          <div style="font-size:28px;margin-bottom:10px;">🌿</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--bright-green);margin-bottom:6px;">Terpenes</div>
+          <div style="font-size:13px;color:rgba(242,234,216,0.6);line-height:1.5;">Interactive terpene wheel with 16 terpene profiles, aromas, effects, and boiling points.</div>
+        </a>
+        <a href="/cannabinoids" style="display:block;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+          <div style="font-size:28px;margin-bottom:10px;">🔬</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--bright-green);margin-bottom:6px;">Cannabinoids</div>
+          <div style="font-size:13px;color:rgba(242,234,216,0.6);line-height:1.5;">THC, CBD, CBG, CBN, THCV and Delta-8 — what they do and how they interact.</div>
+        </a>
+        <a href="/consumption" style="display:block;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+          <div style="font-size:28px;margin-bottom:10px;">💨</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--bright-green);margin-bottom:6px;">Consumption</div>
+          <div style="font-size:13px;color:rgba(242,234,216,0.6);line-height:1.5;">Onset times, bioavailability, pros and cons for every consumption method.</div>
+        </a>
+        <a href="/cultivation" style="display:block;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+          <div style="font-size:28px;margin-bottom:10px;">🌱</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--bright-green);margin-bottom:6px;">Cultivation</div>
+          <div style="font-size:13px;color:rgba(242,234,216,0.6);line-height:1.5;">Full growth cycle guide: germination through harvest with environment tips.</div>
+        </a>
+        <a href="/history" style="display:block;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+          <div style="font-size:28px;margin-bottom:10px;">📜</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--bright-green);margin-bottom:6px;">History</div>
+          <div style="font-size:13px;color:rgba(242,234,216,0.6);line-height:1.5;">12,000 years of cannabis history — from ancient China to modern legalization.</div>
+        </a>
+        <a href="/extractions" style="display:block;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+          <div style="font-size:28px;margin-bottom:10px;">💎</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--bright-green);margin-bottom:6px;">Extractions</div>
+          <div style="font-size:13px;color:rgba(242,234,216,0.6);line-height:1.5;">Solventless to solvent-based — how every extract is made, from rosin to BHO.</div>
+        </a>
+        <a href="/cooking" style="display:block;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+          <div style="font-size:28px;margin-bottom:10px;">🍳</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--bright-green);margin-bottom:6px;">Cooking</div>
+          <div style="font-size:13px;color:rgba(242,234,216,0.6);line-height:1.5;">Decarb charts, infusion methods, dosing calculator, and full cannabis recipes.</div>
+        </a>
+      </div>
+    </div>
   </div>
 
   <!-- CANNABIS & YOUR BODY -->
@@ -12099,7 +12142,6 @@
   // Init
   document.addEventListener('DOMContentLoaded', () => {
     sbRenderGrid();
-    encTab('strains');
   });
 
 </script>

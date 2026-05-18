@@ -647,6 +647,903 @@ ${isPrivacy ? `<h1>Privacy Policy</h1><p>Last updated: April 2026</p>
     return;
   }
 
+  // ─── Encyclopedia dedicated pages ─────────────────────────────────────────
+
+  // Shared nav for all encyclopedia pages
+  const ENC_NAV = `<nav style="background:#060d0a;border-bottom:1px solid rgba(82,183,136,0.15);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100">
+  <a href="/" style="font-family:'Great Vibes',cursive;font-size:1.4rem;color:#52B788;text-decoration:none">Cannascenti</a>
+  <div style="display:flex;gap:4px;flex-wrap:wrap">
+    <a href="/strains" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Strains</a>
+    <a href="/terpenes" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Terpenes</a>
+    <a href="/cannabinoids" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Cannabinoids</a>
+    <a href="/consumption" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Consumption</a>
+    <a href="/cultivation" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Cultivation</a>
+    <a href="/history" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">History</a>
+    <a href="/extractions" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Extractions</a>
+    <a href="/cooking" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Cooking</a>
+  </div>
+</nav>`;
+
+  const ENC_FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">`;
+
+  const ENC_BASE_CSS = `*{margin:0;padding:0;box-sizing:border-box}body{background:#060d0a;color:#F2EAD8;font-family:Montserrat,sans-serif}a{color:#52B788;text-decoration:none}.enc-page{max-width:1100px;margin:0 auto;padding:60px 32px 120px}.enc-page-header{margin-bottom:56px}.enc-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#52B788;margin-bottom:12px}.enc-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:300;color:#F2EAD8;line-height:1.15;margin-bottom:20px}.enc-title em{font-style:italic;color:#52B788}.enc-desc{font-size:.95rem;line-height:1.8;color:rgba(242,234,216,0.65);max-width:680px}`;
+
+  // ─── /terpenes ──────────────────────────────────────────────────────────────
+  if (req.method === "GET" && req.url === "/terpenes") {
+    const _WT = [
+      { name:"Myrcene", tag:"Most Common in Cannabis", color:"#E07B39", aroma:"Earthy, musky, tropical, mango, hops", effect:"Heavy relaxation, couch-lock, sedating. High myrcene = indica-leaning experience regardless of strain type. Enhances CB1 receptor binding — helps cannabinoids cross the blood-brain barrier faster.", found:"mangoes, hops, lemongrass, parsley leaf, grapefruit, orange", boiling:"168°C / 334°F" },
+      { name:"Limonene", tag:"The Mood Lifter", color:"#F5C842", aroma:"Citrus, lemon, orange, lime, grapefruit", effect:"Uplifting, euphoric, stress-relieving, refreshing. Drives that bright, social, happy high. Interacts with serotonin and dopamine receptors — the same pathways antidepressants target.", found:"lemon, bergamot, grapefruit, orange blossoms, lime", boiling:"176°C / 349°F" },
+      { name:"Terpineol", tag:"The Relaxing Floral", color:"#D4A853", aroma:"Floral, citrus, sweet, lilac", effect:"Calming, sedating, stress-relieving. Often found alongside linalool in indica strains. Produces a relaxed, pleasant body feeling with mild euphoria.", found:"linden blossoms, lime, eucalyptus, pine", boiling:"218°C / 424°F" },
+      { name:"Isopulegol", tag:"Minty & Cooling", color:"#C9B84C", aroma:"Minty, fresh, herbal, cooling", effect:"Stress-relieving, calming, anti-nausea. A precursor to menthol — gives that cool, refreshing sensation. Gastroprotective and anti-anxiety properties.", found:"geraniums, grapefruit, cananga, hops", boiling:"212°C / 414°F" },
+      { name:"Caryophyllene", tag:"Binds CB2 Directly", color:"#D95F3B", aroma:"Peppery, woody, clove, cinnamon, earthy", effect:"Anti-inflammatory, pain-relieving, calming. The only terpene that directly binds CB2 receptors — technically both a cannabinoid and a terpene simultaneously.", found:"black pepper, cloves, cinnamon, basil, oregano", boiling:"160°C / 320°F" },
+      { name:"Eucalyptol", tag:"The Refreshing Cleanser", color:"#E8603C", aroma:"Eucalyptus, camphor, minty, refreshing", effect:"Refreshing, alertness-boosting, stress-relieving. Clears mental fog. The sharp, clean note that opens your airways and sharpens your mind.", found:"eucalyptus, rosemary, sage, thyme, catnip", boiling:"176°C / 349°F" },
+      { name:"Terpinolene", tag:"Multidimensional", color:"#C94F3A", aroma:"Pine, floral, herbs, citrus, sweet", effect:"Mildly sedating, calming, focus-enhancing. The most complex aroma profile of any terpene — simultaneously spicy, sweet, and floral.", found:"lilac, black currant, fir needles, sage, apple", boiling:"186°C / 367°F" },
+      { name:"Delta-3-Carene", tag:"The Memory Terpene", color:"#B84036", aroma:"Sweet, cedar, earthy, pungent", effect:"Alertness, focus, memory retention. Known to promote bone health and reduce inflammation. The reason some strains make your mouth especially dry.", found:"cedar, cypress, rosemary, bell pepper, basil, pine", boiling:"168°C / 334°F" },
+      { name:"Linalool", tag:"Nature's Anxiety Reducer", color:"#9B72CF", aroma:"Floral, lavender, citrus, spicy", effect:"Deeply calming, sedating, anxiolytic. Activates GABA receptors — the same system benzodiazepines target. The reason lavender has been used for sleep and calm for thousands of years.", found:"lavender, rose, bergamot, geranium, honeysuckle", boiling:"198°C / 388°F" },
+      { name:"Geraniol", tag:"The Floral Protector", color:"#7B68C8", aroma:"Rose, geranium, citrus, warm floral", effect:"Calming, stress-relieving, neuroprotective. One of the most potent antioxidant terpenes. The warm floral note that gives rose its signature smell.", found:"rose, geranium, lemongrass, citronella, palmarosa", boiling:"230°C / 446°F" },
+      { name:"Ocimene", tag:"The Uplifting Floral", color:"#5B8DD9", aroma:"Sweet, herbal, floral, woody, citrus", effect:"Uplifting, energizing, antiviral, anti-fungal. The sweet floral note in tropical strains. Often paired with limonene for extra euphoric effect.", found:"mint, parsley, basil, orchids, mangoes, bergamot", boiling:"50°C / 122°F" },
+      { name:"Farnesol", tag:"The Calming Floral", color:"#4A7BC4", aroma:"Floral, fresh, citrus, rose", effect:"Calming, stress-relieving, antibacterial. Supports the immune system and has anti-tumor properties in early research.", found:"rose, linden, citronella, cyclamen, ambrette, sandalwood", boiling:"222°C / 432°F" },
+      { name:"Pinene", tag:"The Alertness Terpene", color:"#52B788", aroma:"Pine, fresh, forest, herbs, rosemary", effect:"Promotes alertness and memory retention. One of the few terpenes that counteracts THC's short-term memory effects. Inhibits acetylcholinesterase — your brain's memory enzyme.", found:"pine needles, rosemary, dill, basil, parsley, cypress", boiling:"155°C / 311°F" },
+      { name:"Humulene", tag:"The Appetite Suppressant", color:"#3D9970", aroma:"Earthy, woody, hoppy, herbal, spicy", effect:"Anti-inflammatory, antibacterial, appetite-suppressing. Unique — it can actually reduce hunger rather than increase it. Found heavily in hops.", found:"hops, sage, ginseng, coriander, cloves, balsam poplar", boiling:"198°C / 388°F" },
+      { name:"Nerolidol", tag:"The Deep Sedative", color:"#2D8C5E", aroma:"Woody, fresh bark, citrus, floral", effect:"Sedating, stress-relieving, anti-parasitic. One of the most powerfully sedating terpenes. Enhances skin absorption — helps other cannabinoids penetrate more effectively.", found:"jasmine, lemongrass, tea tree, ginger, lavender", boiling:"122°C / 252°F" },
+      { name:"Bisabolol", tag:"The Skin Healer", color:"#52A875", aroma:"Floral, sweet, chamomile, honey", effect:"Calming, anti-irritant, anti-inflammatory. The primary terpene in chamomile. Exceptional skin-healing properties — reduces redness, soothes irritation.", found:"chamomile, echinacea, verbena, sandalwood", boiling:"153°C / 307°F" }
+    ];
+    const _TD = [
+      { name:"Myrcene", aroma:"Earthy · Musky · Cloves", tags:["Relaxing","Sedating","Body High"], bp:"167°C / 332°F", found:"Hops, Mangoes, Thyme, Lemongrass", effects:"The most abundant terpene in cannabis. Myrcene produces a sedating, couch-lock body effect and significantly amplifies THC by increasing cell membrane permeability, allowing cannabinoids to cross the blood-brain barrier more easily.", medical:["Pain relief","Anti-inflammatory","Muscle relaxant","Sleep aid","Anxiety reduction"], strains:["OG Kush","Blue Dream","Granddaddy Purple","Mango Kush","Grape Ape","White Widow"], note:"High-myrcene strains are associated with the classic indica sedation. The mango trick — eating a ripe mango before cannabis — works because mangoes are loaded with myrcene." },
+      { name:"Limonene", aroma:"Citrus · Lemon · Orange", tags:["Uplifting","Energetic","Mood"], bp:"176°C / 349°F", found:"Citrus peel, Juniper, Rosemary", effects:"The second most common terpene in cannabis. Limonene produces an elevated, euphoric, anxiety-reducing effect and is strongly associated with daytime sativa profiles. Known for antifungal and antibacterial properties.", medical:["Anxiety & depression","Acid reflux","Antifungal","Immune support","Anti-tumor (research)"], strains:["Lemon Haze","Durban Poison","Super Lemon OG","Banana OG","Strawberry Banana","Wedding Cake"], note:"Limonene is the smell of cleaning products — that sharp citrus burst. In cannabis, it's the terpene most directly correlated with mood elevation and stress relief." },
+      { name:"Caryophyllene", aroma:"Spicy · Pepper · Woody", tags:["Anti-inflammatory","Pain Relief","Calming"], bp:"130°C / 266°F", found:"Black pepper, Cloves, Cinnamon", effects:"The only terpene known to directly bind to cannabinoid receptors (CB2). Acts as a dietary cannabinoid with anti-inflammatory effects. Does not produce psychoactive effects on its own but significantly modifies the overall experience.", medical:["Anti-inflammatory","Chronic pain","Anxiety","Alcohol cravings","Ulcer protection"], strains:["Girl Scout Cookies","Sour Diesel","Bubba Kush","Chemdawg","Original Glue","Purple Punch"], note:"Because it binds to CB2 receptors, caryophyllene is legally classified as a dietary supplement. Black pepper is loaded with it — some people use it to reduce an overwhelming high." },
+      { name:"Linalool", aroma:"Floral · Lavender · Sweet", tags:["Calming","Sedating","Anxiety"], bp:"198°C / 388°F", found:"Lavender, Basil, Mint, Cinnamon", effects:"Linalool is best known from lavender aromatherapy. In cannabis it produces calming, anti-anxiety, and mildly sedating effects. Strong anticonvulsant and neuroprotective properties are being actively researched.", medical:["Anxiety & stress","Insomnia","Epilepsy (research)","Depression","Pain"], strains:["Lavender","LA Confidential","Amnesia Haze","Do-Si-Dos","Scooby Snacks","Master Kush"], note:"Linalool is why lavender aromatherapy works. Strains dominant in linalool tend to be the true 'chill and sleep' indicas — less heavy, more peacefully sedating." },
+      { name:"Pinene", aroma:"Pine · Fresh · Earthy", tags:["Alert","Memory","Respiratory"], bp:"155°C / 311°F", found:"Pine needles, Rosemary, Basil, Dill", effects:"The most widely encountered terpene in nature. Alpha-pinene promotes alertness and memory retention, and is a bronchodilator — it helps open airways. It also counteracts some of the short-term memory impairment from THC.", medical:["Memory retention","Asthma","Anti-inflammatory","Antiseptic","Anxiety"], strains:["Jack Herer","Trainwreck","Blue Dream","Island Sweet Skunk","Dutch Treat"], note:"Pinene is a natural bronchodilator — it opens airways. Strains high in pinene are often used by medical patients for respiratory conditions." },
+      { name:"Terpinolene", aroma:"Fresh · Piney · Floral", tags:["Uplifting","Creative","Antioxidant"], bp:"186°C / 367°F", found:"Apples, Cumin, Lilac, Nutmeg", effects:"Terpinolene is relatively rare as a dominant terpene but highly valued for its complex, multidimensional aroma and uplifting effects. It appears across the scent spectrum from piney to floral to herbaceous.", medical:["Antioxidant","Antibacterial","Antifungal","Mild sedative","Anti-tumor (research)"], strains:["Jack Herer","Ghost Train Haze","Golden Goat","XJ-13","Dutch Treat","Orange Cookies"], note:"Terpinolene is paradoxical: it smells invigorating but has mild sedative properties. It's one of the markers of the classic Jack Herer lineage." },
+      { name:"Humulene", aroma:"Woody · Earthy · Spicy", tags:["Appetite Suppressant","Anti-inflammatory","Antibacterial"], bp:"106°C / 223°F", found:"Hops, Basil, Cloves, Coriander", effects:"Humulene is notable for being one of the only cannabis terpenes associated with appetite suppression. It's a primary component of hops and contributes significantly to the herbaceous, earthy, spicy profiles of many classic strains.", medical:["Appetite suppression","Anti-inflammatory","Antibacterial","Anti-tumor (research)","Analgesic"], strains:["Girl Scout Cookies","Headband","White Widow","Skywalker OG","Death Star"], note:"Humulene is found in high concentrations in hops, which is why some hoppy IPAs and certain cannabis strains share an earthy, herbal quality." },
+      { name:"Ocimene", aroma:"Sweet · Herbal · Woody", tags:["Uplifting","Antiviral","Antifungal"], bp:"65°C / 149°F", found:"Mint, Parsley, Basil, Orchids", effects:"Ocimene is a fragrant, sweet terpene with a complex aroma that varies from sweet and floral to herbaceous and woody. Research suggests antiviral, antifungal, and decongestant properties.", medical:["Antiviral","Antifungal","Decongestant","Anti-inflammatory","Antibacterial"], strains:["Clementine","Golden Goat","Space Queen","Dutch Treat","Strawberry Cough"], note:"Ocimene has one of the lowest boiling points of all cannabis terpenes, making it highly volatile — it's often what you smell when you first open a jar." }
+    ];
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Terpenes — Cannascenti Encyclopedia</title>
+<meta name="description" content="The complete cannabis terpene reference. Interactive terpene wheel, full profiles, medical uses, strain guides, and boiling points for every major terpene.">
+${ENC_FONTS}
+<style>
+${ENC_BASE_CSS}
+#terpeneWheel{width:420px;max-width:100%;cursor:pointer}
+.terpene-slice{cursor:pointer;transition:opacity .2s}
+.terpene-slice:hover path{opacity:1!important}
+.terpene-wheel-wrap{display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap;margin-bottom:60px}
+.terpene-wheel-info{flex:1;min-width:240px;padding:28px;background:rgba(255,255,255,0.03);border:1px solid rgba(82,183,136,0.15);border-radius:16px}
+.twi-name{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;margin-bottom:6px}
+.twi-tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,234,216,0.5);margin-bottom:16px}
+.twi-effect{font-size:.88rem;line-height:1.7;color:rgba(242,234,216,0.75);margin-bottom:12px}
+.twi-aroma,.twi-found,.twi-boiling{font-size:.8rem;color:rgba(242,234,216,0.5);margin-bottom:6px}
+.terpene-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;margin-bottom:60px}
+.terpene-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:24px}
+.terpene-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;margin-bottom:6px}
+.terpene-tag{display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:rgba(82,183,136,0.12);color:#52B788;border-radius:20px;padding:3px 10px;margin-bottom:12px}
+.terpene-found,.terpene-effect,.terpene-ecs{font-size:.83rem;line-height:1.7;color:rgba(242,234,216,0.6);margin-bottom:8px}
+.terpene-effect{color:rgba(242,234,216,0.8)}
+.enc-detail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;margin-top:40px}
+.enc-detail-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:28px}
+.edc-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;margin-bottom:4px}
+.edc-aroma{font-size:.8rem;color:rgba(242,234,216,0.5);margin-bottom:12px}
+.edc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.edc-tag{font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:rgba(82,183,136,0.1);color:#52B788;border-radius:20px;padding:3px 10px}
+.edc-bp{font-size:.8rem;color:rgba(242,234,216,0.4);margin-bottom:12px}
+.edc-effects{font-size:.85rem;line-height:1.7;color:rgba(242,234,216,0.75);margin-bottom:14px}
+.edc-section{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,234,216,0.4);margin-bottom:6px}
+.edc-medical{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.edc-med{font-size:.75rem;background:rgba(255,255,255,0.05);border-radius:6px;padding:3px 8px;color:rgba(242,234,216,0.6)}
+.edc-strains{font-size:.8rem;color:rgba(242,234,216,0.5);margin-bottom:12px}
+.edc-note{font-size:.8rem;line-height:1.65;color:rgba(242,234,216,0.45);border-left:2px solid rgba(82,183,136,0.3);padding-left:12px;font-style:italic}
+h2.sec{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;margin:60px 0 24px;color:#F2EAD8}
+h2.sec em{color:#52B788;font-style:italic}
+@media(max-width:640px){.terpene-wheel-wrap{flex-direction:column}#terpeneWheel{width:100%;max-width:360px}}
+</style>
+</head>
+<body>
+${ENC_NAV}
+<div class="enc-page">
+  <div class="enc-page-header">
+    <div class="enc-label">✦ Cannascenti Encyclopedia</div>
+    <h1 class="enc-title">The complete <em>terpene</em> reference.</h1>
+    <p class="enc-desc">Terpenes aren't just cannabis compounds — they exist all around us in nature. Every time you've smelled a lemon, walked through a pine forest, or felt calm holding lavender, your endocannabinoid system was already responding. Cannabis just delivers them in high concentration — and your body already knows exactly what to do with them.</p>
+  </div>
+
+  <div class="terpene-wheel-wrap">
+    <svg id="terpeneWheel" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div class="terpene-wheel-info" id="terpeneInfo">
+      <div class="twi-name" id="twiName">Click a terpene</div>
+      <div class="twi-tag" id="twiTag">Explore the wheel</div>
+      <div class="twi-aroma" id="twiAroma"></div>
+      <div class="twi-effect" id="twiEffect"></div>
+      <div class="twi-found" id="twiFound"></div>
+      <div class="twi-boiling" id="twiBoiling"></div>
+    </div>
+  </div>
+
+  <h2 class="sec">The eight <em>essential</em> terpenes</h2>
+  <div class="terpene-grid" id="terpeneCards"></div>
+
+  <h2 class="sec">Full <em>terpene profiles</em></h2>
+  <div class="enc-detail-grid" id="terpeneDetail"></div>
+</div>
+<script>
+var WT = ${JSON.stringify(_WT)};
+var TD = ${JSON.stringify(_TD)};
+
+function initWheel() {
+  var svg = document.getElementById('terpeneWheel');
+  if (!svg) return;
+  var cx=250,cy=250,outerR=230,innerR=75,count=WT.length,slice=(2*Math.PI)/count;
+  function polar(cx,cy,r,a){return[cx+r*Math.cos(a),cy+r*Math.sin(a)];}
+  function makeSlice(i){
+    var t=WT[i],sa=i*slice-Math.PI/2,ea=sa+slice,gap=0.03,s=sa+gap,e=ea-gap;
+    var p1=polar(cx,cy,innerR,s),p2=polar(cx,cy,outerR,s),p3=polar(cx,cy,outerR,e),p4=polar(cx,cy,innerR,e);
+    var d='M '+p1[0]+' '+p1[1]+' L '+p2[0]+' '+p2[1]+' A '+outerR+' '+outerR+' 0 0 1 '+p3[0]+' '+p3[1]+' L '+p4[0]+' '+p4[1]+' A '+innerR+' '+innerR+' 0 0 0 '+p1[0]+' '+p1[1]+' Z';
+    var g=document.createElementNS('http://www.w3.org/2000/svg','g');
+    g.setAttribute('class','terpene-slice');
+    var path=document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d',d);path.setAttribute('fill',t.color);path.setAttribute('opacity','0.75');
+    g.appendChild(path);
+    var mid=sa+slice/2,lr=(innerR+outerR)/2,lp=polar(cx,cy,lr,mid);
+    var txt=document.createElementNS('http://www.w3.org/2000/svg','text');
+    txt.setAttribute('x',lp[0]);txt.setAttribute('y',lp[1]);
+    txt.setAttribute('text-anchor','middle');txt.setAttribute('dominant-baseline','middle');
+    txt.setAttribute('fill','#081C15');txt.setAttribute('font-size','10');
+    txt.setAttribute('font-family','Montserrat,sans-serif');txt.setAttribute('font-weight','600');
+    txt.setAttribute('letter-spacing','0.05em');txt.setAttribute('pointer-events','none');
+    txt.setAttribute('transform','rotate('+((mid*180/Math.PI)+90)+','+lp[0]+','+lp[1]+')');
+    txt.textContent=t.name.toUpperCase();
+    g.appendChild(txt);
+    g.addEventListener('click',function(){selectT(i,g);});
+    svg.appendChild(g);
+  }
+  var circle=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  circle.setAttribute('cx',cx);circle.setAttribute('cy',cy);circle.setAttribute('r',innerR-4);circle.setAttribute('fill','#081C15');
+  svg.appendChild(circle);
+  var ct=document.createElementNS('http://www.w3.org/2000/svg','text');
+  ct.setAttribute('x',cx);ct.setAttribute('y',cy);ct.setAttribute('text-anchor','middle');ct.setAttribute('dominant-baseline','middle');
+  ct.setAttribute('fill','#52B788');ct.setAttribute('font-size','11');ct.setAttribute('font-family','Montserrat,sans-serif');
+  ct.setAttribute('font-weight','300');ct.setAttribute('letter-spacing','0.15em');ct.textContent='TERPENES';
+  svg.appendChild(ct);
+  for(var i=0;i<count;i++) makeSlice(i);
+  var active=null;
+  function selectT(i,g){
+    if(active){active.querySelector('path').setAttribute('opacity','0.75');active.setAttribute('class','terpene-slice');}
+    g.querySelector('path').setAttribute('opacity','1');g.setAttribute('class','terpene-slice active');active=g;
+    var t=WT[i];
+    document.getElementById('twiName').textContent=t.name;
+    document.getElementById('twiName').style.color=t.color;
+    document.getElementById('twiTag').textContent=t.tag;
+    document.getElementById('twiAroma').textContent='Aroma: '+t.aroma;
+    document.getElementById('twiEffect').textContent=t.effect;
+    document.getElementById('twiFound').textContent='Found in: '+t.found;
+    document.getElementById('twiBoiling').textContent='Boiling point: '+t.boiling;
+  }
+  selectT(0,svg.querySelectorAll('.terpene-slice')[0]);
+}
+
+function renderCards(){
+  var g=document.getElementById('terpeneCards');
+  if(!g) return;
+  var cards=[
+    {name:'Myrcene',tag:'Most Common in Cannabis',found:'Found in: mangoes, hops, lemongrass, thyme, bay leaves.',effect:'The most abundant terpene in most cannabis strains. Produces that heavy, relaxed, couch-lock feeling.',ecs:'Enhances CB1 receptor binding — helps cannabinoids cross the blood-brain barrier faster. Eating a mango before smoking? The myrcene increases absorption.'},
+    {name:'Limonene',tag:'The Mood Lifter',found:'Found in: lemon rinds, orange peel, limes, grapefruit, juniper berries.',effect:'Uplifting, euphoric, anxiety-reducing. The reason citrus makes you feel awake and positive. Drives that bright, social, happy high.',ecs:'Interacts with serotonin and dopamine receptors — the same pathways antidepressants target. Your body recognizes citrus as a mood signal.'},
+    {name:'Caryophyllene',tag:'The Only Terpene That Binds CB2',found:'Found in: black pepper, cloves, cinnamon, basil, oregano.',effect:'Anti-inflammatory, pain-relieving, calming. Why cracking black pepper under your nose can take the edge off a too-intense high.',ecs:'The only terpene that directly binds to CB2 receptors. It is technically a cannabinoid and a terpene simultaneously.'},
+    {name:'Linalool',tag:"Nature's Anxiety Reducer",found:'Found in: lavender, mint, cinnamon, birch trees, coriander.',effect:'Deeply calming, sedating, anxiolytic. The reason lavender has been used for sleep and calm for thousands of years.',ecs:'Activates GABA receptors — the same system benzodiazepines target. Your nervous system evolved to respond to linalool as a relaxation signal.'},
+    {name:'Pinene',tag:'The Alertness Terpene',found:'Found in: pine needles, rosemary, dill, basil, parsley.',effect:'Promotes alertness, memory retention, and airway openness. One of the few terpenes that counteracts some of THC\'s short-term memory effects.',ecs:'Inhibits acetylcholinesterase — the enzyme that breaks down the neurotransmitter responsible for memory and focus.'}
+  ];
+  g.innerHTML=cards.map(function(c){return '<div class="terpene-card"><div class="terpene-name">'+c.name+'</div><span class="terpene-tag">'+c.tag+'</span><p class="terpene-found">'+c.found+'</p><p class="terpene-effect">'+c.effect+'</p><p class="terpene-ecs">'+c.ecs+'</p></div>';}).join('');
+}
+
+function renderDetail(){
+  var g=document.getElementById('terpeneDetail');
+  if(!g) return;
+  g.innerHTML=TD.map(function(t){
+    return '<div class="enc-detail-card">'+
+      '<div class="edc-name">'+t.name+'</div>'+
+      '<div class="edc-aroma">'+t.aroma+'</div>'+
+      '<div class="edc-tags">'+t.tags.map(function(x){return '<span class="edc-tag">'+x+'</span>';}).join('')+'</div>'+
+      '<div class="edc-bp">Boiling point: '+t.bp+' · Found in: '+t.found+'</div>'+
+      '<p class="edc-effects">'+t.effects+'</p>'+
+      '<div class="edc-section">Medical Uses</div>'+
+      '<div class="edc-medical">'+t.medical.map(function(m){return '<span class="edc-med">'+m+'</span>';}).join('')+'</div>'+
+      '<div class="edc-section">Key Strains</div>'+
+      '<div class="edc-strains">'+t.strains.join(' · ')+'</div>'+
+      '<p class="edc-note">'+t.note+'</p>'+
+    '</div>';
+  }).join('');
+}
+
+document.addEventListener('DOMContentLoaded',function(){initWheel();renderCards();renderDetail();});
+</script>
+</body></html>`;
+    res.writeHead(200,{"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
+    res.end(html);
+    return;
+  }
+
+  // ─── /strains ──────────────────────────────────────────────────────────────
+  if (req.method === "GET" && req.url === "/strains") {
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Strain Library — Cannascenti Encyclopedia</title>
+<meta name="description" content="Browse and search all cannabis strains. Full profiles with effects, terpenes, THC/CBD percentages, and growing info.">
+${ENC_FONTS}
+<style>
+${ENC_BASE_CSS}
+.strain-filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
+.sf-btn{background:none;border:1px solid rgba(255,255,255,0.12);border-radius:30px;padding:8px 20px;color:rgba(242,234,216,0.6);font-family:Montserrat,sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.sf-btn:hover,.sf-btn.active{border-color:#52B788;color:#52B788;background:rgba(82,183,136,0.08)}
+.strain-search{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:14px 20px;color:#F2EAD8;font-family:Montserrat,sans-serif;font-size:.9rem;margin-bottom:28px;outline:none}
+.strain-search:focus{border-color:rgba(82,183,136,0.4)}
+.strain-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.sc{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:22px;cursor:pointer;transition:all .2s}
+.sc:hover{border-color:rgba(82,183,136,0.3);transform:translateY(-2px)}
+.sc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.sc-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400}
+.sc-type{font-size:9px;letter-spacing:.1em;text-transform:uppercase;border-radius:20px;padding:3px 10px;font-weight:600}
+.sc-type.indica{background:rgba(155,114,207,0.15);color:#9B72CF}
+.sc-type.hybrid{background:rgba(82,183,136,0.15);color:#52B788}
+.sc-type.sativa{background:rgba(232,168,76,0.15);color:#E8A84C}
+.sc-thc{font-size:.78rem;color:rgba(242,234,216,0.45);margin-bottom:10px}
+.sc-effects{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.sc-effect{font-size:.72rem;background:rgba(255,255,255,0.05);border-radius:6px;padding:2px 8px;color:rgba(242,234,216,0.6)}
+.sc-desc{font-size:.8rem;line-height:1.65;color:rgba(242,234,216,0.55)}
+.sc-detail{display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.06)}
+.sc-detail.open{display:block}
+.sc-detail-row{font-size:.78rem;color:rgba(242,234,216,0.5);margin-bottom:6px}
+.sc-detail-label{color:rgba(242,234,216,0.35);margin-right:6px}
+.sc-terp{display:inline-block;background:rgba(82,183,136,0.1);color:#52B788;border-radius:12px;padding:2px 8px;font-size:.72rem;margin:2px}
+.count-bar{font-size:.8rem;color:rgba(242,234,216,0.4);margin-bottom:20px}
+</style>
+</head>
+<body>
+${ENC_NAV}
+<div class="enc-page">
+  <div class="enc-page-header">
+    <div class="enc-label">✦ Cannascenti Encyclopedia</div>
+    <h1 class="enc-title">Every strain. <em>Everything about it.</em></h1>
+    <p class="enc-desc">Full genetics, terpene profiles, effects, THC/CBD percentages, and growing info. Search by name or filter by type.</p>
+  </div>
+  <input class="strain-search" id="sSearch" placeholder="Search strains, effects, terpenes..." oninput="filterStrains()">
+  <div class="strain-filters">
+    <button class="sf-btn active" onclick="setType('all',this)">All</button>
+    <button class="sf-btn" onclick="setType('indica',this)">Indica</button>
+    <button class="sf-btn" onclick="setType('hybrid',this)">Hybrid</button>
+    <button class="sf-btn" onclick="setType('sativa',this)">Sativa</button>
+  </div>
+  <div class="count-bar" id="countBar"></div>
+  <div class="strain-grid" id="strainGrid"></div>
+</div>
+<script>
+var STRAINS=[];var curType='all';
+fetch('/api/strains/all').then(function(r){return r.json();}).then(function(data){
+  STRAINS=data;renderStrains();
+}).catch(function(){document.getElementById('strainGrid').innerHTML='<p style="color:rgba(242,234,216,0.4)">Loading strains...</p>';});
+
+function setType(t,btn){
+  curType=t;
+  document.querySelectorAll('.sf-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  renderStrains();
+}
+function filterStrains(){renderStrains();}
+
+function renderStrains(){
+  var q=(document.getElementById('sSearch').value||'').toLowerCase().trim();
+  var list=STRAINS.filter(function(s){
+    if(curType!=='all'&&s.type.toLowerCase()!==curType) return false;
+    if(!q) return true;
+    return (s.name+' '+(s.description||'')+' '+(s.effects||[]).join(' ')+' '+(s.terpenes||[]).join(' ')).toLowerCase().indexOf(q)>=0;
+  });
+  document.getElementById('countBar').textContent=list.length+' strain'+(list.length!==1?'s':'');
+  var g=document.getElementById('strainGrid');
+  g.innerHTML=list.map(function(s,i){
+    var tc=s.type.toLowerCase();
+    return '<div class="sc" onclick="toggleDetail(this)">'+
+      '<div class="sc-header">'+
+        '<div class="sc-name">'+s.name+'</div>'+
+        '<span class="sc-type '+tc+'">'+s.type+'</span>'+
+      '</div>'+
+      '<div class="sc-thc">THC '+s.thc+' · CBD '+s.cbd+'</div>'+
+      '<div class="sc-effects">'+(s.effects||[]).slice(0,4).map(function(e){return '<span class="sc-effect">'+e+'</span>';}).join('')+'</div>'+
+      '<div class="sc-desc">'+(s.description||'').substring(0,120)+(s.description&&s.description.length>120?'...':'')+'</div>'+
+      '<div class="sc-detail">'+
+        (s.genetics?'<div class="sc-detail-row"><span class="sc-detail-label">Genetics:</span>'+s.genetics+'</div>':'')+
+        (s.terpenes&&s.terpenes.length?'<div class="sc-detail-row"><span class="sc-detail-label">Terpenes:</span>'+(s.terpenes||[]).map(function(t){return '<span class="sc-terp">'+t+'</span>';}).join('')+'</div>':'')+
+        (s.description&&s.description.length>120?'<div class="sc-detail-row" style="color:rgba(242,234,216,0.6)">'+s.description+'</div>':'')+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+
+function toggleDetail(card){
+  var d=card.querySelector('.sc-detail');
+  if(d) d.classList.toggle('open');
+}
+</script>
+</body></html>`;
+    res.writeHead(200,{"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
+    res.end(html);
+    return;
+  }
+
+  // ─── /cooking ──────────────────────────────────────────────────────────────
+  if (req.method === "GET" && req.url === "/cooking") {
+    const _DECARB = [
+      { temp:"220°F", tempC:"104°C", time:"60 min", name:"CBD Activation", desc:"Ideal for CBD-dominant flower. Lower heat preserves the most terpenes and converts CBDA to CBD with minimal THC degradation.", badge:"CBD Focus" },
+      { temp:"240°F", tempC:"115°C", time:"40 min", name:"The Gold Standard", desc:"Perfect balance of THC conversion and terpene preservation. The most reliable method for edibles. Used by professional infusion kitchens.", badge:"Recommended" },
+      { temp:"250°F", tempC:"121°C", time:"25–30 min", name:"Balanced Decarb", desc:"Slightly faster with minimal quality loss. Good for those short on time. Higher probability of some THC to CBN conversion starting.", badge:"Good" },
+      { temp:"300°F", tempC:"149°C", time:"10–15 min", name:"Fast Decarb", desc:"Quick but risks degrading more THC into CBN. Significant terpene loss. Use only when time is critical.", badge:"Use Carefully" }
+    ];
+    const _INFUSION = [
+      { id:"butter", icon:"🧈", name:"Cannabutter", sub:"The Foundation of Edibles", tags:["Versatile","Baking","Cooking"], desc:"Cannabutter is the backbone of cannabis cooking. Butter's fat content binds THC efficiently, and its flavor works with nearly everything — baked goods, sauces, toast, pasta, sautéed vegetables.", steps:["Decarboxylate your cannabis first — 240°F / 115°C for 40 minutes.","Melt 1 cup (2 sticks) unsalted butter with 1 cup water in a saucepan over low heat.","Add decarbed cannabis (3.5g for medium potency, 7g for strong).","Simmer on lowest heat for 2–3 hours, stirring occasionally. Never let it boil.","Strain through cheesecloth into a glass container, pressing to extract all butter.","Refrigerate — the water and butter will separate. Remove solidified butter from top.","Store refrigerated for up to 2 weeks, frozen for 6 months."], uses:["Baked goods","Pasta sauces","Toast & crackers","Sautéed vegetables","Frosting","Mashed potatoes"], tip:"Adding water during infusion prevents burning and helps remove chlorophyll — resulting in cleaner-tasting butter. The THC stays in the butter, not the water." },
+      { id:"oil", icon:"🫒", name:"Cannabis Oil", sub:"Coconut, Olive & Beyond", tags:["Versatile","Vegan","Cooking"], desc:"Cannabis-infused oil is the most versatile infusion — it works in savory cooking, baking, salad dressings, smoothies, and capsules. Coconut oil has the highest saturated fat content of any plant oil, binding THC most efficiently.", steps:["Decarboxylate your cannabis — 240°F / 115°C for 40 minutes.","Combine 1 cup oil with decarbed cannabis in a double boiler or slow cooker.","Infuse on the lowest heat setting (160–200°F / 71–93°C) for 2–3 hours.","For slow cooker: set to low, infuse 4–6 hours for maximum extraction.","Stir occasionally and monitor temperature — never exceed 245°F / 118°C.","Strain through cheesecloth into a glass jar. Squeeze to extract maximum oil.","Store in a cool, dark place for up to 2 months."], uses:["Salad dressings","Stir fry","Capsules","Smoothies","Baking","Drizzled on finished dishes"], tip:"Coconut oil binds ~25% more THC due to higher saturated fat content. Olive oil has lower binding efficiency but superior flavor for savory dishes." },
+      { id:"tincture", icon:"💧", name:"Cannabis Tincture", sub:"Alcohol-Based · Sublingual", tags:["Fast-Acting","Precise Dosing","Sublingual"], desc:"A tincture is a high-proof alcohol extraction of cannabis — the fastest and most dose-controllable way to consume cannabis besides inhalation. Taken sublingually, tinctures absorb directly into the bloodstream and begin working in 15–30 minutes.", steps:["Decarboxylate cannabis — 240°F / 115°C for 40 minutes.","Place decarbed cannabis in a clean glass jar.","Cover completely with high-proof food-grade alcohol (Everclear 190-proof is ideal). Use 1 oz alcohol per gram of cannabis.","Seal tightly and shake. Let sit at room temperature for 24 hours minimum.","For a quick version: keep in freezer for 3 hours, shaking every 30 minutes.","Strain through coffee filter into dropper bottles.","Store in a dark, cool location. Properly made tinctures last 1–5 years."], uses:["Sublingual drops","Cocktails & mocktails","Coffee & tea","Capsule filling","Microdosing"], tip:"A standard 1oz dropper bottle contains approximately 30 full droppers. Calculate your total mg per batch, then divide by 30 to know the mg per dropper." },
+      { id:"cream", icon:"🥛", name:"Cannabis Cream / Milk", sub:"Dairy-Based Infusion", tags:["Dairy","Baking","Drinks"], desc:"Cannabis-infused cream or whole milk works beautifully for desserts, hot drinks, custards, and ice cream. Heavy cream (36–40% butterfat) binds THC readily, and the dairy flavor integrates seamlessly into sweet applications.", steps:["Decarboxylate cannabis — 240°F / 115°C for 40 minutes.","Heat heavy cream or whole milk in a saucepan to just below simmer (180°F / 82°C).","Add decarbed cannabis and stir to combine.","Keep at 180°F for 45–60 minutes, stirring frequently.","Never boil — high heat above 200°F will cause the fats to separate.","Strain through fine mesh or cheesecloth into a container.","Use immediately or refrigerate for up to 1 week."], uses:["Coffee & hot chocolate","Ice cream base","Custards & puddings","Whipped cream","Soups & bisques"], tip:"Cannabis cream in coffee is one of the most seamless infusion delivery methods. The fat carries the THC, the caffeine amplifies the onset. Add after brewing — never add raw cannabis." }
+    ];
+    const _DOSE_BARS = [
+      { label:"Micro", mg:"1–2.5mg", pct:8, color:"#74C69D" },
+      { label:"Low", mg:"2.5–5mg", pct:17, color:"#52B788" },
+      { label:"Moderate", mg:"5–15mg", pct:42, color:"#2D9D6E" },
+      { label:"High", mg:"15–30mg", pct:70, color:"#C9973A" },
+      { label:"Very High", mg:"30–50mg", pct:88, color:"#E07030" },
+      { label:"Extreme", mg:"50mg+", pct:100, color:"#C84040" }
+    ];
+    const _DOSE_RULES = [
+      { num:"01", title:"Start at 5mg or below", body:"Even experienced smokers should start low with edibles. 11-hydroxy-THC is a different molecule. A joint-tolerant person can be floored by 20mg of edible THC on an empty stomach." },
+      { num:"02", title:"Wait the full 2 hours", body:"The single most common mistake. Onset is 30 min to 2 hours. Re-dosing at 90 minutes because 'I don't feel anything' has ruined more evenings than any other error in cannabis." },
+      { num:"03", title:"Eat before you dose", body:"Food in your stomach slows absorption and smooths onset. An empty stomach accelerates and intensifies effects — sometimes dramatically. First time? Always eat a full meal first." }
+    ];
+    const _RECIPES = [
+      { icon:"🧈", name:"Classic Cannabutter", yield:"Yield: 1 cup · ~50–100mg THC per tbsp", ingredients:["1 cup (2 sticks) unsalted butter","1 cup water","3.5–7g decarbed cannabis","Cheesecloth for straining"], method:"Melt butter + water on low heat. Add cannabis. Simmer 2–3 hours. Strain through cheesecloth. Refrigerate to separate water. Use the solidified butter.", use:"Best for: brownies, cookies, rice crispy treats, pasta, toast" },
+      { icon:"🫒", name:"Cannabis Coconut Oil", yield:"Yield: 1 cup · ~60–120mg THC per tbsp", ingredients:["1 cup coconut oil","3.5–7g decarbed cannabis","Cheesecloth or fine mesh strainer","Slow cooker or double boiler"], method:"Combine oil and cannabis in slow cooker on low for 4–6 hours (or double boiler 2–3 hours). Keep below 245°F. Strain and store in glass jar.", use:"Best for: capsules, baking, stir fry, salad dressing, smoothies" },
+      { icon:"💧", name:"Green Dragon Tincture", yield:"Yield: 1oz · ~5–15mg THC per dropper", ingredients:["1 oz Everclear 190-proof","1g decarbed cannabis per oz alcohol","Glass dropper bottles","Coffee filter for straining"], method:"Combine in sealed glass jar. Shake and freeze 3 hours, shaking every 30 min. Strain through coffee filter. Fill dropper bottles. Label with potency.", use:"Best for: sublingual dosing, cocktails, coffee, precise microdosing" }
+    ];
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cooking with Cannabis — Cannascenti Encyclopedia</title>
+<meta name="description" content="The complete cannabis cooking guide. Decarboxylation, infusion methods, dosing, and recipes.">
+${ENC_FONTS}
+<style>
+${ENC_BASE_CSS}
+.decarb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:60px}
+.decarb-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:24px;text-align:center}
+.decarb-temp{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:#52B788}
+.decarb-time{font-size:.8rem;color:rgba(242,234,216,0.45);margin:4px 0 10px}
+.decarb-name{font-size:.9rem;font-weight:600;margin-bottom:8px}
+.decarb-desc{font-size:.78rem;line-height:1.6;color:rgba(242,234,216,0.55)}
+.decarb-badge{display:inline-block;margin-top:10px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:rgba(82,183,136,0.12);color:#52B788;border-radius:20px;padding:3px 12px}
+.infusion-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.inf-tab{background:none;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 18px;color:rgba(242,234,216,0.6);font-family:Montserrat,sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .2s}
+.inf-tab.active,.inf-tab:hover{border-color:#52B788;color:#F2EAD8;background:rgba(82,183,136,0.08)}
+.inf-panel{display:none;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:32px;margin-bottom:40px}
+.inf-panel.active{display:block}
+.inf-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.inf-tag{font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:rgba(82,183,136,0.1);color:#52B788;border-radius:20px;padding:3px 10px}
+.inf-desc{font-size:.88rem;line-height:1.75;color:rgba(242,234,216,0.7);margin-bottom:20px}
+.inf-steps{list-style:none;margin-bottom:20px}
+.inf-steps li{font-size:.85rem;line-height:1.7;color:rgba(242,234,216,0.65);padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);padding-left:20px;position:relative}
+.inf-steps li::before{content:counter(step);counter-increment:step;position:absolute;left:0;color:#52B788;font-weight:600;font-size:.78rem}
+.inf-steps{counter-reset:step}
+.inf-uses{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.inf-use{font-size:.78rem;background:rgba(255,255,255,0.05);border-radius:6px;padding:3px 10px;color:rgba(242,234,216,0.6)}
+.inf-tip{font-size:.8rem;line-height:1.65;color:rgba(242,234,216,0.5);border-left:2px solid rgba(82,183,136,0.3);padding-left:14px;font-style:italic}
+.dose-section{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:60px;align-items:start}
+@media(max-width:640px){.dose-section{grid-template-columns:1fr}}
+.dose-bars{display:flex;flex-direction:column;gap:10px}
+.dose-bar-row{display:flex;align-items:center;gap:12px}
+.dose-bar-label{font-size:.78rem;color:rgba(242,234,216,0.6);width:70px;flex-shrink:0}
+.dose-bar-track{flex:1;height:8px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden}
+.dose-bar-fill{height:100%;border-radius:4px;transition:width .6s ease}
+.dose-bar-mg{font-size:.75rem;color:rgba(242,234,216,0.45);width:80px;flex-shrink:0;text-align:right}
+.dose-rules{display:flex;flex-direction:column;gap:16px}
+.dose-rule{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px}
+.dose-rule-num{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:#52B788;margin-bottom:4px}
+.dose-rule-title{font-size:.9rem;font-weight:600;margin-bottom:6px}
+.dose-rule-body{font-size:.82rem;line-height:1.65;color:rgba(242,234,216,0.6)}
+.recipe-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.recipe-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:24px}
+.recipe-icon{font-size:2rem;margin-bottom:10px}
+.recipe-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;margin-bottom:4px}
+.recipe-yield{font-size:.78rem;color:rgba(242,234,216,0.4);margin-bottom:14px}
+.recipe-ing{list-style:none;margin-bottom:14px}
+.recipe-ing li{font-size:.8rem;color:rgba(242,234,216,0.6);padding:3px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.recipe-method{font-size:.82rem;line-height:1.65;color:rgba(242,234,216,0.65);margin-bottom:10px}
+.recipe-use{font-size:.78rem;color:#52B788}
+h2.sec{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;margin:60px 0 24px;color:#F2EAD8}
+h2.sec em{color:#52B788;font-style:italic}
+</style>
+</head>
+<body>
+${ENC_NAV}
+<div class="enc-page">
+  <div class="enc-page-header">
+    <div class="enc-label">✦ Cannascenti Encyclopedia</div>
+    <h1 class="enc-title">Cooking with <em>Cannabis.</em></h1>
+    <p class="enc-desc">Decarboxylation, infusion methods, dosing math, and recipes. Everything you need to cook with cannabis properly — from first-time edibles to professional infusion kitchen techniques.</p>
+  </div>
+
+  <h2 class="sec"><em>Decarboxylation</em> — activating THC</h2>
+  <p class="enc-desc" style="margin-bottom:28px">Raw cannabis contains THCA, not THC. Heat converts THCA to active THC. Skip decarbing and your edibles won't work. Temperature and time determine potency and terpene preservation.</p>
+  <div class="decarb-grid" id="debarbGrid"></div>
+
+  <h2 class="sec">Infusion <em>methods</em></h2>
+  <div class="infusion-tabs" id="infTabs"></div>
+  <div id="infPanels"></div>
+
+  <h2 class="sec">Edible <em>dosing</em> guide</h2>
+  <div class="dose-section">
+    <div>
+      <p class="enc-desc" style="margin-bottom:24px">Edibles produce 11-hydroxy-THC in the liver — a more potent, longer-lasting compound than inhaled THC. Even experienced smokers should start lower than they think.</p>
+      <div class="dose-bars" id="doseBars"></div>
+    </div>
+    <div class="dose-rules" id="doseRules"></div>
+  </div>
+
+  <h2 class="sec">Essential <em>recipes</em></h2>
+  <div class="recipe-grid" id="recipeGrid"></div>
+</div>
+<script>
+var DECARB = ${JSON.stringify(_DECARB)};
+var INFUSION = ${JSON.stringify(_INFUSION)};
+var DOSE_BARS = ${JSON.stringify(_DOSE_BARS)};
+var DOSE_RULES = ${JSON.stringify(_DOSE_RULES)};
+var RECIPES = ${JSON.stringify(_RECIPES)};
+
+function render(){
+  // decarb
+  document.getElementById('debarbGrid').innerHTML=DECARB.map(function(d){
+    return '<div class="decarb-card"><div class="decarb-temp">'+d.temp+'</div><div class="decarb-time">'+d.tempC+' · '+d.time+'</div><div class="decarb-name">'+d.name+'</div><div class="decarb-desc">'+d.desc+'</div><span class="decarb-badge">'+d.badge+'</span></div>';
+  }).join('');
+  // infusion tabs
+  document.getElementById('infTabs').innerHTML=INFUSION.map(function(m,i){
+    return '<button class="inf-tab'+(i===0?' active':'')+'" onclick="selectInf('+i+',this)">'+m.icon+' '+m.name+'</button>';
+  }).join('');
+  document.getElementById('infPanels').innerHTML=INFUSION.map(function(m,i){
+    return '<div class="inf-panel'+(i===0?' active':'')+'" id="infPanel'+i+'">'+
+      '<h3 style="font-family:\'Cormorant Garamond\',serif;font-size:1.5rem;font-weight:300;margin-bottom:4px">'+m.icon+' '+m.name+'</h3>'+
+      '<div style="font-size:.8rem;color:rgba(242,234,216,0.4);margin-bottom:14px">'+m.sub+'</div>'+
+      '<div class="inf-tags">'+m.tags.map(function(t){return '<span class="inf-tag">'+t+'</span>';}).join('')+'</div>'+
+      '<p class="inf-desc">'+m.desc+'</p>'+
+      '<ol class="inf-steps">'+m.steps.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ol>'+
+      '<div style="font-size:.8rem;color:rgba(242,234,216,0.4);margin-bottom:8px;letter-spacing:.08em;text-transform:uppercase">Best for</div>'+
+      '<div class="inf-uses">'+m.uses.map(function(u){return '<span class="inf-use">'+u+'</span>';}).join('')+'</div>'+
+      '<p class="inf-tip">'+m.tip+'</p>'+
+    '</div>';
+  }).join('');
+  // dose bars
+  document.getElementById('doseBars').innerHTML=DOSE_BARS.map(function(d){
+    return '<div class="dose-bar-row"><span class="dose-bar-label">'+d.label+'</span><div class="dose-bar-track"><div class="dose-bar-fill" style="width:'+d.pct+'%;background:'+d.color+'"></div></div><span class="dose-bar-mg">'+d.mg+'</span></div>';
+  }).join('');
+  // dose rules
+  document.getElementById('doseRules').innerHTML=DOSE_RULES.map(function(r){
+    return '<div class="dose-rule"><div class="dose-rule-num">'+r.num+'</div><div class="dose-rule-title">'+r.title+'</div><div class="dose-rule-body">'+r.body+'</div></div>';
+  }).join('');
+  // recipes
+  document.getElementById('recipeGrid').innerHTML=RECIPES.map(function(r){
+    return '<div class="recipe-card"><div class="recipe-icon">'+r.icon+'</div><div class="recipe-name">'+r.name+'</div><div class="recipe-yield">'+r.yield+'</div><ul class="recipe-ing">'+r.ingredients.map(function(i){return '<li>'+i+'</li>';}).join('')+'</ul><div class="recipe-method">'+r.method+'</div><div class="recipe-use">'+r.use+'</div></div>';
+  }).join('');
+}
+
+function selectInf(i,btn){
+  document.querySelectorAll('.inf-tab').forEach(function(b){b.classList.remove('active');});
+  document.querySelectorAll('.inf-panel').forEach(function(p){p.classList.remove('active');});
+  btn.classList.add('active');
+  document.getElementById('infPanel'+i).classList.add('active');
+}
+
+document.addEventListener('DOMContentLoaded',render);
+</script>
+</body></html>`;
+    res.writeHead(200,{"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
+    res.end(html);
+    return;
+  }
+
+  // ─── /cannabinoids ─────────────────────────────────────────────────────────
+  if (req.method === "GET" && req.url === "/cannabinoids") {
+    const _CB = [
+      { abbr:"THC", full:"Tetrahydrocannabinol", psycho:95, color:"#52B788", desc:"The primary psychoactive compound in cannabis. THC binds directly to CB1 receptors in the brain, producing the euphoria, altered perception, and heightened sensory awareness associated with cannabis intoxication. Also the most clinically studied cannabinoid for pain, nausea, and appetite.", uses:["Euphoria","Pain relief","Appetite stimulation","Anti-nausea","Glaucoma"], found:"10–35% in modern cultivars. Trace amounts in hemp." },
+      { abbr:"CBD", full:"Cannabidiol", psycho:5, color:"#74C69D", desc:"The second most abundant cannabinoid — and the most therapeutically versatile. CBD is non-intoxicating, modulates the activity of THC through allosteric receptor action, and has demonstrated efficacy for epilepsy treatment (FDA-approved as Epidiolex). A powerful anti-inflammatory and anxiolytic.", uses:["Anxiety reduction","Epilepsy","Anti-inflammatory","Pain","Nausea"], found:"High in hemp. 0–25% in cannabis. Dominant in Charlotte's Web, ACDC, Harlequin." },
+      { abbr:"CBG", full:"Cannabigerol", psycho:15, color:"#D4A853", desc:"Often called the 'mother cannabinoid' because CBGA is the biosynthetic precursor to THC, CBD, and CBC. Non-intoxicating. Shows strong antibacterial activity against MRSA, and early research suggests promise for inflammatory bowel disease, glaucoma, and Huntington's disease.", uses:["Antibacterial","Glaucoma","IBD","Neuroprotection","Appetite"], found:"Usually less than 1% in mature plants. Highest in early-harvest hemp." },
+      { abbr:"CBN", full:"Cannabinol", psycho:20, color:"#C9973A", desc:"CBN is a degradation product of THC — as THC oxidizes over time, it converts to CBN. Mildly psychoactive. Heavily marketed as a sleep aid, though the scientific evidence for this is limited. More established are its antibacterial properties and potential as an appetite stimulant.", uses:["Sleep aid","Antibacterial","Appetite","Anticonvulsant","Mild pain"], found:"Highest in aged, oxidized cannabis. Forms when THC degrades." },
+      { abbr:"THCV", full:"Tetrahydrocannabivarin", psycho:40, color:"#E07B39", desc:"A structural analog of THC with notably different effects. At low doses THCV actually blocks CB1 receptors and suppresses appetite. At higher doses it becomes mildly euphoric. Associated with clear-headed, energetic, short-duration highs.", uses:["Appetite suppression","Diabetes (research)","Panic attacks","Bone growth","Energy"], found:"Rare. Highest in African landrace sativas: Durban Poison, Pineapple Purps." },
+      { abbr:"Δ8", full:"Delta-8 THC", psycho:60, color:"#9B72CF", desc:"Delta-8 THC is an isomer of Delta-9 THC with a double bond on the 8th carbon chain. Produces similar but notably milder psychoactive effects — often described as a lighter, clearer, less anxiety-prone version of the standard cannabis experience. Naturally occurring in trace amounts.", uses:["Mild euphoria","Antiemetic","Appetite","Anxiety reduction","Neuroprotection"], found:"Trace amounts naturally. Most commercial Delta-8 is synthesized from CBD." }
+    ];
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cannabinoids — Cannascenti Encyclopedia</title>
+${ENC_FONTS}
+<style>
+${ENC_BASE_CSS}
+.cb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+.cb-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:28px}
+.cb-abbr{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;margin-bottom:4px}
+.cb-full{font-size:.8rem;color:rgba(242,234,216,0.4);margin-bottom:16px;letter-spacing:.05em}
+.cb-psycho-track{height:6px;background:rgba(255,255,255,0.08);border-radius:3px;margin-bottom:6px;overflow:hidden}
+.cb-psycho-fill{height:100%;border-radius:3px}
+.cb-psycho-label{font-size:.72rem;color:rgba(242,234,216,0.35);margin-bottom:14px}
+.cb-desc{font-size:.84rem;line-height:1.72;color:rgba(242,234,216,0.7);margin-bottom:16px}
+.cb-uses{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.cb-use{font-size:.75rem;background:rgba(255,255,255,0.05);border-radius:6px;padding:3px 9px;color:rgba(242,234,216,0.6)}
+.cb-found{font-size:.78rem;color:rgba(242,234,216,0.4);font-style:italic}
+</style>
+</head>
+<body>
+${ENC_NAV}
+<div class="enc-page">
+  <div class="enc-page-header">
+    <div class="enc-label">✦ Cannascenti Encyclopedia</div>
+    <h1 class="enc-title">The <em>cannabinoid</em> reference.</h1>
+    <p class="enc-desc">THC is just the beginning. The cannabis plant produces over 100 cannabinoids, each with distinct receptor binding profiles and therapeutic effects. These are the ones that matter most.</p>
+  </div>
+  <div class="cb-grid" id="cbGrid"></div>
+</div>
+<script>
+var CB = ${JSON.stringify(_CB)};
+document.addEventListener('DOMContentLoaded',function(){
+  document.getElementById('cbGrid').innerHTML=CB.map(function(c){
+    return '<div class="cb-card">'+
+      '<div class="cb-abbr" style="color:'+c.color+'">'+c.abbr+'</div>'+
+      '<div class="cb-full">'+c.full+'</div>'+
+      '<div class="cb-psycho-track"><div class="cb-psycho-fill" style="width:'+c.psycho+'%;background:'+c.color+'"></div></div>'+
+      '<div class="cb-psycho-label">Psychoactivity: '+c.psycho+'%</div>'+
+      '<p class="cb-desc">'+c.desc+'</p>'+
+      '<div class="cb-uses">'+c.uses.map(function(u){return '<span class="cb-use">'+u+'</span>';}).join('')+'</div>'+
+      '<div class="cb-found">'+c.found+'</div>'+
+    '</div>';
+  }).join('');
+});
+</script>
+</body></html>`;
+    res.writeHead(200,{"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
+    res.end(html);
+    return;
+  }
+
+  // ─── /consumption ──────────────────────────────────────────────────────────
+  if (req.method === "GET" && req.url === "/consumption") {
+    const _CM = [
+      { icon:"🔥", name:"Smoking", onset:"2–10 min", duration:"1–3 hours", bio:"15–25%", best:"Flower, kief, hash", desc:"Combustion at 600–900°C releases cannabinoids and terpenes instantly. The fastest onset of any method. Bioavailability is moderate — much is lost to sidestream smoke and incomplete combustion.", pros:["Instant onset","Social ritual","Precise dose control","Full spectrum of flavors"], cons:["Combustion byproducts","Harshest on lungs","Burns plant material inefficiently","Smell"], tip:"Use a screen to prevent ash inhalation. Corner your bowl to preserve flavor. Clean glass weekly for best taste. Never hold smoke in — cannabinoids absorb in seconds." },
+      { icon:"💨", name:"Vaporizing", onset:"2–10 min", duration:"1–3 hours", bio:"45–60%", best:"Flower (180–210°C), concentrates, oil", desc:"Vaporization heats cannabis below combustion temperature, releasing cannabinoids and terpenes as vapor rather than smoke. Significantly reduces harmful combustion byproducts. Bioavailability is roughly double that of smoking.", pros:["Reduced combustion toxins","Higher bioavailability","Superior terpene expression","Discreet"], cons:["Device cost","Requires charging","Different experience than smoking","Battery dependency"], tip:"For flower vaping, start at 170°C for terpene flavor and work up to 210°C for stronger effect. Desktop vaporizers outperform portables for quality." },
+      { icon:"🍫", name:"Edibles", onset:"30–120 min", duration:"4–8 hours", bio:"4–12%", best:"Infused food, capsules, tinctures", desc:"When cannabis is consumed orally, THC is metabolized by the liver into 11-hydroxy-THC — a more potent, longer-lasting compound that crosses the blood-brain barrier more effectively. This is why edibles hit harder and last longer than smoking.", pros:["Longest duration","No respiratory impact","Discreet","Most potent experience"], cons:["Unpredictable onset","Easy to over-consume","2–4 hours to kick in","Hard to dose precisely"], tip:"Start with 2.5–5mg THC if you're new. Wait a full 2 hours before redosing. A high-fat meal significantly increases absorption. Tinctures under the tongue absorb in 15–45 min." },
+      { icon:"💎", name:"Dabbing", onset:"Immediate", duration:"1–2 hours", bio:"50–80%", best:"Rosin, live resin, BHO, THCA diamonds", desc:"Dabbing vaporizes cannabis concentrates (typically 60–95% THC) on a heated surface, producing intensely potent vapor. The highest-bioavailability consumption method. At low temperatures, the terpene expression of high-quality concentrates is extraordinary.", pros:["Maximum potency","Best expression of concentrates","Fast onset","Full flavor at low temps"], cons:["Very high tolerance building","Equipment complexity","High cost of entry"], tip:"Low-temp dabs (400–450°F) preserve terpenes and are far more pleasant than hot dabs. Use a carb cap. Hash rosin at low temp is the pinnacle of the dab experience." },
+      { icon:"💧", name:"Tinctures", onset:"15–45 min", duration:"2–4 hours", bio:"20–35%", best:"Alcohol or oil-based extracts", desc:"Tinctures are cannabis extracts administered sublingually (under the tongue). The mucous membranes absorb cannabinoids directly into the bloodstream, bypassing first-pass liver metabolism for faster onset than edibles. Highly controllable dosing with a dropper.", pros:["Precise dosing","No respiratory impact","Sublingual absorption is fast","Discreet"], cons:["Taste (alcohol-based)","Less potent than dabbing","Cost per dose"], tip:"Hold under tongue for 60–90 seconds before swallowing for best sublingual absorption. Oil-based tinctures are gentler. Start with 2.5mg THC and titrate up slowly." },
+      { icon:"🧴", name:"Topicals", onset:"5–20 min", duration:"2–4 hours", bio:"<5% systemic", best:"Creams, balms, transdermal patches", desc:"Topicals deliver cannabinoids directly to localized tissue via skin absorption. Standard topicals do not enter the bloodstream and produce no psychoactive effect — they bind to CB2 receptors in skin, muscle, and nerve tissue.", pros:["No psychoactive effect","Targeted relief","No respiratory impact","Discreet"], cons:["Minimal systemic effect","Not effective for internal conditions","Variable quality"], tip:"For genuine pain relief, look for topicals with both THC and CBD — they work synergistically on CB2 receptors. Transdermal patches can be mildly psychoactive." }
+    ];
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Consumption Methods — Cannascenti Encyclopedia</title>
+${ENC_FONTS}
+<style>
+${ENC_BASE_CSS}
+.cm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+.cm-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:28px}
+.cm-icon{font-size:2rem;margin-bottom:12px}
+.cm-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;margin-bottom:8px}
+.cm-meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.cm-meta-item{font-size:.75rem;background:rgba(255,255,255,0.05);border-radius:6px;padding:4px 10px;color:rgba(242,234,216,0.6)}
+.cm-meta-item span{color:rgba(242,234,216,0.35);margin-right:4px}
+.cm-desc{font-size:.84rem;line-height:1.72;color:rgba(242,234,216,0.7);margin-bottom:16px}
+.cm-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px}
+.cm-col-label{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,234,216,0.35);margin-bottom:6px}
+.cm-col ul{list-style:none}
+.cm-col li{font-size:.78rem;color:rgba(242,234,216,0.6);padding:2px 0;padding-left:12px;position:relative}
+.cm-col li::before{content:"•";position:absolute;left:0;color:#52B788}
+.cm-tip{font-size:.79rem;line-height:1.6;color:rgba(242,234,216,0.45);border-left:2px solid rgba(82,183,136,0.3);padding-left:12px;font-style:italic}
+</style>
+</head>
+<body>
+${ENC_NAV}
+<div class="enc-page">
+  <div class="enc-page-header">
+    <div class="enc-label">✦ Cannascenti Encyclopedia</div>
+    <h1 class="enc-title">Every way to <em>consume</em> cannabis.</h1>
+    <p class="enc-desc">Onset time, duration, bioavailability, pros and cons — every method fully explained. The right method depends on what you're looking for. Here's how to choose.</p>
+  </div>
+  <div class="cm-grid" id="cmGrid"></div>
+</div>
+<script>
+var CM = ${JSON.stringify(_CM)};
+document.addEventListener('DOMContentLoaded',function(){
+  document.getElementById('cmGrid').innerHTML=CM.map(function(m){
+    return '<div class="cm-card">'+
+      '<div class="cm-icon">'+m.icon+'</div>'+
+      '<div class="cm-name">'+m.name+'</div>'+
+      '<div class="cm-meta">'+
+        '<span class="cm-meta-item"><span>Onset:</span>'+m.onset+'</span>'+
+        '<span class="cm-meta-item"><span>Duration:</span>'+m.duration+'</span>'+
+        '<span class="cm-meta-item"><span>Bioavailability:</span>'+m.bio+'</span>'+
+      '</div>'+
+      '<p class="cm-desc">'+m.desc+'</p>'+
+      '<div class="cm-cols">'+
+        '<div class="cm-col"><div class="cm-col-label">Advantages</div><ul>'+m.pros.map(function(p){return '<li>'+p+'</li>';}).join('')+'</ul></div>'+
+        '<div class="cm-col"><div class="cm-col-label">Disadvantages</div><ul>'+m.cons.map(function(c){return '<li>'+c+'</li>';}).join('')+'</ul></div>'+
+      '</div>'+
+      '<p class="cm-tip">'+m.tip+'</p>'+
+    '</div>';
+  }).join('');
+});
+</script>
+</body></html>`;
+    res.writeHead(200,{"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
+    res.end(html);
+    return;
+  }
+
+  // ─── /cultivation ──────────────────────────────────────────────────────────
+  if (req.method === "GET" && req.url === "/cultivation") {
+    const _CS = [
+      { name:"Germination", dur:"1–7 days", icon:"🌱", desc:"The seed awakens. The taproot emerges, seeking water and darkness. This is the most delicate phase — temperature and moisture are everything.", environment:"Temp: 70–85°F · Humidity: 70–90% · Light: 18h (seedling)", nutrients:"None — seed contains all it needs", tips:["Keep medium moist, not soaking","Temperature consistency critical","Darkness or very low light during germination","Transplant when taproot reaches 1/2 inch"], watch:"Damping off (stem rot from overwatering). Use a humidity dome. Never let the medium dry out completely.", tip:"The paper towel method between two damp plates in a warm dark place is foolproof for germination." },
+      { name:"Seedling", dur:"2–3 weeks", icon:"🌿", desc:"The first set of true leaves emerge. The plant is establishing its root system and vascular structure. Handle with extreme care.", environment:"Temp: 68–77°F · Humidity: 60–70% · Light: 18h fluorescent or LED", nutrients:"Very light — 1/4 strength veg nutrients at week 2", tips:["Avoid overwatering — let medium dry slightly between waterings","Use small pots to prevent overwatering","Gentle airflow strengthens stems"], watch:"Cotyledons yellowing (normal after week 2). Stretched seedlings mean insufficient light. Root-bound seedlings stunt.", tip:"Seedlings in solo cups with drainage holes is the classic method. Transplant when you can see roots coming out the bottom." },
+      { name:"Vegetative", dur:"3–16 weeks", icon:"🌳", desc:"Explosive growth. The plant builds its structural framework — all the branches, nodes, and root mass that will support the eventual flower load.", environment:"Temp: 70–85°F · Humidity: 40–70% · Light: 18/6 or 20/4 hours", nutrients:"High nitrogen, moderate phosphorus and potassium. Heavy feeder.", tips:["Top or FIM at 5th node for bushier plants","LST (low-stress training) maximizes canopy evenness","SCROG nets maximize light penetration"], watch:"Nitrogen toxicity (clawed, dark green leaves). Spider mite infestations start here. Males begin showing pre-flowers — remove immediately.", tip:"Topping creates an exponential node count. Top once, you get 2 mains. Top those, you get 4. Manifolding creates 8 perfectly even colas." },
+      { name:"Pre-Flower", dur:"1–2 weeks", icon:"🌸", desc:"The transition period. The plant shifts hormonal production toward reproduction. Sex becomes clearly visible. Vertical growth slows, lateral branching increases.", environment:"Temp: 65–80°F · Humidity: 40–50% · Light: 12/12 switch triggers flowering", nutrients:"Taper nitrogen, begin increasing phosphorus and potassium", tips:["Confirm sex immediately","Remove males before pollen sacs open","Apply any remaining training before stretch begins"], watch:"The 'stretch' — plants can double in height in 2 weeks during pre-flower. Stake tall plants. Hermaphrodites develop under stress.", tip:"Pre-flower is your last chance to train heavily. Once stretch begins, it's hands off. Get your trellis net in place now." },
+      { name:"Flowering", dur:"6–12 weeks", icon:"🌺", desc:"The main event. The plant's entire energy is devoted to producing resinous flowers. Trichome development, terpene production, and cannabinoid synthesis all peak here.", environment:"Temp: 65–80°F · Humidity: 40–50% · Light: 12/12", nutrients:"High phosphorus and potassium, declining nitrogen. Specialized bloom nutrients.", tips:["Defoliate moderately at week 3 and week 6","Maintain strict 12/12 — any light leak causes hermaphroditism","Monitor trichomes with a loupe from week 6"], watch:"Bud rot (Botrytis) in dense colas. Reduce humidity, increase airflow. Powdery mildew. Spider mites explode in hot/dry conditions.", tip:"Color change under cooler temps is controlled by genetics (anthocyanins), not nutrients. To get purple, grow strains bred for it at cooler night temps (60°F)." },
+      { name:"Harvest", dur:"1–3 days", icon:"✂️", desc:"The moment of truth. Trichome observation determines the perfect harvest window — the difference between a heady, clear high and a body-heavy sedative effect.", environment:"Temp: 60–70°F · Humidity: 45–55% · Complete darkness 24–48h before harvest", nutrients:"Flush with plain water 1–2 weeks before harvest", tips:["Trichomes: clear = early, cloudy = peak THC, amber = degraded THC/more CBD","Harvest in the morning for peak terpene content","Use sharp, clean scissors"], watch:"Mold at harvest. Harvest in cool, dry conditions. Wet trim vs dry trim — both valid; wet trim in humid climates, dry trim in dry climates.", tip:"A 40–60x loupe or jeweler's scope is mandatory for serious trichome observation. The naked eye cannot tell you when to harvest accurately." }
+    ];
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cultivation Guide — Cannascenti Encyclopedia</title>
+${ENC_FONTS}
+<style>
+${ENC_BASE_CSS}
+.stage-timeline{display:flex;flex-direction:column;gap:0}
+.stage{display:grid;grid-template-columns:80px 1fr;gap:0;position:relative}
+.stage-line{display:flex;flex-direction:column;align-items:center;padding-top:4px}
+.stage-dot{width:40px;height:40px;border-radius:50%;background:rgba(82,183,136,0.15);border:2px solid rgba(82,183,136,0.4);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;z-index:1}
+.stage-connector{flex:1;width:2px;background:rgba(82,183,136,0.15);margin-top:6px}
+.stage:last-child .stage-connector{display:none}
+.stage-body{padding:0 0 40px 24px}
+.stage-header{display:flex;align-items:baseline;gap:12px;margin-bottom:8px}
+.stage-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400}
+.stage-dur{font-size:.78rem;color:rgba(242,234,216,0.4)}
+.stage-desc{font-size:.86rem;line-height:1.7;color:rgba(242,234,216,0.7);margin-bottom:14px}
+.stage-env{font-size:.78rem;color:#52B788;background:rgba(82,183,136,0.08);border-radius:8px;padding:8px 14px;margin-bottom:12px}
+.stage-tips{list-style:none;margin-bottom:12px}
+.stage-tips li{font-size:.8rem;color:rgba(242,234,216,0.6);padding:3px 0;padding-left:14px;position:relative}
+.stage-tips li::before{content:"→";position:absolute;left:0;color:#52B788;font-size:.7rem}
+.stage-watch{font-size:.79rem;color:rgba(232,168,76,0.8);background:rgba(232,168,76,0.06);border-radius:8px;padding:8px 12px;margin-bottom:10px}
+.stage-tip{font-size:.79rem;line-height:1.6;color:rgba(242,234,216,0.45);border-left:2px solid rgba(82,183,136,0.3);padding-left:12px;font-style:italic}
+</style>
+</head>
+<body>
+${ENC_NAV}
+<div class="enc-page">
+  <div class="enc-page-header">
+    <div class="enc-label">✦ Cannascenti Encyclopedia</div>
+    <h1 class="enc-title">Cannabis <em>cultivation</em> guide.</h1>
+    <p class="enc-desc">From seed to harvest — every stage of the cannabis life cycle with environment requirements, nutrients, common problems, and pro tips. Whether you're growing your first plant or running a professional operation.</p>
+  </div>
+  <div class="stage-timeline" id="stageTimeline"></div>
+</div>
+<script>
+var STAGES = ${JSON.stringify(_CS)};
+document.addEventListener('DOMContentLoaded',function(){
+  document.getElementById('stageTimeline').innerHTML=STAGES.map(function(s){
+    return '<div class="stage">'+
+      '<div class="stage-line"><div class="stage-dot">'+s.icon+'</div><div class="stage-connector"></div></div>'+
+      '<div class="stage-body">'+
+        '<div class="stage-header"><div class="stage-name">'+s.name+'</div><div class="stage-dur">'+s.dur+'</div></div>'+
+        '<p class="stage-desc">'+s.desc+'</p>'+
+        '<div class="stage-env">'+s.environment+'</div>'+
+        '<ul class="stage-tips">'+s.tips.map(function(t){return '<li>'+t+'</li>';}).join('')+'</ul>'+
+        '<div class="stage-watch">⚠ Watch for: '+s.watch+'</div>'+
+        '<p class="stage-tip">'+s.tip+'</p>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+});
+</script>
+</body></html>`;
+    res.writeHead(200,{"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
+    res.end(html);
+    return;
+  }
+
+  // ─── /history ──────────────────────────────────────────────────────────────
+  if (req.method === "GET" && req.url === "/history") {
+    const _HE = [
+      { era:"Ancient World", date:"~10,000 BCE", tag:"ancient", title:"First Cultivation", body:"Archaeological evidence from Taiwan indicates cannabis is among the first crops ever cultivated by humans — alongside wheat and rice. Used for fiber, seed oil, and ritual." },
+      { era:"Ancient World", date:"2700 BCE", tag:"medicine", title:"Chinese Medical Canon", body:"Emperor Shen Nung's pharmacopeia documents cannabis (Ma) for gout, malaria, and absent-mindedness. The earliest written record of medical cannabis use." },
+      { era:"Ancient World", date:"1000 BCE", tag:"culture", title:"Bhang in India", body:"Cannabis preparations called 'bhang' appear in the Atharva Veda as one of five sacred plants. Used in religious ceremonies, Ayurvedic medicine, and as an offering to Shiva. The tradition continues today." },
+      { era:"Ancient World", date:"450 BCE", tag:"culture", title:"Scythian Ritual Steam Baths", body:"Greek historian Herodotus documents the Scythians throwing cannabis seeds onto hot stones in enclosed tents. One of the earliest recorded recreational cannabis uses." },
+      { era:"Medieval & Colonial", date:"900 CE", tag:"culture", title:"Hashish Spreads Through the Middle East", body:"Hash culture flourishes in Persia, Arabia, and North Africa. The word 'assassin' is etymologically linked to 'hashishin' — the politically-motivated hash consumers in medieval legend." },
+      { era:"Medieval & Colonial", date:"1545", tag:"ancient", title:"Cannabis Arrives in the Americas", body:"Spanish conquistadors bring cannabis hemp to Chile for rope and textile production. Hemp cultivation spreads rapidly through North and South America over the next century." },
+      { era:"19th Century", date:"1839", tag:"medicine", title:"Western Medicine Discovers Cannabis", body:"Irish physician W.B. O'Shaughnessy publishes landmark research after studying cannabis use in India. Introduces cannabis tinctures to Western medicine for cholera, tetanus, and pain. Cannabis enters the British Pharmacopoeia." },
+      { era:"19th Century", date:"1850", tag:"medicine", title:"US Pharmacopeia Listing", body:"Cannabis is added to the United States Pharmacopeia, legitimizing its medical use. Dozens of cannabis tincture products become available at American pharmacies." },
+      { era:"Prohibition Era", date:"1910", tag:"culture", title:"Cannabis Enters the US via Mexico", body:"Mexican Revolution refugees bring recreational cannabis smoking to the United States. The practice spreads through border cities and into African American urban culture via jazz musicians." },
+      { era:"Prohibition Era", date:"1936", tag:"prohibition", title:"Reefer Madness", body:"The anti-cannabis propaganda film Reefer Madness premieres, depicting cannabis causing murder, insanity, and moral depravity. Part of a broader campaign to criminalize cannabis nationally." },
+      { era:"Prohibition Era", date:"1937", tag:"prohibition", title:"Marihuana Tax Act", body:"The US Marihuana Tax Act effectively criminalizes cannabis. Hemp Czar Harry Anslinger leads a campaign linking cannabis to violence and racial minorities. Cannabis is removed from the US Pharmacopeia in 1942." },
+      { era:"Counterculture", date:"1960s", tag:"culture", title:"The Counterculture Embrace", body:"Cannabis becomes the symbol of the 1960s counterculture — inseparable from the Vietnam War protest movement, psychedelic music, and the sexual revolution." },
+      { era:"Counterculture", date:"1970", tag:"prohibition", title:"Controlled Substances Act", body:"Nixon signs the Controlled Substances Act, placing cannabis in Schedule I alongside heroin. Sets the framework for the next 50 years of US drug policy." },
+      { era:"Modern Era", date:"1988", tag:"science", title:"CB1 Receptor Discovered", body:"Allyn Howlett discovers the CB1 cannabinoid receptor in rat brains, proving cannabis works through a specific biological mechanism. The foundation for all subsequent endocannabinoid research." },
+      { era:"Modern Era", date:"1992", tag:"science", title:"Endocannabinoid System Identified", body:"Raphael Mechoulam's team discovers anandamide — the brain's own 'bliss molecule' — revealing the endocannabinoid system. Cannabis works by mimicking molecules the body already produces." },
+      { era:"Modern Era", date:"1996", tag:"legalization", title:"California Legalizes Medical Cannabis", body:"Proposition 215 makes California the first US state to legalize medical cannabis. The beginning of the state-by-state decriminalization movement." },
+      { era:"Modern Era", date:"2012", tag:"legalization", title:"First Recreational Legalization", body:"Colorado and Washington become the first US states to legalize recreational cannabis, passing ballot measures despite federal Schedule I status." },
+      { era:"Modern Era", date:"2018", tag:"legalization", title:"Canada Goes Fully Legal", body:"Canada becomes the first G7 nation to federally legalize recreational cannabis nationwide, creating a regulated commercial market from coast to coast." },
+      { era:"Modern Era", date:"2024", tag:"legalization", title:"US Rescheduling Movement", body:"The DEA proposes moving cannabis from Schedule I to Schedule III — the most significant federal shift in US cannabis policy since the 1970 Controlled Substances Act." }
+    ];
+    const tagColors = { ancient:"#C9973A", medicine:"#52B788", culture:"#9B72CF", prohibition:"#C84040", science:"#5B8DD9", legalization:"#74C69D" };
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cannabis History — Cannascenti Encyclopedia</title>
+${ENC_FONTS}
+<style>
+${ENC_BASE_CSS}
+.hist-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
+.hf-btn{background:none;border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:6px 16px;color:rgba(242,234,216,0.6);font-family:Montserrat,sans-serif;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.hf-btn.active,.hf-btn:hover{border-color:#52B788;color:#52B788;background:rgba(82,183,136,0.08)}
+.hist-timeline{display:flex;flex-direction:column;gap:0}
+.hist-event{display:grid;grid-template-columns:100px 1fr;gap:0;opacity:1;transition:opacity .2s}
+.hist-event.hidden{display:none}
+.hist-left{text-align:right;padding-right:24px;padding-top:4px;position:relative}
+.hist-left::after{content:'';position:absolute;right:-1px;top:8px;width:2px;height:100%;background:rgba(255,255,255,0.07)}
+.hist-date{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:300;color:rgba(242,234,216,0.6)}
+.hist-era{font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(242,234,216,0.3);margin-top:2px}
+.hist-right{padding:0 0 36px 24px;position:relative}
+.hist-right::before{content:'';position:absolute;left:-5px;top:8px;width:10px;height:10px;border-radius:50%;background:#52B788;border:2px solid #060d0a}
+.hist-tag{display:inline-block;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;border-radius:20px;padding:2px 9px;margin-bottom:8px;font-weight:600}
+.hist-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;margin-bottom:6px}
+.hist-body{font-size:.83rem;line-height:1.7;color:rgba(242,234,216,0.65)}
+@media(max-width:480px){.hist-event{grid-template-columns:70px 1fr}}
+</style>
+</head>
+<body>
+${ENC_NAV}
+<div class="enc-page">
+  <div class="enc-page-header">
+    <div class="enc-label">✦ Cannascenti Encyclopedia</div>
+    <h1 class="enc-title">10,000 years of <em>cannabis history.</em></h1>
+    <p class="enc-desc">From ancient Taiwan to modern federal rescheduling — the complete timeline of cannabis in human civilization. Filter by category to explore specific threads.</p>
+  </div>
+  <div class="hist-filter">
+    <button class="hf-btn active" onclick="filterHist('all',this)">All</button>
+    <button class="hf-btn" onclick="filterHist('ancient',this)">Ancient</button>
+    <button class="hf-btn" onclick="filterHist('medicine',this)">Medicine</button>
+    <button class="hf-btn" onclick="filterHist('culture',this)">Culture</button>
+    <button class="hf-btn" onclick="filterHist('prohibition',this)">Prohibition</button>
+    <button class="hf-btn" onclick="filterHist('science',this)">Science</button>
+    <button class="hf-btn" onclick="filterHist('legalization',this)">Legalization</button>
+  </div>
+  <div class="hist-timeline" id="histTimeline"></div>
+</div>
+<script>
+var HE = ${JSON.stringify(_HE)};
+var TAG_COLORS = ${JSON.stringify(tagColors)};
+var curTag='all';
+
+function filterHist(tag,btn){
+  curTag=tag;
+  document.querySelectorAll('.hf-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  document.querySelectorAll('.hist-event').forEach(function(ev){
+    ev.classList.toggle('hidden', tag!=='all' && ev.dataset.tag!==tag);
+  });
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+  document.getElementById('histTimeline').innerHTML=HE.map(function(e){
+    var col=TAG_COLORS[e.tag]||'#52B788';
+    return '<div class="hist-event" data-tag="'+e.tag+'">'+
+      '<div class="hist-left"><div class="hist-date">'+e.date+'</div><div class="hist-era">'+e.era+'</div></div>'+
+      '<div class="hist-right">'+
+        '<span class="hist-tag" style="background:'+col+'22;color:'+col+'">'+e.tag+'</span>'+
+        '<div class="hist-title">'+e.title+'</div>'+
+        '<p class="hist-body">'+e.body+'</p>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+});
+</script>
+</body></html>`;
+    res.writeHead(200,{"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
+    res.end(html);
+    return;
+  }
+
+  // ─── /extractions ──────────────────────────────────────────────────────────
+  if (req.method === "GET" && req.url === "/extractions") {
+    const _EM = [
+      { tier:"solventless", name:"Ice Water Hash", sub:"Bubble hash · Cold water agitation", quality:"★★★★★", solvent:"None", yield:"3–8%", safety:"Completely safe", desc:"One of the oldest concentrate forms. Cannabis is agitated in ice water, causing trichome heads to break off and sink. Collected through a series of mesh bags in increasingly fine micron sizes. Full-melt 6-star ice water hash is among the purest expressions of the plant.", notes:"The 73 and 90 micron bags produce the finest heads-only hash. Freeze-drying has revolutionized water hash quality, preserving terpenes that were lost in traditional air-drying." },
+      { tier:"solventless", name:"Rosin", sub:"Heat + pressure extraction · Solventless concentrate", quality:"★★★★★", solvent:"None", yield:"10–25% (flower), 40–70% (hash)", safety:"Completely safe", desc:"Rosin is produced by applying heat and pressure to cannabis flower, kief, or ice water hash — squeezing out a sap-like concentrate. Zero solvents, instant results, full spectrum, and exceptional flavor.", notes:"Hash rosin from 6-star water hash is the most prized concentrate in the current market. Pressing at 160°F for 90 seconds yields the most terpene-rich, flavorful product. Dab at 450°F max." },
+      { tier:"solventless", name:"Dry Sift", sub:"Mechanical trichome separation · Kief collection", quality:"★★★★☆", solvent:"None", yield:"5–15%", safety:"Completely safe", desc:"The most ancient form of concentration — mechanically separating trichome heads from plant material through screens. Quality ranges from full-plant kief to hyper-refined 'pure gold' dry sift that rivals the best hash in purity.", notes:"Traditional Moroccan dry sift is worked with bare hands, using body heat to cold-press the kief into the dark exterior, lighter interior slabs. The smell and flavor of properly made dry sift is irreplaceable." },
+      { tier:"solvent", name:"BHO / PHO", sub:"Butane or Propane Hash Oil · Hydrocarbon extraction", quality:"★★★★★", solvent:"Butane / Propane", yield:"15–30%", safety:"Professional use only — explosion risk", desc:"Hydrocarbon extraction uses butane or propane to strip cannabinoids and terpenes from plant material. The most versatile extraction method — produces everything from shatter to live resin, budder, wax, and sauce.", notes:"Live resin BHO — made from fresh-frozen cannabis — preserves a terpene profile closer to the living plant than any other method. The gold standard for terpene-forward concentrates at scale." },
+      { tier:"solvent", name:"CO2 Extraction", sub:"Supercritical carbon dioxide extraction", quality:"★★★★☆", solvent:"CO2 (no residue)", yield:"10–20%", safety:"Safe — no flammable solvents", desc:"CO2 becomes supercritical under specific temperature and pressure conditions, making it an effective solvent. Highly selective, tunable extraction that leaves no solvent residue. The dominant method for oil cartridges and commercial extract production.", notes:"CO2 oil has lower terpene content than hydrocarbon extracts but is more consumer-safe and infinitely scalable. Most vape cartridges use CO2 oil with added botanical terpenes." },
+      { tier:"solvent", name:"Ethanol Extraction", sub:"High-proof alcohol wash · QWET / QWISO", quality:"★★★☆☆", solvent:"Food-grade ethanol", yield:"15–25%", safety:"Flammable — ventilation required", desc:"Ethanol is a food-safe solvent that efficiently extracts cannabinoids and terpenes. Quick-wash ethanol extraction (QWET) minimizes chlorophyll and lipid co-extraction. The preferred method for large-scale edibles production and RSO.", notes:"RSO (Rick Simpson Oil) is full-spectrum ethanol extract consumed orally for cancer treatment in alternative medicine contexts. The scientific evidence is limited but the cultural significance is substantial." },
+      { tier:"solvent", name:"Distillate", sub:"Fractional distillation · THC isolate", quality:"★★★☆☆", solvent:"Process-dependent", yield:"Depends on source oil", safety:"Safe — final product is solvent-free", desc:"Distillate is the final step in refining cannabis oil — short-path fractional distillation purifies and concentrates specific cannabinoids to 90%+ purity. Nearly odorless and tasteless on its own. The backbone of the commercial vape cartridge industry.", notes:"Distillate is a blank canvas. High-quality live resin cartridges use the actual plant terpenes instead of added botanical terpenes." },
+      { tier:"traditional", name:"Charas", sub:"Hand-rubbed live resin · Ancient Indian tradition", quality:"★★★★☆", solvent:"None", yield:"Very low — grams per hour", safety:"Completely safe", desc:"The oldest known concentrate. Made by rubbing fresh, living cannabis plants between the palms, collecting the resin that adheres to the hands. Because it's made from living plant material, charas preserves terpene compounds that are destroyed during the drying process.", notes:"Malana Cream from the Parvati Valley is considered among the finest charas in the world. The isolation of the village and the specific landrace genetics create a product that cannot be replicated elsewhere." }
+    ];
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Extractions & Concentrates — Cannascenti Encyclopedia</title>
+${ENC_FONTS}
+<style>
+${ENC_BASE_CSS}
+.ext-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.ext-btn{background:none;border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:6px 18px;color:rgba(242,234,216,0.6);font-family:Montserrat,sans-serif;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.ext-btn.active,.ext-btn:hover{border-color:#52B788;color:#52B788;background:rgba(82,183,136,0.08)}
+.ext-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+.ext-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:28px;transition:all .2s}
+.ext-card.hidden{display:none}
+.ext-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;margin-bottom:4px}
+.ext-sub{font-size:.75rem;color:rgba(242,234,216,0.4);margin-bottom:12px}
+.ext-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.ext-meta-item{font-size:.72rem;background:rgba(255,255,255,0.05);border-radius:6px;padding:3px 9px;color:rgba(242,234,216,0.55)}
+.ext-quality{color:#F5C842;letter-spacing:.1em}
+.ext-tier{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;border-radius:12px;padding:2px 8px;font-weight:600}
+.ext-tier.solventless{background:rgba(82,183,136,0.15);color:#52B788}
+.ext-tier.solvent{background:rgba(232,168,76,0.15);color:#E8A84C}
+.ext-tier.traditional{background:rgba(155,114,207,0.15);color:#9B72CF}
+.ext-desc{font-size:.84rem;line-height:1.7;color:rgba(242,234,216,0.7);margin-bottom:12px}
+.ext-notes{font-size:.8rem;line-height:1.65;color:rgba(242,234,216,0.45);border-left:2px solid rgba(82,183,136,0.25);padding-left:12px;font-style:italic}
+</style>
+</head>
+<body>
+${ENC_NAV}
+<div class="enc-page">
+  <div class="enc-page-header">
+    <div class="enc-label">✦ Cannascenti Encyclopedia</div>
+    <h1 class="enc-title">Extractions & <em>concentrates.</em></h1>
+    <p class="enc-desc">From ancient charas to modern live rosin — every extraction method explained. Solvent vs. solventless, traditional vs. modern craft, full melt vs. distillate. The definitive guide to cannabis concentrates.</p>
+  </div>
+  <div class="ext-filter">
+    <button class="ext-btn active" onclick="filterExt('all',this)">All</button>
+    <button class="ext-btn" onclick="filterExt('solventless',this)">Solventless</button>
+    <button class="ext-btn" onclick="filterExt('solvent',this)">Solvent-Based</button>
+    <button class="ext-btn" onclick="filterExt('traditional',this)">Traditional</button>
+  </div>
+  <div class="ext-grid" id="extGrid"></div>
+</div>
+<script>
+var EM = ${JSON.stringify(_EM)};
+function filterExt(tier,btn){
+  document.querySelectorAll('.ext-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  document.querySelectorAll('.ext-card').forEach(function(c){
+    c.classList.toggle('hidden', tier!=='all' && c.dataset.tier!==tier);
+  });
+}
+document.addEventListener('DOMContentLoaded',function(){
+  document.getElementById('extGrid').innerHTML=EM.map(function(m){
+    return '<div class="ext-card" data-tier="'+m.tier+'">'+
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">'+
+        '<div class="ext-name">'+m.name+'</div>'+
+        '<span class="ext-tier '+m.tier+'">'+m.tier+'</span>'+
+      '</div>'+
+      '<div class="ext-sub">'+m.sub+'</div>'+
+      '<div class="ext-meta">'+
+        '<span class="ext-meta-item">'+m.quality+'</span>'+
+        '<span class="ext-meta-item">Yield: '+m.yield+'</span>'+
+        '<span class="ext-meta-item">'+m.solvent+'</span>'+
+      '</div>'+
+      '<p class="ext-desc">'+m.desc+'</p>'+
+      '<p class="ext-notes">'+m.notes+'</p>'+
+    '</div>';
+  }).join('');
+});
+</script>
+</body></html>`;
+    res.writeHead(200,{"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
+    res.end(html);
+    return;
+  }
+
   // ─── /quiz redirect ───────────────────────────────────────────────────────
   if (req.method === "GET" && req.url === "/quiz") {
     res.writeHead(302, { "Location": "/#quiz" });
