@@ -6592,11 +6592,20 @@
   .mj-spotlight-inner {
     max-width: 1200px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
   }
+  .mj-spotlight-header { margin-bottom: 56px; }
+  .mj-dual {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 0 60px;
+    align-items: start;
+  }
+  .mj-dual-divider {
+    background: rgba(82,183,136,0.12);
+    align-self: stretch;
+    min-height: 380px;
+  }
+  .mj-dual-panel { display: flex; flex-direction: column; }
   .mj-spotlight-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(32px, 4vw, 56px);
@@ -6690,7 +6699,8 @@
   .mj-chat-cta:hover { background: rgba(82,183,136,0.08); }
   @media (max-width: 860px) {
     .mj-spotlight { padding: 72px 24px; }
-    .mj-spotlight-inner { grid-template-columns: 1fr; gap: 48px; }
+    .mj-dual { grid-template-columns: 1fr; gap: 48px; }
+    .mj-dual-divider { display: none; }
     .mj-chat-preview { max-width: 520px; }
   }
 
@@ -6788,33 +6798,57 @@
 
 <div class="full-divider"></div>
 
-<!-- MARY JANE FEATURE SPOTLIGHT -->
+<!-- MARY JANE VISION — COMBINED -->
 <section class="mj-spotlight">
   <div class="mj-spotlight-inner reveal">
-    <div class="mj-spotlight-text">
+    <div class="mj-spotlight-header">
       <div class="section-label">✦ Mary Jane Vision</div>
-      <h2 class="mj-spotlight-title">Your personal<br><em>cannabis sommelier</em></h2>
-      <p class="mj-spotlight-desc">Ask Mary Jane anything — she knows your taste profile, explains every terpene and cannabinoid in plain language, and recommends exactly what you need for how you want to feel. No dispensary pressure. No upsells. Just honest guidance.</p>
-      <button class="mj-spotlight-cta" onclick="toggleMJ()">Talk to Mary Jane →</button>
     </div>
-    <div class="mj-spotlight-visual">
-      <div class="mj-chat-preview">
-        <div class="mj-chat-msg mj-chat-msg--mj">
-          <div class="mj-chat-avatar">
-            <svg width="18" height="23" viewBox="0 0 160 200" fill="none"><polygon points="80,4 92,32 80,52 68,32" fill="#B7E4C7" opacity="0.95"/><polygon points="80,28 108,38 96,62 80,52" fill="#74C69D" opacity="0.9"/><polygon points="80,28 52,38 64,62 80,52" fill="#B7E4C7" opacity="0.9"/><polygon points="80,50 118,58 104,84 80,74" fill="#74C69D" opacity="0.8"/><polygon points="80,50 42,58 56,84 80,74" fill="#B7E4C7" opacity="0.8"/></svg>
+    <div class="mj-dual">
+
+      <!-- LEFT: Cannabis Sommelier -->
+      <div class="mj-dual-panel">
+        <h2 class="mj-spotlight-title" style="font-size:clamp(26px,3vw,44px);margin-bottom:14px;">Your personal<br><em>cannabis sommelier</em></h2>
+        <p class="mj-spotlight-desc">Ask Mary Jane anything — she knows your taste profile, explains every terpene and cannabinoid in plain language, and recommends exactly what you need for how you want to feel. No dispensary pressure. No upsells. Just honest guidance.</p>
+        <button class="mj-spotlight-cta" style="margin-bottom:32px;" onclick="toggleMJ()">Talk to Mary Jane →</button>
+        <div class="mj-chat-preview">
+          <div class="mj-chat-msg mj-chat-msg--mj">
+            <div class="mj-chat-avatar">
+              <svg width="18" height="23" viewBox="0 0 160 200" fill="none"><polygon points="80,4 92,32 80,52 68,32" fill="#B7E4C7" opacity="0.95"/><polygon points="80,28 108,38 96,62 80,52" fill="#74C69D" opacity="0.9"/><polygon points="80,28 52,38 64,62 80,52" fill="#B7E4C7" opacity="0.9"/><polygon points="80,50 118,58 104,84 80,74" fill="#74C69D" opacity="0.8"/><polygon points="80,50 42,58 56,84 80,74" fill="#B7E4C7" opacity="0.8"/></svg>
+            </div>
+            <div class="mj-chat-bubble">Hey — what are you going for tonight? Energy, calm, focus, or just vibing?</div>
           </div>
-          <div class="mj-chat-bubble">Hey — what are you going for tonight? Energy, calm, focus, or just vibing?</div>
-        </div>
-        <div class="mj-chat-msg mj-chat-msg--user">
-          <div class="mj-chat-bubble">Something for relaxing after work, not too sedating</div>
-        </div>
-        <div class="mj-chat-msg mj-chat-msg--mj">
-          <div class="mj-chat-avatar">
-            <svg width="18" height="23" viewBox="0 0 160 200" fill="none"><polygon points="80,4 92,32 80,52 68,32" fill="#B7E4C7" opacity="0.95"/><polygon points="80,28 108,38 96,62 80,52" fill="#74C69D" opacity="0.9"/><polygon points="80,28 52,38 64,62 80,52" fill="#B7E4C7" opacity="0.9"/><polygon points="80,50 118,58 104,84 80,74" fill="#74C69D" opacity="0.8"/><polygon points="80,50 42,58 56,84 80,74" fill="#B7E4C7" opacity="0.8"/></svg>
+          <div class="mj-chat-msg mj-chat-msg--user">
+            <div class="mj-chat-bubble">Something for relaxing after work, not too sedating</div>
           </div>
-          <div class="mj-chat-bubble">Perfect — look for something linalool-forward. It's the same compound in lavender; unwinding without the couch lock. Blue Dream or Lavender Kush would be my picks.</div>
+          <div class="mj-chat-msg mj-chat-msg--mj">
+            <div class="mj-chat-avatar">
+              <svg width="18" height="23" viewBox="0 0 160 200" fill="none"><polygon points="80,4 92,32 80,52 68,32" fill="#B7E4C7" opacity="0.95"/><polygon points="80,28 108,38 96,62 80,52" fill="#74C69D" opacity="0.9"/><polygon points="80,28 52,38 64,62 80,52" fill="#B7E4C7" opacity="0.9"/><polygon points="80,50 118,58 104,84 80,74" fill="#74C69D" opacity="0.8"/><polygon points="80,50 42,58 56,84 80,74" fill="#B7E4C7" opacity="0.8"/></svg>
+            </div>
+            <div class="mj-chat-bubble">Perfect — look for something linalool-forward. It's the same compound in lavender; unwinding without the couch lock. Blue Dream or Lavender Kush would be my picks.</div>
+          </div>
         </div>
       </div>
+
+      <!-- DIVIDER -->
+      <div class="mj-dual-divider"></div>
+
+      <!-- RIGHT: Product Scanner -->
+      <div class="mj-dual-panel">
+        <h2 class="mj-spotlight-title" style="font-size:clamp(26px,3vw,44px);margin-bottom:14px;">Scan any product.<br><em>Know everything.</em></h2>
+        <p class="mj-spotlight-desc">Point your camera at any cannabis product — flower, concentrate, vape, edible. Mary Jane identifies it instantly and delivers a full intelligence briefing: strain, terpenes, effects, potency, and more.</p>
+        <a href="/scan" class="mj-spotlight-cta" style="margin-bottom:32px;text-decoration:none;display:inline-flex;">Try the Scanner →</a>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(82,183,136,0.12);border-radius:12px;padding:40px;display:flex;align-items:center;justify-content:center;">
+          <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="rgba(82,183,136,0.6)" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="15" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+            <path d="M16 3h5v5"/>
+            <path d="M21 3l-5 5"/>
+          </svg>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -6822,7 +6856,7 @@
 <div id="encyclopedia-hub" class="enc-hub">
   <div class="enc-hub-inner">
     <div class="enc-hub-header reveal">
-      <div class="section-label"><span class="pg">03</span> ✦ The Cannascenti Encyclopedia</div>
+      <div class="section-label">✦ The Cannascenti Encyclopedia</div>
       <h2 class="section-title" style="color:var(--cream)">The Complete Cannabis Reference</h2>
       <p>Every terpene, cannabinoid, consumption method, cultivation stage, historical milestone, and extraction technique — the most comprehensive cannabis reference anywhere. Click a topic to explore.</p>
     </div>
@@ -7161,27 +7195,6 @@
         <span style="font-size:13px;color:rgba(242,234,216,0.6);">Conditions Guide</span>
         <span style="font-size:13px;color:rgba(242,234,216,0.6);">US Legal Map</span>
       </div>
-    </div>
-  </div>
-</div>
-
-<!-- PRODUCT SCANNER TEASER -->
-<div class="scan-teaser-wrap">
-  <div class="scan-teaser reveal">
-    <div class="scan-teaser-text">
-      <div class="section-label">✦ Mary Jane Vision</div>
-      <h3 class="scan-teaser-title">Scan Any Product.<br><em>Know Everything.</em></h3>
-      <p class="scan-teaser-desc">Point your camera at any cannabis product — flower, concentrate, vape, edible. Mary Jane identifies it instantly and delivers a full intelligence briefing: strain, terpenes, effects, potency, and more.</p>
-      <a href="/scan" class="scan-teaser-cta">Try the Scanner →</a>
-    </div>
-    <div class="scan-teaser-visual">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="2" y="3" width="20" height="15" rx="2"/>
-        <circle cx="8.5" cy="8.5" r="1.5"/>
-        <path d="M21 15l-5-5L5 21"/>
-        <path d="M16 3h5v5"/>
-        <path d="M21 3l-5 5"/>
-      </svg>
     </div>
   </div>
 </div>

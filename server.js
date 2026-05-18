@@ -671,7 +671,270 @@ ${isPrivacy ? `<h1>Privacy Policy</h1><p>Last updated: April 2026</p>
 
   // ─── /terpenes ──────────────────────────────────────────────────────────────
   if (req.method === "GET" && req.url === "/terpenes") {
+    const _TERP = [
+      { name:"Myrcene", tag:"The Most Abundant", color:"#E07B39", aroma:"Earthy · Musky · Tropical · Cloves", family:"Earthy", bp:168, bpF:334,
+        receptor:"CB1 Potentiator", receptorSide:"cb1",
+        receptorNote:"Myrcene increases cell membrane permeability, allowing THC to cross the blood-brain barrier faster and in greater quantity. More myrcene = faster onset, stronger effect. This is why indica strains hit harder even at the same THC percentage.",
+        effect:"Heavy relaxation, couch-lock, sedating. The classic indica terpene. High myrcene = indica-leaning experience regardless of strain type. The single biggest predictor of whether a strain will be sedating or activating.",
+        medical:["Pain relief","Anti-inflammatory","Muscle relaxant","Sleep aid","Anti-anxiety"],
+        strains:["OG Kush","Blue Dream","Granddaddy Purple","Mango Kush","White Widow","Grape Ape"],
+        nature:[
+          {e:"🥭",n:"Mango",note:"Ripe mangoes are loaded with myrcene — eating one 45 min before cannabis significantly boosts THC absorption"},
+          {e:"🍺",n:"Hops",note:"Cannabis and hops are botanical cousins. The earthy backbone of IPAs comes from shared myrcene genetics"},
+          {e:"🌿",n:"Thyme",note:"Dried thyme is one of the highest myrcene herbs in your kitchen"},
+          {e:"🍋",n:"Lemongrass",note:"Primary aromatic compound in lemongrass essential oil"},
+          {e:"🫐",n:"Bay Leaves",note:"The earthy depth of bay laurel leaves comes largely from myrcene"},
+          {e:"🍊",n:"Grapefruit",note:"Myrcene alongside limonene creates the citrus-earth complexity of grapefruit"}
+        ],
+        hack:"The Mango Trick: Eating a ripe mango 45 minutes before cannabis can noticeably increase the strength and duration of effects. The myrcene in mango primes your CB1 receptors, lowering the threshold for THC binding."
+      },
+      { name:"Limonene", tag:"The Mood Lifter", color:"#F5C842", aroma:"Citrus · Lemon · Orange · Lime", family:"Citrus", bp:176, bpF:349,
+        receptor:"Serotonin & Dopamine", receptorSide:"serotonin",
+        receptorNote:"Limonene doesn't bind cannabinoid receptors directly but interacts powerfully with serotonin (5-HT1A) and dopamine receptors — the same pathways targeted by antidepressants and anxiolytics. It literally talks to your mood system.",
+        effect:"Uplifting, euphoric, stress-relieving, refreshing. Drives that bright, social, happy high. The most mood-elevating terpene in cannabis. High limonene strains are reliably energetic and anxiety-reducing.",
+        medical:["Anxiety & depression","Stress relief","Acid reflux","Antifungal","Immune support"],
+        strains:["Lemon Haze","Durban Poison","Super Lemon OG","Wedding Cake","Banana OG","Strawberry Banana"],
+        nature:[
+          {e:"🍋",n:"Lemon peel",note:"The most concentrated natural source — lemon essential oil is nearly pure limonene"},
+          {e:"🍊",n:"Orange rind",note:"The characteristic smell of orange peel is almost entirely limonene"},
+          {e:"🍈",n:"Grapefruit",note:"Grapefruit's bright, slightly bitter top note is limonene-driven"},
+          {e:"🌲",n:"Juniper berries",note:"Gin's distinctive piney-citrus quality comes from juniper limonene"},
+          {e:"🌿",n:"Rosemary",note:"Alongside camphor, limonene gives rosemary its bright, uplifting scent"},
+          {e:"🧹",n:"Cleaning products",note:"Nearly every citrus cleaner uses limonene — it's literally the smell of 'clean'"}
+        ],
+        hack:"The Citrus Squeeze: Smelling fresh lemon or orange peel can immediately produce a mild limonene effect — the same terpene activating your serotonin receptors is now in your nostrils."
+      },
+      { name:"Caryophyllene", tag:"Binds CB2 Directly", color:"#D95F3B", aroma:"Peppery · Woody · Clove · Cinnamon · Spice", family:"Spice", bp:160, bpF:320,
+        receptor:"CB2 Direct Binder", receptorSide:"cb2",
+        receptorNote:"Caryophyllene is the ONLY terpene that directly binds to cannabinoid receptors — specifically CB2 receptors in the immune system and peripheral nervous system. This makes it technically both a terpene AND a dietary cannabinoid. The FDA classifies it as GRAS (Generally Recognized As Safe).",
+        effect:"Anti-inflammatory, pain-relieving, calming. Significantly reduces systemic inflammation without psychoactive effects. The immune system terpene. Why some people crush black pepper to ease an overwhelming high.",
+        medical:["Chronic pain","Anti-inflammatory","Anxiety","Alcohol craving reduction","Ulcer protection"],
+        strains:["Girl Scout Cookies","Sour Diesel","Bubba Kush","Chemdawg","Gorilla Glue","Purple Punch"],
+        nature:[
+          {e:"🫙",n:"Black Pepper",note:"The dominant terpene in black pepper — cracking pepper under your nose activates CB2 receptors immediately"},
+          {e:"🌶️",n:"Cloves",note:"Cloves are so rich in caryophyllene they've been used as pain relief for toothaches for centuries"},
+          {e:"🍂",n:"Cinnamon",note:"That warm, spicy cinnamon note? Largely caryophyllene alongside eugenol"},
+          {e:"🌿",n:"Basil",note:"Fresh basil contains significant caryophyllene alongside other terpenes"},
+          {e:"🌿",n:"Oregano",note:"Mediterranean cooking's signature herb is rich in caryophyllene"},
+          {e:"🍺",n:"Hops",note:"Alongside myrcene, caryophyllene gives hoppy beers their spicy, resinous character"}
+        ],
+        hack:"The Black Pepper Trick: Chewing or smelling black peppercorns can take the edge off an overwhelming high. Caryophyllene binds CB2 receptors and has a grounding, calming effect on the endocannabinoid system."
+      },
+      { name:"Linalool", tag:"Nature's Anxiety Reducer", color:"#9B72CF", aroma:"Floral · Lavender · Sweet · Spice", family:"Floral", bp:198, bpF:388,
+        receptor:"GABA System", receptorSide:"gaba",
+        receptorNote:"Linalool activates GABA receptors — the brain's primary inhibitory system that reduces neural excitation. This is the same system activated by benzodiazepines (Valium, Xanax) and alcohol. Linalool is nature's built-in nervous system calmer.",
+        effect:"Deeply calming, sedating, anxiolytic. The reason lavender aromatherapy demonstrably reduces anxiety in clinical settings. The most peaceful, easiest sedation in cannabis — less heavy than myrcene, more gently flowing.",
+        medical:["Anxiety & stress","Insomnia","Anticonvulsant (research)","Depression","Pain & inflammation"],
+        strains:["Lavender Kush","LA Confidential","Amnesia Haze","Dosido","Master Kush","Zkittlez"],
+        nature:[
+          {e:"💜",n:"Lavender",note:"Lavender essential oil is the richest natural linalool source — over 50% of its oil is linalool"},
+          {e:"🌸",n:"Jasmine",note:"Jasmine's intoxicating floral sweetness comes from linalool alongside benzyl acetate"},
+          {e:"🌿",n:"Basil",note:"Sweet basil contains linalool alongside ocimene, creating its complex floral-herb profile"},
+          {e:"🌲",n:"Birch trees",note:"Birch bark and leaves contain linalool — the forest-calm of birch forests is partly linalool"},
+          {e:"🫚",n:"Coriander",note:"Coriander seeds are a significant linalool source — used in many calming herbal traditions"},
+          {e:"🌹",n:"Rose",note:"Rose's calming, romantic aroma is largely linalool working its GABA magic"}
+        ],
+        hack:"The Lavender Test: If lavender aromatherapy genuinely calms you down, linalool-dominant cannabis strains will too. Your brain's response to linalool is consistent across delivery methods."
+      },
+      { name:"Pinene", tag:"The Alertness Terpene", color:"#52B788", aroma:"Pine · Forest · Fresh · Rosemary · Herbs", family:"Fresh", bp:155, bpF:311,
+        receptor:"Acetylcholinesterase Inhibitor", receptorSide:"memory",
+        receptorNote:"Pinene inhibits acetylcholinesterase — the enzyme that breaks down acetylcholine, the neurotransmitter responsible for memory, learning, and focus. This is why pinene-dominant strains can actually counteract THC's short-term memory effects.",
+        effect:"Promotes alertness and memory retention. Opens airways (bronchodilator). One of the few compounds that counteracts THC's memory impairment. The 'focus' terpene. High pinene strains are clear-headed despite being potent.",
+        medical:["Memory retention","Asthma & bronchodilation","Anti-inflammatory","Antiseptic","Anxiety"],
+        strains:["Jack Herer","Trainwreck","Blue Dream","Island Sweet Skunk","Dutch Treat","Strawberry Cough"],
+        nature:[
+          {e:"🌲",n:"Pine needles",note:"Alpha-pinene is literally what pine trees smell like — the most abundant terpene in nature"},
+          {e:"🌿",n:"Rosemary",note:"Rosemary has been associated with memory since ancient Greece — now we know why (pinene)"},
+          {e:"🌿",n:"Dill",note:"Fresh dill's clean, bright scent comes from pinene and other fresh terpenes"},
+          {e:"🌿",n:"Basil",note:"Fresh basil contains both pinene and linalool — the herb of focus AND calm"},
+          {e:"🫚",n:"Parsley",note:"Fresh parsley's clean green aroma is pinene-forward"},
+          {e:"🌲",n:"Cypress",note:"Mediterranean cypress trees release pinene — the 'fresh air' of coastal forests"}
+        ],
+        hack:"Walk Through Pines: Spending time in a pine forest (shinrin-yoku, or forest bathing) is literally inhaling pinene. The documented cognitive and respiratory benefits of forest bathing partially come from this terpene."
+      },
+      { name:"Terpinolene", tag:"The Multidimensional", color:"#74C69D", aroma:"Pine · Floral · Herbs · Citrus · Sweet", family:"Fresh", bp:186, bpF:367,
+        receptor:"Mild Sedative Pathways", receptorSide:"sedative",
+        receptorNote:"Terpinolene's receptor activity is the least studied of the major terpenes, but research suggests it acts on multiple systems simultaneously — creating its paradoxical profile of smelling invigorating while producing mild sedation.",
+        effect:"Mildly sedating despite its fresh, invigorating aroma. The most complex smell profile of any terpene — simultaneously piney, floral, citrusy, and sweet. Rare as a dominant terpene, highly prized when present. The signature of Jack Herer lineage strains.",
+        medical:["Antioxidant","Antibacterial","Antifungal","Mild sedation","Anti-tumor (early research)"],
+        strains:["Jack Herer","Ghost Train Haze","Golden Goat","XJ-13","Dutch Treat","Super Lemon Haze"],
+        nature:[
+          {e:"🍎",n:"Apples",note:"The fresh, slightly floral scent of apple skin contains terpinolene"},
+          {e:"🌸",n:"Lilac",note:"Lilac's sweet-fresh floral burst is largely terpinolene — one of the most distinctive natural sources"},
+          {e:"🌿",n:"Cumin",note:"Earthy cumin contains terpinolene alongside other spice terpenes"},
+          {e:"🌰",n:"Nutmeg",note:"Nutmeg's warm-sweet-herbal complexity includes terpinolene"},
+          {e:"🌲",n:"Fir trees",note:"Fir needle essential oil is a major terpinolene source — that sharp, clean mountain forest smell"},
+          {e:"🌿",n:"Sage",note:"Sage contains terpinolene alongside thujone — contributing to its complex, medicinal aroma"}
+        ],
+        hack:"The Jack Herer Fingerprint: If a strain smells simultaneously fresh, herbal, and subtly sweet — almost like walking through an herb garden in spring — you're likely smelling terpinolene. It's the signature of Jack Herer and its descendants."
+      },
+      { name:"Humulene", tag:"The Appetite Suppressant", color:"#3D9970", aroma:"Earthy · Woody · Hoppy · Herbal · Spicy", family:"Earthy", bp:198, bpF:388,
+        receptor:"CB1 & CB2 Modulator", receptorSide:"cb2",
+        receptorNote:"Humulene interacts with both CB1 and CB2 receptors as a modulator — not a direct agonist. Research suggests it suppresses appetite by modulating the endocannabinoid pathways that regulate hunger, making it the rare cannabis terpene that reduces rather than increases appetite.",
+        effect:"Anti-inflammatory, antibacterial, appetite-suppressing. The only common cannabis terpene associated with appetite reduction (vs. the infamous munchies). Used in traditional Chinese medicine for centuries. Hoppy IPA drinkers know this terpene well.",
+        medical:["Appetite suppression","Anti-inflammatory","Antibacterial","Anti-tumor (research)","Analgesic"],
+        strains:["Girl Scout Cookies","Headband","White Widow","Skywalker OG","Death Star","Original Glue"],
+        nature:[
+          {e:"🍺",n:"Hops",note:"Humulene is named after Humulus lupulus — the hop plant. The backbone of IPA bitterness and herbaceous character"},
+          {e:"🌿",n:"Basil",note:"Fresh basil contains humulene alongside linalool — contributing to its complex profile"},
+          {e:"🌿",n:"Cloves",note:"Cloves contain both caryophyllene and humulene — the dual-spice combination in many classic strains"},
+          {e:"🫚",n:"Coriander",note:"Coriander seeds contain humulene — used across traditional medicine for digestion"},
+          {e:"🌿",n:"Ginseng",note:"Korean red ginseng is rich in humulene — possibly contributing to its adaptogenic properties"},
+          {e:"🌲",n:"Balsam Poplar",note:"Northern balsam poplar trees release humulene — the deep earthy smell of northern forests"}
+        ],
+        hack:"The IPA Connection: If you love hoppy IPAs for their earthy, herbal bite but not for feeling hungry afterward — that's humulene working. Strains dominant in humulene (alongside myrcene) actually suppress appetite rather than stimulating it."
+      },
+      { name:"Ocimene", tag:"The Tropical Uplifter", color:"#5B8DD9", aroma:"Sweet · Herbal · Floral · Woody · Tropical", family:"Floral", bp:65, bpF:149,
+        receptor:"Antiviral Pathways", receptorSide:"immune",
+        receptorNote:"Ocimene doesn't directly bind cannabinoid receptors but demonstrates significant antiviral and antifungal activity through separate pathways. Research suggests it may activate immune response channels. Its extremely low boiling point means it's the first terpene you smell when a jar is opened.",
+        effect:"Uplifting, energizing, antiviral, antifungal, decongestant. The tropical sweetness in sativa strains. Often present alongside limonene in energetic euphoric hybrids. Creates a bright, clean, sweet-herbal profile.",
+        medical:["Antiviral","Antifungal","Decongestant","Anti-inflammatory","Antibacterial"],
+        strains:["Clementine","Golden Goat","Space Queen","Dutch Treat","Strawberry Cough","Green Crack"],
+        nature:[
+          {e:"🌿",n:"Mint",note:"Mint contains ocimene alongside menthol — contributing to its fresh, sweet complexity"},
+          {e:"🌿",n:"Parsley",note:"Fresh parsley's green-sweet aroma includes significant ocimene"},
+          {e:"🌿",n:"Basil",note:"Thai basil especially is high in ocimene — that distinctive sweet-anise quality"},
+          {e:"🌸",n:"Orchids",note:"Many orchid species use ocimene to attract pollinators with their sweet tropical scent"},
+          {e:"🥭",n:"Mangoes",note:"Alongside myrcene, ocimene contributes to mango's complex tropical sweetness"},
+          {e:"🌸",n:"Bergamot",note:"Bergamot orange peel (the flavor in Earl Grey tea) contains significant ocimene"}
+        ],
+        hack:"The First Smell: Ocimene has the lowest boiling point of common cannabis terpenes — it's the very first thing you smell when you open a jar of fresh cannabis. If you get an immediate sweet, tropical, herbal blast, that's ocimene hitting your nose first."
+      },
+      { name:"Linalool", tag:"Nature's Anxiety Reducer", color:"#9B72CF", aroma:"Floral · Lavender · Sweet · Spice", family:"Floral", bp:198, bpF:388,
+        receptor:"GABA System", receptorSide:"gaba",
+        receptorNote:"Linalool activates GABA receptors — the brain's primary inhibitory system that reduces neural excitation. This is the same system activated by benzodiazepines (Valium, Xanax) and alcohol. Linalool is nature's built-in nervous system calmer.",
+        effect:"Deeply calming, sedating, anxiolytic. The reason lavender aromatherapy demonstrably reduces anxiety in clinical settings. The most peaceful, easiest sedation in cannabis — less heavy than myrcene, more gently flowing.",
+        medical:["Anxiety & stress","Insomnia","Anticonvulsant (research)","Depression","Pain & inflammation"],
+        strains:["Lavender Kush","LA Confidential","Amnesia Haze","Dosido","Master Kush","Zkittlez"],
+        nature:[
+          {e:"💜",n:"Lavender",note:"Lavender essential oil is the richest natural linalool source — over 50% of its oil is linalool"},
+          {e:"🌸",n:"Jasmine",note:"Jasmine's intoxicating floral sweetness comes from linalool alongside benzyl acetate"},
+          {e:"🌿",n:"Basil",note:"Sweet basil contains linalool alongside ocimene, creating its complex floral-herb profile"},
+          {e:"🌲",n:"Birch trees",note:"Birch bark and leaves contain linalool — the forest-calm of birch forests is partly linalool"},
+          {e:"🫚",n:"Coriander",note:"Coriander seeds are a significant linalool source — used in many calming herbal traditions"},
+          {e:"🌹",n:"Rose",note:"Rose's calming, romantic aroma is largely linalool working its GABA magic"}
+        ],
+        hack:"The Lavender Test: If lavender aromatherapy genuinely calms you down, linalool-dominant cannabis strains will too. Your brain's response to linalool is consistent across delivery methods."
+      },
+      { name:"Bisabolol", tag:"The Skin Healer", color:"#52A875", aroma:"Floral · Sweet · Chamomile · Honey · Vanilla", family:"Floral", bp:153, bpF:307,
+        receptor:"Anti-inflammatory Pathways", receptorSide:"immune",
+        receptorNote:"Bisabolol inhibits multiple inflammatory pathways and has demonstrated direct anti-inflammatory activity in skin tissue. It also enhances the absorption of other compounds through skin — making it valuable in topical cannabis formulations.",
+        effect:"Calming, anti-irritant, skin-healing, anti-inflammatory. The primary terpene in chamomile. Exceptional skin-healing properties — reduces redness, soothes irritation. Found in many luxury skincare products.",
+        medical:["Skin healing","Anti-inflammatory","Anti-irritant","Wound healing","Anti-microbial"],
+        strains:["ACDC","Harle-Tsu","OG Shark","Headband","Oracle","Pink Kush"],
+        nature:[
+          {e:"🌼",n:"Chamomile",note:"German chamomile is the richest natural source of bisabolol — the key reason chamomile tea is calming"},
+          {e:"🌿",n:"Echinacea",note:"The immune-supporting herb echinacea contains bisabolol as a key active compound"},
+          {e:"🌿",n:"Verbena",note:"Lemon verbena essential oil contains bisabolol alongside citral"},
+          {e:"🌲",n:"Sandalwood",note:"Sandalwood's smooth, warm complexity includes bisabolol"},
+          {e:"🫚",n:"Candeia tree",note:"Brazilian candeia tree bark is one of the highest natural bisabolol concentrations — used in premium cosmetics"},
+          {e:"🌸",n:"Vanilla",note:"Alongside vanillin, bisabolol contributes to vanilla's soothing, warm sweetness"}
+        ],
+        hack:"The Chamomile Connection: If chamomile tea reliably calms you, bisabolol-rich cannabis strains (often CBD-dominant) will have a similar soothing effect. It's the same terpene activating the same pathways."
+      },
+      { name:"Nerolidol", tag:"The Deep Sedative", color:"#2D8C5E", aroma:"Woody · Fresh Bark · Citrus · Floral · Green", family:"Earthy", bp:122, bpF:252,
+        receptor:"Sedative & Skin Penetration", receptorSide:"sedative",
+        receptorNote:"Nerolidol enhances the absorption of compounds through biological membranes — it's been studied as a 'penetration enhancer' for transdermal drug delivery. In cannabis, this means it helps other cannabinoids and terpenes penetrate more effectively, amplifying overall effect.",
+        effect:"Powerfully sedating, stress-relieving, anti-parasitic. One of the most sedating terpenes in cannabis. Enhances skin absorption — helps other cannabinoids penetrate more effectively. Best for night use.",
+        medical:["Insomnia","Anti-parasitic","Anti-fungal","Anxiety","Sedation"],
+        strains:["Jack Herer","Skywalker OG","Chemdawg","Island Sweet Skunk","Sweet Skunk"],
+        nature:[
+          {e:"🌸",n:"Jasmine",note:"Jasmine absolute contains significant nerolidol — contributing to its rich, deep floral sedative quality"},
+          {e:"🌿",n:"Lemongrass",note:"Lemongrass essential oil contains nerolidol alongside citral and myrcene"},
+          {e:"🌿",n:"Tea Tree",note:"Australian tea tree oil contains nerolidol — contributing to its penetrating, antiseptic quality"},
+          {e:"🫚",n:"Ginger",note:"Fresh ginger root contains nerolidol — part of why ginger has warming, penetrating properties"},
+          {e:"💜",n:"Lavender",note:"Lavender contains trace nerolidol alongside its primary linalool"},
+          {e:"🌸",n:"Orange blossoms",note:"Neroli oil (orange blossom) is a primary nerolidol source — hence the name"}
+        ],
+        hack:"Nerolidol is the terpene that makes topical cannabis products work better. It opens biological channels that allow cannabinoids to penetrate skin tissue — which is why high-nerolidol strains are often used in topical formulations."
+      },
+      { name:"Geraniol", tag:"The Floral Protector", color:"#7B68C8", aroma:"Rose · Geranium · Citrus · Warm Floral · Peach", family:"Floral", bp:230, bpF:446,
+        receptor:"Neuroprotective Pathways", receptorSide:"neuro",
+        receptorNote:"Geraniol has demonstrated neuroprotective properties in research — it protects neurons from oxidative stress and shows promise in Alzheimer's and Parkinson's research. It also has direct antioxidant activity, scavenging free radicals that damage cell membranes.",
+        effect:"Calming, stress-relieving, neuroprotective. One of the most potent antioxidant terpenes. The warm floral note that gives rose its signature smell. Repels insects naturally — probably why cannabis produces it.",
+        medical:["Neuroprotection","Antioxidant","Anti-tumor (research)","Anti-fungal","Antibacterial"],
+        strains:["Headband","Master Kush","Afghani","OG Shark","Amnesia","Great White Shark"],
+        nature:[
+          {e:"🌹",n:"Rose",note:"Geraniol is one of the primary compounds in rose essential oil — the warm floral depth of rose"},
+          {e:"🌸",n:"Geranium",note:"The flower is named for its geraniol content — geranium oil is extremely high in this terpene"},
+          {e:"🌿",n:"Lemongrass",note:"Lemongrass contains geraniol alongside myrcene — contributing to its complex tropical character"},
+          {e:"🌸",n:"Citronella",note:"Mosquito-repelling citronella candles work largely through geraniol — cannabis produces it for the same reason"},
+          {e:"🍑",n:"Peach",note:"Ripe peach skin contains geraniol — the warm floral note that makes peaches smell more than just sweet"},
+          {e:"🌸",n:"Palmarosa grass",note:"Palmarosa (tropical grass) is a commercial geraniol source used in perfumery and cosmetics"}
+        ],
+        hack:"Natural Bug Repellent: Geraniol is why cannabis plants are naturally pest-resistant. The terpene repels insects. High-geraniol strains grown outdoors tend to have fewer pest problems — the plant is protecting itself."
+      },
+      { name:"Terpineol", tag:"The Relaxing Floral", color:"#D4A853", aroma:"Floral · Citrus · Sweet · Lilac · Pine", family:"Floral", bp:218, bpF:424,
+        receptor:"Sedative Pathways", receptorSide:"sedative",
+        receptorNote:"Terpineol has demonstrated sedative properties in animal studies — reducing movement activity and inducing sleep at sufficient doses. It appears to interact with GABA pathways similarly to linalool, producing calming effects.",
+        effect:"Calming, sedating, stress-relieving. Often found alongside linalool in indica strains, amplifying sedation. Produces a relaxed, pleasant body feeling with mild euphoria. The lilac-pine floral note of many classic indicas.",
+        medical:["Insomnia","Anti-anxiety","Anti-inflammatory","Antioxidant","Antibacterial"],
+        strains:["OG Kush","White Widow","Jack Herer","Girl Scout Cookies","Fire OG"],
+        nature:[
+          {e:"🌸",n:"Linden blossoms",note:"Linden (basswood) flowers are high in terpineol — used in traditional sleep teas across Europe"},
+          {e:"🍋",n:"Lime",note:"Lime peel contains terpineol alongside limonene — part of lime's complex citrus-floral profile"},
+          {e:"🌿",n:"Eucalyptus",note:"Eucalyptus oil contains terpineol — amplifying its respiratory-opening properties"},
+          {e:"🌲",n:"Pine",note:"Some pine varieties contain terpineol alongside pinene — contributing to their layered complexity"},
+          {e:"🌸",n:"Petitgrain",note:"Petitgrain oil (from orange tree leaves) is a major terpineol source in natural perfumery"},
+          {e:"🌸",n:"Lilac",note:"Lilac's sweet, nostalgic spring scent comes largely from terpineol"}
+        ],
+        hack:"The Lilac Effect: If you've ever felt inexplicably calm walking past blooming lilacs in spring, terpineol was working on you. Strains with combined linalool and terpineol amplify each other's sedative effects."
+      },
+      { name:"Farnesene", tag:"The Green Apple", color:"#4A7BC4", aroma:"Floral · Fresh · Green Apple · Citrus · Woody", family:"Fresh", bp:222, bpF:432,
+        receptor:"Anti-inflammatory Pathways", receptorSide:"immune",
+        receptorNote:"Farnesene demonstrates anti-inflammatory activity through multiple pathways and has shown promise in research for its effects on stress response systems. It's also a natural alarm pheromone in plants — cannabis produces it as a stress signal.",
+        effect:"Calming, stress-relieving, anti-inflammatory, antibacterial. Contributes a fresh, green-apple quality to strains. Found in apples, hops, and flowers. Often overlooked but important to overall terpene profiles.",
+        medical:["Anti-inflammatory","Antibacterial","Skin health","Anti-tumor (early research)","Relaxation"],
+        strains:["Skunk #1","Sour Diesel","MAC","Zkittlez","Green Crack"],
+        nature:[
+          {e:"🍏",n:"Green apples",note:"Farnesene is the primary reason green apples smell fresher and more tart than red apples"},
+          {e:"🍺",n:"Hops",note:"German noble hops used in lagers are high in farnesene — the 'fresh beer' quality"},
+          {e:"🌸",n:"Ginger lily",note:"Ginger lily flowers release farnesene as a floral attractant for pollinators"},
+          {e:"🥬",n:"Chamomile",note:"German chamomile contains farnesene alongside bisabolol — doubling its calming profile"},
+          {e:"🌿",n:"Turmeric",note:"Turmeric rhizomes contain farnesene as part of their complex anti-inflammatory terpene blend"},
+          {e:"🌸",n:"Gardenias",note:"Gardenia's rich, sweet-green floral scent includes farnesene"}
+        ],
+        hack:"The Green Apple Smell: If a cannabis strain has a distinct green apple, fresh-cut grass, or 'just-opened can of beer' quality to it, farnesene is likely a significant component of the terpene profile."
+      },
+      { name:"Valencene", tag:"The Citrus Peel", color:"#F5A623", aroma:"Sweet Orange · Citrus · Fresh · Woody · Grapefruit", family:"Citrus", bp:254, bpF:489,
+        receptor:"Anti-inflammatory Pathways", receptorSide:"immune",
+        receptorNote:"Valencene demonstrates anti-inflammatory and insect-repelling properties. Named for Valencia oranges, it acts on inflammatory pathways similar to caryophyllene but with less direct receptor binding activity.",
+        effect:"Uplifting, energizing, mood-brightening. Similar to limonene but with a softer, sweeter citrus quality. Found in citrus fruit peel and some exotic cannabis strains. The 'orange soda' terpene.",
+        medical:["Anti-inflammatory","Antifungal","Insect repellent","Mood elevation","Nausea relief"],
+        strains:["Tangie","Clementine","Agent Orange","Mimosa","Sour Tangie"],
+        nature:[
+          {e:"🍊",n:"Valencia oranges",note:"Named for the variety — Valencia orange peel is extremely high in valencene"},
+          {e:"🍊",n:"Tangerines",note:"The bright, sweet citrus pop of tangerines comes largely from valencene"},
+          {e:"🍊",n:"Grapefruit",note:"Alongside limonene, valencene creates grapefruit's distinctive sweet-tart citrus profile"},
+          {e:"🫐",n:"Nectarines",note:"Ripe nectarine skin contains valencene — part of their summer-fruit sweetness"},
+          {e:"🍹",n:"Mango",note:"Mango's tropical sweetness includes valencene alongside myrcene and ocimene"},
+          {e:"🌿",n:"Herbs",note:"Some Mediterranean herbs contain trace valencene as part of complex volatile profiles"}
+        ],
+        hack:"The Tangie Test: Tangie and its family (Clementine, Agent Orange, Mimosa) are the highest-valencene strains. If you love the orange-soda sweetness of Tangie, you're a valencene person — seek it in other strains."
+      },
+      { name:"Guaiol", tag:"The Pine & Rose", color:"#6AAF8E", aroma:"Pine · Rose · Woody · Floral · Green", family:"Earthy", bp:288, bpF:550,
+        receptor:"Anti-inflammatory Pathways", receptorSide:"immune",
+        receptorNote:"Guaiol has demonstrated anti-inflammatory, antimicrobial, and insect-repelling properties in research. It has the highest boiling point of common cannabis terpenes — it survives temperatures that destroy most others.",
+        effect:"Calming, stress-relieving, antimicrobial, anti-inflammatory. The woody-floral terpene with the highest boiling point — it's active even in high-temperature consumption. A finishing terpene that comes through at the end of a vaporization session.",
+        medical:["Anti-inflammatory","Antimicrobial","Cough suppressant","Insect repellent","Anti-tumor (early)"],
+        strains:["Plushberry","Pennywise","Blue Kush","Agent Orange","AK-47"],
+        nature:[
+          {e:"🌲",n:"Guaiacum tree",note:"Named for the guaiacum wood tree — South American timber historically used for anti-inflammatory medicine"},
+          {e:"🌹",n:"Rose",note:"Rose absolute contains guaiol — part of rose's deep, complex woody-floral base note"},
+          {e:"🌲",n:"Cypress pine",note:"Cypress pine wood contains guaiol — that distinctive clean-woody smell of Mediterranean architecture"},
+          {e:"🌿",n:"Nutmeg",note:"Nutmeg contains guaiol alongside other high-boiling sesquiterpenes"},
+          {e:"🌸",n:"Tea rose",note:"Tea rose varieties are particularly high in guaiol alongside geraniol"},
+          {e:"🌿",n:"Naematoloma mushrooms",note:"Some edible mushroom species contain guaiol — an unusual cross-kingdom terpene presence"}
+        ],
+        hack:"The Vaporizer Finish: Because guaiol has such a high boiling point (288°C), it's one of the terpenes that vapers taste at the very end of a session when everything else has already vaporized. The final floral-woody note in a vape session is often guaiol."
+      }
+    ];
+
+    // remove duplicate Linalool
+    const _TERPENES = _TERP.filter(function(t,i){ return _TERP.findIndex(function(x){return x.name===t.name;})===i; });
+
     const _WT = [
+      { name:"Myrcene", tag:"Most Common in Cannabis", color:"#E07B39", aroma:"Earthy, musky, tropical, mango, hops", effect:"Heavy relaxation, couch-lock, sedating. High myrcene = indica-leaning experience regardless of strain type. Enhances CB1 receptor binding — helps cannabinoids cross the blood-brain barrier faster.", found:"mangoes, hops, lemongrass, parsley leaf, grapefruit, orange", boiling:"168°C / 334°F" },
       { name:"Myrcene", tag:"Most Common in Cannabis", color:"#E07B39", aroma:"Earthy, musky, tropical, mango, hops", effect:"Heavy relaxation, couch-lock, sedating. High myrcene = indica-leaning experience regardless of strain type. Enhances CB1 receptor binding — helps cannabinoids cross the blood-brain barrier faster.", found:"mangoes, hops, lemongrass, parsley leaf, grapefruit, orange", boiling:"168°C / 334°F" },
       { name:"Limonene", tag:"The Mood Lifter", color:"#F5C842", aroma:"Citrus, lemon, orange, lime, grapefruit", effect:"Uplifting, euphoric, stress-relieving, refreshing. Drives that bright, social, happy high. Interacts with serotonin and dopamine receptors — the same pathways antidepressants target.", found:"lemon, bergamot, grapefruit, orange blossoms, lime", boiling:"176°C / 349°F" },
       { name:"Terpineol", tag:"The Relaxing Floral", color:"#D4A853", aroma:"Floral, citrus, sweet, lilac", effect:"Calming, sedating, stress-relieving. Often found alongside linalool in indica strains. Produces a relaxed, pleasant body feeling with mild euphoria.", found:"linden blossoms, lime, eucalyptus, pine", boiling:"218°C / 424°F" },
@@ -689,56 +952,92 @@ ${isPrivacy ? `<h1>Privacy Policy</h1><p>Last updated: April 2026</p>
       { name:"Nerolidol", tag:"The Deep Sedative", color:"#2D8C5E", aroma:"Woody, fresh bark, citrus, floral", effect:"Sedating, stress-relieving, anti-parasitic. One of the most powerfully sedating terpenes. Enhances skin absorption — helps other cannabinoids penetrate more effectively.", found:"jasmine, lemongrass, tea tree, ginger, lavender", boiling:"122°C / 252°F" },
       { name:"Bisabolol", tag:"The Skin Healer", color:"#52A875", aroma:"Floral, sweet, chamomile, honey", effect:"Calming, anti-irritant, anti-inflammatory. The primary terpene in chamomile. Exceptional skin-healing properties — reduces redness, soothes irritation.", found:"chamomile, echinacea, verbena, sandalwood", boiling:"153°C / 307°F" }
     ];
-    const _TD = [
-      { name:"Myrcene", aroma:"Earthy · Musky · Cloves", tags:["Relaxing","Sedating","Body High"], bp:"167°C / 332°F", found:"Hops, Mangoes, Thyme, Lemongrass", effects:"The most abundant terpene in cannabis. Myrcene produces a sedating, couch-lock body effect and significantly amplifies THC by increasing cell membrane permeability, allowing cannabinoids to cross the blood-brain barrier more easily.", medical:["Pain relief","Anti-inflammatory","Muscle relaxant","Sleep aid","Anxiety reduction"], strains:["OG Kush","Blue Dream","Granddaddy Purple","Mango Kush","Grape Ape","White Widow"], note:"High-myrcene strains are associated with the classic indica sedation. The mango trick — eating a ripe mango before cannabis — works because mangoes are loaded with myrcene." },
-      { name:"Limonene", aroma:"Citrus · Lemon · Orange", tags:["Uplifting","Energetic","Mood"], bp:"176°C / 349°F", found:"Citrus peel, Juniper, Rosemary", effects:"The second most common terpene in cannabis. Limonene produces an elevated, euphoric, anxiety-reducing effect and is strongly associated with daytime sativa profiles. Known for antifungal and antibacterial properties.", medical:["Anxiety & depression","Acid reflux","Antifungal","Immune support","Anti-tumor (research)"], strains:["Lemon Haze","Durban Poison","Super Lemon OG","Banana OG","Strawberry Banana","Wedding Cake"], note:"Limonene is the smell of cleaning products — that sharp citrus burst. In cannabis, it's the terpene most directly correlated with mood elevation and stress relief." },
-      { name:"Caryophyllene", aroma:"Spicy · Pepper · Woody", tags:["Anti-inflammatory","Pain Relief","Calming"], bp:"130°C / 266°F", found:"Black pepper, Cloves, Cinnamon", effects:"The only terpene known to directly bind to cannabinoid receptors (CB2). Acts as a dietary cannabinoid with anti-inflammatory effects. Does not produce psychoactive effects on its own but significantly modifies the overall experience.", medical:["Anti-inflammatory","Chronic pain","Anxiety","Alcohol cravings","Ulcer protection"], strains:["Girl Scout Cookies","Sour Diesel","Bubba Kush","Chemdawg","Original Glue","Purple Punch"], note:"Because it binds to CB2 receptors, caryophyllene is legally classified as a dietary supplement. Black pepper is loaded with it — some people use it to reduce an overwhelming high." },
-      { name:"Linalool", aroma:"Floral · Lavender · Sweet", tags:["Calming","Sedating","Anxiety"], bp:"198°C / 388°F", found:"Lavender, Basil, Mint, Cinnamon", effects:"Linalool is best known from lavender aromatherapy. In cannabis it produces calming, anti-anxiety, and mildly sedating effects. Strong anticonvulsant and neuroprotective properties are being actively researched.", medical:["Anxiety & stress","Insomnia","Epilepsy (research)","Depression","Pain"], strains:["Lavender","LA Confidential","Amnesia Haze","Do-Si-Dos","Scooby Snacks","Master Kush"], note:"Linalool is why lavender aromatherapy works. Strains dominant in linalool tend to be the true 'chill and sleep' indicas — less heavy, more peacefully sedating." },
-      { name:"Pinene", aroma:"Pine · Fresh · Earthy", tags:["Alert","Memory","Respiratory"], bp:"155°C / 311°F", found:"Pine needles, Rosemary, Basil, Dill", effects:"The most widely encountered terpene in nature. Alpha-pinene promotes alertness and memory retention, and is a bronchodilator — it helps open airways. It also counteracts some of the short-term memory impairment from THC.", medical:["Memory retention","Asthma","Anti-inflammatory","Antiseptic","Anxiety"], strains:["Jack Herer","Trainwreck","Blue Dream","Island Sweet Skunk","Dutch Treat"], note:"Pinene is a natural bronchodilator — it opens airways. Strains high in pinene are often used by medical patients for respiratory conditions." },
-      { name:"Terpinolene", aroma:"Fresh · Piney · Floral", tags:["Uplifting","Creative","Antioxidant"], bp:"186°C / 367°F", found:"Apples, Cumin, Lilac, Nutmeg", effects:"Terpinolene is relatively rare as a dominant terpene but highly valued for its complex, multidimensional aroma and uplifting effects. It appears across the scent spectrum from piney to floral to herbaceous.", medical:["Antioxidant","Antibacterial","Antifungal","Mild sedative","Anti-tumor (research)"], strains:["Jack Herer","Ghost Train Haze","Golden Goat","XJ-13","Dutch Treat","Orange Cookies"], note:"Terpinolene is paradoxical: it smells invigorating but has mild sedative properties. It's one of the markers of the classic Jack Herer lineage." },
-      { name:"Humulene", aroma:"Woody · Earthy · Spicy", tags:["Appetite Suppressant","Anti-inflammatory","Antibacterial"], bp:"106°C / 223°F", found:"Hops, Basil, Cloves, Coriander", effects:"Humulene is notable for being one of the only cannabis terpenes associated with appetite suppression. It's a primary component of hops and contributes significantly to the herbaceous, earthy, spicy profiles of many classic strains.", medical:["Appetite suppression","Anti-inflammatory","Antibacterial","Anti-tumor (research)","Analgesic"], strains:["Girl Scout Cookies","Headband","White Widow","Skywalker OG","Death Star"], note:"Humulene is found in high concentrations in hops, which is why some hoppy IPAs and certain cannabis strains share an earthy, herbal quality." },
-      { name:"Ocimene", aroma:"Sweet · Herbal · Woody", tags:["Uplifting","Antiviral","Antifungal"], bp:"65°C / 149°F", found:"Mint, Parsley, Basil, Orchids", effects:"Ocimene is a fragrant, sweet terpene with a complex aroma that varies from sweet and floral to herbaceous and woody. Research suggests antiviral, antifungal, and decongestant properties.", medical:["Antiviral","Antifungal","Decongestant","Anti-inflammatory","Antibacterial"], strains:["Clementine","Golden Goat","Space Queen","Dutch Treat","Strawberry Cough"], note:"Ocimene has one of the lowest boiling points of all cannabis terpenes, making it highly volatile — it's often what you smell when you first open a jar." }
-    ];
     const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Terpenes — Cannascenti Encyclopedia</title>
-<meta name="description" content="The complete cannabis terpene reference. Interactive terpene wheel, full profiles, medical uses, strain guides, and boiling points for every major terpene.">
 ${ENC_FONTS}
 <style>
 ${ENC_BASE_CSS}
-#terpeneWheel{width:420px;max-width:100%;cursor:pointer}
-.terpene-slice{cursor:pointer;transition:opacity .2s}
-.terpene-slice:hover path{opacity:1!important}
-.terpene-wheel-wrap{display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap;margin-bottom:60px}
-.terpene-wheel-info{flex:1;min-width:240px;padding:28px;background:rgba(255,255,255,0.03);border:1px solid rgba(82,183,136,0.15);border-radius:16px}
-.twi-name{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;margin-bottom:6px}
-.twi-tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,234,216,0.5);margin-bottom:16px}
-.twi-effect{font-size:.88rem;line-height:1.7;color:rgba(242,234,216,0.75);margin-bottom:12px}
-.twi-aroma,.twi-found,.twi-boiling{font-size:.8rem;color:rgba(242,234,216,0.5);margin-bottom:6px}
-.terpene-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;margin-bottom:60px}
-.terpene-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:24px}
-.terpene-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;margin-bottom:6px}
-.terpene-tag{display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:rgba(82,183,136,0.12);color:#52B788;border-radius:20px;padding:3px 10px;margin-bottom:12px}
-.terpene-found,.terpene-effect,.terpene-ecs{font-size:.83rem;line-height:1.7;color:rgba(242,234,216,0.6);margin-bottom:8px}
-.terpene-effect{color:rgba(242,234,216,0.8)}
-.enc-detail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;margin-top:40px}
-.enc-detail-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:28px}
-.edc-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;margin-bottom:4px}
-.edc-aroma{font-size:.8rem;color:rgba(242,234,216,0.5);margin-bottom:12px}
-.edc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
-.edc-tag{font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:rgba(82,183,136,0.1);color:#52B788;border-radius:20px;padding:3px 10px}
-.edc-bp{font-size:.8rem;color:rgba(242,234,216,0.4);margin-bottom:12px}
-.edc-effects{font-size:.85rem;line-height:1.7;color:rgba(242,234,216,0.75);margin-bottom:14px}
-.edc-section{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,234,216,0.4);margin-bottom:6px}
-.edc-medical{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
-.edc-med{font-size:.75rem;background:rgba(255,255,255,0.05);border-radius:6px;padding:3px 8px;color:rgba(242,234,216,0.6)}
-.edc-strains{font-size:.8rem;color:rgba(242,234,216,0.5);margin-bottom:12px}
-.edc-note{font-size:.8rem;line-height:1.65;color:rgba(242,234,216,0.45);border-left:2px solid rgba(82,183,136,0.3);padding-left:12px;font-style:italic}
-h2.sec{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;margin:60px 0 24px;color:#F2EAD8}
-h2.sec em{color:#52B788;font-style:italic}
-@media(max-width:640px){.terpene-wheel-wrap{flex-direction:column}#terpeneWheel{width:100%;max-width:360px}}
+/* ── Wheel ── */
+.wheel-section{display:grid;grid-template-columns:480px 1fr;gap:48px;align-items:start;margin-bottom:80px}
+#terpeneWheel{width:100%;max-width:480px;cursor:pointer;filter:drop-shadow(0 0 30px rgba(82,183,136,0.12))}
+.t-slice{cursor:pointer;transition:all .2s}
+.t-slice path{transition:opacity .2s,filter .2s}
+.t-slice:hover path,.t-slice.sel path{opacity:1!important;filter:brightness(1.2)}
+/* ── Info Panel ── */
+.twi{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:18px;padding:28px;position:sticky;top:80px}
+.twi-prompt{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:340px;text-align:center;gap:12px;color:rgba(242,234,216,0.35)}
+.twi-prompt-icon{font-size:40px}
+.twi-name{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;line-height:1.2;margin-bottom:2px}
+.twi-tag{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+.twi-aroma{font-size:.8rem;color:rgba(242,234,216,0.5);margin-bottom:14px;font-style:italic}
+.twi-section{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,234,216,0.3);margin:14px 0 6px}
+.twi-effect{font-size:.83rem;line-height:1.75;color:rgba(242,234,216,0.75);margin-bottom:6px}
+.twi-receptor{font-size:.78rem;line-height:1.7;color:rgba(82,183,136,0.85);padding:10px 14px;background:rgba(82,183,136,0.06);border-radius:8px;border-left:2px solid #52B788;margin-bottom:12px}
+/* Nature grid in panel */
+.twi-nature{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px}
+.twi-nat-item{background:rgba(255,255,255,0.04);border-radius:8px;padding:8px 10px;cursor:help}
+.twi-nat-emoji{font-size:18px;margin-bottom:3px}
+.twi-nat-name{font-size:.7rem;font-weight:600;color:rgba(242,234,216,0.8);margin-bottom:2px}
+.twi-nat-note{font-size:.65rem;color:rgba(242,234,216,0.45);line-height:1.4}
+/* Boiling bar */
+.bp-bar-wrap{margin-bottom:12px}
+.bp-label{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,234,216,0.3);margin-bottom:5px;display:flex;justify-content:space-between}
+.bp-track{height:6px;background:rgba(255,255,255,0.06);border-radius:6px;overflow:hidden}
+.bp-fill{height:100%;border-radius:6px;transition:width .5s}
+/* Hack box */
+.twi-hack{font-size:.75rem;line-height:1.65;color:rgba(232,168,76,0.8);padding:10px 14px;background:rgba(232,168,76,0.06);border-radius:8px;border-left:2px solid rgba(232,168,76,0.4);font-style:italic}
+/* Medical & strains */
+.twi-pills{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:4px}
+.twi-pill{font-size:.68rem;background:rgba(255,255,255,0.05);border-radius:6px;padding:2px 8px;color:rgba(242,234,216,0.6)}
+.twi-strain-pill{font-size:.68rem;background:rgba(82,183,136,0.08);color:#52B788;border-radius:6px;padding:2px 8px}
+/* ── CB1/CB2 Section ── */
+.receptor-section{margin:80px 0;padding:48px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.06);border-radius:20px}
+.receptor-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:36px}
+.receptor-card{background:rgba(255,255,255,0.03);border-radius:14px;padding:28px;border-top:3px solid}
+.rc-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;margin-bottom:6px}
+.rc-sub{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+.rc-body{font-size:.83rem;line-height:1.8;color:rgba(242,234,216,0.65);margin-bottom:16px}
+.rc-terps{display:flex;flex-wrap:wrap;gap:6px}
+.rc-terp{font-size:.72rem;border-radius:20px;padding:3px 10px;font-weight:500}
+/* ── Boiling Point Chart ── */
+.bp-chart{margin:60px 0}
+.bp-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;cursor:pointer}
+.bp-row:hover .bp-row-fill{filter:brightness(1.3)}
+.bp-row-name{font-size:.78rem;width:110px;text-align:right;color:rgba(242,234,216,0.7);flex-shrink:0}
+.bp-row-track{flex:1;height:8px;background:rgba(255,255,255,0.05);border-radius:8px;overflow:hidden}
+.bp-row-fill{height:100%;border-radius:8px;transition:width 1s}
+.bp-row-temp{font-size:.72rem;color:rgba(242,234,216,0.4);width:80px;flex-shrink:0}
+/* ── Deep profile cards ── */
+.prof-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px;margin-top:32px}
+.prof-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;overflow:hidden;cursor:pointer;transition:border-color .2s,transform .15s}
+.prof-card:hover{border-color:rgba(255,255,255,0.14);transform:translateY(-2px)}
+.prof-card.open{border-color:rgba(82,183,136,0.25)}
+.pc-stripe{height:3px}
+.pc-inner{padding:18px 20px 16px}
+.pc-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
+.pc-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400}
+.pc-tag{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;border-radius:20px;padding:3px 9px;font-weight:600}
+.pc-aroma{font-size:.75rem;color:rgba(242,234,216,0.4);font-style:italic;margin-bottom:10px}
+.pc-effect{font-size:.8rem;line-height:1.65;color:rgba(242,234,216,0.62)}
+.pc-expand{display:none;padding:0 20px 20px;border-top:1px solid rgba(255,255,255,0.06);margin-top:4px}
+.prof-card.open .pc-expand{display:block}
+.pc-elabel{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,234,216,0.3);margin:14px 0 6px}
+.pc-etext{font-size:.8rem;line-height:1.75;color:rgba(242,234,216,0.62)}
+.pc-nat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:6px}
+.pc-nat{background:rgba(255,255,255,0.04);border-radius:8px;padding:8px;text-align:center}
+.pc-nat-e{font-size:18px;margin-bottom:3px}
+.pc-nat-n{font-size:.65rem;color:rgba(242,234,216,0.65)}
+/* ── Entourage ── */
+.entourage-banner{margin:48px 0;padding:40px 48px;background:linear-gradient(135deg,rgba(82,183,136,0.06),rgba(82,183,136,0.02));border:1px solid rgba(82,183,136,0.15);border-radius:20px}
+/* Section headers */
+h2.tsec{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:300;color:#F2EAD8;line-height:1.2;margin-bottom:8px}
+h2.tsec em{color:#52B788;font-style:italic}
+.tsec-desc{font-size:.88rem;color:rgba(242,234,216,0.55);line-height:1.75;max-width:700px;margin-bottom:0}
+@media(max-width:780px){.wheel-section{grid-template-columns:1fr}.receptor-grid{grid-template-columns:1fr}.entourage-banner{padding:28px}}
+@media(max-width:500px){.twi-nature{grid-template-columns:1fr}.pc-nat-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -746,120 +1045,313 @@ ${ENC_NAV}
 <div class="enc-page">
   <div class="enc-page-header">
     <div class="enc-label">✦ Cannascenti Encyclopedia</div>
-    <h1 class="enc-title">The complete <em>terpene</em> reference.</h1>
-    <p class="enc-desc">Terpenes aren't just cannabis compounds — they exist all around us in nature. Every time you've smelled a lemon, walked through a pine forest, or felt calm holding lavender, your endocannabinoid system was already responding. Cannabis just delivers them in high concentration — and your body already knows exactly what to do with them.</p>
+    <h1 class="enc-title">Terpenes are <em>everything.</em></h1>
+    <p class="enc-desc">If you don't know your strain, you know your terpene. If you know your terpene, you know your strain. Terpenes aren't unique to cannabis — they're the aromatic language of the entire plant kingdom. Lavender, black pepper, mangoes, hops, pine forests — your endocannabinoid system has been responding to terpenes your whole life. Cannabis just delivers them in extraordinary concentration.</p>
   </div>
 
-  <div class="terpene-wheel-wrap">
-    <svg id="terpeneWheel" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"></svg>
-    <div class="terpene-wheel-info" id="terpeneInfo">
-      <div class="twi-name" id="twiName">Click a terpene</div>
-      <div class="twi-tag" id="twiTag">Explore the wheel</div>
-      <div class="twi-aroma" id="twiAroma"></div>
-      <div class="twi-effect" id="twiEffect"></div>
-      <div class="twi-found" id="twiFound"></div>
-      <div class="twi-boiling" id="twiBoiling"></div>
+  <!-- INTERACTIVE WHEEL -->
+  <div class="wheel-section" id="wheelSection">
+    <div>
+      <div class="enc-label" style="margin-bottom:12px">✦ Spin the Wheel</div>
+      <svg id="terpeneWheel" viewBox="0 0 520 520" xmlns="http://www.w3.org/2000/svg"></svg>
+      <p style="font-size:.72rem;color:rgba(242,234,216,0.3);text-align:center;margin-top:8px">Click any slice to explore that terpene</p>
+    </div>
+    <div class="twi" id="twiPanel">
+      <div class="twi-prompt" id="twiPrompt">
+        <div class="twi-prompt-icon">🌿</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:rgba(242,234,216,0.5)">Click any terpene</div>
+        <div style="font-size:.8rem">Explore where it lives in nature, how it interacts with your brain, and which strains carry it.</div>
+      </div>
+      <div id="twiContent" style="display:none">
+        <div class="twi-name" id="twiName"></div>
+        <div class="twi-tag" id="twiTag"></div>
+        <div class="twi-aroma" id="twiAroma"></div>
+        <div class="twi-section">Effect Profile</div>
+        <div class="twi-effect" id="twiEffect"></div>
+        <div class="twi-section">Receptor Activity</div>
+        <div class="twi-receptor" id="twiReceptor"></div>
+        <div class="twi-section">Found in Nature</div>
+        <div class="twi-nature" id="twiNature"></div>
+        <div class="twi-section">Boiling Point</div>
+        <div class="bp-bar-wrap">
+          <div class="bp-label"><span id="twiBpLabel"></span><span style="color:rgba(242,234,216,0.3)">Max 300°C</span></div>
+          <div class="bp-track"><div class="bp-fill" id="twiBpFill"></div></div>
+        </div>
+        <div class="twi-section">Medical Uses</div>
+        <div class="twi-pills" id="twiMedical"></div>
+        <div class="twi-section">Key Strains</div>
+        <div class="twi-pills" id="twiStrains"></div>
+        <div class="twi-section" style="margin-top:16px">Pro Tip</div>
+        <div class="twi-hack" id="twiHack"></div>
+      </div>
     </div>
   </div>
 
-  <h2 class="sec">The eight <em>essential</em> terpenes</h2>
-  <div class="terpene-grid" id="terpeneCards"></div>
+  <!-- ENTOURAGE EFFECT -->
+  <div class="entourage-banner">
+    <div class="enc-label" style="margin-bottom:12px">✦ The Entourage Effect</div>
+    <h2 class="tsec" style="margin-bottom:14px">Terpenes don't work alone. <em>Nothing does.</em></h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:8px">
+      <div>
+        <div style="font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#52B788;margin-bottom:8px">The Theory</div>
+        <div style="font-size:.82rem;line-height:1.75;color:rgba(242,234,216,0.6)">Cannabis produces over 400 distinct chemical compounds. THC and CBD are the most studied — but terpenes, flavonoids, and minor cannabinoids work together to produce effects that no isolated compound achieves alone. This is the entourage effect.</div>
+      </div>
+      <div>
+        <div style="font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#52B788;margin-bottom:8px">Why It Matters</div>
+        <div style="font-size:.82rem;line-height:1.75;color:rgba(242,234,216,0.6)">A strain with 25% THC and a rich terpene profile will produce a fundamentally different experience than 25% THC distillate with no terpenes. Myrcene amplifies THC. Pinene counteracts memory impairment. Caryophyllene reduces anxiety. The terpenes are the conductor.</div>
+      </div>
+      <div>
+        <div style="font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#52B788;margin-bottom:8px">The Takeaway</div>
+        <div style="font-size:.82rem;line-height:1.75;color:rgba(242,234,216,0.6)">Stop chasing THC percentage. Start reading terpene profiles. The cannabis that works best for you isn't necessarily the most potent — it's the one with the right combination of terpenes for your chemistry, your mood, and your endocannabinoid system.</div>
+      </div>
+    </div>
+  </div>
 
-  <h2 class="sec">Full <em>terpene profiles</em></h2>
-  <div class="enc-detail-grid" id="terpeneDetail"></div>
+  <!-- CB1 & CB2 RECEPTORS -->
+  <div class="receptor-section">
+    <div class="enc-label" style="margin-bottom:12px">✦ How Terpenes Talk to Your Brain</div>
+    <h2 class="tsec">CB1 &amp; CB2 <em>Receptors.</em></h2>
+    <p class="tsec-desc" style="margin-top:8px">Your body has an entire system built to receive these compounds. The endocannabinoid system (ECS) maintains homeostasis across nearly every biological function. Terpenes interact with it — some directly, some through adjacent pathways.</p>
+    <div class="receptor-grid">
+      <div class="receptor-card" style="border-color:#9B72CF">
+        <div class="rc-title" style="color:#9B72CF">CB1 Receptors</div>
+        <div class="rc-sub" style="color:#9B72CF">Brain &amp; Central Nervous System</div>
+        <div class="rc-body">CB1 receptors are densely concentrated in the brain — the hippocampus (memory), prefrontal cortex (decision-making), amygdala (emotion), and cerebellum (coordination). When THC binds CB1, it produces psychoactive effects. Terpenes don't bind CB1 directly — but they modulate it.<br><br>Myrcene increases CB1 sensitivity, amplifying THC's effects. Pinene blocks the enzyme that breaks down acetylcholine near CB1 — counteracting memory impairment. Terpenes are the equalizer that determines what CB1 activation actually feels like.</div>
+        <div style="font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(155,114,207,0.6);margin-bottom:8px">Terpenes that influence CB1</div>
+        <div class="rc-terps">
+          <span class="rc-terp" style="background:rgba(155,114,207,0.12);color:#9B72CF">Myrcene (amplifier)</span>
+          <span class="rc-terp" style="background:rgba(155,114,207,0.12);color:#9B72CF">Pinene (counteracts memory loss)</span>
+          <span class="rc-terp" style="background:rgba(155,114,207,0.12);color:#9B72CF">Linalool (calms response)</span>
+          <span class="rc-terp" style="background:rgba(155,114,207,0.12);color:#9B72CF">Limonene (mood modulator)</span>
+        </div>
+      </div>
+      <div class="receptor-card" style="border-color:#52B788">
+        <div class="rc-title" style="color:#52B788">CB2 Receptors</div>
+        <div class="rc-sub" style="color:#52B788">Immune System &amp; Peripheral Nervous System</div>
+        <div class="rc-body">CB2 receptors are found primarily in immune cells, the spleen, tonsils, and throughout the peripheral nervous system. They regulate inflammation, immune response, and pain signals. CB2 activation does NOT produce psychoactive effects — it's the body's anti-inflammatory control system.<br><br>Caryophyllene is the only terpene that binds CB2 directly — making it simultaneously a terpene and a dietary cannabinoid. This is why CBD and caryophyllene-rich strains are particularly effective for inflammation and pain without producing a high.</div>
+        <div style="font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(82,183,136,0.6);margin-bottom:8px">Terpenes that influence CB2</div>
+        <div class="rc-terps">
+          <span class="rc-terp" style="background:rgba(82,183,136,0.12);color:#52B788">Caryophyllene (direct CB2 binder)</span>
+          <span class="rc-terp" style="background:rgba(82,183,136,0.12);color:#52B788">Humulene (CB2 modulator)</span>
+          <span class="rc-terp" style="background:rgba(82,183,136,0.12);color:#52B788">Bisabolol (anti-inflammatory)</span>
+          <span class="rc-terp" style="background:rgba(82,183,136,0.12);color:#52B788">Nerolidol (skin penetration)</span>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:24px;padding:20px 24px;background:rgba(255,255,255,0.03);border-radius:12px;border:1px solid rgba(255,255,255,0.07)">
+      <div style="font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,234,216,0.4);margin-bottom:8px">Beyond CB1 & CB2</div>
+      <div style="font-size:.83rem;line-height:1.75;color:rgba(242,234,216,0.6)">Terpenes also interact with serotonin receptors (5-HT1A — limonene, linalool), dopamine pathways (limonene), GABA receptors (linalool, terpineol — the same system as benzodiazepines), opioid receptors (myrcene — part of its pain-relieving effect), and TRPV1 receptors (caryophyllene — the capsaicin receptor, explaining its anti-pain effect). Your endocannabinoid system is not isolated — terpenes play across the entire neurochemical orchestra.</div>
+    </div>
+  </div>
+
+  <!-- BOILING POINT CHART -->
+  <div class="bp-chart">
+    <div class="enc-label" style="margin-bottom:12px">✦ Vaporization Science</div>
+    <h2 class="tsec">Boiling points <em>matter.</em></h2>
+    <p class="tsec-desc" style="margin-top:8px;margin-bottom:28px">Each terpene vaporizes at a specific temperature. Low-temp dabs (440–490°F) preserve the volatile terpenes. High temps destroy them. This is why two people consuming the same strain at different temperatures have completely different experiences.</p>
+    <div id="bpChart"></div>
+  </div>
+
+  <!-- DEEP PROFILES -->
+  <div>
+    <div class="enc-label" style="margin-bottom:12px">✦ Complete Reference</div>
+    <h2 class="tsec">Every terpene, <em>fully documented.</em></h2>
+    <p class="tsec-desc" style="margin-top:8px">Click any card to expand the full profile — where it lives in the natural world, how it interacts with your receptors, and which strains carry it most prominently.</p>
+    <div class="prof-grid" id="profGrid"></div>
+  </div>
+
 </div>
 <script>
-var WT = ${JSON.stringify(_WT)};
-var TD = ${JSON.stringify(_TD)};
+var TERP = ${JSON.stringify(_TERPENES)};
 
-function initWheel() {
+// ── Wheel ─────────────────────────────────────────────────────────────────
+(function(){
   var svg = document.getElementById('terpeneWheel');
   if (!svg) return;
-  var cx=250,cy=250,outerR=230,innerR=75,count=WT.length,slice=(2*Math.PI)/count;
-  function polar(cx,cy,r,a){return[cx+r*Math.cos(a),cy+r*Math.sin(a)];}
-  function makeSlice(i){
-    var t=WT[i],sa=i*slice-Math.PI/2,ea=sa+slice,gap=0.03,s=sa+gap,e=ea-gap;
-    var p1=polar(cx,cy,innerR,s),p2=polar(cx,cy,outerR,s),p3=polar(cx,cy,outerR,e),p4=polar(cx,cy,innerR,e);
-    var d='M '+p1[0]+' '+p1[1]+' L '+p2[0]+' '+p2[1]+' A '+outerR+' '+outerR+' 0 0 1 '+p3[0]+' '+p3[1]+' L '+p4[0]+' '+p4[1]+' A '+innerR+' '+innerR+' 0 0 0 '+p1[0]+' '+p1[1]+' Z';
-    var g=document.createElementNS('http://www.w3.org/2000/svg','g');
-    g.setAttribute('class','terpene-slice');
-    var path=document.createElementNS('http://www.w3.org/2000/svg','path');
-    path.setAttribute('d',d);path.setAttribute('fill',t.color);path.setAttribute('opacity','0.75');
+  var cx=260, cy=260, outerR=240, innerR=85, count=TERP.length, slice=(2*Math.PI)/count;
+  var activeG = null;
+
+  function polar(r, a){ return [cx + r*Math.cos(a), cy + r*Math.sin(a)]; }
+
+  function makeSlice(i) {
+    var t = TERP[i];
+    var sa = i*slice - Math.PI/2, ea = sa + slice, gap = 0.025;
+    var s = sa+gap, e = ea-gap;
+    var p1=polar(innerR,s), p2=polar(outerR,s), p3=polar(outerR,e), p4=polar(innerR,e);
+    var lf = (e-s > Math.PI) ? 1 : 0;
+    var d = 'M '+p1[0]+' '+p1[1]+
+            ' L '+p2[0]+' '+p2[1]+
+            ' A '+outerR+' '+outerR+' 0 '+lf+' 1 '+p3[0]+' '+p3[1]+
+            ' L '+p4[0]+' '+p4[1]+
+            ' A '+innerR+' '+innerR+' 0 '+lf+' 0 '+p1[0]+' '+p1[1]+' Z';
+    var g = document.createElementNS('http://www.w3.org/2000/svg','g');
+    g.setAttribute('class','t-slice');
+
+    var path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d', d);
+    path.setAttribute('fill', t.color);
+    path.setAttribute('opacity', '0.7');
     g.appendChild(path);
-    var mid=sa+slice/2,lr=(innerR+outerR)/2,lp=polar(cx,cy,lr,mid);
-    var txt=document.createElementNS('http://www.w3.org/2000/svg','text');
-    txt.setAttribute('x',lp[0]);txt.setAttribute('y',lp[1]);
-    txt.setAttribute('text-anchor','middle');txt.setAttribute('dominant-baseline','middle');
-    txt.setAttribute('fill','#081C15');txt.setAttribute('font-size','10');
-    txt.setAttribute('font-family','Montserrat,sans-serif');txt.setAttribute('font-weight','600');
-    txt.setAttribute('letter-spacing','0.05em');txt.setAttribute('pointer-events','none');
+
+    // Label
+    var mid = sa + slice/2;
+    var lr = (innerR + outerR) / 2;
+    var lp = polar(lr, mid);
+    var txt = document.createElementNS('http://www.w3.org/2000/svg','text');
+    txt.setAttribute('x', lp[0]); txt.setAttribute('y', lp[1]);
+    txt.setAttribute('text-anchor','middle'); txt.setAttribute('dominant-baseline','middle');
+    txt.setAttribute('fill','rgba(8,28,21,0.9)'); txt.setAttribute('font-size','9');
+    txt.setAttribute('font-family','Montserrat,sans-serif'); txt.setAttribute('font-weight','700');
+    txt.setAttribute('letter-spacing','0.06em'); txt.setAttribute('pointer-events','none');
     txt.setAttribute('transform','rotate('+((mid*180/Math.PI)+90)+','+lp[0]+','+lp[1]+')');
-    txt.textContent=t.name.toUpperCase();
+    txt.textContent = t.name.toUpperCase();
     g.appendChild(txt);
-    g.addEventListener('click',function(){selectT(i,g);});
-    svg.appendChild(g);
+
+    g.addEventListener('click', function(){ selectT(i, g); });
+    svg.insertBefore(g, svg.firstChild);
   }
-  var circle=document.createElementNS('http://www.w3.org/2000/svg','circle');
-  circle.setAttribute('cx',cx);circle.setAttribute('cy',cy);circle.setAttribute('r',innerR-4);circle.setAttribute('fill','#081C15');
-  svg.appendChild(circle);
-  var ct=document.createElementNS('http://www.w3.org/2000/svg','text');
-  ct.setAttribute('x',cx);ct.setAttribute('y',cy);ct.setAttribute('text-anchor','middle');ct.setAttribute('dominant-baseline','middle');
-  ct.setAttribute('fill','#52B788');ct.setAttribute('font-size','11');ct.setAttribute('font-family','Montserrat,sans-serif');
-  ct.setAttribute('font-weight','300');ct.setAttribute('letter-spacing','0.15em');ct.textContent='TERPENES';
-  svg.appendChild(ct);
-  for(var i=0;i<count;i++) makeSlice(i);
-  var active=null;
-  function selectT(i,g){
-    if(active){active.querySelector('path').setAttribute('opacity','0.75');active.setAttribute('class','terpene-slice');}
-    g.querySelector('path').setAttribute('opacity','1');g.setAttribute('class','terpene-slice active');active=g;
-    var t=WT[i];
-    document.getElementById('twiName').textContent=t.name;
-    document.getElementById('twiName').style.color=t.color;
-    document.getElementById('twiTag').textContent=t.tag;
-    document.getElementById('twiAroma').textContent='Aroma: '+t.aroma;
-    document.getElementById('twiEffect').textContent=t.effect;
-    document.getElementById('twiFound').textContent='Found in: '+t.found;
-    document.getElementById('twiBoiling').textContent='Boiling point: '+t.boiling;
+
+  // Center
+  var bg = document.createElementNS('http://www.w3.org/2000/svg','circle');
+  bg.setAttribute('cx',cx); bg.setAttribute('cy',cy); bg.setAttribute('r',innerR-3);
+  bg.setAttribute('fill','#060d0a');
+  svg.appendChild(bg);
+  var ctext = document.createElementNS('http://www.w3.org/2000/svg','text');
+  ctext.setAttribute('x',cx); ctext.setAttribute('y',cy-6);
+  ctext.setAttribute('text-anchor','middle'); ctext.setAttribute('dominant-baseline','middle');
+  ctext.setAttribute('fill','#52B788'); ctext.setAttribute('font-size','9');
+  ctext.setAttribute('font-family','Montserrat,sans-serif'); ctext.setAttribute('font-weight','300');
+  ctext.setAttribute('letter-spacing','0.2em'); ctext.textContent='CLICK TO';
+  svg.appendChild(ctext);
+  var ctext2 = document.createElementNS('http://www.w3.org/2000/svg','text');
+  ctext2.setAttribute('x',cx); ctext2.setAttribute('y',cy+10);
+  ctext2.setAttribute('text-anchor','middle'); ctext2.setAttribute('dominant-baseline','middle');
+  ctext2.setAttribute('fill','#52B788'); ctext2.setAttribute('font-size','9');
+  ctext2.setAttribute('font-family','Montserrat,sans-serif'); ctext2.setAttribute('font-weight','300');
+  ctext2.setAttribute('letter-spacing','0.2em'); ctext2.textContent='EXPLORE';
+  svg.appendChild(ctext2);
+
+  for (var i=0; i<count; i++) makeSlice(i);
+
+  function selectT(i, g) {
+    if (activeG) {
+      activeG.querySelector('path').setAttribute('opacity','0.7');
+      activeG.classList.remove('sel');
+    }
+    g.querySelector('path').setAttribute('opacity','1');
+    g.classList.add('sel');
+    activeG = g;
+    showInfo(TERP[i]);
+    // Also highlight corresponding profile card
+    document.querySelectorAll('.prof-card').forEach(function(c){ c.classList.remove('open'); });
+    var card = document.getElementById('prof-'+i);
+    if (card) { card.classList.add('open'); card.scrollIntoView({behavior:'smooth',block:'nearest'}); }
   }
-  selectT(0,svg.querySelectorAll('.terpene-slice')[0]);
+
+  // Select first on load
+  setTimeout(function(){
+    var slices = svg.querySelectorAll('.t-slice');
+    if (slices.length) selectT(0, slices[slices.length-1]);
+  }, 100);
+})();
+
+function showInfo(t) {
+  document.getElementById('twiPrompt').style.display = 'none';
+  var content = document.getElementById('twiContent');
+  content.style.display = 'block';
+  document.getElementById('twiName').textContent = t.name;
+  document.getElementById('twiName').style.color = t.color;
+  document.getElementById('twiTag').textContent = t.tag;
+  document.getElementById('twiTag').style.color = t.color;
+  document.getElementById('twiAroma').textContent = t.aroma;
+  document.getElementById('twiEffect').textContent = t.effect;
+  document.getElementById('twiReceptor').textContent = t.receptorNote;
+  // Nature items
+  document.getElementById('twiNature').innerHTML = (t.nature||[]).map(function(n){
+    return '<div class="twi-nat-item" title="'+n.note+'"><div class="twi-nat-emoji">'+n.e+'</div><div class="twi-nat-name">'+n.n+'</div><div class="twi-nat-note">'+n.note+'</div></div>';
+  }).join('');
+  // BP bar
+  var bpPct = Math.min(100, Math.round((t.bp / 300)*100));
+  document.getElementById('twiBpLabel').textContent = t.bp+'°C / '+t.bpF+'°F';
+  document.getElementById('twiBpFill').style.width = bpPct+'%';
+  document.getElementById('twiBpFill').style.background = t.color;
+  // Medical
+  document.getElementById('twiMedical').innerHTML = (t.medical||[]).map(function(m){
+    return '<span class="twi-pill">'+m+'</span>';
+  }).join('');
+  // Strains
+  document.getElementById('twiStrains').innerHTML = (t.strains||[]).map(function(s){
+    return '<span class="twi-strain-pill">'+s+'</span>';
+  }).join('');
+  document.getElementById('twiHack').textContent = t.hack || '';
 }
 
-function renderCards(){
-  var g=document.getElementById('terpeneCards');
-  if(!g) return;
-  var cards=[
-    {name:'Myrcene',tag:'Most Common in Cannabis',found:'Found in: mangoes, hops, lemongrass, thyme, bay leaves.',effect:'The most abundant terpene in most cannabis strains. Produces that heavy, relaxed, couch-lock feeling.',ecs:'Enhances CB1 receptor binding — helps cannabinoids cross the blood-brain barrier faster. Eating a mango before smoking? The myrcene increases absorption.'},
-    {name:'Limonene',tag:'The Mood Lifter',found:'Found in: lemon rinds, orange peel, limes, grapefruit, juniper berries.',effect:'Uplifting, euphoric, anxiety-reducing. The reason citrus makes you feel awake and positive. Drives that bright, social, happy high.',ecs:'Interacts with serotonin and dopamine receptors — the same pathways antidepressants target. Your body recognizes citrus as a mood signal.'},
-    {name:'Caryophyllene',tag:'The Only Terpene That Binds CB2',found:'Found in: black pepper, cloves, cinnamon, basil, oregano.',effect:'Anti-inflammatory, pain-relieving, calming. Why cracking black pepper under your nose can take the edge off a too-intense high.',ecs:'The only terpene that directly binds to CB2 receptors. It is technically a cannabinoid and a terpene simultaneously.'},
-    {name:'Linalool',tag:"Nature's Anxiety Reducer",found:'Found in: lavender, mint, cinnamon, birch trees, coriander.',effect:'Deeply calming, sedating, anxiolytic. The reason lavender has been used for sleep and calm for thousands of years.',ecs:'Activates GABA receptors — the same system benzodiazepines target. Your nervous system evolved to respond to linalool as a relaxation signal.'},
-    {name:'Pinene',tag:'The Alertness Terpene',found:'Found in: pine needles, rosemary, dill, basil, parsley.',effect:'Promotes alertness, memory retention, and airway openness. One of the few terpenes that counteracts some of THC\'s short-term memory effects.',ecs:'Inhibits acetylcholinesterase — the enzyme that breaks down the neurotransmitter responsible for memory and focus.'}
-  ];
-  g.innerHTML=cards.map(function(c){return '<div class="terpene-card"><div class="terpene-name">'+c.name+'</div><span class="terpene-tag">'+c.tag+'</span><p class="terpene-found">'+c.found+'</p><p class="terpene-effect">'+c.effect+'</p><p class="terpene-ecs">'+c.ecs+'</p></div>';}).join('');
-}
-
-function renderDetail(){
-  var g=document.getElementById('terpeneDetail');
-  if(!g) return;
-  g.innerHTML=TD.map(function(t){
-    return '<div class="enc-detail-card">'+
-      '<div class="edc-name">'+t.name+'</div>'+
-      '<div class="edc-aroma">'+t.aroma+'</div>'+
-      '<div class="edc-tags">'+t.tags.map(function(x){return '<span class="edc-tag">'+x+'</span>';}).join('')+'</div>'+
-      '<div class="edc-bp">Boiling point: '+t.bp+' · Found in: '+t.found+'</div>'+
-      '<p class="edc-effects">'+t.effects+'</p>'+
-      '<div class="edc-section">Medical Uses</div>'+
-      '<div class="edc-medical">'+t.medical.map(function(m){return '<span class="edc-med">'+m+'</span>';}).join('')+'</div>'+
-      '<div class="edc-section">Key Strains</div>'+
-      '<div class="edc-strains">'+t.strains.join(' · ')+'</div>'+
-      '<p class="edc-note">'+t.note+'</p>'+
+// ── Boiling Point Chart ────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function(){
+  var sorted = TERP.slice().sort(function(a,b){ return a.bp - b.bp; });
+  var chart = document.getElementById('bpChart');
+  if (!chart) return;
+  chart.innerHTML = sorted.map(function(t, i){
+    var pct = Math.round((t.bp / 300)*100);
+    return '<div class="bp-row" onclick="showInfo(TERP['+TERP.indexOf(t)+'])">' +
+      '<div class="bp-row-name">'+t.name+'</div>'+
+      '<div class="bp-row-track"><div class="bp-row-fill" style="width:0%;background:'+t.color+'" data-pct="'+pct+'"></div></div>'+
+      '<div class="bp-row-temp">'+t.bp+'°C / '+t.bpF+'°F</div>'+
     '</div>';
   }).join('');
-}
+  // Animate bars
+  setTimeout(function(){
+    chart.querySelectorAll('.bp-row-fill').forEach(function(el){
+      el.style.width = el.dataset.pct+'%';
+    });
+  }, 200);
 
-document.addEventListener('DOMContentLoaded',function(){initWheel();renderCards();renderDetail();});
+  // ── Deep profile cards ─────────────────────────────────────────────────
+  var grid = document.getElementById('profGrid');
+  if (!grid) return;
+  grid.innerHTML = TERP.map(function(t, i){
+    var natHtml = (t.nature||[]).map(function(n){
+      return '<div class="pc-nat"><div class="pc-nat-e">'+n.e+'</div><div class="pc-nat-n">'+n.n+'</div></div>';
+    }).join('');
+    var medHtml = (t.medical||[]).map(function(m){ return '<span class="twi-pill">'+m+'</span>'; }).join('');
+    var strHtml = (t.strains||[]).map(function(s){ return '<span class="twi-strain-pill">'+s+'</span>'; }).join('');
+    return '<div class="prof-card" id="prof-'+i+'" onclick="toggleProf(this,'+i+')">'+
+      '<div class="pc-stripe" style="background:'+t.color+'"></div>'+
+      '<div class="pc-inner">'+
+        '<div class="pc-head">'+
+          '<div class="pc-name">'+t.name+'</div>'+
+          '<span class="pc-tag" style="background:'+t.color+'22;color:'+t.color+'">'+t.family+'</span>'+
+        '</div>'+
+        '<div class="pc-aroma">'+t.aroma+'</div>'+
+        '<div class="pc-effect">'+t.effect.substring(0,120)+'...</div>'+
+      '</div>'+
+      '<div class="pc-expand">'+
+        '<div class="pc-elabel">In the Wild — Found Naturally In</div>'+
+        '<div class="pc-nat-grid">'+natHtml+'</div>'+
+        '<div class="pc-elabel">Full Effect Profile</div>'+
+        '<div class="pc-etext">'+t.effect+'</div>'+
+        '<div class="pc-elabel">Receptor Activity</div>'+
+        '<div class="pc-etext" style="color:rgba(82,183,136,0.85)">'+t.receptorNote+'</div>'+
+        '<div class="pc-elabel" style="margin-top:12px">Medical Uses</div>'+
+        '<div class="twi-pills">'+medHtml+'</div>'+
+        '<div class="pc-elabel">Key Strains</div>'+
+        '<div class="twi-pills">'+strHtml+'</div>'+
+        '<div class="pc-elabel">Pro Tip</div>'+
+        '<div class="twi-hack" style="display:block;margin-top:0">'+t.hack+'</div>'+
+        '<div style="font-size:.7rem;color:rgba(242,234,216,0.3);margin-top:14px">Boiling Point: '+t.bp+'°C / '+t.bpF+'°F</div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+});
+
+function toggleProf(card, i) {
+  var wasOpen = card.classList.contains('open');
+  document.querySelectorAll('.prof-card').forEach(function(c){ c.classList.remove('open'); });
+  if (!wasOpen) { card.classList.add('open'); showInfo(TERP[i]); window.scrollTo({top:document.getElementById('wheelSection').offsetTop-80,behavior:'smooth'}); }
+}
 </script>
 </body></html>`;
-    res.writeHead(200,{"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
+    res.writeHead(200, {"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
     res.end(html);
     return;
   }
