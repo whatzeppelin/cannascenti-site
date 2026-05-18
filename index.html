@@ -6729,7 +6729,11 @@
     <span class="nav-wordmark">Cannascenti</span>
   </a>
   <ul class="nav-links">
-    <li><a href="#quiz" style="color:var(--bright-green);font-weight:600">Find Your Match</a></li>
+    <li><a href="#encyclopedia-hub">Encyclopedia</a></li>
+    <li><a href="/learn">Education</a></li>
+    <li><a href="/scan">Scanner</a></li>
+    <li><a href="/budtender-pro">Budtender Pro</a></li>
+    <li><a href="#quiz" style="color:var(--bright-green);font-weight:600">Take the Quiz</a></li>
     <li><a href="#newsletter" class="nav-cta">Subscribe</a></li>
   </ul>
 </nav>
@@ -6815,7 +6819,6 @@
   </div>
 </section>
 
-<!-- ENCYCLOPEDIA HUB: removed
 <div id="encyclopedia-hub" class="enc-hub">
   <div class="enc-hub-inner">
     <div class="enc-hub-header reveal">
@@ -6914,7 +6917,6 @@
   </div>
 
 </div>
--->
 
 <!-- CANNABIS & FOOD -->
 
@@ -7149,9 +7151,9 @@
   <div class="section-label" style="justify-content:center; display:flex;">Stay in the know</div>
   <div class="newsletter-title">The Cannascenti Newsletter</div>
   <p class="newsletter-sub">New articles, strain spotlights, industry news, and product drops — weekly.</p>
-  <div class="newsletter-form">
-    <input class="newsletter-input" type="email" placeholder="Your email address">
-    <button class="newsletter-btn">Subscribe</button>
+  <div class="newsletter-form" id="newsletterFormWrap">
+    <input class="newsletter-input" type="email" id="newsletterEmail" placeholder="Your email address">
+    <button class="newsletter-btn" onclick="newsletterSubmit()">Subscribe</button>
   </div>
 </div>
 
@@ -7215,11 +7217,12 @@
     <div>
       <div class="footer-col-title">Platform</div>
       <ul class="footer-links">
-        <li><a href="#">Budtender Pro</a></li>
+        <li><a href="/budtender-pro">Budtender Pro</a></li>
+        <li><a href="/for-dispensaries">For Dispensaries</a></li>
+        <li><a href="/scan">Product Scanner</a></li>
+        <li><a href="/learn">Education Hub</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="mailto:hello@cannascenti.com">Contact</a></li>
-        <li><a href="#">Advertise</a></li>
-        <li><a href="#">Partner Dispensaries</a></li>
       </ul>
     </div>
     <div>
@@ -11384,6 +11387,20 @@
     }).catch(()=>{});
     const form = document.getElementById('quizEmailForm');
     if (form) form.outerHTML = '<div class="quiz-email-success">✓ You\'re in — personalized picks coming your way.</div>';
+  }
+
+  function newsletterSubmit() {
+    const input = document.getElementById('newsletterEmail');
+    if (!input || !input.value.trim() || !input.value.includes('@')) {
+      input && input.focus();
+      return;
+    }
+    fetch('/api/email', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({email: input.value.trim(), profile: 'newsletter'})
+    }).catch(()=>{});
+    document.getElementById('newsletterFormWrap').innerHTML = '<div style="color:var(--bright-green);font-size:14px;letter-spacing:0.05em;padding:12px 0">✓ You\'re in — welcome to the Cannascenti community.</div>';
   }
 
   quizRender();

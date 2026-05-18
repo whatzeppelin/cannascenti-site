@@ -647,6 +647,13 @@ ${isPrivacy ? `<h1>Privacy Policy</h1><p>Last updated: April 2026</p>
     return;
   }
 
+  // ─── /quiz redirect ───────────────────────────────────────────────────────
+  if (req.method === "GET" && req.url === "/quiz") {
+    res.writeHead(302, { "Location": "/#quiz" });
+    res.end();
+    return;
+  }
+
   // ─── Joint Rolling Seminars page ──────────────────────────────────────────
   if (req.method === "GET" && req.url === "/seminars") {
     const html = `<!DOCTYPE html>
