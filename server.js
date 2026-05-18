@@ -1376,14 +1376,56 @@ document.addEventListener('DOMContentLoaded',function(){
       { era:"Modern Era", date:"2024", tag:"legalization", title:"US Rescheduling Movement", body:"The DEA proposes moving cannabis from Schedule I to Schedule III — the most significant federal shift in US cannabis policy since the 1970 Controlled Substances Act." }
     ];
     const tagColors = { ancient:"#C9973A", medicine:"#52B788", culture:"#9B72CF", prohibition:"#C84040", science:"#5B8DD9", legalization:"#74C69D" };
+
+    const _ORIGINS = [
+      { name:"Taiwan", region:"East Asia", lat:23.5, lng:121, type:"ancient", strains:"First cultivation site", hunter:false, desc:"Archaeological evidence places cannabis cultivation in Taiwan around 10,000 BCE — making it one of the oldest crops in human history. Used for hemp fiber, seed oil, and ritual.", seeds:"The genetic origin of Cannabis sativa lineages that spread west across Asia." },
+      { name:"Yunnan, China", region:"Southwest China", lat:25, lng:101, type:"ancient", strains:"Wild Cannabis Origin", hunter:false, desc:"Modern genetic studies point to Yunnan province as the evolutionary origin of all cannabis — both hemp and drug varieties. The ancestral homeland of every strain ever grown.", seeds:"All modern cannabis traces its DNA back to this region. The genetic Adam and Eve of the plant." },
+      { name:"Hindu Kush Mountains", region:"Afghanistan / Pakistan", lat:35, lng:69, type:"landrace", strains:"Afghan Kush, Mazar-i-Sharif, Hash Plant", hunter:true, desc:"The Hindu Kush range produced some of the world's most resinous cannabis. The harsh environment — extreme cold, altitude, UV exposure — forced the plant to produce extraordinary amounts of resin as protection. Afghan genetics underpin nearly every modern indica.", seeds:"Strain Hunters Arjan & Franco made multiple expeditions into Afghanistan hunting pure Kush phenotypes. Afghan #1 by Sensi Seeds is the most famous stabilized variety." },
+      { name:"Himachal Pradesh, India", region:"Northern India", lat:32.1, lng:77.2, type:"landrace", strains:"Malana Cream, Parvati Valley Hash", hunter:true, desc:"The Parvati Valley in Himachal Pradesh produces Malana Cream — made by rubbing living cannabis plants between bare palms. The isolation of Malana village and its specific landrace genetics create a product that cannot be replicated elsewhere.", seeds:"Strain Hunters filmed their India expedition in the Parvati Valley, documenting the charas-making tradition and collecting landrace seeds from plants growing wild at 3,000 meters." },
+      { name:"Nepal", region:"South Asia", lat:28.2, lng:84.1, type:"landrace", strains:"Himalayan Gold, Temple Ball Hash", hunter:false, desc:"Nepalese Temple Balls are among the oldest and most revered hash preparations in the world — hand-rolled from dry-sifted charas and aged for years. The high-altitude Himalayan landraces produce distinctively spicy, incense-like terpene profiles.", seeds:"Nepalese genetics contributed significantly to the Haze varieties in the 1970s, blended by American breeders with Colombian and Mexican landraces." },
+      { name:"Pakistan — Chitral", region:"Northwest Pakistan", lat:35.9, lng:71.8, type:"landrace", strains:"Pakistani Chitral Kush, PCK", hunter:false, desc:"Chitral, in Pakistan's northwestern tribal areas, produces a distinct landrace with deep purple coloration and extreme resin production. The PCK (Pakistani Chitral Kush) is prized for its dense hash production and unusual purple phenotypes.", seeds:"PCK was brought to Amsterdam breeders in the early 2000s and has since contributed purple phenotypes and early-finishing traits to dozens of modern strains." },
+      { name:"Lebanon — Bekaa Valley", region:"Middle East", lat:33.8, lng:35.9, type:"landrace", strains:"Lebanese Red, Lebanese Blonde", hunter:false, desc:"The Bekaa Valley in Lebanon has produced hash for centuries. Lebanese Red and Lebanese Blonde were among the most prized hashishes of the 1970s — distinctively mild and aromatic compared to Moroccan or Afghan hash.", seeds:"Lebanese genetics contributed to early Skunk breeding and are present in many first-generation Dutch strains." },
+      { name:"Morocco — Ketama", region:"North Africa", lat:34.9, lng:-4.6, type:"landrace", strains:"Moroccan Kif, Ketama Hash", hunter:true, desc:"The Ketama region in the Rif Mountains of Morocco is the world's largest traditional hash-producing area. The local Beldia landrace has been cultivated here for centuries. Moroccan hash was the most widely available hashish in Europe through the 20th century.", seeds:"Strain Hunters documented the Ketama region and its traditional dry-sift hash production. The Beldia landrace is under threat from hybridization with European varieties." },
+      { name:"Colombia — Cauca", region:"South America", lat:2.4, lng:-76.6, type:"landrace", strains:"Colombian Gold, Punto Rojo, Santa Marta Gold", hunter:true, desc:"Colombia was the source of some of the most legendary sativas of the 1970s — Colombian Gold, Punto Rojo, and Santa Marta Gold. These pure sativas, grown at altitude in the Andes, had 3-month flowering times and profound, cerebral highs unlike anything from indica-dominant genetics.", seeds:"Strain Hunters Season 1 (2009) documented their Colombia expedition, collecting Punto Rojo and Colombian Gold seeds from indigenous farmers. These genetics directly influenced Haze and modern sativa hybrids." },
+      { name:"Mexico — Oaxaca", region:"Mexico", lat:17.1, lng:-96.7, type:"landrace", strains:"Acapulco Gold, Oaxacan Highland", hunter:false, desc:"Mexico produced some of the most famous cannabis of the 1960s and 70s — Acapulco Gold, from the Pacific coast, was legendary for its golden coloration and euphoric high. Oaxacan Highland was a distinct landrace grown by indigenous Zapotec farmers at altitude.", seeds:"Mexican landraces were critical in the development of Skunk #1 and many early Californian hybrids. Mexican genetics traveled north with migrant workers in the early 20th century, introducing cannabis culture to the American Southwest." },
+      { name:"Jamaica — Blue Mountains", region:"Caribbean", lat:18.1, lng:-77.3, type:"landrace", strains:"Lamb's Bread, Jamaican Lambsbread", hunter:true, desc:"Jamaica's Blue Mountains are home to Lamb's Bread — famously Bob Marley's preferred strain. A pure sativa landrace with an uplifting, creative, spiritually-focused effect. Rastafarian culture elevated cannabis (ganja) to a sacrament, and Jamaican genetics became deeply intertwined with reggae and the global cannabis counterculture.", seeds:"Strain Hunters documented Jamaica in Season 7 (2015), visiting Rastafarian farmers growing traditional Lamb's Bread in the mountains. Franco Loja described it as 'the most spiritually important cannabis genetics in the world.'" },
+      { name:"Panama", region:"Central America", lat:8.5, lng:-80.8, type:"landrace", strains:"Panamanian Red", hunter:false, desc:"Panamanian Red was one of the most sought-after sativas of the 1970s — grown in Panama's rainforest highlands, it produced an intensely cerebral, almost psychedelic effect. A key genetic contributor to early American hybrids.", seeds:"Panamanian genetics were mixed with Colombian and Thai landraces by California breeders in the late 1970s, contributing to the diversity of early Haze varieties." },
+      { name:"Thailand — Chiang Mai", region:"Southeast Asia", lat:18.8, lng:98.9, type:"landrace", strains:"Thai Stick, Thai Sativa", hunter:false, desc:"Thai stick — cannabis buds tied to a bamboo stick with cannabis fiber — was the most potent product available on the American black market in the 1970s. True Thai sativa is among the most extreme expressions of the species: 14-16 week flowering, enormous plants, intensely cerebral highs.", seeds:"Thai genetics are present in virtually all Haze varieties. Neville Schoenmakers of the Seed Bank brought Thai genetics to Europe in the 1980s, crossing them with Afghan indicas to create faster-flowering hybrids." },
+      { name:"Cambodia", region:"Southeast Asia", lat:12.6, lng:104.9, type:"landrace", strains:"Cambodian, Khmer Gold", hunter:true, desc:"Cambodian landrace genetics were collected by Strain Hunters near the Thai border — pure sativas growing wild along river banks. Cambodian strains are notable for their extremely fast flowering time for a sativa — 9-10 weeks — making them invaluable for breeding.", seeds:"Strain Hunters collected Cambodian genetics in their Southeast Asia expedition. These seeds were used to develop FastBud and other fast-flowering sativa hybrids at Green House Seeds." },
+      { name:"Ethiopia — Kaffa", region:"East Africa", lat:7.3, lng:36.4, type:"landrace", strains:"Ethiopian Landrace, Kaffa Kush", hunter:true, desc:"Ethiopia's Kaffa region — the birthplace of coffee — also harbors ancient cannabis landraces. Strain Hunters Season 4 (2012) documented their Ethiopia expedition, collecting genetics from cannabis growing wild at high altitude in near-inaccessible mountain terrain.", seeds:"Ethiopian genetics showed remarkable resistance to mold and pests, making them valuable for breeding outdoor-hardy varieties. Franco Loja considered Ethiopia one of the most important landrace gene pools." },
+      { name:"Congo / DRC", region:"Central Africa", lat:-4.3, lng:15.3, type:"landrace", strains:"Congolese Sativa", hunter:true, desc:"Strain Hunters Season 5 (2013) was among their most dangerous expeditions — venturing deep into the Democratic Republic of Congo to collect landrace genetics. Congolese sativa is one of the tallest cannabis plants in the world, reaching 5-6 meters in the wild.", seeds:"Congolese genetics are the longest-flowering cannabis in existence — some phenotypes require 20+ weeks. They represent an extreme end of the sativa spectrum and are used to introduce equatorial traits to breeding programs." },
+      { name:"Malawi — Lake Malawi Region", region:"Southern Africa", lat:-13.2, lng:34.3, type:"landrace", strains:"Malawi Gold", hunter:true, desc:"Malawi Gold is one of Africa's most legendary cannabis varieties — grown on the shores of Lake Malawi by the Chewa people for centuries. It's traditionally rolled into enormous 'cobs' — compressed cylinders of cannabis — and slowly smoked or used in ceremonies.", seeds:"Strain Hunters documented Malawi in their Africa expedition. Malawi Gold is a pure sativa with an unusual fruity sweetness. The genetics have been used by Dutch breeders to add tropical fruit notes to modern hybrids." },
+      { name:"Eswatini — Swazi Highlands", region:"Southern Africa", lat:-26.5, lng:31.5, type:"landrace", strains:"Swazi Gold, Swazi Red", hunter:true, desc:"Swazi Gold from the Kingdom of Eswatini (formerly Swaziland) is a legendary African sativa — harvested at the peak of the dry season, naturally shade-dried, and rolled into premium braids by local farmers. Strain Hunters Season 3 (2011) documented the Swazi Gold harvest.", seeds:"Swazi Gold was among the most prized cannabis on the South African market for decades. The genetics are prized for their exceptional flavor — sweet, fruity, and spicy simultaneously." },
+      { name:"Hawaii — Maui", region:"Pacific Islands", lat:20.8, lng:-156.3, type:"landrace", strains:"Maui Wowie, Hawaiian", hunter:false, desc:"Hawaii developed its own distinct cannabis culture from a mix of southeast Asian genetics brought by immigrant workers. Maui Wowie became one of the first American luxury cannabis brands of the 1970s — an uplifting, tropical sativa prized for its pineapple and citrus aroma.", seeds:"Hawaiian genetics contributed significantly to the development of tropical-fruity terpene profiles in modern strains. Maui Wowie was a prized mother plant in early Californian breeding programs." },
+      { name:"Amsterdam — Seed Bank Hub", region:"Netherlands", lat:52.4, lng:4.9, type:"modern", strains:"Skunk #1, Northern Lights, White Widow, Haze", hunter:false, desc:"Amsterdam became the epicenter of modern cannabis breeding in the 1980s. The Seed Bank (later Sensi Seeds), Green House Seeds, and Dutch Passion developed the first stabilized, commercially available cannabis varieties by crossing landraces from Afghanistan, Colombia, Mexico, Thailand, and beyond.", seeds:"The Dutch Golden Age of cannabis breeding (1985-2000) created the genetic foundation of virtually every modern strain. Skunk #1, Northern Lights, Haze, White Widow — all developed in Amsterdam from landrace crosses." },
+      { name:"Northern California — Emerald Triangle", region:"USA", lat:40.5, lng:-123.5, type:"modern", strains:"OG Kush, Girl Scout Cookies, Zkittlez", hunter:false, desc:"The Emerald Triangle (Humboldt, Mendocino, Trinity counties) became America's cannabis farming heartland during prohibition. California then became the epicenter of modern strain development — OG Kush, Girl Scout Cookies, Gelato, and Zkittlez were all developed here, creating the flavor-forward genetics that now dominate global markets.", seeds:"California moved cannabis breeding from yield-focused to terpene-focused. The state's medical dispensary system created a competitive market that rewarded unique flavors and effects, driving an explosion of new genetic diversity." }
+    ];
+
     const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cannabis History — Cannascenti Encyclopedia</title>
+<title>Cannabis History & Origins — Cannascenti Encyclopedia</title>
 ${ENC_FONTS}
 <style>
 ${ENC_BASE_CSS}
+.globe-section{background:rgba(0,0,0,0.3);border-bottom:1px solid rgba(82,183,136,0.12);padding:60px 0 0;margin-bottom:0}
+.globe-section-inner{max-width:1100px;margin:0 auto;padding:0 32px}
+.globe-wrap{display:grid;grid-template-columns:1fr 380px;gap:32px;align-items:start;padding-bottom:40px}
+#globeCanvas{display:block;cursor:grab;border-radius:50%;background:transparent}
+#globeCanvas:active{cursor:grabbing}
+.globe-panel{padding:24px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:14px;min-height:340px}
+.globe-panel-default{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:100%;min-height:300px;gap:12px;color:rgba(242,234,216,0.4);font-size:.85rem}
+.globe-panel-default-icon{font-size:36px;margin-bottom:8px}
+.gp-region{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:#52B788;margin-bottom:6px}
+.gp-name{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:#F2EAD8;margin-bottom:4px;line-height:1.2}
+.gp-type{display:inline-block;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;border-radius:20px;padding:3px 10px;margin-bottom:14px;font-weight:600}
+.gp-desc{font-size:.82rem;line-height:1.75;color:rgba(242,234,216,0.65);margin-bottom:14px}
+.gp-seeds{font-size:.78rem;line-height:1.7;color:rgba(82,183,136,0.85);border-top:1px solid rgba(255,255,255,0.07);padding-top:12px;margin-top:4px}
+.gp-strains{font-size:.75rem;color:rgba(242,234,216,0.45);margin-top:8px;font-style:italic}
+.globe-legend{display:flex;gap:20px;flex-wrap:wrap;margin:0 32px 0;padding:14px 0;border-top:1px solid rgba(255,255,255,0.06);max-width:1100px;margin:0 auto}
+.legend-item{display:flex;align-items:center;gap:7px;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(242,234,216,0.5)}
+.legend-dot{width:10px;height:10px;border-radius:50%}
 .hist-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
 .hf-btn{background:none;border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:6px 16px;color:rgba(242,234,216,0.6);font-family:Montserrat,sans-serif;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s}
 .hf-btn.active,.hf-btn:hover{border-color:#52B788;color:#52B788;background:rgba(82,183,136,0.08)}
@@ -1399,16 +1441,46 @@ ${ENC_BASE_CSS}
 .hist-tag{display:inline-block;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;border-radius:20px;padding:2px 9px;margin-bottom:8px;font-weight:600}
 .hist-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;margin-bottom:6px}
 .hist-body{font-size:.83rem;line-height:1.7;color:rgba(242,234,216,0.65)}
+@media(max-width:700px){.globe-wrap{grid-template-columns:1fr}.globe-panel{min-height:auto}}
 @media(max-width:480px){.hist-event{grid-template-columns:70px 1fr}}
 </style>
 </head>
 <body>
 ${ENC_NAV}
+
+<div class="globe-section">
+  <div class="globe-section-inner">
+    <div class="enc-page-header" style="padding-top:0;margin-bottom:32px">
+      <div class="enc-label">✦ Cannascenti Encyclopedia</div>
+      <h1 class="enc-title">Cannabis <em>origins &amp; lineages.</em></h1>
+      <p class="enc-desc">Every strain traces back to a specific place on earth. Drag the globe. Click any marker to explore the landrace genetics, Strain Hunters expeditions, and the journey from wild plant to modern variety.</p>
+    </div>
+    <div class="globe-wrap">
+      <div>
+        <canvas id="globeCanvas" width="480" height="480"></canvas>
+      </div>
+      <div class="globe-panel" id="globePanel">
+        <div class="globe-panel-default">
+          <div class="globe-panel-default-icon">🌍</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:rgba(242,234,216,0.6)">Drag to rotate</div>
+          <div>Click any glowing marker to explore the origin story, strain lineage, and Strain Hunters expeditions from that location.</div>
+        </div>
+      </div>
+    </div>
+    <div class="globe-legend" style="padding:14px 32px;border-top:1px solid rgba(255,255,255,0.06);display:flex;gap:20px;flex-wrap:wrap;max-width:1100px;margin:0 auto">
+      <div class="legend-item"><div class="legend-dot" style="background:#C9973A"></div>Ancient Origin</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#52B788"></div>Landrace</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#E05C5C;box-shadow:0 0 6px #E05C5C"></div>Strain Hunters Expedition</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#5B8DD9"></div>Modern Hub</div>
+    </div>
+  </div>
+</div>
+
 <div class="enc-page">
-  <div class="enc-page-header">
-    <div class="enc-label">✦ Cannascenti Encyclopedia</div>
-    <h1 class="enc-title">10,000 years of <em>cannabis history.</em></h1>
-    <p class="enc-desc">From ancient Taiwan to modern federal rescheduling — the complete timeline of cannabis in human civilization. Filter by category to explore specific threads.</p>
+  <div style="margin-bottom:48px">
+    <div class="enc-label" style="margin-top:48px">✦ The Full Timeline</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,4vw,2.4rem);font-weight:300;color:#F2EAD8;line-height:1.2;margin-bottom:8px">10,000 years of <em style="color:#52B788">cannabis history.</em></h2>
+    <p style="font-size:.9rem;color:rgba(242,234,216,0.55);line-height:1.7">From ancient Taiwan to modern federal rescheduling. Filter by category to explore specific threads.</p>
   </div>
   <div class="hist-filter">
     <button class="hf-btn active" onclick="filterHist('all',this)">All</button>
@@ -1421,20 +1493,20 @@ ${ENC_NAV}
   </div>
   <div class="hist-timeline" id="histTimeline"></div>
 </div>
+
 <script>
 var HE = ${JSON.stringify(_HE)};
 var TAG_COLORS = ${JSON.stringify(tagColors)};
-var curTag='all';
+var ORIGINS = ${JSON.stringify(_ORIGINS)};
 
+// ── Timeline ──────────────────────────────────────────────────────────────
 function filterHist(tag,btn){
-  curTag=tag;
   document.querySelectorAll('.hf-btn').forEach(function(b){b.classList.remove('active');});
   btn.classList.add('active');
   document.querySelectorAll('.hist-event').forEach(function(ev){
     ev.classList.toggle('hidden', tag!=='all' && ev.dataset.tag!==tag);
   });
 }
-
 document.addEventListener('DOMContentLoaded',function(){
   document.getElementById('histTimeline').innerHTML=HE.map(function(e){
     var col=TAG_COLORS[e.tag]||'#52B788';
@@ -1448,6 +1520,301 @@ document.addEventListener('DOMContentLoaded',function(){
     '</div>';
   }).join('');
 });
+
+// ── Globe ─────────────────────────────────────────────────────────────────
+(function(){
+  var canvas = document.getElementById('globeCanvas');
+  var ctx = canvas.getContext('2d');
+  var W = canvas.width, H = canvas.height;
+  var cx = W/2, cy = H/2, R = W*0.42;
+
+  // Rotation state
+  var rotY = -0.3, rotX = 0.25;
+  var dragging = false, lastMX = 0, lastMY = 0;
+  var autoSpin = true;
+  var hoveredIdx = -1;
+  var animFrame;
+
+  // Type colors
+  var TYPE_COLOR = { ancient:'#C9973A', landrace:'#52B788', modern:'#5B8DD9' };
+  var HUNTER_COLOR = '#E05C5C';
+
+  function getColor(o){ return o.hunter ? HUNTER_COLOR : (TYPE_COLOR[o.type]||'#52B788'); }
+
+  // Simplified continent outlines as lat/lng polylines
+  // [lat, lng] pairs, null = pen up
+  var LAND = [
+    // North America outline (simplified)
+    [[83,-60],[75,-85],[72,-95],[65,-168],[60,-165],[55,-130],[45,-124],[32,-117],[22,-105],[15,-92],[8,-77],[12,-82],[18,-87],[22,-90],[25,-90],[30,-89],[29,-95],[26,-97],[25,-80],[28,-80],[35,-75],[42,-70],[47,-67],[50,-64],[55,-60],[60,-64],[68,-68],[72,-75],[75,-80],[78,-73],[83,-60]],
+    // Greenland (simplified)
+    [[83,-45],[77,-18],[72,-22],[65,-38],[63,-50],[68,-52],[75,-57],[83,-45]],
+    // South America (simplified)
+    [[12,-72],[10,-62],[8,-60],[5,-52],[0,-50],[-5,-35],[-10,-37],[-15,-39],[-20,-40],[-25,-48],[-34,-58],[-41,-63],[-52,-68],[-55,-65],[-52,-58],[-45,-65],[-40,-62],[-35,-58],[-28,-49],[-22,-42],[-15,-39],[-10,-36],[-5,-35],[0,-50],[4,-51],[8,-60],[10,-62],[12,-72]],
+    // Europe (simplified)
+    [[71,28],[65,14],[58,5],[50,2],[46,-1],[44,-8],[37,-8],[35,-5],[36,3],[38,13],[40,18],[42,13],[44,16],[47,10],[48,17],[54,18],[57,22],[60,25],[65,27],[68,28],[71,28]],
+    // Scandinavia
+    [[57,8],[59,5],[62,5],[65,14],[71,25],[70,30],[65,27],[60,25],[57,8]],
+    // Africa (simplified)
+    [[37,10],[32,12],[26,33],[12,43],[5,40],[0,41],[-5,40],[-12,37],[-18,35],[-25,33],[-34,26],[-34,18],[-28,16],[-22,14],[-15,12],[-5,10],[0,8],[5,1],[4,-9],[6,-11],[10,-15],[15,-17],[18,-16],[22,-17],[28,-13],[30,-9],[35,0],[37,10]],
+    // Asia (simplified)
+    [[71,28],[68,35],[65,40],[60,58],[55,73],[50,80],[45,75],[40,65],[35,59],[25,57],[22,59],[12,45],[5,40],[12,43],[26,33],[32,12],[37,10],[40,28],[42,36],[45,38],[42,48],[38,48],[36,52],[32,48],[28,49],[25,57],[30,68],[35,75],[40,76],[45,82],[50,80],[55,73],[60,58],[65,60],[68,65],[71,70],[74,80],[72,102],[65,110],[60,115],[55,132],[50,140],[43,131],[40,125],[35,119],[25,121],[20,110],[10,105],[5,103],[1,104],[5,100],[10,98],[16,98],[20,92],[22,92],[24,90],[26,89],[28,88],[32,78],[30,73],[25,68],[24,68],[22,70],[20,73],[15,74],[10,76],[8,77],[5,80],[8,80],[15,80],[20,73],[25,68],[30,73],[35,75],[40,76],[45,82],[50,80]],
+    // Australia (simplified)
+    [[-16,136],[-12,131],[-14,126],[-20,119],[-28,114],[-34,115],[-38,145],[-38,148],[-34,151],[-28,153],[-22,150],[-18,146],[-16,136]],
+    // Japan
+    [[45,141],[42,140],[36,136],[34,131],[34,135],[38,141],[40,141],[42,141],[45,141]],
+    // UK (simplified)
+    [[58,-5],[52,-5],[50,0],[52,2],[55,2],[58,-4],[58,-5]],
+    // Indonesia (simplified)
+    [[-5,105],[0,110],[0,120],[-2,130],[-5,105]],
+    // New Zealand (simplified)
+    [[-34,172],[-38,175],[-46,168],[-44,170],[-40,176],[-36,174],[-34,172]],
+    // Madagascar
+    [[-12,49],[-16,44],[-20,44],[-25,47],[-25,48],[-20,48],[-16,49],[-12,49]],
+    // Philippines (simplified)
+    [[18,122],[15,120],[10,124],[8,126],[10,126],[15,122],[18,122]],
+    // Sri Lanka
+    [[8,80],[6,80],[6,81],[8,81],[8,80]]
+  ];
+
+  function project(lat, lng) {
+    var latR = lat * Math.PI / 180;
+    var lngAdj = lng - rotY * 180 / Math.PI;
+    var lngR = lngAdj * Math.PI / 180;
+    var cosLat = Math.cos(latR), sinLat = Math.sin(latR);
+    var cosLng = Math.cos(lngR), sinLng = Math.sin(lngR);
+    var cosX = Math.cos(rotX), sinX = Math.sin(rotX);
+    var x3 = cosLat * sinLng;
+    var y3 = sinLat * cosX - cosLat * cosLng * sinX;
+    var z3 = sinLat * sinX + cosLat * cosLng * cosX;
+    return { x: cx + R * x3, y: cy - R * y3, z: z3 };
+  }
+
+  function drawFrame() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Outer glow
+    var outerGlow = ctx.createRadialGradient(cx, cy, R*0.9, cx, cy, R*1.15);
+    outerGlow.addColorStop(0, 'rgba(82,183,136,0.06)');
+    outerGlow.addColorStop(1, 'rgba(82,183,136,0)');
+    ctx.beginPath(); ctx.arc(cx, cy, R*1.15, 0, Math.PI*2);
+    ctx.fillStyle = outerGlow; ctx.fill();
+
+    // Sphere base
+    var grad = ctx.createRadialGradient(cx - R*0.25, cy - R*0.25, 0, cx, cy, R);
+    grad.addColorStop(0, '#132b1d');
+    grad.addColorStop(0.6, '#0a1a10');
+    grad.addColorStop(1, '#040c07');
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2);
+    ctx.fillStyle = grad; ctx.fill();
+
+    // Clip to sphere for land + grid
+    ctx.save();
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2); ctx.clip();
+
+    // Latitude grid lines
+    for (var lat = -60; lat <= 60; lat += 30) {
+      ctx.beginPath();
+      var pen = false;
+      for (var lg = -180; lg <= 180; lg += 3) {
+        var p = project(lat, lg);
+        if (p.z > 0) { if (!pen) { ctx.moveTo(p.x, p.y); pen = true; } else ctx.lineTo(p.x, p.y); }
+        else { pen = false; }
+      }
+      ctx.strokeStyle = 'rgba(82,183,136,0.08)'; ctx.lineWidth = 0.5; ctx.stroke();
+    }
+    // Longitude grid lines
+    for (var lng2 = -180; lng2 < 180; lng2 += 30) {
+      ctx.beginPath();
+      var pen2 = false;
+      for (var la = -80; la <= 80; la += 3) {
+        var p = project(la, lng2);
+        if (p.z > 0) { if (!pen2) { ctx.moveTo(p.x, p.y); pen2 = true; } else ctx.lineTo(p.x, p.y); }
+        else { pen2 = false; }
+      }
+      ctx.strokeStyle = 'rgba(82,183,136,0.08)'; ctx.lineWidth = 0.5; ctx.stroke();
+    }
+
+    // Draw land
+    for (var li = 0; li < LAND.length; li++) {
+      var poly = LAND[li];
+      ctx.beginPath();
+      var started = false;
+      for (var pi = 0; pi < poly.length; pi++) {
+        var pt = project(poly[pi][0], poly[pi][1]);
+        if (pt.z > 0) {
+          if (!started) { ctx.moveTo(pt.x, pt.y); started = true; }
+          else ctx.lineTo(pt.x, pt.y);
+        } else {
+          started = false;
+        }
+      }
+      ctx.fillStyle = 'rgba(82,183,136,0.18)';
+      ctx.strokeStyle = 'rgba(82,183,136,0.35)';
+      ctx.lineWidth = 0.7;
+      ctx.fill(); ctx.stroke();
+    }
+
+    ctx.restore();
+
+    // Sphere edge highlight
+    var edgeGrad = ctx.createRadialGradient(cx - R*0.3, cy - R*0.3, R*0.5, cx, cy, R);
+    edgeGrad.addColorStop(0, 'rgba(255,255,255,0)');
+    edgeGrad.addColorStop(0.85, 'rgba(255,255,255,0)');
+    edgeGrad.addColorStop(1, 'rgba(82,183,136,0.12)');
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2);
+    ctx.strokeStyle = 'rgba(82,183,136,0.3)'; ctx.lineWidth = 1.5; ctx.stroke();
+    ctx.fillStyle = edgeGrad; ctx.fill();
+
+    // Specular highlight
+    var spec = ctx.createRadialGradient(cx - R*0.35, cy - R*0.35, 0, cx - R*0.2, cy - R*0.2, R*0.4);
+    spec.addColorStop(0, 'rgba(255,255,255,0.07)');
+    spec.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2);
+    ctx.fillStyle = spec; ctx.fill();
+
+    // Draw markers (back first, then front)
+    var visible = [];
+    for (var oi = 0; oi < ORIGINS.length; oi++) {
+      var o = ORIGINS[oi];
+      var p = project(o.lat, o.lng);
+      if (p.z > -0.1) visible.push({ o:o, p:p, i:oi });
+    }
+    visible.sort(function(a,b){ return a.p.z - b.p.z; });
+
+    for (var vi = 0; vi < visible.length; vi++) {
+      var v = visible[vi];
+      var col = getColor(v.o);
+      var isHovered = hoveredIdx === v.i;
+      var r = isHovered ? 7 : 5;
+      var alpha = 0.4 + v.p.z * 0.6;
+
+      if (v.p.z > 0) {
+        // Glow
+        var glowR = isHovered ? 22 : 14;
+        var glow = ctx.createRadialGradient(v.p.x, v.p.y, 0, v.p.x, v.p.y, glowR);
+        glow.addColorStop(0, col.replace('#', 'rgba(').replace(/(..)(..)(..)/, function(m,r,g,b){ return parseInt(r,16)+','+parseInt(g,16)+','+parseInt(b,16); })+','+(isHovered?'0.7':'0.45')+')');
+        glow.addColorStop(1, 'rgba(0,0,0,0)');
+        // simpler: just use rgba approximation
+        ctx.beginPath(); ctx.arc(v.p.x, v.p.y, glowR, 0, Math.PI*2);
+        ctx.fillStyle = col+'44'; ctx.fill();
+
+        // Dot
+        ctx.beginPath(); ctx.arc(v.p.x, v.p.y, r, 0, Math.PI*2);
+        ctx.fillStyle = col;
+        ctx.globalAlpha = alpha;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+
+        // Pulse ring for hovered
+        if (isHovered) {
+          ctx.beginPath(); ctx.arc(v.p.x, v.p.y, 12, 0, Math.PI*2);
+          ctx.strokeStyle = col; ctx.lineWidth = 1.5; ctx.globalAlpha = 0.5; ctx.stroke();
+          ctx.globalAlpha = 1;
+        }
+
+        // Strain Hunters star marker
+        if (v.o.hunter) {
+          ctx.fillStyle = '#fff';
+          ctx.font = 'bold 8px sans-serif';
+          ctx.fillText('SH', v.p.x - 6, v.p.y + 3);
+        }
+      }
+    }
+  }
+
+  function tick() {
+    if (autoSpin && !dragging) rotY += 0.003;
+    drawFrame();
+    animFrame = requestAnimationFrame(tick);
+  }
+
+  // Interaction
+  function getPos(e) {
+    var rect = canvas.getBoundingClientRect();
+    var scaleX = W / rect.width, scaleY = H / rect.height;
+    var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    var clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    return { x: (clientX - rect.left) * scaleX, y: (clientY - rect.top) * scaleY };
+  }
+
+  canvas.addEventListener('mousedown', function(e){ dragging=true; autoSpin=false; var pos=getPos(e); lastMX=pos.x; lastMY=pos.y; });
+  canvas.addEventListener('touchstart', function(e){ e.preventDefault(); dragging=true; autoSpin=false; var pos=getPos(e); lastMX=pos.x; lastMY=pos.y; }, {passive:false});
+  window.addEventListener('mouseup', function(){ dragging=false; });
+  window.addEventListener('touchend', function(){ dragging=false; });
+  window.addEventListener('mousemove', function(e){
+    if (!dragging) {
+      var pos = getPos(e);
+      var found = -1;
+      for (var i=0; i<ORIGINS.length; i++) {
+        var p = project(ORIGINS[i].lat, ORIGINS[i].lng);
+        if (p.z > 0) {
+          var dx = p.x - pos.x, dy = p.y - pos.y;
+          if (Math.sqrt(dx*dx+dy*dy) < 14) { found = i; break; }
+        }
+      }
+      if (hoveredIdx !== found) { hoveredIdx = found; canvas.style.cursor = found>=0 ? 'pointer' : 'grab'; }
+      return;
+    }
+    var pos = getPos(e);
+    rotY += (pos.x - lastMX) * 0.008;
+    rotX += (pos.y - lastMY) * 0.005;
+    rotX = Math.max(-1.2, Math.min(1.2, rotX));
+    lastMX = pos.x; lastMY = pos.y;
+  });
+  window.addEventListener('touchmove', function(e){
+    if (!dragging) return;
+    e.preventDefault();
+    var pos = getPos(e);
+    rotY += (pos.x - lastMX) * 0.008;
+    rotX += (pos.y - lastMY) * 0.005;
+    rotX = Math.max(-1.2, Math.min(1.2, rotX));
+    lastMX = pos.x; lastMY = pos.y;
+  }, {passive:false});
+
+  canvas.addEventListener('click', function(e){
+    var pos = getPos(e);
+    for (var i=0; i<ORIGINS.length; i++) {
+      var p = project(ORIGINS[i].lat, ORIGINS[i].lng);
+      if (p.z > 0) {
+        var dx = p.x - pos.x, dy = p.y - pos.y;
+        if (Math.sqrt(dx*dx+dy*dy) < 16) {
+          showOrigin(i);
+          autoSpin = false;
+          // Spin globe to center on marker
+          var targetLng = ORIGINS[i].lng;
+          rotY = -targetLng * Math.PI / 180;
+          rotX = ORIGINS[i].lat * Math.PI / 180 * 0.5;
+          return;
+        }
+      }
+    }
+  });
+
+  function showOrigin(idx) {
+    var o = ORIGINS[idx];
+    var col = getColor(o);
+    var typeLabel = o.type === 'ancient' ? 'Ancient Origin' : o.type === 'modern' ? 'Modern Hub' : 'Landrace';
+    var hunterBadge = o.hunter ? '<span style="display:inline-block;background:#E05C5C22;color:#E05C5C;border-radius:20px;padding:2px 9px;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-left:6px">Strain Hunters</span>' : '';
+    document.getElementById('globePanel').innerHTML =
+      '<div class="gp-region">'+o.region+'</div>'+
+      '<div class="gp-name">'+o.name+'</div>'+
+      '<span class="gp-type" style="background:'+col+'22;color:'+col+'">'+typeLabel+'</span>'+hunterBadge+
+      '<div class="gp-desc">'+o.desc+'</div>'+
+      '<div class="gp-seeds">'+o.seeds+'</div>'+
+      '<div class="gp-strains">Known strains: '+o.strains+'</div>';
+  }
+
+  // Resize canvas to fit container
+  function resizeCanvas() {
+    var maxW = Math.min(480, canvas.parentElement.offsetWidth - 32);
+    canvas.style.width = maxW + 'px';
+    canvas.style.height = maxW + 'px';
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  tick();
+})();
 </script>
 </body></html>`;
     res.writeHead(200,{"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
