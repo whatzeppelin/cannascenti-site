@@ -853,6 +853,14 @@ a{color:var(--bright-green);text-decoration:none}
 @media(max-width:760px){.d-stats{grid-template-columns:1fr;}.d-stat{padding:32px 24px;border-right:none;border-bottom:1px solid var(--border)}.d-stat:last-child{border-bottom:none}}
 /* features */
 .d-features{padding:90px 60px;max-width:1100px;margin:0 auto;border-bottom:1px solid var(--border)}
+/* bpro callout */
+.d-bpro{padding:80px 60px;border-bottom:1px solid var(--border)}
+.d-bpro-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap}
+.d-bpro-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,44px);color:var(--cream);font-style:italic;line-height:1.2;margin-bottom:16px;margin-top:10px}
+.d-bpro-desc{font-size:13px;color:rgba(242,234,216,0.45);line-height:1.8;max-width:540px;margin-bottom:28px}
+.d-bpro-tags{display:flex;flex-direction:column;gap:10px;flex-shrink:0}
+.d-bpro-tag{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(82,183,136,0.7);border:1px solid rgba(82,183,136,0.2);border-radius:2px;padding:6px 14px;white-space:nowrap}
+@media(max-width:760px){.d-bpro{padding:60px 24px}.d-bpro-tags{flex-direction:row;flex-wrap:wrap}}
 .d-section-label{font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:var(--bright-green);margin-bottom:14px}
 .d-section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,44px);color:var(--cream);font-style:italic;line-height:1.2;margin-bottom:56px}
 .d-feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
@@ -933,7 +941,7 @@ a{color:var(--bright-green);text-decoration:none}
     <div class="d-feature-card">
       <div class="d-feature-icon">✦</div>
       <h3 class="d-feature-heading">Budtender support tool</h3>
-      <p class="d-feature-desc">Give your staff a tablet-ready version of Mary Jane — our AI budtender. She handles the common questions so your team can focus on high-value conversations.</p>
+      <p class="d-feature-desc">Give your staff a tablet-ready cannabis intelligence tool. Customer intake, instant strain matching, glossary, talking points, and dosing reference. <a href="/budtender-pro" style="color:var(--bright-green)">Try it →</a></p>
     </div>
     <div class="d-feature-card">
       <div class="d-feature-icon">◐</div>
@@ -944,6 +952,24 @@ a{color:var(--bright-green);text-decoration:none}
       <div class="d-feature-icon">◇</div>
       <h3 class="d-feature-heading">Email capture & retention</h3>
       <p class="d-feature-desc">The quiz naturally captures emails from high-intent customers. We set up automated profile-matched follow-ups that drive repeat visits without spamming.</p>
+    </div>
+  </div>
+</div>
+
+<div class="d-bpro">
+  <div class="d-bpro-inner">
+    <div>
+      <div class="d-section-label">✦ Budtender Pro</div>
+      <h2 class="d-bpro-title">Staff-ready cannabis intelligence.<br>On any device.</h2>
+      <p class="d-bpro-desc">Your team deserves better than guesswork. Budtender Pro gives dispensary staff a professional-grade tool for customer intake, instant strain matching, a 25-term glossary, ready-to-use talking point scripts, and a complete dosing reference — all in one tablet-ready interface.</p>
+      <a href="/budtender-pro" class="d-hero-cta">Try Budtender Pro →</a>
+    </div>
+    <div class="d-bpro-tags">
+      <span class="d-bpro-tag">Customer Intake</span>
+      <span class="d-bpro-tag">Strain Matching</span>
+      <span class="d-bpro-tag">25-Term Glossary</span>
+      <span class="d-bpro-tag">8 Talking Point Scripts</span>
+      <span class="d-bpro-tag">Dosing Reference</span>
     </div>
   </div>
 </div>
@@ -991,6 +1017,580 @@ a{color:var(--bright-green);text-decoration:none}
   </div>
 </footer>
 
+</body>
+</html>`;
+    res.writeHead(200, { "Content-Type": "text/html", "Cache-Control": "public, max-age=3600" });
+    res.end(html);
+    return;
+  }
+
+  // ─── Budtender Pro page ───────────────────────────────────────────────────
+  if (req.method === "GET" && req.url === "/budtender-pro") {
+    const _SDB = [
+      { name:'Granddaddy Purple', type:'indica', thc:'17–23%', effects:['Relaxed','Sleepy','Euphoric','Happy','Hungry'], medical:['Insomnia','Pain','Stress','Muscle Spasms','Appetite Loss'], bestFor:'Nighttime wind-down, deep sleep, chronic pain relief' },
+      { name:'Northern Lights', type:'indica', thc:'16–21%', effects:['Relaxed','Sleepy','Happy','Euphoric','Hungry'], medical:['Insomnia','Pain','Stress','Anxiety','Depression'], bestFor:'Evening relaxation, deep sleep, stress relief' },
+      { name:'Hindu Kush', type:'indica', thc:'15–20%', effects:['Relaxed','Sleepy','Happy','Calm','Body High'], medical:['Pain','Stress','Anxiety','Nausea','Insomnia'], bestFor:'Hash making, deep body relaxation, pain management' },
+      { name:'Bubba Kush', type:'indica', thc:'15–22%', effects:['Relaxed','Sleepy','Happy','Euphoric','Hungry'], medical:['Insomnia','Pain','Stress','Anxiety','Muscle Spasms'], bestFor:'After-dinner relaxation, nighttime use, treating insomnia' },
+      { name:'Blueberry', type:'indica', thc:'15–20%', effects:['Relaxed','Happy','Euphoric','Sleepy','Creative'], medical:['Stress','Depression','Pain','Insomnia','Anxiety'], bestFor:'Mood elevation, creative evenings, stress relief' },
+      { name:'Afghani', type:'indica', thc:'15–21%', effects:['Relaxed','Sleepy','Euphoric','Happy','Body High'], medical:['Pain','Insomnia','Stress','Anxiety','Nausea'], bestFor:'Heavy relaxation, sleep, traditional hash production' },
+      { name:'Purple Punch', type:'indica', thc:'18–25%', effects:['Relaxed','Sleepy','Happy','Euphoric','Hungry'], medical:['Insomnia','Stress','Pain','Anxiety','Depression'], bestFor:'Dessert-time smoke, nighttime relaxation, sleep' },
+      { name:'Master Kush', type:'indica', thc:'16–20%', effects:['Relaxed','Happy','Sleepy','Euphoric','Focused'], medical:['Pain','Stress','Insomnia','Anxiety','Depression'], bestFor:'End of day relaxation, pain relief without heavy sedation' },
+      { name:'Sour Diesel', type:'sativa', thc:'19–25%', effects:['Energetic','Euphoric','Creative','Focused','Happy'], medical:['Depression','Anxiety','Stress','Pain','Fatigue'], bestFor:'Daytime energy, creative work, social situations' },
+      { name:'Jack Herer', type:'sativa', thc:'18–24%', effects:['Energetic','Creative','Happy','Focused','Euphoric'], medical:['Stress','Depression','Anxiety','Fatigue','ADHD'], bestFor:'Morning use, creative projects, daytime productivity' },
+      { name:'Green Crack', type:'sativa', thc:'17–24%', effects:['Energetic','Focused','Happy','Euphoric','Creative'], medical:['Fatigue','Depression','Stress','Anxiety','ADHD'], bestFor:'Morning wake-up, energy boost, creative work sessions' },
+      { name:'Durban Poison', type:'sativa', thc:'15–20%', effects:['Energetic','Euphoric','Creative','Focused','Happy'], medical:['Depression','Fatigue','Stress','Anxiety','ADHD'], bestFor:'Daytime productivity, outdoor activities, creative work' },
+      { name:'Super Silver Haze', type:'sativa', thc:'18–23%', effects:['Energetic','Euphoric','Creative','Happy','Focused'], medical:['Stress','Depression','Anxiety','Fatigue','Nausea'], bestFor:'Daytime elevation, creative flow, socializing' },
+      { name:'Strawberry Cough', type:'sativa', thc:'15–20%', effects:['Happy','Euphoric','Energetic','Uplifted','Creative'], medical:['Anxiety','Stress','Depression','ADHD','Fatigue'], bestFor:'Social settings, daytime mood lift, anxiety management' },
+      { name:'Ghost Train Haze', type:'sativa', thc:'20–28%', effects:['Euphoric','Creative','Energetic','Focused','Uplifted'], medical:['Depression','Fatigue','ADHD','Stress','Pain'], bestFor:'Experienced users, creative deep dives, daytime stimulation' },
+      { name:'Lemon Haze', type:'sativa', thc:'17–22%', effects:['Happy','Euphoric','Energetic','Uplifted','Creative'], medical:['Stress','Depression','Anxiety','Fatigue','Pain'], bestFor:'Morning use, mood elevation, outdoor activities' },
+      { name:'OG Kush', type:'hybrid', thc:'20–26%', effects:['Euphoric','Relaxed','Happy','Creative','Sleepy'], medical:['Stress','Anxiety','Depression','Pain','Insomnia'], bestFor:'Versatile all-day use, stress relief, the OG experience' },
+      { name:'Girl Scout Cookies', type:'hybrid', thc:'19–28%', effects:['Euphoric','Happy','Relaxed','Creative','Hungry'], medical:['Stress','Depression','Pain','Anxiety','Appetite Loss'], bestFor:'Creative evenings, mood elevation, appetite stimulation' },
+      { name:'Gelato', type:'hybrid', thc:'20–26%', effects:['Euphoric','Happy','Relaxed','Creative','Energetic'], medical:['Stress','Anxiety','Depression','Pain','Fatigue'], bestFor:'Evening socializing, creative projects, stress relief' },
+      { name:'Blue Dream', type:'hybrid', thc:'17–24%', effects:['Happy','Euphoric','Creative','Relaxed','Energetic'], medical:['Stress','Depression','Anxiety','Pain','Fatigue'], bestFor:'All-day use, beginners, social settings' },
+      { name:'Wedding Cake', type:'hybrid', thc:'22–27%', effects:['Relaxed','Euphoric','Happy','Hungry','Sleepy'], medical:['Stress','Pain','Depression','Anxiety','Appetite Loss'], bestFor:'Evening relaxation, celebrations, appetite stimulation' },
+      { name:'Runtz', type:'hybrid', thc:'19–29%', effects:['Euphoric','Happy','Relaxed','Uplifted','Hungry'], medical:['Stress','Anxiety','Depression','Pain','Appetite Loss'], bestFor:'Evening elevation, mood boost, dessert smoking' },
+      { name:'Pineapple Express', type:'hybrid', thc:'19–25%', effects:['Happy','Euphoric','Energetic','Creative','Relaxed'], medical:['Stress','Depression','Anxiety','Fatigue','Pain'], bestFor:'Daytime activities, creative sessions, social use' },
+      { name:'Zkittlez', type:'hybrid', thc:'15–23%', effects:['Happy','Relaxed','Euphoric','Uplifted','Focused'], medical:['Stress','Depression','Anxiety','Pain','Insomnia'], bestFor:'Evening relaxation, flavor chasers, mood elevation' }
+    ];
+    const _GLOSSARY = [
+      { term:'Terpene', cat:'Science', def:'Aromatic compounds produced by cannabis (and other plants) that determine smell, flavor, and contribute to effect. Over 150 terpenes identified in cannabis. Not just fragrance — they interact with cannabinoids to modify the high.' },
+      { term:'Cannabinoid', cat:'Science', def:'Chemical compounds that interact with the endocannabinoid system. THC and CBD are the most abundant, but over 100 cannabinoids exist in the plant — including CBG, CBN, CBC, and THCV.' },
+      { term:'Endocannabinoid System', cat:'Science', def:"The body's built-in receptor system that cannabis interacts with. CB1 receptors (brain, nervous system) and CB2 receptors (immune system, peripheral tissues). Also responds to endogenous cannabinoids the body produces naturally." },
+      { term:'Entourage Effect', cat:'Science', def:'The theory that cannabinoids and terpenes work synergistically — producing effects greater than any single compound alone. Why whole-flower products often feel different than isolated THC distillate.' },
+      { term:'Full Spectrum', cat:'Products', def:'A product containing the complete range of cannabinoids, terpenes, and other plant compounds. Preserves the entourage effect. Contrasted with broad spectrum (THC removed) and isolate (single compound).' },
+      { term:'Broad Spectrum', cat:'Products', def:'Contains multiple cannabinoids and terpenes but with THC removed or below 0.3%. Ideal for customers concerned about drug testing who still want the entourage effect.' },
+      { term:'Isolate', cat:'Products', def:'A single cannabinoid extracted and purified to near-100% purity. No terpenes, no other cannabinoids. Predictable dosing, no entourage effect, typically odorless and flavorless.' },
+      { term:'Decarboxylation', cat:'Science', def:'Heating cannabis to activate THCA → THC and CBDA → CBD. Raw cannabis is non-psychoactive. Required for edibles. Happens automatically when smoking or vaporizing.' },
+      { term:'COA', cat:'Products', def:'Certificate of Analysis — a lab report detailing cannabinoid potency, terpene profile, and test results for pesticides, microbials, heavy metals, and residual solvents. Every compliant product should have one.' },
+      { term:'Live Resin', cat:'Concentrates', def:'Concentrate made from fresh-frozen cannabis — material frozen immediately after harvest to preserve terpenes. Results in more flavorful, aromatic extracts than cured-plant concentrates.' },
+      { term:'Live Rosin', cat:'Concentrates', def:'Solventless concentrate made by pressing fresh-frozen ice water hash (bubble hash) under heat and pressure. No chemicals — just cold, water, heat, and pressure. The apex of current solventless craft.' },
+      { term:'Bubble Hash', cat:'Concentrates', def:'Solventless concentrate made by agitating cannabis in ice water and sieving through micron bags. Named for how it bubbles when heated. Quality rated 1–6 stars based on melt quality.' },
+      { term:'Distillate', cat:'Concentrates', def:'Highly refined cannabis oil, typically 90%+ THC or CBD, with most other compounds removed. Tasteless and odorless until terpenes are added back. Most common ingredient in cartridges.' },
+      { term:'Tincture', cat:'Products', def:'Cannabis extract in an alcohol or oil base, consumed sublingually (under the tongue) for faster absorption than edibles. Onset: 15–45 minutes. Allows precise dosing with a dropper.' },
+      { term:'Sublingual', cat:'Consumption', def:'Administration under the tongue. Cannabis absorbs directly into the bloodstream through mucous membranes, bypassing the digestive system. Faster onset than edibles, slower than inhalation.' },
+      { term:'11-Hydroxy-THC', cat:'Science', def:'The liver metabolite of THC formed during digestion of edibles. 2–3x more potent than inhaled THC and 4–6x longer-lasting. Why edibles feel different and stronger than smoking the same amount.' },
+      { term:'Bioavailability', cat:'Science', def:'The percentage of a consumed substance that reaches systemic circulation. Smoking: 30–40%. Vaping: 40–56%. Edibles: 6–20%. Sublingual: 20–35%. Lower bioavailability does not mean weaker effect — edibles convert to stronger metabolites.' },
+      { term:'Tolerance', cat:'Consumption', def:'Reduced response to cannabis with repeated use, primarily driven by CB1 receptor downregulation. Most users report significant tolerance reduction after a 2-week abstinence period.' },
+      { term:'Microdose', cat:'Consumption', def:'Consuming a sub-perceptual or very low amount of cannabis (typically 1–2.5mg THC) to achieve therapeutic benefits without significant intoxication. Popular for daytime productivity and anxiety management.' },
+      { term:'Hybrid', cat:'Strains', def:"A cannabis strain with genetics from both indica and sativa lineages. Most commercial cannabis today is hybrid. The indica/sativa/hybrid classification is increasingly understood as a simplification — terpene profile is more predictive of effect." },
+      { term:'Phenotype', cat:'Strains', def:"The physical expression of a strain's genetics — influenced by environment, growing conditions, and cultivation techniques. Two plants from the same seeds can express different phenotypes." },
+      { term:'Trichome', cat:'Science', def:'The crystalline resin glands covering cannabis flowers. The primary site of cannabinoid and terpene production. Trichome density and quality is a key indicator of flower quality and potency.' },
+      { term:'Defoliation', cat:'Cultivation', def:'The selective removal of fan leaves during cultivation to improve light penetration and airflow to lower bud sites. A cultivation technique that can improve yield and quality.' },
+      { term:'Landrace', cat:'Strains', def:'A cannabis strain indigenous to a specific geographic region, adapted to local climate and developed over centuries with minimal human selective breeding. Examples: Hindu Kush, Durban Poison, Thai.' },
+      { term:'Phytocannabinoid', cat:'Science', def:'A cannabinoid produced by the cannabis plant, as distinct from endocannabinoids (produced by the body) and synthetic cannabinoids. THC, CBD, CBG, CBN, and CBC are all phytocannabinoids.' },
+      { term:'Terp Profile', cat:'Products', def:'Short for terpene profile — the complete breakdown of which terpenes are present in a product and at what concentrations. Increasingly considered more predictive of effect than indica/sativa/hybrid classification.' }
+    ];
+    const _SCRIPTS = [
+      { scenario:'New Customer', title:'First-time buyer intro', body:'"Welcome! Have you ever used cannabis before? No worries at all — let\'s figure out what you\'re looking for. Are you mostly looking to relax, help with sleep, manage some pain, or just see what all the fuss is about? Once I know what you\'re hoping for, I can point you to exactly the right thing and tell you exactly what to expect."', note:"Key: Ask about goals first, not products. Never lead with THC percentages for first-timers. Focus on what they want to feel, not what's potent." },
+      { scenario:'Common Objection', title:'"I tried it once and got too high"', body:'"That\'s actually really common, and it\'s almost always a dosing issue — not the cannabis itself. What happened is that you probably got more THC than your system was ready for. The good news: that\'s completely avoidable. There are products specifically designed to give you a gentle, controlled experience — we can start much lower and you\'ll feel great without any of that overwhelm."', note:'Never dismiss their experience. Validate it, explain why it happened, and offer a controlled solution. CBD:THC ratios (1:1 or 2:1) are excellent here.' },
+      { scenario:'Explaining Terpenes', title:'Why two strains with the same THC feel different', body:'"The THC percentage only tells you the volume of the main active compound — it\'s like knowing the alcohol content of wine but nothing about whether it\'s a pinot noir or a chardonnay. What actually shapes the experience is terpenes — the aromatic compounds that give each strain its personality. This one has high myrcene, which is relaxing and sedating. This other one has high limonene, which is uplifting and mood-boosting. Same THC, completely different experience."', note:"Use analogies — wine, beer, coffee — anything that connects to the customer's existing experience. Avoid jargon until after you've made the analogy." },
+      { scenario:'Edibles Education', title:'Setting expectations for edibles', body:'"Edibles work differently than flower or vape — they go through your digestive system and liver, which converts THC into a more potent, longer-lasting form. Onset is 30 minutes to 2 hours — everyone is different. The golden rule is: start with 5mg, wait the full 2 hours before you consider taking more. Most bad experiences with edibles come from re-dosing too early because it didn\'t work. I promise you — it worked. It just needed more time."', note:'Always set the 2-hour expectation explicitly. This one piece of information prevents most bad edible experiences.' },
+      { scenario:'Indica vs Sativa', title:'The modern understanding', body:'"The indica/sativa thing is a good starting point, but it\'s actually outdated science — most cannabis today is hybrid anyway. What actually predicts how you\'ll feel is the terpene profile. That said: if someone tells me they want energy and focus, I\'ll still lean sativa-dominant. If they want deep relaxation and sleep, I\'ll lean indica. It\'s a helpful shorthand even if it\'s not the whole picture."', note:"Don't overcorrect by dismissing indica/sativa entirely — it upsets customers who are used to it. Validate the framework, then add nuance." },
+      { scenario:'Tolerance Talk', title:'"It doesn\'t work as well anymore"', body:'"What you\'re describing is tolerance — your CB1 receptors have adapted to regular cannabis exposure. The best fix is a tolerance break: even 2 weeks without cannabis can dramatically reset your response. When you come back, start lower than you\'re used to. If a T-break isn\'t an option right now, we can look at some options with a different cannabinoid profile — CBG and THCV both interact differently with your endocannabinoid system and some people find they cut through tolerance."', note:"Tolerance breaks are the #1 most effective solution. Always mention it. CBG or THCV products are a good secondary recommendation for customers who can't or won't take a break." },
+      { scenario:'Medical Customer', title:'Navigating medical questions professionally', body:'"I want to be upfront: I\'m a cannabis specialist, not a medical professional, so I can\'t tell you what will treat or cure anything. What I can do is share what we\'ve heard from customers in similar situations and what the research shows. For sleep, a lot of customers do really well with high-CBN or indica-dominant products. For pain, people often report success with balanced CBD:THC ratios. Ultimately, working with a cannabis-friendly doctor is the best path if you\'re managing something serious."', note:"Never make medical claims. Always deflect to a physician for serious conditions. You can share anecdotal customer experience and general research without making treatment claims." },
+      { scenario:'Drug Testing', title:'"Will this show up on a drug test?"', body:'"Standard drug tests look for THC metabolites — they can\'t distinguish between recreational and medical use, and they don\'t test for CBD. Any product with THC, even in a 1:1 ratio, can trigger a positive. The only products I can confidently say are unlikely to trigger a test are CBD isolate products with absolutely zero THC. Even broad-spectrum products with trace amounts can occasionally show up. If your job tests, I\'d really recommend only CBD isolate or asking your HR department for clarity on their threshold."', note:"Be honest here — don't sell a THC product to someone who will get fired over a positive test. CBD isolate products are the only safe recommendation for anyone with strict testing." }
+    ];
+    const _DOSE = [
+      { title:'Edibles', sub:'Onset: 30 min – 2 hrs · Duration: 4–8 hrs', color:'linear-gradient(90deg,#C9973A,rgba(201,151,58,0.3))', rows:[{label:'Microdose',val:'1–2.5mg THC'},{label:'Low (beginner)',val:'2.5–5mg THC'},{label:'Moderate',val:'5–15mg THC'},{label:'High',val:'15–30mg THC'},{label:'Very high',val:'30mg+ THC'},{label:'Wait before re-dose',val:'2 full hours'},{label:'11-OH-THC potency',val:'2–3x inhaled THC'}] },
+      { title:'Flower / Vape', sub:'Onset: 5–15 min · Duration: 1–3 hrs', color:'linear-gradient(90deg,#74c69d,rgba(82,183,136,0.3))', rows:[{label:'First time',val:'1 small hit, wait 15 min'},{label:'Occasional user',val:'1–2 hits'},{label:'Regular user',val:'2–4 hits'},{label:'Heavy user',val:'As needed'},{label:'Vape bioavailability',val:'40–56%'},{label:'Onset peak',val:'~30 min post-use'},{label:'CBD counteracts THC?',val:'Yes — 1:1 ratio reduces anxiety'}] },
+      { title:'Tinctures / Sublingual', sub:'Onset: 15–45 min · Duration: 2–4 hrs', color:'linear-gradient(90deg,#7b8ff5,rgba(123,143,245,0.3))', rows:[{label:'Starting dose',val:'0.25ml (quarter dropper)'},{label:'Standard dose',val:'0.5–1ml (half–1 dropper)'},{label:'Hold under tongue',val:'60–90 seconds'},{label:'If swallowed',val:'Acts like edible — slower, stronger'},{label:'Onset',val:'15–45 min sublingual'},{label:'Shelf life',val:'1–5 years (alcohol-based)'},{label:'Best carrier',val:'MCT or coconut oil'}] },
+      { title:'Concentrates / Dabs', sub:'Onset: Immediate · Duration: 2–4 hrs', color:'linear-gradient(90deg,#9b81e4,rgba(155,129,228,0.3))', rows:[{label:'Not for beginners',val:'High tolerance needed'},{label:'Typical potency',val:'60–90%+ THC'},{label:'Dab temp (low)',val:'450–550°F / 232–288°C'},{label:'Dab temp (high)',val:'600–750°F / 315–400°C'},{label:'Live rosin vs distillate',val:'Rosin: full spectrum / Dist: refined'},{label:'Best for tolerance?',val:'Use sparingly — builds fast'},{label:'Full melt hash temp',val:'~450°F ideal'}] }
+    ];
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Budtender Pro — Cannascenti</title>
+<meta name="description" content="Professional cannabis intelligence for dispensary staff. Customer intake, strain matching, glossary, talking points, and dosing reference — all in one tool.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Playfair+Display:ital,wght@1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --dark:#060f0a;--green:#52b788;--bright-green:#74c69d;--light-green:#74C69D;
+  --cream:#f2ead8;--gold:#C9973A;--warm-black:#081C15;--card-bg:rgba(255,255,255,0.02);
+  --border:rgba(255,255,255,0.07);
+}
+body{background:var(--dark);color:var(--cream);font-family:'Montserrat',sans-serif;line-height:1.7;overflow-x:hidden}
+a{color:var(--bright-green);text-decoration:none}
+
+/* nav */
+.bp-nav{display:flex;align-items:center;justify-content:space-between;padding:24px 60px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(6,15,10,0.92);backdrop-filter:blur(12px);z-index:100}
+.bp-nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream);letter-spacing:0.08em}
+.bp-nav-links{display:flex;gap:28px;align-items:center}
+.bp-nav-back{font-size:11px;color:rgba(242,234,216,0.4);letter-spacing:0.1em;text-transform:uppercase;transition:color .2s}
+.bp-nav-back:hover{color:var(--bright-green)}
+@media(max-width:600px){.bp-nav{padding:20px 24px}.bp-nav-links{gap:16px}}
+
+/* hero */
+.bp-hero{padding:80px 60px 60px;max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap}
+.section-label{font-size:10px;font-weight:500;letter-spacing:0.65em;text-transform:uppercase;color:var(--bright-green);margin-bottom:16px;display:flex;align-items:center;gap:14px}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,60px);font-weight:300;color:var(--cream);line-height:1.15}
+.section-title em{font-style:italic;color:var(--bright-green)}
+.bp-hero-desc{color:rgba(245,240,225,0.6);font-size:16px;max-width:640px;line-height:1.8;margin-top:20px}
+.bpro-badge{display:flex;flex-direction:column;align-items:center;gap:8px;background:rgba(82,183,136,0.08);border:1px solid rgba(82,183,136,0.2);border-radius:6px;padding:20px 28px;text-align:center;flex-shrink:0;margin-top:12px}
+.bpro-badge-icon{font-size:32px}
+.bpro-badge-text{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--bright-green)}
+@media(max-width:600px){.bp-hero{padding:60px 24px 40px}}
+
+/* tool wrapper */
+.bp-tool{padding:0 60px 80px;max-width:1280px;margin:0 auto}
+@media(max-width:600px){.bp-tool{padding:0 20px 60px}}
+
+/* tabs */
+.bpro-tabs{display:flex;gap:4px;border-bottom:2px solid rgba(255,255,255,0.08);overflow-x:auto;-webkit-overflow-scrolling:touch}
+.bpro-tab{background:transparent;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;padding:14px 22px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,240,225,0.4);cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:8px;flex-shrink:0}
+.bpro-tab:hover{color:rgba(245,240,225,0.7)}
+.bpro-tab.active{color:var(--bright-green);border-bottom-color:var(--bright-green)}
+.bpro-tab-icon{font-size:15px}
+.bpro-panel{padding:40px 0 0;animation:fadeSlideUp 0.25s ease}
+.bpro-panel-hidden{display:none}
+@keyframes fadeSlideUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* Intake */
+.bpro-intake-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.bpro-form-title{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--cream);margin-bottom:28px}
+.bpro-field{margin-bottom:24px}
+.bpro-field-label{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(245,240,225,0.5);margin-bottom:10px;display:block}
+.bpro-field-hint{font-weight:400;letter-spacing:0;text-transform:none;color:rgba(245,240,225,0.3);font-size:10px}
+.bpro-chips{display:flex;flex-wrap:wrap;gap:7px}
+.bpro-chip{background:transparent;border:1px solid rgba(255,255,255,0.12);color:rgba(245,240,225,0.55);padding:7px 16px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.08em;cursor:pointer;border-radius:20px;transition:all 0.18s}
+.bpro-chip:hover{border-color:rgba(82,183,136,0.5);color:var(--bright-green)}
+.bpro-chip.selected{background:rgba(82,183,136,0.15);border-color:var(--bright-green);color:var(--bright-green)}
+.bpro-recommend-btn{background:var(--bright-green);border:none;color:var(--warm-black);padding:14px 32px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all 0.2s;margin-top:8px;width:100%}
+.bpro-recommend-btn:hover{background:#8fdbb8}
+.bpro-rec-panel{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:32px;min-height:480px}
+.bpro-rec-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;height:400px;text-align:center;gap:16px}
+.bpro-rec-placeholder-icon{font-size:48px;opacity:0.3}
+.bpro-rec-placeholder p{color:rgba(245,240,225,0.35);font-size:14px;line-height:1.7;max-width:280px}
+.bpro-rec-placeholder strong{color:rgba(245,240,225,0.5)}
+.bpro-rec-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--cream);margin-bottom:6px}
+.bpro-rec-summary{font-size:13px;color:rgba(245,240,225,0.5);margin-bottom:24px;line-height:1.6}
+.bpro-rec-strain{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:18px;margin-bottom:10px;position:relative;overflow:hidden}
+.bpro-rec-strain::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px}
+.bpro-rec-s-indica::before{background:#9b81e4}
+.bpro-rec-s-sativa::before{background:#f0a85c}
+.bpro-rec-s-hybrid::before{background:var(--bright-green)}
+.bpro-rec-strain-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;gap:10px}
+.bpro-rec-strain-name{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream);font-weight:600}
+.bpro-rec-strain-type{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:3px 10px;border-radius:20px}
+.bpro-type-indica{color:#9b81e4;background:rgba(123,97,196,0.15);border:1px solid rgba(123,97,196,0.3)}
+.bpro-type-sativa{color:#f0a85c;background:rgba(232,144,60,0.15);border:1px solid rgba(232,144,60,0.3)}
+.bpro-type-hybrid{color:var(--bright-green);background:rgba(82,183,136,0.12);border:1px solid rgba(82,183,136,0.25)}
+.bpro-rec-strain-why{font-size:12px;color:rgba(245,240,225,0.55);line-height:1.65;margin-bottom:8px}
+.bpro-rec-strain-effects{display:flex;flex-wrap:wrap;gap:5px}
+.bpro-rec-eff{font-size:10px;font-family:'Montserrat',sans-serif;padding:2px 8px;border-radius:20px;background:rgba(255,255,255,0.06);color:rgba(245,240,225,0.55)}
+.bpro-rec-script{margin-top:20px;background:rgba(82,183,136,0.06);border:1px solid rgba(82,183,136,0.15);border-left:3px solid var(--bright-green);border-radius:0 4px 4px 0;padding:14px 16px}
+.bpro-rec-script-label{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--bright-green);margin-bottom:6px}
+.bpro-rec-script p{font-size:12px;color:rgba(245,240,225,0.65);line-height:1.7;margin:0;font-style:italic}
+.bpro-rec-warning{margin-top:16px;background:rgba(232,144,60,0.08);border:1px solid rgba(232,144,60,0.2);border-radius:4px;padding:12px 16px;font-size:12px;color:rgba(240,168,92,0.8);line-height:1.65}
+
+/* Glossary */
+.bpro-glossary-search-row{display:flex;flex-direction:column;gap:14px;margin-bottom:28px}
+.bpro-glossary-input{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:3px;padding:12px 18px;color:var(--cream);font-family:'Montserrat',sans-serif;font-size:14px;outline:none;max-width:440px;transition:border-color 0.2s}
+.bpro-glossary-input:focus{border-color:var(--bright-green)}
+.bpro-gloss-cats{display:flex;flex-wrap:wrap;gap:7px}
+.bpro-gloss-cat{background:transparent;border:1px solid rgba(255,255,255,0.1);color:rgba(245,240,225,0.45);padding:5px 14px;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all 0.18s}
+.bpro-gloss-cat:hover,.bpro-gloss-cat.active{border-color:var(--gold);color:var(--gold);background:rgba(201,151,58,0.08)}
+.bpro-glossary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.bpro-gloss-card{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);border-radius:4px;padding:18px 16px;transition:background 0.2s}
+.bpro-gloss-card:hover{background:rgba(201,151,58,0.04)}
+.bpro-gloss-term{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--cream);margin-bottom:4px}
+.bpro-gloss-cat-tag{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.bpro-gloss-def{font-size:12px;color:rgba(245,240,225,0.55);line-height:1.7}
+
+/* Scripts */
+.bpro-scripts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.bpro-script-card{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:26px 22px;transition:background 0.2s}
+.bpro-script-card:hover{background:rgba(82,183,136,0.04)}
+.bpro-script-scenario{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--bright-green);margin-bottom:8px}
+.bpro-script-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--cream);margin-bottom:14px}
+.bpro-script-body{font-size:13px;color:rgba(245,240,225,0.6);line-height:1.8;font-style:italic;border-left:2px solid rgba(82,183,136,0.3);padding-left:14px;margin-bottom:12px}
+.bpro-script-note{font-size:11px;color:rgba(245,240,225,0.35);line-height:1.65}
+
+/* Dosing */
+.bpro-dosing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.bpro-dose-card{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:24px 20px;position:relative;overflow:hidden}
+.bpro-dose-card h3{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--cream);margin-bottom:4px}
+.bpro-dose-sub{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:14px}
+.bpro-dose-rows{display:flex;flex-direction:column;gap:8px}
+.bpro-dose-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:12px}
+.bpro-dose-row:last-child{border-bottom:none}
+.bpro-dose-row-label{color:rgba(245,240,225,0.5);font-family:'Montserrat',sans-serif;font-size:11px}
+.bpro-dose-row-val{color:var(--cream);font-weight:600;font-family:'Montserrat',sans-serif;font-size:11px;text-align:right}
+
+/* Consulting / CannaQuant */
+.bp-consulting{padding:80px 60px;border-top:1px solid rgba(82,183,136,0.1)}
+.bp-consulting-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.consulting-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,50px);font-weight:300;line-height:1.15;color:var(--cream);margin-bottom:24px;margin-top:20px}
+.consulting-title em{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;color:var(--light-green)}
+.consulting-desc{font-size:14px;line-height:1.9;color:rgba(245,240,225,0.55);margin-bottom:40px}
+.consulting-stats{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:40px}
+.consulting-stat-num{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--bright-green);line-height:1;margin-bottom:6px}
+.consulting-stat-label{font-size:11px;letter-spacing:0.12em;color:rgba(245,240,225,0.45);text-transform:uppercase}
+.btn-primary{font-size:12px;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:var(--warm-black);background:var(--bright-green);padding:16px 36px;border-radius:2px;text-decoration:none;display:inline-block;transition:background 0.2s}
+.btn-primary:hover{background:var(--light-green);color:var(--warm-black)}
+.consulting-services{display:flex;flex-direction:column;gap:16px}
+.consulting-service{background:rgba(255,255,255,0.02);border:1px solid rgba(82,183,136,0.1);border-radius:6px;padding:28px 32px;display:flex;align-items:flex-start;gap:20px;transition:border-color 0.3s}
+.consulting-service:hover{border-color:rgba(82,183,136,0.3)}
+.consulting-service-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.consulting-service-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream);margin-bottom:6px}
+.consulting-service-desc{font-size:12px;line-height:1.7;color:rgba(245,240,225,0.5)}
+.consulting-service-price{font-size:11px;letter-spacing:0.1em;color:var(--gold);margin-top:10px;opacity:0.8}
+
+/* footer */
+.bp-footer{padding:36px 60px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid var(--border)}
+.bp-footer-copy{font-size:12px;color:rgba(242,234,216,0.25)}
+.bp-footer-links{display:flex;gap:24px}
+.bp-footer-links a{font-size:12px;color:rgba(242,234,216,0.3);transition:color .2s}
+.bp-footer-links a:hover{color:var(--bright-green)}
+
+/* responsive */
+@media(max-width:1100px){.bpro-intake-grid{grid-template-columns:1fr}.bpro-glossary-grid{grid-template-columns:repeat(2,1fr)}.bpro-dosing-grid{grid-template-columns:1fr}.bp-consulting-inner{grid-template-columns:1fr;gap:48px}}
+@media(max-width:768px){.bpro-scripts-grid{grid-template-columns:1fr}.bpro-glossary-grid{grid-template-columns:1fr 1fr}.bpro-rec-panel{padding:20px;min-height:auto}.bp-consulting{padding:60px 24px}}
+@media(max-width:480px){.bpro-glossary-grid{grid-template-columns:1fr}.bpro-dosing-grid{grid-template-columns:1fr}.bpro-tab{font-size:9px;padding:10px}.bp-footer{padding:28px 24px;flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+
+<nav class="bp-nav">
+  <span class="bp-nav-logo">Cannascenti</span>
+  <div class="bp-nav-links">
+    <a href="/for-dispensaries" class="bp-nav-back">← For Dispensaries</a>
+    <a href="/" class="bp-nav-back">Home</a>
+  </div>
+</nav>
+
+<div class="bp-hero">
+  <div>
+    <div class="section-label">✦ Budtender Pro</div>
+    <div class="section-title">The tool built for <em>the floor.</em></div>
+    <p class="bp-hero-desc">Fast, practical cannabis intelligence for dispensary professionals. Customer intake, instant strain matching, terminology reference, and ready-to-use customer scripts — everything you need to give exceptional service on every transaction.</p>
+  </div>
+  <div class="bpro-badge">
+    <span class="bpro-badge-icon">🎓</span>
+    <span class="bpro-badge-text">Professional Reference</span>
+  </div>
+</div>
+
+<div class="bp-tool">
+  <div class="bpro-tabs">
+    <button class="bpro-tab active" onclick="bproTab('intake')">
+      <span class="bpro-tab-icon">🧑‍💼</span>Customer Intake
+    </button>
+    <button class="bpro-tab" onclick="bproTab('glossary')">
+      <span class="bpro-tab-icon">📖</span>Glossary
+    </button>
+    <button class="bpro-tab" onclick="bproTab('scripts')">
+      <span class="bpro-tab-icon">💬</span>Talking Points
+    </button>
+    <button class="bpro-tab" onclick="bproTab('dosing')">
+      <span class="bpro-tab-icon">⚖️</span>Dosing Quick Ref
+    </button>
+  </div>
+
+  <!-- INTAKE PANEL -->
+  <div class="bpro-panel" id="bproIntake">
+    <div class="bpro-intake-grid">
+      <div class="bpro-intake-form">
+        <div class="bpro-form-title">Customer Profile</div>
+        <div class="bpro-field">
+          <div class="bpro-field-label">Experience Level</div>
+          <div class="bpro-chips" id="bproExpChips">
+            <button class="bpro-chip" onclick="bproSelect('exp','first')">First Time</button>
+            <button class="bpro-chip" onclick="bproSelect('exp','occasional')">Occasional</button>
+            <button class="bpro-chip" onclick="bproSelect('exp','regular')">Regular</button>
+            <button class="bpro-chip" onclick="bproSelect('exp','heavy')">Heavy User</button>
+          </div>
+        </div>
+        <div class="bpro-field">
+          <div class="bpro-field-label">Primary Goal <span class="bpro-field-hint">(select up to 2)</span></div>
+          <div class="bpro-chips" id="bproGoalChips">
+            <button class="bpro-chip" onclick="bproMulti('goal','sleep')">😴 Sleep</button>
+            <button class="bpro-chip" onclick="bproMulti('goal','pain')">💊 Pain Relief</button>
+            <button class="bpro-chip" onclick="bproMulti('goal','anxiety')">🧘 Anxiety</button>
+            <button class="bpro-chip" onclick="bproMulti('goal','energy')">⚡ Energy</button>
+            <button class="bpro-chip" onclick="bproMulti('goal','creativity')">🎨 Creativity</button>
+            <button class="bpro-chip" onclick="bproMulti('goal','mood')">😊 Mood Lift</button>
+            <button class="bpro-chip" onclick="bproMulti('goal','appetite')">🍽️ Appetite</button>
+            <button class="bpro-chip" onclick="bproMulti('goal','focus')">🎯 Focus</button>
+            <button class="bpro-chip" onclick="bproMulti('goal','social')">🎉 Social</button>
+            <button class="bpro-chip" onclick="bproMulti('goal','relax')">🛋️ Relax</button>
+          </div>
+        </div>
+        <div class="bpro-field">
+          <div class="bpro-field-label">Time of Use</div>
+          <div class="bpro-chips" id="bproTimeChips">
+            <button class="bpro-chip" onclick="bproSelect('time','morning')">Morning</button>
+            <button class="bpro-chip" onclick="bproSelect('time','afternoon')">Afternoon</button>
+            <button class="bpro-chip" onclick="bproSelect('time','evening')">Evening</button>
+            <button class="bpro-chip" onclick="bproSelect('time','nighttime')">Nighttime</button>
+          </div>
+        </div>
+        <div class="bpro-field">
+          <div class="bpro-field-label">Consumption Preference</div>
+          <div class="bpro-chips" id="bproConsChips">
+            <button class="bpro-chip" onclick="bproSelect('cons','flower')">🌿 Flower</button>
+            <button class="bpro-chip" onclick="bproSelect('cons','vape')">💨 Vape</button>
+            <button class="bpro-chip" onclick="bproSelect('cons','edible')">🍪 Edible</button>
+            <button class="bpro-chip" onclick="bproSelect('cons','capsule')">💊 Capsule</button>
+            <button class="bpro-chip" onclick="bproSelect('cons','concentrate')">💎 Concentrate</button>
+            <button class="bpro-chip" onclick="bproSelect('cons','any')">No Preference</button>
+          </div>
+        </div>
+        <div class="bpro-field">
+          <div class="bpro-field-label">Any Concerns?</div>
+          <div class="bpro-chips" id="bproConcernChips">
+            <button class="bpro-chip" onclick="bproMulti('concern','anxious')">Anxiety-prone</button>
+            <button class="bpro-chip" onclick="bproMulti('concern','sensitive')">THC sensitive</button>
+            <button class="bpro-chip" onclick="bproMulti('concern','medication')">On medication</button>
+            <button class="bpro-chip" onclick="bproMulti('concern','driving')">Driving later</button>
+            <button class="bpro-chip" onclick="bproMulti('concern','none')">None</button>
+          </div>
+        </div>
+        <button class="bpro-recommend-btn" onclick="bproGenRec()">Generate Recommendation →</button>
+      </div>
+      <div class="bpro-rec-panel" id="bproRecPanel">
+        <div class="bpro-rec-placeholder">
+          <div class="bpro-rec-placeholder-icon">🌿</div>
+          <p>Fill in the customer profile and hit <strong>Generate Recommendation</strong> to see matched strains and talking points.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GLOSSARY PANEL -->
+  <div class="bpro-panel bpro-panel-hidden" id="bproGlossary">
+    <div class="bpro-glossary-search-row">
+      <input class="bpro-glossary-input" id="bproGlossSearch" type="text" placeholder="Search terms..." oninput="bproFilterGloss()" />
+      <div class="bpro-gloss-cats" id="bproGlossCats"></div>
+    </div>
+    <div class="bpro-glossary-grid" id="bproGlossGrid"></div>
+  </div>
+
+  <!-- SCRIPTS PANEL -->
+  <div class="bpro-panel bpro-panel-hidden" id="bproScripts">
+    <div class="bpro-scripts-grid" id="bproScriptsGrid"></div>
+  </div>
+
+  <!-- DOSING PANEL -->
+  <div class="bpro-panel bpro-panel-hidden" id="bproDosing">
+    <div class="bpro-dosing-grid" id="bproDosingGrid"></div>
+  </div>
+</div>
+
+<!-- CannaQuant -->
+<div class="bp-consulting">
+  <div class="bp-consulting-inner">
+    <div>
+      <div class="section-label">✦ CannaQuant</div>
+      <div class="consulting-title">Your personal <em>CannaQuant.</em> Your budtender for life.</div>
+      <p class="consulting-desc">Think of me as your cannabis financial advisor — except instead of money, we're talking about your experience, your body, your goals, and your plant. Whether you're brand new or a seasoned connoisseur, I meet you exactly where you are. Real conversations. Real answers. No guesswork.</p>
+      <div class="consulting-stats">
+        <div><div class="consulting-stat-num">10+</div><div class="consulting-stat-label">Years on the floor</div></div>
+        <div><div class="consulting-stat-num">1000s</div><div class="consulting-stat-label">Customers helped</div></div>
+        <div><div class="consulting-stat-num">500+</div><div class="consulting-stat-label">Strains studied</div></div>
+        <div><div class="consulting-stat-num">100%</div><div class="consulting-stat-label">Real experience</div></div>
+      </div>
+      <a href="https://calendly.com/cannascenti" target="_blank" class="btn-primary">Book Your CannaQuant Session</a>
+    </div>
+    <div class="consulting-services">
+      <div class="consulting-service">
+        <div class="consulting-service-icon">🌿</div>
+        <div>
+          <div class="consulting-service-title">Personal Consumer Session</div>
+          <p class="consulting-service-desc">New to cannabis or just not getting the results you want? Tell me your goals, your lifestyle, your experience — I'll build you a personalized cannabis plan covering strains, products, dosing, and consumption methods.</p>
+          <div class="consulting-service-price">1-on-1 · 60 minutes · Zoom or phone</div>
+        </div>
+      </div>
+      <div class="consulting-service">
+        <div class="consulting-service-icon">🏪</div>
+        <div>
+          <div class="consulting-service-title">Dispensary & Staff Training</div>
+          <p class="consulting-service-desc">Floor strategy, product curation, and comprehensive staff training on strains, terpenes, and customer conversations — built by someone who has actually managed a dispensary.</p>
+          <div class="consulting-service-price">Custom packages · In-person or virtual</div>
+        </div>
+      </div>
+      <div class="consulting-service">
+        <div class="consulting-service-icon">💼</div>
+        <div>
+          <div class="consulting-service-title">Cannabis Business Strategy</div>
+          <p class="consulting-service-desc">Launching a brand, entering the market, refining your positioning? Deep industry knowledge meets real commercial thinking. From startup to scale.</p>
+          <div class="consulting-service-price">Project-based · Initial call complimentary</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="bp-footer">
+  <span class="bp-footer-copy">© 2026 Cannascenti. Must be 21+ where applicable.</span>
+  <div class="bp-footer-links">
+    <a href="/">Home</a>
+    <a href="/for-dispensaries">For Dispensaries</a>
+    <a href="/privacy">Privacy</a>
+  </div>
+</footer>
+
+<script>
+var SDB_DATA = ${JSON.stringify(_SDB)};
+var BPRO_GLOSSARY = ${JSON.stringify(_GLOSSARY)};
+var BPRO_SCRIPTS = ${JSON.stringify(_SCRIPTS)};
+var BPRO_DOSE_CARDS = ${JSON.stringify(_DOSE)};
+
+var bproState = { exp: null, goal: [], time: null, cons: null, concern: [] };
+
+function bproTab(tab) {
+  var tabs = ['intake','glossary','scripts','dosing'];
+  document.querySelectorAll('.bpro-tab').forEach(function(t){t.classList.remove('active');});
+  tabs.forEach(function(t, i) {
+    var id = 'bpro' + t.charAt(0).toUpperCase() + t.slice(1);
+    document.getElementById(id).classList.toggle('bpro-panel-hidden', t !== tab);
+    document.querySelectorAll('.bpro-tab')[i].classList.toggle('active', t === tab);
+  });
+}
+
+function bproSelect(field, val) {
+  bproState[field] = val;
+  var chips = document.querySelectorAll('#bpro' + field.charAt(0).toUpperCase() + field.slice(1) + 'Chips .bpro-chip');
+  chips.forEach(function(c){c.classList.remove('selected');});
+  event.currentTarget.classList.add('selected');
+}
+
+function bproMulti(field, val) {
+  var arr = bproState[field];
+  var btn = event.currentTarget;
+  if (arr.indexOf(val) > -1) {
+    bproState[field] = arr.filter(function(v){return v !== val;});
+    btn.classList.remove('selected');
+  } else {
+    var max = field === 'goal' ? 2 : 5;
+    if (arr.length < max) { bproState[field].push(val); btn.classList.add('selected'); }
+  }
+}
+
+function bproGenRec() {
+  var exp = bproState.exp, goal = bproState.goal, time = bproState.time, concern = bproState.concern;
+  var panel = document.getElementById('bproRecPanel');
+  var scored = SDB_DATA.map(function(s) {
+    var score = 0;
+    var eff = s.effects.map(function(e){return e.toLowerCase();});
+    if (goal.indexOf('sleep') > -1 && (eff.indexOf('sleepy') > -1 || s.type==='indica')) score += 10;
+    if (goal.indexOf('pain') > -1 && s.medical.some(function(m){return m.toLowerCase().indexOf('pain') > -1;})) score += 8;
+    if (goal.indexOf('anxiety') > -1 && s.medical.some(function(m){return m.toLowerCase().indexOf('anxiety') > -1;})) score += 8;
+    if (goal.indexOf('energy') > -1 && (s.type==='sativa' || eff.indexOf('energetic') > -1)) score += 8;
+    if (goal.indexOf('creativity') > -1 && eff.indexOf('creative') > -1) score += 8;
+    if (goal.indexOf('mood') > -1 && (eff.indexOf('happy') > -1 || eff.indexOf('euphoric') > -1)) score += 6;
+    if (goal.indexOf('appetite') > -1 && eff.indexOf('hungry') > -1) score += 10;
+    if (goal.indexOf('focus') > -1 && eff.indexOf('focused') > -1) score += 8;
+    if (goal.indexOf('social') > -1 && (eff.indexOf('happy') > -1 || eff.indexOf('talkative') > -1 || eff.indexOf('euphoric') > -1)) score += 6;
+    if (goal.indexOf('relax') > -1 && (eff.indexOf('relaxed') > -1 || s.type==='indica')) score += 8;
+    if (time==='morning' && s.type==='sativa') score += 5;
+    if (time==='afternoon' && s.type==='sativa') score += 3;
+    if (time==='afternoon' && s.type==='hybrid') score += 4;
+    if (time==='evening' && s.type==='hybrid') score += 5;
+    if (time==='nighttime' && (s.type==='indica' || eff.indexOf('sleepy') > -1)) score += 6;
+    if (exp==='first') {
+      if (s.type==='hybrid') score += 4;
+      if (s.name==='Blue Dream' || s.name==='Strawberry Cough') score += 6;
+      if (s.thc.indexOf('17') > -1 || s.thc.indexOf('15') > -1 || s.thc.indexOf('16') > -1) score += 3;
+    }
+    if (exp==='heavy') {
+      if (s.thc.indexOf('25') > -1 || s.thc.indexOf('26') > -1 || s.thc.indexOf('27') > -1 || s.thc.indexOf('28') > -1 || s.thc.indexOf('29') > -1) score += 5;
+      if (s.name==='Ghost Train Haze' || s.name==='Wedding Cake' || s.name==='Runtz') score += 4;
+    }
+    if (concern.indexOf('anxious') > -1 || concern.indexOf('sensitive') > -1) {
+      if (s.type==='sativa' && parseFloat(s.thc) > 22) score -= 5;
+      if (s.name==='Ghost Train Haze') score -= 8;
+      if (s.type==='hybrid' || s.medical.some(function(m){return m.toLowerCase().indexOf('anxiety') > -1;})) score += 3;
+    }
+    return { s: s, score: score };
+  });
+  scored.sort(function(a,b){return b.score - a.score;});
+  var top = scored.slice(0,3);
+  var goalLabels = { sleep:'sleep', pain:'pain relief', anxiety:'anxiety management', energy:'energy and focus', creativity:'creativity', mood:'mood elevation', appetite:'appetite stimulation', focus:'focus', social:'socializing', relax:'relaxation' };
+  var goalsText = goal.length ? goal.map(function(g){return goalLabels[g]||g;}).join(' and ') : 'general use';
+  var timeText = { morning:'morning', afternoon:'afternoon', evening:'evening', nighttime:'nighttime' }[time] || 'anytime';
+  var expText = { first:'first-time', occasional:'occasional', regular:'regular', heavy:'experienced' }[exp] || '';
+  var warnings = [];
+  if (concern.indexOf('driving') > -1) warnings.push('⚠️ Customer is driving later — recommend low dose or CBD-forward options only. Do not recommend concentrates or high-THC products for same-day driving.');
+  if (concern.indexOf('medication') > -1) warnings.push('⚠️ Customer is on medication — recommend they consult their physician before use. Cannabis can interact with SSRIs, blood thinners, and other medications.');
+  if (concern.indexOf('anxious') > -1 || concern.indexOf('sensitive') > -1) warnings.push('⚠️ Anxiety-prone or THC-sensitive — start with 2.5mg or less for edibles, recommend CBD:THC ratios, avoid pure sativas with high THC.');
+  if (exp === 'first') warnings.push('⚠️ First-time user — 5mg or below for edibles, one small hit for flower. Set expectations: 15–30 minute onset for flower, 30 min–2 hours for edibles.');
+  var s0 = top[0].s;
+  var scriptLine = '"Based on what you\'ve told me, I\'d recommend starting with ' + s0.name + ' — it\'s a ' + s0.type + ' that\'s great for ' + goalsText + '. ' + (time ? 'Perfect for ' + timeText + ' use. ' : '') + (exp==='first' ? 'Since you\'re new, I\'d suggest starting with a small amount and waiting 20–30 minutes before taking more.' : '') + '"';
+  panel.innerHTML =
+    '<div class="bpro-rec-title">Recommendation Ready</div>' +
+    '<div class="bpro-rec-summary">' + (expText ? expText.charAt(0).toUpperCase()+expText.slice(1)+' consumer · ' : '') + goalsText + ' · ' + timeText + '</div>' +
+    top.map(function(item, i) {
+      return '<div class="bpro-rec-strain bpro-rec-s-' + item.s.type + '">' +
+        '<div class="bpro-rec-strain-top">' +
+          '<span class="bpro-rec-strain-name">' + (i===0?'⭐ ':'') + item.s.name + '</span>' +
+          '<span class="bpro-rec-strain-type bpro-type-' + item.s.type + '">' + item.s.type + ' · THC ' + item.s.thc + '</span>' +
+        '</div>' +
+        '<div class="bpro-rec-strain-why">' + item.s.bestFor + '</div>' +
+        '<div class="bpro-rec-strain-effects">' + item.s.effects.slice(0,4).map(function(e){return '<span class="bpro-rec-eff">'+e+'</span>';}).join('') + '</div>' +
+      '</div>';
+    }).join('') +
+    '<div class="bpro-rec-script"><div class="bpro-rec-script-label">✦ Suggested Script</div><p>' + scriptLine + '</p></div>' +
+    (warnings.length ? '<div class="bpro-rec-warning">' + warnings.join('<br>') + '</div>' : '');
+}
+
+// Glossary
+var bproActiveCat = 'All';
+var bproGlossSearch = '';
+var GLOSS_CATS = ['All'].concat(BPRO_GLOSSARY.reduce(function(acc,g){if(acc.indexOf(g.cat)<0)acc.push(g.cat);return acc;},[]));
+
+function bproRenderGloss() {
+  var grid = document.getElementById('bproGlossGrid');
+  var search = bproGlossSearch.toLowerCase();
+  var filtered = BPRO_GLOSSARY.filter(function(g) {
+    var catMatch = bproActiveCat === 'All' || g.cat === bproActiveCat;
+    var textMatch = !search || g.term.toLowerCase().indexOf(search) > -1 || g.def.toLowerCase().indexOf(search) > -1;
+    return catMatch && textMatch;
+  });
+  grid.innerHTML = filtered.map(function(g) {
+    return '<div class="bpro-gloss-card"><div class="bpro-gloss-term">'+g.term+'</div><div class="bpro-gloss-cat-tag">'+g.cat+'</div><div class="bpro-gloss-def">'+g.def+'</div></div>';
+  }).join('') || '<div style="color:rgba(245,240,225,0.3);padding:40px;text-align:center">No terms match your search.</div>';
+}
+function bproFilterGloss() {
+  bproGlossSearch = document.getElementById('bproGlossSearch').value;
+  bproRenderGloss();
+}
+function bproSetCat(cat) {
+  bproActiveCat = cat;
+  document.querySelectorAll('.bpro-gloss-cat').forEach(function(c){c.classList.toggle('active', c.textContent === cat);});
+  bproRenderGloss();
+}
+document.getElementById('bproGlossCats').innerHTML = GLOSS_CATS.map(function(c) {
+  return '<button class="bpro-gloss-cat' + (c==='All'?' active':'') + '" onclick="bproSetCat(\'' + c + '\')">' + c + '</button>';
+}).join('');
+bproRenderGloss();
+
+// Scripts
+document.getElementById('bproScriptsGrid').innerHTML = BPRO_SCRIPTS.map(function(s) {
+  return '<div class="bpro-script-card">' +
+    '<div class="bpro-script-scenario">'+s.scenario+'</div>' +
+    '<div class="bpro-script-title">'+s.title+'</div>' +
+    '<div class="bpro-script-body">'+s.body+'</div>' +
+    '<div class="bpro-script-note">💡 '+s.note+'</div>' +
+  '</div>';
+}).join('');
+
+// Dosing
+document.getElementById('bproDosingGrid').innerHTML = BPRO_DOSE_CARDS.map(function(c) {
+  return '<div class="bpro-dose-card">' +
+    '<div style="position:absolute;top:0;left:0;right:0;height:3px;background:'+c.color+'"></div>' +
+    '<h3>'+c.title+'</h3>' +
+    '<div class="bpro-dose-sub" style="color:rgba(245,240,225,0.4)">'+c.sub+'</div>' +
+    '<div class="bpro-dose-rows">' +
+      c.rows.map(function(r){return '<div class="bpro-dose-row"><span class="bpro-dose-row-label">'+r.label+'</span><span class="bpro-dose-row-val">'+r.val+'</span></div>';}).join('') +
+    '</div>' +
+  '</div>';
+}).join('');
+</script>
 </body>
 </html>`;
     res.writeHead(200, { "Content-Type": "text/html", "Cache-Control": "public, max-age=3600" });
