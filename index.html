@@ -6061,6 +6061,77 @@
 
   @media (max-width: 900px) { .scanner-section { padding: 60px 24px; } }
 
+  /* Scanner teaser (homepage) */
+  .scan-teaser-wrap {
+    background: #060c06;
+    padding: 90px 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .scan-teaser {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+  }
+  .scan-teaser-text { flex: 1; }
+  .scan-teaser-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.15;
+    margin: 12px 0 16px;
+  }
+  .scan-teaser-title em {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--bright-green);
+  }
+  .scan-teaser-desc {
+    font-size: 14px;
+    line-height: 1.85;
+    color: rgba(242,234,216,0.55);
+    max-width: 480px;
+    margin-bottom: 28px;
+  }
+  .scan-teaser-cta {
+    display: inline-block;
+    padding: 12px 28px;
+    border: 1px solid var(--bright-green);
+    color: var(--bright-green);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.25s, color 0.25s;
+  }
+  .scan-teaser-cta:hover { background: var(--bright-green); color: var(--warm-black); }
+  .scan-teaser-visual {
+    flex-shrink: 0;
+    width: 160px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(82,183,136,0.15);
+    border-radius: 50%;
+    background: rgba(82,183,136,0.04);
+  }
+  .scan-teaser-visual svg {
+    width: 72px;
+    height: 72px;
+    color: rgba(82,183,136,0.5);
+  }
+  @media (max-width: 768px) {
+    .scan-teaser-wrap { padding: 60px 24px; }
+    .scan-teaser { flex-direction: column; gap: 36px; }
+    .scan-teaser-visual { width: 100px; height: 100px; }
+    .scan-teaser-visual svg { width: 48px; height: 48px; }
+  }
+
   /* ===================== VISUAL OVERHAUL ===================== */
 
   /* Hero ambient glow layers */
@@ -7342,56 +7413,24 @@
   </div>
 </div>
 
-<!-- PRODUCT SCANNER -->
-<div id="scanner" class="scanner-section">
-  <div class="scanner-inner">
-    <div class="scanner-header">
-      <div class="section-label" style="justify-content:center;display:flex;"><span class="pg">✦</span> &nbsp;Mary Jane Vision</div>
-      <h2 class="scanner-title">Scan Any Product.<br>Know Everything.</h2>
-      <p class="scanner-sub">Point your camera at any cannabis product — flower, concentrate, vape, edible. Mary Jane identifies it instantly and delivers a full intelligence briefing.</p>
+<!-- PRODUCT SCANNER TEASER -->
+<div class="scan-teaser-wrap">
+  <div class="scan-teaser reveal">
+    <div class="scan-teaser-text">
+      <div class="section-label">✦ Mary Jane Vision</div>
+      <h3 class="scan-teaser-title">Scan Any Product.<br><em>Know Everything.</em></h3>
+      <p class="scan-teaser-desc">Point your camera at any cannabis product — flower, concentrate, vape, edible. Mary Jane identifies it instantly and delivers a full intelligence briefing: strain, terpenes, effects, potency, and more.</p>
+      <a href="/scan" class="scan-teaser-cta">Try the Scanner →</a>
     </div>
-
-    <!-- Hidden file input -->
-    <input type="file" id="scanFileInput" accept="image/*" style="display:none" onchange="onScanFile(this)">
-
-    <!-- Drop zone (shown when no image) -->
-    <div class="scanner-drop" id="scannerDrop"
-      onclick="document.getElementById('scanFileInput').click()"
-      ondragover="scanDragOver(event)" ondragleave="scanDragLeave(event)" ondrop="scanDrop(event)">
-      <svg class="scanner-drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+    <div class="scan-teaser-visual">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
         <rect x="2" y="3" width="20" height="15" rx="2"/>
         <circle cx="8.5" cy="8.5" r="1.5"/>
         <path d="M21 15l-5-5L5 21"/>
         <path d="M16 3h5v5"/>
         <path d="M21 3l-5 5"/>
       </svg>
-      <div class="scanner-drop-title">Drop a photo here — or tap to browse</div>
-      <div class="scanner-drop-sub">JPG · PNG · WEBP &nbsp;·&nbsp; Up to 4MB</div>
-      <div class="scanner-drop-btns" onclick="event.stopPropagation()">
-        <button class="scanner-btn" onclick="triggerCam()">📷 &nbsp;Take Photo</button>
-        <label class="scanner-btn scanner-btn-primary" for="scanFileInput" style="display:inline-flex;align-items:center;cursor:pointer;">↑ &nbsp;Upload Image</label>
-      </div>
     </div>
-
-    <!-- Preview (shown after image selected) -->
-    <div id="scannerPreviewWrap" style="display:none">
-      <div class="scanner-preview-wrap">
-        <img id="scannerPreviewImg" class="scanner-preview-img" alt="Product photo">
-        <button class="scanner-preview-clear" onclick="clearScan()" title="Remove">×</button>
-      </div>
-      <div class="scanner-action">
-        <button class="scanner-btn scanner-btn-primary" id="scanBtn" onclick="runScan()">Ask Mary Jane →</button>
-      </div>
-    </div>
-
-    <!-- Loading -->
-    <div class="scanner-loading" id="scannerLoading" style="display:none">
-      <div class="scanner-loading-ring"></div>
-      <div class="scanner-loading-text">Mary Jane is reading the product…</div>
-    </div>
-
-    <!-- Result -->
-    <div id="scannerResult"></div>
   </div>
 </div>
 
