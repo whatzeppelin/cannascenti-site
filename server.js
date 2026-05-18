@@ -660,6 +660,7 @@ ${isPrivacy ? `<h1>Privacy Policy</h1><p>Last updated: April 2026</p>
     <a href="/cultivation" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Cultivation</a>
     <a href="/history" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">History</a>
     <a href="/extractions" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Extractions</a>
+    <a href="/concentrates" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Concentrates</a>
     <a href="/cooking" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Cooking</a>
   </div>
 </nav>`;
@@ -1907,6 +1908,372 @@ document.addEventListener('DOMContentLoaded',function(){
 </script>
 </body></html>`;
     res.writeHead(200,{"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
+    res.end(html);
+    return;
+  }
+
+  // ─── /concentrates ─────────────────────────────────────────────────────────
+  if (req.method === "GET" && req.url === "/concentrates") {
+    const _CONC = [
+      // ── TRADITIONAL ──
+      { id:"charas", cat:"traditional", tier:1, name:"Charas", sub:"Hand-rubbed live resin", potency:"40–60%", purity:55, color:"#8B5E3C",
+        badge:"Ancient", origin:"India · Nepal · Pakistan",
+        desc:"The oldest concentrate on earth. Made by slowly rubbing fresh, living cannabis plants between bare palms. Resin adheres to the skin and is collected into dark, pliable balls. Because it's made from the living plant, charas preserves volatile terpene compounds destroyed during drying.",
+        method:"Fresh plant material is rubbed between hands for hours. Body heat gently warms the trichomes, allowing them to adhere to skin. Collected resin is then rolled into balls or sticks.",
+        consume:"Roll small pieces into a chillum or mix with tobacco in a spliff. Traditional consumption is in a clay chillum with a wet cloth filter. Dab at low temp (450–500°F) for the cleanest flavor.",
+        note:"Malana Cream from Himachal Pradesh's Parvati Valley is the most prized charas in the world. The village of Malana has been cultivating the same landrace for over 500 years. True Malana Cream is nearly impossible to find outside of India.", flavor:"Earthy · Spicy · Incense · Sandalwood", rating:4 },
+
+      { id:"temple-ball", cat:"traditional", tier:1, name:"Temple Ball Hash", sub:"Pressed hand-rolled charas · Himalayan tradition", potency:"40–65%", purity:58, color:"#6B4C2A",
+        badge:"Ancient", origin:"Nepal · Tibet",
+        desc:"Temple Balls are large, hand-rolled spheres of charas or dry sift hash, aged and cured for months or years. The exterior oxidizes to a dark, lacquered shell while the interior remains soft and fragrant. They are considered sacred in Himalayan Buddhist culture.",
+        method:"High-quality hand-rubbed resin or dry sift is pressed and rolled into spheres, then aged. The aging process concentrates flavor, mellows harshness, and develops complex aromatic compounds not present in fresh hash.",
+        consume:"Break off small pieces. Best in a pipe or bong at moderate temperature. The aged exterior has a distinct flavor from the fresh interior — many connoisseurs consume both separately.",
+        note:"Traditional Nepalese temple balls were aged alongside butter lamps in monasteries — the warmth and darkness created ideal curing conditions. Modern connoisseurs are reviving the temple ball tradition with solventless hash.", flavor:"Deep Spice · Incense · Dark Fruit · Aged Wood", rating:4 },
+
+      { id:"moroccan-hash", cat:"traditional", tier:1, name:"Moroccan Hash", sub:"Dry sift pressed · Ketama Rif Mountains", potency:"35–55%", purity:50, color:"#C9973A",
+        badge:"Traditional", origin:"Morocco · Ketama",
+        desc:"The world's most widely produced traditional hash. The Ketama region of Morocco's Rif Mountains has supplied Europe with hash for centuries. The local Beldia landrace is dry-sifted through fine screens, then hand-pressed into slabs with body heat. Ranges from blonde (fresh) to dark brown (aged).",
+        method:"Dried cannabis is rubbed or beaten over fine silk or nylon screens. The collected kief falls through as a fine powder, then is pressed with hands or a press — sometimes gently warmed — into slabs or bricks.",
+        consume:"Break and crumble into a joint or pipe. Classic European consumption is mixed with tobacco. Moroccan hash softens and becomes workable when warmed between fingers.",
+        note:"Traditional Moroccan hash is under threat — European demand for higher-potency product has driven farmers to use hybrid genetics, abandoning the traditional Beldia landrace. Authentic old-school Moroccan hash is increasingly rare.", flavor:"Spicy · Herbal · Earthy · Mild Floral", rating:3 },
+
+      { id:"lebanese", cat:"traditional", tier:1, name:"Lebanese Hash", sub:"Red & Blonde varieties · Bekaa Valley", potency:"30–45%", purity:45, color:"#C47A2A",
+        badge:"Traditional", origin:"Lebanon · Bekaa Valley",
+        desc:"Lebanese Red and Lebanese Blonde were the most sought-after hashishes in Europe during the 1970s. Produced in the Bekaa Valley from Lebanese landrace genetics — distinctively mild, smooth, and aromatic compared to Moroccan or Afghan varieties. Production declined dramatically during Lebanon's civil war.",
+        method:"Similar dry sift process to Moroccan hash but using Lebanese landrace genetics harvested at different stages of ripeness. Red hash is made from more mature material; Blonde from less-ripe flower.",
+        consume:"Crumble into a joint or pipe. Lebanese hash is among the mildest traditional hashes — excellent for beginners or daytime use. The smooth, mild smoke is unlike any modern concentrate.",
+        note:"Lebanese hash genetics contributed to early Skunk and Dutch strain development. The Bekaa Valley landrace, now rarely grown, had a unique terpene profile — soft, almost floral, with none of the sharp spice of Afghan hash.", flavor:"Mild · Floral · Soft Spice · Honey", rating:3 },
+
+      // ── SOLVENTLESS ──
+      { id:"dry-sift", cat:"solventless", tier:2, name:"Dry Sift / Kief", sub:"Mechanical trichome separation", potency:"50–80%", purity:65, color:"#D4B84A",
+        badge:"Solventless", origin:"Global",
+        desc:"The most elemental form of modern concentration. Dried cannabis is agitated over progressively finer screens, mechanically separating trichome heads from plant material. Quality ranges from basic kief scraped from a grinder to hyper-refined '6-star' full-melt dry sift that rivals the finest water hash.",
+        method:"Frozen cannabis is tumbled or hand-sifted over stacked screens of decreasing micron size (220→160→100→73→45μm). Lower micron = purer trichome heads with less plant contamination. Cold temperatures make trichomes more brittle and easier to separate.",
+        consume:"Press into hash coins, vaporize in a bowl, or press into rosin. Full-melt dry sift can be dabbed directly. Add to joints for a significant potency increase.",
+        note:"The difference between supermarket kief (your grinder's bottom chamber) and hyper-refined 6-star dry sift is enormous. True full-melt dry sift melts completely on a hot nail with no residue — a rare achievement requiring exceptional genetics and technique.", flavor:"Variable · True to Source Strain", rating:4 },
+
+      { id:"ice-water-hash", cat:"solventless", tier:3, name:"Ice Water Hash", sub:"Bubble hash · Cold water agitation", potency:"50–80%", purity:70, color:"#74C6A0",
+        badge:"Solventless", origin:"Modern — Global",
+        desc:"Cannabis is agitated in ice-cold water, causing trichome heads to break off and sink. Collected through a series of mesh bags in increasingly fine micron sizes (220→160→120→90→73→45→25μm). The gold standard for solventless extraction — zero heat, zero solvents, just ice, water, and agitation.",
+        method:"Fresh-frozen or cured cannabis is agitated in ice water (hand-stirring or using a washing machine). Trichomes break off and sink. The mixture is poured through bubble bags of decreasing micron size. Each bag collects different-sized trichome heads — 73μm and 90μm bags produce the finest, purest hash.",
+        consume:"Air-dry or freeze-dry, then press into hash or dab. Full-melt grades (4–6 stars) can be dabbed directly. Lower grades are best pressed into rosin or added to bowls.",
+        note:"Freeze-drying has revolutionized water hash — traditional air-drying destroys terpenes as the hash oxidizes. Freeze-dried hash retains the full terpene profile of the living plant. A 6-star full-melt freeze-dried hash is among the most complex and flavorful cannabis products in existence.", flavor:"Full-Spectrum · Strain-Specific · Complex", rating:5 },
+
+      { id:"flower-rosin", cat:"solventless", tier:3, name:"Flower Rosin", sub:"Heat + pressure extraction from flower", potency:"60–75%", purity:68, color:"#E8D44D",
+        badge:"Solventless", origin:"Modern — Global",
+        desc:"Rosin produced by pressing cannabis flower between heated plates. The heat and pressure squeeze out a sap-like concentrate that retains the plant's full terpene profile. Zero solvents, no purging required, immediate results. The most accessible solventless concentrate — can be made at home with a hair straightener.",
+        method:"Cannabis flower (ideally fresh-frozen or high-terpene) is placed in a mesh bag and pressed between heated plates (160–220°F) for 30–120 seconds. The squeezed oil collects on parchment paper. Lower temperatures preserve more terpenes; higher temperatures increase yield.",
+        consume:"Dab at 450–520°F for full flavor. Cold-start dab recommended — place rosin on a cold nail, then heat slowly. Collect and refrigerate for extended flavor life.",
+        note:"Flower rosin is the entry point to solventless — yields are lower (10–20%) than hash rosin but the process requires no equipment beyond a rosin press. Strain selection is critical: high-resin cultivars like Zkittlez, Papaya, and Biscotti produce exceptional flower rosin.", flavor:"Strain-Specific · Fresh · Terpy", rating:4 },
+
+      { id:"hash-rosin", cat:"solventless", tier:4, name:"Hash Rosin", sub:"Pressed from ice water hash · Premium solventless", potency:"70–85%", purity:82, color:"#52B788",
+        badge:"Solventless ★", origin:"Modern — USA",
+        desc:"The pinnacle of solventless extraction. Ice water hash is pressed into rosin — producing a concentrate with exceptional potency, full-spectrum terpene expression, and zero solvent residue. Hash rosin from 6-star full-melt water hash is the most prized concentrate in the current market.",
+        method:"6-star ice water hash is freeze-dried, then pressed in a rosin bag (25–45μm) between heated plates at 150–175°F for 60–90 seconds. The resulting oil is collected and immediately refrigerated or cold-cured. Every step of the process must be executed perfectly — the hash quality determines the rosin quality.",
+        consume:"Dab at 440–490°F for maximum flavor. Hash rosin is exceptionally terpy — high temperatures destroy the terpenes. Cold-start or low-temp dab with a quartz banger and carb cap is ideal. Store refrigerated in a glass jar.",
+        note:"Hash rosin has replaced BHO as the prestige concentrate in the American market. The best producers (Meraki Gardens, Farmer and the Felon, Sunday Goods) release limited drops that sell out immediately. Prices reflect the labor-intensive process — quality hash rosin regularly sells for $80–150/gram.", flavor:"Exceptional · Complex · Full-Spectrum · Living Plant", rating:5 },
+
+      { id:"live-rosin", cat:"solventless", tier:4, name:"Live Rosin", sub:"Fresh-frozen ice water hash → rosin", potency:"70–85%", purity:83, color:"#3DBF7A",
+        badge:"Live · Solventless ★", origin:"Modern — USA",
+        desc:"Live rosin starts with fresh-frozen cannabis — plants harvested and immediately frozen before any drying or curing. The fresh-frozen material is washed into ice water hash, freeze-dried, then pressed into rosin. The result is a concentrate that captures the terpene profile of the living plant — something no other process achieves.",
+        method:"Plants are harvested and immediately submerged in dry ice or liquid nitrogen, then stored frozen. Fresh-frozen material produces significantly higher terpene content in the resulting hash. The hash is washed, freeze-dried, and pressed at ultra-low temperatures (150–160°F) to preserve the volatile monoterpenes.",
+        consume:"Dab at 440–480°F maximum. Live rosin is the most temperature-sensitive concentrate — heat is the enemy. A cold-start low-temp dab reveals a terpene complexity that is genuinely unlike anything else in cannabis. Expect flavors that taste like biting into fresh fruit.",
+        note:"Live rosin represents the current apex of concentrate culture. The 'live' designation matters — fresh-frozen starting material contains 20–40% more terpenes than cured material. The flavor difference is immediately apparent to any experienced consumer.", flavor:"Living Plant · Hyper-Fresh · Strain-Identical", rating:5 },
+
+      { id:"cold-cure-rosin", cat:"solventless", tier:4, name:"Cold Cure Rosin", sub:"Cured rosin badder · Controlled crystallization", potency:"70–83%", purity:80, color:"#2D9E6B",
+        badge:"Solventless", origin:"Modern — USA",
+        desc:"Freshly pressed rosin is placed in a sealed jar and left to cure at a low controlled temperature (32–65°F) for 24–72 hours. During curing, the THCA slowly crystallizes while the terpenes separate into a sauce layer — then both are mixed together, creating a badder/budder consistency. Cold cure dramatically improves texture and flavor compared to fresh-pressed rosin.",
+        method:"Fresh-pressed rosin is jarred immediately after collection and placed in a 32–40°F environment. THCA nucleation begins as temperature drops. The process is stopped when desired consistency is reached — usually 24–72 hours. The result is whipped and homogenized into a uniform badder.",
+        consume:"Dab at 440–490°F. Cold cure rosin is significantly easier to handle than fresh-press — the badder consistency allows easy collection with a dab tool. Flavor is smoother and more integrated than fresh-press.",
+        note:"Cold cure has become the standard finishing technique for premium hash rosin. The curing process allows volatile terpenes to fully integrate with the THCA matrix, producing a more rounded, complex flavor profile.", flavor:"Smooth · Integrated · Creamy · Complex", rating:5 },
+
+      // ── HYDROCARBON ──
+      { id:"shatter", cat:"hydrocarbon", tier:2, name:"Shatter", sub:"BHO · Glass-like translucent slab", potency:"70–90%", purity:72, color:"#E8A23C",
+        badge:"BHO", origin:"Modern — Canada / USA",
+        desc:"Shatter is butane hash oil that has been purged at low temperature and allowed to cool into a glass-like, brittle slab. The translucent amber appearance indicates purity — impurities and fats cloud the final product. Once the dominant concentrate in dispensaries, shatter has been largely displaced by more terpene-rich forms.",
+        method:"Cannabis is blasted with liquid butane in a closed-loop system. The butane solution is collected and purged under vacuum at low temperature (90–110°F) for 24–72 hours. The final product is spread thin and allowed to set without agitation — agitation causes the THCA to nucleate and turn waxy.",
+        consume:"Break pieces off and dab at 500–550°F. Shatter is notoriously difficult to handle when cold — use a razor or dab tool to break pieces. Warms to room temperature to become pliable.",
+        note:"Shatter's clarity is often mistaken for purity — but many clear shatters have been winterized (fats removed with ethanol) which strips terpenes. Terpy, unfilterd shatter often has a slightly cloudier appearance but superior flavor.", flavor:"Clean · Mild · THC-Forward", rating:3 },
+
+      { id:"wax-budder", cat:"hydrocarbon", tier:2, name:"Wax / Budder / Crumble", sub:"Agitated BHO · Various textures", potency:"65–85%", purity:68, color:"#D4A843",
+        badge:"BHO", origin:"Modern — USA",
+        desc:"BHO that has been agitated or whipped during purging — causing THCA to nucleate and creating opaque, waxy textures. Wax is softer and stickier; budder is creamier; crumble is dry and honeycombed. These textures are easier to handle than shatter but retain more flavor.",
+        method:"Similar BHO process to shatter, but the oil is agitated (whipped, stirred, or subjected to temperature fluctuations) during the purge cycle. This disrupts the molecular alignment and causes crystallization in a diffuse pattern rather than a glass sheet.",
+        consume:"Dab at 480–520°F. Easy to collect with a dab tool — no breaking required. Wax and budder are among the most beginner-friendly concentrates in terms of handling.",
+        note:"The texture of BHO is largely determined by the genetics used and the purging technique — not necessarily by quality. Some of the most flavorful BHO runs produce waxy consistency from high-terpene strains.", flavor:"Variable · Strain-Dependent", rating:3 },
+
+      { id:"live-resin", cat:"hydrocarbon", tier:3, name:"Live Resin", sub:"Fresh-frozen BHO · Full terpene spectrum", potency:"65–85%", purity:75, color:"#E8C53A",
+        badge:"Live BHO", origin:"Modern — Colorado, USA (2013)",
+        desc:"Live resin changed the concentrate world when it debuted in Colorado in 2013. Made from fresh-frozen cannabis using hydrocarbon solvents, live resin preserves the complete terpene profile of the living plant — something impossible with cured starting material. The difference in flavor is immediately apparent: live resin smells and tastes like fresh cannabis, not dried flower.",
+        method:"Plants are harvested and immediately flash-frozen in dry ice or liquid nitrogen. The frozen material is extracted with butane at very low temperatures (-20°F to -40°F) — cold extraction preserves the volatile monoterpenes that evaporate during drying. The result is purged at minimal temperature to protect the terpene payload.",
+        consume:"Dab at 480–520°F. Live resin is available in many textures — sugar, badder, sauce, and more. The sauce form (HTFSE) with visible THCA crystals in a terpene soup is the most flavorful.",
+        note:"The term 'live resin' was coined by William Fenger (Kind Bill) and Jason Emo in Colorado, 2013. Before live resin, concentrates were considered a potency delivery system — live resin proved they could be a flavor experience. It created the modern terpene-obsessed concentrate culture.", flavor:"Fresh · Alive · Strain-Exact · Complex", rating:5 },
+
+      { id:"sauce-htfse", cat:"hydrocarbon", tier:3, name:"Sauce / HTFSE", sub:"High Terpene Full Spectrum Extract", potency:"60–80% (terpene-diluted)", purity:72, color:"#F5B33A",
+        badge:"Live BHO", origin:"Modern — USA",
+        desc:"HTFSE — High Terpene Full Spectrum Extract — is the terpene-forward end of the live resin spectrum. When live resin is allowed to sit and separate, THCA crystals nucleate and sink while the terpene-rich fraction rises as a viscous, amber sauce. The sauce layer can contain 30–50% terpenes by weight — creating an intensely aromatic concentrate unlike anything else.",
+        method:"Live resin extract is placed in sealed containers and allowed to separate over 2–3 weeks. THCA nucleates and crystallizes at the bottom (diamonds); the high-terpene fraction rises to the top as sauce. Both fractions are kept together or separated based on desired product.",
+        consume:"Low-temp dab at 440–480°F. Sauce is extremely terpy — high temperatures destroy the very thing that makes it special. A small dab at low temperature delivers a flavor experience that outperforms much larger dabs of lesser concentrates.",
+        note:"Pure sauce (HTFSE) can be combined with isolated THCA diamonds — called 'diamonds in sauce' or 'terp sauce with diamonds.' This gives both maximum potency (from the THCA) and maximum flavor (from the sauce) simultaneously.", flavor:"Explosive Terpene · Strain-Identical · Liquid Aromatherapy", rating:5 },
+
+      { id:"thca-diamonds", cat:"hydrocarbon", tier:3, name:"THCA Diamonds", sub:"Crystalline THCA · Near-pure cannabinoid", potency:"95–99%", purity:97, color:"#C8E6FF",
+        badge:"Crystalline", origin:"Modern — USA",
+        desc:"THCA diamonds are the purest form of cannabis concentrate — nearly identical to pharmaceutical-grade isolated cannabinoid. THCA (the acid precursor to THC) naturally crystallizes under the right conditions, forming large, clear to slightly yellow crystals. Upon dabbing, the heat decarboxylates THCA to THC instantly.",
+        method:"Highly refined live resin or distillate is supersaturated and placed in sealed containers. Given time and specific temperature conditions, THCA nucleates and grows into crystals — a process called diamond mining. Larger crystals indicate longer, more controlled growth periods.",
+        consume:"Dab at 500–550°F (higher temp needed for pure THCA). Diamonds have essentially no terpenes on their own — combine with HTFSE sauce or live resin sauce for the ideal potency-plus-flavor experience. Extremely powerful — start with a grain-of-rice sized piece.",
+        note:"Pure THCA diamonds are essentially odorless and tasteless on their own. Their value is in potency, not flavor. The 'diamonds in sauce' format — crystals sitting in HTFSE — is considered the ideal form: maximum THC from the diamonds, maximum terpenes from the sauce.", flavor:"Neutral · Odorless · Pure Potency", rating:4 },
+
+      { id:"liquid-diamonds", cat:"hydrocarbon", tier:4, name:"Liquid Diamonds", sub:"THCA dissolved in live terpene sauce · Ultra-premium", potency:"85–97%", purity:90, color:"#A8E6D0",
+        badge:"Ultra-Premium", origin:"Modern — USA (2020s)",
+        desc:"Liquid Diamonds is the hottest product in the current concentrate market — THCA diamonds are dissolved back into a live terpene sauce at precise temperatures, creating a unified, ultra-potent, ultra-terpy liquid concentrate. The result combines the near-100% potency of crystalline THCA with the full terpene expression of HTFSE sauce. Nothing else delivers both at this level simultaneously.",
+        method:"THCA diamonds are slowly reintroduced into high-quality live resin sauce at controlled temperatures, allowing the crystals to dissolve while preserving the volatile terpenes. The result is a homogeneous, slightly viscous liquid that flows like honey and tests at 85–97% total cannabinoids.",
+        consume:"Low-temp dab at 450–490°F. Liquid diamonds are extremely versatile — dab directly, fill vape cartridges, or use in a cold-start rig. The liquid format makes portioning easy. Store refrigerated or frozen to prevent re-crystallization.",
+        note:"Liquid diamonds have become the prestige offering for top-tier California and Colorado brands. The combination of maximum potency and maximum terpene expression in a single product represents the convergence of the purity-chasing and flavor-chasing movements that have defined concentrate culture for the past decade.", flavor:"Full-Spectrum + Maximum Potency · The Best of Both Worlds", rating:5 },
+
+      // ── CO2 / ETHANOL ──
+      { id:"co2-oil", cat:"co2", tier:2, name:"CO2 Oil", sub:"Supercritical carbon dioxide extraction", potency:"50–75%", purity:65, color:"#8BBAD4",
+        badge:"CO2", origin:"Modern — Global",
+        desc:"CO2 becomes supercritical (simultaneously liquid and gas) at 31.1°C and 73 atmospheres — making it an effective, tunable solvent that leaves zero residue. CO2 extraction is the dominant method for commercial oil cartridges. At different pressures and temperatures, CO2 selectively extracts different compounds, allowing producers to target specific cannabinoid or terpene fractions.",
+        method:"Cannabis is loaded into an extraction vessel. Supercritical CO2 is pumped through at precise pressure and temperature — the parameters determine what is extracted. The CO2 then passes through a separator where pressure drops, causing the oil to fall out while the CO2 reverts to gas and is recaptured.",
+        consume:"Primarily consumed via vape cartridge. CO2 oil is the standard fill for most commercial cartridges. Can also be dabbed or used to make edibles. Generally less flavorful than hydrocarbon extracts from equivalent starting material.",
+        note:"The vape cartridge market runs almost entirely on CO2 oil and distillate. CO2 oil itself has lower terpene content than hydrocarbon extracts — most commercial cartridges add botanical terpenes or cannabis-derived terpenes back in after extraction.", flavor:"Clean · Mild · Consumer-Friendly", rating:3 },
+
+      { id:"rso", cat:"co2", tier:2, name:"RSO / FECO", sub:"Rick Simpson Oil · Full Extract Cannabis Oil", potency:"50–80%", purity:60, color:"#5A3E28",
+        badge:"Ethanol", origin:"Canada (Rick Simpson, 2003)",
+        desc:"RSO (Rick Simpson Oil) and FECO (Full Extract Cannabis Oil) are whole-plant ethanol extracts — dark, viscous, intensely potent oils that contain the full spectrum of cannabinoids, terpenes, flavonoids, and chlorophylls. Rick Simpson popularized the concentrate after claiming to have used it to treat his own skin cancer. RSO is primarily associated with high-dose therapeutic cannabis use.",
+        method:"High-proof ethanol is used to wash cannabis plant material, stripping all compounds including chlorophylls and fats. The ethanol is then gently evaporated, leaving behind a thick, dark, full-spectrum oil. Winterization (cold ethanol filtration) can remove fats and waxes but also strips some terpenes.",
+        consume:"Consumed orally — placed under the tongue or in a capsule. RSO is rarely smoked or dabbed due to its chlorophyll content. Oral consumption provides a longer-lasting, more body-focused effect. The taste is extremely strong — many users mix it with food or capsules.",
+        note:"The scientific evidence for RSO as a cancer treatment is limited but the anecdotal reports are substantial. RSO is widely used in palliative care for cancer patients seeking high-dose cannabinoid therapy. The full-spectrum nature (including minor cannabinoids and flavonoids) may contribute to an entourage effect not present in distillate.", flavor:"Intense · Earthy · Full-Plant · Medicinal", rating:3 },
+
+      // ── DISTILLATE & ISOLATE ──
+      { id:"distillate", cat:"distillate", tier:2, name:"THC Distillate", sub:"Fractional distillation · 90%+ pure THC", potency:"85–95%", purity:90, color:"#E8D8A0",
+        badge:"Distillate", origin:"Modern — Global",
+        desc:"Distillate is the result of short-path fractional distillation — a process that separates specific compounds by their boiling points, producing a near-pure cannabinoid fraction. THC distillate is odorless, tasteless, and visually identical to honey. It is the backbone of the commercial cannabis industry — used in vape cartridges, edibles, tinctures, and topicals.",
+        method:"Crude cannabis oil is refined through multiple passes of short-path distillation under vacuum. Each pass increases purity. The cannabinoids are separated from terpenes, fats, waxes, and other plant material. Terpenes are typically added back in afterward.",
+        consume:"Versatile — fill cartridges, use in edibles, dab directly, or add to joints. Distillate has no flavor of its own — added terpenes (botanical or cannabis-derived) determine the experience. Most commercial edibles use distillate as the active ingredient.",
+        note:"Distillate is a blank canvas. The terpenes added back in determine the experience completely. 'Live resin cartridges' add actual plant-derived terpenes to distillate, producing a significantly better flavor experience than cartridges with botanical (non-cannabis) terpenes.", flavor:"Neutral · Terpene-Dependent · Odorless Alone", rating:3 },
+
+      { id:"thca-isolate", cat:"distillate", tier:3, name:"THCA / CBD Isolate", sub:"Single-molecule isolation · 99%+ pure", potency:"99%+", purity:99, color:"#FFFFFF",
+        badge:"Isolate", origin:"Modern — Global",
+        desc:"Cannabis isolate is a single purified cannabinoid at near 100% purity — most commonly THCA or CBD. THCA isolate appears as a white crystalline powder or large clear crystals (diamonds). CBD isolate is a white powder. These are the purest forms of cannabis compounds achievable with current technology.",
+        method:"Crude extract is further refined through chromatography or repeated crystallization to isolate a single cannabinoid. THCA isolate is produced through the diamond mining process; CBD isolate requires additional chromatography steps after distillation.",
+        consume:"THCA isolate is dabbed at high temperature (500–550°F). CBD isolate is dissolved in oil for tinctures, added to foods, or mixed into topicals. Both can be added to flower or other concentrates to boost potency.",
+        note:"Isolate represents maximum purity but minimum entourage effect — research suggests that whole-plant extracts with multiple cannabinoids and terpenes may produce a more complex and potentially more therapeutic experience than isolated molecules. Still, for precise dosing, nothing beats isolate.", flavor:"Zero · Pure Molecule · No Terpenes", rating:3 }
+    ];
+
+    const catLabels = { traditional:"Traditional", solventless:"Solventless", hydrocarbon:"Hydrocarbon", co2:"CO2 & Ethanol", distillate:"Distillate & Isolate" };
+    const catColors = { traditional:"#8B5E3C", solventless:"#52B788", hydrocarbon:"#E8A23C", co2:"#8BBAD4", distillate:"#C4B99A" };
+
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Concentrates — Cannascenti Encyclopedia</title>
+${ENC_FONTS}
+<style>
+${ENC_BASE_CSS}
+/* Spectrum bar */
+.spectrum-wrap{margin:0 0 56px;padding:32px;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);border-radius:16px}
+.spectrum-title{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,234,216,0.4);margin-bottom:16px}
+.spectrum-bar{display:flex;height:10px;border-radius:10px;overflow:hidden;margin-bottom:10px}
+.spectrum-seg{flex:1;transition:opacity .2s}
+.spectrum-seg:hover{opacity:0.8;cursor:pointer}
+.spectrum-labels{display:flex;justify-content:space-between;font-size:.65rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(242,234,216,0.35)}
+/* Filter */
+.conc-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px}
+.cf-btn{background:none;border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:7px 18px;color:rgba(242,234,216,0.55);font-family:Montserrat,sans-serif;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:7px}
+.cf-btn:hover{border-color:rgba(255,255,255,0.25);color:rgba(242,234,216,0.85)}
+.cf-btn.active{border-color:currentColor;background:rgba(255,255,255,0.05)}
+.cf-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+/* Cards */
+.conc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.conc-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;overflow:hidden;transition:border-color .25s,transform .2s;cursor:pointer}
+.conc-card:hover{border-color:rgba(255,255,255,0.15);transform:translateY(-2px)}
+.conc-card.expanded{border-color:rgba(82,183,136,0.3)}
+.conc-card-top{display:flex;align-items:center;justify-content:space-between;padding:20px 22px 0}
+.conc-badge{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;border-radius:20px;padding:3px 10px;font-weight:600;white-space:nowrap}
+.conc-stars{color:#C9973A;font-size:.85rem;letter-spacing:1px}
+.conc-body{padding:14px 22px 20px}
+.conc-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:#F2EAD8;line-height:1.2;margin-bottom:3px}
+.conc-sub{font-size:.72rem;color:rgba(242,234,216,0.4);letter-spacing:.04em;margin-bottom:12px}
+.conc-meta{display:flex;gap:16px;margin-bottom:14px;flex-wrap:wrap}
+.conc-meta-item{display:flex;flex-direction:column;gap:2px}
+.conc-meta-label{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,234,216,0.3)}
+.conc-meta-val{font-size:.82rem;color:#F2EAD8;font-weight:500}
+.conc-purity-bar{height:4px;border-radius:4px;background:rgba(255,255,255,0.07);margin-bottom:16px;overflow:hidden}
+.conc-purity-fill{height:100%;border-radius:4px;transition:width .6s}
+.conc-desc{font-size:.82rem;line-height:1.75;color:rgba(242,234,216,0.62);margin-bottom:0}
+.conc-expand{display:none;padding:0 22px 22px;border-top:1px solid rgba(255,255,255,0.06);margin-top:16px}
+.conc-card.expanded .conc-expand{display:block}
+.conc-section-label{font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,234,216,0.3);margin:16px 0 6px}
+.conc-section-text{font-size:.81rem;line-height:1.75;color:rgba(242,234,216,0.62)}
+.conc-flavor{display:inline-block;font-size:.72rem;color:rgba(242,234,216,0.5);font-style:italic;margin-top:12px;padding:6px 14px;background:rgba(255,255,255,0.04);border-radius:8px}
+.conc-origin{font-size:.72rem;color:rgba(242,234,216,0.35);margin-top:10px}
+.conc-hidden{display:none}
+/* Culture section */
+.culture-section{margin-top:80px;padding:48px;background:rgba(82,183,136,0.04);border:1px solid rgba(82,183,136,0.12);border-radius:20px}
+.culture-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:300;color:#F2EAD8;line-height:1.2;margin-bottom:8px}
+.culture-title em{color:#52B788;font-style:italic}
+.culture-body{font-size:.88rem;line-height:1.9;color:rgba(242,234,216,0.65);max-width:780px}
+.culture-body p{margin-bottom:16px}
+.culture-body p:last-child{margin-bottom:0}
+.culture-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:32px}
+.culture-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px}
+.culture-card-icon{font-size:22px;margin-bottom:10px}
+.culture-card-title{font-family:Montserrat,sans-serif;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#52B788;margin-bottom:6px}
+.culture-card-body{font-size:.78rem;line-height:1.65;color:rgba(242,234,216,0.55)}
+@media(max-width:600px){.conc-grid{grid-template-columns:1fr}.culture-section{padding:28px}}
+</style>
+</head>
+<body>
+${ENC_NAV}
+<div class="enc-page">
+  <div class="enc-page-header">
+    <div class="enc-label">✦ Cannascenti Encyclopedia</div>
+    <h1 class="enc-title">The world of <em>concentrates.</em></h1>
+    <p class="enc-desc">From 10,000-year-old charas rolled by hand in the Himalayas to liquid diamonds pressing the limits of modern extraction science — every form, process, and culture, documented. Click any card to go deep.</p>
+  </div>
+
+  <div class="spectrum-wrap">
+    <div class="spectrum-title">The Concentrate Spectrum — Traditional to Ultra-Modern</div>
+    <div class="spectrum-bar" id="spectrumBar"></div>
+    <div class="spectrum-labels">
+      <span>Traditional Hash</span>
+      <span>Dry Sift &amp; Kief</span>
+      <span>Ice Water Hash</span>
+      <span>Rosin</span>
+      <span>Live Resin BHO</span>
+      <span>Diamonds</span>
+      <span>Liquid Diamonds</span>
+    </div>
+  </div>
+
+  <div class="conc-filter" id="concFilter">
+    <button class="cf-btn active" style="color:#F2EAD8" data-cat="all" onclick="filterConc('all',this)"><div class="cf-dot" style="background:#F2EAD8"></div>All</button>
+    <button class="cf-btn" style="color:#8B5E3C" data-cat="traditional" onclick="filterConc('traditional',this)"><div class="cf-dot" style="background:#8B5E3C"></div>Traditional</button>
+    <button class="cf-btn" style="color:#52B788" data-cat="solventless" onclick="filterConc('solventless',this)"><div class="cf-dot" style="background:#52B788"></div>Solventless</button>
+    <button class="cf-btn" style="color:#E8A23C" data-cat="hydrocarbon" onclick="filterConc('hydrocarbon',this)"><div class="cf-dot" style="background:#E8A23C"></div>Hydrocarbon</button>
+    <button class="cf-btn" style="color:#8BBAD4" data-cat="co2" onclick="filterConc('co2',this)"><div class="cf-dot" style="background:#8BBAD4"></div>CO2 &amp; Ethanol</button>
+    <button class="cf-btn" style="color:#C4B99A" data-cat="distillate" onclick="filterConc('distillate',this)"><div class="cf-dot" style="background:#C4B99A"></div>Distillate &amp; Isolate</button>
+  </div>
+
+  <div class="conc-grid" id="concGrid"></div>
+
+  <!-- Live Rosin Culture Section -->
+  <div class="culture-section">
+    <div class="enc-label" style="margin-bottom:12px">✦ The Culture</div>
+    <h2 class="culture-title">Live Rosin &amp; the <em>Solventless Revolution.</em></h2>
+    <div class="culture-body">
+      <p>For most of cannabis history, concentrates meant one thing: hash. The traditional methods — hand-rubbing charas, dry-sifting kief, pressing Moroccan slabs — were unchanged for centuries. Then in the late 1980s, hydrocarbon extraction arrived in North America, and for the next twenty years, BHO dominated the concentrate market. Shatter, wax, budder — the game was potency, and BHO delivered it.</p>
+      <p>But something shifted around 2015. A community of extractors — largely operating out of Colorado and California — began questioning the solvent. They had seen what ice water hash could do at its best: full-melt 6-star hash that bubbled and disappeared on a hot nail, carrying the complete terpene signature of the living plant. They asked: what if you pressed that hash instead of using butane?</p>
+      <p>The answer was hash rosin — and it changed everything. Suddenly there was a solventless concentrate that could rival BHO in potency while surpassing it in flavor and cleanliness. The live rosin movement followed: fresh-frozen starting material, washed into ice water hash, freeze-dried, pressed. The result was a concentrate that tasted like you were inhaling the actual living plant.</p>
+      <p>Today, the premium end of the concentrate market is almost entirely solventless. The best producers — many of them small operations running single-strain limited drops — release grams that sell for $100+ and disappear in minutes. A new vocabulary has emerged: fresh press, cold cure, live rosin, 6-star full melt, temple ball revival. The culture has developed its own rituals: low-temp dabs, cold-start technique, quartz bangers, terp pearls, carb caps. The equipment is as specialized as any brewing or coffee setup.</p>
+      <p>Liquid diamonds represent where both cultures converged — the purity obsession of the isolate world meeting the terpene obsession of the live rosin world. THCA crystals dissolved back into live terpene sauce, creating something simultaneously maximally potent and maximally flavorful. It is, for now, as close as cannabis science has come to having everything at once.</p>
+    </div>
+    <div class="culture-grid">
+      <div class="culture-card">
+        <div class="culture-card-icon">🌡️</div>
+        <div class="culture-card-title">Low-Temp Dabbing</div>
+        <div class="culture-card-body">The shift from 700°F+ torching to 440–500°F precision. Cold-start technique places concentrate in a cold banger, then slowly heats — maximum terpene expression at minimum combustion.</div>
+      </div>
+      <div class="culture-card">
+        <div class="culture-card-icon">🧊</div>
+        <div class="culture-card-title">Fresh-Frozen Philosophy</div>
+        <div class="culture-card-body">Harvesting and immediately freezing cannabis in liquid nitrogen or dry ice. Prevents terpene degradation from drying and curing — captures the living plant's full chemical profile.</div>
+      </div>
+      <div class="culture-card">
+        <div class="culture-card-icon">⭐</div>
+        <div class="culture-card-title">The 6-Star Rating</div>
+        <div class="culture-card-body">Ice water hash is rated 1–6 stars based on melt quality. 6-star full-melt hash leaves zero residue on a hot nail — the highest purity achievable without solvents. Most hash rates 3–4 stars.</div>
+      </div>
+      <div class="culture-card">
+        <div class="culture-card-icon">🍯</div>
+        <div class="culture-card-title">Cold Cure vs. Fresh Press</div>
+        <div class="culture-card-body">Fresh press rosin is consumed immediately after extraction — brighter, more volatile terpenes. Cold cure (jarred at 32–40°F for 24–72h) creates a creamy badder with integrated, rounded flavor.</div>
+      </div>
+      <div class="culture-card">
+        <div class="culture-card-icon">💎</div>
+        <div class="culture-card-title">Diamond Mining</div>
+        <div class="culture-card-body">Supersaturated live resin is sealed and left to crystallize. THCA diamonds nucleate over 2–3 weeks — some growing to gram-sized crystals. The terpene sauce separates above the diamond layer.</div>
+      </div>
+      <div class="culture-card">
+        <div class="culture-card-icon">🌿</div>
+        <div class="culture-card-title">Single-Strain Drops</div>
+        <div class="culture-card-body">Premium solventless producers release single-strain, single-batch live rosin in limited quantities. Like wine vintages — the same cultivar pressed from different harvests produces distinctly different results.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var CONC = ${JSON.stringify(_CONC)};
+var CAT_COLORS = ${JSON.stringify(catColors)};
+
+// Build spectrum bar
+var specSegs = [
+  {label:'Charas',col:'#8B5E3C'},{label:'Temple Ball',col:'#7A5230'},{label:'Moroccan',col:'#C9973A'},
+  {label:'Dry Sift',col:'#D4B84A'},{label:'Bubble Hash',col:'#74C6A0'},{label:'Flower Rosin',col:'#E8D44D'},
+  {label:'Hash Rosin',col:'#52B788'},{label:'Live Rosin',col:'#3DBF7A'},{label:'Cold Cure',col:'#2D9E6B'},
+  {label:'Shatter',col:'#E8A23C'},{label:'Live Resin',col:'#E8C53A'},{label:'HTFSE Sauce',col:'#F5B33A'},
+  {label:'THCA Diamonds',col:'#C8E6FF'},{label:'Liquid Diamonds',col:'#A8E6D0'},
+  {label:'CO2 Oil',col:'#8BBAD4'},{label:'RSO',col:'#5A3E28'},{label:'Distillate',col:'#E8D8A0'},{label:'Isolate',col:'#F5F5F0'}
+];
+document.getElementById('spectrumBar').innerHTML = specSegs.map(function(s){
+  return '<div class="spectrum-seg" style="background:'+s.col+'" title="'+s.label+'"></div>';
+}).join('');
+
+// Render cards
+function renderCards(cat) {
+  var filtered = cat === 'all' ? CONC : CONC.filter(function(c){ return c.cat === cat; });
+  document.getElementById('concGrid').innerHTML = filtered.map(function(c, i) {
+    var col = CAT_COLORS[c.cat] || '#52B788';
+    var stars = '';
+    for (var s = 0; s < 5; s++) stars += s < c.rating ? '★' : '☆';
+    var purityW = c.purity + '%';
+    return '<div class="conc-card" id="card-'+c.id+'" onclick="toggleCard(\''+c.id+'\')">'+
+      '<div class="conc-card-top">'+
+        '<span class="conc-badge" style="background:'+col+'22;color:'+col+'">'+c.badge+'</span>'+
+        '<span class="conc-stars">'+stars+'</span>'+
+      '</div>'+
+      '<div class="conc-body">'+
+        '<div class="conc-name">'+c.name+'</div>'+
+        '<div class="conc-sub">'+c.sub+'</div>'+
+        '<div class="conc-meta">'+
+          '<div class="conc-meta-item"><div class="conc-meta-label">Potency</div><div class="conc-meta-val">'+c.potency+'</div></div>'+
+          '<div class="conc-meta-item"><div class="conc-meta-label">Purity</div><div class="conc-meta-val">'+c.purity+'%</div></div>'+
+          '<div class="conc-meta-item"><div class="conc-meta-label">Origin</div><div class="conc-meta-val" style="font-size:.75rem">'+c.origin+'</div></div>'+
+        '</div>'+
+        '<div class="conc-purity-bar"><div class="conc-purity-fill" style="width:'+purityW+';background:'+col+'"></div></div>'+
+        '<div class="conc-desc">'+c.desc+'</div>'+
+      '</div>'+
+      '<div class="conc-expand" id="expand-'+c.id+'">'+
+        '<div class="conc-section-label">How it\'s made</div>'+
+        '<div class="conc-section-text">'+c.method+'</div>'+
+        '<div class="conc-section-label">How to consume</div>'+
+        '<div class="conc-section-text">'+c.consume+'</div>'+
+        '<div class="conc-section-label">Insider notes</div>'+
+        '<div class="conc-section-text">'+c.note+'</div>'+
+        '<div class="conc-flavor">'+c.flavor+'</div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+
+function toggleCard(id) {
+  var card = document.getElementById('card-'+id);
+  card.classList.toggle('expanded');
+}
+
+function filterConc(cat, btn) {
+  document.querySelectorAll('.cf-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  renderCards(cat);
+}
+
+document.addEventListener('DOMContentLoaded', function(){ renderCards('all'); });
+</script>
+</body></html>`;
+    res.writeHead(200, {"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
     res.end(html);
     return;
   }
