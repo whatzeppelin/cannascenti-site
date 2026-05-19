@@ -659,9 +659,9 @@ ${isPrivacy ? `<h1>Privacy Policy</h1><p>Last updated: April 2026</p>
     <a href="/consumption" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Consumption</a>
     <a href="/cultivation" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Cultivation</a>
     <a href="/history" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">History</a>
-    <a href="/extractions" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Extractions</a>
     <a href="/concentrates" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Concentrates</a>
     <a href="/cooking" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Cooking</a>
+    <a href="/cannalogy" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Cannalogy</a>
   </div>
 </nav>`;
 
@@ -1684,172 +1684,273 @@ document.addEventListener('DOMContentLoaded', function(){ doFilter(); });
 
   // ─── /cooking ──────────────────────────────────────────────────────────────
   if (req.method === "GET" && req.url === "/cooking") {
+    const _RECIPES = [
+      { id:"cannabutter", cat:"foundation", icon:"🧈", name:"Cannabutter", difficulty:"Easy", time:"3.5 hrs", yield:"1 cup ~80mg THC", tip:"Adding water prevents burning and strips chlorophyll for cleaner-tasting butter. THC stays in the fat — not the water.", ingredients:["1 cup (2 sticks) unsalted butter","1 cup water","3.5–7g decarboxylated cannabis","Cheesecloth for straining"], method:["Melt butter and water together in a heavy saucepan over lowest possible heat.","Add decarboxylated cannabis. Stir to combine.","Simmer on lowest heat for 2–3 hours, stirring every 30 minutes. Never let it reach a boil.","Strain through cheesecloth into a glass container, pressing firmly to extract all butter.","Refrigerate for 2 hours — the water layer separates to the bottom. Remove solidified butter from top.","Store refrigerated up to 2 weeks or frozen up to 6 months."] },
+      { id:"coconut-oil", cat:"foundation", icon:"🥥", name:"Cannabis Coconut Oil", difficulty:"Easy", time:"4 hrs", yield:"1 cup ~90mg THC", tip:"Coconut oil's high saturated fat content binds ~25% more THC than butter. Most versatile infusion for both cooking and capsules.", ingredients:["1 cup virgin coconut oil","3.5–7g decarboxylated cannabis","Slow cooker or double boiler","Cheesecloth or fine-mesh strainer"], method:["Combine coconut oil and decarboxylated cannabis in slow cooker.","Set slow cooker to LOW and infuse for 4–6 hours. Keep below 245°F at all times.","Alternatively, use a double boiler on lowest heat for 2–3 hours.","Stir every hour. The oil will deepen in color.","Strain through cheesecloth into a glass jar, squeezing to extract every drop.","Store at room temperature up to 2 months or refrigerate to extend shelf life."] },
+      { id:"tincture", cat:"foundation", icon:"💧", name:"Green Dragon Tincture", difficulty:"Easy", time:"24 hrs", yield:"1oz ~5–15mg/dropper", tip:"A standard 1oz dropper bottle has ~30 full droppers. Divide total mg by 30 to find your per-dropper dose.", ingredients:["1 oz Everclear 190-proof grain alcohol","1g decarboxylated cannabis per oz alcohol","Glass mason jar with tight lid","Coffee filter + dropper bottles"], method:["Place decarboxylated cannabis in a sealed glass mason jar.","Cover completely with Everclear. Use 1 oz per gram of cannabis.","Slow method: Seal and let sit at room temperature for 24 hours, shaking occasionally.","Fast method: Place sealed jar in freezer for 3 hours, shaking every 30 minutes.","Strain twice through coffee filter into clean glass.","Transfer to dropper bottles. Label with batch date and estimated potency."] },
+      { id:"cannabis-honey", cat:"foundation", icon:"🍯", name:"Cannabis Honey", difficulty:"Easy", time:"2 hrs", yield:"1 cup infused honey", tip:"Never exceed 200°F with honey — high heat destroys both terpenes and honey's natural enzymes. Low and slow is essential.", ingredients:["1 cup raw honey","3.5g decarboxylated cannabis","Small slow cooker or double boiler","Cheesecloth for straining"], method:["Place honey and decarboxylated cannabis in a small slow cooker or double boiler.","Set to lowest heat setting. Target 160–180°F — never above 200°F.","Infuse for 2 hours, stirring gently every 30 minutes.","Remove from heat. While still warm (honey flows better), strain through cheesecloth.","Squeeze gently — honey is thick, be patient.","Store in sealed jar at room temperature up to 3 months."] },
+      { id:"pancakes", cat:"breakfast", icon:"🥞", name:"Banana Canna Pancakes", difficulty:"Easy", time:"30 min", yield:"8–10 pancakes", tip:"Ripe bananas add natural sweetness and bind moisture — you need less added sugar. The fat in cannabutter maximizes THC bioavailability at breakfast.", ingredients:["2 tbsp cannabutter (melted)","2 ripe bananas (mashed)","2 eggs","1 cup all-purpose flour","1 tsp baking powder","1/2 tsp cinnamon","Pinch of salt","3/4 cup milk"], method:["Mash bananas until smooth in a large mixing bowl.","Whisk in eggs and melted cannabutter until fully combined.","Add flour, baking powder, cinnamon, and salt. Stir until just combined — do not overmix.","Add milk and stir until batter reaches pourable consistency.","Heat a non-stick pan over medium heat. Ladle batter into 4-inch rounds.","Cook until bubbles form on surface (2–3 min), flip, cook 1–2 min more.","Serve with fresh fruit, maple syrup, or cannabis honey."] },
+      { id:"avo-toast", cat:"breakfast", icon:"🥑", name:"Elevated Avocado Toast", difficulty:"Easy", time:"15 min", yield:"2 servings", tip:"Avocado fat dramatically increases THC bioavailability. This is one of the most bioavailable ways to consume cannabis — the healthy fats prime absorption.", ingredients:["2 tbsp cannabis-infused olive oil","2 ripe avocados","2 thick slices sourdough bread","Flaky sea salt","Red pepper flakes","Lemon juice (half a lemon)","Optional: poached eggs, microgreens"], method:["Toast sourdough until deeply golden and crispy.","Halve avocados, remove pit, scoop flesh into a bowl.","Add lemon juice and a pinch of salt. Smash with a fork — leave texture, don't puree.","Spread generously onto toast.","Drizzle cannabis-infused olive oil over the top.","Finish with flaky sea salt and red pepper flakes.","Add poached eggs or microgreens if desired."] },
+      { id:"golden-milk", cat:"drinks", icon:"🌿", name:"Cannabis Golden Milk", difficulty:"Easy", time:"15 min", yield:"2 cups", tip:"Black pepper contains piperine, which amplifies curcumin (turmeric) absorption by 2000%. This drink is an anti-inflammatory powerhouse on multiple levels.", ingredients:["2 cups full-fat coconut milk","1 tsp turmeric","1/2 tsp cinnamon","1/4 tsp ground ginger","Pinch of black pepper","1 tbsp cannabis honey or 1 tsp cannabis coconut oil","Optional: pinch of cayenne"], method:["Combine coconut milk, turmeric, cinnamon, ginger, and black pepper in a small saucepan.","Warm over medium-low heat, whisking constantly. Do not boil.","Heat until steaming and fragrant — about 5 minutes.","Remove from heat. Whisk in cannabis honey or cannabis coconut oil until fully dissolved.","Taste and adjust spices. Add cayenne for warmth.","Pour into mugs through a fine strainer if desired.","Serve immediately."] },
+      { id:"hot-choc", cat:"drinks", icon:"☕", name:"THC Hot Chocolate", difficulty:"Easy", time:"10 min", yield:"2 mugs", tip:"Dark chocolate 70%+ contains anandamide — the body's natural endocannabinoid. Combining real dark chocolate with cannabis creates genuine synergy.", ingredients:["2 cups cannabis-infused heavy cream (or 2 cups whole milk + 1 tbsp cannabis oil)","2 tbsp Dutch-process cocoa powder","2 oz dark chocolate (70%+), roughly chopped","1–2 tbsp sugar or cannabis honey","Pinch of cayenne","Pinch of flaky salt"], method:["Warm cannabis-infused cream or milk mixture in a saucepan over medium-low heat.","Whisk in cocoa powder until fully dissolved with no lumps.","Add chopped dark chocolate. Whisk constantly as it melts — about 3 minutes.","Add sweetener to taste. Whisk in cayenne and salt.","Once steaming and fully combined, remove from heat.","Pour into mugs. Top with whipped cream or a dusting of cocoa."] },
+      { id:"cold-brew", cat:"drinks", icon:"🧊", name:"Canna Cold Brew", difficulty:"Easy", time:"16 hrs", yield:"4 servings", tip:"Cold brew concentrate is 2x strength of regular coffee. Add tincture per serving at pour time for precise dosing — this keeps each cup accurately dosed.", ingredients:["1 cup coarse ground coffee","4 cups cold water","Green Dragon Tincture (dosed per serving)","Ice","Optional: cannabis-infused cream for serving"], method:["Combine coarse coffee grounds and cold water in a large mason jar.","Stir gently to ensure all grounds are saturated.","Cover loosely and refrigerate 16–24 hours. Longer = stronger.","Strain through a coffee filter or fine-mesh strainer lined with cheesecloth.","Store concentrate in sealed jar in refrigerator up to 2 weeks.","To serve: Fill glass with ice, add 1 part concentrate to 1 part water or milk.","Add desired drops of tincture directly to your glass for precise individual dosing."] },
+      { id:"aglio-olio", cat:"savory", icon:"🍝", name:"Canna Aglio e Olio", difficulty:"Easy", time:"25 min", yield:"2 servings", tip:"Add cannabis olive oil OFF HEAT after plating. Terpenes vaporize above 160°F — cooking cannabis oil destroys the aromatic compounds that make it special.", ingredients:["200g spaghetti or linguine","4 tbsp cannabis-infused olive oil","6 cloves garlic, thinly sliced","1/2 tsp red pepper flakes","Large handful fresh parsley, chopped","Parmesan for serving","Salt and freshly cracked black pepper"], method:["Boil pasta in heavily salted water until just al dente. Reserve 1 cup pasta water.","While pasta cooks, heat 2 tbsp regular olive oil (not cannabis oil) in a wide pan over medium-low.","Add sliced garlic. Cook slowly until golden — 6–8 minutes. Do not burn.","Add red pepper flakes, cook 1 minute. Add 1/2 cup pasta water.","Drain pasta and add to pan. Toss vigorously with pasta water to emulsify.","Remove from heat. Plate pasta immediately.","Drizzle cannabis olive oil over each plate after plating. Finish with parsley and parmesan."] },
+      { id:"compound-butter-steak", cat:"savory", icon:"🥩", name:"Cannabis Herb Compound Butter Steak", difficulty:"Intermediate", time:"45 min", yield:"2 servings", tip:"Always slice compound butter over rested steak — not during cooking. The melting butter carries THC directly onto the meat as it rests.", ingredients:["2 ribeye or NY strip steaks","4 tbsp cannabutter","3 cloves garlic (minced)","1 tbsp fresh thyme","1 tbsp fresh rosemary (finely chopped)","1 tsp lemon zest","Salt and black pepper","2 tbsp neutral oil for searing"], method:["Compound butter: Mix softened cannabutter with garlic, thyme, rosemary, and lemon zest.","Roll compound butter tightly in plastic wrap into a log. Refrigerate 30 minutes until firm.","Season steaks generously with salt and pepper. Bring to room temperature.","Heat cast iron skillet until smoking hot. Add neutral oil.","Sear steaks 3–4 minutes per side for medium-rare. Baste with pan drippings.","Rest steaks 5 minutes on a cutting board — critical for juiciness.","Slice 2 rounds of compound butter over each rested steak. Let it melt into the meat."] },
+      { id:"pesto", cat:"savory", icon:"🌿", name:"Cannabis Pesto", difficulty:"Easy", time:"15 min", yield:"1 cup pesto", tip:"No-heat preparation preserves every terpene. Raw cannabis oil in pesto is one of the purest possible expressions of the plant's aromatic profile.", ingredients:["1/2 cup cannabis-infused olive oil","2 cups fresh basil leaves (packed)","1/3 cup pine nuts (toasted)","2 cloves garlic","1/2 cup freshly grated Parmigiano-Reggiano","Juice of half a lemon","Salt and black pepper"], method:["Toast pine nuts in a dry skillet over medium heat until golden — watch carefully, they burn fast.","Combine basil, garlic, and pine nuts in a food processor. Pulse until coarsely chopped.","With processor running, drizzle in cannabis olive oil slowly.","Add parmesan, lemon juice, salt, and pepper. Pulse to combine.","Taste and adjust seasoning.","Store with a thin film of regular olive oil over the surface to prevent oxidation.","Toss with pasta immediately before serving — do not heat."] },
+      { id:"brownies", cat:"desserts", icon:"🍫", name:"The Perfect Brownie", difficulty:"Easy", time:"1 hr", yield:"16 brownies ~8–12mg each", tip:"Underbaking by 2–3 minutes creates fudgy brownies. The internal temperature should reach 165°F — use a thermometer for consistent results.", ingredients:["1 cup cannabutter","2 cups granulated sugar","4 large eggs","1 tsp pure vanilla extract","3/4 cup Dutch-process cocoa powder","1 cup all-purpose flour","1/2 tsp salt","1/2 tsp baking powder"], method:["Preheat oven to 350°F. Grease a 9x13 baking pan.","Melt cannabutter over low heat. Let cool 5 minutes.","Whisk sugar into cooled butter until combined.","Add eggs one at a time, whisking after each. Add vanilla.","Sift in cocoa, flour, salt, and baking powder. Fold until just combined — do not overmix.","Spread evenly in prepared pan.","Bake 25–30 minutes. A toothpick should come out with moist crumbs, not wet batter.","Cool completely before cutting. Cut into 16 even squares."] },
+      { id:"truffles", cat:"desserts", icon:"✨", name:"Cannabis Chocolate Truffles", difficulty:"Intermediate", time:"2 hrs + chill", yield:"24 truffles ~5mg each", tip:"Temperature is everything with ganache. Too hot and it won't set; too cold and it cracks when rolled. Aim for 85°F when rolling.", ingredients:["1 cup cannabis-infused heavy cream","12 oz dark chocolate (70%+), finely chopped","2 tbsp unsalted butter","Pinch of flaky salt","Coating: cocoa powder, crushed nuts, or sea salt"], method:["Finely chop chocolate and place in a heatproof bowl.","Warm cannabis-infused cream over medium heat until just simmering — do not boil.","Pour hot cream over chocolate. Let sit 2 minutes without stirring.","Add butter and pinch of salt. Stir from center outward until perfectly smooth ganache forms.","Cover with plastic wrap touching the surface. Refrigerate 2 hours until firm.","Use a melon baller or tablespoon to scoop rounds. Roll quickly between palms.","Roll immediately in coating of choice. Refrigerate until serving."] },
+      { id:"cookies", cat:"desserts", icon:"🍋", name:"Lemon Lavender Cannabis Cookies", difficulty:"Easy", time:"45 min", yield:"24 cookies", tip:"Pair with a linalool-dominant strain like Lavender Kush for terpene synergy — linalool in both the lavender and the cannabis creates a compounded calming effect.", ingredients:["1 cup cannabutter (softened)","3/4 cup granulated sugar","3/4 cup powdered sugar","2 eggs","2 tbsp fresh lemon zest","1 tbsp culinary lavender (finely chopped)","2.5 cups all-purpose flour","1 tsp cream of tartar","1/2 tsp baking soda","1/4 tsp salt"], method:["Preheat oven to 375°F. Line baking sheets with parchment.","Beat softened cannabutter with both sugars until light and fluffy — 3 minutes.","Add eggs one at a time. Beat in lemon zest and lavender.","Whisk together flour, cream of tartar, baking soda, and salt.","Gradually add dry ingredients to butter mixture. Mix until dough forms.","Roll into 1-inch balls. Place 2 inches apart on prepared sheets.","Flatten slightly with a glass bottom dipped in sugar.","Bake 9–11 minutes until edges are just set. Centers will look underdone — that's right.","Cool on pan 5 minutes before transferring to wire rack."] }
+    ];
     const _DECARB = [
-      { temp:"220°F", tempC:"104°C", time:"60 min", name:"CBD Activation", desc:"Ideal for CBD-dominant flower. Lower heat preserves the most terpenes and converts CBDA to CBD with minimal THC degradation.", badge:"CBD Focus" },
-      { temp:"240°F", tempC:"115°C", time:"40 min", name:"The Gold Standard", desc:"Perfect balance of THC conversion and terpene preservation. The most reliable method for edibles. Used by professional infusion kitchens.", badge:"Recommended" },
-      { temp:"250°F", tempC:"121°C", time:"25–30 min", name:"Balanced Decarb", desc:"Slightly faster with minimal quality loss. Good for those short on time. Higher probability of some THC to CBN conversion starting.", badge:"Good" },
-      { temp:"300°F", tempC:"149°C", time:"10–15 min", name:"Fast Decarb", desc:"Quick but risks degrading more THC into CBN. Significant terpene loss. Use only when time is critical.", badge:"Use Carefully" }
-    ];
-    const _INFUSION = [
-      { id:"butter", icon:"🧈", name:"Cannabutter", sub:"The Foundation of Edibles", tags:["Versatile","Baking","Cooking"], desc:"Cannabutter is the backbone of cannabis cooking. Butter's fat content binds THC efficiently, and its flavor works with nearly everything — baked goods, sauces, toast, pasta, sautéed vegetables.", steps:["Decarboxylate your cannabis first — 240°F / 115°C for 40 minutes.","Melt 1 cup (2 sticks) unsalted butter with 1 cup water in a saucepan over low heat.","Add decarbed cannabis (3.5g for medium potency, 7g for strong).","Simmer on lowest heat for 2–3 hours, stirring occasionally. Never let it boil.","Strain through cheesecloth into a glass container, pressing to extract all butter.","Refrigerate — the water and butter will separate. Remove solidified butter from top.","Store refrigerated for up to 2 weeks, frozen for 6 months."], uses:["Baked goods","Pasta sauces","Toast & crackers","Sautéed vegetables","Frosting","Mashed potatoes"], tip:"Adding water during infusion prevents burning and helps remove chlorophyll — resulting in cleaner-tasting butter. The THC stays in the butter, not the water." },
-      { id:"oil", icon:"🫒", name:"Cannabis Oil", sub:"Coconut, Olive & Beyond", tags:["Versatile","Vegan","Cooking"], desc:"Cannabis-infused oil is the most versatile infusion — it works in savory cooking, baking, salad dressings, smoothies, and capsules. Coconut oil has the highest saturated fat content of any plant oil, binding THC most efficiently.", steps:["Decarboxylate your cannabis — 240°F / 115°C for 40 minutes.","Combine 1 cup oil with decarbed cannabis in a double boiler or slow cooker.","Infuse on the lowest heat setting (160–200°F / 71–93°C) for 2–3 hours.","For slow cooker: set to low, infuse 4–6 hours for maximum extraction.","Stir occasionally and monitor temperature — never exceed 245°F / 118°C.","Strain through cheesecloth into a glass jar. Squeeze to extract maximum oil.","Store in a cool, dark place for up to 2 months."], uses:["Salad dressings","Stir fry","Capsules","Smoothies","Baking","Drizzled on finished dishes"], tip:"Coconut oil binds ~25% more THC due to higher saturated fat content. Olive oil has lower binding efficiency but superior flavor for savory dishes." },
-      { id:"tincture", icon:"💧", name:"Cannabis Tincture", sub:"Alcohol-Based · Sublingual", tags:["Fast-Acting","Precise Dosing","Sublingual"], desc:"A tincture is a high-proof alcohol extraction of cannabis — the fastest and most dose-controllable way to consume cannabis besides inhalation. Taken sublingually, tinctures absorb directly into the bloodstream and begin working in 15–30 minutes.", steps:["Decarboxylate cannabis — 240°F / 115°C for 40 minutes.","Place decarbed cannabis in a clean glass jar.","Cover completely with high-proof food-grade alcohol (Everclear 190-proof is ideal). Use 1 oz alcohol per gram of cannabis.","Seal tightly and shake. Let sit at room temperature for 24 hours minimum.","For a quick version: keep in freezer for 3 hours, shaking every 30 minutes.","Strain through coffee filter into dropper bottles.","Store in a dark, cool location. Properly made tinctures last 1–5 years."], uses:["Sublingual drops","Cocktails & mocktails","Coffee & tea","Capsule filling","Microdosing"], tip:"A standard 1oz dropper bottle contains approximately 30 full droppers. Calculate your total mg per batch, then divide by 30 to know the mg per dropper." },
-      { id:"cream", icon:"🥛", name:"Cannabis Cream / Milk", sub:"Dairy-Based Infusion", tags:["Dairy","Baking","Drinks"], desc:"Cannabis-infused cream or whole milk works beautifully for desserts, hot drinks, custards, and ice cream. Heavy cream (36–40% butterfat) binds THC readily, and the dairy flavor integrates seamlessly into sweet applications.", steps:["Decarboxylate cannabis — 240°F / 115°C for 40 minutes.","Heat heavy cream or whole milk in a saucepan to just below simmer (180°F / 82°C).","Add decarbed cannabis and stir to combine.","Keep at 180°F for 45–60 minutes, stirring frequently.","Never boil — high heat above 200°F will cause the fats to separate.","Strain through fine mesh or cheesecloth into a container.","Use immediately or refrigerate for up to 1 week."], uses:["Coffee & hot chocolate","Ice cream base","Custards & puddings","Whipped cream","Soups & bisques"], tip:"Cannabis cream in coffee is one of the most seamless infusion delivery methods. The fat carries the THC, the caffeine amplifies the onset. Add after brewing — never add raw cannabis." }
-    ];
-    const _DOSE_BARS = [
-      { label:"Micro", mg:"1–2.5mg", pct:8, color:"#74C69D" },
-      { label:"Low", mg:"2.5–5mg", pct:17, color:"#52B788" },
-      { label:"Moderate", mg:"5–15mg", pct:42, color:"#2D9D6E" },
-      { label:"High", mg:"15–30mg", pct:70, color:"#C9973A" },
-      { label:"Very High", mg:"30–50mg", pct:88, color:"#E07030" },
-      { label:"Extreme", mg:"50mg+", pct:100, color:"#C84040" }
+      { temp:"220°F", tempC:"104°C", time:"60 min", name:"CBD Activation", desc:"Ideal for CBD-dominant flower. Lower heat preserves the most terpenes and converts CBDA to CBD with minimal THC degradation. Best for therapeutic, non-intoxicating preparations.", badge:"CBD Focus", badgeColor:"#52B788" },
+      { temp:"240°F", tempC:"115°C", time:"40 min", name:"The Gold Standard", desc:"The perfect balance of THC conversion and terpene preservation. The most reliable method used by professional infusion kitchens worldwide. Maximum potency with minimum degradation.", badge:"Recommended", badgeColor:"#52B788" },
+      { temp:"250°F", tempC:"121°C", time:"25 min", name:"Balanced Decarb", desc:"Slightly faster with minimal quality loss. Good when short on time. Higher probability of some THC-to-CBN conversion beginning, adding mild sedative character to the final product.", badge:"Good", badgeColor:"#C9973A" },
+      { temp:"300°F", tempC:"149°C", time:"10 min", name:"Fast Decarb", desc:"Quick but risks degrading THC into CBN. Significant terpene loss at this temperature. Use only when time is genuinely critical and you accept a reduction in quality and potency.", badge:"Use Carefully", badgeColor:"#E07030" }
     ];
     const _DOSE_RULES = [
-      { num:"01", title:"Start at 5mg or below", body:"Even experienced smokers should start low with edibles. 11-hydroxy-THC is a different molecule. A joint-tolerant person can be floored by 20mg of edible THC on an empty stomach." },
-      { num:"02", title:"Wait the full 2 hours", body:"The single most common mistake. Onset is 30 min to 2 hours. Re-dosing at 90 minutes because 'I don't feel anything' has ruined more evenings than any other error in cannabis." },
-      { num:"03", title:"Eat before you dose", body:"Food in your stomach slows absorption and smooths onset. An empty stomach accelerates and intensifies effects — sometimes dramatically. First time? Always eat a full meal first." }
+      { num:"01", title:"Start at 5mg or below", body:"Even experienced smokers should start low with edibles. 11-hydroxy-THC — the liver metabolite — is a fundamentally different and more potent molecule than inhaled THC. A joint-tolerant person can be completely overwhelmed by 20mg of edible THC on an empty stomach." },
+      { num:"02", title:"Wait the full 2 hours", body:"The single most common mistake people make. Onset is 30 minutes to 2 full hours depending on your metabolism and what you've eaten. Re-dosing at 90 minutes because nothing is happening yet has ruined more evenings than any other error in cannabis." },
+      { num:"03", title:"Eat a meal before dosing", body:"Food in your stomach slows absorption and creates a smoother, more predictable onset. An empty stomach accelerates effects and can intensify them dramatically. If it's your first time with edibles, eat a full meal first — always." }
     ];
-    const _RECIPES = [
-      { icon:"🧈", name:"Classic Cannabutter", yield:"Yield: 1 cup · ~50–100mg THC per tbsp", ingredients:["1 cup (2 sticks) unsalted butter","1 cup water","3.5–7g decarbed cannabis","Cheesecloth for straining"], method:"Melt butter + water on low heat. Add cannabis. Simmer 2–3 hours. Strain through cheesecloth. Refrigerate to separate water. Use the solidified butter.", use:"Best for: brownies, cookies, rice crispy treats, pasta, toast" },
-      { icon:"🫒", name:"Cannabis Coconut Oil", yield:"Yield: 1 cup · ~60–120mg THC per tbsp", ingredients:["1 cup coconut oil","3.5–7g decarbed cannabis","Cheesecloth or fine mesh strainer","Slow cooker or double boiler"], method:"Combine oil and cannabis in slow cooker on low for 4–6 hours (or double boiler 2–3 hours). Keep below 245°F. Strain and store in glass jar.", use:"Best for: capsules, baking, stir fry, salad dressing, smoothies" },
-      { icon:"💧", name:"Green Dragon Tincture", yield:"Yield: 1oz · ~5–15mg THC per dropper", ingredients:["1 oz Everclear 190-proof","1g decarbed cannabis per oz alcohol","Glass dropper bottles","Coffee filter for straining"], method:"Combine in sealed glass jar. Shake and freeze 3 hours, shaking every 30 min. Strain through coffee filter. Fill dropper bottles. Label with potency.", use:"Best for: sublingual dosing, cocktails, coffee, precise microdosing" }
+    const _PAIRINGS = [
+      { flavor:"Earthy & Savory", strains:["OG Kush","Chemdawg","Headband","Sour Diesel"], recipes:["Canna Aglio e Olio","Herb Compound Butter","Cannabis Pesto"], desc:"Earthy, fuel-forward terpene profiles dominated by myrcene and caryophyllene complement savory, umami-rich dishes. The cannabis becomes another layer of depth — like adding a finishing herb." },
+      { flavor:"Citrus & Bright", strains:["Lemon Haze","Super Lemon OG","Durban Poison","Tangie"], recipes:["Lemon Lavender Cookies","Avocado Toast","Canna Cold Brew"], desc:"Limonene-dominant strains with bright citrus terpenes pair beautifully with breakfast dishes and anything with lemon, grapefruit, or orange notes. The terpene profiles reinforce each other." },
+      { flavor:"Sweet & Fruity", strains:["Blue Dream","Strawberry Cough","Zkittlez","Gelato"], recipes:["Banana Canna Pancakes","Cannabis Golden Milk","Cannabis Honey"], desc:"Sweet, berry, and stone-fruit terpene profiles from strains like Zkittlez and Gelato complement sweet preparations. The fruity terpenes linger in infused honey and dairy-based drinks." },
+      { flavor:"Chocolate & Kush", strains:["Lavender Kush","Granddaddy Purple","Purple Punch","Wedding Cake"], recipes:["THC Hot Chocolate","The Perfect Brownie","Cannabis Chocolate Truffles"], desc:"Kush genetics with linalool and myrcene are the classic pairing for chocolate. Linalool's floral-lavender quality and cocoa's natural anandamide create a genuinely synergistic experience." }
     ];
     const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cooking with Cannabis — Cannascenti Encyclopedia</title>
-<meta name="description" content="The complete cannabis cooking guide. Decarboxylation, infusion methods, dosing, and recipes.">
+<title>The Cannabis Kitchen — Cannascenti</title>
+<meta name="description" content="The cannabis cooking show. 15 recipes across 5 categories, decarboxylation guide, dosing science, and strain pairings.">
 ${ENC_FONTS}
 <style>
 ${ENC_BASE_CSS}
-.decarb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:60px}
-.decarb-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:24px;text-align:center}
-.decarb-temp{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:#52B788}
-.decarb-time{font-size:.8rem;color:rgba(242,234,216,0.45);margin:4px 0 10px}
-.decarb-name{font-size:.9rem;font-weight:600;margin-bottom:8px}
-.decarb-desc{font-size:.78rem;line-height:1.6;color:rgba(242,234,216,0.55)}
-.decarb-badge{display:inline-block;margin-top:10px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:rgba(82,183,136,0.12);color:#52B788;border-radius:20px;padding:3px 12px}
-.infusion-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
-.inf-tab{background:none;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 18px;color:rgba(242,234,216,0.6);font-family:Montserrat,sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .2s}
-.inf-tab.active,.inf-tab:hover{border-color:#52B788;color:#F2EAD8;background:rgba(82,183,136,0.08)}
-.inf-panel{display:none;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:32px;margin-bottom:40px}
-.inf-panel.active{display:block}
-.inf-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.inf-tag{font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:rgba(82,183,136,0.1);color:#52B788;border-radius:20px;padding:3px 10px}
-.inf-desc{font-size:.88rem;line-height:1.75;color:rgba(242,234,216,0.7);margin-bottom:20px}
-.inf-steps{list-style:none;margin-bottom:20px}
-.inf-steps li{font-size:.85rem;line-height:1.7;color:rgba(242,234,216,0.65);padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);padding-left:20px;position:relative}
-.inf-steps li::before{content:counter(step);counter-increment:step;position:absolute;left:0;color:#52B788;font-weight:600;font-size:.78rem}
-.inf-steps{counter-reset:step}
-.inf-uses{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
-.inf-use{font-size:.78rem;background:rgba(255,255,255,0.05);border-radius:6px;padding:3px 10px;color:rgba(242,234,216,0.6)}
-.inf-tip{font-size:.8rem;line-height:1.65;color:rgba(242,234,216,0.5);border-left:2px solid rgba(82,183,136,0.3);padding-left:14px;font-style:italic}
-.dose-section{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:60px;align-items:start}
-@media(max-width:640px){.dose-section{grid-template-columns:1fr}}
-.dose-bars{display:flex;flex-direction:column;gap:10px}
-.dose-bar-row{display:flex;align-items:center;gap:12px}
-.dose-bar-label{font-size:.78rem;color:rgba(242,234,216,0.6);width:70px;flex-shrink:0}
-.dose-bar-track{flex:1;height:8px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden}
-.dose-bar-fill{height:100%;border-radius:4px;transition:width .6s ease}
-.dose-bar-mg{font-size:.75rem;color:rgba(242,234,216,0.45);width:80px;flex-shrink:0;text-align:right}
-.dose-rules{display:flex;flex-direction:column;gap:16px}
-.dose-rule{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px}
-.dose-rule-num{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:#52B788;margin-bottom:4px}
-.dose-rule-title{font-size:.9rem;font-weight:600;margin-bottom:6px}
-.dose-rule-body{font-size:.82rem;line-height:1.65;color:rgba(242,234,216,0.6)}
-.recipe-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
-.recipe-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:24px}
-.recipe-icon{font-size:2rem;margin-bottom:10px}
-.recipe-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;margin-bottom:4px}
-.recipe-yield{font-size:.78rem;color:rgba(242,234,216,0.4);margin-bottom:14px}
-.recipe-ing{list-style:none;margin-bottom:14px}
-.recipe-ing li{font-size:.8rem;color:rgba(242,234,216,0.6);padding:3px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
-.recipe-method{font-size:.82rem;line-height:1.65;color:rgba(242,234,216,0.65);margin-bottom:10px}
-.recipe-use{font-size:.78rem;color:#52B788}
-h2.sec{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;margin:60px 0 24px;color:#F2EAD8}
-h2.sec em{color:#52B788;font-style:italic}
+.kitchen-hero{background:linear-gradient(135deg,rgba(14,26,17,0.95) 0%,rgba(6,13,10,0.98) 100%);border-bottom:1px solid rgba(82,183,136,0.15);padding:80px 32px 60px;text-align:center}
+.kitchen-hero-label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#52B788;margin-bottom:20px}
+.kitchen-hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,7vw,5rem);font-weight:300;color:#F2EAD8;line-height:1.1;margin-bottom:16px}
+.kitchen-hero-title em{color:#E07B39;font-style:italic}
+.kitchen-hero-sub{font-size:1rem;color:rgba(242,234,216,0.55);max-width:560px;margin:0 auto 40px;line-height:1.7}
+.kitchen-stats{display:flex;gap:40px;justify-content:center;flex-wrap:wrap}
+.kitchen-stat{text-align:center}
+.kitchen-stat-num{font-family:'Cormorant Garamond',serif;font-size:2rem;color:#52B788}
+.kitchen-stat-label{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,234,216,0.4)}
+.cat-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;padding:0 32px}
+.cat-btn{background:none;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:9px 20px;color:rgba(242,234,216,0.6);font-family:Montserrat,sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.cat-btn.active,.cat-btn:hover{border-color:#E07B39;color:#F2EAD8;background:rgba(224,123,57,0.1)}
+.recipe-section{max-width:1200px;margin:0 auto;padding:48px 32px}
+.recipe-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-bottom:32px}
+.r-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:24px;cursor:pointer;transition:all .25s;position:relative}
+.r-card:hover{border-color:rgba(224,123,57,0.4);background:rgba(224,123,57,0.04);transform:translateY(-2px)}
+.r-card.hidden{display:none}
+.r-card.expanded{border-color:#E07B39;background:rgba(224,123,57,0.06)}
+.r-icon{font-size:2.2rem;margin-bottom:12px}
+.r-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;margin-bottom:8px;color:#F2EAD8}
+.r-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.r-diff{font-size:10px;letter-spacing:.08em;text-transform:uppercase;border-radius:20px;padding:3px 10px}
+.r-diff.easy{background:rgba(82,183,136,0.15);color:#52B788}
+.r-diff.intermediate{background:rgba(201,151,58,0.15);color:#C9973A}
+.r-diff.advanced{background:rgba(224,123,57,0.15);color:#E07B39}
+.r-time{font-size:.78rem;color:rgba(242,234,216,0.45)}
+.r-yield{font-size:.78rem;color:rgba(242,234,216,0.35)}
+.r-expand{display:none;margin-top:20px;border-top:1px solid rgba(255,255,255,0.06);padding-top:20px}
+.r-card.expanded .r-expand{display:block}
+.r-section-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#52B788;margin-bottom:10px}
+.r-ing-list{list-style:none;margin-bottom:20px}
+.r-ing-list li{font-size:.82rem;color:rgba(242,234,216,0.65);padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.r-method-list{list-style:none;counter-reset:step;margin-bottom:20px}
+.r-method-list li{font-size:.82rem;color:rgba(242,234,216,0.65);padding:8px 0 8px 28px;border-bottom:1px solid rgba(255,255,255,0.04);position:relative;counter-increment:step}
+.r-method-list li::before{content:counter(step);position:absolute;left:0;color:#E07B39;font-weight:700;font-size:.78rem}
+.r-tip{font-size:.8rem;line-height:1.65;color:rgba(242,234,216,0.5);border-left:2px solid rgba(224,123,57,0.4);padding-left:14px;font-style:italic}
+.r-close{display:block;margin-top:16px;font-size:.78rem;color:rgba(242,234,216,0.35);cursor:pointer;text-align:center;letter-spacing:.08em;text-transform:uppercase}
+.r-close:hover{color:#F2EAD8}
+.sec-block{max-width:1200px;margin:0 auto;padding:48px 32px}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:#F2EAD8;margin-bottom:8px}
+.sec-title em{color:#52B788;font-style:italic}
+.sec-sub{font-size:.88rem;color:rgba(242,234,216,0.5);margin-bottom:36px;line-height:1.7;max-width:640px}
+.decarb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.decarb-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:28px;text-align:center}
+.decarb-temp{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;color:#52B788;margin-bottom:4px}
+.decarb-time{font-size:.78rem;color:rgba(242,234,216,0.4);margin-bottom:10px}
+.decarb-name{font-size:.9rem;font-weight:600;margin-bottom:10px;color:#F2EAD8}
+.decarb-desc{font-size:.78rem;line-height:1.65;color:rgba(242,234,216,0.5)}
+.decarb-badge{display:inline-block;margin-top:14px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;border-radius:20px;padding:3px 12px}
+.dose-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:640px){.dose-grid{grid-template-columns:1fr}}
+.dose-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:32px;text-align:center}
+.dose-num{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:300;color:#52B788;line-height:1}
+.dose-title{font-size:.95rem;font-weight:600;margin:14px 0 10px;color:#F2EAD8}
+.dose-body{font-size:.82rem;line-height:1.7;color:rgba(242,234,216,0.55)}
+.pairing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.pairing-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:24px}
+.pairing-flavor{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:#F2EAD8;margin-bottom:14px}
+.pairing-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#52B788;margin-bottom:6px;margin-top:14px}
+.pairing-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:4px}
+.pairing-tag{font-size:.73rem;background:rgba(255,255,255,0.05);border-radius:6px;padding:2px 8px;color:rgba(242,234,216,0.6)}
+.pairing-desc{font-size:.78rem;line-height:1.65;color:rgba(242,234,216,0.45);margin-top:12px;font-style:italic}
+.divider{border:none;border-top:1px solid rgba(255,255,255,0.06);margin:0 32px}
 </style>
 </head>
 <body>
 ${ENC_NAV}
-<div class="enc-page">
-  <div class="enc-page-header">
-    <div class="enc-label">✦ Cannascenti Encyclopedia</div>
-    <h1 class="enc-title">Cooking with <em>Cannabis.</em></h1>
-    <p class="enc-desc">Decarboxylation, infusion methods, dosing math, and recipes. Everything you need to cook with cannabis properly — from first-time edibles to professional infusion kitchen techniques.</p>
+<div class="kitchen-hero">
+  <div class="kitchen-hero-label">✦ Cannascenti Kitchen</div>
+  <h1 class="kitchen-hero-title">The Cannabis <em>Kitchen.</em></h1>
+  <p class="kitchen-hero-sub">Professional cannabis cuisine — 15 recipes across 5 categories, full decarboxylation science, dosing math, and strain pairing guides. Cook with confidence.</p>
+  <div class="kitchen-stats">
+    <div class="kitchen-stat"><div class="kitchen-stat-num">15</div><div class="kitchen-stat-label">Recipes</div></div>
+    <div class="kitchen-stat"><div class="kitchen-stat-num">5</div><div class="kitchen-stat-label">Categories</div></div>
+    <div class="kitchen-stat"><div class="kitchen-stat-num">4</div><div class="kitchen-stat-label">Foundation Infusions</div></div>
+    <div class="kitchen-stat"><div class="kitchen-stat-num">4</div><div class="kitchen-stat-label">Strain Pairings</div></div>
   </div>
+</div>
 
-  <h2 class="sec"><em>Decarboxylation</em> — activating THC</h2>
-  <p class="enc-desc" style="margin-bottom:28px">Raw cannabis contains THCA, not THC. Heat converts THCA to active THC. Skip decarbing and your edibles won't work. Temperature and time determine potency and terpene preservation.</p>
-  <div class="decarb-grid" id="debarbGrid"></div>
-
-  <h2 class="sec">Infusion <em>methods</em></h2>
-  <div class="infusion-tabs" id="infTabs"></div>
-  <div id="infPanels"></div>
-
-  <h2 class="sec">Edible <em>dosing</em> guide</h2>
-  <div class="dose-section">
-    <div>
-      <p class="enc-desc" style="margin-bottom:24px">Edibles produce 11-hydroxy-THC in the liver — a more potent, longer-lasting compound than inhaled THC. Even experienced smokers should start lower than they think.</p>
-      <div class="dose-bars" id="doseBars"></div>
-    </div>
-    <div class="dose-rules" id="doseRules"></div>
-  </div>
-
-  <h2 class="sec">Essential <em>recipes</em></h2>
+<div class="recipe-section">
+  <div class="cat-filters" id="catFilters"></div>
   <div class="recipe-grid" id="recipeGrid"></div>
 </div>
-<script>
-var DECARB = ${JSON.stringify(_DECARB)};
-var INFUSION = ${JSON.stringify(_INFUSION)};
-var DOSE_BARS = ${JSON.stringify(_DOSE_BARS)};
-var DOSE_RULES = ${JSON.stringify(_DOSE_RULES)};
-var RECIPES = ${JSON.stringify(_RECIPES)};
 
-function render(){
-  // decarb
-  document.getElementById('debarbGrid').innerHTML=DECARB.map(function(d){
-    return '<div class="decarb-card"><div class="decarb-temp">'+d.temp+'</div><div class="decarb-time">'+d.tempC+' · '+d.time+'</div><div class="decarb-name">'+d.name+'</div><div class="decarb-desc">'+d.desc+'</div><span class="decarb-badge">'+d.badge+'</span></div>';
+<hr class="divider">
+
+<div class="sec-block">
+  <div class="sec-title">The <em>Decarboxylation</em> Guide</div>
+  <p class="sec-sub">Raw cannabis contains THCA — not THC. Heat converts THCA into active THC. Skip this step and your edibles will not work. Temperature and time are everything.</p>
+  <div class="decarb-grid" id="decarbGrid"></div>
+</div>
+
+<hr class="divider">
+
+<div class="sec-block">
+  <div class="sec-title"><em>Dosing</em> Science</div>
+  <p class="sec-sub">Edibles produce 11-hydroxy-THC — a different, more potent molecule than inhaled THC. Follow these three rules without exception.</p>
+  <div class="dose-grid" id="doseGrid"></div>
+</div>
+
+<hr class="divider">
+
+<div class="sec-block">
+  <div class="sec-title">Strain <em>Pairing</em></div>
+  <p class="sec-sub">Different terpene profiles pair naturally with different flavor categories. Match your cannabis strain to your dish for compounded aromatic experiences.</p>
+  <div class="pairing-grid" id="pairingGrid"></div>
+</div>
+
+<script>
+var RECIPES = ${JSON.stringify(_RECIPES)};
+var DECARB = ${JSON.stringify(_DECARB)};
+var DOSE_RULES = ${JSON.stringify(_DOSE_RULES)};
+var PAIRINGS = ${JSON.stringify(_PAIRINGS)};
+var currentCat = 'all';
+
+var CATS = [
+  {id:'all',label:'All'},
+  {id:'foundation',label:'Foundation'},
+  {id:'breakfast',label:'Breakfast'},
+  {id:'drinks',label:'Drinks'},
+  {id:'savory',label:'Savory'},
+  {id:'desserts',label:'Desserts'}
+];
+
+function renderFilters(){
+  document.getElementById('catFilters').innerHTML = CATS.map(function(c){
+    return '<button class="cat-btn' + (c.id===currentCat?' active':'') + '" onclick="filterCat(\'' + c.id + '\')">' + c.label + '</button>';
   }).join('');
-  // infusion tabs
-  document.getElementById('infTabs').innerHTML=INFUSION.map(function(m,i){
-    return '<button class="inf-tab'+(i===0?' active':'')+'" onclick="selectInf('+i+',this)">'+m.icon+' '+m.name+'</button>';
-  }).join('');
-  document.getElementById('infPanels').innerHTML=INFUSION.map(function(m,i){
-    return '<div class="inf-panel'+(i===0?' active':'')+'" id="infPanel'+i+'">'+
-      '<h3 style="font-family:\'Cormorant Garamond\',serif;font-size:1.5rem;font-weight:300;margin-bottom:4px">'+m.icon+' '+m.name+'</h3>'+
-      '<div style="font-size:.8rem;color:rgba(242,234,216,0.4);margin-bottom:14px">'+m.sub+'</div>'+
-      '<div class="inf-tags">'+m.tags.map(function(t){return '<span class="inf-tag">'+t+'</span>';}).join('')+'</div>'+
-      '<p class="inf-desc">'+m.desc+'</p>'+
-      '<ol class="inf-steps">'+m.steps.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ol>'+
-      '<div style="font-size:.8rem;color:rgba(242,234,216,0.4);margin-bottom:8px;letter-spacing:.08em;text-transform:uppercase">Best for</div>'+
-      '<div class="inf-uses">'+m.uses.map(function(u){return '<span class="inf-use">'+u+'</span>';}).join('')+'</div>'+
-      '<p class="inf-tip">'+m.tip+'</p>'+
+}
+
+function filterCat(cat){
+  currentCat = cat;
+  renderFilters();
+  document.querySelectorAll('.r-card').forEach(function(card){
+    var cardCat = card.getAttribute('data-cat');
+    if(cat === 'all' || cardCat === cat){
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+      card.classList.remove('expanded');
+    }
+  });
+}
+
+function toggleRecipe(id){
+  var card = document.getElementById('rcard-' + id);
+  if(card.classList.contains('expanded')){
+    card.classList.remove('expanded');
+  } else {
+    document.querySelectorAll('.r-card.expanded').forEach(function(c){c.classList.remove('expanded');});
+    card.classList.add('expanded');
+    setTimeout(function(){card.scrollIntoView({behavior:'smooth',block:'nearest'});},100);
+  }
+}
+
+function renderRecipes(){
+  document.getElementById('recipeGrid').innerHTML = RECIPES.map(function(r){
+    var diffClass = r.difficulty.toLowerCase();
+    var ings = r.ingredients.map(function(i){return '<li>' + i + '</li>';}).join('');
+    var steps = r.method.map(function(s){return '<li>' + s + '</li>';}).join('');
+    return '<div class="r-card" id="rcard-' + r.id + '" data-cat="' + r.cat + '" onclick="toggleRecipe(\'' + r.id + '\')">' +
+      '<div class="r-icon">' + r.icon + '</div>' +
+      '<div class="r-name">' + r.name + '</div>' +
+      '<div class="r-meta">' +
+        '<span class="r-diff ' + diffClass + '">' + r.difficulty + '</span>' +
+        '<span class="r-time">' + r.time + '</span>' +
+      '</div>' +
+      '<div class="r-yield">' + r.yield + '</div>' +
+      '<div class="r-expand">' +
+        '<div class="r-section-label">Ingredients</div>' +
+        '<ul class="r-ing-list">' + ings + '</ul>' +
+        '<div class="r-section-label">Method</div>' +
+        '<ol class="r-method-list">' + steps + '</ol>' +
+        '<p class="r-tip">' + r.tip + '</p>' +
+        '<span class="r-close">collapse recipe</span>' +
+      '</div>' +
     '</div>';
   }).join('');
-  // dose bars
-  document.getElementById('doseBars').innerHTML=DOSE_BARS.map(function(d){
-    return '<div class="dose-bar-row"><span class="dose-bar-label">'+d.label+'</span><div class="dose-bar-track"><div class="dose-bar-fill" style="width:'+d.pct+'%;background:'+d.color+'"></div></div><span class="dose-bar-mg">'+d.mg+'</span></div>';
-  }).join('');
-  // dose rules
-  document.getElementById('doseRules').innerHTML=DOSE_RULES.map(function(r){
-    return '<div class="dose-rule"><div class="dose-rule-num">'+r.num+'</div><div class="dose-rule-title">'+r.title+'</div><div class="dose-rule-body">'+r.body+'</div></div>';
-  }).join('');
-  // recipes
-  document.getElementById('recipeGrid').innerHTML=RECIPES.map(function(r){
-    return '<div class="recipe-card"><div class="recipe-icon">'+r.icon+'</div><div class="recipe-name">'+r.name+'</div><div class="recipe-yield">'+r.yield+'</div><ul class="recipe-ing">'+r.ingredients.map(function(i){return '<li>'+i+'</li>';}).join('')+'</ul><div class="recipe-method">'+r.method+'</div><div class="recipe-use">'+r.use+'</div></div>';
+}
+
+function renderDecarb(){
+  document.getElementById('decarbGrid').innerHTML = DECARB.map(function(d){
+    return '<div class="decarb-card">' +
+      '<div class="decarb-temp">' + d.temp + '</div>' +
+      '<div class="decarb-time">' + d.tempC + ' &bull; ' + d.time + '</div>' +
+      '<div class="decarb-name">' + d.name + '</div>' +
+      '<div class="decarb-desc">' + d.desc + '</div>' +
+      '<span class="decarb-badge" style="background:rgba(82,183,136,0.1);color:' + d.badgeColor + '">' + d.badge + '</span>' +
+    '</div>';
   }).join('');
 }
 
-function selectInf(i,btn){
-  document.querySelectorAll('.inf-tab').forEach(function(b){b.classList.remove('active');});
-  document.querySelectorAll('.inf-panel').forEach(function(p){p.classList.remove('active');});
-  btn.classList.add('active');
-  document.getElementById('infPanel'+i).classList.add('active');
+function renderDose(){
+  document.getElementById('doseGrid').innerHTML = DOSE_RULES.map(function(r){
+    return '<div class="dose-card">' +
+      '<div class="dose-num">' + r.num + '</div>' +
+      '<div class="dose-title">' + r.title + '</div>' +
+      '<div class="dose-body">' + r.body + '</div>' +
+    '</div>';
+  }).join('');
 }
 
-document.addEventListener('DOMContentLoaded',render);
+function renderPairings(){
+  document.getElementById('pairingGrid').innerHTML = PAIRINGS.map(function(p){
+    var strainTags = p.strains.map(function(s){return '<span class="pairing-tag">' + s + '</span>';}).join('');
+    var recipeTags = p.recipes.map(function(s){return '<span class="pairing-tag">' + s + '</span>';}).join('');
+    return '<div class="pairing-card">' +
+      '<div class="pairing-flavor">' + p.flavor + '</div>' +
+      '<div class="pairing-label">Strains</div>' +
+      '<div class="pairing-tags">' + strainTags + '</div>' +
+      '<div class="pairing-label">Pairs With</div>' +
+      '<div class="pairing-tags">' + recipeTags + '</div>' +
+      '<div class="pairing-desc">' + p.desc + '</div>' +
+    '</div>';
+  }).join('');
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  renderFilters();
+  renderRecipes();
+  renderDecarb();
+  renderDose();
+  renderPairings();
+});
 </script>
 </body></html>`;
     res.writeHead(200,{"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
@@ -2002,14 +2103,79 @@ document.addEventListener('DOMContentLoaded',function(){
       { name:"Flowering", dur:"6–12 weeks", icon:"🌺", desc:"The main event. The plant's entire energy is devoted to producing resinous flowers. Trichome development, terpene production, and cannabinoid synthesis all peak here.", environment:"Temp: 65–80°F · Humidity: 40–50% · Light: 12/12", nutrients:"High phosphorus and potassium, declining nitrogen. Specialized bloom nutrients.", tips:["Defoliate moderately at week 3 and week 6","Maintain strict 12/12 — any light leak causes hermaphroditism","Monitor trichomes with a loupe from week 6"], watch:"Bud rot (Botrytis) in dense colas. Reduce humidity, increase airflow. Powdery mildew. Spider mites explode in hot/dry conditions.", tip:"Color change under cooler temps is controlled by genetics (anthocyanins), not nutrients. To get purple, grow strains bred for it at cooler night temps (60°F)." },
       { name:"Harvest", dur:"1–3 days", icon:"✂️", desc:"The moment of truth. Trichome observation determines the perfect harvest window — the difference between a heady, clear high and a body-heavy sedative effect.", environment:"Temp: 60–70°F · Humidity: 45–55% · Complete darkness 24–48h before harvest", nutrients:"Flush with plain water 1–2 weeks before harvest", tips:["Trichomes: clear = early, cloudy = peak THC, amber = degraded THC/more CBD","Harvest in the morning for peak terpene content","Use sharp, clean scissors"], watch:"Mold at harvest. Harvest in cool, dry conditions. Wet trim vs dry trim — both valid; wet trim in humid climates, dry trim in dry climates.", tip:"A 40–60x loupe or jeweler's scope is mandatory for serious trichome observation. The naked eye cannot tell you when to harvest accurately." }
     ];
+    const _ENVIRONMENTS = [
+      { id:"indoor", icon:"&#128161;", label:"Indoor", tagline:"Total control. Year-round. Best quality.", pros:["Year-round growing — no seasonal limits","Complete environment control (temp, humidity, CO2, light spectrum)","Highest potency and trichome density achievable","Privacy and security","Multiple harvests per year"], cons:["Significant setup cost (lights, fans, tent or room, HVAC)","Ongoing electricity costs — even LEDs draw 200–600W","Requires active daily monitoring","Lower yield per plant than outdoor"], lights:"LED preferred — 150–200W per m². Full-spectrum quantum board LEDs deliver the best yield-per-watt ratio. HPS still viable but runs hot and less efficient.", temp:"70–80°F (21–27°C) lights-on. 10°F drop at night encourages terpene and anthocyanin development in late flower.", humidity:"Seedling 65–70%. Veg 50–70%. Flower 40–50%. Late flower 40–45% to prevent bud rot in dense colas.", strains:["OG Kush","White Widow","Gorilla Glue #4","Wedding Cake","Gelato","Girl Scout Cookies"] },
+      { id:"outdoor", icon:"&#9728;", label:"Outdoor", tagline:"Free sunlight. Massive yields. Seasonal.", pros:["Free, full-spectrum natural sunlight","Highest possible yield per plant","Lowest cost of entry by far","Largest plants achievable — 10+ feet possible","Natural terpene complexity from real sun cycles"], cons:["Seasonal — one main harvest per year in most climates","Weather and climate dependent","Privacy concerns depending on jurisdiction","Pest and pathogen exposure","No control over light cycle — season triggers flowering"], lights:"Natural sunlight — free and unbeatable. Plants need 6+ hours of direct sun minimum. South-facing slopes or hillsides maximize exposure.", temp:"Ideal 65–85°F. Sensitive to frost — plant after last frost date in spring, harvest before first fall frost.", humidity:"Ambient. High-humidity regions require mold-resistant genetics (fast finishers, loose bud structure). Arid climates need consistent irrigation.", strains:["Blue Dream","Durban Poison","Zkittlez","Trainwreck","Sour Diesel","Jack Herer"] },
+      { id:"greenhouse", icon:"&#127969;", label:"Greenhouse", tagline:"Best of both. Most cost-effective.", pros:["Free sunlight with full climate protection","Extended season — plant earlier, harvest later than outdoor","Most cost-effective setup for premium quality","Weather protection without full HVAC cost","Light deprivation allows multiple harvests per year"], cons:["Upfront construction or purchase cost","Heat management in summer requires active venting","Less precise control than full indoor","Humidity accumulates — requires active management"], lights:"Free solar during the day. Supplemental LED for early-season starts. Light deprivation tarps enable photoperiod control for year-round harvest.", temp:"Sun-regulated naturally. Shade cloth and ridge vents manage summer heat. Propane or electric heaters extend the season into cooler months.", humidity:"Monitor and vent actively. Oscillating fans and ridge vents are essential. Greenhouse humidity builds faster than open outdoor.", strains:["Northern Lights","Gelato","Amnesia Haze","Strawberry Cough","Auto-flowering varieties","Zkittlez"] }
+    ];
+    const _TECHNIQUES = [
+      { id:"lst", level:"beginner", name:"LST — Low Stress Training", short:"Bend and tie branches horizontally to expose lower bud sites directly to the light source. Creates a wide, even canopy without any cutting.", benefit:"Up to 30% yield increase by maximizing the number of bud sites receiving direct light. Zero recovery time — the plant continues growing during training.", howto:"During veg, gently bend the main stem and side branches outward and downward. Secure with soft plant ties or garden wire to stakes inserted at the pot rim. As new growth emerges upright, continue bending it outward. A little bending each day is better than forcing a large bend all at once." },
+      { id:"topping", level:"beginner", name:"Topping", short:"Cut the main apical stem cleanly at the 5th node. This removes apical dominance and forces the plant to grow two equal main colas from the two nodes below the cut.", benefit:"Doubles main cola count immediately. Combined with a second topping, creates four mains. A cornerstone technique for increasing total yield indoors.", howto:"Using sterilized scissors, cut the main stem cleanly between the 5th and 6th node during mid-veg. Wait 5–7 days for the two new growth tips to emerge and strengthen before applying any additional stress. The plant will look stalled briefly — this is normal recovery." },
+      { id:"fim", level:"beginner", name:"FIM — F*** I Missed", short:"Pinch or cut approximately 70–80% of the new growth tip, leaving the bottom 20–30% intact. Creates 4 new colas instead of the 2 produced by full topping.", benefit:"Produces 4 main colas with less plant stress and faster recovery than full topping. Gentler and faster — ideal for impatient growers.", howto:"Identify the newest growth tip when 4–5 small leaves are just emerging. Pinch or snip 70–80% of that new growth cluster — do not cut the full stem. The remaining base will divide into 4 new growth tips over 5–8 days." },
+      { id:"scrog", level:"intermediate", name:"SCROG — Screen of Green", short:"Install a horizontal net or screen 10–12 inches above the pot tops. Weave branches through the net laterally as they grow up, creating a completely flat and even canopy.", benefit:"Maximizes the number of bud sites in the prime light zone directly beneath your fixtures. Dramatically improves light efficiency in square-footage-limited indoor grows.", howto:"Install a net or trellis screen 10–12 inches above the pots before plants reach it. During late veg, gently push branches through net openings and weave them horizontally. Tuck any vertical growth back under the screen. Flip to 12/12 flower when the screen is 70–80% filled." },
+      { id:"sog", level:"intermediate", name:"SOG — Sea of Green", short:"Grow many small plants and flip to flower very early — at 2–3 weeks of veg — so each plant becomes essentially one large main cola. Pack plants tightly to fill the canopy.", benefit:"Fastest possible harvest cycles. Maximum use of your light footprint. Ideal for cloning operations and auto-flowering strains.", howto:"Start plants in 1–2 gallon containers. Flip to 12/12 light cycle when plants are 6–10 inches tall. Pack 4–16 plants per square meter depending on pot size. Remove lower growth that will not reach the canopy. Harvest the entire table at once." },
+      { id:"supercropping", level:"intermediate", name:"Super Cropping", short:"Pinch and gently crush the inner tissue of a thick stem at the target bending point, then slowly bend 90 degrees. A reinforced knuckle forms at the bend as it heals.", benefit:"Creates multiple low-effort bending points without cutting. The healed knuckle delivers more nutrient flow to the branch. Excellent for controlling tall plants in height-limited spaces.", howto:"Find the stem section to bend. Firmly pinch between thumb and forefinger and roll gently back and forth to soften the inner pith without tearing the outer skin. Slowly bend to 90 degrees — support with a stake if needed. The knuckle forms and hardens within 5–7 days and becomes stronger than the original stem." },
+      { id:"lollipopping", level:"intermediate", name:"Lollipopping", short:"Remove all lower growth — leaves, branches, and bud sites — below the main canopy line. Concentrates the plant's energy entirely on the top colas that receive direct light.", benefit:"Focuses all growth energy on the highest-quality top buds. Dramatically improves airflow in the lower canopy — critical for preventing bud rot. Produces larger, denser upper colas.", howto:"At week 3 of flower, identify the lower 25–30% of the plant. Remove all branches, growth tips, and large fan leaves in that zone working from the bottom up. Do not remove more than 30% of total foliage in one session — spread the work over 3–4 days to minimize stress." },
+      { id:"defoliation", level:"intermediate", name:"Strategic Defoliation", short:"Selectively remove fan leaves that are blocking light from reaching bud sites below, or crowding airflow channels within the canopy. Not a wholesale strip — a targeted edit.", benefit:"Improves light penetration to lower bud sites. Reduces canopy humidity and mold risk. The plant's mild stress response temporarily increases terpene production.", howto:"Perform two defoliation passes: one at week 3 of flower and one at week 6. Remove only fan leaves that are directly blocking bud sites or impeding airflow. Remove no more than 20–25% of leaves per session. The fan leaves are the plant's solar panels — less is always more." },
+      { id:"manifolding", level:"advanced", name:"Manifolding / Mainlining", short:"A precise multi-step technique using sequential topping and symmetrical LST to produce a perfectly even 8-cola structure from a single plant where every cola receives identical light and nutrients.", benefit:"Produces extremely predictable, even yields with 8 near-identical top colas per plant. Maximizes light efficiency for indoor grows. The most structured training method available.", howto:"Top at the 3rd node. Remove all growth below the 2nd node — leave only the two growth tips at node 2. Once both tips have 3 nodes each, top both again at their 3rd nodes. Tie all 4 resulting branches outward symmetrically. Top once more to produce the final 8 even branches. Allow full 7-day recovery between each topping." },
+      { id:"rdwc", level:"advanced", name:"RDWC Hydroponics", short:"Recirculating Deep Water Culture. Plant roots are suspended directly in oxygenated, pH-controlled nutrient solution. A pump continuously recirculates solution through multiple connected buckets.", benefit:"20–30% faster vegetative growth than soil. Maximum nutrient uptake efficiency. Largest yields achievable in indoor cultivation. The highest-performance grow system available.", howto:"Connect DWC buckets via tubing to a central reservoir. Maintain nutrient solution EC at 0.5–0.8 in seedling, scaling to 1.4–2.0 in peak flower. pH must stay at 5.5–6.2 — check daily. Keep dissolved oxygen high with large air stones. Reservoir temperature must stay below 68°F to prevent pythium root rot." },
+      { id:"kno", level:"advanced", name:"Korean Natural Farming — Living Soil", short:"Build a biologically active soil ecosystem using fermented plant extracts, compost teas, and diverse microbial inoculants. The soil microbiome feeds the plant — no synthetic nutrients required.", benefit:"Produces the most complex, layered terpene profiles achievable. No synthetic nutrient cost at scale. Regenerative — the same soil improves with each successive grow cycle. Exceptional finished flavor and aroma.", howto:"Start with a quality living soil mix: compost, worm castings, perlite, rock dust, and biochar. Inoculate with mycorrhizal fungi and beneficial bacteria at transplant. Water with aerated compost teas weekly. Supplement with fermented plant juice (FPJ) during veg and fermented fruit juice (FFJ) during flower. Water gently — preserve soil structure and microbial habitat." }
+    ];
+    const _CULTURES = [
+      { region:"Emerald Triangle, California", flag:"&#127482;&#127480;", style:"Craft Sun-Grown Outdoor", badge:"Legacy", strains:["OG Kush","Trainwreck","Wedding Cake","SFV OG"], desc:"The birthplace of American cannabis culture. Three counties — Humboldt, Trinity, and Mendocino — produce the most celebrated outdoor cannabis in the world. Mediterranean climate, rich old-growth soil, and 3000+ ft elevation create ideal growing conditions. Small craft farms hand-trim and sun-cure. A legal gray area for decades shaped a culture of deep horticultural expertise and fierce strain stewardship that no commercial operation has replicated." },
+      { region:"Amsterdam, Netherlands", flag:"&#127475;&#127473;", style:"Commercial Technical Indoor", badge:"Breeding Hub", strains:["White Widow","AK-47","Amnesia Haze","Super Silver Haze"], desc:"Low natural light forced Dutch growers to master indoor cultivation long before the rest of the world caught up. The coffeeshop system created commercial demand for consistent, high-quality product. Green House Seeds, Sensi Seeds, and Dutch Passion pioneered modern cannabis breeding and the global seed bank industry. Sea of Green technique was largely developed here. Amsterdam remains the center of cannabis genetics and horticultural innovation." },
+      { region:"British Columbia, Canada", flag:"&#127464;&#127462;", style:"Boutique Premium Indoor", badge:"Craft Indoor", strains:["Pink Kush","Death Bubba","Rockstar","BC Big Bud"], desc:"BC Bud is internationally respected as some of the finest indoor cannabis produced anywhere. Cool climate drove innovation in artificial cultivation. The province developed a culture of high-end craft indoor growing — meticulous genetics selection, dialed environments, and long slow cures. Post-legalization, BC craft producers set the standard for premium packaged cannabis in Canada's regulated market." },
+      { region:"Rif Mountains, Morocco", flag:"&#127474;&#127462;", style:"Traditional Hash Production", badge:"Hash Heritage", strains:["Beldia (Ketama landrace)","Local Rif landraces"], desc:"Morocco produces more hashish by volume than any other nation. Landrace Beldia and Ketama strains grow semi-wild at altitude throughout the Rif. Dry-sieve kief is pressed into slabs using techniques unchanged for centuries. Family farms have cultivated these plants for generations. Kif — raw cannabis mixed with black tobacco and smoked in a sebsi pipe — is a traditional Moroccan social practice. Hash export is the region's primary agricultural economy." },
+      { region:"Bekaa Valley, Lebanon", flag:"&#127473;&#127463;", style:"Old-World Hash", badge:"Legendary Hash", strains:["Lebanese Red","Lebanese Blonde"], desc:"Lebanese Red and Lebanese Blonde were the benchmark hash varieties of 1960s–70s counterculture — a quality standard that shaped a generation's expectations. Cold water and dry-sieve methods produced compressed red and blonde slabs with distinctive terroir-specific flavor profiles. Civil war in the 1980s devastated production. The tradition is experiencing a revival as international interest in heritage cannabis genetics and artisanal hash grows." },
+      { region:"Hindu Kush, Afghanistan & Pakistan", flag:"&#127462;&#127467;", style:"Hand-Rubbed Charas", badge:"Ancient Tradition", strains:["Afghani","Mazar-i-Sharif","Hindu Kush"], desc:"The Hindu Kush mountain range is the genetic source of indica cannabis for the entire world. Hash has been produced here for over 3000 years. Hand-rubbed charas — made by rolling live resinous flowers between the palms — is the original concentrate. Afghan indica genetics (short, dense, resin-heavy plants adapted to harsh mountain climate) became the foundation for virtually all modern indica and hybrid breeding programs globally." },
+      { region:"Blue Mountains, Jamaica", flag:"&#127471;&#127474;", style:"Mountain Sativa Outdoor", badge:"Cultural Heritage", strains:["Lamb's Bread","Jamaican Lambsbread"], desc:"Lamb's Bread — most famously associated with Bob Marley — grows in Jamaica's Blue Mountains as a pure, long-season mountain sativa. Cannabis (ganja) is a sacrament in Rastafari, used in nyabinghi ceremonies for meditation and reasoning. Jamaican genetics shaped the sativa imports that reached the American market in the 1970s. Jamaica legalized personal use in 2015 and now cultivates a legal medical market built on its unique landrace heritage." },
+      { region:"Colorado, USA", flag:"&#127482;&#127480;", style:"Commercial Recreational Indoor", badge:"Legal Pioneer", strains:["Ghost Train Haze","Gorilla Glue","Bruce Banner","Chemdawg"], desc:"Colorado legalized adult-use cannabis in 2012 — the first US state to do so. The regulatory framework developed in Denver became the blueprint for legal cannabis markets worldwide. Retail cannabis prices dropped 70% between 2012 and 2020 as supply scaled — while average potency and product quality simultaneously improved through intense commercial breeding competition. Colorado remains the testing ground for cannabis policy, product innovation, and consumption science." }
+    ];
+    const _STRAINS_GUIDE = [
+      { name:"Northern Lights", env:"Indoor / Both", difficulty:"Beginner", yield:"High", flower:"7–9 weeks", notes:"The most forgiving strain in cannabis. Resilient to overwatering, underfeeding, and humidity swings. Compact indica structure. The definitive first-grow strain." },
+      { name:"Blue Dream", env:"Outdoor / Greenhouse", difficulty:"Beginner", yield:"Very High", flower:"9–10 weeks", notes:"Easy outdoor giant. Vigorous, disease-resistant, forgiving. Balanced hybrid. Thrives with minimal intervention in most climates." },
+      { name:"White Widow", env:"Indoor / Both", difficulty:"Beginner", yield:"Medium", flower:"8–9 weeks", notes:"Classic Dutch genetics. Resilient and highly trainable. Excellent for learning topping and LST. Consistent resin production in any environment." },
+      { name:"Gorilla Glue #4", env:"Indoor / Both", difficulty:"Intermediate", yield:"Very High", flower:"8–9 weeks", notes:"Heavy producer requiring branch support due to cola weight. Extremely resinous — gloves are mandatory at harvest. Worth the extra management." },
+      { name:"Amnesia Haze", env:"Outdoor / Greenhouse", difficulty:"Intermediate", yield:"High", flower:"10–11 weeks", notes:"Needs space and sun — a tall sativa reaching 2m+ outdoors. Longer flower time than most. Rewards patience with exceptional terpene complexity." },
+      { name:"Wedding Cake", env:"Indoor", difficulty:"Advanced", yield:"High", flower:"9–10 weeks", notes:"Demanding but produces extraordinary quality. Sensitive to nutrient levels, requires dialed conditions. Best suited to growers with two or more successful grows." }
+    ];
     const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cultivation Guide — Cannascenti Encyclopedia</title>
+<title>Cultivation — Cannascenti Encyclopedia</title>
+<meta name="description" content="The definitive cannabis cultivation guide: environment selection, seed-to-harvest growth stages, training techniques, global growing cultures, and beginner strain recommendations.">
 ${ENC_FONTS}
 <style>
 ${ENC_BASE_CSS}
+.gr-hero{padding:72px 32px 56px;max-width:1100px;margin:0 auto}
+.gr-hero-label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#52B788;margin-bottom:16px}
+.gr-hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:300;color:#F2EAD8;line-height:1.1;margin-bottom:16px}
+.gr-hero-title em{color:#52B788;font-style:italic}
+.gr-hero-sub{font-size:.95rem;color:rgba(242,234,216,0.55);max-width:620px;line-height:1.8}
+.gr-section{max-width:1100px;margin:0 auto;padding:0 32px 72px}
+.gr-sec-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:#F2EAD8;margin-bottom:8px}
+.gr-sec-title em{color:#52B788;font-style:italic}
+.gr-sec-sub{font-size:.86rem;color:rgba(242,234,216,0.45);margin-bottom:28px;line-height:1.7;max-width:640px}
+.env-tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+.env-tab{background:none;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 22px;color:rgba(242,234,216,0.6);font-family:Montserrat,sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.env-tab.active,.env-tab:hover{border-color:#52B788;color:#F2EAD8;background:rgba(82,183,136,0.08)}
+.env-panel{display:none;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:36px}
+.env-panel.active{display:block}
+.env-panel-header{display:flex;align-items:center;gap:16px;margin-bottom:8px}
+.env-label{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:#F2EAD8}
+.env-tagline{font-size:.88rem;color:#52B788;margin-bottom:24px;font-style:italic}
+.env-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px}
+@media(max-width:560px){.env-grid{grid-template-columns:1fr}}
+.env-col-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,234,216,0.32);margin-bottom:8px}
+.env-list{list-style:none}
+.env-list li{font-size:.82rem;color:rgba(242,234,216,0.62);padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);padding-left:16px;position:relative}
+.env-list.pro li::before{content:"+";position:absolute;left:0;color:#52B788;font-weight:700}
+.env-list.con li::before{content:"&#8722;";position:absolute;left:0;color:#C9973A;font-weight:700}
+.env-spec{background:rgba(255,255,255,0.03);border-radius:10px;padding:12px 16px;font-size:.8rem;color:rgba(242,234,216,0.58);line-height:1.65;margin-bottom:10px}
+.env-spec strong{color:#52B788}
+.env-strains{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.env-strain-tag{font-size:.75rem;background:rgba(82,183,136,0.08);border:1px solid rgba(82,183,136,0.18);color:#52B788;border-radius:6px;padding:3px 10px}
 .stage-timeline{display:flex;flex-direction:column;gap:0}
 .stage{display:grid;grid-template-columns:80px 1fr;gap:0;position:relative}
 .stage-line{display:flex;flex-direction:column;align-items:center;padding-top:4px}
@@ -2024,37 +2190,965 @@ ${ENC_BASE_CSS}
 .stage-env{font-size:.78rem;color:#52B788;background:rgba(82,183,136,0.08);border-radius:8px;padding:8px 14px;margin-bottom:12px}
 .stage-tips{list-style:none;margin-bottom:12px}
 .stage-tips li{font-size:.8rem;color:rgba(242,234,216,0.6);padding:3px 0;padding-left:14px;position:relative}
-.stage-tips li::before{content:"→";position:absolute;left:0;color:#52B788;font-size:.7rem}
+.stage-tips li::before{content:"&#8594;";position:absolute;left:0;color:#52B788;font-size:.7rem}
 .stage-watch{font-size:.79rem;color:rgba(232,168,76,0.8);background:rgba(232,168,76,0.06);border-radius:8px;padding:8px 12px;margin-bottom:10px}
 .stage-tip{font-size:.79rem;line-height:1.6;color:rgba(242,234,216,0.45);border-left:2px solid rgba(82,183,136,0.3);padding-left:12px;font-style:italic}
+.level-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.level-btn{background:none;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:8px 18px;color:rgba(242,234,216,0.6);font-family:Montserrat,sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.level-btn.active,.level-btn:hover{border-color:#52B788;color:#F2EAD8;background:rgba(82,183,136,0.08)}
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.tech-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:24px;transition:border-color .2s}
+.tech-card:hover{border-color:rgba(82,183,136,0.3)}
+.tech-card.hidden{display:none}
+.tech-level{font-size:10px;letter-spacing:.1em;text-transform:uppercase;border-radius:20px;padding:2px 10px;margin-bottom:12px;display:inline-block}
+.tech-level.beginner{background:rgba(82,183,136,0.12);color:#52B788}
+.tech-level.intermediate{background:rgba(201,151,58,0.12);color:#C9973A}
+.tech-level.advanced{background:rgba(224,123,57,0.12);color:#E07B39}
+.tech-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:#F2EAD8;margin-bottom:8px}
+.tech-short{font-size:.82rem;line-height:1.72;color:rgba(242,234,216,0.6);margin-bottom:12px}
+.tech-benefit{font-size:.78rem;color:#52B788;background:rgba(82,183,136,0.07);border-radius:8px;padding:7px 12px;margin-bottom:12px;line-height:1.6}
+.tech-howto{font-size:.78rem;line-height:1.72;color:rgba(242,234,216,0.43);border-left:2px solid rgba(82,183,136,0.2);padding-left:12px;font-style:italic}
+.culture-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.culture-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:24px}
+.culture-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
+.culture-region{font-size:.85rem;font-weight:600;color:#F2EAD8;margin-bottom:4px}
+.culture-style-lbl{font-size:.73rem;color:rgba(242,234,216,0.38)}
+.culture-badge{font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:rgba(82,183,136,0.1);color:#52B788;border-radius:20px;padding:2px 10px;white-space:nowrap;flex-shrink:0;margin-left:8px}
+.culture-strains{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.culture-strain{font-size:.72rem;background:rgba(255,255,255,0.05);border-radius:5px;padding:2px 8px;color:rgba(242,234,216,0.52)}
+.culture-desc{font-size:.78rem;line-height:1.72;color:rgba(242,234,216,0.48)}
+.strain-table{width:100%;border-collapse:collapse}
+.strain-table th{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,234,216,0.32);padding:8px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.06)}
+.strain-table td{font-size:.82rem;color:rgba(242,234,216,0.62);padding:12px;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:top}
+.strain-table tr:hover td{background:rgba(255,255,255,0.02)}
+.s-name{font-weight:600;color:#F2EAD8}
+.s-diff{font-size:10px;letter-spacing:.07em;text-transform:uppercase;border-radius:20px;padding:2px 9px}
+.s-diff.beginner{background:rgba(82,183,136,0.12);color:#52B788}
+.s-diff.intermediate{background:rgba(201,151,58,0.12);color:#C9973A}
+.s-diff.advanced{background:rgba(224,123,57,0.12);color:#E07B39}
+.s-notes{font-size:.74rem;color:rgba(242,234,216,0.38);font-style:italic}
+.gr-philosophy{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:680px){.gr-philosophy{grid-template-columns:1fr}}
+.phil-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:30px}
+.phil-icon{font-size:1.8rem;margin-bottom:16px}
+.phil-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:#F2EAD8;margin-bottom:10px}
+.phil-body{font-size:.82rem;line-height:1.82;color:rgba(242,234,216,0.48)}
+.gr-divider{border:none;border-top:1px solid rgba(255,255,255,0.06);margin:0 32px}
 </style>
 </head>
 <body>
 ${ENC_NAV}
-<div class="enc-page">
-  <div class="enc-page-header">
-    <div class="enc-label">✦ Cannascenti Encyclopedia</div>
-    <h1 class="enc-title">Cannabis <em>cultivation</em> guide.</h1>
-    <p class="enc-desc">From seed to harvest — every stage of the cannabis life cycle with environment requirements, nutrients, common problems, and pro tips. Whether you're growing your first plant or running a professional operation.</p>
-  </div>
+<div class="gr-hero">
+  <div class="gr-hero-label">&#10022; Cannascenti Encyclopedia</div>
+  <h1 class="gr-hero-title">The Art &amp; Science of<br><em>Cannabis Cultivation.</em></h1>
+  <p class="gr-hero-sub">From seed to harvest — a comprehensive guide to growing cannabis: environment selection, every stage of the plant life cycle, training techniques from beginner to expert, global growing cultures, and the strains that define each approach.</p>
+</div>
+
+<div class="gr-section">
+  <div class="gr-sec-title">Choose Your <em>Environment</em></div>
+  <p class="gr-sec-sub">The environment you choose shapes everything — strain selection, training methods, setup cost, and annual yield. Each carries a distinct philosophy.</p>
+  <div class="env-tabs" id="envTabs"></div>
+  <div id="envPanels"></div>
+</div>
+
+<hr class="gr-divider">
+
+<div class="gr-section" style="padding-top:60px">
+  <div class="gr-sec-title">The <em>Life Cycle</em> — Seed to Harvest</div>
+  <p class="gr-sec-sub">Every stage of the cannabis plant's life demands a different environment, nutrient profile, and level of attention. Know what your plant needs at every phase.</p>
   <div class="stage-timeline" id="stageTimeline"></div>
 </div>
+
+<hr class="gr-divider">
+
+<div class="gr-section" style="padding-top:60px">
+  <div class="gr-sec-title">Training <em>Techniques</em></div>
+  <p class="gr-sec-sub">How you shape your plant determines how many bud sites receive direct light — which directly determines yield and quality. Filter by experience level.</p>
+  <div class="level-filters">
+    <button class="level-btn active" id="lvl-all" onclick="filterLevel('all')">All</button>
+    <button class="level-btn" id="lvl-beginner" onclick="filterLevel('beginner')">Beginner</button>
+    <button class="level-btn" id="lvl-intermediate" onclick="filterLevel('intermediate')">Intermediate</button>
+    <button class="level-btn" id="lvl-advanced" onclick="filterLevel('advanced')">Expert</button>
+  </div>
+  <div class="tech-grid" id="techGrid"></div>
+</div>
+
+<hr class="gr-divider">
+
+<div class="gr-section" style="padding-top:60px">
+  <div class="gr-sec-title">Global Growing <em>Cultures</em></div>
+  <p class="gr-sec-sub">Cannabis cultivation has deep roots in cultures across six continents. Each region developed unique techniques, strains, and traditions shaped by climate, history, and necessity.</p>
+  <div class="culture-grid" id="cultureGrid"></div>
+</div>
+
+<hr class="gr-divider">
+
+<div class="gr-section" style="padding-top:60px">
+  <div class="gr-sec-title">Beginner <em>Strain Guide</em></div>
+  <p class="gr-sec-sub">Not all strains are equal in difficulty. These six cultivars represent the best entry points — forgiving genetics that reward basic technique and teach good habits.</p>
+  <div style="overflow-x:auto"><table class="strain-table" id="strainTable"></table></div>
+</div>
+
+<hr class="gr-divider">
+
+<div class="gr-section" style="padding-top:60px">
+  <div class="gr-sec-title">The Grower's <em>Philosophy</em></div>
+  <p class="gr-sec-sub">The environment you choose reveals something about your relationship with the plant.</p>
+  <div class="gr-philosophy">
+    <div class="phil-card">
+      <div class="phil-icon">&#128161;</div>
+      <div class="phil-title">The Indoor Grower</div>
+      <div class="phil-body">You are a craftsperson. You control every variable — light spectrum, temperature to the degree, humidity to the percentage, CO2 concentration, nutrient EC to three decimal places. For you, growing is engineering. The plant is a system to be optimized. The result is the most potent, most precisely crafted cannabis achievable — and the satisfaction of a process completely within your command.</div>
+    </div>
+    <div class="phil-card">
+      <div class="phil-icon">&#9728;</div>
+      <div class="phil-title">The Outdoor Grower</div>
+      <div class="phil-body">You are a farmer, in the oldest sense. You work with nature rather than against it — reading seasons, building living soil, surrendering some control in exchange for scale and authenticity. The plant grows as it evolved to grow: under full-spectrum sun, developing terpene complexity that no artificial light fully replicates. There is a quality to sun-grown cannabis that comes from exactly this: the plant was not comfortable, and it responded.</div>
+    </div>
+    <div class="phil-card">
+      <div class="phil-icon">&#127969;</div>
+      <div class="phil-title">The Greenhouse Grower</div>
+      <div class="phil-body">You are a pragmatist with taste. You recognize that free sunlight is the most powerful grow light ever created, and that climate protection multiplies what nature provides. The greenhouse represents a philosophy of amplification — taking what the environment gives and extending, protecting, and optimizing it. The most cost-effective path to exceptional cannabis. The approach professional cultivators worldwide increasingly favor for its combination of quality, sustainability, and scalability.</div>
+    </div>
+  </div>
+</div>
+
 <script>
 var STAGES = ${JSON.stringify(_CS)};
-document.addEventListener('DOMContentLoaded',function(){
-  document.getElementById('stageTimeline').innerHTML=STAGES.map(function(s){
-    return '<div class="stage">'+
-      '<div class="stage-line"><div class="stage-dot">'+s.icon+'</div><div class="stage-connector"></div></div>'+
-      '<div class="stage-body">'+
-        '<div class="stage-header"><div class="stage-name">'+s.name+'</div><div class="stage-dur">'+s.dur+'</div></div>'+
-        '<p class="stage-desc">'+s.desc+'</p>'+
-        '<div class="stage-env">'+s.environment+'</div>'+
-        '<ul class="stage-tips">'+s.tips.map(function(t){return '<li>'+t+'</li>';}).join('')+'</ul>'+
-        '<div class="stage-watch">⚠ Watch for: '+s.watch+'</div>'+
-        '<p class="stage-tip">'+s.tip+'</p>'+
-      '</div>'+
+var ENVIRONMENTS = ${JSON.stringify(_ENVIRONMENTS)};
+var TECHNIQUES = ${JSON.stringify(_TECHNIQUES)};
+var CULTURES = ${JSON.stringify(_CULTURES)};
+var STRAINS = ${JSON.stringify(_STRAINS_GUIDE)};
+var currentEnv = 'indoor';
+
+function renderEnvTabs() {
+  document.getElementById('envTabs').innerHTML = ENVIRONMENTS.map(function(e) {
+    return '<button class="env-tab' + (e.id === currentEnv ? ' active' : '') + '" onclick="selectEnv(\'' + e.id + '\')">' + e.icon + ' ' + e.label + '</button>';
+  }).join('');
+}
+
+function selectEnv(id) {
+  currentEnv = id;
+  renderEnvTabs();
+  document.querySelectorAll('.env-panel').forEach(function(p) { p.classList.remove('active'); });
+  var panel = document.getElementById('env-panel-' + id);
+  if (panel) panel.classList.add('active');
+}
+
+function renderEnvPanels() {
+  document.getElementById('envPanels').innerHTML = ENVIRONMENTS.map(function(e) {
+    var proItems = e.pros.map(function(p) { return '<li>' + p + '</li>'; }).join('');
+    var conItems = e.cons.map(function(c) { return '<li>' + c + '</li>'; }).join('');
+    var strainTags = e.strains.map(function(s) { return '<span class="env-strain-tag">' + s + '</span>'; }).join('');
+    return '<div class="env-panel' + (e.id === currentEnv ? ' active' : '') + '" id="env-panel-' + e.id + '">' +
+      '<div class="env-panel-header"><div class="env-label">' + e.label + '</div></div>' +
+      '<div class="env-tagline">' + e.tagline + '</div>' +
+      '<div class="env-grid">' +
+        '<div><div class="env-col-label">Advantages</div><ul class="env-list pro">' + proItems + '</ul></div>' +
+        '<div><div class="env-col-label">Disadvantages</div><ul class="env-list con">' + conItems + '</ul></div>' +
+      '</div>' +
+      '<div class="env-spec"><strong>Lighting:</strong> ' + e.lights + '</div>' +
+      '<div class="env-spec"><strong>Temperature:</strong> ' + e.temp + '</div>' +
+      '<div class="env-spec"><strong>Humidity:</strong> ' + e.humidity + '</div>' +
+      '<div class="env-col-label" style="margin-top:16px;margin-bottom:8px">Recommended strains</div>' +
+      '<div class="env-strains">' + strainTags + '</div>' +
     '</div>';
   }).join('');
+}
+
+function renderStages() {
+  document.getElementById('stageTimeline').innerHTML = STAGES.map(function(s) {
+    return '<div class="stage">' +
+      '<div class="stage-line"><div class="stage-dot">' + s.icon + '</div><div class="stage-connector"></div></div>' +
+      '<div class="stage-body">' +
+        '<div class="stage-header"><div class="stage-name">' + s.name + '</div><div class="stage-dur">' + s.dur + '</div></div>' +
+        '<p class="stage-desc">' + s.desc + '</p>' +
+        '<div class="stage-env">' + s.environment + '</div>' +
+        '<ul class="stage-tips">' + s.tips.map(function(t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
+        '<div class="stage-watch">&#9888; Watch for: ' + s.watch + '</div>' +
+        '<p class="stage-tip">' + s.tip + '</p>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function filterLevel(level) {
+  document.querySelectorAll('.level-btn').forEach(function(b) { b.classList.remove('active'); });
+  var btn = document.getElementById('lvl-' + level);
+  if (btn) btn.classList.add('active');
+  document.querySelectorAll('.tech-card').forEach(function(card) {
+    if (level === 'all' || card.getAttribute('data-level') === level) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+
+function renderTech() {
+  document.getElementById('techGrid').innerHTML = TECHNIQUES.map(function(t) {
+    return '<div class="tech-card" data-level="' + t.level + '">' +
+      '<span class="tech-level ' + t.level + '">' + t.level + '</span>' +
+      '<div class="tech-name">' + t.name + '</div>' +
+      '<p class="tech-short">' + t.short + '</p>' +
+      '<div class="tech-benefit">' + t.benefit + '</div>' +
+      '<p class="tech-howto">' + t.howto + '</p>' +
+    '</div>';
+  }).join('');
+}
+
+function renderCultures() {
+  document.getElementById('cultureGrid').innerHTML = CULTURES.map(function(c) {
+    var strainTags = c.strains.map(function(s) { return '<span class="culture-strain">' + s + '</span>'; }).join('');
+    return '<div class="culture-card">' +
+      '<div class="culture-top">' +
+        '<div><div class="culture-region">' + c.flag + ' ' + c.region + '</div><div class="culture-style-lbl">' + c.style + '</div></div>' +
+        '<span class="culture-badge">' + c.badge + '</span>' +
+      '</div>' +
+      '<div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,234,216,0.3);margin-bottom:6px">Notable strains</div>' +
+      '<div class="culture-strains">' + strainTags + '</div>' +
+      '<p class="culture-desc">' + c.desc + '</p>' +
+    '</div>';
+  }).join('');
+}
+
+function renderStrains() {
+  var rows = STRAINS.map(function(s) {
+    var diffClass = s.difficulty.toLowerCase();
+    return '<tr>' +
+      '<td class="s-name">' + s.name + '</td>' +
+      '<td>' + s.env + '</td>' +
+      '<td><span class="s-diff ' + diffClass + '">' + s.difficulty + '</span></td>' +
+      '<td>' + s.yield + '</td>' +
+      '<td>' + s.flower + '</td>' +
+      '<td class="s-notes">' + s.notes + '</td>' +
+    '</tr>';
+  }).join('');
+  document.getElementById('strainTable').innerHTML =
+    '<thead><tr><th>Strain</th><th>Environment</th><th>Difficulty</th><th>Yield</th><th>Flower Time</th><th>Notes</th></tr></thead>' +
+    '<tbody>' + rows + '</tbody>';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  renderEnvTabs();
+  renderEnvPanels();
+  renderStages();
+  renderTech();
+  renderCultures();
+  renderStrains();
+});
+</script>
+</body></html>`;
+    res.writeHead(200,{"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
+    res.end(html);
+    return;
+  }
+
+  // ─── /yourbody ─────────────────────────────────────────────────────────────
+  if (req.method === "GET" && req.url === "/cannalogy") {
+    const _ZONES = [
+      {
+        id:"brain", label:"Brain", cx:100, cy:44, color:"#9B7FD4",
+        receptors:"CB1 receptors dense throughout cortex, hippocampus, basal ganglia, and cerebellum. CB2 present in microglia.",
+        headline:"The command center of your cannabis experience",
+        desc:"The brain has the highest CB1 receptor density of any organ in the body. These receptors regulate mood, memory consolidation, pain perception, coordination, and appetite. THC binds directly to CB1 receptors — this is the source of the euphoria, altered time perception, and heightened sensory awareness that defines the cannabis experience. CBD does not bind CB1 directly but modulates its activity, reducing anxiety and dampening overactive neural circuits. The hippocampus — the brain's memory formation center — is especially CB1-dense, which explains why high THC temporarily impairs short-term memory formation.",
+        positive:["THC: euphoria, mood elevation, creativity, heightened sensory perception","CBD: anxiety reduction, anti-epileptic, neuroprotection","CBN: sedation and sleep promotion","CBG: neuroprotection, possible antidepressant activity","THCV: mental clarity, short-duration alerting effect"],
+        negative:["THC: short-term memory impairment, anxiety at high doses, paranoia in susceptible individuals","Heavy adolescent use associated with cognitive development concerns"],
+        research:"The discovery of CB1 receptors in 1988 (Howlett et al.) revolutionized neuroscience. The endocannabinoid system — with anandamide as its primary endogenous ligand — regulates synaptic plasticity throughout the CNS. CBD's mechanism in treating Dravet syndrome and Lennox-Gastaut syndrome is FDA-recognized (Epidiolex, 2018).",
+        cannabinoids:["THC","CBD","CBN","CBG","THCV"]
+      },
+      {
+        id:"eyes", label:"Eyes", cx:100, cy:57, color:"#5CA0E8",
+        receptors:"CB1 receptors in ciliary body (regulates intraocular pressure). CB2 in retinal ganglion cells and Muller glia.",
+        headline:"Bloodshot eyes, reduced pressure, retinal protection",
+        desc:"The redness associated with cannabis use — formally called conjunctival vasodilation — is caused by THC binding CB1 receptors in the eye's blood vessels, causing them to dilate. This same mechanism reduces intraocular pressure (IOP), which is why cannabis was one of the first plant medicines seriously studied for glaucoma. IOP reduction of 25–30% has been documented after THC use, though the 3–4 hour window limits its clinical utility compared to modern glaucoma drugs. CBD has shown promise as a retinal neuroprotectant, reducing oxidative damage to retinal cells in preclinical research.",
+        positive:["THC: reduces intraocular pressure 25–30% — relevant to glaucoma management","CBD: antioxidant neuroprotection of retinal cells in preclinical models","Both: vasodilation reduces vascular strain on retinal tissue"],
+        negative:["THC: conjunctival redness (cosmetic but reliable)","IOP reduction is short-duration — not a standalone glaucoma treatment","High-dose CBD may paradoxically increase IOP in some studies"],
+        research:"Hepler and Frank (1971) published the first clinical study documenting cannabis-induced IOP reduction. The American Glaucoma Society currently notes that while cannabis reduces IOP, its short duration and side effects make it unsuitable as primary glaucoma therapy. Retinal CB2 receptor research is ongoing.",
+        cannabinoids:["THC","CBD"]
+      },
+      {
+        id:"lungs", label:"Lungs", cx:100, cy:118, color:"#52B788",
+        receptors:"CB1 in bronchial smooth muscle (bronchodilation). CB2 in alveolar macrophages and immune cells of lung tissue.",
+        headline:"Acute bronchodilation vs. chronic smoking damage",
+        desc:"Cannabis has a complex, dual relationship with the lungs that depends heavily on consumption method. Acutely, THC causes bronchodilation — relaxation of bronchial smooth muscle — which is why cannabis was studied as an asthma treatment in the 1970s. CBD exerts anti-inflammatory effects on bronchial tissue, and CB2 receptors in lung macrophages regulate immune responses to respiratory pathogens. The complication is delivery method: smoking cannabis involves combustion products (including carbon monoxide, benzene, and tar) that cause chronic bronchitis with regular use. Vaporization eliminates combustion products while preserving bronchodilatory effects.",
+        positive:["THC: acute bronchodilation — opens airways in the short term","CBD: reduces pulmonary inflammation via CB2 immune modulation","Vaporized cannabis avoids combustion toxins entirely"],
+        negative:["Smoked cannabis: chronic bronchitis, increased respiratory mucus, cough","Combustion produces carbon monoxide, benzene, tar — same as tobacco smoke","Regular heavy smoking associated with increased respiratory infections"],
+        research:"Tashkin et al. (University of California) conducted decades of pulmonary cannabis research. Notably, even heavy cannabis smokers do not show the COPD rates seen in tobacco smokers — a finding attributed to cannabis's anti-inflammatory CB2 activity partially counteracting smoking damage. Vaporizer bioavailability studies (Abrams et al., 2007) confirmed equivalent cannabinoid delivery without combustion products.",
+        cannabinoids:["THC","CBD"]
+      },
+      {
+        id:"heart", label:"Heart", cx:88, cy:130, color:"#E07B39",
+        receptors:"CB1 in cardiac muscle and autonomic neurons (rate, contractility). CB2 in vascular endothelium and immune cells.",
+        headline:"Rate increase, then cardioprotection",
+        desc:"The cardiovascular effects of cannabis are among the most important to understand, particularly for older users. THC's initial effect on the heart is a dose-dependent increase in heart rate (tachycardia) — typically 20–50 beats per minute above baseline — driven by CB1 activation of sympathetic neurons. This effect peaks at 10–15 minutes and subsides within an hour. Blood pressure shows an initial mild increase followed by a decrease as CB1-mediated vasodilation takes effect. CBD has a directly cardioprotective profile: it reduces ischemia-reperfusion injury, lowers resting blood pressure, and has demonstrated vascular anti-inflammatory effects. CBG also produces vasodilation independent of CB1.",
+        positive:["CBD: cardioprotective — reduces ischemia damage, lowers blood pressure","CBG: vasodilatory, reduces arterial tension","THC: mild analgesic effect reduces pain-induced cardiac stress","CB2 activation: reduces cardiac inflammation and atherosclerosis progression"],
+        negative:["THC: tachycardia — heart rate increase of 20–50 BPM","Risk elevated for individuals with pre-existing cardiac arrhythmia or coronary disease","Case reports link acute cannabis use to adverse cardiac events in vulnerable individuals"],
+        research:"CBD's antihypertensive properties were confirmed in a double-blind crossover trial (Jadoon et al., 2017) showing single-dose CBD reduced resting systolic blood pressure. The CARDIA study (Rodondi et al.) followed cannabis users over 25 years and found associations between heavy use and increased cardiovascular risk, though confounding factors complicate interpretation.",
+        cannabinoids:["THC","CBD","CBG"]
+      },
+      {
+        id:"gut", label:"Gut", cx:100, cy:188, color:"#74C69D",
+        receptors:"CB1 throughout enteric nervous system (ENS) — the gut's own nervous system. CB2 dense in gut wall immune cells (Peyer's patches, lamina propria).",
+        headline:"The gut-cannabis axis — digestion, immunity, IBD",
+        desc:"The gastrointestinal tract has the second-highest concentration of cannabinoid receptors in the body after the brain. The enteric nervous system — which governs gut motility, secretions, and the gut-brain axis — is extensively modulated by CB1 receptors. This is why cannabis is so reliably effective for nausea (THC directly suppresses the vomiting reflex via CB1) and appetite stimulation. CB2 receptors in gut wall immune cells regulate the inflammatory environment of the intestines, making cannabinoids highly relevant to Crohn's disease, ulcerative colitis, and IBS. CBG has shown remarkable specificity for gut inflammation, with preclinical data showing efficacy against both inflammatory bowel disease and H. pylori.",
+        positive:["THC: powerful anti-nausea, appetite stimulation (FDA-approved as Marinol for chemotherapy nausea)","CBD: anti-inflammatory for Crohn's disease and ulcerative colitis","CBG: IBD-specific anti-inflammatory, H. pylori antibacterial activity","THCV: appetite suppression — the metabolic opposite of the THC munchies"],
+        negative:["Heavy THC use associated with Cannabinoid Hyperemesis Syndrome (CHS) in a subset of users","High THC may slow gastric motility — contraindicated in gastroparesis","Appetite stimulation can complicate weight management goals"],
+        research:"The FDA-approved dronabinol (synthetic THC) for chemotherapy-induced nausea validated the gut-cannabinoid connection clinically. A 2018 Crohn's disease trial (Naftali et al.) showed 65% clinical remission with cannabis vs. 35% with placebo. CBG's efficacy against H. pylori was demonstrated at Microbes and Infection (Appendino et al., 2008) — notably effective against antibiotic-resistant strains.",
+        cannabinoids:["THC","CBD","CBG","THCV"]
+      },
+      {
+        id:"muscles", label:"Muscles", cx:55, cy:258, color:"#F4A261",
+        receptors:"CB1 in motor neurons and neuromuscular junctions. CB2 in skeletal muscle satellite cells (involved in repair) and immune cells.",
+        headline:"Spasticity relief, recovery, inflammation control",
+        desc:"Cannabinoid receptors in the motor system and muscle tissue serve primarily regulatory and protective functions. CB1 receptors in motor neurons modulate the signals that cause involuntary muscle contractions — which is why cannabis has documented efficacy for spasticity in multiple sclerosis. This led to the approval of Sativex (THC:CBD 1:1 oromucosal spray) in over 25 countries for MS spasticity. CBD's anti-inflammatory and antioxidant properties make it popular for exercise recovery — reducing delayed onset muscle soreness (DOMS) through prostaglandin inhibition and reduced cytokine signaling. CBC has shown synergistic effects with CBD on muscle tissue inflammation.",
+        positive:["THC: spasticity reduction — clinically proven in MS (Sativex approved in 25+ countries)","CBD: reduces DOMS, exercise-induced inflammation, oxidative stress in muscle tissue","CBC: synergistic anti-inflammatory activity alongside CBD","CB2: regulates satellite cell activity relevant to muscle repair"],
+        negative:["THC impairs motor coordination at higher doses — counterproductive for athletic performance","Psychoactive effects limit daytime use for active recovery","Smoking delivery irritates airways — athletes should use non-combustion methods"],
+        research:"The MUSEC trial (Zajicek et al., 2012) demonstrated significant spasticity reduction with cannabis extract in MS patients. Meta-analysis by Whiting et al. (JAMA, 2015) confirmed moderate evidence for cannabinoids in spasticity management. The World Anti-Doping Agency removed CBD from its prohibited list in 2018.",
+        cannabinoids:["THC","CBD","CBC"]
+      },
+      {
+        id:"joints", label:"Joints", cx:68, cy:335, color:"#C9973A",
+        receptors:"CB1 in periarticular nerve fibers (pain signaling). CB2 in osteoblasts (bone-forming cells), osteoclasts, and synovial joint macrophages.",
+        headline:"Arthritis, bone growth, pain signal modulation",
+        desc:"The joint and skeletal system is governed predominantly by CB2 receptors — the non-psychoactive arm of the endocannabinoid system. CB2 receptors are found on osteoblasts (cells that build bone) and osteoclasts (cells that resorb bone), giving cannabinoids a direct role in bone remodeling and fracture healing. CBG and CBD have both shown osteogenic (bone-promoting) effects in preclinical models. For arthritis, CBD's anti-inflammatory action on synovial macrophages reduces joint swelling and degradation. THC addresses the pain signal side — CB1 receptors on periarticular nerves reduce the transmission of pain signals from inflamed joints to the brain.",
+        positive:["CBD: reduces synovial inflammation in arthritis — both osteoarthritis and rheumatoid types","THC: modulates pain signal transmission from joints via CB1 periarticular nerves","CBG: stimulates bone growth via osteoblast CB2 activation — accelerates fracture healing in models","CB2 activation: reduces joint immune-mediated destruction"],
+        negative:["THC's psychoactive effects limit daytime use for arthritis management","Topical application preferred for localized joint relief — avoids systemic effects","Evidence base is preclinical-heavy; large RCTs for arthritis remain limited"],
+        research:"Sophocleous et al. (2017, British Journal of Pharmacology) demonstrated that CB2 receptor knockout mice show reduced bone mass, confirming CB2's role in bone homeostasis. A randomized controlled trial by Blake et al. (Rheumatology, 2006) showed Sativex significantly reduced pain and improved sleep in rheumatoid arthritis patients.",
+        cannabinoids:["CBD","THC","CBG"]
+      },
+      {
+        id:"skin", label:"Skin", cx:148, cy:158, color:"#E8A87C",
+        receptors:"CB1 and CB2 in keratinocytes (skin cells), sebocytes (oil-producing cells), mast cells, and sensory nerve endings throughout the dermis.",
+        headline:"Acne, eczema, topical pain — no psychoactivity",
+        desc:"The skin is the body's largest organ and one of the most cannabinoid-receptor-rich. Both CB1 and CB2 are expressed throughout the skin — in the cells that form the barrier (keratinocytes), cells that produce sebum (sebocytes), immune mast cells, and the sensory nerve endings that detect pain and itch. CBD regulates sebum production via CB2 on sebocytes — reducing the overproduction that causes acne. It also reduces the inflammatory cascade in eczema and psoriasis through cytokine modulation. Critically, standard topical cannabinoids do not cross the blood-brain barrier and produce no psychoactive effect.",
+        positive:["CBD: reduces sebum overproduction — clinically relevant for acne vulgaris","CBD: reduces inflammatory cytokines in eczema, psoriasis, atopic dermatitis","THC (topical): pain and itch relief via CB1 skin nerve endings — zero psychoactivity","CBG: broad-spectrum antibacterial against skin pathogens including MRSA","CBC: synergistic anti-acne activity, reduces lipogenesis in sebocytes"],
+        negative:["Transdermal absorption is low — most topicals stay in skin layers only","Transdermal patches can deliver systemically — potential mild psychoactivity","Product quality varies enormously — poorly formulated products do not penetrate effectively"],
+        research:"Olah et al. (2014, Journal of Clinical Investigation) demonstrated CBD's sebostatic effects in human sebocyte cell culture, establishing the mechanism for CBD in acne treatment. The antibacterial activity of CBG against MRSA was published by Appendino et al. in the Journal of Natural Products (2008).",
+        cannabinoids:["CBD","THC","CBG","CBC"]
+      }
+    ];
+    const _CB_INFO = [
+      { id:"THC", label:"THC", color:"#E07B39", zones:["brain","eyes","lungs","heart","gut","muscles","joints","skin"], summary:"The primary psychoactive cannabinoid. Binds directly to CB1 receptors across nearly every body system. Produces euphoria and pain relief centrally, anti-nausea and appetite stimulation in the gut, bronchodilation in lungs, and IOP reduction in eyes — all via CB1." },
+      { id:"CBD", label:"CBD", color:"#52B788", zones:["brain","eyes","lungs","heart","gut","muscles","joints","skin"], summary:"The most therapeutically versatile cannabinoid. Non-psychoactive. Modulates CB1 activity rather than binding it directly. Anti-inflammatory systemically, neuroprotective in the brain, cardioprotective in the heart, sebostatic in skin, and FDA-approved for epilepsy." },
+      { id:"CBG", label:"CBG", color:"#74C69D", zones:["brain","heart","gut","joints","skin"], summary:"The mother cannabinoid — biosynthetic precursor to THC and CBD. Neuroprotective in the brain, vasodilatory in the heart, powerfully anti-inflammatory in the gut (IBD specialist), osteogenic in joints, and antibacterial on skin. Non-psychoactive." },
+      { id:"CBN", label:"CBN", color:"#9B7FD4", zones:["brain"], summary:"A THC degradation product formed as cannabis ages and oxidizes. Mildly sedating via CB1 in the brain. Primarily active centrally — less systemic relevance than other cannabinoids. Associated with sleep and mild pain relief." },
+      { id:"CBC", label:"CBC", color:"#5CA0E8", zones:["muscles","skin"], summary:"Cannabichromene — non-psychoactive and often overlooked. Shows synergistic anti-inflammatory activity with CBD in muscle tissue. In skin, reduces lipogenesis in sebocytes and works alongside CBD for anti-acne effects. An entourage effect amplifier." },
+      { id:"THCV", label:"THCV", color:"#F4A261", zones:["brain","gut"], summary:"A structural analog of THC with opposite appetite effects at low doses. Suppresses appetite via CB1 antagonism in the gut and produces mental clarity and short-duration energy in the brain. Rarest of the major cannabinoids — highest in African sativa landraces." }
+    ];
+    const _HOTSPOTS = [
+      {id:"brain",   cx:100, cy:44,  color:"#9B7FD4", label:"Brain"},
+      {id:"eyes",    cx:100, cy:57,  color:"#5CA0E8", label:"Eyes"},
+      {id:"lungs",   cx:100, cy:118, color:"#52B788", label:"Lungs"},
+      {id:"heart",   cx:88,  cy:130, color:"#E07B39", label:"Heart"},
+      {id:"gut",     cx:100, cy:188, color:"#74C69D", label:"Gut"},
+      {id:"muscles", cx:55,  cy:258, color:"#F4A261", label:"Muscles"},
+      {id:"joints",  cx:68,  cy:335, color:"#C9973A", label:"Joints"},
+      {id:"skin",    cx:148, cy:158, color:"#E8A87C", label:"Skin"}
+    ];
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cannalogy — Cannabis &amp; Your Body — Cannascenti</title>
+<meta name="description" content="Interactive guide to how cannabinoids affect every body system. CB1, CB2, THC, CBD, CBG and more — explained per organ.">
+${ENC_FONTS}
+<style>
+${ENC_BASE_CSS}
+.yb-hero{padding:72px 32px 56px;max-width:1100px;margin:0 auto}
+.yb-hero-label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#52B788;margin-bottom:16px}
+.yb-hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,6vw,4rem);font-weight:300;color:#F2EAD8;line-height:1.1;margin-bottom:16px}
+.yb-hero-title em{color:#52B788;font-style:italic}
+.yb-hero-sub{font-size:.95rem;color:rgba(242,234,216,0.55);max-width:580px;line-height:1.8}
+.yb-main{max-width:1100px;margin:0 auto;padding:0 32px 80px;display:grid;grid-template-columns:260px 1fr;gap:48px;align-items:start}
+@media(max-width:800px){.yb-main{grid-template-columns:1fr}}
+.yb-svg-wrap{position:sticky;top:80px}
+.yb-svg-title{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(242,234,216,0.35);margin-bottom:16px;text-align:center}
+.yb-svg-container{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:24px;display:flex;justify-content:center}
+.yb-dot{cursor:pointer;transition:opacity .3s}
+.yb-dot circle.pulse{animation:ybPulse 2s ease-in-out infinite}
+@keyframes ybPulse{0%,100%{r:7;opacity:0.6}50%{r:11;opacity:0.15}}
+.yb-dot.active circle.inner{fill:#52B788 !important}
+.yb-dot.active circle.pulse{stroke:#52B788 !important}
+.yb-dot.dim{opacity:0.18}
+.yb-dot.highlight circle.inner{fill:#52B788 !important}
+.yb-zone-tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:16px}
+.yb-zone-tag{font-size:10px;letter-spacing:.07em;text-transform:uppercase;background:rgba(255,255,255,0.05);border-radius:6px;padding:3px 9px;color:rgba(242,234,216,0.5);cursor:pointer;border:1px solid rgba(255,255,255,0.07);transition:all .2s}
+.yb-zone-tag:hover{border-color:rgba(82,183,136,0.4);color:#F2EAD8}
+.yb-info{min-height:400px}
+.yb-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:420px;text-align:center;color:rgba(242,234,216,0.25);gap:12px;border:1px dashed rgba(255,255,255,0.07);border-radius:20px}
+.yb-placeholder-icon{font-size:2.5rem;opacity:0.3}
+.yb-placeholder-text{font-size:.85rem;line-height:1.7}
+.yb-zone-panel{display:none;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:32px}
+.yb-zone-panel.active{display:block}
+.yb-zone-name{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;margin-bottom:8px;color:#F2EAD8}
+.yb-zone-receptors{font-size:.78rem;color:#52B788;background:rgba(82,183,136,0.08);border-radius:8px;padding:8px 14px;margin-bottom:16px;line-height:1.6}
+.yb-zone-headline{font-size:.98rem;font-weight:600;color:#F2EAD8;margin-bottom:12px}
+.yb-zone-desc{font-size:.84rem;line-height:1.82;color:rgba(242,234,216,0.63);margin-bottom:20px}
+.yb-cb-pills{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px}
+.yb-cb-pill{font-size:11px;font-weight:600;letter-spacing:.06em;border-radius:20px;padding:4px 13px;border:1px solid}
+.yb-effects-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+@media(max-width:540px){.yb-effects-grid{grid-template-columns:1fr}}
+.yb-effects-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.yb-effects-label.pos{color:#52B788}
+.yb-effects-label.neg{color:#C9973A}
+.yb-effects-list{list-style:none}
+.yb-effects-list li{font-size:.77rem;line-height:1.65;color:rgba(242,234,216,0.58);padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);padding-left:16px;position:relative}
+.yb-effects-list.pos li::before{content:"+";position:absolute;left:0;color:#52B788;font-weight:700}
+.yb-effects-list.neg li::before{content:"!";position:absolute;left:0;color:#C9973A;font-weight:700}
+.yb-research{font-size:.76rem;line-height:1.72;color:rgba(242,234,216,0.38);border-left:2px solid rgba(82,183,136,0.22);padding-left:14px;font-style:italic}
+.yb-lens-section{max-width:1100px;margin:0 auto;padding:0 32px 80px}
+.yb-lens-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:#F2EAD8;margin-bottom:8px}
+.yb-lens-title em{color:#52B788;font-style:italic}
+.yb-lens-sub{font-size:.85rem;color:rgba(242,234,216,0.45);margin-bottom:24px;line-height:1.7;max-width:620px}
+.yb-lens-pills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.yb-lens-btn{background:none;border:1px solid rgba(255,255,255,0.12);border-radius:24px;padding:10px 24px;color:rgba(242,234,216,0.6);font-family:Montserrat,sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;cursor:pointer;transition:all .2s}
+.yb-lens-card{display:none;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:28px}
+.yb-lens-card.active{display:block}
+.yb-lens-card-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;margin-bottom:10px}
+.yb-lens-card-summary{font-size:.86rem;line-height:1.78;color:rgba(242,234,216,0.62);margin-bottom:18px}
+.yb-lens-zones{display:flex;flex-wrap:wrap;gap:8px}
+.yb-lens-zone-tag{font-size:.78rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:4px 13px;color:rgba(242,234,216,0.6);cursor:pointer;transition:all .2s}
+.yb-lens-zone-tag:hover{border-color:rgba(82,183,136,0.4);color:#F2EAD8}
+.yb-ecs-section{background:rgba(255,255,255,0.015);border-top:1px solid rgba(255,255,255,0.06);padding:72px 32px}
+.yb-ecs-inner{max-width:1100px;margin:0 auto}
+.yb-ecs-header{text-align:center;margin-bottom:48px}
+.yb-ecs-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:#F2EAD8;margin-bottom:10px}
+.yb-ecs-title em{color:#52B788;font-style:italic}
+.yb-ecs-sub{font-size:.88rem;color:rgba(242,234,216,0.45);max-width:560px;margin:0 auto;line-height:1.78}
+.yb-ecs-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:680px){.yb-ecs-cards{grid-template-columns:1fr}}
+.yb-ecs-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:28px}
+.yb-ecs-card-icon{font-size:1.5rem;margin-bottom:14px;color:#52B788}
+.yb-ecs-card-title{font-size:.95rem;font-weight:600;color:#F2EAD8;margin-bottom:10px}
+.yb-ecs-card-body{font-size:.81rem;line-height:1.78;color:rgba(242,234,216,0.52)}
+</style>
+</head>
+<body>
+${ENC_NAV}
+<div class="yb-hero">
+  <div class="yb-hero-label">&#10022; Cannascenti Encyclopedia</div>
+  <h1 class="yb-hero-title">Cannabis &amp; Your <em>Body.</em></h1>
+  <p class="yb-hero-sub">What's actually happening inside you. Click any glowing zone to explore how cannabinoids interact with that organ system — from receptor distribution to clinical research.</p>
+</div>
+
+<div class="yb-main">
+  <div class="yb-svg-wrap">
+    <div class="yb-svg-title">Click a zone to explore</div>
+    <div class="yb-svg-container">
+      <svg viewBox="0 0 200 480" width="200" height="480" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="100" cy="32" rx="22" ry="26" fill="rgba(82,183,136,0.06)" stroke="rgba(82,183,136,0.18)" stroke-width="1"/>
+        <rect x="93" y="56" width="14" height="14" rx="4" fill="rgba(82,183,136,0.05)" stroke="rgba(82,183,136,0.12)" stroke-width="1"/>
+        <path d="M68,70 Q62,72 58,82 L52,160 Q52,168 60,170 L140,170 Q148,168 148,160 L142,82 Q138,72 132,70 Z" fill="rgba(82,183,136,0.05)" stroke="rgba(82,183,136,0.12)" stroke-width="1"/>
+        <path d="M68,72 Q58,76 54,90 L46,178 Q44,188 50,190 L58,190 Q64,188 66,178 L70,100" fill="rgba(82,183,136,0.04)" stroke="rgba(82,183,136,0.1)" stroke-width="1"/>
+        <path d="M132,72 Q142,76 146,90 L154,178 Q156,188 150,190 L142,190 Q136,188 134,178 L130,100" fill="rgba(82,183,136,0.04)" stroke="rgba(82,183,136,0.1)" stroke-width="1"/>
+        <path d="M80,170 L72,300 Q70,310 74,318 L84,318 Q90,316 92,306 L96,170" fill="rgba(82,183,136,0.04)" stroke="rgba(82,183,136,0.1)" stroke-width="1"/>
+        <path d="M120,170 L128,300 Q130,310 126,318 L116,318 Q110,316 108,306 L104,170" fill="rgba(82,183,136,0.04)" stroke="rgba(82,183,136,0.1)" stroke-width="1"/>
+        <ellipse cx="78" cy="326" rx="10" ry="6" fill="rgba(82,183,136,0.04)" stroke="rgba(82,183,136,0.08)" stroke-width="1"/>
+        <ellipse cx="122" cy="326" rx="10" ry="6" fill="rgba(82,183,136,0.04)" stroke="rgba(82,183,136,0.08)" stroke-width="1"/>
+        <g id="yb-dots"></g>
+      </svg>
+    </div>
+    <div class="yb-zone-tags" id="yb-zone-tags"></div>
+  </div>
+
+  <div class="yb-info">
+    <div class="yb-placeholder" id="yb-placeholder">
+      <div class="yb-placeholder-icon">&#9678;</div>
+      <div class="yb-placeholder-text">Click a glowing dot on the body<br>or a zone tag below to begin</div>
+    </div>
+    <div id="yb-panels"></div>
+  </div>
+</div>
+
+<div class="yb-lens-section">
+  <div class="yb-lens-title">The <em>Cannabinoid</em> Lens</div>
+  <p class="yb-lens-sub">Select a cannabinoid to highlight every body system where it is active and read its whole-body summary.</p>
+  <div class="yb-lens-pills" id="yb-lens-pills"></div>
+  <div id="yb-lens-cards"></div>
+</div>
+
+<div class="yb-ecs-section">
+  <div class="yb-ecs-inner">
+    <div class="yb-ecs-header">
+      <div class="yb-ecs-title">How the <em>ECS</em> Works</div>
+      <p class="yb-ecs-sub">The endocannabinoid system is one of the most widespread receptor networks in the human body — and one of the least taught in medical schools.</p>
+    </div>
+    <div class="yb-ecs-cards">
+      <div class="yb-ecs-card">
+        <div class="yb-ecs-card-icon">&#9881;</div>
+        <div class="yb-ecs-card-title">What is the ECS?</div>
+        <div class="yb-ecs-card-body">The endocannabinoid system (ECS) is a retrograde signaling network — it works backwards from the receiving neuron back to the sending neuron. When a neuron fires too strongly, the receiving cell produces endocannabinoids (anandamide, 2-AG) that travel back to suppress the signal. The ECS is a biological volume knob. Cannabis cannabinoids fit this system because they are structurally similar to your body's own endocannabinoids.</div>
+      </div>
+      <div class="yb-ecs-card">
+        <div class="yb-ecs-card-icon">&#9679;</div>
+        <div class="yb-ecs-card-title">CB1 Receptors — The Psychoactive Pathway</div>
+        <div class="yb-ecs-card-body">CB1 receptors are concentrated in the central nervous system — brain and spinal cord. They regulate mood, memory, pain perception, appetite, coordination, and consciousness itself. THC's binding to CB1 produces euphoria, altered time perception, and intoxication. CB1 is also present in peripheral tissues — heart, lungs, gut — where it governs autonomic functions without psychoactivity at normal levels.</div>
+      </div>
+      <div class="yb-ecs-card">
+        <div class="yb-ecs-card-icon">&#9675;</div>
+        <div class="yb-ecs-card-title">CB2 Receptors — The Immune Pathway</div>
+        <div class="yb-ecs-card-body">CB2 receptors are concentrated in immune tissues — spleen, tonsils, bone marrow, and immune cells throughout the body. They regulate inflammation, immune cell migration, and the body's response to injury. CB2 activation does not produce psychoactivity. CBD, CBG, and CBC all have affinity for CB2, which explains their anti-inflammatory profiles across skin, joints, gut, and lungs without intoxication.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var ZONES = ${JSON.stringify(_ZONES)};
+var CB_INFO = ${JSON.stringify(_CB_INFO)};
+var HOTSPOTS = ${JSON.stringify(_HOTSPOTS)};
+var CB_COLORS = {THC:'#E07B39',CBD:'#52B788',CBG:'#74C69D',CBN:'#9B7FD4',CBC:'#5CA0E8',THCV:'#F4A261'};
+var selectedLens = null;
+
+function initDots() {
+  var dotsG = document.getElementById('yb-dots');
+  var tagsDiv = document.getElementById('yb-zone-tags');
+  dotsG.innerHTML = HOTSPOTS.map(function(h) {
+    return '<g class="yb-dot" id="dot-' + h.id + '" onclick="selectZone(\'' + h.id + '\')">' +
+      '<circle class="pulse" cx="' + h.cx + '" cy="' + h.cy + '" r="7" fill="none" stroke="' + h.color + '" stroke-width="1.5"/>' +
+      '<circle class="inner" cx="' + h.cx + '" cy="' + h.cy + '" r="4.5" fill="' + h.color + '" opacity="0.9"/>' +
+      '<title>' + h.label + '</title>' +
+    '</g>';
+  }).join('');
+  tagsDiv.innerHTML = HOTSPOTS.map(function(h) {
+    return '<span class="yb-zone-tag" onclick="selectZone(\'' + h.id + '\')">' + h.label + '</span>';
+  }).join('');
+}
+
+function selectZone(id) {
+  document.getElementById('yb-placeholder').style.display = 'none';
+  document.querySelectorAll('.yb-dot').forEach(function(d) {
+    d.classList.remove('active', 'dim');
+    d.classList.add('dim');
+  });
+  var activeDot = document.getElementById('dot-' + id);
+  if (activeDot) { activeDot.classList.remove('dim'); activeDot.classList.add('active'); }
+  document.querySelectorAll('.yb-zone-panel').forEach(function(p) { p.classList.remove('active'); });
+  var panel = document.getElementById('yb-panel-' + id);
+  if (panel) {
+    panel.classList.add('active');
+    panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+  if (selectedLens) applyLens(selectedLens);
+}
+
+function renderPanels() {
+  document.getElementById('yb-panels').innerHTML = ZONES.map(function(z) {
+    var cbPills = z.cannabinoids.map(function(c) {
+      var col = CB_COLORS[c] || '#52B788';
+      return '<span class="yb-cb-pill" style="color:' + col + ';border-color:' + col + '55;background:' + col + '18">' + c + '</span>';
+    }).join('');
+    var posItems = z.positive.map(function(e) { return '<li>' + e + '</li>'; }).join('');
+    var negItems = z.negative.map(function(e) { return '<li>' + e + '</li>'; }).join('');
+    return '<div class="yb-zone-panel" id="yb-panel-' + z.id + '">' +
+      '<div class="yb-zone-name">' + z.label + '</div>' +
+      '<div class="yb-zone-receptors">' + z.receptors + '</div>' +
+      '<div class="yb-zone-headline">' + z.headline + '</div>' +
+      '<p class="yb-zone-desc">' + z.desc + '</p>' +
+      '<div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,234,216,0.3);margin-bottom:8px">Active cannabinoids</div>' +
+      '<div class="yb-cb-pills">' + cbPills + '</div>' +
+      '<div class="yb-effects-grid">' +
+        '<div>' +
+          '<div class="yb-effects-label pos">Benefits</div>' +
+          '<ul class="yb-effects-list pos">' + posItems + '</ul>' +
+        '</div>' +
+        '<div>' +
+          '<div class="yb-effects-label neg">Considerations</div>' +
+          '<ul class="yb-effects-list neg">' + negItems + '</ul>' +
+        '</div>' +
+      '</div>' +
+      '<p class="yb-research">' + z.research + '</p>' +
+    '</div>';
+  }).join('');
+}
+
+function renderLens() {
+  document.getElementById('yb-lens-pills').innerHTML = CB_INFO.map(function(cb) {
+    var col = CB_COLORS[cb.id] || '#52B788';
+    return '<button class="yb-lens-btn" id="lens-btn-' + cb.id + '" onclick="activateLens(\'' + cb.id + '\')" style="border-color:' + col + '55">' + cb.label + '</button>';
+  }).join('');
+  document.getElementById('yb-lens-cards').innerHTML = CB_INFO.map(function(cb) {
+    var col = CB_COLORS[cb.id] || '#52B788';
+    var zoneTags = cb.zones.map(function(zid) {
+      var zone = ZONES.find(function(zz) { return zz.id === zid; });
+      return '<span class="yb-lens-zone-tag" onclick="selectZone(\'' + zid + '\')">' + (zone ? zone.label : zid) + '</span>';
+    }).join('');
+    return '<div class="yb-lens-card" id="lens-card-' + cb.id + '">' +
+      '<div class="yb-lens-card-name" style="color:' + col + '">' + cb.label + ' &mdash; System Overview</div>' +
+      '<p class="yb-lens-card-summary">' + cb.summary + '</p>' +
+      '<div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,234,216,0.3);margin-bottom:10px">Active in these systems</div>' +
+      '<div class="yb-lens-zones">' + zoneTags + '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function activateLens(cbId) {
+  selectedLens = cbId;
+  document.querySelectorAll('.yb-lens-btn').forEach(function(b) {
+    b.style.background = '';
+    b.style.color = 'rgba(242,234,216,0.6)';
+  });
+  document.querySelectorAll('.yb-lens-card').forEach(function(c) { c.classList.remove('active'); });
+  var col = CB_COLORS[cbId] || '#52B788';
+  var btn = document.getElementById('lens-btn-' + cbId);
+  if (btn) { btn.style.background = col; btn.style.color = '#060d0a'; }
+  var card = document.getElementById('lens-card-' + cbId);
+  if (card) card.classList.add('active');
+  applyLens(cbId);
+}
+
+function applyLens(cbId) {
+  var cb = CB_INFO.find(function(c) { return c.id === cbId; });
+  if (!cb) return;
+  HOTSPOTS.forEach(function(h) {
+    var dot = document.getElementById('dot-' + h.id);
+    if (!dot) return;
+    dot.classList.remove('dim', 'highlight');
+    if (cb.zones.indexOf(h.id) >= 0) {
+      dot.classList.add('highlight');
+    } else {
+      dot.classList.add('dim');
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  initDots();
+  renderPanels();
+  renderLens();
+});
+</script>
+</body></html>`;
+    res.writeHead(200,{"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
+    res.end(html);
+    return;
+  }
+
+  // ─── /growing → redirect to /cultivation ──────────────────────────────────
+  if (req.method === "GET" && req.url === "/growing") {
+    res.writeHead(301,{"Location":"/cultivation"});
+    res.end();
+    return;
+  }
+  if (false && req.method === "GET" && req.url === "/growing-old") {
+    const _ENVIRONMENTS = [
+      {
+        id:"indoor", icon:"&#128161;", label:"Indoor",
+        tagline:"Total control. Year-round. Best quality.",
+        pros:["Year-round growing — no seasonal limits","Complete environment control (temp, humidity, CO2, light spectrum)","Highest potency and trichome density achievable","Privacy and security","Multiple harvests per year"],
+        cons:["Significant setup cost (lights, fans, tent or room, HVAC)","Ongoing electricity costs — even LEDs draw 200–600W","Requires active daily monitoring","Lower yield per plant than outdoor"],
+        lights:"LED preferred — 150–200W per m². Full-spectrum quantum board LEDs deliver the best yield-per-watt ratio. HPS still viable but runs hot and less efficient.",
+        temp:"70–80°F (21–27°C) lights-on. 10°F drop at night encourages terpene and anthocyanin development in late flower.",
+        humidity:"Seedling 65–70%. Veg 50–70%. Flower 40–50%. Late flower 40–45% to prevent bud rot in dense colas.",
+        strains:["OG Kush","White Widow","Gorilla Glue #4","Wedding Cake","Gelato","Girl Scout Cookies"]
+      },
+      {
+        id:"outdoor", icon:"&#9728;", label:"Outdoor",
+        tagline:"Free sunlight. Massive yields. Seasonal.",
+        pros:["Free, full-spectrum natural sunlight","Highest possible yield per plant","Lowest cost of entry by far","Largest plants achievable — 10+ feet possible","Natural terpene complexity from real sun cycles"],
+        cons:["Seasonal — one main harvest per year in most climates","Weather and climate dependent","Privacy concerns depending on jurisdiction","Pest and pathogen exposure","No control over light cycle — season triggers flowering"],
+        lights:"Natural sunlight — free and unbeatable. Plants need 6+ hours of direct sun minimum. South-facing slopes or hillsides maximize exposure.",
+        temp:"Ideal 65–85°F. Sensitive to frost — plant after last frost date in spring, harvest before first fall frost.",
+        humidity:"Ambient. High-humidity regions require mold-resistant genetics (fast finishers, loose bud structure). Arid climates need consistent irrigation.",
+        strains:["Blue Dream","Durban Poison","Zkittlez","Trainwreck","Sour Diesel","Jack Herer"]
+      },
+      {
+        id:"greenhouse", icon:"&#127969;", label:"Greenhouse",
+        tagline:"Best of both. Most cost-effective.",
+        pros:["Free sunlight with full climate protection","Extended season — plant earlier, harvest later than outdoor","Most cost-effective setup for premium quality","Weather protection without full HVAC cost","Light deprivation allows multiple harvests per year"],
+        cons:["Upfront construction or purchase cost","Heat management in summer requires active venting","Less precise control than full indoor","Humidity accumulates — requires active management"],
+        lights:"Free solar during the day. Supplemental LED for early-season starts. Light deprivation tarps enable photoperiod control for year-round harvest.",
+        temp:"Sun-regulated naturally. Shade cloth and ridge vents manage summer heat. Propane or electric heaters extend the season into cooler months.",
+        humidity:"Monitor and vent actively. Oscillating fans and ridge vents are essential. Greenhouse humidity builds faster than open outdoor.",
+        strains:["Northern Lights","Gelato","Amnesia Haze","Strawberry Cough","Auto-flowering varieties","Zkittlez"]
+      }
+    ];
+    const _TECHNIQUES = [
+      { id:"lst", level:"beginner", name:"LST — Low Stress Training", short:"Bend and tie branches horizontally to expose lower bud sites directly to the light source. Creates a wide, even canopy without any cutting.", benefit:"Up to 30% yield increase by maximizing the number of bud sites receiving direct light. Zero recovery time — the plant continues growing during training.", howto:"During veg, gently bend the main stem and side branches outward and downward. Secure with soft plant ties or garden wire to stakes inserted at the pot rim. As new growth emerges upright, continue bending it outward. A little bending each day is better than forcing a large bend all at once." },
+      { id:"topping", level:"beginner", name:"Topping", short:"Cut the main apical stem cleanly at the 5th node. This removes apical dominance and forces the plant to grow two equal main colas from the two nodes below the cut.", benefit:"Doubles main cola count immediately. Combined with a second topping, creates four mains. A cornerstone technique for increasing total yield indoors.", howto:"Using sterilized scissors, cut the main stem cleanly between the 5th and 6th node during mid-veg. Wait 5–7 days for the two new growth tips to emerge and strengthen before applying any additional stress. The plant will look stalled briefly — this is normal recovery." },
+      { id:"fim", level:"beginner", name:"FIM — F*** I Missed", short:"Pinch or cut approximately 70–80% of the new growth tip, leaving the bottom 20–30% intact. Creates 4 new colas instead of the 2 produced by full topping.", benefit:"Produces 4 main colas with less plant stress and faster recovery than full topping. Gentler and faster — ideal for impatient growers.", howto:"Identify the newest growth tip when 4–5 small leaves are just emerging. Pinch or snip 70–80% of that new growth cluster — do not cut the full stem. The remaining base will divide into 4 new growth tips over 5–8 days." },
+      { id:"scrog", level:"intermediate", name:"SCROG — Screen of Green", short:"Install a horizontal net or screen 10–12 inches above the pot tops. Weave branches through the net laterally as they grow up, creating a completely flat and even canopy.", benefit:"Maximizes the number of bud sites in the prime light zone directly beneath your fixtures. Dramatically improves light efficiency in square-footage-limited indoor grows.", howto:"Install a net or trellis screen 10–12 inches above the pots before plants reach it. During late veg, gently push branches through net openings and weave them horizontally. Tuck any vertical growth back under the screen. Flip to 12/12 flower when the screen is 70–80% filled." },
+      { id:"sog", level:"intermediate", name:"SOG — Sea of Green", short:"Grow many small plants and flip to flower very early — at 2–3 weeks of veg — so each plant becomes essentially one large main cola. Pack plants tightly to fill the canopy.", benefit:"Fastest possible harvest cycles. Maximum use of your light footprint. Ideal for cloning operations and auto-flowering strains.", howto:"Start plants in 1–2 gallon containers. Flip to 12/12 light cycle when plants are 6–10 inches tall. Pack 4–16 plants per square meter depending on pot size. Remove lower growth that will not reach the canopy. Harvest the entire table at once." },
+      { id:"supercropping", level:"intermediate", name:"Super Cropping", short:"Pinch and gently crush the inner tissue of a thick stem at the target bending point, then slowly bend 90 degrees. A reinforced knuckle forms at the bend as it heals.", benefit:"Creates multiple low-effort bending points without cutting. The healed knuckle delivers more nutrient flow to the branch. Excellent for controlling tall plants in height-limited spaces.", howto:"Find the stem section to bend. Firmly pinch between thumb and forefinger and roll gently back and forth to soften the inner pith without tearing the outer skin. Slowly bend to 90 degrees — support with a stake if needed. The knuckle forms and hardens within 5–7 days and becomes stronger than the original stem." },
+      { id:"lollipopping", level:"intermediate", name:"Lollipopping", short:"Remove all lower growth — leaves, branches, and bud sites — below the main canopy line. Concentrates the plant's energy entirely on the top colas that receive direct light.", benefit:"Focuses all growth energy on the highest-quality top buds. Dramatically improves airflow in the lower canopy — critical for preventing bud rot. Produces larger, denser upper colas.", howto:"At week 3 of flower, identify the lower 25–30% of the plant. Remove all branches, growth tips, and large fan leaves in that zone working from the bottom up. Do not remove more than 30% of total foliage in one session — spread the work over 3–4 days to minimize stress." },
+      { id:"defoliation", level:"intermediate", name:"Strategic Defoliation", short:"Selectively remove fan leaves that are blocking light from reaching bud sites below, or crowding airflow channels within the canopy. Not a wholesale strip — a targeted edit.", benefit:"Improves light penetration to lower bud sites. Reduces canopy humidity and mold risk. The plant's mild stress response temporarily increases terpene production.", howto:"Perform two defoliation passes: one at week 3 of flower and one at week 6. Remove only fan leaves that are directly blocking bud sites or impeding airflow. Remove no more than 20–25% of leaves per session. The fan leaves are the plant's solar panels — less is always more." },
+      { id:"manifolding", level:"advanced", name:"Manifolding / Mainlining", short:"A precise multi-step technique using sequential topping and symmetrical LST to produce a perfectly even 8-cola structure from a single plant where every cola receives identical light and nutrients.", benefit:"Produces extremely predictable, even yields with 8 near-identical top colas per plant. Maximizes light efficiency for indoor grows. The most structured training method available.", howto:"Top at the 3rd node. Remove all growth below the 2nd node — leave only the two growth tips at node 2. Once both tips have 3 nodes each, top both again at their 3rd nodes. Tie all 4 resulting branches outward symmetrically. Top once more to produce the final 8 even branches. Allow full 7-day recovery between each topping." },
+      { id:"rdwc", level:"advanced", name:"RDWC Hydroponics", short:"Recirculating Deep Water Culture. Plant roots are suspended directly in oxygenated, pH-controlled nutrient solution. A pump continuously recirculates solution through multiple connected buckets.", benefit:"20–30% faster vegetative growth than soil. Maximum nutrient uptake efficiency. Largest yields achievable in indoor cultivation. The highest-performance grow system available.", howto:"Connect DWC buckets via tubing to a central reservoir. Maintain nutrient solution EC at 0.5–0.8 in seedling, scaling to 1.4–2.0 in peak flower. pH must stay at 5.5–6.2 — check daily. Keep dissolved oxygen high with large air stones. Reservoir temperature must stay below 68°F to prevent pythium root rot." },
+      { id:"kno", level:"advanced", name:"Korean Natural Farming — Living Soil", short:"Build a biologically active soil ecosystem using fermented plant extracts, compost teas, and diverse microbial inoculants. The soil microbiome feeds the plant — no synthetic nutrients required.", benefit:"Produces the most complex, layered terpene profiles achievable. No synthetic nutrient cost at scale. Regenerative — the same soil improves with each successive grow cycle. Exceptional finished flavor and aroma.", howto:"Start with a quality living soil mix: compost, worm castings, perlite, rock dust, and biochar. Inoculate with mycorrhizal fungi and beneficial bacteria at transplant. Water with aerated compost teas weekly. Supplement with fermented plant juice (FPJ) during veg and fermented fruit juice (FFJ) during flower. Water gently — preserve soil structure and microbial habitat." }
+    ];
+    const _CULTURES = [
+      { region:"Emerald Triangle, California", flag:"&#127482;&#127480;", style:"Craft Sun-Grown Outdoor", badge:"Legacy", strains:["OG Kush","Trainwreck","Wedding Cake","SFV OG"], desc:"The birthplace of American cannabis culture. Three counties — Humboldt, Trinity, and Mendocino — produce the most celebrated outdoor cannabis in the world. Mediterranean climate, rich old-growth soil, and 3000+ ft elevation create ideal growing conditions. Small craft farms hand-trim and sun-cure. A legal gray area for decades shaped a culture of deep horticultural expertise and fierce strain stewardship that no commercial operation has replicated." },
+      { region:"Amsterdam, Netherlands", flag:"&#127475;&#127473;", style:"Commercial Technical Indoor", badge:"Breeding Hub", strains:["White Widow","AK-47","Amnesia Haze","Super Silver Haze"], desc:"Low natural light forced Dutch growers to master indoor cultivation long before the rest of the world caught up. The coffeeshop system created commercial demand for consistent, high-quality product. Green House Seeds, Sensi Seeds, and Dutch Passion pioneered modern cannabis breeding and the global seed bank industry. Sea of Green technique was largely developed here. Amsterdam remains the center of cannabis genetics and horticultural innovation." },
+      { region:"British Columbia, Canada", flag:"&#127464;&#127462;", style:"Boutique Premium Indoor", badge:"Craft Indoor", strains:["Pink Kush","Death Bubba","Rockstar","BC Big Bud"], desc:"BC Bud is internationally respected as some of the finest indoor cannabis produced anywhere. Cool climate drove innovation in artificial cultivation. The province developed a culture of high-end craft indoor growing — meticulous genetics selection, dialed environments, and long slow cures. Post-legalization, BC craft producers set the standard for premium packaged cannabis in Canada's regulated market." },
+      { region:"Rif Mountains, Morocco", flag:"&#127474;&#127462;", style:"Traditional Hash Production", badge:"Hash Heritage", strains:["Beldia (Ketama landrace)","Local Rif landraces"], desc:"Morocco produces more hashish by volume than any other nation. Landrace Beldia and Ketama strains grow semi-wild at altitude throughout the Rif. Dry-sieve kief is pressed into slabs using techniques unchanged for centuries. Family farms have cultivated these plants for generations. Kif — raw cannabis mixed with black tobacco and smoked in a sebsi pipe — is a traditional Moroccan social practice. Hash export is the region's primary agricultural economy." },
+      { region:"Bekaa Valley, Lebanon", flag:"&#127473;&#127463;", style:"Old-World Hash", badge:"Legendary Hash", strains:["Lebanese Red","Lebanese Blonde"], desc:"Lebanese Red and Lebanese Blonde were the benchmark hash varieties of 1960s–70s counterculture — a quality standard that shaped a generation's expectations. Cold water and dry-sieve methods produced compressed red and blonde slabs with distinctive terroir-specific flavor profiles. Civil war in the 1980s devastated production. The tradition is experiencing a revival as international interest in heritage cannabis genetics and artisanal hash grows." },
+      { region:"Hindu Kush, Afghanistan & Pakistan", flag:"&#127462;&#127467;", style:"Hand-Rubbed Charas", badge:"Ancient Tradition", strains:["Afghani","Mazar-i-Sharif","Hindu Kush"], desc:"The Hindu Kush mountain range is the genetic source of indica cannabis for the entire world. Hash has been produced here for over 3000 years. Hand-rubbed charas — made by rolling live resinous flowers between the palms — is the original concentrate. Afghan indica genetics (short, dense, resin-heavy plants adapted to harsh mountain climate) became the foundation for virtually all modern indica and hybrid breeding programs globally." },
+      { region:"Blue Mountains, Jamaica", flag:"&#127471;&#127474;", style:"Mountain Sativa Outdoor", badge:"Cultural Heritage", strains:["Lamb's Bread","Jamaican Lambsbread"], desc:"Lamb's Bread — most famously associated with Bob Marley — grows in Jamaica's Blue Mountains as a pure, long-season mountain sativa. Cannabis (ganja) is a sacrament in Rastafari, used in nyabinghi ceremonies for meditation and reasoning. Jamaican genetics shaped the sativa imports that reached the American market in the 1970s. Jamaica legalized personal use in 2015 and now cultivates a legal medical market built on its unique landrace heritage." },
+      { region:"Colorado, USA", flag:"&#127482;&#127480;", style:"Commercial Recreational Indoor", badge:"Legal Pioneer", strains:["Ghost Train Haze","Gorilla Glue","Bruce Banner","Chemdawg"], desc:"Colorado legalized adult-use cannabis in 2012 — the first US state to do so. The regulatory framework developed in Denver became the blueprint for legal cannabis markets worldwide. Retail cannabis prices dropped 70% between 2012 and 2020 as supply scaled — while average potency and product quality simultaneously improved through intense commercial breeding competition. Colorado remains the testing ground for cannabis policy, product innovation, and consumption science." }
+    ];
+    const _STRAINS_GUIDE = [
+      { name:"Northern Lights", env:"Indoor / Both", difficulty:"Beginner", yield:"High", flower:"7–9 weeks", notes:"The most forgiving strain in cannabis. Resilient to overwatering, underfeeding, and humidity swings. Compact indica structure. The definitive first-grow strain." },
+      { name:"Blue Dream", env:"Outdoor / Greenhouse", difficulty:"Beginner", yield:"Very High", flower:"9–10 weeks", notes:"Easy outdoor giant. Vigorous, disease-resistant, forgiving. Balanced hybrid. Thrives with minimal intervention in most climates." },
+      { name:"White Widow", env:"Indoor / Both", difficulty:"Beginner", yield:"Medium", flower:"8–9 weeks", notes:"Classic Dutch genetics. Resilient and highly trainable. Excellent for learning topping and LST. Consistent resin production in any environment." },
+      { name:"Gorilla Glue #4", env:"Indoor / Both", difficulty:"Intermediate", yield:"Very High", flower:"8–9 weeks", notes:"Heavy producer requiring branch support due to cola weight. Extremely resinous — gloves are mandatory at harvest. Worth the extra management." },
+      { name:"Amnesia Haze", env:"Outdoor / Greenhouse", difficulty:"Intermediate", yield:"High", flower:"10–11 weeks", notes:"Needs space and sun — a tall sativa reaching 2m+ outdoors. Longer flower time than most. Rewards patience with exceptional terpene complexity." },
+      { name:"Wedding Cake", env:"Indoor", difficulty:"Advanced", yield:"High", flower:"9–10 weeks", notes:"Demanding but produces extraordinary quality. Sensitive to nutrient levels, requires dialed conditions. Best suited to growers with two or more successful grows." }
+    ];
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Grower's Guide — Cannascenti</title>
+<meta name="description" content="Complete cannabis growing guide: indoor, outdoor, greenhouse, training techniques, global cultures, and beginner strain recommendations.">
+${ENC_FONTS}
+<style>
+${ENC_BASE_CSS}
+.gr-hero{padding:72px 32px 56px;max-width:1100px;margin:0 auto}
+.gr-hero-label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#52B788;margin-bottom:16px}
+.gr-hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:300;color:#F2EAD8;line-height:1.1;margin-bottom:16px}
+.gr-hero-title em{color:#52B788;font-style:italic}
+.gr-hero-sub{font-size:.95rem;color:rgba(242,234,216,0.55);max-width:620px;line-height:1.8}
+.gr-section{max-width:1100px;margin:0 auto;padding:0 32px 72px}
+.gr-sec-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:#F2EAD8;margin-bottom:8px}
+.gr-sec-title em{color:#52B788;font-style:italic}
+.gr-sec-sub{font-size:.86rem;color:rgba(242,234,216,0.45);margin-bottom:28px;line-height:1.7;max-width:640px}
+.env-tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+.env-tab{background:none;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 22px;color:rgba(242,234,216,0.6);font-family:Montserrat,sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.env-tab.active,.env-tab:hover{border-color:#52B788;color:#F2EAD8;background:rgba(82,183,136,0.08)}
+.env-panel{display:none;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:18px;padding:36px}
+.env-panel.active{display:block}
+.env-panel-header{display:flex;align-items:center;gap:16px;margin-bottom:8px}
+.env-label{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:#F2EAD8}
+.env-tagline{font-size:.88rem;color:#52B788;margin-bottom:24px;font-style:italic}
+.env-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px}
+@media(max-width:560px){.env-grid{grid-template-columns:1fr}}
+.env-col-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,234,216,0.32);margin-bottom:8px}
+.env-list{list-style:none}
+.env-list li{font-size:.82rem;color:rgba(242,234,216,0.62);padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);padding-left:16px;position:relative}
+.env-list.pro li::before{content:"+";position:absolute;left:0;color:#52B788;font-weight:700}
+.env-list.con li::before{content:"&#8722;";position:absolute;left:0;color:#C9973A;font-weight:700}
+.env-spec{background:rgba(255,255,255,0.03);border-radius:10px;padding:12px 16px;font-size:.8rem;color:rgba(242,234,216,0.58);line-height:1.65;margin-bottom:10px}
+.env-spec strong{color:#52B788}
+.env-strains{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.env-strain-tag{font-size:.75rem;background:rgba(82,183,136,0.08);border:1px solid rgba(82,183,136,0.18);color:#52B788;border-radius:6px;padding:3px 10px}
+.level-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.level-btn{background:none;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:8px 18px;color:rgba(242,234,216,0.6);font-family:Montserrat,sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.level-btn.active,.level-btn:hover{border-color:#52B788;color:#F2EAD8;background:rgba(82,183,136,0.08)}
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.tech-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:24px;transition:border-color .2s}
+.tech-card:hover{border-color:rgba(82,183,136,0.3)}
+.tech-card.hidden{display:none}
+.tech-level{font-size:10px;letter-spacing:.1em;text-transform:uppercase;border-radius:20px;padding:2px 10px;margin-bottom:12px;display:inline-block}
+.tech-level.beginner{background:rgba(82,183,136,0.12);color:#52B788}
+.tech-level.intermediate{background:rgba(201,151,58,0.12);color:#C9973A}
+.tech-level.advanced{background:rgba(224,123,57,0.12);color:#E07B39}
+.tech-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:#F2EAD8;margin-bottom:8px}
+.tech-short{font-size:.82rem;line-height:1.72;color:rgba(242,234,216,0.6);margin-bottom:12px}
+.tech-benefit{font-size:.78rem;color:#52B788;background:rgba(82,183,136,0.07);border-radius:8px;padding:7px 12px;margin-bottom:12px;line-height:1.6}
+.tech-howto{font-size:.78rem;line-height:1.72;color:rgba(242,234,216,0.43);border-left:2px solid rgba(82,183,136,0.2);padding-left:12px;font-style:italic}
+.culture-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.culture-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:24px}
+.culture-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
+.culture-region{font-size:.85rem;font-weight:600;color:#F2EAD8;margin-bottom:4px}
+.culture-style-lbl{font-size:.73rem;color:rgba(242,234,216,0.38)}
+.culture-badge{font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:rgba(82,183,136,0.1);color:#52B788;border-radius:20px;padding:2px 10px;white-space:nowrap;flex-shrink:0;margin-left:8px}
+.culture-strains{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.culture-strain{font-size:.72rem;background:rgba(255,255,255,0.05);border-radius:5px;padding:2px 8px;color:rgba(242,234,216,0.52)}
+.culture-desc{font-size:.78rem;line-height:1.72;color:rgba(242,234,216,0.48)}
+.strain-table{width:100%;border-collapse:collapse}
+.strain-table th{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,234,216,0.32);padding:8px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.06)}
+.strain-table td{font-size:.82rem;color:rgba(242,234,216,0.62);padding:12px;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:top}
+.strain-table tr:hover td{background:rgba(255,255,255,0.02)}
+.s-name{font-weight:600;color:#F2EAD8}
+.s-diff{font-size:10px;letter-spacing:.07em;text-transform:uppercase;border-radius:20px;padding:2px 9px}
+.s-diff.beginner{background:rgba(82,183,136,0.12);color:#52B788}
+.s-diff.intermediate{background:rgba(201,151,58,0.12);color:#C9973A}
+.s-diff.advanced{background:rgba(224,123,57,0.12);color:#E07B39}
+.s-notes{font-size:.74rem;color:rgba(242,234,216,0.38);font-style:italic}
+.gr-philosophy{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:680px){.gr-philosophy{grid-template-columns:1fr}}
+.phil-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:30px}
+.phil-icon{font-size:1.8rem;margin-bottom:16px}
+.phil-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:#F2EAD8;margin-bottom:10px}
+.phil-body{font-size:.82rem;line-height:1.82;color:rgba(242,234,216,0.48)}
+.gr-divider{border:none;border-top:1px solid rgba(255,255,255,0.06);margin:0 32px}
+</style>
+</head>
+<body>
+${ENC_NAV}
+<div class="gr-hero">
+  <div class="gr-hero-label">&#10022; Cannascenti Encyclopedia</div>
+  <h1 class="gr-hero-title">From Seed to Harvest &mdash;<br><em>The Grower's Guide.</em></h1>
+  <p class="gr-hero-sub">A comprehensive guide to cannabis cultivation: environment selection, training techniques from beginner to expert, global growing cultures, and the strains that define each approach.</p>
+</div>
+
+<div class="gr-section">
+  <div class="gr-sec-title">Choose Your <em>Environment</em></div>
+  <p class="gr-sec-sub">The environment you choose shapes everything — strain selection, training methods, setup cost, and annual yield. Each carries a distinct philosophy.</p>
+  <div class="env-tabs" id="envTabs"></div>
+  <div id="envPanels"></div>
+</div>
+
+<hr class="gr-divider">
+
+<div class="gr-section" style="padding-top:60px">
+  <div class="gr-sec-title">Training <em>Techniques</em></div>
+  <p class="gr-sec-sub">How you shape your plant determines how many bud sites receive direct light — which directly determines yield and quality. Filter by experience level.</p>
+  <div class="level-filters">
+    <button class="level-btn active" id="lvl-all" onclick="filterLevel('all')">All</button>
+    <button class="level-btn" id="lvl-beginner" onclick="filterLevel('beginner')">Beginner</button>
+    <button class="level-btn" id="lvl-intermediate" onclick="filterLevel('intermediate')">Intermediate</button>
+    <button class="level-btn" id="lvl-advanced" onclick="filterLevel('advanced')">Expert</button>
+  </div>
+  <div class="tech-grid" id="techGrid"></div>
+</div>
+
+<hr class="gr-divider">
+
+<div class="gr-section" style="padding-top:60px">
+  <div class="gr-sec-title">Global Growing <em>Cultures</em></div>
+  <p class="gr-sec-sub">Cannabis cultivation has deep roots in cultures across six continents. Each region developed unique techniques, strains, and traditions shaped by climate, history, and necessity.</p>
+  <div class="culture-grid" id="cultureGrid"></div>
+</div>
+
+<hr class="gr-divider">
+
+<div class="gr-section" style="padding-top:60px">
+  <div class="gr-sec-title">Beginner <em>Strain Guide</em></div>
+  <p class="gr-sec-sub">Not all strains are equal in difficulty. These six cultivars represent the best entry points — forgiving genetics that reward basic technique and teach good habits.</p>
+  <div style="overflow-x:auto"><table class="strain-table" id="strainTable"></table></div>
+</div>
+
+<hr class="gr-divider">
+
+<div class="gr-section" style="padding-top:60px">
+  <div class="gr-sec-title">The Grower's <em>Philosophy</em></div>
+  <p class="gr-sec-sub">The environment you choose reveals something about your relationship with the plant.</p>
+  <div class="gr-philosophy">
+    <div class="phil-card">
+      <div class="phil-icon">&#128161;</div>
+      <div class="phil-title">The Indoor Grower</div>
+      <div class="phil-body">You are a craftsperson. You control every variable — light spectrum, temperature to the degree, humidity to the percentage, CO2 concentration, nutrient EC to three decimal places. For you, growing is engineering. The plant is a system to be optimized. The result is the most potent, most precisely crafted cannabis achievable — and the satisfaction of a process completely within your command.</div>
+    </div>
+    <div class="phil-card">
+      <div class="phil-icon">&#9728;</div>
+      <div class="phil-title">The Outdoor Grower</div>
+      <div class="phil-body">You are a farmer, in the oldest sense. You work with nature rather than against it — reading seasons, building living soil, surrendering some control in exchange for scale and authenticity. The plant grows as it evolved to grow: under full-spectrum sun, developing terpene complexity that no artificial light fully replicates. There is a quality to sun-grown cannabis that comes from exactly this: the plant was not comfortable, and it responded.</div>
+    </div>
+    <div class="phil-card">
+      <div class="phil-icon">&#127969;</div>
+      <div class="phil-title">The Greenhouse Grower</div>
+      <div class="phil-body">You are a pragmatist with taste. You recognize that free sunlight is the most powerful grow light ever created, and that climate protection multiplies what nature provides. The greenhouse represents a philosophy of amplification — taking what the environment gives and extending, protecting, and optimizing it. The most cost-effective path to exceptional cannabis. The approach professional cultivators worldwide increasingly favor for its combination of quality, sustainability, and scalability.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+var ENVIRONMENTS = ${JSON.stringify(_ENVIRONMENTS)};
+var TECHNIQUES = ${JSON.stringify(_TECHNIQUES)};
+var CULTURES = ${JSON.stringify(_CULTURES)};
+var STRAINS = ${JSON.stringify(_STRAINS_GUIDE)};
+var currentEnv = 'indoor';
+
+function renderEnvTabs() {
+  document.getElementById('envTabs').innerHTML = ENVIRONMENTS.map(function(e) {
+    return '<button class="env-tab' + (e.id === currentEnv ? ' active' : '') + '" onclick="selectEnv(\'' + e.id + '\')">' + e.icon + ' ' + e.label + '</button>';
+  }).join('');
+}
+
+function selectEnv(id) {
+  currentEnv = id;
+  renderEnvTabs();
+  document.querySelectorAll('.env-panel').forEach(function(p) { p.classList.remove('active'); });
+  var panel = document.getElementById('env-panel-' + id);
+  if (panel) panel.classList.add('active');
+}
+
+function renderEnvPanels() {
+  document.getElementById('envPanels').innerHTML = ENVIRONMENTS.map(function(e) {
+    var proItems = e.pros.map(function(p) { return '<li>' + p + '</li>'; }).join('');
+    var conItems = e.cons.map(function(c) { return '<li>' + c + '</li>'; }).join('');
+    var strainTags = e.strains.map(function(s) { return '<span class="env-strain-tag">' + s + '</span>'; }).join('');
+    return '<div class="env-panel' + (e.id === currentEnv ? ' active' : '') + '" id="env-panel-' + e.id + '">' +
+      '<div class="env-panel-header"><div class="env-label">' + e.label + '</div></div>' +
+      '<div class="env-tagline">' + e.tagline + '</div>' +
+      '<div class="env-grid">' +
+        '<div><div class="env-col-label">Advantages</div><ul class="env-list pro">' + proItems + '</ul></div>' +
+        '<div><div class="env-col-label">Disadvantages</div><ul class="env-list con">' + conItems + '</ul></div>' +
+      '</div>' +
+      '<div class="env-spec"><strong>Lighting:</strong> ' + e.lights + '</div>' +
+      '<div class="env-spec"><strong>Temperature:</strong> ' + e.temp + '</div>' +
+      '<div class="env-spec"><strong>Humidity:</strong> ' + e.humidity + '</div>' +
+      '<div class="env-col-label" style="margin-top:16px;margin-bottom:8px">Recommended strains</div>' +
+      '<div class="env-strains">' + strainTags + '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function filterLevel(level) {
+  document.querySelectorAll('.level-btn').forEach(function(b) { b.classList.remove('active'); });
+  var btn = document.getElementById('lvl-' + level);
+  if (btn) btn.classList.add('active');
+  document.querySelectorAll('.tech-card').forEach(function(card) {
+    if (level === 'all' || card.getAttribute('data-level') === level) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+
+function renderTech() {
+  document.getElementById('techGrid').innerHTML = TECHNIQUES.map(function(t) {
+    return '<div class="tech-card" data-level="' + t.level + '">' +
+      '<span class="tech-level ' + t.level + '">' + t.level + '</span>' +
+      '<div class="tech-name">' + t.name + '</div>' +
+      '<p class="tech-short">' + t.short + '</p>' +
+      '<div class="tech-benefit">' + t.benefit + '</div>' +
+      '<p class="tech-howto">' + t.howto + '</p>' +
+    '</div>';
+  }).join('');
+}
+
+function renderCultures() {
+  document.getElementById('cultureGrid').innerHTML = CULTURES.map(function(c) {
+    var strainTags = c.strains.map(function(s) { return '<span class="culture-strain">' + s + '</span>'; }).join('');
+    return '<div class="culture-card">' +
+      '<div class="culture-top">' +
+        '<div><div class="culture-region">' + c.flag + ' ' + c.region + '</div><div class="culture-style-lbl">' + c.style + '</div></div>' +
+        '<span class="culture-badge">' + c.badge + '</span>' +
+      '</div>' +
+      '<div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,234,216,0.3);margin-bottom:6px">Notable strains</div>' +
+      '<div class="culture-strains">' + strainTags + '</div>' +
+      '<p class="culture-desc">' + c.desc + '</p>' +
+    '</div>';
+  }).join('');
+}
+
+function renderStrains() {
+  var rows = STRAINS.map(function(s) {
+    var diffClass = s.difficulty.toLowerCase();
+    return '<tr>' +
+      '<td class="s-name">' + s.name + '</td>' +
+      '<td>' + s.env + '</td>' +
+      '<td><span class="s-diff ' + diffClass + '">' + s.difficulty + '</span></td>' +
+      '<td>' + s.yield + '</td>' +
+      '<td>' + s.flower + '</td>' +
+      '<td class="s-notes">' + s.notes + '</td>' +
+    '</tr>';
+  }).join('');
+  document.getElementById('strainTable').innerHTML =
+    '<thead><tr><th>Strain</th><th>Environment</th><th>Difficulty</th><th>Yield</th><th>Flower Time</th><th>Notes</th></tr></thead>' +
+    '<tbody>' + rows + '</tbody>';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  renderEnvTabs();
+  renderEnvPanels();
+  renderTech();
+  renderCultures();
+  renderStrains();
 });
 </script>
 </body></html>`;
@@ -2533,8 +3627,13 @@ document.addEventListener('DOMContentLoaded',function(){
     return;
   }
 
-  // ─── /extractions ──────────────────────────────────────────────────────────
+  // ─── /extractions → redirect to /concentrates ─────────────────────────────
   if (req.method === "GET" && req.url === "/extractions") {
+    res.writeHead(301,{"Location":"/concentrates"});
+    res.end();
+    return;
+  }
+  if (false && req.method === "GET" && req.url === "/extractions-old") {
     const _EM = [
       { tier:"solventless", name:"Ice Water Hash", sub:"Bubble hash · Cold water agitation", quality:"★★★★★", solvent:"None", yield:"3–8%", safety:"Completely safe", desc:"One of the oldest concentrate forms. Cannabis is agitated in ice water, causing trichome heads to break off and sink. Collected through a series of mesh bags in increasingly fine micron sizes. Full-melt 6-star ice water hash is among the purest expressions of the plant.", notes:"The 73 and 90 micron bags produce the finest heads-only hash. Freeze-drying has revolutionized water hash quality, preserving terpenes that were lost in traditional air-drying." },
       { tier:"solventless", name:"Rosin", sub:"Heat + pressure extraction · Solventless concentrate", quality:"★★★★★", solvent:"None", yield:"10–25% (flower), 40–70% (hash)", safety:"Completely safe", desc:"Rosin is produced by applying heat and pressure to cannabis flower, kief, or ice water hash — squeezing out a sap-like concentrate. Zero solvents, instant results, full spectrum, and exceptional flavor.", notes:"Hash rosin from 6-star water hash is the most prized concentrate in the current market. Pressing at 160°F for 90 seconds yields the most terpene-rich, flavorful product. Dab at 450°F max." },
@@ -2624,6 +3723,16 @@ document.addEventListener('DOMContentLoaded',function(){
 
   // ─── /concentrates ─────────────────────────────────────────────────────────
   if (req.method === "GET" && req.url === "/concentrates") {
+    const _EM = [
+      { tier:"solventless", name:"Ice Water Hash", sub:"Bubble hash · Cold water agitation", quality:"★★★★★", solvent:"None", yield:"3–8%", safety:"Completely safe", desc:"Cannabis is agitated in ice water, causing trichome heads to break off and sink. Collected through a series of mesh bags in increasingly fine micron sizes. Full-melt 6-star ice water hash is among the purest expressions of the plant.", notes:"The 73 and 90 micron bags produce the finest heads-only hash. Freeze-drying has revolutionized water hash quality, preserving terpenes that were lost in traditional air-drying." },
+      { tier:"solventless", name:"Rosin", sub:"Heat + pressure extraction · Solventless concentrate", quality:"★★★★★", solvent:"None", yield:"10–25% (flower), 40–70% (hash)", safety:"Completely safe", desc:"Rosin is produced by applying heat and pressure to cannabis flower, kief, or ice water hash — squeezing out a sap-like concentrate. Zero solvents, instant results, full spectrum, and exceptional flavor.", notes:"Hash rosin from 6-star water hash is the most prized concentrate in the current market. Pressing at 160°F for 90 seconds yields the most terpene-rich product. Dab at 450°F max." },
+      { tier:"solventless", name:"Dry Sift", sub:"Mechanical trichome separation · Kief collection", quality:"★★★★☆", solvent:"None", yield:"5–15%", safety:"Completely safe", desc:"The most ancient form of concentration — mechanically separating trichome heads from plant material through screens. Quality ranges from full-plant kief to hyper-refined 'pure gold' dry sift that rivals the best hash in purity.", notes:"Traditional Moroccan dry sift is worked with bare hands, using body heat to cold-press the kief into dark exterior, lighter interior slabs. The smell and flavor of properly made dry sift is irreplaceable." },
+      { tier:"solvent", name:"BHO / PHO", sub:"Butane or Propane Hash Oil · Hydrocarbon extraction", quality:"★★★★★", solvent:"Butane / Propane", yield:"15–30%", safety:"Professional use only — explosion risk", desc:"Hydrocarbon extraction uses butane or propane to strip cannabinoids and terpenes from plant material. The most versatile extraction method — produces everything from shatter to live resin, budder, wax, and sauce.", notes:"Live resin BHO — made from fresh-frozen cannabis — preserves a terpene profile closer to the living plant than any other method. The gold standard for terpene-forward concentrates at scale." },
+      { tier:"solvent", name:"CO2 Extraction", sub:"Supercritical carbon dioxide extraction", quality:"★★★★☆", solvent:"CO2 (no residue)", yield:"10–20%", safety:"Safe — no flammable solvents", desc:"CO2 becomes supercritical under specific temperature and pressure conditions, making it an effective solvent. Highly selective, tunable extraction that leaves no solvent residue. The dominant method for oil cartridges and commercial extract production.", notes:"CO2 oil has lower terpene content than hydrocarbon extracts but is more consumer-safe and infinitely scalable. Most vape cartridges use CO2 oil with added botanical terpenes." },
+      { tier:"solvent", name:"Ethanol Extraction", sub:"High-proof alcohol wash · QWET / QWISO", quality:"★★★☆☆", solvent:"Food-grade ethanol", yield:"15–25%", safety:"Flammable — ventilation required", desc:"Ethanol is a food-safe solvent that efficiently extracts cannabinoids and terpenes. Quick-wash ethanol extraction (QWET) minimizes chlorophyll and lipid co-extraction. The preferred method for large-scale edibles production and RSO.", notes:"RSO (Rick Simpson Oil) is full-spectrum ethanol extract consumed orally for cancer treatment in alternative medicine contexts. The scientific evidence is limited but the cultural significance is substantial." },
+      { tier:"solvent", name:"Distillate", sub:"Fractional distillation · THC isolate", quality:"★★★☆☆", solvent:"Process-dependent", yield:"Depends on source oil", safety:"Safe — final product is solvent-free", desc:"Distillate is the final step in refining cannabis oil — short-path fractional distillation purifies and concentrates specific cannabinoids to 90%+ purity. Nearly odorless and tasteless on its own. The backbone of the commercial vape cartridge industry.", notes:"Distillate is a blank canvas. High-quality live resin cartridges use actual plant terpenes instead of added botanical terpenes." },
+      { tier:"traditional", name:"Charas", sub:"Hand-rubbed live resin · Ancient Indian tradition", quality:"★★★★☆", solvent:"None", yield:"Very low — grams per hour", safety:"Completely safe", desc:"The oldest known concentrate. Made by rubbing fresh, living cannabis plants between the palms, collecting the resin that adheres to the hands. Because it's made from living plant material, charas preserves terpene compounds that are destroyed during the drying process.", notes:"Malana Cream from the Parvati Valley is considered among the finest charas in the world. The isolation of the village and the specific landrace genetics create a product that cannot be replicated elsewhere." }
+    ];
     const _CONC = [
       // ── TRADITIONAL ──
       { id:"charas", cat:"traditional", tier:1, name:"Charas", sub:"Hand-rubbed live resin", potency:"40–60%", purity:55, color:"#8B5E3C",
@@ -2833,6 +3942,28 @@ ${ENC_BASE_CSS}
 .culture-card-title{font-family:Montserrat,sans-serif;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#52B788;margin-bottom:6px}
 .culture-card-body{font-size:.78rem;line-height:1.65;color:rgba(242,234,216,0.55)}
 @media(max-width:600px){.conc-grid{grid-template-columns:1fr}.culture-section{padding:28px}}
+/* Extraction methods */
+.ext-section{margin-top:80px}
+.ext-sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:300;color:#F2EAD8;line-height:1.2;margin-bottom:8px}
+.ext-sec-title em{color:#52B788;font-style:italic}
+.ext-sec-sub{font-size:.88rem;color:rgba(242,234,216,0.45);margin-bottom:28px;line-height:1.7;max-width:640px}
+.ext-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.ext-btn{background:none;border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:6px 18px;color:rgba(242,234,216,0.6);font-family:Montserrat,sans-serif;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.ext-btn.active,.ext-btn:hover{border-color:#52B788;color:#52B788;background:rgba(82,183,136,0.08)}
+.ext-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+.ext-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:28px;transition:all .2s}
+.ext-card.hidden{display:none}
+.ext-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;margin-bottom:4px}
+.ext-sub{font-size:.75rem;color:rgba(242,234,216,0.4);margin-bottom:12px}
+.ext-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.ext-meta-item{font-size:.72rem;background:rgba(255,255,255,0.05);border-radius:6px;padding:3px 9px;color:rgba(242,234,216,0.55)}
+.ext-quality{color:#F5C842;letter-spacing:.1em}
+.ext-tier-badge{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;border-radius:12px;padding:2px 8px;font-weight:600}
+.ext-tier-badge.solventless{background:rgba(82,183,136,0.15);color:#52B788}
+.ext-tier-badge.solvent{background:rgba(232,168,76,0.15);color:#E8A84C}
+.ext-tier-badge.traditional{background:rgba(155,114,207,0.15);color:#9B72CF}
+.ext-desc{font-size:.84rem;line-height:1.7;color:rgba(242,234,216,0.7);margin-bottom:12px}
+.ext-notes{font-size:.8rem;line-height:1.65;color:rgba(242,234,216,0.45);border-left:2px solid rgba(82,183,136,0.25);padding-left:12px;font-style:italic}
 </style>
 </head>
 <body>
@@ -2913,10 +4044,25 @@ ${ENC_NAV}
       </div>
     </div>
   </div>
+
+  <!-- Extraction Methods Section -->
+  <div class="ext-section">
+    <div class="enc-label" style="margin-bottom:12px">&#10022; The Extraction Process</div>
+    <h2 class="ext-sec-title">How Concentrates <em>Are Made.</em></h2>
+    <p class="ext-sec-sub">Every concentrate product starts with an extraction method. Understanding the process reveals why some products are prized for purity, others for flavor, and others for sheer potency.</p>
+    <div class="ext-filter">
+      <button class="ext-btn active" onclick="filterExt('all',this)">All Methods</button>
+      <button class="ext-btn" onclick="filterExt('solventless',this)">Solventless</button>
+      <button class="ext-btn" onclick="filterExt('solvent',this)">Solvent-Based</button>
+      <button class="ext-btn" onclick="filterExt('traditional',this)">Traditional</button>
+    </div>
+    <div class="ext-grid" id="extGrid"></div>
+  </div>
 </div>
 
 <script>
 var CONC = ${JSON.stringify(_CONC)};
+var EM = ${JSON.stringify(_EM)};
 var CAT_COLORS = ${JSON.stringify(catColors)};
 
 // Build spectrum bar
@@ -2980,7 +4126,38 @@ function filterConc(cat, btn) {
   renderCards(cat);
 }
 
-document.addEventListener('DOMContentLoaded', function(){ renderCards('all'); });
+function filterExt(tier, btn) {
+  document.querySelectorAll('.ext-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  document.querySelectorAll('.ext-card').forEach(function(c){
+    c.classList.toggle('hidden', tier !== 'all' && c.dataset.tier !== tier);
+  });
+}
+
+function renderMethods() {
+  document.getElementById('extGrid').innerHTML = EM.map(function(m) {
+    return '<div class="ext-card" data-tier="' + m.tier + '">' +
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">' +
+        '<div class="ext-name">' + m.name + '</div>' +
+        '<span class="ext-tier-badge ' + m.tier + '">' + m.tier + '</span>' +
+      '</div>' +
+      '<div class="ext-sub">' + m.sub + '</div>' +
+      '<div class="ext-meta">' +
+        '<span class="ext-meta-item ext-quality">' + m.quality + '</span>' +
+        '<span class="ext-meta-item">Yield: ' + m.yield + '</span>' +
+        '<span class="ext-meta-item">' + m.solvent + '</span>' +
+        '<span class="ext-meta-item">' + m.safety + '</span>' +
+      '</div>' +
+      '<p class="ext-desc">' + m.desc + '</p>' +
+      '<p class="ext-notes">' + m.notes + '</p>' +
+    '</div>';
+  }).join('');
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  renderCards('all');
+  renderMethods();
+});
 </script>
 </body></html>`;
     res.writeHead(200, {"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
