@@ -12830,10 +12830,14 @@ function renderScanCard(d) {
     } else if (e.key === 'Enter') {
       e.preventDefault();
       if (_encAcIndex >= 0 && items[_encAcIndex]) {
+        // Focused item → go to it
         encPickStrain(items[_encAcIndex].dataset.name);
+      } else if (items.length > 0) {
+        // No focused item but suggestions exist → go to top result
+        encPickStrain(items[0].dataset.name);
       } else {
-        const val = e.target.value.trim();
-        if (val) encPickStrain(val);
+        // No matches at all → go to strains page to browse
+        window.location = '/strains';
       }
     } else if (e.key === 'Escape') {
       ac && ac.classList.remove('open');
