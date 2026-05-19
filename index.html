@@ -2700,6 +2700,7 @@
     position: absolute;
     cursor: pointer;
     transform: translate(-50%, -50%);
+    z-index: 2;
   }
   .body-dot {
     width: 14px;
@@ -7347,7 +7348,7 @@
           <div class="body-dot"></div><div class="body-dot-ring"></div><div class="body-dot-ring-2"></div>
           <div class="body-label body-label-right">Joints</div>
         </div>
-        <svg viewBox="0 0 200 480" xmlns="http://www.w3.org/2000/svg" class="body-svg">
+        <svg viewBox="0 0 200 480" xmlns="http://www.w3.org/2000/svg" class="body-svg" style="pointer-events:none;position:relative;z-index:0">
           <ellipse cx="100" cy="45" rx="34" ry="40" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
           <rect x="88" y="82" width="24" height="18" rx="4" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
           <path d="M60 100 Q50 130 52 180 L70 200 L130 200 L148 180 Q150 130 140 100 Z" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
