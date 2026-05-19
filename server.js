@@ -1814,6 +1814,27 @@ ${ENC_NAV}
     const eraColors = {landrace:"#C9973A",classic:"#9B72CF",og:"#5B8DD9",cookie:"#52B788",modern:"#E05C5C"};
     const typeColors = {indica:"#9B72CF",sativa:"#E8A84C",hybrid:"#52B788"};
 
+    // Merge full STRAINS_DB (392) with rich _SD encyclopedia data
+    const sdByName = new Map(_SD.map(s => [s.name.toLowerCase(), s]));
+    const mergedSD = STRAINS_DB.map(db => {
+      const rich = sdByName.get(db.name.toLowerCase());
+      if (rich) return rich;
+      return {
+        name: db.name,
+        type: db.type || 'hybrid',
+        era: 'modern',
+        thc: (db.thc_min||0) + '-' + (db.thc_max||25) + '%',
+        cbd: (db.cbd||0.1) + '%',
+        genetics: db.genetics || '',
+        effects: db.effects || [],
+        flavors: db.flavors || [],
+        terpenes: db.terpenes || [],
+        desc: db.description || '',
+        tags: db.tags || [],
+        rating: db.rating || 4.2,
+      };
+    });
+
     const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1927,7 +1948,7 @@ ${ENC_NAV}
 </div>
 
 <script>
-var SD = ${JSON.stringify(_SD)};
+var SD = ${JSON.stringify(mergedSD)};
 var ERA_LABEL = ${JSON.stringify(eraLabel)};
 var ERA_COLOR = ${JSON.stringify(eraColors)};
 var TYPE_COLOR = ${JSON.stringify(typeColors)};
@@ -1959,7 +1980,7 @@ function doFilter() {
     }
     if (!q) return true;
     var haystack = [s.name, s.genetics, s.landrace, s.origin, s.breeder, s.desc, s.story,
-      (s.effects||[]).join(' '), (s.flavors||[]).join(' '), (s.terpenes||[]).join(' ')].join(' ').toLowerCase();
+      (s.effects||[]).join(' '), (s.flavors||[]).join(' '), (s.terpenes||[]).join(' '), (s.tags||[]).join(' ')].join(' ').toLowerCase();
     return haystack.indexOf(q) >= 0;
   });
 
@@ -2020,12 +2041,15 @@ function buildCard(s) {
     treeHtml = '<div style="font-size:.78rem;color:rgba(242,234,216,0.4);font-style:italic;margin-top:4px">Pure landrace — no hybrid cross. This is the source.</div>';
   }
 
-  // Origin box
-  var originHtml = '<div class="origin-box">'+
+  // Origin box (only for strains with full encyclopedia data)
+  var era = s.era || 'modern';
+  var originHtml = s.origin ? '<div class="origin-box">'+
     '<strong>Origin:</strong> '+s.origin+'<br>'+
     (s.breeder ? '<strong>Breeder:</strong> '+s.breeder+'<br>' : '')+
-    '<strong>Landrace DNA:</strong> '+s.landrace+
-  '</div>';
+    (s.landrace ? '<strong>Landrace DNA:</strong> '+s.landrace : '')+
+  '</div>' : '';
+
+  var originStat = s.origin ? s.origin.split(',')[0] : (s.type === 'sativa' ? 'Sativa' : s.type === 'indica' ? 'Indica' : 'Hybrid');
 
   return '<div class="sc" id="sc-'+s.name.replace(/[^a-z0-9]/gi,'-')+'" onclick="toggleCard(this)">'+
     '<div class="sc-stripe" style="background:'+tc+'"></div>'+
@@ -2034,28 +2058,25 @@ function buildCard(s) {
         '<a class="sc-name sc-name-link" href="/strains/'+slug+'" onclick="event.stopPropagation()">'+s.name+'</a>'+
         '<div class="sc-badges">'+
           '<span class="sc-type" style="background:'+tc+'22;color:'+tc+'">'+s.type+'</span>'+
-          '<span class="sc-era" style="background:'+ec+'18;color:'+ec+'">'+ERA_LABEL[s.era]+'</span>'+
+          '<span class="sc-era" style="background:'+ec+'18;color:'+ec+'">'+ERA_LABEL[era]+'</span>'+
         '</div>'+
       '</div>'+
-      '<div class="sc-genetics">'+s.genetics+'</div>'+
+      (s.genetics ? '<div class="sc-genetics">'+s.genetics+'</div>' : '')+
       '<div class="sc-thc-row">'+
-        '<div class="sc-stat"><div class="sc-stat-label">THC</div><div class="sc-stat-val">'+s.thc+'</div></div>'+
-        '<div class="sc-stat"><div class="sc-stat-label">CBD</div><div class="sc-stat-val">'+s.cbd+'</div></div>'+
-        '<div class="sc-stat"><div class="sc-stat-label">Origin</div><div class="sc-stat-val" style="font-size:.72rem">'+s.origin.split(',')[0]+'</div></div>'+
+        '<div class="sc-stat"><div class="sc-stat-label">THC</div><div class="sc-stat-val">'+(s.thc||'—')+'</div></div>'+
+        '<div class="sc-stat"><div class="sc-stat-label">CBD</div><div class="sc-stat-val">'+(s.cbd||'—')+'</div></div>'+
+        '<div class="sc-stat"><div class="sc-stat-label">Type</div><div class="sc-stat-val" style="font-size:.72rem">'+originStat+'</div></div>'+
       '</div>'+
       '<div class="sc-effects">'+effHtml+'</div>'+
       '<div class="sc-flavors">'+flavHtml+'</div>'+
-      '<div class="sc-desc">'+s.desc.substring(0,140)+(s.desc.length>140?'...':'')+'</div>'+
+      '<div class="sc-desc">'+(s.desc||'').substring(0,140)+((s.desc||'').length>140?'...':'')+'</div>'+
     '</div>'+
     '<div class="sc-detail">'+
-      '<div class="sc-det-label">Genetics Cross</div>'+
-      treeHtml+
-      '<div class="sc-det-label">The Genetics Story</div>'+
-      '<div class="sc-det-text">'+s.story+'</div>'+
-      '<div class="sc-det-label">Terpene Profile</div>'+
-      '<div>'+terpHtml+'</div>'+
+      (treeHtml ? '<div class="sc-det-label">Genetics Cross</div>'+treeHtml : '')+
+      (s.story ? '<div class="sc-det-label">The Genetics Story</div><div class="sc-det-text">'+s.story+'</div>' : '')+
+      (terpHtml ? '<div class="sc-det-label">Terpene Profile</div><div>'+terpHtml+'</div>' : '')+
       '<div class="sc-det-label">Full Description</div>'+
-      '<div class="sc-det-text">'+s.desc+'</div>'+
+      '<div class="sc-det-text">'+(s.desc||'')+'</div>'+
       originHtml+
       '<a href="/strains/'+slug+'" class="sc-profile-btn" onclick="event.stopPropagation()">View Full Profile →</a>'+
     '</div>'+
