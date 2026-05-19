@@ -2724,13 +2724,13 @@ function initDots() {
   var tagsDiv = document.getElementById('yb-zone-tags');
   if (!dotsG) return;
   dotsG.innerHTML = HOTSPOTS.map(function(h){
-    return '<g class="yb-dot" id="dot-'+h.id+'" onclick="selectZone(\''+h.id+'\')">'+
+    return '<g class="yb-dot" id="dot-'+h.id+'" onclick="selectZone(\\''+h.id+'\\')">'+
       '<circle class="pulse" cx="'+h.cx+'" cy="'+h.cy+'" r="7" fill="none" stroke="'+h.color+'" stroke-width="1.5"/>'+
       '<circle class="inner" cx="'+h.cx+'" cy="'+h.cy+'" r="4.5" fill="'+h.color+'" opacity="0.9"/>'+
       '<title>'+h.label+'</title></g>';
   }).join('');
   if (tagsDiv) tagsDiv.innerHTML = HOTSPOTS.map(function(h){
-    return '<span class="yb-zone-tag" onclick="selectZone(\''+h.id+'\')">'+h.label+'</span>';
+    return '<span class="yb-zone-tag" onclick="selectZone(\\''+h.id+'\\')">'+h.label+'</span>';
   }).join('');
 }
 function renderPanels() {
@@ -2763,13 +2763,13 @@ function renderLens() {
   if (!pillsEl || pillsEl.innerHTML) return;
   pillsEl.innerHTML = CB_INFO.map(function(cb){
     var col = CB_COLORS[cb.id]||'#52B788';
-    return '<button class="yb-lens-btn" id="lens-btn-'+cb.id+'" onclick="activateLens(\''+cb.id+'\')" style="border-color:'+col+'55">'+cb.label+'</button>';
+    return '<button class="yb-lens-btn" id="lens-btn-'+cb.id+'" onclick="activateLens(\\''+cb.id+'\\''+')" style="border-color:'+col+'55">'+cb.label+'</button>';
   }).join('');
   document.getElementById('yb-lens-cards').innerHTML = CB_INFO.map(function(cb){
     var col = CB_COLORS[cb.id]||'#52B788';
     var zoneTags = cb.zones.map(function(zid){
       var zone = ZONES.find(function(zz){return zz.id===zid;});
-      return '<span class="yb-lens-zone-tag" onclick="selectZone(\''+zid+'\')">'+( zone?zone.label:zid )+'</span>';
+      return '<span class="yb-lens-zone-tag" onclick="selectZone(\\''+zid+'\\')">'+( zone?zone.label:zid )+'</span>';
     }).join('');
     return '<div class="yb-lens-card" id="lens-card-'+cb.id+'">'+
       '<div class="yb-lens-card-name" style="color:'+col+'">'+cb.label+' &mdash; System Overview</div>'+
