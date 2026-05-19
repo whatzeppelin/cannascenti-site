@@ -6419,6 +6419,14 @@ var SDB_DATA = ${JSON.stringify(_SDB)};
 var BPRO_GLOSSARY = ${JSON.stringify(_GLOSSARY)};
 var BPRO_SCRIPTS = ${JSON.stringify(_SCRIPTS)};
 var BPRO_DOSE_CARDS = ${JSON.stringify(_DOSE)};
+var SCRIPT_PARTS = ${JSON.stringify({
+  intro: "Based on what you've told me, I'd recommend starting with ",
+  mid1: " \u2014 it's a ",
+  mid2: " that's great for ",
+  end: "Perfect for ",
+  endSuffix: " use.",
+  beginner: "Since you're new, I'd suggest starting with a small amount and waiting 20\u201330 minutes before taking more."
+})};
 
 var bproState = { exp: null, goal: [], time: null, cons: null, concern: [] };
 
@@ -6500,7 +6508,7 @@ function bproGenRec() {
   if (concern.indexOf('anxious') > -1 || concern.indexOf('sensitive') > -1) warnings.push('⚠️ Anxiety-prone or THC-sensitive — start with 2.5mg or less for edibles, recommend CBD:THC ratios, avoid pure sativas with high THC.');
   if (exp === 'first') warnings.push('⚠️ First-time user — 5mg or below for edibles, one small hit for flower. Set expectations: 15–30 minute onset for flower, 30 min–2 hours for edibles.');
   var s0 = top[0].s;
-  var scriptLine = '"Based on what you\'ve told me, I\'d recommend starting with ' + s0.name + ' — it\'s a ' + s0.type + ' that\'s great for ' + goalsText + '. ' + (time ? 'Perfect for ' + timeText + ' use. ' : '') + (exp==='first' ? 'Since you\'re new, I\'d suggest starting with a small amount and waiting 20–30 minutes before taking more.' : '') + '"';
+  var scriptLine = '"' + SCRIPT_PARTS.intro + s0.name + SCRIPT_PARTS.mid1 + s0.type + SCRIPT_PARTS.mid2 + goalsText + '. ' + (time ? SCRIPT_PARTS.end + timeText + SCRIPT_PARTS.endSuffix + ' ' : '') + (exp==='first' ? SCRIPT_PARTS.beginner + ' ' : '') + '"';
   panel.innerHTML =
     '<div class="bpro-rec-title">Recommendation Ready</div>' +
     '<div class="bpro-rec-summary">' + (expText ? expText.charAt(0).toUpperCase()+expText.slice(1)+' consumer · ' : '') + goalsText + ' · ' + timeText + '</div>' +
@@ -6539,13 +6547,13 @@ function bproFilterGloss() {
   bproGlossSearch = document.getElementById('bproGlossSearch').value;
   bproRenderGloss();
 }
-function bproSetCat(cat) {
-  bproActiveCat = cat;
-  document.querySelectorAll('.bpro-gloss-cat').forEach(function(c){c.classList.toggle('active', c.textContent === cat);});
+function bproSetCat(idx) {
+  bproActiveCat = GLOSS_CATS[idx];
+  document.querySelectorAll('.bpro-gloss-cat').forEach(function(c,i){c.classList.toggle('active', i===idx);});
   bproRenderGloss();
 }
-document.getElementById('bproGlossCats').innerHTML = GLOSS_CATS.map(function(c) {
-  return '<button class="bpro-gloss-cat' + (c==='All'?' active':'') + '" onclick="bproSetCat(\'' + c + '\')">' + c + '</button>';
+document.getElementById('bproGlossCats').innerHTML = GLOSS_CATS.map(function(c, i) {
+  return '<button class="bpro-gloss-cat' + (i===0?' active':'') + '" onclick="bproSetCat(' + i + ')">' + c + '</button>';
 }).join('');
 bproRenderGloss();
 
