@@ -1555,6 +1555,8 @@ ${ENC_BASE_CSS}
 .sc.open .sc-detail{display:block}
 .sc-det-label{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,234,216,0.3);margin:16px 0 6px}
 .sc-det-text{font-size:.8rem;line-height:1.75;color:rgba(242,234,216,0.62)}
+.sc-profile-btn{display:inline-flex;align-items:center;gap:6px;margin-top:18px;font-size:.75rem;letter-spacing:.06em;color:#52B788;border:1px solid rgba(82,183,136,0.25);border-radius:6px;padding:8px 14px;text-decoration:none;transition:border-color .2s,background .2s;font-family:Montserrat,sans-serif}
+.sc-profile-btn:hover{border-color:rgba(82,183,136,0.55);background:rgba(82,183,136,0.06)}
 /* Genetic tree */
 .gene-tree{margin-top:4px}
 .gene-root{font-family:'Cormorant Garamond',serif;font-size:1rem;color:#F2EAD8;margin-bottom:10px;display:flex;align-items:center;gap:8px}
@@ -1670,6 +1672,7 @@ function doFilter() {
 function buildCard(s) {
   var tc = TYPE_COLOR[s.type] || '#52B788';
   var ec = ERA_COLOR[s.era] || '#52B788';
+  var slug = s.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
 
   // Effects
   var effHtml = (s.effects||[]).map(function(e){ return '<span class="sc-eff">'+e+'</span>'; }).join('');
@@ -1736,6 +1739,7 @@ function buildCard(s) {
       '<div class="sc-det-label">Full Description</div>'+
       '<div class="sc-det-text">'+s.desc+'</div>'+
       originHtml+
+      '<a href="/strains/'+slug+'" class="sc-profile-btn" onclick="event.stopPropagation()">View Full Profile →</a>'+
     '</div>'+
   '</div>';
 }
@@ -1749,6 +1753,205 @@ document.addEventListener('DOMContentLoaded', function(){ doFilter(); });
 </body></html>`;
     res.writeHead(200, {"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
     res.end(html);
+    return;
+  }
+
+  // ─── /strains/:slug — Individual strain profile ────────────────────────────
+  if (req.method === "GET" && req.url.startsWith("/strains/") && req.url.length > 9) {
+    const rawSlug = req.url.slice(9).split("?")[0].split("#")[0];
+    const toSlug = n => n.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+    const s = STRAINS_DB.find(sd => toSlug(sd.name) === rawSlug);
+
+    if (!s) {
+      res.writeHead(404,{"Content-Type":"text/html"});
+      res.end(`<!DOCTYPE html><html><head><title>Not Found | Cannascenti</title>${ENC_FONTS}<style>*{margin:0;padding:0;box-sizing:border-box}body{background:#060d0a;color:#F2EAD8;font-family:Montserrat,sans-serif}</style></head><body>${ENC_NAV}<div style="max-width:600px;margin:120px auto;text-align:center;padding:0 32px"><div style="font-size:3rem;margin-bottom:20px;opacity:.3">&#127807;</div><div style="font-family:'Cormorant Garamond',serif;font-size:2rem;margin-bottom:16px">Strain not found</div><a href="/strains" style="color:#52B788;font-size:.85rem">Back to All Strains</a></div></body></html>`);
+      return;
+    }
+
+    const typeColors = {indica:"#9B72CF",sativa:"#E8A84C",hybrid:"#52B788"};
+    const typeName = (s.type||'hybrid').toLowerCase();
+    const tc = typeColors[typeName] || "#52B788";
+    const thcMin = s.thc_min || 0;
+    const thcMax = s.thc_max || 25;
+    const thcBarW = Math.min(Math.round(thcMax / 35 * 100), 100);
+    const cbd = s.cbd || 0;
+    const cbdBarW = Math.max(Math.min(Math.round(cbd / 25 * 100), 100), 3);
+    const rating = s.rating || 4.2;
+    const ratingFull = Math.round(rating);
+    const starStr = '&#9733;'.repeat(ratingFull) + '&#9734;'.repeat(5 - ratingFull);
+
+    const TERP_INFO = {
+      Myrcene:        {color:'#E07B39', icon:'&#127818;', aroma:'Earthy · Musky · Tropical', effect:'The most abundant cannabis terpene. Increases cell membrane permeability, allowing THC to cross the blood-brain barrier faster. High myrcene = heavier, more sedating effect regardless of strain type. The primary predictor of couch-lock.'},
+      Limonene:       {color:'#F2C94C', icon:'&#127819;', aroma:'Citrus · Lemon · Bright', effect:'Mood elevation and stress relief. Interacts with serotonin receptors, reducing anxiety and brightening mood. The terpene behind citrus-forward strains that feel uplifting rather than heavy.'},
+      Caryophyllene:  {color:'#C97B4B', icon:'&#127798;', aroma:'Spicy · Pepper · Woody', effect:'The only terpene known to directly activate CB2 receptors, producing anti-inflammatory effects without psychoactivity. Reduces stress and may help lower cortisol. Found in black pepper and cloves.'},
+      Linalool:       {color:'#9B72CF', icon:'&#128525;', aroma:'Floral · Lavender · Sweet', effect:'Calming and anti-anxiety, similar to lavender aromatherapy. Modulates glutamate and GABA activity to promote deep relaxation. Especially beneficial for sleep and anxiety relief.'},
+      Pinene:         {color:'#52B788', icon:'&#127794;', aroma:'Pine · Fresh · Earthy', effect:'Mental alertness and memory retention. Alpha-pinene may counteract THC-induced memory impairment. Acts as a bronchodilator, opening airways. The clearest-headed, most cognitively present terpene.'},
+      Terpinolene:    {color:'#5B8DD9', icon:'&#127800;', aroma:'Fresh · Floral · Herbaceous · Pine', effect:'Uplifting and cerebral. Rare in high concentrations — dominant-terpinolene strains tend to be energetic and psychedelic-light rather than sedating. Signature terpene of Jack Herer and Durban Poison.'},
+      Ocimene:        {color:'#52B788', icon:'&#127807;', aroma:'Sweet · Herbal · Tropical · Woody', effect:'Uplifting and energizing. Commonly found in tropical sativas, contributing to their bright, sweet, almost floral character. Has antiviral and antifungal properties.'},
+      Humulene:       {color:'#C9973A', icon:'&#127866;', aroma:'Earthy · Woody · Hoppy', effect:'Anti-inflammatory and appetite suppressant — unusual for cannabis. Found in hops (the flavor backbone of IPAs), sage, and coriander. Works synergistically with caryophyllene for enhanced anti-inflammatory action.'},
+      Bisabolol:      {color:'#E8A84C', icon:'&#127804;', aroma:'Floral · Sweet · Chamomile', effect:'Calming and anti-irritation. Found in chamomile flowers. Often present in CBD-rich strains and those with a particularly smooth, clean, floral character. Gentle, healing, and subtle.'},
+      Valencene:      {color:'#F2C94C', icon:'&#127818;', aroma:'Sweet · Citrus · Orange Peel', effect:'Uplifting and mood-boosting. Named for Valencia oranges. Contributes a bright, fresh orange sweetness to tropical and fruity strains — often found alongside limonene for layered citrus complexity.'},
+      Geraniol:       {color:'#E05C5C', icon:'&#127801;', aroma:'Floral · Rose · Fruity · Peach', effect:'Calming and neuroprotective. Naturally found in rose oil and geraniums. Present in many berry and floral-forward strains. Has natural insect-repellent properties and a distinctly rosy character.'},
+      Camphene:       {color:'#9B72CF', icon:'&#127795;', aroma:'Damp Earth · Fir Needles · Woody', effect:'Anti-inflammatory with a cool, damp forest aroma. Found alongside myrcene in heavy indicas. Contributes to the deep, musty earthiness of classic Kush and Afghani-derived varieties.'},
+    };
+
+    const terpCards = (s.terpenes || []).map(t => {
+      const ti = TERP_INFO[t] || {color:'#52B788', icon:'&#10022;', aroma:t, effect:'A terpene contributing to this strain\'s unique aromatic profile.'};
+      return `<div class="sp-terp-card" style="border-top:3px solid ${ti.color}22;border-color:${ti.color}22">
+        <div class="sp-terp-head" style="color:${ti.color}"><span>${ti.icon}</span><span class="sp-terp-name">${t}</span></div>
+        <div class="sp-terp-aroma">${ti.aroma}</div>
+        <div class="sp-terp-effect">${ti.effect}</div>
+      </div>`;
+    }).join('');
+
+    const related = STRAINS_DB
+      .filter(r => r.name !== s.name && (r.type||'').toLowerCase() === typeName)
+      .filter(r => (r.effects||[]).filter(e => (s.effects||[]).includes(e)).length >= 2)
+      .slice(0, 4);
+
+    const relCards = related.map(r => {
+      const rc = typeColors[(r.type||'').toLowerCase()] || '#52B788';
+      const rSlug = toSlug(r.name);
+      return `<a href="/strains/${rSlug}" class="sp-rel-card">
+        <div style="height:3px;background:${rc}"></div>
+        <div class="sp-rel-body">
+          <div class="sp-rel-name">${r.name}</div>
+          <div style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:${rc};margin-bottom:8px;font-weight:600">${r.type}</div>
+          <div style="display:flex;flex-wrap:wrap;gap:4px">${(r.effects||[]).slice(0,3).map(e=>`<span style="font-size:.65rem;background:rgba(255,255,255,0.05);border-radius:4px;padding:2px 7px;color:rgba(242,234,216,0.45)">${e}</span>`).join('')}</div>
+        </div>
+      </a>`;
+    }).join('');
+
+    const tagsHtml = (s.tags||[]).map(tag => `<span class="sp-tag">${tag}</span>`).join('');
+    const geneticsHtml = s.genetics ? `<div class="sp-genetics">${s.genetics}</div>` : '';
+    const typeLabel = typeName.charAt(0).toUpperCase() + typeName.slice(1);
+    const pageTitle = `${s.name} — ${typeLabel} Strain, THC ${thcMin}–${thcMax}% | Cannascenti`;
+
+    const spHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${pageTitle}</title>
+<meta name="description" content="${s.name}: A ${typeName} cannabis strain with ${thcMin}-${thcMax}% THC. ${(s.description||'').replace(/"/g,'').slice(0,140)}">
+${ENC_FONTS}
+<style>
+${ENC_BASE_CSS}
+.sp-hero{padding:48px 0 40px;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:52px}
+.sp-breadcrumb{font-size:.72rem;letter-spacing:.06em;color:rgba(242,234,216,0.3);margin-bottom:28px;display:flex;align-items:center;gap:8px}
+.sp-breadcrumb a{color:rgba(242,234,216,0.4);text-decoration:none;transition:color .2s}.sp-breadcrumb a:hover{color:#52B788}
+.sp-name{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,6vw,4.5rem);font-weight:300;color:#F2EAD8;line-height:1.1;margin-bottom:18px}
+.sp-badges{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:36px}
+.sp-type-badge{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;border-radius:20px;padding:5px 16px;font-weight:600}
+.sp-rating{display:flex;align-items:center;gap:8px;font-size:.85rem;color:rgba(242,234,216,0.5)}
+.sp-stars{color:#E8A84C;font-size:.9rem;letter-spacing:2px}
+.sp-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.sp-stat{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px 20px}
+.sp-stat-label{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,234,216,0.3);margin-bottom:8px}
+.sp-stat-val{font-size:1.5rem;font-family:'Cormorant Garamond',serif;color:#F2EAD8;margin-bottom:10px}
+.sp-bar{height:4px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden}
+.sp-bar-fill{height:100%;border-radius:4px}
+.sp-section{margin-bottom:52px}
+.sp-section-title{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(242,234,216,0.3);margin-bottom:20px;display:flex;align-items:center;gap:14px}
+.sp-section-title::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06)}
+.sp-desc{font-family:'Cormorant Garamond',serif;font-size:1.1rem;line-height:1.9;color:rgba(242,234,216,0.82);max-width:760px}
+.sp-effects{display:flex;flex-wrap:wrap;gap:10px}
+.sp-eff{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:8px 18px;font-size:.8rem;color:rgba(242,234,216,0.75);letter-spacing:.04em}
+.sp-flavors{display:flex;flex-wrap:wrap;gap:10px}
+.sp-flav{background:rgba(232,168,76,0.07);border:1px solid rgba(232,168,76,0.15);border-radius:24px;padding:8px 18px;font-size:.8rem;color:rgba(232,168,76,0.8)}
+.sp-terp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.sp-terp-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px 20px}
+.sp-terp-head{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:.9rem;font-weight:600}
+.sp-terp-name{letter-spacing:.04em}
+.sp-terp-aroma{font-size:.7rem;color:rgba(242,234,216,0.32);letter-spacing:.06em;margin-bottom:10px;text-transform:uppercase}
+.sp-terp-effect{font-size:.82rem;line-height:1.68;color:rgba(242,234,216,0.6)}
+.sp-tags{display:flex;flex-wrap:wrap;gap:8px}
+.sp-tag{background:rgba(82,183,136,0.08);border:1px solid rgba(82,183,136,0.2);border-radius:6px;padding:5px 12px;font-size:.7rem;color:rgba(82,183,136,0.85);letter-spacing:.07em;text-transform:uppercase}
+.sp-genetics{font-size:.9rem;color:rgba(242,234,216,0.6);line-height:1.6;font-style:italic;border-left:2px solid rgba(82,183,136,0.2);padding-left:14px}
+.sp-rel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.sp-rel-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;overflow:hidden;text-decoration:none;transition:border-color .2s,transform .15s;display:block}
+.sp-rel-card:hover{border-color:rgba(255,255,255,0.15);transform:translateY(-2px)}
+.sp-rel-body{padding:14px 16px}
+.sp-rel-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#F2EAD8;margin-bottom:4px}
+@media(max-width:640px){.sp-name{font-size:2.2rem}.sp-stats{grid-template-columns:1fr 1fr}.sp-terp-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+${ENC_NAV}
+<div class="enc-page">
+  <div class="sp-hero">
+    <div class="sp-breadcrumb">
+      <a href="/strains">All Strains</a>
+      <span style="opacity:.4">/</span>
+      <span style="color:rgba(242,234,216,0.6)">${s.name}</span>
+    </div>
+    <div class="sp-name">${s.name}</div>
+    <div class="sp-badges">
+      <span class="sp-type-badge" style="background:${tc}22;color:${tc}">${typeLabel}</span>
+      <span class="sp-rating">
+        <span class="sp-stars">${starStr}</span>
+        <span>${rating.toFixed(1)}</span>
+      </span>
+    </div>
+    <div class="sp-stats">
+      <div class="sp-stat">
+        <div class="sp-stat-label">THC Range</div>
+        <div class="sp-stat-val">${thcMin}&#8211;${thcMax}%</div>
+        <div class="sp-bar"><div class="sp-bar-fill" style="width:${thcBarW}%;background:${tc}"></div></div>
+      </div>
+      <div class="sp-stat">
+        <div class="sp-stat-label">CBD</div>
+        <div class="sp-stat-val">${cbd}%</div>
+        <div class="sp-bar"><div class="sp-bar-fill" style="width:${cbdBarW}%;background:#52B788"></div></div>
+      </div>
+      <div class="sp-stat">
+        <div class="sp-stat-label">Dominant Terpene</div>
+        <div class="sp-stat-val" style="font-size:1.05rem;margin-top:4px">${(s.terpenes||[])[0] || '&#8212;'}</div>
+        <div style="font-size:.7rem;color:rgba(242,234,216,0.28);margin-top:4px">${(s.terpenes||[]).slice(1).join(' &middot; ') || ''}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sp-section">
+    <div class="sp-section-title">About This Strain</div>
+    <div class="sp-desc">${s.description || ''}</div>
+  </div>
+
+  ${(s.effects||[]).length > 0 ? `<div class="sp-section">
+    <div class="sp-section-title">Effects</div>
+    <div class="sp-effects">${(s.effects||[]).map(e=>`<span class="sp-eff">${e}</span>`).join('')}</div>
+  </div>` : ''}
+
+  ${(s.flavors||[]).length > 0 ? `<div class="sp-section">
+    <div class="sp-section-title">Flavor Profile</div>
+    <div class="sp-flavors">${(s.flavors||[]).map(f=>`<span class="sp-flav">${f}</span>`).join('')}</div>
+  </div>` : ''}
+
+  ${terpCards ? `<div class="sp-section">
+    <div class="sp-section-title">Terpene Deep Dive</div>
+    <div class="sp-terp-grid">${terpCards}</div>
+  </div>` : ''}
+
+  ${tagsHtml ? `<div class="sp-section">
+    <div class="sp-section-title">Best For</div>
+    <div class="sp-tags">${tagsHtml}</div>
+  </div>` : ''}
+
+  ${geneticsHtml ? `<div class="sp-section">
+    <div class="sp-section-title">Genetic Lineage</div>
+    ${geneticsHtml}
+  </div>` : ''}
+
+  ${relCards ? `<div class="sp-section">
+    <div class="sp-section-title">Similar Strains</div>
+    <div class="sp-rel-grid">${relCards}</div>
+  </div>` : ''}
+</div>
+</body>
+</html>`;
+
+    res.writeHead(200,{"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
+    res.end(spHtml);
     return;
   }
 

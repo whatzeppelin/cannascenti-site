@@ -1772,7 +1772,9 @@
     opacity: 0.75;
   }
   .strain-card-rank { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--bright-green); margin-bottom: 10px; }
-  .strain-card-find { display: block; margin-top: 18px; font-size: 11px; letter-spacing: 0.12em; color: var(--bright-green); text-decoration: none; opacity: 0.7; transition: opacity 0.2s; }
+  .strain-card-profile { display: inline-flex; align-items: center; gap: 4px; margin-top: 16px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bright-green); text-decoration: none; border: 1px solid rgba(82,183,136,0.25); border-radius: 5px; padding: 6px 12px; transition: border-color 0.2s, background 0.2s; }
+  .strain-card-profile:hover { border-color: rgba(82,183,136,0.55); background: rgba(82,183,136,0.06); }
+  .strain-card-find { display: block; margin-top: 10px; font-size: 11px; letter-spacing: 0.12em; color: var(--bright-green); text-decoration: none; opacity: 0.7; transition: opacity 0.2s; }
   .strain-card-find:hover { opacity: 1; }
   .strain-results-nudge { grid-column: 1 / -1; margin-top: 8px; padding: 28px 32px; background: rgba(82,183,136,0.04); border: 1px solid rgba(82,183,136,0.15); border-radius: 4px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
@@ -8743,7 +8745,7 @@
         header.textContent = `${strainData.strains.length} strain${strainData.strains.length > 1 ? 's' : ''} matched for "${query}"`;
         strainData.strains.forEach((strain, i) => {
           const typeClass = { 'Sativa': 'type-sativa', 'Indica': 'type-indica', 'Hybrid': 'type-hybrid' }[strain.type] || 'type-hybrid';
-          const slug = strain.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+          const slug = strain.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
           const card = document.createElement('div');
           card.className = 'strain-card';
           card.style.animationDelay = `${i * 0.06}s`;
@@ -8756,6 +8758,7 @@
             <p class="strain-card-desc">${strain.description || ''}</p>
             <div class="strain-card-tags">${(strain.effects || []).map(e => `<span class="strain-tag">${e}</span>`).join('')}</div>
             <div class="strain-card-thc">THC ${strain.thc} · CBD ${strain.cbd}</div>
+            <a class="strain-card-profile" href="/strains/${slug}">View Full Strain Profile →</a>
             <a class="strain-card-find erba-link" href="https://www.erbasawtelle.com/menu" target="_blank" rel="noopener">🌿 Check availability at Erba Sawtelle →</a>
           `;
           cards.appendChild(card);
