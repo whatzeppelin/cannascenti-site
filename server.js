@@ -151,7 +151,15 @@ const TERP_META = [
     medical:["Anti-inflammatory","Antimicrobial","Cough suppressant","Insect repellent","Anti-tumor (early)"],
     nature:[{e:"🌲",n:"Guaiacum",note:"Named for the guaiacum wood tree — South American timber historically used for anti-inflammatory medicine"},{e:"🌹",n:"Rose",note:"Rose absolute contains guaiol — part of rose's deep, complex woody-floral base note"},{e:"🌲",n:"Cypress Pine",note:"Cypress pine wood contains guaiol — that distinctive clean-woody smell of Mediterranean architecture"},{e:"🌿",n:"Nutmeg",note:"Nutmeg contains guaiol alongside other high-boiling sesquiterpenes"},{e:"🌸",n:"Tea Rose",note:"Tea rose varieties are particularly high in guaiol alongside geraniol"},{e:"🌿",n:"Naematoloma",note:"Some edible mushroom species contain guaiol — an unusual cross-kingdom terpene presence"}],
     hack:"The Vaporizer Finish: Guaiol has the highest boiling point (288C) of common cannabis terpenes — it's one of the terpenes vapers taste at the very end of a session when everything else has already vaporized.",
-    exStrains:["Plushberry","Pennywise","Blue Kush","Agent Orange","AK-47"] }
+    exStrains:["Plushberry","Pennywise","Blue Kush","Agent Orange","AK-47"] },
+  { name:"Camphene", slug:"camphene", color:"#9B72CF", tag:"The Damp Forest", family:"Earthy", bp:159, bpF:318,
+    aroma:"Damp Earth · Fir Needles · Camphor · Woody · Musky",
+    effect:"Anti-inflammatory, antioxidant, grounding. Produces the distinctive cold, damp, forest-floor aroma found in classic Kush and Afghani varieties. Often found alongside myrcene, amplifying the heavy, earthy body of indica-dominant strains.",
+    receptorNote:"Camphene has demonstrated antioxidant activity comparable to vitamin E in some studies, scavenging free radicals more effectively than many synthetic antioxidants. Research also suggests lipid-lowering properties that may support cardiovascular health — making it one of the more medically interesting minor terpenes.",
+    medical:["Anti-inflammatory","Antioxidant","Cardiovascular support (research)","Antibacterial","Respiratory relief"],
+    nature:[{e:"🌲",n:"Cedar",note:"Cedar heartwood is high in camphene — the cool, resinous smell of cedar chests and closets"},{e:"🌲",n:"Fir Trees",note:"Fir needle oil contains significant camphene — the classic Christmas tree aroma"},{e:"🌿",n:"Camphor Laurel",note:"The camphor tree is the primary commercial source of camphene — used in traditional medicine worldwide"},{e:"🫚",n:"Ginger",note:"Fresh ginger root contains camphene alongside zingiberene — part of its sharp, complex heat"},{e:"🌿",n:"Valerian Root",note:"Valerian, known for sleep and relaxation, contains camphene as part of its sedating volatile profile"},{e:"🌲",n:"Turpentine",note:"Turpentine (distilled pine resin) is historically one of the richest sources of camphene — the origin of its old medicinal use"}],
+    hack:"The Kush Smell: That cold, damp, almost musty forest smell in classic Kush strains? That's camphene. It's most detectable when you open a jar of a heavy indica and get that hit of wet earth and pine — camphene is layered under the myrcene doing that work.",
+    exStrains:["Master Kush","OG Kush","Mendocino Purps","Ghost OG","Strawberry Banana","Kosher Kush"] }
 ];
 
 function reloadStrains() {
