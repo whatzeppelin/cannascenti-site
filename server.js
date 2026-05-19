@@ -660,7 +660,7 @@ ${isPrivacy ? `<h1>Privacy Policy</h1><p>Last updated: April 2026</p>
     <a href="/cultivation" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Cultivation</a>
     <a href="/history" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">History</a>
     <a href="/concentrates" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Concentrates</a>
-    <a href="/cooking" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Cooking</a>
+    <a href="/edibles" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Edibles</a>
     <a href="/cannalogy" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Cannalogy</a>
     <a href="/glossary" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Glossary</a>
   </div>
@@ -1685,6 +1685,9 @@ document.addEventListener('DOMContentLoaded', function(){ doFilter(); });
   }
 
   // ─── /cooking ──────────────────────────────────────────────────────────────
+  if (req.method === "GET" && req.url === "/edibles/cooking") {
+    res.writeHead(301,{"Location":"/cooking"});res.end();return;
+  }
   if (req.method === "GET" && req.url === "/cooking") {
     const _RECIPES = [
       { id:"cannabutter", cat:"foundation", icon:"🧈", name:"Cannabutter", difficulty:"Easy", time:"3.5 hrs", yield:"1 cup ~80mg THC", tip:"Adding water prevents burning and strips chlorophyll for cleaner-tasting butter. THC stays in the fat — not the water.", ingredients:["1 cup (2 sticks) unsalted butter","1 cup water","3.5–7g decarboxylated cannabis","Cheesecloth for straining"], method:["Melt butter and water together in a heavy saucepan over lowest possible heat.","Add decarboxylated cannabis. Stir to combine.","Simmer on lowest heat for 2–3 hours, stirring every 30 minutes. Never let it reach a boil.","Strain through cheesecloth into a glass container, pressing firmly to extract all butter.","Refrigerate for 2 hours — the water layer separates to the bottom. Remove solidified butter from top.","Store refrigerated up to 2 weeks or frozen up to 6 months."] },
@@ -1955,6 +1958,374 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 </script>
 </body></html>`;
+    res.writeHead(200,{"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
+    res.end(html);
+    return;
+  }
+
+  // ─── /edibles ──────────────────────────────────────────────────────────────
+  if (req.method === "GET" && req.url === "/edibles") {
+    const _CATS = [
+      { id:"gummies", icon:"🍬", name:"Gummies", tagline:"The most popular cannabis format in legal markets.",
+        desc:"Gummies are the category that converted a generation of cannabis-curious consumers. Precise dosing, no smell, portable, discreet, and available in every cannabinoid formulation imaginable. The real story is the quality divide between distillate, live resin, and live rosin — a spectrum that changes everything about the experience.",
+        onset:"45–90 min standard · 15–45 min nano-emulsified", duration:"4–8 hours",
+        look:["Distillate vs live resin vs live rosin — see the Gummy Spectrum below","Check the COA (Certificate of Analysis) — 3rd-party lab tested","Nano-emulsified = faster onset, shorter duration","Vegan pectin-based vs gelatin-based (labeled on packaging)","Store below 70°F — heat degrades THC and melts the gummy"],
+        tip:"Eat a meal with healthy fat before dosing (avocado, nuts, olive oil). Fat opens absorption pathways and creates a smoother, more predictable experience."
+      },
+      { id:"chocolate", icon:"🍫", name:"Chocolate", tagline:"Anandamide + THC — cannabis's most natural pairing.",
+        desc:"Dark chocolate contains anandamide — the body's own endocannabinoid — and fat that significantly improves THC bioavailability. The synergy is real. Hash chocolate (charas pressed into cacao) is the oldest cannabis food on earth. Modern craft producers now make single-origin, strain-specific cannabis chocolate bars with the same precision as fine wine.",
+        onset:"45–90 min", duration:"4–8 hours",
+        look:["70%+ dark chocolate = more anandamide synergy and better fat profile","Hash chocolate vs distillate chocolate are fundamentally different experiences","Look for micro-dosed squares (2.5mg–5mg per piece) for precision control","Single-origin bean-to-bar cannabis chocolate is an emerging premium category","Milk chocolate is fine, but dark is preferred for flavor and bioavailability"],
+        tip:"Chocolate fat is one of the highest-bioavailability edible formats. Taking with full-fat dairy (cream, whole milk) further amplifies absorption — the fat opens lipid transport pathways."
+      },
+      { id:"beverages", icon:"🥤", name:"Beverages", tagline:"Fast onset, social format, zero smoke.",
+        desc:"Cannabis beverages are the fastest-growing category in regulated markets. The breakthrough was nano-emulsification — breaking THC into microscopic droplets (10–200nm) that absorb through the gut wall in 15–30 minutes, bypassing the first-pass liver metabolism that makes standard edibles slow. Available as sparkling seltzers, shots, teas, cold brew, lemonade, and cocktail mixers. Low-dose (2mg–5mg) beverages are quickly becoming the preferred alcohol replacement.",
+        onset:"15–30 min nano-emulsified · 45–90 min standard", duration:"2–4 hours (shorter than solid edibles)",
+        look:["'Water-soluble', 'nano', or 'nano-emulsified' on the label = faster onset","THC:CBD 1:1 ratios mimic alcohol's social quality without the hangover","Low-dose options (2mg, 5mg) for functional social consumption","Refrigerate after opening — most cannabis beverages are perishable","Cannabis tonics pair well with sparkling water and citrus for a mocktail"],
+        tip:"The microdose beverage (2mg THC + 4mg CBD) is the best cannabis product for social situations. Sessionable, predictable onset, no hangover. Replace 2 drinks with 2 cans."
+      },
+      { id:"capsules", icon:"💊", name:"Capsules & Pills", tagline:"Clinical precision. No flavor. Pharmaceutical consistency.",
+        desc:"Softgels and capsules deliver cannabis with pharmaceutical-grade precision — no taste, no ritual, predictable dosing in every unit. Popular with medical patients, microdosers, and anyone who wants edible-style effects without sugar or gelatin. Softgels (oil-filled) absorb faster than pressed tablets. Time-release capsules offer 6–10 hour extended duration for pain management and overnight coverage.",
+        onset:"45–90 min", duration:"5–8 hours (time-release up to 10 hours)",
+        look:["Softgels outperform pressed tablets for absorption speed","MCT oil base in the softgel improves bioavailability significantly","Full-spectrum vs isolate — full-spectrum includes minor cannabinoids","Time-release options for overnight pain coverage","CBN sleep capsules for nighttime; CBG focus capsules for daytime"],
+        tip:"Take with food containing fat — a tablespoon of peanut butter or a small handful of nuts dramatically increases THC absorption by opening lipid transport pathways."
+      },
+      { id:"tinctures", icon:"💧", name:"Tinctures", tagline:"Sublingual absorption. Fastest non-inhaled onset.",
+        desc:"Tinctures are cannabis extracted into a carrier — either food-grade alcohol or MCT oil — administered under the tongue. When held sublingually for 60–90 seconds, cannabinoids absorb directly through the mucous membrane into the bloodstream, bypassing the digestive system. Onset in 15–45 minutes — significantly faster than other edibles. Ratio tinctures (1:1, 4:1 CBD:THC, 10:1) allow precise, custom cannabinoid ratios drop by drop.",
+        onset:"15–45 min sublingual · 45–90 min if swallowed", duration:"4–6 hours",
+        look:["Alcohol-based tinctures are more bioavailable than MCT oil","Ratio tinctures enable precise cannabinoid customization","Full-spectrum vs broad-spectrum vs isolate — distinctly different experiences","Know your mg-per-dropper (usually 1mL) before dosing","Green Dragon = high-proof alcohol tincture; most potent tincture format"],
+        tip:"Hold it under your tongue for a full 90 seconds before swallowing. If you swallow immediately, you've just made a slow-acting edible. The sublingual route is what makes tinctures special."
+      },
+      { id:"topicals", icon:"🧴", name:"Topicals", tagline:"Localized relief. Zero intoxication.",
+        desc:"Topicals are cannabis-infused creams, balms, salves, bath soaks, and patches applied directly to skin. Standard topicals bind to CB2 receptors in peripheral tissue without crossing the blood-brain barrier — no psychoactive effect. Ideal for localized pain, muscle soreness, joint inflammation, and skin conditions. Transdermal patches are the exception: engineered to penetrate the skin barrier and enter the bloodstream for systemic, long-duration effects.",
+        onset:"Topical: 5–20 min local · Transdermal patch: 60–90 min systemic", duration:"2–6 hours topical · 8–12 hours patch",
+        look:["Transdermal patches can produce mild psychoactive effect — different from cream/balm","THC topicals are legal in most places and don't produce a high","Caryophyllene-dominant formulations enhance CB2 activation","CBDA (raw) and CBD topicals both have anti-inflammatory research support","Arnica, menthol, and camphor additions enhance topical pain relief"],
+        tip:"Apply to clean, warm skin right after a shower. Dilated pores and increased surface blood flow dramatically improve cannabinoid absorption. For joint pain, apply directly over the joint."
+      }
+    ];
+    const _GUMMIES = [
+      { tier:"Entry", name:"Distillate Gummies", icon:"🍬", color:"#74C69D", badge:"Most Common",
+        what:"Made with distillate — a highly refined cannabis oil produced through molecular distillation. During this process, everything but THC is stripped away: terpenes, flavonoids, minor cannabinoids, waxes, chlorophyll. What remains is a clear oil at 90–99% THC. Flavors are added artificially. The result is consistent, affordable, and widely available.",
+        pros:["Predictable, consistent dosing batch to batch","Long shelf life — stable at room temperature","More affordable than full-spectrum options","Widely available in all legal markets","Neutral base takes on added fruit flavors cleanly"],
+        cons:["No entourage effect — isolated THC only","Added terpenes are synthetic replicas, not plant-derived","Flatter, more one-dimensional high quality","Some consumers report a heavier or more anxious feeling vs full-spectrum"],
+        bestFor:"First-timers, budget-conscious consumers, precise single-cannabinoid dosing",
+        brands:"Wana, Kiva Terra Bites, Wyld (standard line), Plus Products, Camino base line"
+      },
+      { tier:"Mid", name:"Live Resin Gummies", icon:"✨", color:"#C9973A", badge:"Best Value",
+        what:"Made with live resin — extracted from fresh-frozen cannabis harvested at peak terpene production and immediately flash-frozen rather than dried and cured. This preservation keeps the full terpene profile and minor cannabinoid spectrum intact. The result is full-spectrum: real plant terpenes, real cannabinoid ratios, real entourage effect.",
+        pros:["True entourage effect with real plant terpenes","Strain-specific options — you can taste the cultivar","More nuanced, complex experience than distillate","Notably different high quality — preferred by most experienced consumers","Terpene profile drives mood effects more accurately"],
+        cons:["Higher price (1.5–2x distillate)","More variable batch-to-batch as a natural product","Shorter shelf life — refrigerate recommended","Cannabis-forward flavor not for everyone"],
+        bestFor:"Experienced consumers, flavor-seekers, those who want strain-specific effects",
+        brands:"Camino Live Resin (Kiva), Wana Quick, Raw Garden Gummies, Jeeter, Stiiizy Live Resin"
+      },
+      { tier:"Premium", name:"Live Rosin Gummies", icon:"👑", color:"#9B72CF", badge:"Connoisseur",
+        what:"The pinnacle — 100% solventless extraction. Fresh-frozen cannabis is pressed between heated plates under controlled pressure. No butane, no ethanol, no CO2. Just heat and pressure. The resulting full-spectrum oil preserves every cannabinoid, terpene, flavonoid, and minor compound exactly as nature produced them. Live rosin gummies are the craft caviar of the edible world.",
+        pros:["Completely solventless — chemically clean","Maximum entourage effect — nothing removed or synthesized","Strain-specific terroir-driven experience","Best possible terpene preservation","Cleanest, most complete full-spectrum option available"],
+        cons:["Premium price — 2–4x the cost of distillate gummies","Lower THC% by weight (natural rosin = 60–80% THC vs distillate 90%+)","Limited availability — smaller craft producers","Shortest shelf life — always refrigerate","Strong cannabis flavor — not masked by added flavoring"],
+        bestFor:"Connoisseurs, solvent-sensitive consumers, medical patients seeking full-spectrum",
+        brands:"Emerald Bay, Papa & Barkley (rosin), Kiva Rosin line, Stiiizy Live Rosin, local craft producers"
+      }
+    ];
+    const _CANNABS = [
+      { abbr:"CBD", full:"Cannabidiol", color:"#74C69D", dose:"10–50mg", avail:"★★★★★",
+        role:"The great balancer. Non-intoxicating. Reduces THC-induced anxiety by modulating CB1 receptors allosterically. Anti-inflammatory, anxiolytic, and neuroprotective. The only FDA-approved cannabinoid (Epidiolex for epilepsy). Works synergistically with THC — a small amount of CBD meaningfully changes the THC experience.",
+        edible:"Best in 1:1 ratios with THC for a balanced, functional high. Standalone CBD gummies and tinctures for daytime stress and inflammation without intoxication. CBD in topicals for localized inflammation without systemic effects.",
+        products:"CBD gummies, 1:1 seltzers (Cann), sublingual tinctures, softgel capsules, topicals",
+        note:"Safe at high doses. No intoxication ceiling. Keep a CBD tincture on hand — it genuinely reduces the intensity of an overwhelming THC experience."
+      },
+      { abbr:"CBN", full:"Cannabinol", color:"#C9973A", dose:"2–10mg", avail:"★★★☆☆",
+        role:"THC's metabolite — forms as THC oxidizes over time in aged or improperly stored cannabis. Mildly psychoactive at higher doses. Heavily marketed as a sleep aid. The scientific evidence is limited but anecdotal support is substantial, especially when CBN is combined with THC and CBD.",
+        edible:"Best in sleep gummies and capsules taken 30–60 minutes before bed. Often combined with melatonin (1–3mg) and CBD in nighttime formulations. The CBN+CBD+THC combination outperforms any single cannabinoid alone for sleep.",
+        products:"Wana Dream gummies, sleep capsules, Papa & Barkley Sleep tincture, Winberry Farms CBN",
+        note:"Standalone CBN products often underperform expectations. Works best in combination — look for CBN+CBD or CBN+CBD+THC sleep formulations."
+      },
+      { abbr:"THCV", full:"Tetrahydrocannabivarin", color:"#E07B39", dose:"5–15mg", avail:"★★☆☆☆",
+        role:"The 'sports car' cannabinoid. At low doses (under 15mg), THCV acts as a CB1 antagonist — suppressing appetite and blocking THC's sedating effects. At higher doses it becomes mildly euphoric. Known for clear-headed, energetic, short-duration effects (2–3 hours vs THC's 4–8). Rare in most cultivars.",
+        edible:"Emerging in daytime gummies and focus capsules. Look for 'energy' or 'daytime' positioning in dispensaries. Pairs well with CBG for a clean, focused, functional experience without significant intoxication.",
+        products:"Daytime focus gummies, select tincture lines, CBG+THCV capsule formulations",
+        note:"Most commercial THCV is synthesized from CBD — naturally occurring THCV from African landrace genetics is rare and expensive. Suppresses appetite at low doses — don't use before eating."
+      },
+      { abbr:"CBC", full:"Cannabichromene", color:"#9B72CF", dose:"10–30mg", avail:"★★☆☆☆",
+        role:"Non-intoxicating. Anti-inflammatory and analgesic through TRP channel activation — not CB1 or CB2. Works synergistically with THC for pain relief via the entourage effect. Early research shows promise for neurogenesis, acne treatment, and gut health. The fourth most abundant cannabinoid in the plant.",
+        edible:"Rarely found in standalone products. Most often present naturally in full-spectrum tinctures and live rosin gummies. Ask for a COA showing CBC content when purchasing full-spectrum products — it should be there.",
+        products:"Full-spectrum tinctures, live rosin gummies, some CBG+CBC combined capsule lines",
+        note:"CBC acts through TRPA1 and TRPV1 channels — the same channels activated by capsaicin (chili) and menthol. This explains its warming, analgesic character."
+      },
+      { abbr:"CBG", full:"Cannabigerol", color:"#D4A853", dose:"10–25mg", avail:"★★★☆☆",
+        role:"The 'mother cannabinoid' — CBGA is the biosynthetic precursor to THC, CBD, and CBC. Non-intoxicating. Anti-inflammatory, antibacterial, and neuroprotective. Growing research for focus enhancement, gut health, and glaucoma (IOP reduction). The fastest-growing minor cannabinoid product category in 2024–2025.",
+        edible:"Increasingly marketed for focus and daytime functional use in gummies, tinctures, and capsules. CBG:CBD ratios offer a completely non-intoxicating, functional alternative for consumers who want effects without THC.",
+        products:"CBG gummies (Cann, Social, Sunday Goods), daytime focus tinctures, CBG+CBD capsules",
+        note:"CBG extraction requires early-harvest hemp and specialized processing — more expensive than CBD. Prices are dropping as the category matures and production scales."
+      }
+    ];
+    const _DOSE = [
+      { mg:"1–2.5mg", level:"Microdose", color:"#52B788",
+        who:"Absolute beginners, THC-sensitive consumers, daytime micro-dosers",
+        feel:"Sub-perceptual for most people. Subtle mood lift, mild edge reduction. The dose range used in clinical cannabis microdosing studies.",
+        products:"Petra Mints (2.5mg), Cann beverages (2mg), micro-dose gummy lines, low-dose tincture drops"
+      },
+      { mg:"5mg", level:"Low", color:"#74C69D",
+        who:"New consumers, low tolerance, functional daytime use",
+        feel:"Mild relaxation, gentle mood elevation, slightly heavier body. Clear-headed for most. The California regulated standard serving size.",
+        products:"Most regulated-market gummies (1 piece = 5mg), Camino, Wyld, nano beverage shots"
+      },
+      { mg:"10mg", level:"Standard", color:"#C9973A",
+        who:"Occasional consumers, moderate tolerance",
+        feel:"Noticeable effect. Body warmth, mood shift, altered perception. May cause couch-lock in low-tolerance users. The most common 'one gummy' dose in the market.",
+        products:"2 standard gummies, most capsules (10mg standard), standard tincture full dropper"
+      },
+      { mg:"20–25mg", level:"Elevated", color:"#E07B39",
+        who:"Regular consumers, higher tolerance, medical patients",
+        feel:"Strong effect. Significant intoxication, sedation, altered time perception. Not recommended without established tolerance. Start here only if 10mg produced minimal effect.",
+        products:"2–3 standard gummies, medical capsules (25mg), higher-dose tincture servings"
+      },
+      { mg:"50mg+", level:"High", color:"#D95F3B",
+        who:"High-tolerance consumers, medical patients managing chronic conditions",
+        feel:"Intense and potentially overwhelming without tolerance. Deep sedation, heavy body effect. Medical patients managing chronic pain or cancer-related symptoms often require these doses.",
+        products:"Medical-grade capsules, multiple gummies, RSO (Rick Simpson Oil), high-potency tinctures"
+      }
+    ];
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Edibles &amp; Infused Products — Cannascenti</title>
+<meta name="description" content="The complete consumer guide to cannabis edibles — gummies, chocolate, beverages, capsules, tinctures, and topicals. Distillate vs live resin vs live rosin gummies explained. CBD, CBN, THCV, CBC, CBG dosing guide.">
+${ENC_FONTS}
+<style>
+${ENC_BASE_CSS}
+.ed-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px}
+.ed-tab{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:100px;padding:10px 20px;font-family:Montserrat,sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,234,216,0.6);cursor:pointer;transition:all .2s}
+.ed-tab:hover{border-color:rgba(82,183,136,0.4);color:#F2EAD8}
+.ed-tab.active{background:rgba(82,183,136,0.12);border-color:#52B788;color:#52B788}
+.ed-section{display:none;animation:edFadeIn .3s}
+.ed-section.active{display:block}
+@keyframes edFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.ed-cat-header{display:flex;align-items:flex-start;gap:20px;margin-bottom:24px}
+.ed-cat-icon{font-size:3rem;line-height:1;flex-shrink:0}
+.ed-cat-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:#F2EAD8;margin-bottom:4px}
+.ed-cat-tagline{font-size:.75rem;color:#52B788;letter-spacing:.08em;text-transform:uppercase}
+.ed-cat-desc{font-size:.88rem;line-height:1.85;color:rgba(242,234,216,0.65);margin-bottom:28px;max-width:800px}
+.ed-meta-row{display:flex;gap:16px;margin-bottom:28px;flex-wrap:wrap}
+.ed-meta-item{background:rgba(82,183,136,0.06);border:1px solid rgba(82,183,136,0.15);border-radius:10px;padding:14px 20px;flex:1;min-width:160px}
+.ed-meta-label{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:#52B788;display:block;margin-bottom:4px}
+.ed-meta-val{font-size:.82rem;color:#F2EAD8;font-weight:500;line-height:1.4}
+.ed-look{margin-bottom:24px}
+.ed-look h3{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(242,234,216,0.35);margin-bottom:12px}
+.ed-look ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.ed-look li{font-size:.85rem;color:rgba(242,234,216,0.68);padding-left:18px;position:relative;line-height:1.6}
+.ed-look li::before{content:"→";position:absolute;left:0;color:#52B788;font-size:.75rem;top:2px}
+.ed-tip-box{background:rgba(82,183,136,0.07);border-left:3px solid #52B788;border-radius:0 8px 8px 0;padding:16px 20px;font-size:.85rem;color:rgba(242,234,216,0.8);line-height:1.7}
+.ed-divider{margin-top:80px;padding-top:60px;border-top:1px solid rgba(255,255,255,0.06)}
+.ed-sec-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#52B788;margin-bottom:10px}
+.ed-sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:300;color:#F2EAD8;line-height:1.15;margin-bottom:12px}
+.ed-sec-desc{font-size:.88rem;line-height:1.85;color:rgba(242,234,216,0.55);max-width:680px;margin-bottom:40px}
+.gummy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.gummy-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:28px;transition:border-color .2s}
+.gummy-card:hover{border-color:rgba(255,255,255,0.15)}
+.gummy-badge{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:16px}
+.gummy-icon{font-size:2.2rem;margin-bottom:12px}
+.gummy-name{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400;margin-bottom:16px;line-height:1.2}
+.gummy-what{font-size:.78rem;line-height:1.8;color:rgba(242,234,216,0.55);margin-bottom:20px}
+.gummy-pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.gummy-pros-cons h4{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.gummy-pros-cons ul{list-style:none}
+.gummy-pros-cons li{font-size:.74rem;color:rgba(242,234,216,0.6);padding:3px 0 3px 14px;position:relative;line-height:1.5}
+.gummy-pros-cons li::before{position:absolute;left:0;font-size:.7rem;top:4px}
+.gummy-pros h4{color:#52B788}
+.gummy-pros li::before{content:"✓";color:#52B788}
+.gummy-cons h4{color:#E07B39}
+.gummy-cons li::before{content:"✗";color:#E07B39}
+.gummy-footer{font-size:.74rem;color:rgba(242,234,216,0.4);border-top:1px solid rgba(255,255,255,0.06);padding-top:14px;line-height:1.65}
+.gummy-footer strong{color:rgba(242,234,216,0.6)}
+.cb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:16px}
+.cb-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:24px;transition:border-color .2s}
+.cb-card:hover{border-color:rgba(255,255,255,0.14)}
+.cb-top{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+.cb-abbr{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;line-height:1}
+.cb-full{font-size:.72rem;color:rgba(242,234,216,0.4);letter-spacing:.03em}
+.cb-dose{font-size:.68rem;background:rgba(255,255,255,0.07);border-radius:20px;padding:3px 10px;color:rgba(242,234,216,0.5);white-space:nowrap;align-self:center}
+.cb-avail{font-size:.65rem;color:rgba(242,234,216,0.35);margin-bottom:12px;letter-spacing:.04em}
+.cb-role{font-size:.82rem;line-height:1.75;color:rgba(242,234,216,0.68);margin-bottom:12px}
+.cb-detail{font-size:.78rem;line-height:1.7;color:rgba(242,234,216,0.45);margin-bottom:6px}
+.cb-note{font-size:.75rem;color:rgba(82,183,136,0.75);border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;margin-top:12px;line-height:1.65;font-style:italic}
+.dose-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:40px}
+.dose-tier{display:grid;grid-template-columns:110px 100px 1fr;align-items:start;gap:16px 20px;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:16px 20px}
+.dose-mg{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;line-height:1.2;align-self:center}
+.dose-level{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap;align-self:center;text-align:center}
+.dose-who{font-size:.78rem;color:#F2EAD8;font-weight:500;margin-bottom:4px;line-height:1.5}
+.dose-feel{font-size:.78rem;color:rgba(242,234,216,0.5);line-height:1.6;margin-bottom:4px}
+.dose-products{font-size:.72rem;color:rgba(82,183,136,0.65)}
+.ed-11h{background:rgba(82,183,136,0.05);border:1px solid rgba(82,183,136,0.15);border-radius:16px;padding:32px;margin-top:40px}
+.ed-11h-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:#F2EAD8;margin-bottom:14px}
+.ed-11h-body{font-size:.88rem;line-height:1.9;color:rgba(242,234,216,0.65)}
+@media(max-width:900px){.gummy-grid{grid-template-columns:1fr}}
+@media(max-width:600px){
+  .ed-tab{font-size:10px;padding:8px 14px}
+  .ed-cat-icon{font-size:2.2rem}
+  .gummy-pros-cons{grid-template-columns:1fr}
+  .dose-tier{grid-template-columns:90px 1fr;row-gap:8px}
+  .dose-tier .dose-level{grid-column:2}
+  .dose-tier .dose-feel,.dose-tier .dose-products,.dose-tier .dose-who{grid-column:1/-1}
+  .enc-page{padding:60px 20px 100px}
+}
+</style>
+</head>
+<body>
+${ENC_NAV}
+<div class="enc-page">
+  <div class="enc-page-header">
+    <div class="enc-label">&#10022; Cannascenti Encyclopedia</div>
+    <h1 class="enc-title">Edibles &amp; Infused <em>Products.</em></h1>
+    <p class="enc-desc">The consumer's complete guide to cannabis-infused products — what's in them, what makes them different, how they feel, and how to choose wisely. From distillate gummies to live rosin, nano beverages to transdermal patches, minor cannabinoids to precise dosing science.</p>
+  </div>
+
+  <div class="ed-tabs" id="edTabs"></div>
+  <div id="edSections"></div>
+
+  <div class="ed-divider">
+    <div class="ed-sec-label">&#10022; Quality Spectrum</div>
+    <h2 class="ed-sec-title">The Gummy <em>Spectrum.</em></h2>
+    <p class="ed-sec-desc">Not all gummies are the same. The difference between distillate, live resin, and live rosin gummies is the difference between a mass-produced wine and a single-vineyard natural. Here is the full breakdown.</p>
+    <div class="gummy-grid" id="gummyGrid"></div>
+  </div>
+
+  <div class="ed-divider">
+    <div class="ed-sec-label">&#10022; Minor Cannabinoids</div>
+    <h2 class="ed-sec-title">Beyond <em>THC.</em></h2>
+    <p class="ed-sec-desc">CBD, CBN, THCV, CBC, and CBG are increasingly available in precision-dosed edibles. Each has a distinct mechanism, a distinct feel, and distinct products built around it.</p>
+    <div class="cb-grid" id="cbGrid"></div>
+  </div>
+
+  <div class="ed-divider">
+    <div class="ed-sec-label">&#10022; Cooking with Cannabis</div>
+    <h2 class="ed-sec-title">Make Your <em>Own.</em></h2>
+    <p class="ed-sec-desc">Ready to go beyond buying? The Cannabis Kitchen covers everything — decarboxylation charts, cannabutter, infusion methods, dosing calculators, and full recipes from breakfast to dessert.</p>
+    <a href="/cooking" style="display:inline-flex;align-items:center;gap:10px;background:rgba(82,183,136,0.1);border:1px solid rgba(82,183,136,0.3);color:#52B788;font-family:Montserrat,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:16px 36px;border-radius:100px;text-decoration:none;transition:all .2s" onmouseover="this.style.background='rgba(82,183,136,0.18)'" onmouseout="this.style.background='rgba(82,183,136,0.1)'">Explore the Cannabis Kitchen &#8594;</a>
+  </div>
+
+  <div class="ed-divider">
+    <div class="ed-sec-label">&#10022; Dosing Guide</div>
+    <h2 class="ed-sec-title">The Dosing <em>Guide.</em></h2>
+    <p class="ed-sec-desc">Edible dosing is not like inhalation. The same person who smokes a gram can be overwhelmed by 20mg eaten on an empty stomach. Start low. Wait fully. Adjust next time — not the same session.</p>
+    <div class="dose-grid" id="doseGrid"></div>
+    <div class="ed-11h">
+      <h3 class="ed-11h-title">Why Edibles Hit Differently: 11-Hydroxy-THC</h3>
+      <p class="ed-11h-body">When you inhale cannabis, THC enters the bloodstream directly through the lungs — onset in seconds, peak in 10–20 minutes, largely metabolized in 2–3 hours. When you eat cannabis, it travels through your digestive system where the liver converts Delta-9-THC into <strong>11-hydroxy-THC</strong> — a fundamentally different molecule that crosses the blood-brain barrier more efficiently, produces a more sedating and body-heavy effect, and persists in the system for 4–8 hours or longer. This is why an experienced smoker can be completely overwhelmed by 20mg of an edible on an empty stomach. You are not consuming the same molecule you inhale.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+var _CATS = ${JSON.stringify(_CATS)};
+var _GUMMIES = ${JSON.stringify(_GUMMIES)};
+var _CANNABS = ${JSON.stringify(_CANNABS)};
+var _DOSE = ${JSON.stringify(_DOSE)};
+
+function renderTabs() {
+  var h = '';
+  _CATS.forEach(function(c, i) {
+    h += '<button class="ed-tab' + (i===0?' active':'') + '" onclick="showTab(\'' + c.id + '\')">' + c.icon + ' ' + c.name + '</button>';
+  });
+  document.getElementById('edTabs').innerHTML = h;
+}
+
+function showTab(id) {
+  document.querySelectorAll('.ed-tab').forEach(function(t, i) {
+    t.classList.toggle('active', _CATS[i] && _CATS[i].id === id);
+  });
+  document.querySelectorAll('.ed-section').forEach(function(s) {
+    s.classList.toggle('active', s.getAttribute('data-id') === id);
+  });
+}
+
+function renderSections() {
+  var h = '';
+  _CATS.forEach(function(c, i) {
+    var look = '';
+    c.look.forEach(function(l) { look += '<li>' + l + '</li>'; });
+    h += '<div class="ed-section' + (i===0?' active':'') + '" data-id="' + c.id + '">' +
+      '<div class="ed-cat-header">' +
+        '<div class="ed-cat-icon">' + c.icon + '</div>' +
+        '<div><div class="ed-cat-title">' + c.name + '</div><div class="ed-cat-tagline">' + c.tagline + '</div></div>' +
+      '</div>' +
+      '<p class="ed-cat-desc">' + c.desc + '</p>' +
+      '<div class="ed-meta-row">' +
+        '<div class="ed-meta-item"><span class="ed-meta-label">Onset</span><span class="ed-meta-val">' + c.onset + '</span></div>' +
+        '<div class="ed-meta-item"><span class="ed-meta-label">Duration</span><span class="ed-meta-val">' + c.duration + '</span></div>' +
+      '</div>' +
+      '<div class="ed-look"><h3>What to look for</h3><ul>' + look + '</ul></div>' +
+      '<div class="ed-tip-box">&#128161; ' + c.tip + '</div>' +
+    '</div>';
+  });
+  document.getElementById('edSections').innerHTML = h;
+}
+
+function renderGummies() {
+  var h = '';
+  _GUMMIES.forEach(function(g) {
+    var pros = '';
+    g.pros.forEach(function(p) { pros += '<li>' + p + '</li>'; });
+    var cons = '';
+    g.cons.forEach(function(c) { cons += '<li>' + c + '</li>'; });
+    h += '<div class="gummy-card">' +
+      '<div class="gummy-badge" style="background:' + g.color + '22;color:' + g.color + '">' + g.badge + '</div>' +
+      '<div class="gummy-icon">' + g.icon + '</div>' +
+      '<div class="gummy-name" style="color:' + g.color + '">' + g.name + '</div>' +
+      '<p class="gummy-what">' + g.what + '</p>' +
+      '<div class="gummy-pros-cons">' +
+        '<div class="gummy-pros"><h4>Pros</h4><ul>' + pros + '</ul></div>' +
+        '<div class="gummy-cons"><h4>Cons</h4><ul>' + cons + '</ul></div>' +
+      '</div>' +
+      '<div class="gummy-footer"><strong>Best for:</strong> ' + g.bestFor + '<br><strong>Brands:</strong> ' + g.brands + '</div>' +
+    '</div>';
+  });
+  document.getElementById('gummyGrid').innerHTML = h;
+}
+
+function renderCannabs() {
+  var h = '';
+  _CANNABS.forEach(function(c) {
+    h += '<div class="cb-card" style="border-top:2px solid ' + c.color + '">' +
+      '<div class="cb-top">' +
+        '<div class="cb-abbr" style="color:' + c.color + '">' + c.abbr + '</div>' +
+        '<div class="cb-full">' + c.full + '</div>' +
+        '<div class="cb-dose">' + c.dose + '</div>' +
+      '</div>' +
+      '<div class="cb-avail">Market availability: ' + c.avail + '</div>' +
+      '<p class="cb-role">' + c.role + '</p>' +
+      '<p class="cb-detail"><strong style="color:rgba(242,234,216,0.6)">In edibles:</strong> ' + c.edible + '</p>' +
+      '<p class="cb-detail">Find in: ' + c.products + '</p>' +
+      '<div class="cb-note">' + c.note + '</div>' +
+    '</div>';
+  });
+  document.getElementById('cbGrid').innerHTML = h;
+}
+
+function renderDose() {
+  var h = '';
+  _DOSE.forEach(function(d) {
+    h += '<div class="dose-tier">' +
+      '<div class="dose-mg" style="color:' + d.color + '">' + d.mg + '</div>' +
+      '<div class="dose-level" style="background:' + d.color + '22;color:' + d.color + '">' + d.level + '</div>' +
+      '<div class="dose-who">' + d.who + '</div>' +
+      '<div class="dose-feel" style="grid-column:3">' + d.feel + '</div>' +
+      '<div class="dose-products" style="grid-column:3">' + d.products + '</div>' +
+    '</div>';
+  });
+  document.getElementById('doseGrid').innerHTML = h;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  renderTabs();
+  renderSections();
+  renderGummies();
+  renderCannabs();
+  renderDose();
+});
+</script>
+</body>
+</html>`;
     res.writeHead(200,{"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
     res.end(html);
     return;
@@ -4272,7 +4643,7 @@ ${ENC_BASE_CSS}
 .gl-alpha-btn.empty{opacity:.2;cursor:default}
 .gl-letter-group{margin-bottom:40px}
 .gl-letter{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:rgba(82,183,136,0.3);margin-bottom:16px;line-height:1}
-.gl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.gl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:14px}
 .gl-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px;transition:border-color .2s}
 .gl-card:hover{border-color:rgba(255,255,255,0.14)}
 .gl-card.hidden{display:none}

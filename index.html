@@ -498,6 +498,30 @@
 
   .nav-cta:hover { background: var(--light-green) !important; }
 
+  /* HAMBURGER */
+  .nav-ham {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 101;
+  }
+  .nav-ham span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--cream);
+    border-radius: 2px;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  nav.nav-open .nav-ham span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  nav.nav-open .nav-ham span:nth-child(2) { opacity: 0; }
+  nav.nav-open .nav-ham span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
   /* ===================== HERO ===================== */
   /* ═══ HERO — CINEMATIC REVAMP ═══ */
   .hero {
@@ -3648,6 +3672,19 @@
     nav { padding: 16px 24px; }
     .nav-links { display: none; }
     .nav-search-wrap { display: none; }
+    .nav-ham { display: flex; }
+    nav.nav-open { flex-wrap: wrap; }
+    nav.nav-open .nav-links {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      gap: 18px;
+      padding: 20px 0 8px;
+      border-top: 1px solid rgba(82,183,136,0.1);
+    }
+    nav.nav-open .nav-links a { font-size: 12px; opacity: 0.8; }
+    #quiz { padding: 60px 24px !important; }
     .hero-content { padding: 0 24px; }
     .hero-terminal { flex-wrap: wrap; justify-content: center; gap: 8px; }
     .hero-metrics { flex-wrap: wrap; gap: 16px 0; }
@@ -6848,7 +6885,7 @@
     <div class="nav-vert"></div>
     <span class="nav-wordmark">Cannascenti</span>
   </a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navLinks">
     <li><a href="#encyclopedia-hub">Encyclopedia</a></li>
     <li><a href="/learn">Education</a></li>
     <li><a href="/scan">Scanner</a></li>
@@ -6856,6 +6893,9 @@
     <li><a href="/quiz" style="color:var(--bright-green);font-weight:600">Take the Quiz</a></li>
     <li><a href="#newsletter" class="nav-cta">Subscribe</a></li>
   </ul>
+  <button class="nav-ham" id="navHam" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO — CINEMATIC -->
@@ -7120,10 +7160,10 @@
           <div style="font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--bright-green);margin-bottom:6px;">Concentrates</div>
           <div style="font-size:13px;color:rgba(242,234,216,0.6);line-height:1.5;">From ancient charas to liquid diamonds — every concentrate and extraction method documented.</div>
         </a>
-        <a href="/cooking" style="display:block;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
-          <div style="font-size:28px;margin-bottom:10px;">🍳</div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--bright-green);margin-bottom:6px;">Cooking</div>
-          <div style="font-size:13px;color:rgba(242,234,216,0.6);line-height:1.5;">Decarb charts, infusion methods, dosing calculator, and full cannabis recipes.</div>
+        <a href="/edibles" style="display:block;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
+          <div style="font-size:28px;margin-bottom:10px;">🍬</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--bright-green);margin-bottom:6px;">Edibles</div>
+          <div style="font-size:13px;color:rgba(242,234,216,0.6);line-height:1.5;">Gummies, chocolate, beverages, capsules, tinctures — the full consumer guide including cooking.</div>
         </a>
         <a href="/cannalogy" style="display:block;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
           <div style="font-size:28px;margin-bottom:10px;">🫀</div>
@@ -12586,6 +12626,25 @@ function renderScanCard(d) {
     const banner = document.getElementById('encSearchBanner');
     if (banner) banner.style.display = 'none';
   }
+</script>
+
+<script>
+// ─── Mobile nav hamburger ──────────────────────────────────────────────────────
+(function() {
+  var ham = document.getElementById('navHam');
+  var nav = ham && ham.closest('nav');
+  if (!ham || !nav) return;
+  ham.addEventListener('click', function() {
+    nav.classList.toggle('nav-open');
+  });
+  // Close menu when any nav link is clicked
+  var links = nav.querySelectorAll('.nav-links a');
+  links.forEach(function(a) {
+    a.addEventListener('click', function() {
+      nav.classList.remove('nav-open');
+    });
+  });
+})();
 </script>
 </body>
 </html>
