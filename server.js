@@ -3265,18 +3265,42 @@ function renderRatios() {
 var _bodyInit = false;
 function initDots() {
   if (_bodyInit) return; _bodyInit = true;
+  var svgNS = 'http://www.w3.org/2000/svg';
   var dotsG = document.getElementById('yb-dots');
   var tagsDiv = document.getElementById('yb-zone-tags');
   if (!dotsG) return;
-  dotsG.innerHTML = HOTSPOTS.map(function(h){
-    return '<g class="yb-dot" id="dot-'+h.id+'" onclick="selectZone(\\''+h.id+'\\')">'+
-      '<circle class="pulse" cx="'+h.cx+'" cy="'+h.cy+'" r="7" fill="none" stroke="'+h.color+'" stroke-width="1.5"/>'+
-      '<circle class="inner" cx="'+h.cx+'" cy="'+h.cy+'" r="4.5" fill="'+h.color+'" opacity="0.9"/>'+
-      '<title>'+h.label+'</title></g>';
-  }).join('');
-  if (tagsDiv) tagsDiv.innerHTML = HOTSPOTS.map(function(h){
-    return '<span class="yb-zone-tag" onclick="selectZone(\\''+h.id+'\\')">'+h.label+'</span>';
-  }).join('');
+  // Use createElementNS + addEventListener — inline onclick on SVG via innerHTML is unreliable
+  HOTSPOTS.forEach(function(h) {
+    var g = document.createElementNS(svgNS, 'g');
+    g.setAttribute('class', 'yb-dot');
+    g.setAttribute('id', 'dot-'+h.id);
+    g.style.cursor = 'pointer';
+    var pulse = document.createElementNS(svgNS, 'circle');
+    pulse.setAttribute('class', 'pulse');
+    pulse.setAttribute('cx', h.cx); pulse.setAttribute('cy', h.cy);
+    pulse.setAttribute('r', '7'); pulse.setAttribute('fill', 'none');
+    pulse.setAttribute('stroke', h.color); pulse.setAttribute('stroke-width', '1.5');
+    var inner = document.createElementNS(svgNS, 'circle');
+    inner.setAttribute('class', 'inner');
+    inner.setAttribute('cx', h.cx); inner.setAttribute('cy', h.cy);
+    inner.setAttribute('r', '4.5'); inner.setAttribute('fill', h.color);
+    inner.setAttribute('opacity', '0.9');
+    var title = document.createElementNS(svgNS, 'title');
+    title.textContent = h.label;
+    g.appendChild(pulse); g.appendChild(inner); g.appendChild(title);
+    g.addEventListener('click', (function(id){ return function(){ selectZone(id); }; })(h.id));
+    dotsG.appendChild(g);
+  });
+  if (tagsDiv) {
+    tagsDiv.innerHTML = '';
+    HOTSPOTS.forEach(function(h) {
+      var span = document.createElement('span');
+      span.className = 'yb-zone-tag';
+      span.textContent = h.label;
+      span.addEventListener('click', (function(id){ return function(){ selectZone(id); }; })(h.id));
+      tagsDiv.appendChild(span);
+    });
+  }
 }
 function renderPanels() {
   var el = document.getElementById('yb-panels');
@@ -3355,10 +3379,14 @@ function applyLens(cbId){
     if(cb.zones.indexOf(h.id)>=0){dot.classList.add('highlight');}else{dot.classList.add('dim');}
   });
 }
-// Check if arriving from #body-map anchor
-if(window.location.hash==='#body-map'){
-  document.querySelector('.cn-tab:nth-child(2)').click();
-}
+// Initialize body map on load (don't wait for tab click)
+document.addEventListener('DOMContentLoaded', function() {
+  renderPanels(); renderLens(); initDots();
+  if(window.location.hash==='#body-map'){
+    var bodyTab = document.querySelector('.cn-tab:nth-child(2)');
+    if (bodyTab) bodyTab.click();
+  }
+});
 </script>
 </body></html>`;
     res.writeHead(200,{"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
