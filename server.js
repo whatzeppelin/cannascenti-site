@@ -2400,62 +2400,420 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // ─── /cannabinoids ─────────────────────────────────────────────────────────
-  if (req.method === "GET" && req.url === "/cannabinoids") {
+  if (req.method === "GET" && (req.url === "/cannabinoids" || req.url === "/cannabinoids#body-map")) {
     const _CB = [
-      { abbr:"THC", full:"Tetrahydrocannabinol", psycho:95, color:"#52B788", desc:"The primary psychoactive compound in cannabis. THC binds directly to CB1 receptors in the brain, producing the euphoria, altered perception, and heightened sensory awareness associated with cannabis intoxication. Also the most clinically studied cannabinoid for pain, nausea, and appetite.", uses:["Euphoria","Pain relief","Appetite stimulation","Anti-nausea","Glaucoma"], found:"10–35% in modern cultivars. Trace amounts in hemp." },
-      { abbr:"CBD", full:"Cannabidiol", psycho:5, color:"#74C69D", desc:"The second most abundant cannabinoid — and the most therapeutically versatile. CBD is non-intoxicating, modulates the activity of THC through allosteric receptor action, and has demonstrated efficacy for epilepsy treatment (FDA-approved as Epidiolex). A powerful anti-inflammatory and anxiolytic.", uses:["Anxiety reduction","Epilepsy","Anti-inflammatory","Pain","Nausea"], found:"High in hemp. 0–25% in cannabis. Dominant in Charlotte's Web, ACDC, Harlequin." },
-      { abbr:"CBG", full:"Cannabigerol", psycho:15, color:"#D4A853", desc:"Often called the 'mother cannabinoid' because CBGA is the biosynthetic precursor to THC, CBD, and CBC. Non-intoxicating. Shows strong antibacterial activity against MRSA, and early research suggests promise for inflammatory bowel disease, glaucoma, and Huntington's disease.", uses:["Antibacterial","Glaucoma","IBD","Neuroprotection","Appetite"], found:"Usually less than 1% in mature plants. Highest in early-harvest hemp." },
-      { abbr:"CBN", full:"Cannabinol", psycho:20, color:"#C9973A", desc:"CBN is a degradation product of THC — as THC oxidizes over time, it converts to CBN. Mildly psychoactive. Heavily marketed as a sleep aid, though the scientific evidence for this is limited. More established are its antibacterial properties and potential as an appetite stimulant.", uses:["Sleep aid","Antibacterial","Appetite","Anticonvulsant","Mild pain"], found:"Highest in aged, oxidized cannabis. Forms when THC degrades." },
-      { abbr:"THCV", full:"Tetrahydrocannabivarin", psycho:40, color:"#E07B39", desc:"A structural analog of THC with notably different effects. At low doses THCV actually blocks CB1 receptors and suppresses appetite. At higher doses it becomes mildly euphoric. Associated with clear-headed, energetic, short-duration highs.", uses:["Appetite suppression","Diabetes (research)","Panic attacks","Bone growth","Energy"], found:"Rare. Highest in African landrace sativas: Durban Poison, Pineapple Purps." },
-      { abbr:"Δ8", full:"Delta-8 THC", psycho:60, color:"#9B72CF", desc:"Delta-8 THC is an isomer of Delta-9 THC with a double bond on the 8th carbon chain. Produces similar but notably milder psychoactive effects — often described as a lighter, clearer, less anxiety-prone version of the standard cannabis experience. Naturally occurring in trace amounts.", uses:["Mild euphoria","Antiemetic","Appetite","Anxiety reduction","Neuroprotection"], found:"Trace amounts naturally. Most commercial Delta-8 is synthesized from CBD." }
+      { abbr:"THC", full:"Tetrahydrocannabinol", psycho:95, color:"#52B788", desc:"The primary psychoactive compound in cannabis. THC binds directly to CB1 receptors in the brain, producing euphoria, altered perception, and heightened sensory awareness. Also the most clinically studied cannabinoid for pain, nausea, and appetite stimulation.", uses:["Euphoria","Pain relief","Appetite stimulation","Anti-nausea","Glaucoma"], found:"10–35% in modern cultivars. Trace amounts in hemp." },
+      { abbr:"CBD", full:"Cannabidiol", psycho:5, color:"#74C69D", desc:"The most therapeutically versatile cannabinoid. Non-intoxicating. Modulates THC through allosteric receptor action, has FDA-approved efficacy for epilepsy (Epidiolex), and is a potent anti-inflammatory and anxiolytic.", uses:["Anxiety reduction","Epilepsy","Anti-inflammatory","Pain","Nausea"], found:"High in hemp (up to 25%). Dominant in Charlotte's Web, ACDC, Harlequin." },
+      { abbr:"CBG", full:"Cannabigerol", psycho:10, color:"#D4A853", desc:"The 'mother cannabinoid' — CBGA is the biosynthetic precursor to THC, CBD, and CBC. Non-intoxicating. Strong antibacterial activity against MRSA, and early research supports promise for IBD, glaucoma, and Huntington's disease.", uses:["Antibacterial","Glaucoma","IBD","Neuroprotection","Bone growth"], found:"Usually under 1% in mature plants. Highest in early-harvest hemp cultivars." },
+      { abbr:"CBN", full:"Cannabinol", psycho:20, color:"#C9973A", desc:"A THC degradation product formed as cannabis oxidizes over time. Mildly psychoactive. Marketed as a sleep aid — limited but growing evidence. More established: antibacterial properties and appetite stimulation. Old cannabis has higher CBN.", uses:["Sleep aid","Antibacterial","Appetite","Anticonvulsant","Mild pain"], found:"Highest in aged, oxidized cannabis. Increases as THC degrades with heat and light." },
+      { abbr:"THCV", full:"Tetrahydrocannabivarin", psycho:40, color:"#E07B39", desc:"A structural THC analog with opposite appetite effects at low doses — it blocks CB1 and suppresses hunger. At higher doses it becomes mildly euphoric. Associated with clear-headed, energetic, short-duration highs and metabolic research.", uses:["Appetite suppression","Diabetes research","Panic attacks","Bone growth","Energy"], found:"Rare. Highest in African landrace sativas — Durban Poison, Pineapple Purps." },
+      { abbr:"CBC", full:"Cannabichromene", psycho:0, color:"#5CA0E8", desc:"The third most abundant cannabinoid in cannabis but largely overlooked. Non-psychoactive. Shows strong synergistic activity with CBD for anti-inflammatory and anti-acne effects. Binds TRP channels rather than CB receptors — a unique mechanism.", uses:["Anti-inflammatory","Anti-acne","Neurogenesis","Pain (synergy)","Antifungal"], found:"Usually 0.1–1% in most strains. Higher in tropical landrace varieties and young plants." },
+      { abbr:"THCA", full:"Tetrahydrocannabinolic Acid", psycho:0, color:"#9B7FD4", desc:"The raw, non-psychoactive precursor to THC in the live plant. THCA converts to THC through decarboxylation (heat). When consumed raw (juiced, capsule), THCA does not intoxicate but shows anti-inflammatory, neuroprotective, and antiemetic properties.", uses:["Anti-inflammatory","Neuroprotection","Anti-nausea","Raw consumption","Research"], found:"Dominant cannabinoid in fresh, undried cannabis. All THC starts as THCA." },
+      { abbr:"CBDA", full:"Cannabidiolic Acid", psycho:0, color:"#B7E4C7", desc:"The raw precursor to CBD. CBDA is found in fresh cannabis and hemp plants before decarboxylation. Early research suggests CBDA may be more bioavailable than CBD and shows potent antiemetic effects. Being studied for COVID-19 spike protein binding.", uses:["Anti-nausea","Antiemetic","Anti-inflammatory","Bioavailability","Research"], found:"Raw/fresh cannabis and hemp. Converts to CBD when dried, heated, or processed." },
+      { abbr:"Δ8-THC", full:"Delta-8 Tetrahydrocannabinol", psycho:60, color:"#A78BFA", desc:"An isomer of Delta-9 THC with its double bond on the 8th carbon chain. Produces similar but milder psychoactive effects — lighter, clearer, less anxiety-prone. Naturally occurs in trace amounts; most commercial Delta-8 is synthesized from CBD.", uses:["Mild euphoria","Antiemetic","Appetite","Anxiety reduction","Neuroprotection"], found:"Trace amounts naturally. Most commercial D8 is hemp-derived via CBD isomerization." },
+      { abbr:"Δ10-THC", full:"Delta-10 Tetrahydrocannabinol", psycho:50, color:"#F472B6", desc:"The newest commercially available THC isomer. Effects are reported as more sativa-like — energizing, uplifting, and clear-headed — with less sedation than Delta-8. Very low natural occurrence; produced synthetically from CBD or Delta-9 THC.", uses:["Mild euphoria","Energy","Focus","Mood lift","Appetite"], found:"Essentially zero in natural cannabis. All commercial D10 is synthetically derived." }
+    ];
+    const _RATIOS = [
+      { ratio:"30:1", thc:30, cbd:1, label:"High THC", tag:"Recreational / Intense", color:"#52B788", desc:"Dominant THC experience with minimal CBD modulation. Full psychoactive effect — euphoria, sedation, sensory enhancement. Best for experienced users seeking maximum effect.", uses:["Experienced users","Deep sedation","Intense euphoria","Creative sessions"], caution:"Anxiety risk for sensitive users. Not recommended for beginners.", strains:"OG Kush, Gorilla Glue #4, Gelato 33" },
+      { ratio:"20:1", thc:20, cbd:1, label:"High THC / Trace CBD", tag:"Near-Pure THC", color:"#65C28B", desc:"Strong psychoactive effect with a very minor CBD buffer. Most recreational cannabis falls here. The trace CBD is detectable but not enough to meaningfully modify the THC experience.", uses:["Recreational users","Pain","Appetite","Sleep (indica)"], caution:"Full psychoactivity — use caution in social or unfamiliar situations.", strains:"Blue Dream, Wedding Cake, GSC" },
+      { ratio:"10:1", thc:10, cbd:1, label:"Mostly THC", tag:"Popular Recreational", color:"#78C08A", desc:"THC dominant with a minor CBD presence that slightly softens the edges. Standard high-THC recreational experience. The small CBD component may lightly reduce anxiety without significantly altering the high.", uses:["Recreational","Pain relief","Mood elevation","Appetite"], caution:"Still strongly psychoactive.", strains:"Runtz, Sunset Sherbet, Mimosa" },
+      { ratio:"5:1", thc:5, cbd:1, label:"THC Forward", tag:"Mild CBD Buffer", color:"#8BC48A", desc:"THC remains dominant but CBD starts to visibly soften the experience. Anxiety and paranoia risk decreases. A solid choice for moderate users who want the full high with fewer side effects.", uses:["Moderate users","Anxiety-prone","Social settings","Daytime use"], caution:"Psychoactive. CBD buffer helps but doesn't eliminate intoxication.", strains:"Harlequin (some cuts), ACDC crosses" },
+      { ratio:"3:1", thc:3, cbd:1, label:"Balanced-THC", tag:"Therapeutic + Buzz", color:"#98C88A", desc:"A popular medical ratio offering meaningful pain, anxiety, and inflammation relief alongside a noticeable but moderate high. The CBD meaningfully modulates THC's psychoactivity without eliminating it.", uses:["Pain management","PTSD","Sleep","Medical + recreational"], caution:"Moderate psychoactivity. Good transitional ratio.", strains:"Sativex formulation (approx.), some dispensary tinctures" },
+      { ratio:"1:1", thc:1, cbd:1, label:"Balanced", tag:"The Sweet Spot", color:"#B2D4A8", desc:"The most studied ratio in clinical research. CBD significantly dampens THC's psychoactivity, reducing anxiety and paranoia while preserving therapeutic benefits. Ideal for daytime medical use, first-timers, and anxiety-prone users.", uses:["First-timers","Anxiety","Inflammation","PTSD","MS spasticity"], caution:"Mild psychoactivity. Most tolerable for sensitive users.", strains:"Pennywise, Cannatonic, some ACDC crosses, Sativex" },
+      { ratio:"1:3", thc:1, cbd:3, label:"CBD Forward", tag:"Therapeutic Focus", color:"#74C69D", desc:"CBD dominates. Mild THC presence provides a light mood lift and enhances CBD's analgesic effects (the entourage effect), but intoxication is minimal for most users.", uses:["Daytime medical","Anxiety","Seizure management","Inflammation","Beginner-friendly"], caution:"Very low psychoactivity. May cause mild lightheadedness.", strains:"Harlequin, Charlotte's Web crosses, Ringo's Gift" },
+      { ratio:"1:10", thc:1, cbd:10, label:"High CBD / Trace THC", tag:"Near Non-Psychoactive", color:"#52B788", desc:"CBD clearly leads. The trace THC is below the threshold for significant psychoactivity for most users, but still contributes to the entourage effect and may enhance pain relief versus CBD alone.", uses:["Medical patients","Pediatric use","Seizures","Anti-inflammatory","Workplace-friendly"], caution:"Minimal psychoactivity. Some users may sense a very mild lift.", strains:"Charlotte's Web, ACDC, Harle-Tsu, Valentine X" },
+      { ratio:"1:20", thc:1, cbd:20, label:"Dominant CBD", tag:"Medical / Non-Psychoactive", color:"#3DA374", desc:"Essentially non-psychoactive for most users. Full CBD therapeutic profile with just enough THC for entourage effect enhancement. Standard medical dispensary ratio for anxiety, epilepsy, and inflammation.", uses:["Epilepsy","Anxiety disorder","Pediatric","Drug-tested individuals","Seniors"], caution:"No significant psychoactivity expected.", strains:"ACDC, Ringo's Gift, Sour Tsunami" },
+      { ratio:"1:30", thc:1, cbd:30, label:"Hemp-Level", tag:"CBD Dominant", color:"#2D9E68", desc:"Hemp-compliant (under 0.3% THC). Pure CBD therapeutic application. No measurable psychoactive effect. Used in mass-market CBD products, tinctures, and clinical formulations.", uses:["Wellness","Daily supplementation","Non-cannabis users","Clinical CBD"], caution:"No psychoactivity.", strains:"Industrial hemp, Charlotte's Web, Lifter" },
+      { ratio:"10:10:10", thc:10, cbd:10, label:"Trifecta THC+CBD+CBG", tag:"Full-Spectrum Synergy", color:"#D4A853", isSpecial:true, desc:"Equal parts THC, CBD, and CBG — an emerging formulation designed for maximum entourage effect. CBG adds antibacterial, anti-inflammatory, and neuroprotective benefits while the balanced THC:CBD minimizes anxiety and maximizes therapeutic range.", uses:["Full-spectrum therapy","IBD","Neuroprotection","Anti-inflammatory","Medical research"], caution:"Moderate psychoactivity from THC component. CBD and CBG buffer the experience.", strains:"Custom blends, full-spectrum products, specific cultivars" },
+      { ratio:"1:1:1", thc:1, cbd:1, label:"THC+CBD+CBN Nighttime", tag:"Sleep Blend", color:"#9B7FD4", isSpecial:true, third:"CBN", desc:"Equal THC, CBD, and CBN — the ideal nighttime formula. THC provides the sedating body effect, CBD reduces anxiety, and CBN amplifies sleep-promoting properties. A popular sleep tincture and edible formulation.", uses:["Insomnia","Sleep disorders","Nighttime pain","Anxiety at bedtime"], caution:"Moderate sedation. Not for daytime use.", strains:"Custom blends. CBN is typically added from isolated extract." },
+      { ratio:"1:1:1 (THCV)", thc:1, cbd:1, label:"THC+CBD+THCV Daytime", tag:"Energy Blend", color:"#E07B39", isSpecial:true, third:"THCV", desc:"Daytime counterpart to the sleep blend. THCV's appetite suppression and clear-headed energy plus balanced THC and CBD creates a focused, motivating effect with reduced hunger. Sought after for productivity.", uses:["Daytime focus","Appetite suppression","Energy","Weight management","Creativity"], caution:"THCV very rare and expensive. Most products are proprietary blends.", strains:"Durban Poison (high THCV) + CBD flower, or custom blended products" },
+    ];
+    const _ZONES = [
+      { id:"brain", label:"Brain", cx:100, cy:44, color:"#9B7FD4", receptors:"CB1 receptors dense throughout cortex, hippocampus, basal ganglia, and cerebellum. CB2 present in microglia.", headline:"The command center of your cannabis experience", desc:"The brain has the highest CB1 receptor density of any organ. These receptors regulate mood, memory, pain perception, coordination, and appetite. THC binds directly to CB1 — the source of euphoria, altered time perception, and heightened sensory awareness. The hippocampus — the memory center — is especially CB1-dense, which is why high THC temporarily impairs short-term memory. CBD does not bind CB1 directly but modulates its activity, reducing anxiety and dampening overactive neural circuits.", positive:["THC: euphoria, mood elevation, creativity, heightened sensory perception","CBD: anxiety reduction, anti-epileptic, neuroprotection (FDA-approved Epidiolex)","CBN: sedation and sleep promotion","CBG: neuroprotection, possible antidepressant activity","THCV: mental clarity, short-duration alerting effect"], negative:["THC: short-term memory impairment, anxiety at high doses, paranoia in susceptible individuals","Heavy adolescent use associated with cognitive development concerns"], research:"The discovery of CB1 receptors in 1988 (Howlett et al.) revolutionized neuroscience. CBD's mechanism in treating Dravet syndrome and Lennox-Gastaut syndrome is FDA-recognized (Epidiolex, 2018).", cannabinoids:["THC","CBD","CBN","CBG","THCV"] },
+      { id:"eyes", label:"Eyes", cx:100, cy:57, color:"#5CA0E8", receptors:"CB1 receptors in ciliary body (regulates intraocular pressure). CB2 in retinal ganglion cells and Muller glia.", headline:"Bloodshot eyes, reduced pressure, retinal protection", desc:"The redness associated with cannabis use is caused by THC binding CB1 receptors in the eye's blood vessels, causing vasodilation. This same mechanism reduces intraocular pressure (IOP) by 25–30%, which is why cannabis was one of the first plant medicines studied for glaucoma. The 3–4 hour window limits its clinical utility versus modern glaucoma drugs. CBD has shown promise as a retinal neuroprotectant in preclinical research.", positive:["THC: reduces intraocular pressure 25–30% — relevant to glaucoma management","CBD: antioxidant neuroprotection of retinal cells in preclinical models"], negative:["THC: conjunctival redness (reliable)","IOP reduction is short-duration — not a standalone glaucoma treatment","High-dose CBD may paradoxically increase IOP in some studies"], research:"Hepler and Frank (1971) published the first clinical study documenting cannabis-induced IOP reduction. The American Glaucoma Society notes cannabis reduces IOP but its short duration limits primary therapy use.", cannabinoids:["THC","CBD"] },
+      { id:"lungs", label:"Lungs", cx:100, cy:118, color:"#52B788", receptors:"CB1 in bronchial smooth muscle (bronchodilation). CB2 in alveolar macrophages and immune cells of lung tissue.", headline:"Acute bronchodilation vs. chronic smoking damage", desc:"Cannabis has a dual lung relationship depending on consumption method. Acutely, THC causes bronchodilation — studied as an asthma treatment in the 1970s. CBD exerts anti-inflammatory effects on bronchial tissue. The complication is delivery: smoking involves combustion products (CO, benzene, tar) causing chronic bronchitis. Vaporization eliminates combustion products while preserving bronchodilatory effects.", positive:["THC: acute bronchodilation — opens airways short-term","CBD: reduces pulmonary inflammation via CB2 immune modulation","Vaporized cannabis avoids combustion toxins entirely"], negative:["Smoked cannabis: chronic bronchitis, increased respiratory mucus, cough","Combustion produces CO, benzene, tar — same as tobacco smoke"], research:"Tashkin et al. (UCLA) found heavy cannabis smokers do not show COPD rates seen in tobacco smokers — attributed to cannabis's anti-inflammatory CB2 activity. Vaporizer studies (Abrams et al., 2007) confirmed equivalent delivery without combustion.", cannabinoids:["THC","CBD"] },
+      { id:"heart", label:"Heart", cx:88, cy:130, color:"#E07B39", receptors:"CB1 in cardiac muscle and autonomic neurons. CB2 in vascular endothelium and immune cells.", headline:"Rate increase first, then cardioprotection", desc:"THC's initial cardiovascular effect is dose-dependent tachycardia — typically 20–50 BPM above baseline — driven by CB1 activation of sympathetic neurons. Blood pressure shows an initial mild increase then decreases via CB1-mediated vasodilation. CBD has a cardioprotective profile: reduces ischemia-reperfusion injury, lowers resting blood pressure, and demonstrates vascular anti-inflammatory effects. CBG also produces vasodilation independent of CB1.", positive:["CBD: cardioprotective — reduces ischemia damage, lowers blood pressure","CBG: vasodilatory, reduces arterial tension","CB2 activation: reduces cardiac inflammation and atherosclerosis progression"], negative:["THC: tachycardia — heart rate increase of 20–50 BPM","Elevated risk for individuals with pre-existing cardiac arrhythmia"], research:"CBD's antihypertensive properties confirmed in double-blind trial (Jadoon et al., 2017). The CARDIA study followed cannabis users 25+ years and found associations between heavy use and cardiovascular risk.", cannabinoids:["THC","CBD","CBG"] },
+      { id:"gut", label:"Gut", cx:100, cy:188, color:"#74C69D", receptors:"CB1 throughout enteric nervous system. CB2 dense in gut wall immune cells (Peyer's patches, lamina propria).", headline:"The gut-cannabis axis — digestion, immunity, IBD", desc:"The GI tract has the second-highest cannabinoid receptor concentration after the brain. The enteric nervous system is extensively modulated by CB1 — governing motility, secretions, and the gut-brain axis. This is why cannabis reliably combats nausea and stimulates appetite. CB2 receptors in gut wall immune cells regulate intestinal inflammation, making cannabinoids relevant to Crohn's, ulcerative colitis, and IBS. CBG shows remarkable specificity for gut inflammation.", positive:["THC: powerful anti-nausea, appetite stimulation (FDA-approved Marinol for chemo nausea)","CBD: anti-inflammatory for Crohn's disease and ulcerative colitis","CBG: IBD-specific anti-inflammatory, H. pylori antibacterial activity","THCV: appetite suppression — the metabolic opposite of the THC munchies"], negative:["Heavy THC use associated with Cannabinoid Hyperemesis Syndrome (CHS) in a subset","High THC may slow gastric motility — contraindicated in gastroparesis"], research:"FDA-approved dronabinol (synthetic THC) validated the gut-cannabinoid connection. Crohn's trial (Naftali et al., 2018) showed 65% clinical remission with cannabis vs. 35% placebo. CBG's efficacy against H. pylori: Appendino et al. (2008).", cannabinoids:["THC","CBD","CBG","THCV"] },
+      { id:"muscles", label:"Muscles", cx:55, cy:258, color:"#F4A261", receptors:"CB1 in motor neurons and neuromuscular junctions. CB2 in skeletal muscle satellite cells and immune cells.", headline:"Spasticity relief, recovery, inflammation control", desc:"CB1 receptors in motor neurons modulate involuntary muscle contractions — why cannabis has documented efficacy for MS spasticity (Sativex approved in 25+ countries). CBD's anti-inflammatory and antioxidant properties reduce delayed onset muscle soreness (DOMS) through prostaglandin inhibition and cytokine signaling. CBC shows synergistic effects with CBD on muscle tissue inflammation.", positive:["THC: spasticity reduction — clinically proven in MS (Sativex, 25+ countries)","CBD: reduces DOMS, exercise-induced inflammation, oxidative stress in muscle","CBC: synergistic anti-inflammatory activity alongside CBD"], negative:["THC impairs motor coordination at higher doses — counterproductive for athletic performance","Smoking irritates airways — athletes should use non-combustion methods"], research:"MUSEC trial (Zajicek et al., 2012): significant spasticity reduction in MS with cannabis extract. WADA removed CBD from prohibited list in 2018.", cannabinoids:["THC","CBD","CBC"] },
+      { id:"joints", label:"Joints / Bones", cx:68, cy:335, color:"#C9973A", receptors:"CB1 in periarticular nerve fibers (pain signaling). CB2 in osteoblasts, osteoclasts, and synovial joint macrophages.", headline:"Arthritis, bone growth, pain signal modulation", desc:"Joints and bones are governed primarily by CB2 receptors. CB2 is found on osteoblasts (bone-forming cells) and osteoclasts (bone-resorbing cells), giving cannabinoids a direct role in bone remodeling and fracture healing. CBG and CBD have both shown osteogenic effects in preclinical models. CBD's anti-inflammatory action on synovial macrophages reduces joint swelling. THC addresses the pain signal side via CB1 periarticular nerves.", positive:["CBD: reduces synovial inflammation in both osteoarthritis and rheumatoid arthritis","THC: modulates pain signal transmission from joints via CB1","CBG: stimulates bone growth via osteoblast CB2 activation — accelerates fracture healing","CB2 activation: reduces joint immune-mediated destruction"], negative:["THC's psychoactivity limits daytime use for arthritis management","Topical preferred for localized joint relief — avoids systemic effects"], research:"Sophocleous et al. (2017) showed CB2 knockout mice have reduced bone mass. RCT (Blake et al., Rheumatology 2006): Sativex significantly reduced pain and improved sleep in rheumatoid arthritis.", cannabinoids:["CBD","THC","CBG"] },
+      { id:"skin", label:"Skin", cx:148, cy:158, color:"#E8A87C", receptors:"CB1 and CB2 in keratinocytes, sebocytes, mast cells, and sensory nerve endings throughout the dermis.", headline:"Acne, eczema, topical pain — no psychoactivity", desc:"The skin is one of the most cannabinoid-receptor-rich organs. CBD regulates sebum production via CB2 on sebocytes — reducing overproduction that causes acne. It also reduces inflammatory cascades in eczema and psoriasis. CBG is broad-spectrum antibacterial against skin pathogens including MRSA. Standard topical cannabinoids do not cross the blood-brain barrier — zero psychoactive effect.", positive:["CBD: reduces sebum overproduction — clinically relevant for acne vulgaris","CBD: reduces inflammatory cytokines in eczema, psoriasis, atopic dermatitis","THC (topical): pain and itch relief via CB1 skin nerve endings — zero psychoactivity","CBG: broad-spectrum antibacterial against skin pathogens including MRSA","CBC: synergistic anti-acne activity, reduces lipogenesis in sebocytes"], negative:["Transdermal absorption is low — most topicals stay in skin layers only","Transdermal patches can deliver systemically — potential mild psychoactivity","Product quality varies enormously"], research:"Olah et al. (2014, JCI) demonstrated CBD's sebostatic effects in human sebocyte culture. CBG vs. MRSA: Appendino et al. (Journal of Natural Products, 2008).", cannabinoids:["CBD","THC","CBG","CBC"] }
+    ];
+    const _CB_INFO = [
+      { id:"THC",  label:"THC",     color:"#52B788", zones:["brain","eyes","lungs","heart","gut","muscles","joints","skin"], summary:"The primary psychoactive cannabinoid. Binds CB1 across nearly every body system — euphoria and pain relief centrally, anti-nausea and appetite in the gut, bronchodilation in lungs, IOP reduction in eyes. The most researched and commercially dominant cannabinoid." },
+      { id:"CBD",  label:"CBD",     color:"#74C69D", zones:["brain","eyes","lungs","heart","gut","muscles","joints","skin"], summary:"The most therapeutically versatile cannabinoid. Non-psychoactive. Modulates CB1 rather than binding it directly. Anti-inflammatory systemically, neuroprotective in the brain, cardioprotective in the heart, sebostatic in skin, and FDA-approved for epilepsy." },
+      { id:"CBG",  label:"CBG",     color:"#D4A853", zones:["brain","heart","gut","joints","skin"], summary:"The mother cannabinoid — precursor to THC and CBD. Neuroprotective in the brain, vasodilatory in the heart, powerfully anti-inflammatory in the gut (IBD specialist), osteogenic in joints, and antibacterial on skin. Non-psychoactive." },
+      { id:"CBN",  label:"CBN",     color:"#9B7FD4", zones:["brain"], summary:"A THC degradation product. Mildly sedating via CB1 in the brain. Primarily active centrally — most relevant for sleep and mild pain relief. Forms as cannabis ages." },
+      { id:"CBC",  label:"CBC",     color:"#5CA0E8", zones:["muscles","skin"], summary:"Non-psychoactive. Synergistic anti-inflammatory with CBD in muscle tissue. In skin, reduces lipogenesis in sebocytes and works alongside CBD for anti-acne effects. An entourage effect amplifier." },
+      { id:"THCV", label:"THCV",    color:"#E07B39", zones:["brain","gut"], summary:"Opposite appetite effects to THC at low doses — suppresses appetite via CB1 antagonism in the gut. Produces mental clarity and short-duration energy in the brain. Rarest major cannabinoid — highest in African sativa landraces." },
+    ];
+    const _HOTSPOTS = [
+      {id:"brain",   cx:100, cy:44,  color:"#9B7FD4", label:"Brain"},
+      {id:"eyes",    cx:100, cy:57,  color:"#5CA0E8", label:"Eyes"},
+      {id:"lungs",   cx:100, cy:118, color:"#52B788", label:"Lungs"},
+      {id:"heart",   cx:88,  cy:130, color:"#E07B39", label:"Heart"},
+      {id:"gut",     cx:100, cy:188, color:"#74C69D", label:"Gut"},
+      {id:"muscles", cx:55,  cy:258, color:"#F4A261", label:"Muscles"},
+      {id:"joints",  cx:68,  cy:335, color:"#C9973A", label:"Joints"},
+      {id:"skin",    cx:148, cy:158, color:"#E8A87C", label:"Skin"}
     ];
     const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cannabinoids — Cannascenti Encyclopedia</title>
-<meta name="description" content="THC, CBD, CBG, CBN, THCV, and Delta-8 explained. How each cannabinoid works, what it does in your body, and how they interact with the endocannabinoid system.">
+<title>Cannabinoids &amp; Your Body — Cannascenti Encyclopedia</title>
+<meta name="description" content="THC, CBD, CBG, CBN, THCV, CBC and more — full profiles, interactive body map, and ratio guide. Everything you need to understand cannabinoids.">
 ${ENC_FONTS}
 <style>
 ${ENC_BASE_CSS}
-.cb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
-.cb-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:28px}
-.cb-abbr{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;margin-bottom:4px}
-.cb-full{font-size:.8rem;color:rgba(242,234,216,0.4);margin-bottom:16px;letter-spacing:.05em}
-.cb-psycho-track{height:6px;background:rgba(255,255,255,0.08);border-radius:3px;margin-bottom:6px;overflow:hidden}
-.cb-psycho-fill{height:100%;border-radius:3px}
-.cb-psycho-label{font-size:.72rem;color:rgba(242,234,216,0.35);margin-bottom:14px}
-.cb-desc{font-size:.84rem;line-height:1.72;color:rgba(242,234,216,0.7);margin-bottom:16px}
+/* ── Tab nav ── */
+.cn-tabs{display:flex;gap:4px;margin-bottom:36px;border-bottom:1px solid rgba(255,255,255,0.07);padding-bottom:0}
+.cn-tab{background:none;border:none;color:rgba(242,234,216,0.4);font-family:Montserrat,sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:14px 20px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s}
+.cn-tab:hover{color:rgba(242,234,216,0.8)}
+.cn-tab.active{color:#52B788;border-bottom-color:#52B788}
+.cn-panel{display:none}.cn-panel.active{display:block}
+/* ── Cannabinoid cards ── */
+.cb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.cb-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:28px;transition:border-color .2s}
+.cb-card:hover{border-color:rgba(255,255,255,0.14)}
+.cb-abbr{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;margin-bottom:4px}
+.cb-full{font-size:.78rem;color:rgba(242,234,216,0.35);margin-bottom:16px;letter-spacing:.05em;text-transform:uppercase}
+.cb-psycho-track{height:5px;background:rgba(255,255,255,0.07);border-radius:3px;margin-bottom:5px;overflow:hidden}
+.cb-psycho-fill{height:100%;border-radius:3px;transition:width .6s ease}
+.cb-psycho-label{font-size:.7rem;color:rgba(242,234,216,0.3);margin-bottom:14px}
+.cb-desc{font-size:.83rem;line-height:1.74;color:rgba(242,234,216,0.68);margin-bottom:16px}
 .cb-uses{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
-.cb-use{font-size:.75rem;background:rgba(255,255,255,0.05);border-radius:6px;padding:3px 9px;color:rgba(242,234,216,0.6)}
-.cb-found{font-size:.78rem;color:rgba(242,234,216,0.4);font-style:italic}
+.cb-use{font-size:.74rem;background:rgba(255,255,255,0.05);border-radius:6px;padding:3px 9px;color:rgba(242,234,216,0.55)}
+.cb-found{font-size:.76rem;color:rgba(242,234,216,0.35);font-style:italic;border-top:1px solid rgba(255,255,255,0.05);padding-top:12px;margin-top:4px}
+/* ── Body map ── */
+.yb-main{display:grid;grid-template-columns:260px 1fr;gap:48px;align-items:start;margin-top:8px}
+@media(max-width:800px){.yb-main{grid-template-columns:1fr}}
+.yb-svg-wrap{position:sticky;top:80px}
+.yb-svg-title{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(242,234,216,0.35);margin-bottom:16px;text-align:center}
+.yb-svg-container{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:24px;display:flex;justify-content:center}
+.yb-dot{cursor:pointer;transition:opacity .3s}
+.yb-dot circle.pulse{animation:ybPulse 2s ease-in-out infinite}
+@keyframes ybPulse{0%,100%{r:7;opacity:0.6}50%{r:11;opacity:0.15}}
+.yb-dot.active circle.inner{fill:#52B788 !important}
+.yb-dot.active circle.pulse{stroke:#52B788 !important}
+.yb-dot.dim{opacity:0.18}
+.yb-dot.highlight circle.inner{fill:#52B788 !important}
+.yb-zone-tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:16px}
+.yb-zone-tag{font-size:10px;letter-spacing:.07em;text-transform:uppercase;background:rgba(255,255,255,0.05);border-radius:6px;padding:3px 9px;color:rgba(242,234,216,0.5);cursor:pointer;border:1px solid rgba(255,255,255,0.07);transition:all .2s}
+.yb-zone-tag:hover{border-color:rgba(82,183,136,0.4);color:#F2EAD8}
+.yb-info{min-height:400px}
+.yb-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:420px;text-align:center;color:rgba(242,234,216,0.25);gap:12px;border:1px dashed rgba(255,255,255,0.07);border-radius:20px}
+.yb-placeholder-icon{font-size:2.5rem;opacity:0.3}
+.yb-placeholder-text{font-size:.85rem;line-height:1.7}
+.yb-zone-panel{display:none;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:32px}
+.yb-zone-panel.active{display:block}
+.yb-zone-name{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;margin-bottom:8px;color:#F2EAD8}
+.yb-zone-receptors{font-size:.78rem;color:#52B788;background:rgba(82,183,136,0.08);border-radius:8px;padding:8px 14px;margin-bottom:16px;line-height:1.6}
+.yb-zone-headline{font-size:.98rem;font-weight:600;color:#F2EAD8;margin-bottom:12px}
+.yb-zone-desc{font-size:.84rem;line-height:1.82;color:rgba(242,234,216,0.63);margin-bottom:20px}
+.yb-cb-pills{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px}
+.yb-cb-pill{font-size:11px;font-weight:600;letter-spacing:.06em;border-radius:20px;padding:4px 13px;border:1px solid}
+.yb-effects-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+@media(max-width:540px){.yb-effects-grid{grid-template-columns:1fr}}
+.yb-effects-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.yb-effects-label.pos{color:#52B788}.yb-effects-label.neg{color:#C9973A}
+.yb-effects-list{list-style:none}
+.yb-effects-list li{font-size:.77rem;line-height:1.65;color:rgba(242,234,216,0.58);padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);padding-left:16px;position:relative}
+.yb-effects-list.pos li::before{content:"+";position:absolute;left:0;color:#52B788;font-weight:700}
+.yb-effects-list.neg li::before{content:"!";position:absolute;left:0;color:#C9973A;font-weight:700}
+.yb-research{font-size:.76rem;line-height:1.72;color:rgba(242,234,216,0.38);border-left:2px solid rgba(82,183,136,0.22);padding-left:14px;font-style:italic}
+/* Lens */
+.yb-lens-section{margin-top:48px;padding-top:40px;border-top:1px solid rgba(255,255,255,0.06)}
+.yb-lens-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:#F2EAD8;margin-bottom:8px}
+.yb-lens-title em{color:#52B788;font-style:italic}
+.yb-lens-sub{font-size:.85rem;color:rgba(242,234,216,0.45);margin-bottom:20px;line-height:1.7;max-width:600px}
+.yb-lens-pills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+.yb-lens-btn{background:none;border:1px solid rgba(255,255,255,0.12);border-radius:24px;padding:8px 20px;color:rgba(242,234,216,0.6);font-family:Montserrat,sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;cursor:pointer;transition:all .2s}
+.yb-lens-card{display:none;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px}
+.yb-lens-card.active{display:block}
+.yb-lens-card-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;margin-bottom:10px}
+.yb-lens-card-summary{font-size:.85rem;line-height:1.78;color:rgba(242,234,216,0.62);margin-bottom:16px}
+.yb-lens-zones{display:flex;flex-wrap:wrap;gap:8px}
+.yb-lens-zone-tag{font-size:.78rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:4px 13px;color:rgba(242,234,216,0.6);cursor:pointer;transition:all .2s}
+.yb-lens-zone-tag:hover{border-color:rgba(82,183,136,0.4);color:#F2EAD8}
+/* ECS section */
+.yb-ecs-section{background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:40px;margin-top:40px}
+.yb-ecs-header{margin-bottom:28px}
+.yb-ecs-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:#F2EAD8;margin-bottom:8px}
+.yb-ecs-title em{color:#52B788;font-style:italic}
+.yb-ecs-sub{font-size:.86rem;color:rgba(242,234,216,0.45);line-height:1.78;max-width:600px}
+.yb-ecs-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:680px){.yb-ecs-cards{grid-template-columns:1fr}}
+.yb-ecs-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:24px}
+.yb-ecs-card-icon{font-size:1.3rem;margin-bottom:12px;color:#52B788}
+.yb-ecs-card-title{font-size:.9rem;font-weight:600;color:#F2EAD8;margin-bottom:8px}
+.yb-ecs-card-body{font-size:.79rem;line-height:1.78;color:rgba(242,234,216,0.52)}
+/* ── Ratios ── */
+.ratio-intro{max-width:680px;margin-bottom:36px}
+.ratio-intro p{font-size:.88rem;line-height:1.8;color:rgba(242,234,216,0.6)}
+.ratio-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px}
+.ratio-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:24px;transition:border-color .2s}
+.ratio-card:hover{border-color:rgba(255,255,255,0.14)}
+.ratio-card-top{display:flex;align-items:baseline;gap:12px;margin-bottom:4px;flex-wrap:wrap}
+.ratio-value{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300}
+.ratio-label{font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(242,234,216,0.5)}
+.ratio-tag{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:20px;border:1px solid;margin-left:auto}
+.ratio-bar-wrap{display:flex;height:6px;border-radius:3px;overflow:hidden;margin:12px 0 6px;background:rgba(255,255,255,0.06)}
+.ratio-bar-thc{background:#52B788;height:100%}
+.ratio-bar-cbd{background:#74C69D;height:100%}
+.ratio-bar-other{background:#D4A853;height:100%}
+.ratio-bar-labels{display:flex;gap:14px;margin-bottom:14px}
+.ratio-bar-label{font-size:.68rem;color:rgba(242,234,216,0.35);display:flex;align-items:center;gap:5px}
+.ratio-bar-label span{display:inline-block;width:8px;height:8px;border-radius:2px}
+.ratio-desc{font-size:.82rem;line-height:1.74;color:rgba(242,234,216,0.65);margin-bottom:14px}
+.ratio-uses{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.ratio-use{font-size:.72rem;background:rgba(255,255,255,0.05);border-radius:5px;padding:2px 8px;color:rgba(242,234,216,0.5)}
+.ratio-caution{font-size:.75rem;color:rgba(242,234,216,0.4);font-style:italic;border-top:1px solid rgba(255,255,255,0.05);padding-top:10px}
+.ratio-strains{font-size:.74rem;color:rgba(82,183,136,0.6);margin-top:6px}
+.ratio-special-badge{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(212,168,83,0.15);color:#D4A853;border:1px solid rgba(212,168,83,0.3);padding:2px 8px;border-radius:10px;margin-left:8px}
 </style>
 </head>
 <body>
 ${ENC_NAV}
 <div class="enc-page">
   <div class="enc-page-header">
-    <div class="enc-label">✦ Cannascenti Encyclopedia</div>
-    <h1 class="enc-title">The <em>cannabinoid</em> reference.</h1>
-    <p class="enc-desc">THC is just the beginning. The cannabis plant produces over 100 cannabinoids, each with distinct receptor binding profiles and therapeutic effects. These are the ones that matter most.</p>
+    <div class="enc-label">&#10022; Cannascenti Encyclopedia</div>
+    <h1 class="enc-title">Cannabinoids &amp; Your <em>Body.</em></h1>
+    <p class="enc-desc">THC is just the beginning. Explore every major cannabinoid, an interactive body map showing where each one acts, and a complete ratio guide for dialing in your experience.</p>
   </div>
-  <div class="cb-grid" id="cbGrid"></div>
+  <div class="cn-tabs">
+    <button class="cn-tab active" onclick="cnTab('cannabinoids',this)">Cannabinoids</button>
+    <button class="cn-tab" onclick="cnTab('bodymap',this)">Body Map</button>
+    <button class="cn-tab" onclick="cnTab('ratios',this)">Ratios &amp; Blends</button>
+  </div>
+
+  <!-- ── TAB: CANNABINOIDS ── -->
+  <div class="cn-panel active" id="cnCannabinoids">
+    <div class="cb-grid" id="cbGrid"></div>
+  </div>
+
+  <!-- ── TAB: BODY MAP ── -->
+  <div class="cn-panel" id="cnBodymap">
+    <div class="yb-main">
+      <div class="yb-svg-wrap">
+        <div class="yb-svg-title">Click a zone to explore</div>
+        <div class="yb-svg-container">
+          <svg viewBox="0 0 200 480" width="200" height="480" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="32" rx="22" ry="26" fill="rgba(82,183,136,0.06)" stroke="rgba(82,183,136,0.18)" stroke-width="1"/>
+            <rect x="93" y="56" width="14" height="14" rx="4" fill="rgba(82,183,136,0.05)" stroke="rgba(82,183,136,0.12)" stroke-width="1"/>
+            <path d="M68,70 Q62,72 58,82 L52,160 Q52,168 60,170 L140,170 Q148,168 148,160 L142,82 Q138,72 132,70 Z" fill="rgba(82,183,136,0.05)" stroke="rgba(82,183,136,0.12)" stroke-width="1"/>
+            <path d="M68,72 Q58,76 54,90 L46,178 Q44,188 50,190 L58,190 Q64,188 66,178 L70,100" fill="rgba(82,183,136,0.04)" stroke="rgba(82,183,136,0.1)" stroke-width="1"/>
+            <path d="M132,72 Q142,76 146,90 L154,178 Q156,188 150,190 L142,190 Q136,188 134,178 L130,100" fill="rgba(82,183,136,0.04)" stroke="rgba(82,183,136,0.1)" stroke-width="1"/>
+            <path d="M80,170 L72,300 Q70,310 74,318 L84,318 Q90,316 92,306 L96,170" fill="rgba(82,183,136,0.04)" stroke="rgba(82,183,136,0.1)" stroke-width="1"/>
+            <path d="M120,170 L128,300 Q130,310 126,318 L116,318 Q110,316 108,306 L104,170" fill="rgba(82,183,136,0.04)" stroke="rgba(82,183,136,0.1)" stroke-width="1"/>
+            <ellipse cx="78" cy="326" rx="10" ry="6" fill="rgba(82,183,136,0.04)" stroke="rgba(82,183,136,0.08)" stroke-width="1"/>
+            <ellipse cx="122" cy="326" rx="10" ry="6" fill="rgba(82,183,136,0.04)" stroke="rgba(82,183,136,0.08)" stroke-width="1"/>
+            <g id="yb-dots"></g>
+          </svg>
+        </div>
+        <div class="yb-zone-tags" id="yb-zone-tags"></div>
+      </div>
+      <div class="yb-info">
+        <div class="yb-placeholder" id="yb-placeholder">
+          <div class="yb-placeholder-icon">&#9678;</div>
+          <div class="yb-placeholder-text">Click a glowing dot on the body<br>or a zone tag below to begin</div>
+        </div>
+        <div id="yb-panels"></div>
+      </div>
+    </div>
+    <!-- Cannabinoid Lens -->
+    <div class="yb-lens-section">
+      <div class="yb-lens-title">The <em>Cannabinoid</em> Lens</div>
+      <p class="yb-lens-sub">Select a cannabinoid to highlight every body system where it is active and read its whole-body summary.</p>
+      <div class="yb-lens-pills" id="yb-lens-pills"></div>
+      <div id="yb-lens-cards"></div>
+    </div>
+    <!-- ECS -->
+    <div class="yb-ecs-section">
+      <div class="yb-ecs-header">
+        <div class="yb-ecs-title">How the <em>ECS</em> Works</div>
+        <p class="yb-ecs-sub">The endocannabinoid system is one of the most widespread receptor networks in the human body — and one of the least taught in medical schools.</p>
+      </div>
+      <div class="yb-ecs-cards">
+        <div class="yb-ecs-card"><div class="yb-ecs-card-icon">&#9881;</div><div class="yb-ecs-card-title">What is the ECS?</div><div class="yb-ecs-card-body">The endocannabinoid system (ECS) is a retrograde signaling network — it works backwards from the receiving neuron to the sending neuron. When a neuron fires too strongly, the receiving cell produces endocannabinoids (anandamide, 2-AG) that travel back to suppress the signal. Cannabis cannabinoids fit this system because they are structurally similar to your body's own endocannabinoids.</div></div>
+        <div class="yb-ecs-card"><div class="yb-ecs-card-icon">&#9679;</div><div class="yb-ecs-card-title">CB1 — The Psychoactive Pathway</div><div class="yb-ecs-card-body">CB1 receptors are concentrated in the central nervous system — brain and spinal cord. They regulate mood, memory, pain perception, appetite, and coordination. THC's binding to CB1 produces euphoria, altered time perception, and intoxication. CB1 is also present in peripheral tissues — heart, lungs, gut — where it governs autonomic functions.</div></div>
+        <div class="yb-ecs-card"><div class="yb-ecs-card-icon">&#9675;</div><div class="yb-ecs-card-title">CB2 — The Immune Pathway</div><div class="yb-ecs-card-body">CB2 receptors are concentrated in immune tissues — spleen, tonsils, bone marrow, and immune cells throughout the body. They regulate inflammation, immune cell migration, and the body's response to injury. CB2 activation does not produce psychoactivity. CBD, CBG, and CBC all have CB2 affinity — which explains their anti-inflammatory profiles without intoxication.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TAB: RATIOS ── -->
+  <div class="cn-panel" id="cnRatios">
+    <div class="ratio-intro">
+      <p>The ratio of THC to CBD — and increasingly to CBG, CBN, or THCV — determines the character of the experience more than any single cannabinoid alone. From a 30:1 THC-dominant experience to a 1:30 hemp-level CBD formulation, each ratio has a distinct therapeutic and recreational profile. Blended ratios like 10:10:10 (THC:CBD:CBG) represent the frontier of cannabinoid formulation science.</p>
+    </div>
+    <div class="ratio-grid" id="ratioGrid"></div>
+  </div>
 </div>
+
 <script>
 var CB = ${JSON.stringify(_CB)};
-document.addEventListener('DOMContentLoaded',function(){
-  document.getElementById('cbGrid').innerHTML=CB.map(function(c){
-    return '<div class="cb-card">'+
-      '<div class="cb-abbr" style="color:'+c.color+'">'+c.abbr+'</div>'+
-      '<div class="cb-full">'+c.full+'</div>'+
-      '<div class="cb-psycho-track"><div class="cb-psycho-fill" style="width:'+c.psycho+'%;background:'+c.color+'"></div></div>'+
-      '<div class="cb-psycho-label">Psychoactivity: '+c.psycho+'%</div>'+
-      '<p class="cb-desc">'+c.desc+'</p>'+
-      '<div class="cb-uses">'+c.uses.map(function(u){return '<span class="cb-use">'+u+'</span>';}).join('')+'</div>'+
-      '<div class="cb-found">'+c.found+'</div>'+
+var RATIOS = ${JSON.stringify(_RATIOS)};
+var ZONES = ${JSON.stringify(_ZONES)};
+var CB_INFO = ${JSON.stringify(_CB_INFO)};
+var HOTSPOTS = ${JSON.stringify(_HOTSPOTS)};
+var CB_COLORS = {THC:'#52B788',CBD:'#74C69D',CBG:'#D4A853',CBN:'#9B7FD4',CBC:'#5CA0E8',THCV:'#E07B39',THCA:'#9B7FD4',CBDA:'#B7E4C7','Δ8-THC':'#A78BFA','Δ10-THC':'#F472B6'};
+var selectedLens = null;
+
+function cnTab(id, btn) {
+  document.querySelectorAll('.cn-tab').forEach(function(t){t.classList.remove('active');});
+  document.querySelectorAll('.cn-panel').forEach(function(p){p.classList.remove('active');});
+  btn.classList.add('active');
+  document.getElementById('cn'+id.charAt(0).toUpperCase()+id.slice(1)).classList.add('active');
+  if (id==='bodymap') { initDots(); renderPanels(); renderLens(); }
+  if (id==='ratios') renderRatios();
+}
+
+// ── Cannabinoid cards ──
+document.getElementById('cbGrid').innerHTML = CB.map(function(c){
+  return '<div class="cb-card">'+
+    '<div class="cb-abbr" style="color:'+c.color+'">'+c.abbr+'</div>'+
+    '<div class="cb-full">'+c.full+'</div>'+
+    '<div class="cb-psycho-track"><div class="cb-psycho-fill" style="width:'+c.psycho+'%;background:'+c.color+'"></div></div>'+
+    '<div class="cb-psycho-label">Psychoactivity: '+c.psycho+'%</div>'+
+    '<p class="cb-desc">'+c.desc+'</p>'+
+    '<div class="cb-uses">'+c.uses.map(function(u){return '<span class="cb-use">'+u+'</span>';}).join('')+'</div>'+
+    '<div class="cb-found">'+c.found+'</div>'+
+  '</div>';
+}).join('');
+
+// ── Ratios ──
+function renderRatios() {
+  var el = document.getElementById('ratioGrid');
+  if (el.innerHTML) return;
+  el.innerHTML = RATIOS.map(function(r) {
+    var total = r.thc + r.cbd + (r.isSpecial ? r.thc : 0); // approximate
+    var thcPct = Math.round((r.thc / (r.thc + r.cbd)) * 100);
+    var cbdPct = 100 - thcPct;
+    var col = r.color || '#52B788';
+    var isSpecial = r.isSpecial;
+    return '<div class="ratio-card">'+
+      '<div class="ratio-card-top">'+
+        '<span class="ratio-value" style="color:'+col+'">'+(isSpecial ? r.ratio : r.ratio+' THC:CBD')+'</span>'+
+        (isSpecial ? '<span class="ratio-special-badge">Multi</span>' : '')+
+        '<span class="ratio-tag" style="color:'+col+';border-color:'+col+'55;background:'+col+'12">'+r.tag+'</span>'+
+      '</div>'+
+      '<div style="font-size:.8rem;font-weight:600;color:rgba(242,234,216,0.5);margin-bottom:10px;letter-spacing:.04em">'+r.label+'</div>'+
+      (isSpecial ? '' :
+        '<div class="ratio-bar-wrap">'+
+          '<div class="ratio-bar-thc" style="width:'+thcPct+'%"></div>'+
+          '<div class="ratio-bar-cbd" style="width:'+cbdPct+'%"></div>'+
+        '</div>'+
+        '<div class="ratio-bar-labels">'+
+          '<span class="ratio-bar-label"><span style="background:#52B788"></span>THC '+thcPct+'%</span>'+
+          '<span class="ratio-bar-label"><span style="background:#74C69D"></span>CBD '+cbdPct+'%</span>'+
+        '</div>'
+      )+
+      '<p class="ratio-desc">'+r.desc+'</p>'+
+      '<div class="ratio-uses">'+r.uses.map(function(u){return '<span class="ratio-use">'+u+'</span>';}).join('')+'</div>'+
+      '<div class="ratio-caution">&#9888; '+r.caution+'</div>'+
+      '<div class="ratio-strains">&#9670; Example strains: '+r.strains+'</div>'+
     '</div>';
   }).join('');
-});
+}
+
+// ── Body map ──
+var _bodyInit = false;
+function initDots() {
+  if (_bodyInit) return; _bodyInit = true;
+  var dotsG = document.getElementById('yb-dots');
+  var tagsDiv = document.getElementById('yb-zone-tags');
+  if (!dotsG) return;
+  dotsG.innerHTML = HOTSPOTS.map(function(h){
+    return '<g class="yb-dot" id="dot-'+h.id+'" onclick="selectZone(\''+h.id+'\')">'+
+      '<circle class="pulse" cx="'+h.cx+'" cy="'+h.cy+'" r="7" fill="none" stroke="'+h.color+'" stroke-width="1.5"/>'+
+      '<circle class="inner" cx="'+h.cx+'" cy="'+h.cy+'" r="4.5" fill="'+h.color+'" opacity="0.9"/>'+
+      '<title>'+h.label+'</title></g>';
+  }).join('');
+  if (tagsDiv) tagsDiv.innerHTML = HOTSPOTS.map(function(h){
+    return '<span class="yb-zone-tag" onclick="selectZone(\''+h.id+'\')">'+h.label+'</span>';
+  }).join('');
+}
+function renderPanels() {
+  var el = document.getElementById('yb-panels');
+  if (!el || el.innerHTML) return;
+  el.innerHTML = ZONES.map(function(z){
+    var cbPills = z.cannabinoids.map(function(c){
+      var col = CB_COLORS[c]||'#52B788';
+      return '<span class="yb-cb-pill" style="color:'+col+';border-color:'+col+'55;background:'+col+'18">'+c+'</span>';
+    }).join('');
+    var posItems = z.positive.map(function(e){return '<li>'+e+'</li>';}).join('');
+    var negItems = z.negative.map(function(e){return '<li>'+e+'</li>';}).join('');
+    return '<div class="yb-zone-panel" id="yb-panel-'+z.id+'">'+
+      '<div class="yb-zone-name">'+z.label+'</div>'+
+      '<div class="yb-zone-receptors">'+z.receptors+'</div>'+
+      '<div class="yb-zone-headline">'+z.headline+'</div>'+
+      '<p class="yb-zone-desc">'+z.desc+'</p>'+
+      '<div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,234,216,0.3);margin-bottom:8px">Active cannabinoids</div>'+
+      '<div class="yb-cb-pills">'+cbPills+'</div>'+
+      '<div class="yb-effects-grid">'+
+        '<div><div class="yb-effects-label pos">Benefits</div><ul class="yb-effects-list pos">'+posItems+'</ul></div>'+
+        '<div><div class="yb-effects-label neg">Considerations</div><ul class="yb-effects-list neg">'+negItems+'</ul></div>'+
+      '</div>'+
+      '<p class="yb-research">'+z.research+'</p>'+
+    '</div>';
+  }).join('');
+}
+function renderLens() {
+  var pillsEl = document.getElementById('yb-lens-pills');
+  if (!pillsEl || pillsEl.innerHTML) return;
+  pillsEl.innerHTML = CB_INFO.map(function(cb){
+    var col = CB_COLORS[cb.id]||'#52B788';
+    return '<button class="yb-lens-btn" id="lens-btn-'+cb.id+'" onclick="activateLens(\''+cb.id+'\')" style="border-color:'+col+'55">'+cb.label+'</button>';
+  }).join('');
+  document.getElementById('yb-lens-cards').innerHTML = CB_INFO.map(function(cb){
+    var col = CB_COLORS[cb.id]||'#52B788';
+    var zoneTags = cb.zones.map(function(zid){
+      var zone = ZONES.find(function(zz){return zz.id===zid;});
+      return '<span class="yb-lens-zone-tag" onclick="selectZone(\''+zid+'\')">'+( zone?zone.label:zid )+'</span>';
+    }).join('');
+    return '<div class="yb-lens-card" id="lens-card-'+cb.id+'">'+
+      '<div class="yb-lens-card-name" style="color:'+col+'">'+cb.label+' &mdash; System Overview</div>'+
+      '<p class="yb-lens-card-summary">'+cb.summary+'</p>'+
+      '<div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,234,216,0.3);margin-bottom:10px">Active in these systems</div>'+
+      '<div class="yb-lens-zones">'+zoneTags+'</div>'+
+    '</div>';
+  }).join('');
+}
+function selectZone(id){
+  document.getElementById('yb-placeholder').style.display='none';
+  document.querySelectorAll('.yb-dot').forEach(function(d){d.classList.remove('active','dim');d.classList.add('dim');});
+  var dot = document.getElementById('dot-'+id);
+  if(dot){dot.classList.remove('dim');dot.classList.add('active');}
+  document.querySelectorAll('.yb-zone-panel').forEach(function(p){p.classList.remove('active');});
+  var panel = document.getElementById('yb-panel-'+id);
+  if(panel){panel.classList.add('active');panel.scrollIntoView({behavior:'smooth',block:'nearest'});}
+  if(selectedLens) applyLens(selectedLens);
+}
+function activateLens(cbId){
+  selectedLens=cbId;
+  document.querySelectorAll('.yb-lens-btn').forEach(function(b){b.style.background='';b.style.color='rgba(242,234,216,0.6)';});
+  document.querySelectorAll('.yb-lens-card').forEach(function(c){c.classList.remove('active');});
+  var col=CB_COLORS[cbId]||'#52B788';
+  var btn=document.getElementById('lens-btn-'+cbId);
+  if(btn){btn.style.background=col;btn.style.color='#060d0a';}
+  var card=document.getElementById('lens-card-'+cbId);
+  if(card) card.classList.add('active');
+  applyLens(cbId);
+}
+function applyLens(cbId){
+  var cb=CB_INFO.find(function(c){return c.id===cbId;});
+  if(!cb) return;
+  HOTSPOTS.forEach(function(h){
+    var dot=document.getElementById('dot-'+h.id);
+    if(!dot) return;
+    dot.classList.remove('dim','highlight');
+    if(cb.zones.indexOf(h.id)>=0){dot.classList.add('highlight');}else{dot.classList.add('dim');}
+  });
+}
+// Check if arriving from #body-map anchor
+if(window.location.hash==='#body-map'){
+  document.querySelector('.cn-tab:nth-child(2)').click();
+}
 </script>
 </body></html>`;
     res.writeHead(200,{"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
@@ -2889,6 +3247,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // ─── /yourbody ─────────────────────────────────────────────────────────────
   if (req.method === "GET" && req.url === "/cannalogy") {
+    res.writeHead(301, { "Location": "/cannabinoids#body-map" });
+    res.end();
+    return;
+  }
+  if (false && req.method === "GET" && req.url === "/cannalogy-old") {
     const _ZONES = [
       {
         id:"brain", label:"Brain", cx:100, cy:44, color:"#9B7FD4",
