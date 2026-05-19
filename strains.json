@@ -13614,5 +13614,79 @@
       "reliable"
     ],
     "rating": 4.3
+  },
+  {
+    "name": "King Louis XIII",
+    "type": "indica",
+    "thc_min": 20,
+    "thc_max": 28,
+    "cbd": 0.1,
+    "description": "One of California's most iconic OG phenotypes. A cross of OG Kush and LA Confidential, King Louis XIII hits with a heavy pine-fuel punch and a deeply narcotic body effect. Dense, resin-caked buds with a diesel-skunk aroma that fills the room. Named after the French king — regal, heavy, and unmistakably California.",
+    "effects": [
+      "Relaxed",
+      "Sleepy",
+      "Happy",
+      "Euphoric",
+      "Hungry"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Caryophyllene",
+      "Limonene"
+    ],
+    "flavors": [
+      "Pine",
+      "Earthy",
+      "Skunk",
+      "Woody",
+      "Diesel"
+    ],
+    "tags": [
+      "nighttime",
+      "indica-dom",
+      "pain-relief",
+      "sleep",
+      "og-family",
+      "california"
+    ],
+    "genetics": "OG Kush x LA Confidential",
+    "rating": 4.7
+  },
+  {
+    "name": "King Louis XIII OG",
+    "type": "indica",
+    "thc_min": 20,
+    "thc_max": 28,
+    "cbd": 0.1,
+    "description": "The full-name cut of the legendary King Louis XIII lineage — OG Kush crossed with LA Confidential. Crushingly sedative with a pine-forward fuel aroma and a thick resin coat that made it a California dispensary staple for over a decade. For serious indica seekers only.",
+    "effects": [
+      "Relaxed",
+      "Sleepy",
+      "Happy",
+      "Euphoric",
+      "Hungry"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Caryophyllene",
+      "Limonene"
+    ],
+    "flavors": [
+      "Pine",
+      "Earthy",
+      "Skunk",
+      "Diesel",
+      "Woody"
+    ],
+    "tags": [
+      "nighttime",
+      "indica-dom",
+      "pain-relief",
+      "sleep",
+      "og-family",
+      "california"
+    ],
+    "genetics": "OG Kush x LA Confidential",
+    "rating": 4.7
   }
 ]
