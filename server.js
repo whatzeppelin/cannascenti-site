@@ -4165,10 +4165,415 @@ document.addEventListener('DOMContentLoaded', function(){
     return;
   }
 
-  // ─── /quiz redirect ───────────────────────────────────────────────────────
+  // ─── /quiz ────────────────────────────────────────────────────────────────
   if (req.method === "GET" && req.url === "/quiz") {
-    res.writeHead(302, { "Location": "/#quiz" });
-    res.end();
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Cannascenti Match — Find Your Strain</title>
+<meta name="description" content="5 questions. 30 seconds. A personalized cannabis profile matched to real strains from the Cannascenti database.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#060d0a;color:#F2EAD8;font-family:Montserrat,sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden}
+a{color:#52B788;text-decoration:none}
+/* Ambient glow */
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(82,183,136,0.06) 0%,transparent 70%);pointer-events:none;z-index:0}
+/* Nav */
+.qnav{display:flex;align-items:center;justify-content:space-between;padding:24px 48px;position:sticky;top:0;background:rgba(6,13,10,0.9);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid rgba(255,255,255,0.05)}
+.qnav-logo{font-family:'Great Vibes',cursive;font-size:26px;color:#F2EAD8}
+.qnav-back{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,234,216,0.4);transition:color .2s}
+.qnav-back:hover{color:#52B788}
+@media(max-width:600px){.qnav{padding:20px 24px}}
+/* Wrapper */
+.qwrap{max-width:760px;margin:0 auto;padding:60px 32px 120px;position:relative;z-index:1}
+@media(max-width:600px){.qwrap{padding:40px 20px 80px}}
+/* Intro */
+.q-intro{text-align:center;padding:40px 0}
+.q-label{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:#52B788;margin-bottom:20px}
+.q-intro-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,6vw,4rem);font-weight:300;line-height:1.1;color:#F2EAD8;margin-bottom:20px}
+.q-intro-title em{font-style:italic;color:#52B788}
+.q-intro-sub{font-size:.95rem;color:rgba(242,234,216,0.55);line-height:1.8;max-width:500px;margin:0 auto 40px}
+.q-start-btn{display:inline-flex;align-items:center;gap:10px;background:#52B788;color:#060d0a;font-family:Montserrat,sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:16px 40px;border-radius:100px;border:none;cursor:pointer;transition:all .2s}
+.q-start-btn:hover{background:#74C69D;transform:translateY(-1px)}
+/* Progress */
+.q-progress{margin-bottom:48px}
+.q-progress-bar{height:2px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;margin-bottom:10px}
+.q-progress-fill{height:100%;background:#52B788;border-radius:2px;transition:width .4s ease}
+.q-progress-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(242,234,216,0.3)}
+/* Question */
+.q-question{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:300;color:#F2EAD8;line-height:1.3;margin-bottom:36px;font-style:italic}
+/* Options grid */
+.q-options{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.q-option{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:20px 18px;cursor:pointer;transition:all .2s;text-align:left}
+.q-option:hover{border-color:rgba(82,183,136,0.4);background:rgba(82,183,136,0.05)}
+.q-option.selected{border-color:#52B788;background:rgba(82,183,136,0.1)}
+.q-opt-icon{font-size:1.6rem;margin-bottom:10px}
+.q-opt-label{font-size:.88rem;font-weight:500;color:#F2EAD8;margin-bottom:4px;letter-spacing:.02em}
+.q-opt-sub{font-size:.75rem;color:rgba(242,234,216,0.45);line-height:1.5}
+/* Fade */
+.q-fade{opacity:0;transition:opacity .3s}
+.q-fade.visible{opacity:1}
+/* Analyzing */
+.q-analyzing{text-align:center;padding:80px 0}
+.q-analyzing-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;font-style:italic;color:#F2EAD8;margin-bottom:8px}
+.q-analyzing-sub{font-size:.82rem;color:rgba(242,234,216,0.4);margin-bottom:32px;letter-spacing:.08em;text-transform:uppercase}
+.q-dots{display:flex;justify-content:center;gap:8px}
+.q-dot{width:8px;height:8px;border-radius:50%;background:#52B788;animation:qdot 1.2s ease-in-out infinite}
+.q-dot:nth-child(2){animation-delay:.2s}
+.q-dot:nth-child(3){animation-delay:.4s}
+@keyframes qdot{0%,80%,100%{transform:scale(0.5);opacity:.3}40%{transform:scale(1);opacity:1}}
+/* Results */
+.q-result-header{text-align:center;margin-bottom:52px}
+.q-result-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#52B788;margin-bottom:12px}
+.q-result-profile{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,234,216,0.4);margin-bottom:8px}
+.q-result-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:300;font-style:italic;color:#F2EAD8;line-height:1.2;margin-bottom:16px}
+.q-result-desc{font-size:.9rem;line-height:1.8;color:rgba(242,234,216,0.6);max-width:560px;margin:0 auto}
+/* Strain cards */
+.q-strains{display:flex;flex-direction:column;gap:16px;margin-bottom:48px}
+.q-strain-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:28px;transition:border-color .2s}
+.q-strain-card:hover{border-color:rgba(82,183,136,0.25)}
+.q-strain-card.best{border-color:rgba(82,183,136,0.3)}
+.q-strain-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px;gap:12px}
+.q-strain-badge{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;background:rgba(82,183,136,0.1);color:#52B788;border-radius:20px;padding:3px 10px;white-space:nowrap;flex-shrink:0}
+.q-strain-badge.gold{background:rgba(232,168,76,0.12);color:#E8A84C}
+.q-strain-name{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:#F2EAD8;margin-bottom:4px}
+.q-strain-type-row{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.q-strain-type{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;border-radius:20px;padding:2px 10px;font-weight:500}
+.q-strain-type.sativa{background:rgba(232,168,76,0.12);color:#E8A84C}
+.q-strain-type.indica{background:rgba(155,114,207,0.12);color:#9B72CF}
+.q-strain-type.hybrid{background:rgba(82,183,136,0.12);color:#52B788}
+.q-strain-thc{font-size:.75rem;color:rgba(242,234,216,0.5)}
+.q-strain-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.q-strain-tag{font-size:.68rem;background:rgba(255,255,255,0.05);border-radius:6px;padding:2px 8px;color:rgba(242,234,216,0.5)}
+.q-strain-tag.terpene{background:rgba(82,183,136,0.07);color:#52B788}
+.q-strain-desc{font-size:.82rem;line-height:1.75;color:rgba(242,234,216,0.6)}
+/* CTAs */
+.q-result-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.q-retake-btn{background:none;border:1px solid rgba(255,255,255,0.15);color:rgba(242,234,216,0.6);font-family:Montserrat,sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:12px 24px;border-radius:100px;cursor:pointer;transition:all .2s}
+.q-retake-btn:hover{border-color:rgba(255,255,255,0.3);color:#F2EAD8}
+.q-browse-btn{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(82,183,136,0.3);color:#52B788;font-family:Montserrat,sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:12px 24px;border-radius:100px;transition:all .2s}
+.q-browse-btn:hover{background:rgba(82,183,136,0.08)}
+</style>
+</head>
+<body>
+<nav class="qnav">
+  <a href="/" class="qnav-logo">Cannascenti</a>
+  <a href="/" class="qnav-back">&#8592; Home</a>
+</nav>
+
+<div class="qwrap">
+  <!-- INTRO -->
+  <div id="qIntro" class="q-intro">
+    <div class="q-label">&#10022; The Cannascenti Match</div>
+    <h1 class="q-intro-title">Find what <em>actually</em><br>works for you.</h1>
+    <p class="q-intro-sub">5 questions. 30 seconds. A personalized cannabis profile matched to real strains from our database of 61 cultivars.</p>
+    <button class="q-start-btn" onclick="startQuiz()">Begin &#8594;</button>
+  </div>
+
+  <!-- QUIZ FLOW -->
+  <div id="qFlow" style="display:none">
+    <div class="q-progress">
+      <div class="q-progress-bar"><div class="q-progress-fill" id="qProgressFill" style="width:20%"></div></div>
+      <div class="q-progress-label" id="qProgressLabel">Question 1 of 5</div>
+    </div>
+    <div id="qStep" class="q-fade"></div>
+  </div>
+
+  <!-- ANALYZING -->
+  <div id="qAnalyzing" style="display:none" class="q-analyzing">
+    <div class="q-analyzing-title">Analyzing your profile&#8230;</div>
+    <div class="q-analyzing-sub">Matching against 61 strains</div>
+    <div class="q-dots"><div class="q-dot"></div><div class="q-dot"></div><div class="q-dot"></div></div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="qResult" style="display:none"></div>
+</div>
+
+<script>
+var ALL_STRAINS = ${JSON.stringify(STRAINS_DB)};
+
+var STEPS = [
+  {
+    q: 'How do you want to feel?',
+    options: [
+      {icon:'&#128524;', label:'Relaxed', sub:'Take the edge off. Shoulders down, brain quiet.', scores:{relax:3,sleep:1}},
+      {icon:'&#9889;', label:'Focused', sub:'Locked in and actually getting things done.', scores:{focus:3,uplift:1}},
+      {icon:'&#128564;', label:'Sleepy', sub:'Stop lying awake. Real, deep sleep.', scores:{sleep:3,relax:1}},
+      {icon:'&#127912;', label:'Creative', sub:'Think sideways. Make something. See it differently.', scores:{creative:3,uplift:1}},
+      {icon:'&#128516;', label:'Uplifted', sub:'Feel genuinely, fully good. Social and alive.', scores:{uplift:3,creative:1}},
+      {icon:'&#9878;', label:'Balanced', sub:'Something smooth — no extremes, no surprises.', scores:{relax:2,focus:1}}
+    ]
+  },
+  {
+    q: 'When are you using it?',
+    options: [
+      {icon:'&#127749;', label:'Morning', sub:'Start the day with intention and energy.', scores:{focus:2,uplift:1}},
+      {icon:'&#9728;', label:'Afternoon', sub:'Bridge the gap. Keep going or reset.', scores:{creative:1,relax:1}},
+      {icon:'&#127750;', label:'Evening', sub:'The day is done. Time to decompress.', scores:{relax:2,sleep:1}},
+      {icon:'&#127769;', label:'Bedtime', sub:"I just need to actually sleep tonight.", scores:{sleep:3,relax:1}}
+    ]
+  },
+  {
+    q: 'How much experience do you have?',
+    options: [
+      {icon:'&#127807;', label:'First Timer', sub:"I've never done this before — or almost never.", scores:{relax:1}, beginner:true},
+      {icon:'&#127807;', label:'Occasional', sub:'A handful of times a year. Still learning.', scores:{relax:1}, beginner:true},
+      {icon:'&#128168;', label:'Regular', sub:'A few times a week. I know what I like.', scores:{focus:1,creative:1}},
+      {icon:'&#128293;', label:'Daily', sub:'Every day. Cannabis is part of my routine.', scores:{focus:2,creative:1}}
+    ]
+  },
+  {
+    q: "What are you actually trying to do?",
+    options: [
+      {icon:'&#129495;', label:'Unwind & De-stress', sub:'I need to actually turn my brain off.', scores:{relax:3}},
+      {icon:'&#128161;', label:'Productivity', sub:'Work, create, focus — without the brain fog.', scores:{focus:3}},
+      {icon:'&#128164;', label:'Better Sleep', sub:"I'm tired of lying awake at 2am.", scores:{sleep:3}},
+      {icon:'&#127917;', label:'Boost Creativity', sub:'Art, music, writing. I want to make things.', scores:{creative:3}},
+      {icon:'&#129309;', label:'Social & Fun', sub:'Be present, laugh more, feel alive.', scores:{uplift:3}},
+      {icon:'&#128170;', label:'Pain & Tension', sub:'My body needs a break. Physical relief.', scores:{relax:2,sleep:1}}
+    ]
+  },
+  {
+    q: 'How do you prefer to use it?',
+    options: [
+      {icon:'&#127807;', label:'Flower', sub:'Classic. The full, natural experience.', scores:{}},
+      {icon:'&#128168;', label:'Vape', sub:'Clean, discreet, no smoke.', scores:{}},
+      {icon:'&#127851;', label:'Edibles', sub:'I want it to last longer and feel deeper.', scores:{sleep:1,relax:1}},
+      {icon:'&#128167;', label:'Tincture', sub:'I want control — precise, measured dosing.', scores:{focus:1}},
+      {icon:'&#129335;', label:'Open to anything', sub:'Just show me what works best for my goals.', scores:{}}
+    ]
+  }
+];
+
+var PROFILES = {
+  relax: {
+    name:'The Relaxed Unwinder',
+    title:'Unwind. Release. Breathe.',
+    desc:"You want to decompress — fully. Not half-asleep, not foggy. Just that feeling where your shoulders drop and the week stops mattering. Myrcene and linalool are your allies.",
+    tags:['relaxing','evening','stress-relief','body-high','kush','indica-dom','nighttime','og'],
+    effects:['Relaxed','Sleepy','Happy'],
+    types:['Indica','Hybrid'],
+    avoidTags:['daytime','morning','energetic']
+  },
+  focus: {
+    name:'The Sharp Achiever',
+    title:'Sharp. Clear. In the zone.',
+    desc:"Locked in and actually getting things done. Terpinolene and pinene keep you sharp without the anxious edge — the kind of session where you sit down to work and actually do it.",
+    tags:['focus','daytime','productive','morning','creative','sativa-dom','energetic','classic'],
+    effects:['Focused','Creative','Energetic','Uplifted'],
+    types:['Sativa','Hybrid'],
+    avoidTags:['nighttime','sleep','couch-lock','heavy']
+  },
+  sleep: {
+    name:'The Deep Rest Seeker',
+    title:'Power down. Deep rest.',
+    desc:"Done lying awake. These strains are built to quiet your mind, relax your muscles, and guide you into the kind of sleep you've been missing.",
+    tags:['sleep','nighttime','couch-lock','heavy','indica-dom','relaxing','pain-relief'],
+    effects:['Sleepy','Relaxed'],
+    types:['Indica'],
+    avoidTags:['daytime','morning','energetic','focus','sativa-dom']
+  },
+  creative: {
+    name:'The Creative Explorer',
+    title:'Open up. Make things.',
+    desc:"Open up. Think sideways. Make something. Limonene and ocimene lift your mood and unlock lateral thinking without putting you to sleep.",
+    tags:['creative','social','uplifting','daytime','fun','euphoric','citrus','tropical'],
+    effects:['Creative','Uplifted','Happy','Energetic'],
+    types:['Sativa','Hybrid'],
+    avoidTags:['sleep','nighttime','couch-lock','heavy']
+  },
+  uplift: {
+    name:'The Social Energy Seeker',
+    title:'Light. Euphoric. Alive.',
+    desc:"Limonene-dominant strains drive that bright, mood-elevated high that makes you want to call someone and actually go outside.",
+    tags:['social','euphoric','uplifting','energetic','fun','citrus','tropical','lemon'],
+    effects:['Uplifted','Happy','Energetic','Creative'],
+    types:['Sativa','Hybrid'],
+    avoidTags:['sleep','nighttime','couch-lock','heavy']
+  },
+  balanced: {
+    name:'The Balanced Everyday',
+    title:'The best of both worlds.',
+    desc:"Smooth, versatile, no extremes. The best of both worlds — hybrid strains with caryophyllene and limonene give relaxation and mood lift simultaneously.",
+    tags:['balanced','beginner-friendly','hybrid','sweet','fruity','berry','fun'],
+    effects:['Relaxed','Happy','Creative','Euphoric'],
+    types:['Hybrid'],
+    avoidTags:[]
+  }
+};
+
+var scores = {relax:0, focus:0, sleep:0, creative:0, uplift:0};
+var step = 0;
+var isBeginner = false;
+var WEIGHTS = [2,1,1,2,1];
+
+function startQuiz() {
+  document.getElementById('qIntro').style.display = 'none';
+  document.getElementById('qFlow').style.display = 'block';
+  renderStep();
+}
+
+function renderStep() {
+  var s = STEPS[step];
+  var pct = ((step + 1) / STEPS.length * 100) + '%';
+  document.getElementById('qProgressFill').style.width = pct;
+  document.getElementById('qProgressLabel').textContent = 'Question ' + (step + 1) + ' of ' + STEPS.length;
+  var opts = s.options.map(function(o, i) {
+    return '<div class="q-option" onclick="pickOption(' + i + ')">' +
+      '<div class="q-opt-icon">' + o.icon + '</div>' +
+      '<div class="q-opt-label">' + o.label + '</div>' +
+      '<div class="q-opt-sub">' + o.sub + '</div>' +
+    '</div>';
+  }).join('');
+  var html = '<p class="q-question">' + s.q + '</p><div class="q-options">' + opts + '</div>';
+  var el = document.getElementById('qStep');
+  el.classList.remove('visible');
+  el.innerHTML = html;
+  setTimeout(function() { el.classList.add('visible'); }, 20);
+}
+
+function pickOption(idx) {
+  var opt = STEPS[step].options[idx];
+  var w = WEIGHTS[step] || 1;
+  Object.keys(opt.scores || {}).forEach(function(k) {
+    if (scores[k] !== undefined) scores[k] += (opt.scores[k] * w);
+  });
+  if (opt.beginner) isBeginner = true;
+
+  // Highlight selection briefly then advance
+  var cards = document.querySelectorAll('.q-option');
+  if (cards[idx]) cards[idx].classList.add('selected');
+
+  setTimeout(function() {
+    step++;
+    if (step >= STEPS.length) {
+      showAnalyzing();
+    } else {
+      renderStep();
+    }
+  }, 280);
+}
+
+function showAnalyzing() {
+  document.getElementById('qFlow').style.display = 'none';
+  document.getElementById('qAnalyzing').style.display = 'block';
+  setTimeout(showResults, 1600);
+}
+
+function getProfile() {
+  var best = 'balanced';
+  var bestScore = -1;
+  var order = ['relax','focus','sleep','creative','uplift'];
+  order.forEach(function(k) {
+    if (scores[k] > bestScore) { bestScore = scores[k]; best = k; }
+  });
+  return best;
+}
+
+function scoreStrain(strain, profile) {
+  var p = PROFILES[profile];
+  var s = 0;
+  var tags = strain.tags || [];
+  var effects = strain.effects || [];
+
+  tags.forEach(function(t) {
+    if (p.tags.indexOf(t) !== -1) s += 3;
+    if (p.avoidTags.indexOf(t) !== -1) s -= 4;
+  });
+  effects.forEach(function(e) {
+    if (p.effects.indexOf(e) !== -1) s += 2;
+  });
+  if (p.types.indexOf(strain.type) !== -1) s += 2;
+
+  if (isBeginner) {
+    if (tags.indexOf('beginner-friendly') !== -1) s += 3;
+    if ((strain.thc_max || 20) <= 18) s += 2;
+    else if ((strain.thc_max || 20) >= 25) s -= 3;
+  }
+  s += (strain.rating || 4);
+  return s;
+}
+
+function getTopStrains(profile) {
+  var scored = ALL_STRAINS.map(function(s) {
+    return {strain: s, score: scoreStrain(s, profile)};
+  });
+  scored.sort(function(a,b) { return b.score - a.score; });
+  return scored.slice(0,3).map(function(x) { return x.strain; });
+}
+
+function strainCard(strain, rank) {
+  var badges = ['&#11088; Best Match', isBeginner ? '&#127807; Gentle Option' : '&#128293; Step It Up', '&#127807; Start Here'];
+  var badgeClass = rank === 0 ? 'gold' : '';
+  var typeClass = strain.type ? strain.type.toLowerCase() : 'hybrid';
+  var thc = (strain.thc_min || '?') + '\u2013' + (strain.thc_max || '?') + '%';
+  var terps = (strain.terpenes || []).slice(0,3).map(function(t) {
+    return '<span class="q-strain-tag terpene">' + t + '</span>';
+  }).join('');
+  var effs = (strain.effects || []).slice(0,3).map(function(e) {
+    return '<span class="q-strain-tag">' + e + '</span>';
+  }).join('');
+  var flavors = (strain.flavors || []).slice(0,3).map(function(f) {
+    return '<span class="q-strain-tag">' + f + '</span>';
+  }).join('');
+  return '<div class="q-strain-card' + (rank === 0 ? ' best' : '') + '">' +
+    '<div class="q-strain-top">' +
+      '<div>' +
+        '<div class="q-strain-name">' + strain.name + '</div>' +
+        '<div class="q-strain-type-row">' +
+          '<span class="q-strain-type ' + typeClass + '">' + strain.type + '</span>' +
+          '<span class="q-strain-thc">THC ' + thc + '</span>' +
+        '</div>' +
+      '</div>' +
+      '<span class="q-strain-badge ' + badgeClass + '">' + badges[rank] + '</span>' +
+    '</div>' +
+    '<div class="q-strain-tags">' + terps + effs + '</div>' +
+    '<p class="q-strain-desc">' + (strain.description || '') + '</p>' +
+    (flavors ? '<div class="q-strain-tags" style="margin-top:10px">' + flavors + '</div>' : '') +
+  '</div>';
+}
+
+function showResults() {
+  document.getElementById('qAnalyzing').style.display = 'none';
+  var profile = getProfile();
+  var p = PROFILES[profile];
+  var topStrains = getTopStrains(profile);
+  var cards = topStrains.map(function(s, i) { return strainCard(s, i); }).join('');
+  var html =
+    '<div class="q-result-header">' +
+      '<div class="q-result-label">&#10022; Your Cannascenti Match</div>' +
+      '<div class="q-result-profile">' + p.name + '</div>' +
+      '<div class="q-result-title">' + p.title + '</div>' +
+      '<p class="q-result-desc">' + p.desc + '</p>' +
+    '</div>' +
+    '<div class="q-strains">' + cards + '</div>' +
+    '<div class="q-result-ctas">' +
+      '<button class="q-retake-btn" onclick="retakeQuiz()">Retake the quiz</button>' +
+      '<a href="/strains" class="q-browse-btn">Browse all 61 strains &#8594;</a>' +
+    '</div>';
+  var el = document.getElementById('qResult');
+  el.innerHTML = html;
+  el.style.display = 'block';
+  el.style.opacity = '0';
+  setTimeout(function() { el.style.transition = 'opacity .4s'; el.style.opacity = '1'; }, 20);
+}
+
+function retakeQuiz() {
+  scores = {relax:0, focus:0, sleep:0, creative:0, uplift:0};
+  step = 0;
+  isBeginner = false;
+  document.getElementById('qResult').style.display = 'none';
+  document.getElementById('qIntro').style.display = 'block';
+}
+</script>
+</body></html>`;
+    res.writeHead(200,{"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
+    res.end(html);
     return;
   }
 
