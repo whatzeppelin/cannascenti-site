@@ -9078,17 +9078,76 @@
     }
   }
 
+  function mjPickFollowUps(responseText) {
+    const lower = responseText.toLowerCase();
+    if (lower.includes('terpene') || lower.includes('myrcene') || lower.includes('limonene')) {
+      return ['What terpene is best for sleep?', 'Does terpene % matter more than THC?'];
+    }
+    if (lower.includes('edible') || lower.includes('gummy') || lower.includes('ingested')) {
+      return ['Why do edibles hit so much harder?', 'How do I dose edibles safely?'];
+    }
+    if (lower.includes('anxiety') || lower.includes('paranoi')) {
+      return ['Best strains for anxiety?', 'Does CBD cancel out anxiety from THC?', 'What causes THC paranoia?'];
+    }
+    if (lower.includes('sleep') || lower.includes('insomnia') || lower.includes('sedating')) {
+      return ['Best time to smoke before bed?', 'CBN vs THC for sleep?'];
+    }
+    if (lower.includes('focus') || lower.includes('productivity') || lower.includes('creative')) {
+      return ['Best sativa for focus?', 'Does weed actually help creativity?'];
+    }
+    if (lower.includes('hash') || lower.includes('rosin') || lower.includes('concentrate')) {
+      return ['Rosin vs live resin — what\'s the difference?', 'How is bubble hash made?'];
+    }
+    if (lower.includes('tolerance') || lower.includes('t-break') || lower.includes('reset')) {
+      return ['How long for a full tolerance reset?', 'Does CBD help during a T-break?'];
+    }
+    // Default follow-ups
+    return ['Compare two strains for me', 'What should a first-timer know?', 'Ask about a specific strain'];
+  }
+
   function mjSuggest(el) {
     document.getElementById('mjInput').value = el.textContent;
     document.getElementById('mjSuggestions').style.display = 'none';
     sendMJ();
   }
 
+  // Handle ?ask= URL param — pre-fill chat from encyclopedia pages
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    const askQ = params.get('ask');
+    if (askQ) {
+      history.replaceState(null, '', window.location.pathname);
+      setTimeout(function() { openMJWithTopic(decodeURIComponent(askQ)); }, 1200);
+    }
+  })();
+
   document.getElementById('mjInput').addEventListener('keydown', function(e) {
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMJ(); }
     this.style.height = 'auto';
     this.style.height = Math.min(this.scrollHeight, 100) + 'px';
   });
+
+  // Lightweight markdown renderer for chat bubbles
+  function mjRenderText(raw) {
+    const escaped = raw.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    return escaped
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*([^*\n]+?)\*/g, '<em>$1</em>')
+      .replace(/`([^`\n]+?)`/g, '<code style="background:rgba(255,255,255,0.08);padding:1px 5px;border-radius:3px;font-size:.88em;font-family:monospace">$1</code>')
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" style="color:#52B788;text-decoration:underline;text-underline-offset:2px" target="_self">$1</a>')
+      .replace(/\n\n/g, '</p><p style="margin-top:10px">')
+      .replace(/\n/g, '<br>');
+  }
+
+  // Global opener — called from other pages via ?ask= param or direct JS
+  function openMJWithTopic(text) {
+    if (!mjOpen) toggleMJ();
+    setTimeout(function() {
+      const inp = document.getElementById('mjInput');
+      inp.value = text;
+      sendMJ();
+    }, mjOpen ? 0 : 300);
+  }
 
   function appendMsg(role, text) {
     const msgs = document.getElementById('mjMessages');
@@ -9190,7 +9249,7 @@
               const { delta } = JSON.parse(data);
               if (delta) {
                 fullText += delta;
-                bubble.textContent = fullText;
+                bubble.innerHTML = '<p style="margin:0">' + mjRenderText(fullText) + '</p>';
                 document.getElementById('mjMessages').scrollTop = document.getElementById('mjMessages').scrollHeight;
               }
             } catch {}
@@ -9199,6 +9258,16 @@
       }
 
       mjHistory.push({ role: 'assistant', content: fullText });
+
+      // Show contextual follow-up chips after response
+      const followUps = mjPickFollowUps(fullText);
+      if (followUps.length > 0) {
+        const suggestEl = document.getElementById('mjSuggestions');
+        suggestEl.innerHTML = followUps.map(c =>
+          `<span class="mj-suggestion" onclick="mjSuggest(this)">${c}</span>`
+        ).join('');
+        suggestEl.style.display = 'flex';
+      }
     } catch (err) {
       removeTyping();
       appendMsg('assistant', "Sorry, I'm having trouble connecting right now. Make sure the server is running.");
