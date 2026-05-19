@@ -12785,7 +12785,8 @@ function renderScanCard(d) {
 
     const items = matches.map((s, i) => {
       const type = (s.type || 'hybrid').toLowerCase();
-      return `<div class="enc-ac-item" data-name="${s.name}" onclick="encPickStrain('${s.name.replace(/'/g,"\\'")}')">
+      const slug = s.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+      return `<div class="enc-ac-item" data-name="${s.name}" onclick="window.location='/strains/${slug}'">
         <span class="enc-ac-name">${highlight(s.name)}</span>
         <span class="enc-ac-type ${type}">${type}</span>
       </div>`;
