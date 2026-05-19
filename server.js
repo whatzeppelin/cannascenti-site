@@ -662,6 +662,7 @@ ${isPrivacy ? `<h1>Privacy Policy</h1><p>Last updated: April 2026</p>
     <a href="/concentrates" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Concentrates</a>
     <a href="/cooking" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Cooking</a>
     <a href="/cannalogy" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Cannalogy</a>
+    <a href="/glossary" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Glossary</a>
   </div>
 </nav>`;
 
@@ -4166,6 +4167,248 @@ document.addEventListener('DOMContentLoaded', function(){
 </script>
 </body></html>`;
     res.writeHead(200, {"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
+    res.end(html);
+    return;
+  }
+
+  // ─── /glossary ────────────────────────────────────────────────────────────
+  if (req.method === "GET" && req.url === "/glossary") {
+    const _GL = [
+      // ── SCIENCE ──
+      { term:"Anandamide", cat:"science", def:"The body's naturally produced endocannabinoid — often called the 'bliss molecule.' Anandamide binds to CB1 receptors and regulates mood, memory, appetite, and pain. THC mimics anandamide's structure, which is why cannabis produces its psychoactive effects." },
+      { term:"Bioavailability", cat:"science", def:"The percentage of a consumed cannabinoid that actually reaches the bloodstream. Smoked cannabis: 20–35%. Vaporized: 50–80%. Oral edibles: 4–20%. Sublingual tinctures: 40–50%. Method of consumption is the single biggest variable in how potent cannabis feels." },
+      { term:"Broad Spectrum", cat:"science", def:"A cannabis extract containing multiple cannabinoids and terpenes, but with THC fully removed. Retains some entourage effect benefits without any psychoactive component. Common in CBD products aimed at people who cannot have any THC." },
+      { term:"CB1 Receptor", cat:"science", def:"The primary receptor for THC in the human brain and nervous system. Densely concentrated in the hippocampus (memory), basal ganglia (movement), cerebellum (coordination), and prefrontal cortex (decision-making). CB1 activation is responsible for cannabis's psychoactive effects." },
+      { term:"CB2 Receptor", cat:"science", def:"Cannabinoid receptor found primarily in immune tissue, the spleen, gut, and peripheral nervous system. CB2 activation modulates inflammation and immune response. CBD and CBG interact strongly with CB2 — the main pathway for cannabis's anti-inflammatory effects." },
+      { term:"Cannabinoid", cat:"science", def:"A class of chemical compounds that interact with the endocannabinoid system. Over 100 cannabinoids have been identified in cannabis, including THC, CBD, CBG, CBN, THCV, and Delta-8. Each has a distinct molecular shape that determines which receptors it binds to and what effects it produces." },
+      { term:"Decarboxylation", cat:"science", def:"The chemical process of removing a carboxyl group from THCA (converting it to active THC) or CBDA (converting to CBD) using heat. Raw cannabis contains inactive THCA — smoking or vaporizing provides instant decarboxylation. For edibles, cannabis must be heated at 220–240°F for 30–45 minutes before infusion." },
+      { term:"Endocannabinoid System", cat:"science", def:"The biological system in all mammals that regulates mood, memory, pain, appetite, sleep, and immune function using endogenous cannabinoid molecules. Discovered in 1992, it consists of CB1 and CB2 receptors, endocannabinoids (anandamide, 2-AG), and the enzymes that synthesize and break them down." },
+      { term:"Entourage Effect", cat:"science", def:"The theory that cannabinoids and terpenes work synergistically — producing effects greater than any single compound alone. Proposed by Dr. Ethan Russo. Explains why whole-plant cannabis often produces a more nuanced, effective experience than isolated THC or CBD." },
+      { term:"Flavonoids", cat:"science", def:"Phytonutrients found throughout the plant kingdom, including cannabis. Cannabis-specific flavonoids (cannaflavins) have been shown to have anti-inflammatory and antioxidant properties. Flavonoids contribute to the plant's color and may contribute to entourage effects." },
+      { term:"Full Spectrum", cat:"science", def:"An extract retaining the complete profile of cannabinoids, terpenes, and flavonoids from the original plant — including THC. Full spectrum extracts produce the most complete entourage effect and are considered the highest-quality form of cannabis extract." },
+      { term:"Terpene", cat:"science", def:"Aromatic organic compounds produced by the trichomes of the cannabis plant — and by virtually every other plant on earth. Terpenes give each strain its distinctive smell and flavor, and interact with cannabinoids to modulate the character of the high. Over 200 terpenes have been identified in cannabis." },
+      { term:"THCA", cat:"science", def:"Tetrahydrocannabinolic acid — the raw, non-psychoactive precursor to THC found in living and freshly harvested cannabis. THCA converts to active THC through decarboxylation (heat). The percentage on a lab report labeled 'THC' usually reflects potential THC after decarboxylation." },
+      { term:"Trichomes", cat:"science", def:"Tiny resin-producing glands that cover the flowers and leaves of female cannabis plants. Trichomes are where cannabinoids, terpenes, and flavonoids are synthesized and stored. The density and maturity of trichomes — observable with a loupe — determines optimal harvest timing." },
+      { term:"2-AG", cat:"science", def:"2-Arachidonoylglycerol — the most abundant endocannabinoid in the brain, present at 170x the concentration of anandamide. 2-AG is a full agonist at both CB1 and CB2 receptors and plays a key role in appetite regulation, pain relief, and immune function." },
+      // ── CULTIVATION ──
+      { term:"Apical Dominance", cat:"cultivation", def:"The natural tendency of a plant to direct its growth energy into the main central stem (apex), suppressing lateral branching. Topping removes the apex to eliminate apical dominance and redirect energy into multiple equal colas." },
+      { term:"Autoflower", cat:"cultivation", def:"A cannabis variety that flowers based on age rather than light cycle. Derived from Cannabis ruderalis genetics. Autoflowers flower in 8–12 weeks from seed regardless of photoperiod — making them ideal for beginners, outdoor growers, and multiple harvests per season." },
+      { term:"Clone", cat:"cultivation", def:"A genetically identical cutting taken from a mother plant and rooted to create a new plant. Cloning preserves the exact genetic expression (phenotype) of a specific plant — unlike seeds, which produce genetic variation. Professional growers use clones for consistent, repeatable results." },
+      { term:"Cola", cat:"cultivation", def:"The main flowering cluster of a female cannabis plant — the primary bud site that receives the most direct light. 'Main cola' refers to the topmost, largest flower cluster. Training techniques like topping and manifolding aim to maximize the number of equal colas per plant." },
+      { term:"Curing", cat:"cultivation", def:"The controlled drying and aging of harvested cannabis in sealed containers to develop flavor, aroma, and smoothness. Proper cure (2–8 weeks at 60–65°F, 58–62% RH) allows chlorophyll to break down and terpenes to fully develop. The cure is what separates top-shelf cannabis from mediocre." },
+      { term:"Cultivar", cat:"cultivation", def:"The scientifically accurate term for what is commonly called a 'strain.' Short for 'cultivated variety.' A cultivar is a plant variety developed through selective breeding for specific traits. Most cannabis professionals now prefer 'cultivar' over 'strain,' though both terms are in common use." },
+      { term:"Flushing", cat:"cultivation", def:"Watering cannabis with plain pH-adjusted water (no nutrients) for 1–2 weeks before harvest. Intended to purge residual nutrients from the plant and growing medium to improve the taste of the final product. Effectiveness is debated — more impactful in synthetic nutrient grows than living soil." },
+      { term:"Landrace", cat:"cultivation", def:"A cannabis variety that developed naturally in a specific geographic region over thousands of years, adapted to local climate and conditions. Examples: Afghani (Hindu Kush), Durban Poison (South Africa), Thai. Landrace genetics form the foundation of virtually all modern cannabis breeding." },
+      { term:"Living Soil", cat:"cultivation", def:"A cultivation approach focused on building a biologically active growing medium rich in beneficial microorganisms, fungi, and diverse organic matter. Plants in living soil are fed by the soil ecosystem rather than synthetic nutrients — producing more complex terpene profiles and sustainable results." },
+      { term:"LST", cat:"cultivation", def:"Low Stress Training — bending and tying branches horizontally to expose lower bud sites directly to light without cutting the plant. Creates a wide, even canopy and can increase yield by 30% by maximizing the number of bud sites receiving direct light. Zero recovery time." },
+      { term:"Manifolding", cat:"cultivation", def:"An advanced training technique using sequential topping and symmetrical LST to create a precisely even 8-cola structure from a single plant. Every cola receives identical light and nutrients. Produces extremely predictable yields at the cost of additional veg time." },
+      { term:"Node", cat:"cultivation", def:"The point on the stem where branches and leaves emerge. Nodes are counted when topping — 'topping at the 5th node' means cutting the main stem above the 5th branch point. Node spacing indicates internodal distance, which affects final plant structure." },
+      { term:"Phenotype", cat:"cultivation", def:"The physical expression of a plant's genetics in a given environment. Two seeds from the same genetic cross can produce phenotypically different plants with different aromas, structure, and potency. 'Pheno hunting' is the process of growing multiple seeds to find the superior expression." },
+      { term:"Photoperiod", cat:"cultivation", def:"A cannabis plant that requires a specific light cycle to trigger flowering — typically 12 hours of darkness to initiate the flower stage. Outdoors, photoperiod plants flower as days shorten in autumn. Indoors, the grower controls flowering by switching to 12/12 lighting." },
+      { term:"SCROG", cat:"cultivation", def:"Screen of Green — a training method using a horizontal net installed above the canopy. Branches are woven through the net laterally as they grow, creating a completely flat, even canopy that maximizes the number of bud sites in the direct light zone." },
+      { term:"Topping", cat:"cultivation", def:"Cutting the main apical stem cleanly at the 5th node to eliminate apical dominance and force the plant to grow two equal main colas. The most fundamental yield-increasing technique. Combined with subsequent toppings, can exponentially increase cola count." },
+      { term:"VPD", cat:"cultivation", def:"Vapor Pressure Deficit — the difference between the amount of moisture in the air and how much moisture the air can hold at saturation. The most accurate way to dial in the relationship between temperature and humidity for optimal plant transpiration and growth rate." },
+      // ── CONCENTRATES ──
+      { term:"BHO", cat:"concentrates", def:"Butane Hash Oil — cannabis extract produced using butane as a solvent. The most versatile extraction method, producing shatter, wax, budder, live resin, and sauce depending on technique. Must be professionally purged in a closed-loop system to remove solvent residue." },
+      { term:"Charas", cat:"concentrates", def:"The oldest known concentrate — made by slowly rubbing fresh, living cannabis plants between the palms to collect the resin. Originating in India and Nepal, charas captures terpene compounds lost during drying. Malana Cream from Himachal Pradesh is the most prized variety." },
+      { term:"Cold Cure", cat:"concentrates", def:"A rosin finishing technique where freshly pressed rosin is sealed in a jar and cured at 32–40°F for 24–72 hours. THCA nucleates slowly as temperature drops, creating a creamy badder consistency with smoother, more integrated flavor than fresh-press rosin." },
+      { term:"Distillate", cat:"concentrates", def:"Cannabis oil refined through fractional distillation to 85–95% cannabinoid purity. Nearly odorless and tasteless on its own — a blank canvas. The backbone of the commercial vape cartridge and edibles industry. Terpenes are typically added back after distillation." },
+      { term:"Full Melt", cat:"concentrates", def:"A grade of ice water hash or dry sift that melts completely on a hot surface with zero residue — rated 5–6 stars on the bubble hash scale. Full melt quality requires exceptional genetics, precise technique, and optimal wash conditions." },
+      { term:"Hash Rosin", cat:"concentrates", def:"The pinnacle of solventless extraction — ice water hash pressed into rosin. The starting material determines the ceiling of quality: 6-star full-melt hash produces rosin with unrivaled terpene expression and potency. The most prized concentrate in the current market." },
+      { term:"HTFSE", cat:"concentrates", def:"High Terpene Full Spectrum Extract — the terpene-rich fraction of live resin that separates from THCA crystals over time. HTFSE can contain 30–50% terpenes by weight, producing an intensely aromatic concentrate. Often combined with THCA diamonds as 'terp sauce.'" },
+      { term:"Ice Water Hash", cat:"concentrates", def:"Cannabis agitated in ice-cold water to break off trichome heads, then collected through stacked mesh bags of decreasing micron sizes. The 73–90 micron bags produce the finest, purest hash. Freeze-drying preserves the terpene profile that air-drying destroys." },
+      { term:"Kief", cat:"concentrates", def:"The collected trichome heads that fall from cannabis through mechanical agitation or handling — the most basic form of concentration. Quality ranges from full-plant kief (grinder bottom chamber) to hyper-refined dry sift that approaches full-melt quality." },
+      { term:"Live Resin", cat:"concentrates", def:"Concentrate made from fresh-frozen cannabis using hydrocarbon solvents at very low temperatures. Preserves the complete terpene profile of the living plant. Coined in Colorado in 2013, live resin created the modern terpene-obsessed concentrate culture." },
+      { term:"Live Rosin", cat:"concentrates", def:"The apex of solventless extraction — fresh-frozen cannabis washed into ice water hash, freeze-dried, then pressed into rosin. Captures the terpene profile of the living plant. Fresh-frozen starting material contains 20–40% more terpenes than cured material." },
+      { term:"Rosin", cat:"concentrates", def:"Concentrate produced by applying heat and pressure to cannabis flower, kief, or ice water hash — squeezing out a sap-like resin. Zero solvents, instant results, full spectrum. The most accessible solventless concentrate, achievable at home with a rosin press." },
+      { term:"Shatter", cat:"concentrates", def:"BHO purged at low temperature and allowed to cool undisturbed into a translucent, glass-like slab. Once the dominant concentrate form, largely displaced by more terpene-rich live resin and rosin. Clarity indicates purity — cloudiness suggests fats or impurities." },
+      { term:"Solventless", cat:"concentrates", def:"Concentrates produced without chemical solvents — using only ice, water, heat, pressure, and mechanical agitation. Includes ice water hash, rosin, dry sift, and charas. The premium end of the concentrate market has shifted almost entirely to solventless in recent years." },
+      { term:"THCA Diamonds", cat:"concentrates", def:"Near-pure crystalline THCA (95–99%) formed through a controlled nucleation process in supersaturated cannabis extract. Upon dabbing, heat instantly converts THCA to THC. Odorless alone — typically consumed combined with HTFSE sauce for the 'diamonds and sauce' format." },
+      // ── CONSUMPTION ──
+      { term:"Combustion", cat:"consumption", def:"Burning cannabis at 1500°F+ to produce smoke for inhalation. The oldest and most common consumption method. Produces carbon monoxide, benzene, and tar alongside cannabinoids and terpenes. Bioavailability: 20–35%. Onset: 30–90 seconds." },
+      { term:"Dabbing", cat:"consumption", def:"Vaporizing a small amount of concentrate on a heated surface (nail or banger) and inhaling through a water pipe. The most efficient consumption method for concentrates. Low-temperature dabbing (440–520°F) preserves terpenes; high-temperature destroys them." },
+      { term:"First Pass Effect", cat:"consumption", def:"The metabolic process where orally consumed THC passes through the liver before entering the bloodstream, converting delta-9-THC to 11-hydroxy-THC. This metabolite is more potent and crosses the blood-brain barrier more readily — explaining why edibles feel stronger and last longer than smoked cannabis." },
+      { term:"Microdosing", cat:"consumption", def:"Consuming sub-perceptual amounts of cannabis (typically 1–5mg THC) to obtain therapeutic benefits without significant intoxication. Used for anxiety, focus, creativity, and pain management. The practice of starting low and going slow to find the minimum effective dose." },
+      { term:"Onset Time", cat:"consumption", def:"The time between consuming cannabis and feeling its effects. Smoked/vaped: 30–90 seconds. Sublingual tinctures: 15–45 minutes. Edibles: 30 minutes–2 hours. Topicals: 15–30 minutes (local only). Onset variation is the most common cause of accidental overconsumption with edibles." },
+      { term:"Titration", cat:"consumption", def:"The process of precisely adjusting cannabis dosage to find the minimum effective amount. Involves starting with a very low dose and increasing incrementally until desired effects are achieved. The gold standard approach for medical patients and new consumers." },
+      { term:"Vaporization", cat:"consumption", def:"Heating cannabis below the combustion point (320–450°F) to convert cannabinoids and terpenes to vapor without producing smoke. Bioavailability: 50–80%. Eliminates combustion byproducts. The most efficient and cleanest inhalation method." },
+      // ── CULTURE ──
+      { term:"Budtender", cat:"culture", def:"A cannabis dispensary staff member who assists customers in selecting products. A skilled budtender has deep knowledge of strain genetics, cannabinoid profiles, terpene effects, and consumption methods — functioning as a sommelier of cannabis." },
+      { term:"Craft Cannabis", cat:"culture", def:"Small-batch, artisanally produced cannabis grown with attention to genetics, environment, and post-harvest technique. Analogous to craft beer or small-estate wine. Typically hand-trimmed, slow-cured, and sold in limited quantities. Prioritizes quality over yield." },
+      { term:"Curing (Culture)", cat:"culture", def:"In cannabis culture, 'the cure' refers to the post-harvest drying and aging process. A proper cure is the defining difference between commercial and connoisseur-grade cannabis. Long cures (4–8 weeks) produce smoother smoke, more complex flavor, and extended shelf life." },
+      { term:"Dispensary", cat:"culture", def:"A licensed retail establishment where cannabis products are legally sold. Dispensaries range from clinical medical facilities to luxury lifestyle boutiques. Product selection, staff knowledge, and compliance requirements vary significantly by market." },
+      { term:"Fresh Frozen", cat:"culture", def:"Cannabis that is harvested and immediately frozen in dry ice or liquid nitrogen, preventing any drying or curing. Used as starting material for live resin and live rosin extraction. Preserves a significantly higher terpene content than cured material." },
+      { term:"Nose", cat:"culture", def:"Cannabis industry slang for a strain's aroma profile — equivalent to 'bouquet' in wine. An exceptional nose is considered a primary quality indicator by connoisseurs. Terpene integrity is the primary driver of nose quality." },
+      { term:"Single Source", cat:"culture", def:"A cannabis product where every component — from the plant to the extraction — comes from one farm or producer. Analogous to single-estate olive oil or single-origin coffee. Allows complete traceability and reflects a specific terroir and grow philosophy." },
+      { term:"Terroir", cat:"culture", def:"Borrowed from wine culture — the combination of climate, soil, altitude, and human technique that gives cannabis grown in a specific location its distinctive character. Used to describe why Emerald Triangle outdoor cannabis tastes different from indoor-grown product despite the same genetics." }
+    ];
+
+    const catColors = { science:"#5CA0E8", cultivation:"#52B788", concentrates:"#E8A84C", consumption:"#9B72CF", culture:"#E07B6A" };
+    const catLabels = { science:"Science", cultivation:"Cultivation", concentrates:"Concentrates", consumption:"Consumption", culture:"Culture" };
+
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cannabis Glossary — Cannascenti Encyclopedia</title>
+<meta name="description" content="The definitive cannabis glossary — 60+ terms covering cannabinoids, terpenes, cultivation, concentrates, and consumption. From anandamide to THCA diamonds.">
+${ENC_FONTS}
+<style>
+${ENC_BASE_CSS}
+.gl-search-wrap{margin-bottom:32px;position:relative}
+.gl-search{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:14px 18px 14px 44px;color:#F2EAD8;font-family:Montserrat,sans-serif;font-size:.9rem;outline:none;transition:border-color .2s}
+.gl-search:focus{border-color:rgba(82,183,136,0.4)}
+.gl-search::placeholder{color:rgba(242,234,216,0.3)}
+.gl-search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:rgba(242,234,216,0.3);font-size:.9rem;pointer-events:none}
+.gl-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
+.gl-btn{background:none;border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:6px 16px;font-family:Montserrat,sans-serif;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px}
+.gl-btn.active,.gl-btn:hover{border-color:currentColor;background:rgba(255,255,255,0.05)}
+.gl-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.gl-count{font-size:.65rem;opacity:.5;margin-left:2px}
+.gl-alpha-bar{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:40px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.gl-alpha-btn{width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:600;border-radius:6px;cursor:pointer;color:rgba(242,234,216,0.4);background:none;border:none;font-family:Montserrat,sans-serif;transition:all .2s}
+.gl-alpha-btn:hover,.gl-alpha-btn.has-terms{color:#52B788}
+.gl-alpha-btn.active{background:rgba(82,183,136,0.1);color:#52B788}
+.gl-alpha-btn.empty{opacity:.2;cursor:default}
+.gl-letter-group{margin-bottom:40px}
+.gl-letter{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:rgba(82,183,136,0.3);margin-bottom:16px;line-height:1}
+.gl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.gl-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px;transition:border-color .2s}
+.gl-card:hover{border-color:rgba(255,255,255,0.14)}
+.gl-card.hidden{display:none}
+.gl-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;gap:10px}
+.gl-term{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:#F2EAD8}
+.gl-cat{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;border-radius:12px;padding:2px 8px;font-weight:600;white-space:nowrap;flex-shrink:0}
+.gl-def{font-size:.8rem;line-height:1.75;color:rgba(242,234,216,0.58)}
+.gl-no-results{text-align:center;padding:60px 0;font-size:.9rem;color:rgba(242,234,216,0.3)}
+</style>
+</head>
+<body>
+${ENC_NAV}
+<div class="enc-page">
+  <div class="enc-page-header">
+    <div class="enc-label">&#10022; Cannascenti Encyclopedia</div>
+    <h1 class="enc-title">The Cannabis <em>Glossary.</em></h1>
+    <p class="enc-desc">Every term you'll encounter in cannabis — from the science of the endocannabinoid system to cultivation technique to concentrate culture. Searchable, filterable, and plainly explained.</p>
+  </div>
+
+  <div class="gl-search-wrap">
+    <span class="gl-search-icon">&#128269;</span>
+    <input class="gl-search" id="glSearch" type="text" placeholder="Search terms..." oninput="filterGlossary()">
+  </div>
+
+  <div class="gl-filters" id="glFilters"></div>
+  <div class="gl-alpha-bar" id="glAlpha"></div>
+  <div id="glContent"></div>
+</div>
+
+<script>
+var TERMS = ${JSON.stringify(_GL)};
+var CAT_COLORS = ${JSON.stringify(catColors)};
+var CAT_LABELS = ${JSON.stringify(catLabels)};
+var activeCat = 'all';
+var activeLetter = 'all';
+
+function renderFilters() {
+  var cats = ['all','science','cultivation','concentrates','consumption','culture'];
+  document.getElementById('glFilters').innerHTML = cats.map(function(c) {
+    var col = c === 'all' ? '#F2EAD8' : CAT_COLORS[c];
+    var lbl = c === 'all' ? 'All' : CAT_LABELS[c];
+    var count = c === 'all' ? TERMS.length : TERMS.filter(function(t){ return t.cat === c; }).length;
+    return '<button class="gl-btn' + (activeCat === c ? ' active' : '') + '" style="color:' + col + '" onclick="setCat(\'' + c + '\')">' +
+      (c !== 'all' ? '<div class="gl-dot" style="background:' + col + '"></div>' : '') +
+      lbl + '<span class="gl-count">' + count + '</span>' +
+    '</button>';
+  }).join('');
+}
+
+function setCat(cat) {
+  activeCat = cat;
+  activeLetter = 'all';
+  renderFilters();
+  renderAlpha();
+  renderContent();
+}
+
+function getFiltered() {
+  var q = (document.getElementById('glSearch').value || '').toLowerCase().trim();
+  return TERMS.filter(function(t) {
+    var catOk = activeCat === 'all' || t.cat === activeCat;
+    var letterOk = activeLetter === 'all' || t.term[0].toUpperCase() === activeLetter;
+    var searchOk = !q || t.term.toLowerCase().indexOf(q) !== -1 || t.def.toLowerCase().indexOf(q) !== -1;
+    return catOk && letterOk && searchOk;
+  });
+}
+
+function renderAlpha() {
+  var filtered = getFiltered();
+  var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  var available = {};
+  TERMS.filter(function(t){ return activeCat === 'all' || t.cat === activeCat; }).forEach(function(t) {
+    available[t.term[0].toUpperCase()] = true;
+  });
+  document.getElementById('glAlpha').innerHTML =
+    '<button class="gl-alpha-btn' + (activeLetter === 'all' ? ' active' : '') + '" onclick="setLetter(\'all\')">All</button>' +
+    letters.map(function(l) {
+      var has = available[l];
+      var isActive = activeLetter === l;
+      return '<button class="gl-alpha-btn' + (isActive ? ' active' : '') + (has ? ' has-terms' : ' empty') + '"' +
+        (has ? ' onclick="setLetter(\'' + l + '\')"' : '') + '>' + l + '</button>';
+    }).join('');
+}
+
+function setLetter(l) {
+  activeLetter = l;
+  renderAlpha();
+  renderContent();
+}
+
+function renderContent() {
+  var filtered = getFiltered();
+  if (!filtered.length) {
+    document.getElementById('glContent').innerHTML = '<div class="gl-no-results">No terms found.</div>';
+    return;
+  }
+  var groups = {};
+  filtered.forEach(function(t) {
+    var l = t.term[0].toUpperCase();
+    if (!groups[l]) groups[l] = [];
+    groups[l].push(t);
+  });
+  var letters = Object.keys(groups).sort();
+  document.getElementById('glContent').innerHTML = letters.map(function(l) {
+    var cards = groups[l].map(function(t) {
+      var col = CAT_COLORS[t.cat] || '#52B788';
+      var lbl = CAT_LABELS[t.cat] || t.cat;
+      return '<div class="gl-card">' +
+        '<div class="gl-card-top">' +
+          '<div class="gl-term">' + t.term + '</div>' +
+          '<span class="gl-cat" style="background:' + col + '22;color:' + col + '">' + lbl + '</span>' +
+        '</div>' +
+        '<p class="gl-def">' + t.def + '</p>' +
+      '</div>';
+    }).join('');
+    return '<div class="gl-letter-group">' +
+      '<div class="gl-letter">' + l + '</div>' +
+      '<div class="gl-grid">' + cards + '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function filterGlossary() {
+  activeLetter = 'all';
+  renderAlpha();
+  renderContent();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  renderFilters();
+  renderAlpha();
+  renderContent();
+});
+</script>
+</body></html>`;
+    res.writeHead(200,{"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
     res.end(html);
     return;
   }
