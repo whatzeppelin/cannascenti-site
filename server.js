@@ -4957,7 +4957,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   <div id="qIntro" class="q-intro">
     <div class="q-label">&#10022; The Cannascenti Match</div>
     <h1 class="q-intro-title">Find what <em>actually</em><br>works for you.</h1>
-    <p class="q-intro-sub">5 questions. 30 seconds. A personalized cannabis profile matched to real strains from our database of 61 cultivars.</p>
+    <p class="q-intro-sub">5 questions. 30 seconds. A personalized cannabis profile matched to real strains from our database of 295+ cultivars.</p>
     <button class="q-start-btn" onclick="startQuiz()">Begin &#8594;</button>
   </div>
 
@@ -4973,7 +4973,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   <!-- ANALYZING -->
   <div id="qAnalyzing" style="display:none" class="q-analyzing">
     <div class="q-analyzing-title">Analyzing your profile&#8230;</div>
-    <div class="q-analyzing-sub">Matching against 61 strains</div>
+    <div class="q-analyzing-sub">Matching against 295+ strains</div>
     <div class="q-dots"><div class="q-dot"></div><div class="q-dot"></div><div class="q-dot"></div></div>
   </div>
 
@@ -5241,7 +5241,7 @@ function showResults() {
     '<div class="q-strains">' + cards + '</div>' +
     '<div class="q-result-ctas">' +
       '<button class="q-retake-btn" onclick="retakeQuiz()">Retake the quiz</button>' +
-      '<a href="/strains" class="q-browse-btn">Browse all 61 strains &#8594;</a>' +
+      '<a href="/strains" class="q-browse-btn">Browse all 295+ strains &#8594;</a>' +
     '</div>';
   var el = document.getElementById('qResult');
   el.innerHTML = html;
