@@ -10316,5 +10316,3303 @@
       "modern"
     ],
     "rating": 4.6
+  },
+  {
+    "name": "Afghani #1",
+    "type": "indica",
+    "thc_min": 16,
+    "thc_max": 22,
+    "cbd": 0.2,
+    "description": "A classic landrace indica with earthy, hash-like aromatics and subtle spice notes. Delivers deep body relaxation and sedative effects ideal for evening use and pain relief. Known for its resinous, compact buds and reliable genetics.",
+    "effects": [
+      "Relaxed",
+      "Sedated",
+      "Happy",
+      "Pain Relief",
+      "Euphoric"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Hashish",
+      "Caryophyllene"
+    ],
+    "flavors": [
+      "Earthy",
+      "Hash",
+      "Spice",
+      "Woody"
+    ],
+    "tags": [
+      "nighttime",
+      "indica",
+      "medical",
+      "pain-relief",
+      "classic"
+    ],
+    "rating": 4.6
+  },
+  {
+    "name": "Congolese",
+    "type": "sativa",
+    "thc_min": 18,
+    "thc_max": 24,
+    "cbd": 0.1,
+    "description": "A rare African landrace sativa with uplifting, cerebral effects and tropical fruit aromas. Produces energizing, creative mental stimulation with a clean, focused high. Best used during daytime for productivity and social situations.",
+    "effects": [
+      "Uplifted",
+      "Energetic",
+      "Creative",
+      "Focused",
+      "Happy"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Pinene",
+      "Ocimene"
+    ],
+    "flavors": [
+      "Tropical",
+      "Sweet",
+      "Citrus",
+      "Fruity"
+    ],
+    "tags": [
+      "daytime",
+      "sativa",
+      "creative",
+      "energetic",
+      "rare"
+    ],
+    "rating": 4.5
+  },
+  {
+    "name": "Kerala",
+    "type": "sativa",
+    "thc_min": 14,
+    "thc_max": 20,
+    "cbd": 0.3,
+    "description": "An Indian landrace sativa from the Kerala region with spicy, peppery aromatics and subtle herbal notes. Delivers balanced cerebral stimulation with mild body relaxation. Ideal for daytime use and meditation practices.",
+    "effects": [
+      "Uplifted",
+      "Focused",
+      "Relaxed",
+      "Creative",
+      "Clear-headed"
+    ],
+    "terpenes": [
+      "Caryophyllene",
+      "Myrcene",
+      "Pinene"
+    ],
+    "flavors": [
+      "Spice",
+      "Herbal",
+      "Pepper",
+      "Earthy"
+    ],
+    "tags": [
+      "daytime",
+      "sativa",
+      "balanced",
+      "meditative",
+      "landrace"
+    ],
+    "rating": 4.3
+  },
+  {
+    "name": "Altai",
+    "type": "indica",
+    "thc_min": 15,
+    "thc_max": 21,
+    "cbd": 0.2,
+    "description": "A hardy mountain-origin indica with sweet, floral aromatics and subtle berry undertones. Produces calm, body-focused relaxation with mild euphoria, perfect for evening unwinding. Known for frost-resistant genetics and dense resin production.",
+    "effects": [
+      "Relaxed",
+      "Calm",
+      "Happy",
+      "Sleepy",
+      "Content"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Limonene",
+      "Linalool"
+    ],
+    "flavors": [
+      "Sweet",
+      "Floral",
+      "Berry",
+      "Woody"
+    ],
+    "tags": [
+      "nighttime",
+      "indica",
+      "relaxing",
+      "medical",
+      "hardy"
+    ],
+    "rating": 4.4
+  },
+  {
+    "name": "Lebanese",
+    "type": "indica",
+    "thc_min": 17,
+    "thc_max": 23,
+    "cbd": 0.15,
+    "description": "A resinous hashish-origin landrace with peppery, spiced cedar aromatics and subtle fruity notes. Delivers potent body effects with calming mental relaxation ideal for pain management. Traditionally used for hash production.",
+    "effects": [
+      "Relaxed",
+      "Happy",
+      "Pain Relief",
+      "Sedated",
+      "Euphoric"
+    ],
+    "terpenes": [
+      "Caryophyllene",
+      "Myrcene",
+      "Humulene"
+    ],
+    "flavors": [
+      "Spice",
+      "Cedar",
+      "Pepper",
+      "Fruity"
+    ],
+    "tags": [
+      "nighttime",
+      "indica-dom",
+      "medical",
+      "hashish",
+      "potent"
+    ],
+    "rating": 4.5
+  },
+  {
+    "name": "Citrus Haze",
+    "type": "sativa",
+    "thc_min": 19,
+    "thc_max": 25,
+    "cbd": 0.1,
+    "description": "A vibrant sativa hybrid bursting with bright citrus aromatics—orange, lemon, and grapefruit notes dominate. Delivers euphoric, energetic cerebral effects perfect for creative pursuits and social engagement. A daytime favorite for mood elevation.",
+    "effects": [
+      "Uplifted",
+      "Euphoric",
+      "Energetic",
+      "Creative",
+      "Focused"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Pinene",
+      "Myrcene"
+    ],
+    "flavors": [
+      "Citrus",
+      "Orange",
+      "Lemon",
+      "Grapefruit"
+    ],
+    "tags": [
+      "daytime",
+      "sativa",
+      "creative",
+      "uplifting",
+      "fruity"
+    ],
+    "rating": 4.7
+  },
+  {
+    "name": "OG Kush Breath",
+    "type": "hybrid",
+    "thc_min": 20,
+    "thc_max": 26,
+    "cbd": 0.15,
+    "description": "A potent hybrid cross combining OG Kush genetics with minty, kushy aromatics and fuel undertones. Delivers balanced euphoria and body relaxation with powerful cerebral effects. Ideal for experienced users seeking potent, long-lasting results.",
+    "effects": [
+      "Euphoric",
+      "Relaxed",
+      "Happy",
+      "Focused",
+      "Uplifted"
+    ],
+    "terpenes": [
+      "Caryophyllene",
+      "Limonene",
+      "Myrcene"
+    ],
+    "flavors": [
+      "Kush",
+      "Minty",
+      "Fuel",
+      "Earthy"
+    ],
+    "tags": [
+      "hybrid",
+      "potent",
+      "balanced",
+      "evening",
+      "strong"
+    ],
+    "rating": 4.6
+  },
+  {
+    "name": "Confidential Cheese",
+    "type": "hybrid",
+    "thc_min": 18,
+    "thc_max": 24,
+    "cbd": 0.2,
+    "description": "A pungent hybrid with distinctive savory cheese aromatics, tangy undertones, and herbal notes. Produces relaxing body effects with uplifting cerebral stimulation. Best for evening social use or mild pain relief.",
+    "effects": [
+      "Relaxed",
+      "Happy",
+      "Uplifted",
+      "Creative",
+      "Social"
+    ],
+    "terpenes": [
+      "Caryophyllene",
+      "Myrcene",
+      "Linalool"
+    ],
+    "flavors": [
+      "Cheese",
+      "Savory",
+      "Herbal",
+      "Tangy"
+    ],
+    "tags": [
+      "hybrid",
+      "pungent",
+      "relaxing",
+      "social",
+      "unique"
+    ],
+    "rating": 4.3
+  },
+  {
+    "name": "Mega Wellness OG",
+    "type": "indica",
+    "thc_min": 16,
+    "thc_max": 22,
+    "cbd": 0.8,
+    "description": "A medical-focused OG variant with balanced cannabinoids for therapeutic effects without extreme intoxication. Delivers pain relief, body relaxation, and calm mental clarity. Excellent for patients seeking wellness benefits with functional effects.",
+    "effects": [
+      "Relaxed",
+      "Pain Relief",
+      "Calm",
+      "Focused",
+      "Content"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Caryophyllene",
+      "Pinene"
+    ],
+    "flavors": [
+      "Earthy",
+      "Kushy",
+      "Herbal",
+      "Spice"
+    ],
+    "tags": [
+      "medical",
+      "therapeutic",
+      "indica-dom",
+      "wellness",
+      "balanced"
+    ],
+    "rating": 4.5
+  },
+  {
+    "name": "Alien OG Kush",
+    "type": "hybrid",
+    "thc_min": 21,
+    "thc_max": 27,
+    "cbd": 0.1,
+    "description": "A potent, high-THC hybrid combining Alien genetics with OG Kush lineage, featuring sharp pine and fuel aromatics. Delivers intense cerebral effects with powerful body relaxation. Best for experienced users seeking significant effects.",
+    "effects": [
+      "Euphoric",
+      "Relaxed",
+      "Focused",
+      "Uplifted",
+      "Creative"
+    ],
+    "terpenes": [
+      "Caryophyllene",
+      "Pinene",
+      "Limonene"
+    ],
+    "flavors": [
+      "Pine",
+      "Fuel",
+      "Kush",
+      "Earthy"
+    ],
+    "tags": [
+      "hybrid",
+      "potent",
+      "high-thc",
+      "experienced",
+      "powerful"
+    ],
+    "rating": 4.6
+  },
+  {
+    "name": "Cali OG",
+    "type": "indica",
+    "thc_min": 19,
+    "thc_max": 25,
+    "cbd": 0.15,
+    "description": "A robust California-bred OG variant with dense buds, peppery kushy aromatics, and subtle citrus notes. Produces reliable body relaxation with mood elevation and mild euphoria. A dependable strain for evening use and stress relief.",
+    "effects": [
+      "Relaxed",
+      "Happy",
+      "Euphoric",
+      "Uplifted",
+      "Calm"
+    ],
+    "terpenes": [
+      "Caryophyllene",
+      "Limonene",
+      "Myrcene"
+    ],
+    "flavors": [
+      "Kush",
+      "Pepper",
+      "Citrus",
+      "Earthy"
+    ],
+    "tags": [
+      "nighttime",
+      "indica-dom",
+      "reliable",
+      "california",
+      "classic"
+    ],
+    "rating": 4.5
+  },
+  {
+    "name": "Rare Dankness",
+    "type": "hybrid",
+    "thc_min": 20,
+    "thc_max": 26,
+    "cbd": 0.12,
+    "description": "A premium hybrid strain with exceptional resin production, complex dank aromatics, and sweet undertones. Delivers balanced euphoria, creativity, and body relaxation. Prized by connoisseurs for flavor complexity and potency.",
+    "effects": [
+      "Euphoric",
+      "Creative",
+      "Relaxed",
+      "Happy",
+      "Uplifted"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Caryophyllene",
+      "Myrcene"
+    ],
+    "flavors": [
+      "Dank",
+      "Sweet",
+      "Complex",
+      "Fruity"
+    ],
+    "tags": [
+      "hybrid",
+      "connoisseur",
+      "potent",
+      "resinous",
+      "flavorful"
+    ],
+    "rating": 4.7
+  },
+  {
+    "name": "Alien Kush",
+    "type": "hybrid",
+    "thc_min": 19,
+    "thc_max": 25,
+    "cbd": 0.1,
+    "description": "A mysterious hybrid blending Alien genetics with Kush lineage, offering unique fruity and spiced aromatics. Produces cerebral uplift combined with body relaxation and euphoria. Ideal for creative sessions and social use.",
+    "effects": [
+      "Uplifted",
+      "Euphoric",
+      "Creative",
+      "Relaxed",
+      "Happy"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Caryophyllene",
+      "Pinene"
+    ],
+    "flavors": [
+      "Fruity",
+      "Spice",
+      "Kush",
+      "Sweet"
+    ],
+    "tags": [
+      "hybrid",
+      "creative",
+      "fruity",
+      "balanced",
+      "unique"
+    ],
+    "rating": 4.5
+  },
+  {
+    "name": "Lucid OG",
+    "type": "hybrid",
+    "thc_min": 18,
+    "thc_max": 24,
+    "cbd": 0.2,
+    "description": "A sativa-leaning hybrid emphasizing clear-headed, focused effects with body relaxation undertones. OG genetics provide earthy, kushy aromatics with herbal spice notes. Best for daytime productivity or evening creative work.",
+    "effects": [
+      "Focused",
+      "Uplifted",
+      "Creative",
+      "Relaxed",
+      "Happy"
+    ],
+    "terpenes": [
+      "Pinene",
+      "Caryophyllene",
+      "Myrcene"
+    ],
+    "flavors": [
+      "Kush",
+      "Herbal",
+      "Spice",
+      "Earthy"
+    ],
+    "tags": [
+      "hybrid",
+      "focused",
+      "daytime",
+      "creative",
+      "clear-headed"
+    ],
+    "rating": 4.4
+  },
+  {
+    "name": "Jupiter OG",
+    "type": "indica",
+    "thc_min": 19,
+    "thc_max": 25,
+    "cbd": 0.15,
+    "description": "A spacey, potent OG variant with earthy, woody aromatics and subtle peppery notes. Delivers profound body relaxation with cerebral effects that feel expansive and euphoric. Perfect for evening relaxation and deep rest.",
+    "effects": [
+      "Relaxed",
+      "Euphoric",
+      "Happy",
+      "Sedated",
+      "Uplifted"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Caryophyllene",
+      "Pinene"
+    ],
+    "flavors": [
+      "Earthy",
+      "Woody",
+      "Pepper",
+      "Kushy"
+    ],
+    "tags": [
+      "nighttime",
+      "indica-dom",
+      "potent",
+      "relaxing",
+      "euphoric"
+    ],
+    "rating": 4.6
+  },
+  {
+    "name": "Purple Diesel",
+    "type": "hybrid",
+    "thc_min": 18,
+    "thc_max": 24,
+    "cbd": 0.1,
+    "description": "A pungent hybrid combining fuel and grape aromatics with creeping cerebral effects. Best enjoyed in afternoon sessions for creative focus without heavy sedation. Delivers smooth smoke with diesel undertones and subtle berry finish.",
+    "effects": [
+      "Uplifted",
+      "Focused",
+      "Relaxed",
+      "Happy",
+      "Energetic"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Limonene",
+      "Caryophyllene"
+    ],
+    "flavors": [
+      "Diesel",
+      "Berry",
+      "Grape",
+      "Spicy"
+    ],
+    "tags": [
+      "hybrid",
+      "creative",
+      "afternoon",
+      "fuel-aroma",
+      "mood-boost"
+    ],
+    "rating": 4.3
+  },
+  {
+    "name": "Citrus Diesel",
+    "type": "sativa",
+    "thc_min": 19,
+    "thc_max": 25,
+    "cbd": 0.1,
+    "description": "A bright sativa-dominant cross featuring zesty citrus and sharp diesel notes with uplifting mental clarity. Provides daytime energy and motivation without anxiety. Crisp, refreshing smoke perfect for creative projects.",
+    "effects": [
+      "Energetic",
+      "Uplifted",
+      "Focused",
+      "Happy",
+      "Creative"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Pinene",
+      "Myrcene"
+    ],
+    "flavors": [
+      "Citrus",
+      "Lemon",
+      "Diesel",
+      "Zesty"
+    ],
+    "tags": [
+      "sativa-dom",
+      "daytime",
+      "creative",
+      "energetic",
+      "citrus"
+    ],
+    "rating": 4.4
+  },
+  {
+    "name": "Blue Cheese OG",
+    "type": "indica",
+    "thc_min": 17,
+    "thc_max": 23,
+    "cbd": 0.15,
+    "description": "A pungent indica-dominant strain with bold blue cheese funk and earthy undertones. Delivers heavy-bodied relaxation with couch-lock potential and mild euphoria. Ideal for evening use and pain management.",
+    "effects": [
+      "Relaxed",
+      "Sleepy",
+      "Happy",
+      "Euphoric",
+      "Calm"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Caryophyllene",
+      "Humulene"
+    ],
+    "flavors": [
+      "Cheese",
+      "Blue",
+      "Earthy",
+      "Pungent"
+    ],
+    "tags": [
+      "indica-dom",
+      "nighttime",
+      "relaxation",
+      "pain-relief",
+      "funk"
+    ],
+    "rating": 4.2
+  },
+  {
+    "name": "Cheesy Dick",
+    "type": "hybrid",
+    "thc_min": 16,
+    "thc_max": 22,
+    "cbd": 0.1,
+    "description": "A quirky hybrid with savory cheese and peppery spice, offering balanced euphoria and body relaxation. Delivers unique tangy aromatics with surprising smoothness. Best for evening social use or solo wind-down.",
+    "effects": [
+      "Relaxed",
+      "Happy",
+      "Euphoric",
+      "Uplifted",
+      "Calm"
+    ],
+    "terpenes": [
+      "Caryophyllene",
+      "Myrcene",
+      "Limonene"
+    ],
+    "flavors": [
+      "Cheese",
+      "Spicy",
+      "Peppery",
+      "Tangy"
+    ],
+    "tags": [
+      "hybrid",
+      "evening",
+      "unique-flavor",
+      "social",
+      "balanced"
+    ],
+    "rating": 4.1
+  },
+  {
+    "name": "Trainwreck Cheese",
+    "type": "sativa",
+    "thc_min": 18,
+    "thc_max": 24,
+    "cbd": 0.1,
+    "description": "An energetic sativa-hybrid cross merging spicy cheese with citrus and pine notes. Delivers potent mental uplift with invigorating effects perfect for daytime productivity. Sharp, memorable flavor profile with smooth burn.",
+    "effects": [
+      "Energetic",
+      "Uplifted",
+      "Creative",
+      "Focused",
+      "Happy"
+    ],
+    "terpenes": [
+      "Pinene",
+      "Limonene",
+      "Caryophyllene"
+    ],
+    "flavors": [
+      "Cheese",
+      "Citrus",
+      "Pine",
+      "Spicy"
+    ],
+    "tags": [
+      "sativa-dom",
+      "daytime",
+      "productive",
+      "creative",
+      "energetic"
+    ],
+    "rating": 4.3
+  },
+  {
+    "name": "Forum Cut GSC",
+    "type": "hybrid",
+    "thc_min": 20,
+    "thc_max": 26,
+    "cbd": 0.1,
+    "description": "The legendary phenotype of Girl Scout Cookies with enhanced sweetness, minty undertones, and creamy smoke. Potent euphoric effects with balanced body relaxation and mental clarity. A connoisseur's choice for quality and consistency.",
+    "effects": [
+      "Euphoric",
+      "Happy",
+      "Relaxed",
+      "Focused",
+      "Uplifted"
+    ],
+    "terpenes": [
+      "Caryophyllene",
+      "Limonene",
+      "Humulene"
+    ],
+    "flavors": [
+      "Sweet",
+      "Minty",
+      "Creamy",
+      "Earthy"
+    ],
+    "tags": [
+      "hybrid",
+      "premium",
+      "evening",
+      "euphoric",
+      "balanced"
+    ],
+    "rating": 4.7
+  },
+  {
+    "name": "Mints",
+    "type": "hybrid",
+    "thc_min": 19,
+    "thc_max": 25,
+    "cbd": 0.1,
+    "description": "A cooling hybrid with pronounced fresh mint and herbal aromatics, creating crisp, refreshing effects. Combines mental clarity with gentle body relaxation without heaviness. Excellent for any time of day, especially hot weather.",
+    "effects": [
+      "Relaxed",
+      "Happy",
+      "Uplifted",
+      "Focused",
+      "Calm"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Myrcene",
+      "Pinene"
+    ],
+    "flavors": [
+      "Mint",
+      "Fresh",
+      "Herbal",
+      "Cooling"
+    ],
+    "tags": [
+      "hybrid",
+      "fresh",
+      "anytime",
+      "unique",
+      "cooling"
+    ],
+    "rating": 4.4
+  },
+  {
+    "name": "London Chello",
+    "type": "hybrid",
+    "thc_min": 17,
+    "thc_max": 23,
+    "cbd": 0.1,
+    "description": "A sophisticated hybrid with citrusy cello notes and subtle funk, delivering balanced euphoria and gentle relaxation. Complex aromatic profile with smooth, creamy smoke. Perfect for discerning users seeking nuance.",
+    "effects": [
+      "Happy",
+      "Relaxed",
+      "Euphoric",
+      "Uplifted",
+      "Calm"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Myrcene",
+      "Caryophyllene"
+    ],
+    "flavors": [
+      "Citrus",
+      "Funk",
+      "Creamy",
+      "Complex"
+    ],
+    "tags": [
+      "hybrid",
+      "evening",
+      "sophisticated",
+      "balanced",
+      "unique"
+    ],
+    "rating": 4.3
+  },
+  {
+    "name": "Grease Monkey OG",
+    "type": "indica",
+    "thc_min": 18,
+    "thc_max": 24,
+    "cbd": 0.15,
+    "description": "A potent indica with earthy, slightly skunky aromatics and heavy physical effects. Delivers profound body relaxation and sedation ideal for nighttime and pain relief. Rich, robust flavor with smooth finish.",
+    "effects": [
+      "Relaxed",
+      "Sleepy",
+      "Happy",
+      "Calm",
+      "Euphoric"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Caryophyllene",
+      "Humulene"
+    ],
+    "flavors": [
+      "Earthy",
+      "Skunk",
+      "Herbal",
+      "Spicy"
+    ],
+    "tags": [
+      "indica-dom",
+      "nighttime",
+      "relaxation",
+      "pain-relief",
+      "potent"
+    ],
+    "rating": 4.4
+  },
+  {
+    "name": "Dosidos #22",
+    "type": "indica",
+    "thc_min": 20,
+    "thc_max": 26,
+    "cbd": 0.1,
+    "description": "A premium indica phenotype with sweet, doughy aromatics and subtle cream notes. Delivers powerful full-body relaxation with euphoric uplift and deep calm. Ideal for evening relaxation and quality sleep.",
+    "effects": [
+      "Relaxed",
+      "Sleepy",
+      "Euphoric",
+      "Happy",
+      "Calm"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Caryophyllene",
+      "Limonene"
+    ],
+    "flavors": [
+      "Sweet",
+      "Doughy",
+      "Creamy",
+      "Vanilla"
+    ],
+    "tags": [
+      "indica-dom",
+      "nighttime",
+      "premium",
+      "sleep-aid",
+      "euphoric"
+    ],
+    "rating": 4.6
+  },
+  {
+    "name": "Gello Gelato",
+    "type": "hybrid",
+    "thc_min": 19,
+    "thc_max": 25,
+    "cbd": 0.1,
+    "description": "A luxurious hybrid combining berry and creamy gelato aromatics with balanced mental and physical effects. Delivers smooth, dessert-like smoke with euphoric uplift and body comfort. Premium choice for discerning connoisseurs.",
+    "effects": [
+      "Happy",
+      "Relaxed",
+      "Euphoric",
+      "Uplifted",
+      "Calm"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Myrcene",
+      "Caryophyllene"
+    ],
+    "flavors": [
+      "Gelato",
+      "Berry",
+      "Creamy",
+      "Sweet"
+    ],
+    "tags": [
+      "hybrid",
+      "premium",
+      "evening",
+      "dessert-like",
+      "balanced"
+    ],
+    "rating": 4.5
+  },
+  {
+    "name": "Original Zkittlez",
+    "type": "indica",
+    "thc_min": 16,
+    "thc_max": 22,
+    "cbd": 0.1,
+    "description": "A fruity indica with vibrant tropical and candy-like aromatics reminiscent of the original candy. Delivers mild euphoria with gentle body relaxation and uplifted mood. Smooth, flavorful smoke ideal for evening enjoyment.",
+    "effects": [
+      "Relaxed",
+      "Happy",
+      "Uplifted",
+      "Euphoric",
+      "Calm"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Limonene",
+      "Caryophyllene"
+    ],
+    "flavors": [
+      "Tropical",
+      "Fruity",
+      "Candy",
+      "Sweet"
+    ],
+    "tags": [
+      "indica",
+      "fruity",
+      "evening",
+      "smooth",
+      "mild"
+    ],
+    "rating": 4.2
+  },
+  {
+    "name": "Birthday Cake Kush",
+    "type": "indica",
+    "thc_min": 17,
+    "thc_max": 23,
+    "cbd": 0.15,
+    "description": "A decadent indica-dominant strain with sweet vanilla cake and frosting aromatics. Delivers cozy euphoria with progressive body relaxation and mild sedation. Perfect for dessert-like evening sessions and celebration moments.",
+    "effects": [
+      "Relaxed",
+      "Happy",
+      "Euphoric",
+      "Calm",
+      "Sleepy"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Limonene",
+      "Caryophyllene"
+    ],
+    "flavors": [
+      "Cake",
+      "Vanilla",
+      "Sweet",
+      "Frosting"
+    ],
+    "tags": [
+      "indica-dom",
+      "nighttime",
+      "dessert",
+      "celebratory",
+      "sweet"
+    ],
+    "rating": 4.3
+  },
+  {
+    "name": "Strawberry Cake",
+    "type": "hybrid",
+    "thc_min": 18,
+    "thc_max": 24,
+    "cbd": 0.1,
+    "description": "A delightful hybrid merging strawberry and vanilla cake notes with balanced euphoria and relaxation. Delivers smooth, sweet smoke with modest potency and accessible effects. Ideal for social use or solo indulgence.",
+    "effects": [
+      "Happy",
+      "Relaxed",
+      "Euphoric",
+      "Uplifted",
+      "Calm"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Myrcene",
+      "Caryophyllene"
+    ],
+    "flavors": [
+      "Strawberry",
+      "Cake",
+      "Vanilla",
+      "Sweet"
+    ],
+    "tags": [
+      "hybrid",
+      "fruity",
+      "evening",
+      "social",
+      "balanced"
+    ],
+    "rating": 4.2
+  },
+  {
+    "name": "Gary Payton OG",
+    "type": "hybrid",
+    "thc_min": 21,
+    "thc_max": 27,
+    "cbd": 0.1,
+    "description": "A potent hybrid with earthy, spicy, and gassy aromatics delivering powerful euphoria and mental clarity. Balanced potency with creeping physical effects perfect for experienced users. Bold, memorable flavor with quality effect profile.",
+    "effects": [
+      "Euphoric",
+      "Uplifted",
+      "Relaxed",
+      "Creative",
+      "Happy"
+    ],
+    "terpenes": [
+      "Caryophyllene",
+      "Limonene",
+      "Myrcene"
+    ],
+    "flavors": [
+      "Earthy",
+      "Spicy",
+      "Gassy",
+      "Herbal"
+    ],
+    "tags": [
+      "hybrid",
+      "potent",
+      "evening",
+      "euphoric",
+      "experienced"
+    ],
+    "rating": 4.5
+  },
+  {
+    "name": "Pancakes OG",
+    "type": "hybrid",
+    "thc_min": 22,
+    "thc_max": 28,
+    "cbd": 0.1,
+    "description": "A creamy, dessert-forward hybrid with sweet vanilla and butter aromas reminiscent of fresh pancakes. Effects are uplifting yet relaxing, providing a balanced high perfect for afternoon use. Known for enhancing mood and creativity while maintaining mental clarity.",
+    "effects": [
+      "Relaxed",
+      "Happy",
+      "Uplifted",
+      "Creative",
+      "Focused"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Limonene",
+      "Caryophyllene"
+    ],
+    "flavors": [
+      "Vanilla",
+      "Butter",
+      "Sweet",
+      "Cream"
+    ],
+    "tags": [
+      "hybrid",
+      "daytime",
+      "creative",
+      "social",
+      "uplifting"
+    ],
+    "rating": 4.6
+  },
+  {
+    "name": "Biscotti Mintz",
+    "type": "hybrid",
+    "thc_min": 24,
+    "thc_max": 29,
+    "cbd": 0.1,
+    "description": "A minty-fresh take on the classic Biscotti lineage, combining cool menthol notes with warm cookie dough undertones. Delivers a balanced euphoria with subtle relaxation, ideal for both social and solitary use. The sharp mint profile provides an invigorating sensory experience.",
+    "effects": [
+      "Euphoric",
+      "Relaxed",
+      "Uplifted",
+      "Happy",
+      "Calm"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Menthol",
+      "Myrcene",
+      "Caryophyllene"
+    ],
+    "flavors": [
+      "Mint",
+      "Cookie",
+      "Spice",
+      "Cream"
+    ],
+    "tags": [
+      "hybrid",
+      "daytime",
+      "social",
+      "flavor-forward",
+      "balanced"
+    ],
+    "rating": 4.7
+  },
+  {
+    "name": "Tropicana Cherry",
+    "type": "sativa",
+    "thc_min": 20,
+    "thc_max": 26,
+    "cbd": 0.2,
+    "description": "A vibrant sativa blend of tropical citrus and tart cherry notes that awakens the senses. Provides energetic, uplifting effects with mental clarity and focus, making it excellent for daytime activities. The flavor profile is bright and fruity with lingering berry sweetness.",
+    "effects": [
+      "Energetic",
+      "Uplifted",
+      "Focused",
+      "Creative",
+      "Happy"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Pinene",
+      "Humulene"
+    ],
+    "flavors": [
+      "Cherry",
+      "Citrus",
+      "Tropical",
+      "Berry"
+    ],
+    "tags": [
+      "sativa",
+      "daytime",
+      "energetic",
+      "creative",
+      "fruit-forward"
+    ],
+    "rating": 4.5
+  },
+  {
+    "name": "Gello",
+    "type": "indica",
+    "thc_min": 18,
+    "thc_max": 24,
+    "cbd": 0.1,
+    "description": "A smooth, gelato-inspired indica with creamy vanilla and subtle berry notes blended with earthy undertones. Delivers profound body relaxation and mental calm, perfect for evening use or pain relief. The strain melts into deep comfort without heavy sedation.",
+    "effects": [
+      "Relaxed",
+      "Calm",
+      "Euphoric",
+      "Content",
+      "Peaceful"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Limonene",
+      "Caryophyllene"
+    ],
+    "flavors": [
+      "Vanilla",
+      "Berry",
+      "Cream",
+      "Earthy"
+    ],
+    "tags": [
+      "indica",
+      "nighttime",
+      "relaxation",
+      "medical",
+      "comfort"
+    ],
+    "rating": 4.6
+  },
+  {
+    "name": "Jealousy OG",
+    "type": "hybrid",
+    "thc_min": 25,
+    "thc_max": 30,
+    "cbd": 0.1,
+    "description": "A potent hybrid cross combining OG intensity with modern flavor complexity, offering citrus and pine notes with creamy undertones. Effects are powerfully relaxing with a dreamy, euphoric quality that settles into the body. Best reserved for evening or experienced users.",
+    "effects": [
+      "Relaxed",
+      "Euphoric",
+      "Happy",
+      "Sleepy",
+      "Calm"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Caryophyllene",
+      "Limonene"
+    ],
+    "flavors": [
+      "Citrus",
+      "Pine",
+      "Cream",
+      "Spice"
+    ],
+    "tags": [
+      "hybrid",
+      "nighttime",
+      "potent",
+      "OG-type",
+      "relaxation"
+    ],
+    "rating": 4.7
+  },
+  {
+    "name": "Permanent Marker OG",
+    "type": "indica",
+    "thc_min": 23,
+    "thc_max": 28,
+    "cbd": 0.1,
+    "description": "A pungent OG variant with sharp, chemical-forward aromatics reminiscent of ink and fuel with pine notes. Induces deep physical relaxation and mental sedation, ideal for nighttime use or chronic pain management. The intensity builds gradually into couch-lock.",
+    "effects": [
+      "Relaxed",
+      "Sleepy",
+      "Calm",
+      "Happy",
+      "Peaceful"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Caryophyllene",
+      "Pinene"
+    ],
+    "flavors": [
+      "Pine",
+      "Diesel",
+      "Spice",
+      "Earthy"
+    ],
+    "tags": [
+      "indica",
+      "nighttime",
+      "medical",
+      "potent",
+      "pain-relief"
+    ],
+    "rating": 4.5
+  },
+  {
+    "name": "RS-11",
+    "type": "hybrid",
+    "thc_min": 24,
+    "thc_max": 30,
+    "cbd": 0.1,
+    "description": "A celebrity hybrid with a complex profile blending sweet candy, citrus, and earthy spice with hints of gas. Delivers balanced euphoria and relaxation with maintained awareness, suitable for afternoon or evening use. Known for exceptional flavor and consistent potency.",
+    "effects": [
+      "Euphoric",
+      "Relaxed",
+      "Happy",
+      "Creative",
+      "Calm"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Myrcene",
+      "Caryophyllene"
+    ],
+    "flavors": [
+      "Candy",
+      "Citrus",
+      "Spice",
+      "Earthy"
+    ],
+    "tags": [
+      "hybrid",
+      "balanced",
+      "flavor-forward",
+      "potent",
+      "popular"
+    ],
+    "rating": 4.8
+  },
+  {
+    "name": "Canna-Tsu",
+    "type": "sativa",
+    "thc_min": 8,
+    "thc_max": 12,
+    "cbd": 12.5,
+    "description": "A high-CBD sativa offering balanced cannabinoid ratios with peppery spice and subtle sweetness. Provides clear-headed relief without intoxication, making it ideal for daytime medical use and symptom management. Effects are uplifting yet grounding.",
+    "effects": [
+      "Clear",
+      "Uplifted",
+      "Calm",
+      "Focused",
+      "Balanced"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Caryophyllene",
+      "Pinene"
+    ],
+    "flavors": [
+      "Spice",
+      "Sweet",
+      "Peppery",
+      "Herbal"
+    ],
+    "tags": [
+      "sativa",
+      "high-CBD",
+      "medical",
+      "daytime",
+      "non-intoxicating"
+    ],
+    "rating": 4.4
+  },
+  {
+    "name": "Sweet and Sour Widow",
+    "type": "hybrid",
+    "thc_min": 19,
+    "thc_max": 25,
+    "cbd": 0.15,
+    "description": "A charming cross combining floral sweetness with tart citrus and herbal notes on a potent lineage. Delivers balanced effects with mild euphoria, relaxation, and mental clarity perfect for afternoon use. The flavor contrast of sweet and sour is remarkably pronounced.",
+    "effects": [
+      "Happy",
+      "Relaxed",
+      "Uplifted",
+      "Calm",
+      "Content"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Myrcene",
+      "Linalool"
+    ],
+    "flavors": [
+      "Citrus",
+      "Floral",
+      "Sweet",
+      "Sour"
+    ],
+    "tags": [
+      "hybrid",
+      "balanced",
+      "daytime",
+      "flavor-forward",
+      "social"
+    ],
+    "rating": 4.5
+  },
+  {
+    "name": "Penelope",
+    "type": "sativa",
+    "thc_min": 12,
+    "thc_max": 18,
+    "cbd": 8,
+    "description": "A mild, CBD-forward sativa bred for medical efficacy with subtle herbal and fruity aromatics. Offers gentle uplifting effects without overwhelming psychoactivity, excellent for daytime symptom relief and anxiety management. The low THC makes it accessible for sensitivity-prone users.",
+    "effects": [
+      "Uplifted",
+      "Calm",
+      "Focused",
+      "Clear",
+      "Balanced"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Pinene",
+      "Limonene"
+    ],
+    "flavors": [
+      "Herbal",
+      "Fruity",
+      "Sweet",
+      "Earthy"
+    ],
+    "tags": [
+      "sativa",
+      "high-CBD",
+      "medical",
+      "low-THC",
+      "anxiety-relief"
+    ],
+    "rating": 4.3
+  },
+  {
+    "name": "Omrita Rx3",
+    "type": "hybrid",
+    "thc_min": 15,
+    "thc_max": 20,
+    "cbd": 6.5,
+    "description": "A well-balanced medical hybrid with moderate cannabinoids and herbal-fruity aromatics designed for patient accessibility. Provides gentle relaxation with mild euphoria and pain relief without heavy sedation. Suitable for all-day medical use.",
+    "effects": [
+      "Calm",
+      "Relaxed",
+      "Happy",
+      "Focused",
+      "Content"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Caryophyllene",
+      "Limonene"
+    ],
+    "flavors": [
+      "Herbal",
+      "Fruit",
+      "Spice",
+      "Earthy"
+    ],
+    "tags": [
+      "hybrid",
+      "medical",
+      "balanced",
+      "moderate-THC",
+      "pain-relief"
+    ],
+    "rating": 4.4
+  },
+  {
+    "name": "Suzy Q",
+    "type": "sativa",
+    "thc_min": 5,
+    "thc_max": 10,
+    "cbd": 11,
+    "description": "A low-THC hemp-derived sativa with clean, herbal-citrus notes and minimal psychoactivity. Perfect for daytime medical users seeking focus and mild uplifting effects without intoxication. The gentle profile makes it suitable for anxiety and productivity enhancement.",
+    "effects": [
+      "Clear",
+      "Uplifted",
+      "Focused",
+      "Calm",
+      "Balanced"
+    ],
+    "terpenes": [
+      "Pinene",
+      "Myrcene",
+      "Limonene"
+    ],
+    "flavors": [
+      "Citrus",
+      "Herbal",
+      "Clean",
+      "Fresh"
+    ],
+    "tags": [
+      "sativa",
+      "high-CBD",
+      "hemp",
+      "low-THC",
+      "daytime"
+    ],
+    "rating": 4.2
+  },
+  {
+    "name": "Remedy CBD",
+    "type": "indica",
+    "thc_min": 6,
+    "thc_max": 10,
+    "cbd": 15,
+    "description": "A medicinal CBD-dominant indica with earthy, floral notes designed for therapeutic use without significant intoxication. Delivers gentle body relaxation and mental calm for evening recovery and chronic condition management. The high CBD-to-THC ratio prioritizes healing.",
+    "effects": [
+      "Calm",
+      "Relaxed",
+      "Peaceful",
+      "Content",
+      "Clear"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Linalool",
+      "Caryophyllene"
+    ],
+    "flavors": [
+      "Earthy",
+      "Floral",
+      "Herbal",
+      "Sweet"
+    ],
+    "tags": [
+      "indica",
+      "high-CBD",
+      "medical",
+      "nighttime",
+      "therapeutic"
+    ],
+    "rating": 4.3
+  },
+  {
+    "name": "Dancehall",
+    "type": "sativa",
+    "thc_min": 10,
+    "thc_max": 15,
+    "cbd": 9,
+    "description": "A reggae-inspired sativa with tropical citrus and peppery notes paired with balanced cannabinoids. Provides mild, uplifting euphoria with enhanced social and creative engagement, perfect for daytime community activities. The moderate potency welcomes all experience levels.",
+    "effects": [
+      "Uplifted",
+      "Happy",
+      "Creative",
+      "Social",
+      "Clear"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Caryophyllene",
+      "Myrcene"
+    ],
+    "flavors": [
+      "Citrus",
+      "Tropical",
+      "Pepper",
+      "Fruity"
+    ],
+    "tags": [
+      "sativa",
+      "balanced-CBD",
+      "social",
+      "creative",
+      "daytime"
+    ],
+    "rating": 4.4
+  },
+  {
+    "name": "Pamelina",
+    "type": "hybrid",
+    "thc_min": 20,
+    "thc_max": 26,
+    "cbd": 0.2,
+    "description": "A floral-forward hybrid with rose-like aromatics blended with sweet berry and subtle cream notes. Delivers balanced euphoria and mild body relaxation suitable for evening social use or creative pursuits. The fragrant profile is distinctly feminine and elegant.",
+    "effects": [
+      "Happy",
+      "Relaxed",
+      "Uplifted",
+      "Creative",
+      "Content"
+    ],
+    "terpenes": [
+      "Linalool",
+      "Limonene",
+      "Myrcene"
+    ],
+    "flavors": [
+      "Floral",
+      "Berry",
+      "Cream",
+      "Rose"
+    ],
+    "tags": [
+      "hybrid",
+      "evening",
+      "creative",
+      "social",
+      "floral"
+    ],
+    "rating": 4.5
+  },
+  {
+    "name": "Purple Afghani",
+    "type": "indica",
+    "thc_min": 16,
+    "thc_max": 22,
+    "cbd": 0.2,
+    "description": "Deep purple-hued buds with earthy, hash-forward aromatics and subtle grape undertones. Delivers heavy body relaxation and sedative effects ideal for evening use and pain relief. A classic landrace-influenced strain perfect for unwinding.",
+    "effects": [
+      "Relaxed",
+      "Sleepy",
+      "Happy",
+      "Euphoric",
+      "Pain Relief"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Caryophyllene",
+      "Pinene"
+    ],
+    "flavors": [
+      "Grape",
+      "Earthy",
+      "Hash",
+      "Sweet"
+    ],
+    "tags": [
+      "nighttime",
+      "indica",
+      "medical",
+      "relaxing",
+      "classic"
+    ],
+    "rating": 4.5
+  },
+  {
+    "name": "Qrazy Train",
+    "type": "hybrid",
+    "thc_min": 19,
+    "thc_max": 25,
+    "cbd": 0.1,
+    "description": "Energetic hybrid with bright citrus and tropical fruit notes, delivering a euphoric mental buzz paired with manageable body relaxation. Known for creative stimulation and uplifted mood, making it excellent for social settings or daytime activities. Potent yet balanced.",
+    "effects": [
+      "Uplifted",
+      "Euphoric",
+      "Creative",
+      "Happy",
+      "Energetic"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Myrcene",
+      "Terpinolene"
+    ],
+    "flavors": [
+      "Citrus",
+      "Tropical",
+      "Sweet",
+      "Fruity"
+    ],
+    "tags": [
+      "daytime",
+      "hybrid",
+      "creative",
+      "social",
+      "uplifting"
+    ],
+    "rating": 4.6
+  },
+  {
+    "name": "Alien Dawg OG",
+    "type": "hybrid",
+    "thc_min": 18,
+    "thc_max": 24,
+    "cbd": 0.15,
+    "description": "Pungent OG-leaning hybrid with diesel fuel, pine, and citrus aromatics creating a complex sensory profile. Produces strong cerebral effects with gradual body heaviness, suitable for experienced users seeking potent relaxation. Best enjoyed in evening settings.",
+    "effects": [
+      "Relaxed",
+      "Happy",
+      "Euphoric",
+      "Focused",
+      "Sleepy"
+    ],
+    "terpenes": [
+      "Caryophyllene",
+      "Limonene",
+      "Myrcene"
+    ],
+    "flavors": [
+      "Diesel",
+      "Pine",
+      "Citrus",
+      "Earthy"
+    ],
+    "tags": [
+      "hybrid",
+      "potent",
+      "nighttime",
+      "experienced",
+      "complex"
+    ],
+    "rating": 4.4
+  },
+  {
+    "name": "Voodoo",
+    "type": "indica",
+    "thc_min": 17,
+    "thc_max": 23,
+    "cbd": 0.2,
+    "description": "Dark, resinous indica with mysterious spice, grape, and subtle berry aromatics. Induces deep physical relaxation and mental calm without heavy sedation, making it versatile for evening or therapeutic use. Smooth smoke with lingering sweetness.",
+    "effects": [
+      "Relaxed",
+      "Happy",
+      "Calm",
+      "Euphoric",
+      "Peaceful"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Caryophyllene",
+      "Limonene"
+    ],
+    "flavors": [
+      "Grape",
+      "Spice",
+      "Berry",
+      "Sweet"
+    ],
+    "tags": [
+      "indica",
+      "nighttime",
+      "medical",
+      "relaxing",
+      "smooth"
+    ],
+    "rating": 4.5
+  },
+  {
+    "name": "Red Congolese",
+    "type": "sativa",
+    "thc_min": 15,
+    "thc_max": 20,
+    "cbd": 0.3,
+    "description": "Rare African sativa with distinctive red hairs, delivering energizing citrus and floral aromatics with subtle wood notes. Produces uplifting cerebral effects and sustained focus without anxiety, ideal for daytime creativity and social engagement. Smooth, long-lasting.",
+    "effects": [
+      "Uplifted",
+      "Energetic",
+      "Focused",
+      "Creative",
+      "Happy"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Terpinolene",
+      "Myrcene"
+    ],
+    "flavors": [
+      "Citrus",
+      "Floral",
+      "Wood",
+      "Sweet"
+    ],
+    "tags": [
+      "sativa",
+      "daytime",
+      "creative",
+      "energizing",
+      "rare"
+    ],
+    "rating": 4.4
+  },
+  {
+    "name": "Swazi",
+    "type": "sativa",
+    "thc_min": 14,
+    "thc_max": 19,
+    "cbd": 0.4,
+    "description": "Historic South African landrace with earthy, spicy, and herbal aromatics reminiscent of its origin. Delivers clear-headed, motivating effects with sustained mental clarity and mild euphoria. Perfect for daytime use, social situations, and creative endeavors.",
+    "effects": [
+      "Uplifted",
+      "Energetic",
+      "Motivated",
+      "Focused",
+      "Happy"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Pinene",
+      "Limonene"
+    ],
+    "flavors": [
+      "Earthy",
+      "Spice",
+      "Herbal",
+      "Woody"
+    ],
+    "tags": [
+      "sativa",
+      "daytime",
+      "landrace",
+      "heritage",
+      "motivating"
+    ],
+    "rating": 4.3
+  },
+  {
+    "name": "Durban Thai",
+    "type": "sativa",
+    "thc_min": 16,
+    "thc_max": 22,
+    "cbd": 0.2,
+    "description": "Potent sativa fusion of two legendary landraces, offering spicy, fruity, and piney aromatics with subtle tropical undertones. Delivers energetic euphoria and cerebral stimulation ideal for daytime productivity and creative pursuits. Strong, clean effects.",
+    "effects": [
+      "Uplifted",
+      "Energetic",
+      "Creative",
+      "Focused",
+      "Euphoric"
+    ],
+    "terpenes": [
+      "Terpinolene",
+      "Limonene",
+      "Myrcene"
+    ],
+    "flavors": [
+      "Spice",
+      "Fruit",
+      "Pine",
+      "Tropical"
+    ],
+    "tags": [
+      "sativa",
+      "daytime",
+      "energizing",
+      "creative",
+      "potent"
+    ],
+    "rating": 4.5
+  },
+  {
+    "name": "Lemon Sativa",
+    "type": "sativa",
+    "thc_min": 15,
+    "thc_max": 21,
+    "cbd": 0.15,
+    "description": "Bright citrus-forward sativa with pronounced lemon zest and herbal undertones creating refreshing aromatics. Produces uplifting mental effects with sustained focus and mild mood elevation, making it excellent for daytime use and creative work. Invigorating and clear.",
+    "effects": [
+      "Uplifted",
+      "Focused",
+      "Creative",
+      "Happy",
+      "Energetic"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Myrcene",
+      "Pinene"
+    ],
+    "flavors": [
+      "Lemon",
+      "Citrus",
+      "Herbal",
+      "Sweet"
+    ],
+    "tags": [
+      "sativa",
+      "daytime",
+      "creative",
+      "uplifting",
+      "citrus"
+    ],
+    "rating": 4.4
+  },
+  {
+    "name": "Sage",
+    "type": "sativa",
+    "thc_min": 14,
+    "thc_max": 20,
+    "cbd": 0.25,
+    "description": "Clean, herbal sativa with pronounced sage and woody aromatics mixed with subtle citrus brightness. Delivers gentle mental stimulation and clarity without overwhelming intensity, suited for balanced daytime use. Smooth, pleasant experience.",
+    "effects": [
+      "Uplifted",
+      "Focused",
+      "Happy",
+      "Calm",
+      "Creative"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Pinene",
+      "Limonene"
+    ],
+    "flavors": [
+      "Sage",
+      "Herbal",
+      "Woody",
+      "Citrus"
+    ],
+    "tags": [
+      "sativa",
+      "daytime",
+      "balanced",
+      "herbal",
+      "smooth"
+    ],
+    "rating": 4.2
+  },
+  {
+    "name": "Acapulco Gold Haze",
+    "type": "sativa",
+    "thc_min": 17,
+    "thc_max": 23,
+    "cbd": 0.1,
+    "description": "Premium sativa hybrid with golden appearance, delivering sweet, fruity, and floral aromatics with earthy undertones. Produces energetic euphoria and mental clarity ideal for daytime motivation and creative expression. Legendary landrace-influenced quality.",
+    "effects": [
+      "Uplifted",
+      "Energetic",
+      "Euphoric",
+      "Creative",
+      "Happy"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Terpinolene",
+      "Myrcene"
+    ],
+    "flavors": [
+      "Fruity",
+      "Sweet",
+      "Floral",
+      "Earthy"
+    ],
+    "tags": [
+      "sativa",
+      "daytime",
+      "creative",
+      "energizing",
+      "legendary"
+    ],
+    "rating": 4.6
+  },
+  {
+    "name": "Santa Marta Colombian",
+    "type": "sativa",
+    "thc_min": 16,
+    "thc_max": 21,
+    "cbd": 0.2,
+    "description": "Historic Colombian landrace with complex fruity, herbal, and woody aromatics reflecting its mountain origin. Delivers uplifting and focused effects with sustained clarity, perfect for daytime activities and social engagement. Authentic heritage strain.",
+    "effects": [
+      "Uplifted",
+      "Focused",
+      "Creative",
+      "Happy",
+      "Energetic"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Limonene",
+      "Pinene"
+    ],
+    "flavors": [
+      "Fruity",
+      "Herbal",
+      "Woody",
+      "Sweet"
+    ],
+    "tags": [
+      "sativa",
+      "daytime",
+      "landrace",
+      "heritage",
+      "focused"
+    ],
+    "rating": 4.4
+  },
+  {
+    "name": "Kilimanjaro Sativa",
+    "type": "sativa",
+    "thc_min": 15,
+    "thc_max": 20,
+    "cbd": 0.3,
+    "description": "East African sativa with exotic floral, fruity, and spicy aromatics evoking high-altitude terroir. Produces clean mental stimulation and uplifting effects without anxiety, ideal for daytime creativity and social situations. Unique flavor profile.",
+    "effects": [
+      "Uplifted",
+      "Creative",
+      "Focused",
+      "Happy",
+      "Energetic"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Terpinolene",
+      "Myrcene"
+    ],
+    "flavors": [
+      "Floral",
+      "Fruity",
+      "Spice",
+      "Herbal"
+    ],
+    "tags": [
+      "sativa",
+      "daytime",
+      "creative",
+      "exotic",
+      "uplifting"
+    ],
+    "rating": 4.3
+  },
+  {
+    "name": "Skunk Haze",
+    "type": "hybrid",
+    "thc_min": 18,
+    "thc_max": 24,
+    "cbd": 0.12,
+    "description": "Pungent sativa-dominant hybrid blending skunk's earthy spice with haze's uplifting clarity. Delivers energetic euphoria and creative stimulation with manageable body effects, suitable for experienced users seeking potent daytime relief. Strong aromatic profile.",
+    "effects": [
+      "Uplifted",
+      "Energetic",
+      "Creative",
+      "Happy",
+      "Euphoric"
+    ],
+    "terpenes": [
+      "Caryophyllene",
+      "Limonene",
+      "Myrcene"
+    ],
+    "flavors": [
+      "Skunk",
+      "Spice",
+      "Earthy",
+      "Citrus"
+    ],
+    "tags": [
+      "hybrid",
+      "sativa-dom",
+      "daytime",
+      "creative",
+      "potent"
+    ],
+    "rating": 4.5
+  },
+  {
+    "name": "Lemon Skunk OG",
+    "type": "hybrid",
+    "thc_min": 19,
+    "thc_max": 25,
+    "cbd": 0.1,
+    "description": "Potent hybrid combining lemon brightness with OG earthiness and skunk spice, creating complex multi-layered aromatics. Produces uplifting mental effects with gradual body relaxation, versatile for afternoon or early evening use. Strong and flavorful.",
+    "effects": [
+      "Uplifted",
+      "Happy",
+      "Euphoric",
+      "Relaxed",
+      "Creative"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Caryophyllene",
+      "Myrcene"
+    ],
+    "flavors": [
+      "Lemon",
+      "Skunk",
+      "Earthy",
+      "Spice"
+    ],
+    "tags": [
+      "hybrid",
+      "potent",
+      "versatile",
+      "creative",
+      "flavorful"
+    ],
+    "rating": 4.5
+  },
+  {
+    "name": "Island Skunk",
+    "type": "hybrid",
+    "thc_min": 17,
+    "thc_max": 23,
+    "cbd": 0.15,
+    "description": "Balanced hybrid with tropical fruity and pungent skunk aromatics creating a unique island-inspired profile. Delivers uplifting mood with mild relaxation, suitable for afternoon social use or creative endeavors. Pleasant, distinctive experience.",
+    "effects": [
+      "Uplifted",
+      "Happy",
+      "Relaxed",
+      "Creative",
+      "Euphoric"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Limonene",
+      "Caryophyllene"
+    ],
+    "flavors": [
+      "Tropical",
+      "Fruity",
+      "Skunk",
+      "Sweet"
+    ],
+    "tags": [
+      "hybrid",
+      "balanced",
+      "social",
+      "creative",
+      "distinctive"
+    ],
+    "rating": 4.4
+  },
+  {
+    "name": "Early Skunk",
+    "type": "hybrid",
+    "thc_min": 16,
+    "thc_max": 22,
+    "cbd": 0.2,
+    "description": "A fast-flowering hybrid bred for early harvests, delivering classic skunk aromatics with pungent fuel and earthy undertones. Effects are balanced and uplifting, ideal for daytime use or productive afternoons. Known for reliable yields and straightforward growth, making it a favorite among cultivators.",
+    "effects": [
+      "Uplifted",
+      "Energetic",
+      "Focused",
+      "Happy",
+      "Creative"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Limonene",
+      "Pinene"
+    ],
+    "flavors": [
+      "Skunk",
+      "Diesel",
+      "Earthy",
+      "Herbal"
+    ],
+    "tags": [
+      "daytime",
+      "hybrid",
+      "reliable",
+      "early-flowering",
+      "social"
+    ],
+    "rating": 4.2
+  },
+  {
+    "name": "Skunk Punch",
+    "type": "hybrid",
+    "thc_min": 18,
+    "thc_max": 24,
+    "cbd": 0.1,
+    "description": "A potent skunk-based hybrid delivering a hard-hitting punch of energizing yet grounded effects. Bold skunk and citrus aromas dominate with subtle spice notes. Perfect for experienced users seeking strong euphoria without complete sedation.",
+    "effects": [
+      "Euphoric",
+      "Energetic",
+      "Happy",
+      "Uplifted",
+      "Focused"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Myrcene",
+      "Caryophyllene"
+    ],
+    "flavors": [
+      "Skunk",
+      "Citrus",
+      "Spice",
+      "Pungent"
+    ],
+    "tags": [
+      "potent",
+      "hybrid",
+      "daytime",
+      "energetic",
+      "flavor"
+    ],
+    "rating": 4.4
+  },
+  {
+    "name": "Blueberry AK",
+    "type": "hybrid",
+    "thc_min": 17,
+    "thc_max": 23,
+    "cbd": 0.15,
+    "description": "A smooth hybrid cross pairing AK's potency with blueberry's sweet, fruity profile and calming undertones. Aroma features ripe berries with diesel fuel notes. Effects are balanced—uplifting initially, settling into relaxation, making it versatile for afternoon or evening.",
+    "effects": [
+      "Relaxed",
+      "Happy",
+      "Euphoric",
+      "Uplifted",
+      "Calm"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Pinene",
+      "Limonene"
+    ],
+    "flavors": [
+      "Blueberry",
+      "Sweet",
+      "Fruity",
+      "Diesel"
+    ],
+    "tags": [
+      "balanced",
+      "hybrid",
+      "fruity",
+      "versatile",
+      "evening"
+    ],
+    "rating": 4.3
+  },
+  {
+    "name": "Mixed Berry",
+    "type": "sativa",
+    "thc_min": 15,
+    "thc_max": 21,
+    "cbd": 0.2,
+    "description": "A vibrant sativa-leaning strain bursting with mixed berry aromatics—blueberry, raspberry, and strawberry notes create a complex fruity bouquet. Delivers uplifting, creative energy with a gentle buzz perfect for daytime social activities. Offers a refreshing, lighter experience.",
+    "effects": [
+      "Uplifted",
+      "Creative",
+      "Happy",
+      "Energetic",
+      "Social"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Myrcene",
+      "Pinene"
+    ],
+    "flavors": [
+      "Blueberry",
+      "Raspberry",
+      "Strawberry",
+      "Sweet"
+    ],
+    "tags": [
+      "daytime",
+      "sativa-dom",
+      "fruity",
+      "social",
+      "creative"
+    ],
+    "rating": 4.1
+  },
+  {
+    "name": "Berry Bomb",
+    "type": "indica",
+    "thc_min": 17,
+    "thc_max": 25,
+    "cbd": 0.1,
+    "description": "An indica-dominant powerhouse exploding with layered berry flavors and potent full-body effects. Rich berry aroma with subtle earth and spice underneath. Rapid onset brings heavy relaxation and couch-lock, ideal for evening unwinding or pain relief.",
+    "effects": [
+      "Relaxed",
+      "Sleepy",
+      "Happy",
+      "Euphoric",
+      "Calm"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Caryophyllene",
+      "Limonene"
+    ],
+    "flavors": [
+      "Berry",
+      "Sweet",
+      "Earthy",
+      "Spice"
+    ],
+    "tags": [
+      "nighttime",
+      "indica-dom",
+      "potent",
+      "relaxing",
+      "medical"
+    ],
+    "rating": 4.4
+  },
+  {
+    "name": "Berry Ryder",
+    "type": "hybrid",
+    "thc_min": 14,
+    "thc_max": 19,
+    "cbd": 0.15,
+    "description": "An autoflowering hybrid blending berry sweetness with balanced hybrid effects for quick, convenient cultivation. Aroma is predominantly fruity with gentle herbal notes. Effects are clear-headed yet mildly relaxing, suitable for daytime to early evening use.",
+    "effects": [
+      "Happy",
+      "Uplifted",
+      "Calm",
+      "Focused",
+      "Relaxed"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Limonene",
+      "Pinene"
+    ],
+    "flavors": [
+      "Berry",
+      "Sweet",
+      "Herbal",
+      "Fruity"
+    ],
+    "tags": [
+      "autoflowering",
+      "hybrid",
+      "beginner-friendly",
+      "quick-grow",
+      "balanced"
+    ],
+    "rating": 4
+  },
+  {
+    "name": "Raspberry OG",
+    "type": "hybrid",
+    "thc_min": 18,
+    "thc_max": 24,
+    "cbd": 0.12,
+    "description": "A premium hybrid merging OG Kush's pedigree with tart raspberry aromatics and underlying pine. Delivers potent euphoria with grounded, body-heavy effects. Perfect for experienced users seeking robust flavor complexity and reliable, powerful relaxation.",
+    "effects": [
+      "Relaxed",
+      "Euphoric",
+      "Happy",
+      "Calm",
+      "Uplifted"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Limonene",
+      "Caryophyllene"
+    ],
+    "flavors": [
+      "Raspberry",
+      "Pine",
+      "Earthy",
+      "Citrus"
+    ],
+    "tags": [
+      "hybrid",
+      "OG-genetics",
+      "potent",
+      "fruity",
+      "evening"
+    ],
+    "rating": 4.5
+  },
+  {
+    "name": "Boysenberry",
+    "type": "indica",
+    "thc_min": 16,
+    "thc_max": 22,
+    "cbd": 0.15,
+    "description": "A lush indica delivering authentic boysenberry flavor—tart yet sweet with subtle chocolate undertones. Aroma is rich, fruity, and berry-forward with spice notes. Effects develop smoothly into deep body relaxation and peaceful euphoria, ideal for evening or medical use.",
+    "effects": [
+      "Relaxed",
+      "Calm",
+      "Happy",
+      "Euphoric",
+      "Sleepy"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Caryophyllene",
+      "Limonene"
+    ],
+    "flavors": [
+      "Boysenberry",
+      "Tart",
+      "Sweet",
+      "Chocolate"
+    ],
+    "tags": [
+      "indica",
+      "fruity",
+      "nighttime",
+      "medical",
+      "flavorful"
+    ],
+    "rating": 4.3
+  },
+  {
+    "name": "Fire OG Kush",
+    "type": "indica",
+    "thc_min": 19,
+    "thc_max": 26,
+    "cbd": 0.1,
+    "description": "A potent, fiery OG phenotype delivering intense pine, diesel, and spicy aromatics with a sharp citrus edge. Known for powerful, long-lasting euphoria and heavy body stone. Recommended for experienced users seeking maximum intensity and therapeutic sedation.",
+    "effects": [
+      "Relaxed",
+      "Euphoric",
+      "Calm",
+      "Happy",
+      "Sleepy"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Myrcene",
+      "Caryophyllene"
+    ],
+    "flavors": [
+      "Pine",
+      "Diesel",
+      "Citrus",
+      "Spicy"
+    ],
+    "tags": [
+      "potent",
+      "OG-genetics",
+      "indica",
+      "nighttime",
+      "medical"
+    ],
+    "rating": 4.6
+  },
+  {
+    "name": "Alien Fire",
+    "type": "sativa",
+    "thc_min": 17,
+    "thc_max": 23,
+    "cbd": 0.12,
+    "description": "A dynamic sativa with exotic spice and subtle fruity undertones creating an otherworldly aroma. Ignites mental clarity and creative energy with uplifting euphoria. Excellent for daytime creative pursuits, social engagement, or combating fatigue.",
+    "effects": [
+      "Uplifted",
+      "Energetic",
+      "Creative",
+      "Euphoric",
+      "Focused"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Pinene",
+      "Myrcene"
+    ],
+    "flavors": [
+      "Spice",
+      "Fruity",
+      "Herbal",
+      "Citrus"
+    ],
+    "tags": [
+      "sativa",
+      "daytime",
+      "creative",
+      "energetic",
+      "uplifting"
+    ],
+    "rating": 4.3
+  },
+  {
+    "name": "Inferno Haze",
+    "type": "sativa",
+    "thc_min": 18,
+    "thc_max": 25,
+    "cbd": 0.1,
+    "description": "An intense sativa-dominant strain combining haze genetics with fiery, peppery aromatics and hints of citrus. Delivers sustained cerebral stimulation, euphoria, and creative drive. Best suited for experienced users seeking potent daytime effects and mental engagement.",
+    "effects": [
+      "Energetic",
+      "Creative",
+      "Uplifted",
+      "Euphoric",
+      "Focused"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Pinene",
+      "Caryophyllene"
+    ],
+    "flavors": [
+      "Spicy",
+      "Citrus",
+      "Herbal",
+      "Peppery"
+    ],
+    "tags": [
+      "sativa",
+      "haze-genetics",
+      "potent",
+      "daytime",
+      "creative"
+    ],
+    "rating": 4.4
+  },
+  {
+    "name": "White Dragon",
+    "type": "hybrid",
+    "thc_min": 16,
+    "thc_max": 22,
+    "cbd": 0.15,
+    "description": "An elegant hybrid with white crystal-covered buds delivering floral, slightly fruity aromatics with subtle earthiness. Balanced effects combine cerebral clarity with gentle body relaxation. Versatile for daytime focus or early evening calm without heavy sedation.",
+    "effects": [
+      "Uplifted",
+      "Focused",
+      "Happy",
+      "Relaxed",
+      "Calm"
+    ],
+    "terpenes": [
+      "Pinene",
+      "Limonene",
+      "Myrcene"
+    ],
+    "flavors": [
+      "Floral",
+      "Fruity",
+      "Earthy",
+      "Sweet"
+    ],
+    "tags": [
+      "hybrid",
+      "balanced",
+      "beautiful",
+      "versatile",
+      "flavor"
+    ],
+    "rating": 4.2
+  },
+  {
+    "name": "Dragon Fruit",
+    "type": "sativa",
+    "thc_min": 15,
+    "thc_max": 21,
+    "cbd": 0.15,
+    "description": "A tropical sativa expressing exotic dragon fruit and subtle berry aromatics with light floral notes. Effects are uplifting and mildly energizing, sparking creativity without overwhelming intensity. Ideal for daytime social use or afternoon productivity.",
+    "effects": [
+      "Uplifted",
+      "Creative",
+      "Happy",
+      "Energetic",
+      "Social"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Myrcene",
+      "Pinene"
+    ],
+    "flavors": [
+      "Dragon Fruit",
+      "Berry",
+      "Tropical",
+      "Floral"
+    ],
+    "tags": [
+      "sativa",
+      "tropical",
+      "daytime",
+      "creative",
+      "social"
+    ],
+    "rating": 4.1
+  },
+  {
+    "name": "Dragon OG",
+    "type": "indica",
+    "thc_min": 18,
+    "thc_max": 24,
+    "cbd": 0.12,
+    "description": "A powerful indica combining OG Kush genetics with earthy, herbal dragon-like aromatics and subtle spice notes. Delivers crushing body effects and deep relaxation with lasting euphoria. Perfect for evening use, pain management, or deep sleep support.",
+    "effects": [
+      "Relaxed",
+      "Euphoric",
+      "Calm",
+      "Happy",
+      "Sleepy"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Caryophyllene",
+      "Limonene"
+    ],
+    "flavors": [
+      "Earthy",
+      "Herbal",
+      "Spice",
+      "Pine"
+    ],
+    "tags": [
+      "indica",
+      "OG-genetics",
+      "potent",
+      "nighttime",
+      "medical"
+    ],
+    "rating": 4.4
+  },
+  {
+    "name": "Fire Alien Strawberry",
+    "type": "hybrid",
+    "thc_min": 17,
+    "thc_max": 23,
+    "cbd": 0.1,
+    "description": "A unique hybrid blending strawberry sweetness with exotic spice and subtle fuel undertones from alien genetics. Effects balance uplifting euphoria with gentle body warmth. Versatile for evening social settings or relaxation with maintained clarity.",
+    "effects": [
+      "Happy",
+      "Euphoric",
+      "Relaxed",
+      "Uplifted",
+      "Social"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Myrcene",
+      "Caryophyllene"
+    ],
+    "flavors": [
+      "Strawberry",
+      "Sweet",
+      "Spicy",
+      "Fruity"
+    ],
+    "tags": [
+      "hybrid",
+      "fruity",
+      "unique",
+      "evening",
+      "social"
+    ],
+    "rating": 4.2
+  },
+  {
+    "name": "Passion Fruit",
+    "type": "hybrid",
+    "thc_min": 18,
+    "thc_max": 24,
+    "cbd": 0.1,
+    "description": "A tropical hybrid bursting with passion fruit, mango, and citrus aromatics. Delivers uplifting euphoria followed by gentle relaxation, perfect for daytime social sessions or creative pursuits. The flavor profile is intensely fruity with a smooth exhale.",
+    "effects": [
+      "Euphoric",
+      "Uplifted",
+      "Creative",
+      "Relaxed",
+      "Happy"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Myrcene",
+      "Caryophyllene"
+    ],
+    "flavors": [
+      "Passion Fruit",
+      "Mango",
+      "Citrus",
+      "Tropical"
+    ],
+    "tags": [
+      "daytime",
+      "social",
+      "creative",
+      "fruity",
+      "hybrid"
+    ],
+    "rating": 4.6
+  },
+  {
+    "name": "Starfruit",
+    "type": "sativa",
+    "thc_min": 19,
+    "thc_max": 25,
+    "cbd": 0.1,
+    "description": "A bright sativa-dominant strain with sharp starfruit, pineapple, and lemon notes. Produces energetic, focused effects ideal for daytime productivity and creative work. Clean, uplifting high with minimal sedation.",
+    "effects": [
+      "Energetic",
+      "Focused",
+      "Creative",
+      "Uplifted",
+      "Happy"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Pinene",
+      "Myrcene"
+    ],
+    "flavors": [
+      "Starfruit",
+      "Pineapple",
+      "Lemon",
+      "Sweet"
+    ],
+    "tags": [
+      "daytime",
+      "sativa-dom",
+      "energetic",
+      "creative",
+      "focus"
+    ],
+    "rating": 4.5
+  },
+  {
+    "name": "Guava Sherbet",
+    "type": "hybrid",
+    "thc_min": 20,
+    "thc_max": 26,
+    "cbd": 0.1,
+    "description": "A delicious hybrid combining guava, berry, and creamy dessert aromatics. Effects are balanced and blissful—uplifting initially, melting into body relaxation. Excellent for evening enjoyment or creative sessions without heavy couch-lock.",
+    "effects": [
+      "Happy",
+      "Relaxed",
+      "Euphoric",
+      "Uplifted",
+      "Calm"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Caryophyllene",
+      "Limonene"
+    ],
+    "flavors": [
+      "Guava",
+      "Berry",
+      "Cream",
+      "Tropical"
+    ],
+    "tags": [
+      "balanced",
+      "evening",
+      "fruity",
+      "relaxing",
+      "hybrid"
+    ],
+    "rating": 4.7
+  },
+  {
+    "name": "Lychee",
+    "type": "hybrid",
+    "thc_min": 17,
+    "thc_max": 23,
+    "cbd": 0.1,
+    "description": "A delicate hybrid with pronounced lychee, floral, and subtle rose notes. Produces gentle euphoria with mild physical relaxation, suitable for afternoon use or social gatherings. Sweet, sophisticated flavor profile with smooth smoke.",
+    "effects": [
+      "Happy",
+      "Uplifted",
+      "Relaxed",
+      "Creative",
+      "Euphoric"
+    ],
+    "terpenes": [
+      "Geraniol",
+      "Myrcene",
+      "Limonene"
+    ],
+    "flavors": [
+      "Lychee",
+      "Floral",
+      "Rose",
+      "Sweet"
+    ],
+    "tags": [
+      "afternoon",
+      "social",
+      "balanced",
+      "aromatic",
+      "hybrid"
+    ],
+    "rating": 4.4
+  },
+  {
+    "name": "Grease Bucket",
+    "type": "indica",
+    "thc_min": 20,
+    "thc_max": 27,
+    "cbd": 0.1,
+    "description": "A pungent indica-dominant strain with diesel, earthy, and peppery aromatics. Hard-hitting body effects with deep relaxation and sedation make it ideal for evening use and pain relief. Dense, resinous buds with robust smoke.",
+    "effects": [
+      "Relaxed",
+      "Sleepy",
+      "Happy",
+      "Pain Relief",
+      "Calm"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Caryophyllene",
+      "Humulene"
+    ],
+    "flavors": [
+      "Diesel",
+      "Earthy",
+      "Peppery",
+      "Herbal"
+    ],
+    "tags": [
+      "nighttime",
+      "indica-dom",
+      "pain-relief",
+      "sedating",
+      "potent"
+    ],
+    "rating": 4.5
+  },
+  {
+    "name": "Ice Cream Cake OG",
+    "type": "indica",
+    "thc_min": 21,
+    "thc_max": 28,
+    "cbd": 0.1,
+    "description": "A decadent indica crossing vanilla, cake, and sweet cream with subtle OG diesel undertones. Delivers intense relaxation and body euphoria perfect for nighttime use and stress relief. Smooth, dessert-like smoke with lingering sweetness.",
+    "effects": [
+      "Relaxed",
+      "Euphoric",
+      "Happy",
+      "Sleepy",
+      "Calm"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Caryophyllene",
+      "Limonene"
+    ],
+    "flavors": [
+      "Vanilla",
+      "Cake",
+      "Cream",
+      "Sweet"
+    ],
+    "tags": [
+      "nighttime",
+      "indica-dom",
+      "dessert",
+      "relaxing",
+      "premium"
+    ],
+    "rating": 4.7
+  },
+  {
+    "name": "Giesel",
+    "type": "hybrid",
+    "thc_min": 19,
+    "thc_max": 24,
+    "cbd": 0.1,
+    "description": "A robust German-origin hybrid with spicy, herbal, and pine aromatics reminiscent of the famous diesel strains. Balanced effects provide both cerebral clarity and mild physical relaxation. Ideal for afternoon use and maintaining functionality.",
+    "effects": [
+      "Focused",
+      "Uplifted",
+      "Relaxed",
+      "Happy",
+      "Creative"
+    ],
+    "terpenes": [
+      "Pinene",
+      "Caryophyllene",
+      "Myrcene"
+    ],
+    "flavors": [
+      "Diesel",
+      "Herbal",
+      "Spicy",
+      "Pine"
+    ],
+    "tags": [
+      "afternoon",
+      "balanced",
+      "herbal",
+      "potent",
+      "hybrid"
+    ],
+    "rating": 4.4
+  },
+  {
+    "name": "The Black",
+    "type": "indica",
+    "thc_min": 22,
+    "thc_max": 28,
+    "cbd": 0.1,
+    "description": "A dark, powerful indica with earthy, grape, and coffee notes. Delivers crushing full-body relaxation and deep sedation, perfect for nighttime medicine and sleep issues. Complex flavor with minimal cough despite potency.",
+    "effects": [
+      "Sleepy",
+      "Relaxed",
+      "Euphoric",
+      "Calm",
+      "Pain Relief"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Caryophyllene",
+      "Humulene"
+    ],
+    "flavors": [
+      "Earthy",
+      "Grape",
+      "Coffee",
+      "Herbal"
+    ],
+    "tags": [
+      "nighttime",
+      "indica-dom",
+      "sedating",
+      "medical",
+      "potent"
+    ],
+    "rating": 4.6
+  },
+  {
+    "name": "The Cube",
+    "type": "sativa",
+    "thc_min": 18,
+    "thc_max": 23,
+    "cbd": 0.1,
+    "description": "A geometric-looking sativa with citrus, herbal, and floral aromatics that inspire creative thinking. Uplifting, energetic effects without anxiety make it ideal for daytime use and artistic projects. Clean, motivating high.",
+    "effects": [
+      "Energetic",
+      "Creative",
+      "Uplifted",
+      "Focused",
+      "Happy"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Pinene",
+      "Myrcene"
+    ],
+    "flavors": [
+      "Citrus",
+      "Herbal",
+      "Floral",
+      "Fresh"
+    ],
+    "tags": [
+      "daytime",
+      "sativa",
+      "creative",
+      "energetic",
+      "focus"
+    ],
+    "rating": 4.5
+  },
+  {
+    "name": "Flo",
+    "type": "indica",
+    "thc_min": 16,
+    "thc_max": 22,
+    "cbd": 0.8,
+    "description": "A classic balanced-ratio indica with subtle fruity, earthy, and floral notes. Provides relaxation without heavy sedation, excellent for daytime medical use, pain management, and anxiety relief. Smooth, easy smoke.",
+    "effects": [
+      "Relaxed",
+      "Calm",
+      "Happy",
+      "Pain Relief",
+      "Focused"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Pinene",
+      "Limonene"
+    ],
+    "flavors": [
+      "Berry",
+      "Earthy",
+      "Floral",
+      "Herbal"
+    ],
+    "tags": [
+      "medical",
+      "balanced",
+      "pain-relief",
+      "daytime",
+      "CBD-rich"
+    ],
+    "rating": 4.4
+  },
+  {
+    "name": "Blue Moonshine",
+    "type": "hybrid",
+    "thc_min": 19,
+    "thc_max": 25,
+    "cbd": 0.1,
+    "description": "A luminous hybrid featuring blueberry, moonflower, and subtle alcohol notes. Produces balanced euphoria and relaxation suitable for evening social use. The flavor is sweet berry forward with a smooth finish.",
+    "effects": [
+      "Happy",
+      "Relaxed",
+      "Euphoric",
+      "Uplifted",
+      "Calm"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Limonene",
+      "Caryophyllene"
+    ],
+    "flavors": [
+      "Blueberry",
+      "Floral",
+      "Berry",
+      "Sweet"
+    ],
+    "tags": [
+      "evening",
+      "social",
+      "fruity",
+      "balanced",
+      "hybrid"
+    ],
+    "rating": 4.5
+  },
+  {
+    "name": "Texada Timewarp",
+    "type": "sativa",
+    "thc_min": 15,
+    "thc_max": 20,
+    "cbd": 0.2,
+    "description": "A retro Canadian sativa with bright citrus, pine, and herbal aromatics evoking vintage landrace characteristics. Clean, functional euphoria and mental clarity perfect for daytime productivity. Light on the lungs with refreshing exhale.",
+    "effects": [
+      "Uplifted",
+      "Creative",
+      "Energetic",
+      "Focused",
+      "Happy"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Pinene",
+      "Myrcene"
+    ],
+    "flavors": [
+      "Citrus",
+      "Pine",
+      "Herbal",
+      "Fresh"
+    ],
+    "tags": [
+      "daytime",
+      "sativa",
+      "vintage",
+      "energetic",
+      "productive"
+    ],
+    "rating": 4.3
+  },
+  {
+    "name": "Williams Wonder",
+    "type": "sativa",
+    "thc_min": 15,
+    "thc_max": 21,
+    "cbd": 0.3,
+    "description": "A legendary early-flowering sativa with tropical, fruity, and spicy aromatics. Produces uplifting, clear-headed effects ideal for morning use and combating fatigue. Historically significant strain with reliable performance.",
+    "effects": [
+      "Energetic",
+      "Uplifted",
+      "Happy",
+      "Focused",
+      "Creative"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Pinene",
+      "Caryophyllene"
+    ],
+    "flavors": [
+      "Tropical",
+      "Fruity",
+      "Spicy",
+      "Sweet"
+    ],
+    "tags": [
+      "daytime",
+      "sativa",
+      "morning",
+      "energetic",
+      "classic"
+    ],
+    "rating": 4.4
+  },
+  {
+    "name": "Warlock",
+    "type": "indica",
+    "thc_min": 20,
+    "thc_max": 26,
+    "cbd": 0.1,
+    "description": "A mysterious dark indica with earthy, spicy, and woodsy aromatics with hints of incense. Delivers powerful relaxation and pain relief suitable for evening and medical use. Dense, dark buds with potent effects.",
+    "effects": [
+      "Relaxed",
+      "Pain Relief",
+      "Sleepy",
+      "Euphoric",
+      "Calm"
+    ],
+    "terpenes": [
+      "Caryophyllene",
+      "Myrcene",
+      "Humulene"
+    ],
+    "flavors": [
+      "Earthy",
+      "Spicy",
+      "Woody",
+      "Herbal"
+    ],
+    "tags": [
+      "nighttime",
+      "indica-dom",
+      "pain-relief",
+      "medical",
+      "potent"
+    ],
+    "rating": 4.6
+  },
+  {
+    "name": "Snow Lotus",
+    "type": "hybrid",
+    "thc_min": 18,
+    "thc_max": 24,
+    "cbd": 0.1,
+    "description": "A pristine hybrid with delicate floral, sweet, and slightly minty aromatics evoking alpine flowers. Balanced effects provide gentle euphoria and calm relaxation perfect for meditation or evening relaxation. Smooth, clean smoke.",
+    "effects": [
+      "Calm",
+      "Relaxed",
+      "Happy",
+      "Uplifted",
+      "Peaceful"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Geraniol",
+      "Pinene"
+    ],
+    "flavors": [
+      "Floral",
+      "Sweet",
+      "Mint",
+      "Herbal"
+    ],
+    "tags": [
+      "evening",
+      "balanced",
+      "meditative",
+      "aromatic",
+      "hybrid"
+    ],
+    "rating": 4.5
+  },
+  {
+    "name": "Blue Satellite",
+    "type": "hybrid",
+    "thc_min": 16,
+    "thc_max": 22,
+    "cbd": 0.2,
+    "description": "A balanced hybrid with a distinctive blueberry and earthy aroma, Blue Satellite delivers smooth, uplifting cerebral effects paired with mild body relaxation. Its consistent potency and flavor profile make it ideal for daytime creativity or evening social use without heavy sedation.",
+    "effects": [
+      "Uplifted",
+      "Creative",
+      "Focused",
+      "Relaxed",
+      "Euphoric"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Caryophyllene",
+      "Pinene"
+    ],
+    "flavors": [
+      "Blueberry",
+      "Earthy",
+      "Sweet"
+    ],
+    "tags": [
+      "balanced",
+      "daytime",
+      "creative",
+      "social",
+      "smooth"
+    ],
+    "rating": 4.3
+  },
+  {
+    "name": "Cindy 99",
+    "type": "sativa",
+    "thc_min": 18,
+    "thc_max": 24,
+    "cbd": 0.1,
+    "description": "A legendary sativa-dominant strain with vibrant citrus and floral notes, Cindy 99 produces an energetic, uplifting high that sharpens focus and mood. Known for its fast-acting euphoria and mental clarity, it's a favorite for daytime productivity and creative pursuits.",
+    "effects": [
+      "Energetic",
+      "Uplifted",
+      "Focused",
+      "Happy",
+      "Euphoric"
+    ],
+    "terpenes": [
+      "Limonene",
+      "Pinene",
+      "Terpinolene"
+    ],
+    "flavors": [
+      "Citrus",
+      "Floral",
+      "Sweet",
+      "Spicy"
+    ],
+    "tags": [
+      "sativa-dom",
+      "daytime",
+      "energetic",
+      "creative",
+      "social"
+    ],
+    "rating": 4.6
+  },
+  {
+    "name": "Auto AK",
+    "type": "hybrid",
+    "thc_min": 17,
+    "thc_max": 23,
+    "cbd": 0.15,
+    "description": "An autoflowering version of the legendary AK-47, Auto AK combines rapid growth with potent, balanced effects. Its peppery, herbal aroma masks a surprisingly strong high that blends cerebral stimulation with body relaxation, perfect for growers seeking speed and potency.",
+    "effects": [
+      "Happy",
+      "Relaxed",
+      "Uplifted",
+      "Creative",
+      "Focused"
+    ],
+    "terpenes": [
+      "Caryophyllene",
+      "Humulene",
+      "Myrcene"
+    ],
+    "flavors": [
+      "Peppery",
+      "Herbal",
+      "Earthy",
+      "Spicy"
+    ],
+    "tags": [
+      "autoflower",
+      "fast",
+      "hybrid",
+      "medical",
+      "balanced"
+    ],
+    "rating": 4.4
+  },
+  {
+    "name": "Auto Blueberry",
+    "type": "indica",
+    "thc_min": 15,
+    "thc_max": 21,
+    "cbd": 0.2,
+    "description": "An autoflowering indica featuring rich blueberry and sweet fruit aromas, Auto Blueberry delivers relaxing, body-focused effects with gentle cerebral warmth. Its quick flowering cycle and consistent calming properties make it ideal for evening use or pain management without heavy sedation.",
+    "effects": [
+      "Relaxed",
+      "Happy",
+      "Calm",
+      "Sleepy",
+      "Content"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Pinene",
+      "Limonene"
+    ],
+    "flavors": [
+      "Blueberry",
+      "Sweet",
+      "Fruity",
+      "Earthy"
+    ],
+    "tags": [
+      "autoflower",
+      "indica-dom",
+      "nighttime",
+      "medical",
+      "relaxing"
+    ],
+    "rating": 4.2
+  },
+  {
+    "name": "Auto Northern Lights",
+    "type": "indica",
+    "thc_min": 14,
+    "thc_max": 20,
+    "cbd": 0.25,
+    "description": "An autoflowering classic with subtle pine and citrus notes, Auto Northern Lights combines rapid maturation with deep body relaxation and mild euphoria. Its reliable potency and gentle sedating effects make it a trusted choice for nighttime relief and restorative sleep.",
+    "effects": [
+      "Relaxed",
+      "Sleepy",
+      "Happy",
+      "Content",
+      "Calm"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Pinene",
+      "Caryophyllene"
+    ],
+    "flavors": [
+      "Pine",
+      "Citrus",
+      "Earthy",
+      "Sweet"
+    ],
+    "tags": [
+      "autoflower",
+      "indica-dom",
+      "nighttime",
+      "sleep-aid",
+      "medical"
+    ],
+    "rating": 4.5
+  },
+  {
+    "name": "Auto White Widow",
+    "type": "hybrid",
+    "thc_min": 16,
+    "thc_max": 22,
+    "cbd": 0.18,
+    "description": "An autoflowering version of the iconic White Widow, featuring resinous buds with pine and woody undertones. This strain delivers balanced mental clarity and body relaxation with a potent, long-lasting high perfect for growers seeking reliability and quality.",
+    "effects": [
+      "Uplifted",
+      "Focused",
+      "Relaxed",
+      "Happy",
+      "Euphoric"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Pinene",
+      "Humulene"
+    ],
+    "flavors": [
+      "Pine",
+      "Woody",
+      "Spicy",
+      "Citrus"
+    ],
+    "tags": [
+      "autoflower",
+      "hybrid",
+      "balanced",
+      "versatile",
+      "resinous"
+    ],
+    "rating": 4.5
+  },
+  {
+    "name": "Fast Buds",
+    "type": "hybrid",
+    "thc_min": 15,
+    "thc_max": 20,
+    "cbd": 0.2,
+    "description": "A premium autoflowering line known for compact growth, rapid flowering, and consistent cannabinoid profiles across genetics. Fast Buds strains emphasize yield and speed without sacrificing potency, offering balanced hybrid effects suited for both novice and experienced cultivators.",
+    "effects": [
+      "Balanced",
+      "Uplifted",
+      "Relaxed",
+      "Happy",
+      "Focused"
+    ],
+    "terpenes": [
+      "Myrcene",
+      "Caryophyllene",
+      "Limonene"
+    ],
+    "flavors": [
+      "Fruity",
+      "Herbal",
+      "Earthy",
+      "Sweet"
+    ],
+    "tags": [
+      "autoflower",
+      "hybrid",
+      "fast-growing",
+      "beginner-friendly",
+      "reliable"
+    ],
+    "rating": 4.3
   }
 ]
