@@ -480,6 +480,74 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // ─── Strain lookup: local DB first, AI fallback for unknown strains ──────
+  if (req.method === "POST" && req.url === "/api/strain/lookup") {
+    let body = "";
+    req.on("data", chunk => { body += chunk; });
+    req.on("end", async () => {
+      try {
+        const { name } = JSON.parse(body);
+        if (!name || typeof name !== "string" || name.length > 200) {
+          res.writeHead(400, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Invalid name" }));
+          return;
+        }
+        const q = name.trim().toLowerCase();
+
+        // 1. Try exact match in local DB
+        let found = STRAINS_DB.find(s => s.name.toLowerCase() === q);
+        // 2. Try partial match
+        if (!found) found = STRAINS_DB.find(s => s.name.toLowerCase().includes(q) || q.includes(s.name.toLowerCase()));
+
+        if (found) {
+          res.writeHead(200, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ strain: found, source: "local" }));
+          return;
+        }
+
+        // 3. AI fallback for unknown strains
+        const prompt = `You are a cannabis expert with encyclopedic knowledge of all cannabis strains, including rare, regional, and newer varieties.
+
+Generate a detailed strain profile for: "${name.trim()}"
+
+If this is a real strain, provide accurate data. If it's very obscure, provide your best knowledge.
+Respond ONLY with a single JSON object (not an array):
+{
+  "name": string (the proper strain name),
+  "type": "Indica" | "Sativa" | "Hybrid",
+  "thc_min": number,
+  "thc_max": number,
+  "cbd": number,
+  "description": string (2-3 sentences, evocative and informative),
+  "effects": [string] (5 effects, e.g. "Relaxed", "Happy", "Euphoric"),
+  "terpenes": [string] (3-4 dominant terpenes),
+  "flavors": [string] (3-5 flavors),
+  "genetics": string (parent strains, e.g. "OG Kush × Durban Poison" or "Unknown"),
+  "tags": [string] (3-5 tags like "daytime", "indica-dom", "creative")
+}
+No markdown, no explanation, just the JSON object.`;
+
+        const response = await client.messages.create({
+          model: "claude-haiku-4-5-20251001",
+          max_tokens: 700,
+          messages: [{ role: "user", content: prompt }]
+        });
+
+        const text = response.content[0].text.trim();
+        const jsonStr = text.startsWith("{") ? text : text.slice(text.indexOf("{"), text.lastIndexOf("}") + 1);
+        const strain = JSON.parse(jsonStr);
+
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ strain, source: "ai" }));
+      } catch (err) {
+        console.error("Strain lookup error:", err.message);
+        res.writeHead(500, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ error: "Lookup failed" }));
+      }
+    });
+    return;
+  }
+
   if (req.method === "POST" && req.url === "/api/strains") {
     let body = "";
     req.on("data", chunk => { body += chunk; });

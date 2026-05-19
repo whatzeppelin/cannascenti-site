@@ -6577,6 +6577,137 @@
   .enc-search-clear.visible { display: block; }
   .enc-search-clear:hover { color: rgba(242,234,216,0.6); }
 
+  /* Autocomplete dropdown */
+  .enc-search-bar-row { position: relative; }
+  .enc-autocomplete {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0; right: 0;
+    background: #0e1c15;
+    border: 1px solid rgba(82,183,136,0.3);
+    border-radius: 8px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+    z-index: 200;
+    max-height: 320px;
+    overflow-y: auto;
+    display: none;
+  }
+  .enc-autocomplete.open { display: block; }
+  .enc-ac-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: background 0.1s;
+  }
+  .enc-ac-item:last-child { border-bottom: none; }
+  .enc-ac-item:hover, .enc-ac-item.focused { background: rgba(82,183,136,0.1); }
+  .enc-ac-name {
+    flex: 1;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--cream);
+    letter-spacing: 0.02em;
+  }
+  .enc-ac-name em { color: var(--bright-green); font-style: normal; }
+  .enc-ac-type {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  .enc-ac-type.sativa { background: rgba(255,165,0,0.15); color: #ffa500; }
+  .enc-ac-type.indica { background: rgba(139,92,246,0.15); color: #a78bfa; }
+  .enc-ac-type.hybrid { background: rgba(82,183,136,0.15); color: var(--bright-green); }
+  .enc-ac-search-hint {
+    padding: 12px 18px;
+    font-size: 12px;
+    color: rgba(242,234,216,0.4);
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .enc-ac-search-hint::before { content: "↵"; color: var(--bright-green); }
+
+  /* AI lookup result card */
+  .enc-ai-result {
+    background: rgba(82,183,136,0.05);
+    border: 1px solid rgba(82,183,136,0.2);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    display: none;
+  }
+  .enc-ai-result.visible { display: block; }
+  .enc-ai-result-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .enc-ai-result-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--cream);
+    letter-spacing: 0.02em;
+    flex: 1;
+  }
+  .enc-ai-result-badges { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .enc-ai-badge {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  .enc-ai-badge.sativa { background: rgba(255,165,0,0.15); color: #ffa500; border: 1px solid rgba(255,165,0,0.3); }
+  .enc-ai-badge.indica { background: rgba(139,92,246,0.15); color: #a78bfa; border: 1px solid rgba(139,92,246,0.3); }
+  .enc-ai-badge.hybrid { background: rgba(82,183,136,0.15); color: var(--bright-green); border: 1px solid rgba(82,183,136,0.3); }
+  .enc-ai-badge.thc { background: rgba(255,255,255,0.06); color: rgba(242,234,216,0.7); border: 1px solid rgba(255,255,255,0.1); }
+  .enc-ai-source { font-size: 10px; color: rgba(82,183,136,0.5); letter-spacing: 0.1em; margin-top: 4px; }
+  .enc-ai-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(242,234,216,0.75);
+    margin-bottom: 20px;
+  }
+  .enc-ai-pills-row { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 6px; }
+  .enc-ai-pills-group { flex: 1; min-width: 140px; }
+  .enc-ai-pills-label {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(242,234,216,0.35);
+    margin-bottom: 8px;
+  }
+  .enc-ai-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .enc-ai-pill {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.06);
+    color: rgba(242,234,216,0.7);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .enc-ai-loading {
+    display: none;
+    padding: 24px;
+    text-align: center;
+    font-size: 13px;
+    color: rgba(82,183,136,0.6);
+    letter-spacing: 0.08em;
+  }
+  .enc-ai-loading.visible { display: block; }
+
   /* Feeling chips */
   .enc-feeling-row {
     display: flex;
@@ -7101,9 +7232,10 @@
       <div class="enc-search-bar-row">
         <div class="enc-search-bar">
           <svg class="enc-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          <input type="text" id="encGlobalSearch" class="enc-search-input" placeholder="Search strains, terpenes, effects, cannabinoids…" oninput="onEncSearch(this.value)" autocomplete="off">
+          <input type="text" id="encGlobalSearch" class="enc-search-input" placeholder="Search any strain, effect, terpene, lineage…" oninput="onEncSearch(this.value)" onkeydown="onEncSearchKey(event)" autocomplete="off" spellcheck="false">
           <button class="enc-search-clear" id="encSearchClear" onclick="clearEncSearch()" aria-label="Clear search">✕</button>
         </div>
+        <div class="enc-autocomplete" id="encAutocomplete"></div>
       </div>
       <div class="enc-feeling-row">
         <span class="enc-feeling-label">How do you want to feel?</span>
@@ -7123,6 +7255,8 @@
     </div>
 
     <div class="enc-search-result-banner" id="encSearchBanner" style="display:none"></div>
+    <div class="enc-ai-loading" id="encAiLoading">✦ Looking up strain…</div>
+    <div class="enc-ai-result" id="encAiResult"></div>
     <div class="enc-hub-panel" id="enc-hub-panel">
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;padding:32px 0;">
         <a href="/strains" style="display:block;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
@@ -12548,26 +12682,198 @@ function renderScanCard(d) {
 
   // ── Encyclopedia global search + feeling filters ──────────────────────
   let _encSearchTimer = null;
+  let _encAcIndex = -1;
 
+  // ── Autocomplete ────────────────────────────────────────────────────────────
+  function buildEncAutocomplete(val) {
+    const ac = document.getElementById('encAutocomplete');
+    if (!ac) return;
+    const q = val.toLowerCase().trim();
+    if (!q || q.length < 1) { ac.classList.remove('open'); ac.innerHTML = ''; return; }
+
+    const pool = typeof SDB_DATA !== 'undefined' ? SDB_DATA : [];
+    // Prioritize: name starts-with > name contains > effect/flavor contains
+    const starts = pool.filter(s => s.name.toLowerCase().startsWith(q));
+    const contains = pool.filter(s => !s.name.toLowerCase().startsWith(q) && s.name.toLowerCase().includes(q));
+    const byAttr = pool.filter(s =>
+      !s.name.toLowerCase().includes(q) &&
+      ([...(s.effects||[]), ...(s.flavors||[]), ...(s.terpenes||[])].some(x => x.toLowerCase().includes(q)))
+    );
+    const matches = [...starts, ...contains, ...byAttr].slice(0, 8);
+
+    _encAcIndex = -1;
+    if (!matches.length) {
+      // Show "search for X" hint
+      ac.innerHTML = `<div class="enc-ac-search-hint">Press Enter to search for "<strong style="color:var(--cream)">${val.trim()}</strong>" across all strains + AI lookup</div>`;
+      ac.classList.add('open');
+      return;
+    }
+
+    function highlight(str) {
+      const idx = str.toLowerCase().indexOf(q);
+      if (idx === -1) return str;
+      return str.slice(0, idx) + '<em>' + str.slice(idx, idx + q.length) + '</em>' + str.slice(idx + q.length);
+    }
+
+    const items = matches.map((s, i) => {
+      const type = (s.type || 'hybrid').toLowerCase();
+      return `<div class="enc-ac-item" data-name="${s.name}" onclick="encPickStrain('${s.name.replace(/'/g,"\\'")}')">
+        <span class="enc-ac-name">${highlight(s.name)}</span>
+        <span class="enc-ac-type ${type}">${type}</span>
+      </div>`;
+    });
+    if (matches.length < pool.length) {
+      items.push(`<div class="enc-ac-search-hint">Press Enter for full search + AI lookup</div>`);
+    }
+    ac.innerHTML = items.join('');
+    ac.classList.add('open');
+  }
+
+  function encPickStrain(name) {
+    const input = document.getElementById('encGlobalSearch');
+    const ac = document.getElementById('encAutocomplete');
+    if (input) input.value = name;
+    if (ac) { ac.classList.remove('open'); ac.innerHTML = ''; }
+    document.getElementById('encSearchClear')?.classList.add('visible');
+    document.querySelectorAll('.enc-feeling-chip').forEach(c => c.classList.remove('active'));
+    hideAiResult();
+    if (typeof encTab === 'function') {
+      if (encActiveTab !== 'strains') encTab('strains');
+      setTimeout(() => {
+        applyStrainSearch(name, 'all', `✦ Results for "${name}"`);
+        // If no local results, trigger AI lookup
+        setTimeout(() => checkAndFetchAi(name), 150);
+      }, 60);
+    }
+  }
+
+  function onEncSearchKey(e) {
+    const ac = document.getElementById('encAutocomplete');
+    const items = ac ? ac.querySelectorAll('.enc-ac-item') : [];
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      _encAcIndex = Math.min(_encAcIndex + 1, items.length - 1);
+      items.forEach((el, i) => el.classList.toggle('focused', i === _encAcIndex));
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      _encAcIndex = Math.max(_encAcIndex - 1, -1);
+      items.forEach((el, i) => el.classList.toggle('focused', i === _encAcIndex));
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (_encAcIndex >= 0 && items[_encAcIndex]) {
+        encPickStrain(items[_encAcIndex].dataset.name);
+      } else {
+        const val = e.target.value.trim();
+        if (val) encPickStrain(val);
+      }
+    } else if (e.key === 'Escape') {
+      ac && ac.classList.remove('open');
+      _encAcIndex = -1;
+    }
+  }
+
+  // Close autocomplete when clicking outside
+  document.addEventListener('click', function(e) {
+    const ac = document.getElementById('encAutocomplete');
+    const bar = document.querySelector('.enc-search-bar-row');
+    if (ac && bar && !bar.contains(e.target)) ac.classList.remove('open');
+  });
+
+  // ── AI Lookup Fallback ──────────────────────────────────────────────────────
+  function showAiLoading() {
+    document.getElementById('encAiLoading')?.classList.add('visible');
+    document.getElementById('encAiResult')?.classList.remove('visible');
+  }
+  function hideAiResult() {
+    document.getElementById('encAiLoading')?.classList.remove('visible');
+    document.getElementById('encAiResult')?.classList.remove('visible');
+  }
+
+  function renderAiResult(strain, source) {
+    const el = document.getElementById('encAiResult');
+    const loading = document.getElementById('encAiLoading');
+    if (!el) return;
+    if (loading) loading.classList.remove('visible');
+
+    const type = (strain.type || 'hybrid').toLowerCase();
+    const thc = strain.thc || (strain.thc_min && strain.thc_max ? `${strain.thc_min}–${strain.thc_max}%` : 'N/A');
+    const cbd = strain.cbd != null ? (strain.cbd < 1 ? '<1% CBD' : `${strain.cbd}% CBD`) : '';
+
+    function pills(arr) {
+      return (arr || []).map(x => `<span class="enc-ai-pill">${x}</span>`).join('');
+    }
+
+    el.innerHTML = `
+      <div class="enc-ai-result-header">
+        <div>
+          <div class="enc-ai-result-name">${strain.name}</div>
+          ${source === 'ai' ? '<div class="enc-ai-source">✦ AI-generated profile</div>' : ''}
+        </div>
+        <div class="enc-ai-result-badges">
+          <span class="enc-ai-badge ${type}">${type}</span>
+          ${thc !== 'N/A' ? `<span class="enc-ai-badge thc">${thc} THC</span>` : ''}
+          ${cbd ? `<span class="enc-ai-badge thc">${cbd}</span>` : ''}
+        </div>
+      </div>
+      ${strain.description || strain.desc ? `<p class="enc-ai-desc">${strain.description || strain.desc}</p>` : ''}
+      <div class="enc-ai-pills-row">
+        ${strain.effects?.length ? `<div class="enc-ai-pills-group"><div class="enc-ai-pills-label">Effects</div><div class="enc-ai-pills">${pills(strain.effects)}</div></div>` : ''}
+        ${strain.terpenes?.length ? `<div class="enc-ai-pills-group"><div class="enc-ai-pills-label">Terpenes</div><div class="enc-ai-pills">${pills(strain.terpenes)}</div></div>` : ''}
+        ${strain.flavors?.length ? `<div class="enc-ai-pills-group"><div class="enc-ai-pills-label">Flavors</div><div class="enc-ai-pills">${pills(strain.flavors)}</div></div>` : ''}
+        ${strain.genetics ? `<div class="enc-ai-pills-group"><div class="enc-ai-pills-label">Genetics</div><div class="enc-ai-pills"><span class="enc-ai-pill">${strain.genetics}</span></div></div>` : ''}
+      </div>`;
+    el.classList.add('visible');
+  }
+
+  async function checkAndFetchAi(query) {
+    // Check if local results were found
+    const grid = document.getElementById('encStrainGrid') || document.getElementById('sdbGrid');
+    const cards = document.querySelectorAll('#encStrainGrid .sdb-card, #sdbGrid .sdb-card');
+    if (cards.length > 0) return; // local results found, no AI needed
+
+    showAiLoading();
+    try {
+      const res = await fetch('/api/strain/lookup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: query })
+      });
+      if (!res.ok) throw new Error('lookup failed');
+      const data = await res.json();
+      if (data.strain) {
+        renderAiResult(data.strain, data.source);
+      } else {
+        hideAiResult();
+      }
+    } catch {
+      hideAiResult();
+    }
+  }
+
+  // ── Main search handler ─────────────────────────────────────────────────────
   function onEncSearch(val) {
     const clear = document.getElementById('encSearchClear');
     if (clear) clear.classList.toggle('visible', val.length > 0);
-
-    // Clear any active feeling chip
     document.querySelectorAll('.enc-feeling-chip').forEach(c => c.classList.remove('active'));
 
+    buildEncAutocomplete(val);
+
     clearTimeout(_encSearchTimer);
+    if (!val.trim()) {
+      hideBanner();
+      hideAiResult();
+      return;
+    }
     _encSearchTimer = setTimeout(() => {
-      if (!val.trim()) {
-        hideBanner();
-        return;
-      }
-      // Switch to strains (best beginner landing point for any query)
+      hideAiResult();
       if (typeof encTab === 'function') {
         if (encActiveTab !== 'strains') encTab('strains');
-        setTimeout(() => applyStrainSearch(val.trim(), 'all', 'Showing results for "' + val.trim() + '"'), 60);
+        setTimeout(() => {
+          applyStrainSearch(val.trim(), 'all', `✦ Results for "${val.trim()}"`);
+          setTimeout(() => checkAndFetchAi(val.trim()), 200);
+        }, 60);
       }
-    }, 200);
+    }, 300);
   }
 
   function onEncFeel(btn, feel) {
@@ -12575,9 +12881,10 @@ function renderScanCard(d) {
     document.querySelectorAll('.enc-feeling-chip').forEach(c => c.classList.remove('active'));
     const input = document.getElementById('encGlobalSearch');
     const clear = document.getElementById('encSearchClear');
+    document.getElementById('encAutocomplete')?.classList.remove('open');
+    hideAiResult();
 
     if (wasActive) {
-      // Toggle off — reset
       if (input) input.value = '';
       if (clear) clear.classList.remove('visible');
       hideBanner();
@@ -12605,7 +12912,9 @@ function renderScanCard(d) {
     if (input) input.value = '';
     if (clear) clear.classList.remove('visible');
     document.querySelectorAll('.enc-feeling-chip').forEach(c => c.classList.remove('active'));
+    document.getElementById('encAutocomplete')?.classList.remove('open');
     hideBanner();
+    hideAiResult();
     if (typeof renderEncStrains === 'function') renderEncStrains('', 'all');
   }
 
