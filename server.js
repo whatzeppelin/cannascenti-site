@@ -957,6 +957,7 @@ ${isPrivacy ? `<h1>Privacy Policy</h1><p>Last updated: April 2026</p>
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Terpenes — Cannascenti Encyclopedia</title>
+<meta name="description" content="Interactive terpene wheel with 15 terpene profiles — aromas, effects, boiling points, and strain pairings. Myrcene, limonene, caryophyllene, terpinolene and more.">
 ${ENC_FONTS}
 <style>
 ${ENC_BASE_CSS}
@@ -1973,6 +1974,7 @@ document.addEventListener('DOMContentLoaded', function(){
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Cannabinoids — Cannascenti Encyclopedia</title>
+<meta name="description" content="THC, CBD, CBG, CBN, THCV, and Delta-8 explained. How each cannabinoid works, what it does in your body, and how they interact with the endocannabinoid system.">
 ${ENC_FONTS}
 <style>
 ${ENC_BASE_CSS}
@@ -2036,6 +2038,7 @@ document.addEventListener('DOMContentLoaded',function(){
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Consumption Methods — Cannascenti Encyclopedia</title>
+<meta name="description" content="Smoking, vaping, edibles, tinctures, topicals — onset times, bioavailability, duration, pros and cons for every cannabis consumption method compared side by side.">
 ${ENC_FONTS}
 <style>
 ${ENC_BASE_CSS}
@@ -3211,6 +3214,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Cannabis History & Origins — Cannascenti Encyclopedia</title>
+<meta name="description" content="12,000 years of cannabis history — from ancient China and the Silk Road to modern legalization. The complete timeline of the world's most consequential plant.">
 ${ENC_FONTS}
 <style>
 ${ENC_BASE_CSS}
@@ -3888,6 +3892,7 @@ document.addEventListener('DOMContentLoaded',function(){
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Concentrates — Cannascenti Encyclopedia</title>
+<meta name="description" content="From ancient charas to liquid diamonds — every cannabis concentrate and extraction method documented. Traditional hash, solventless rosin, hydrocarbon extracts, and more.">
 ${ENC_FONTS}
 <style>
 ${ENC_BASE_CSS}
