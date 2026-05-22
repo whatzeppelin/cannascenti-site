@@ -796,10 +796,10 @@ No markdown, no explanation, just the JSON object.`;
 
         const response = await client.messages.create({
           model: "claude-opus-4-6",
-          max_tokens: 1024,
+          max_tokens: 1500,
           system: `You are Mary Jane — the AI cannabis intelligence guide for Cannascenti, the world's most authoritative cannabis platform. You are analyzing a cannabis product photo.
 
-Identify the product and return a full product intelligence card. Be specific where label text is legible. Use expert strain knowledge to fill in terpenes, effects, and flavors when they aren't explicitly shown.
+Identify the product and return a full product intelligence card. Be specific where label text is legible. Read all text carefully — especially dates, batch numbers, barcodes, and lab info. Use expert strain knowledge to fill in terpenes, effects, and flavors when they aren't explicitly shown.
 
 Respond with ONLY valid JSON — no markdown, no explanation, no code fences. Just the raw JSON object.
 
@@ -811,12 +811,17 @@ Return this exact structure:
   "strainType": "Indica | Sativa | Hybrid | CBD | Unknown",
   "strainName": "strain name if visible, else empty string",
   "lineage": "parent strains if known e.g. OG Kush × Durban Poison, else empty string",
-  "thc": "THC% if visible e.g. 24.3%, else Not visible",
-  "cbd": "CBD% if visible, else Not visible",
+  "thc": "THC% if visible e.g. 24.3%, else null",
+  "cbd": "CBD% if visible, else null",
   "terpenes": ["3 to 5 terpene names"],
   "effects": ["4 to 6 expected effect labels"],
   "flavors": ["3 to 5 flavor notes"],
   "pairings": ["3 to 4 activity or pairing suggestions"],
+  "packageDate": "package or manufacture date exactly as shown on label, or null",
+  "harvestDate": "harvest or cultivation date exactly as shown, or null",
+  "batchNumber": "batch number, lot number, or run number exactly as shown, or null",
+  "coaBarcode": "any barcode number, QR code value, COA ID, or license number visible, or null",
+  "labName": "testing laboratory name if shown, or null",
   "reviewSummary": "2 to 3 sentence Mary Jane expert take on this product — what makes it special, who it's for, how to enjoy it best",
   "confidence": "High | Medium | Low"
 }
@@ -7406,9 +7411,9 @@ document.getElementById('legalGrid').innerHTML = LEGAL_STATES.map(s =>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mary Jane Vision — Product Scanner | Cannascenti</title>
-<meta name="description" content="Scan any cannabis product and get a full intelligence briefing instantly. Powered by Mary Jane.">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Product Scanner — Cannascenti</title>
+<meta name="description" content="Scan any cannabis product and get a full intelligence briefing instantly. Terpenes, THC/CBD, dates, COA, and strain comparison.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -7418,162 +7423,268 @@ document.getElementById('legalGrid').innerHTML = LEGAL_STATES.map(s =>
 body{background:var(--dark);color:var(--cream);font-family:'Montserrat',sans-serif;font-weight:300;line-height:1.75;overflow-x:hidden}
 a{color:var(--bright-green);text-decoration:none}
 
-/* nav */
-.s-nav{display:flex;align-items:center;justify-content:space-between;padding:24px 60px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(6,15,10,0.9);backdrop-filter:blur(12px);z-index:100}
+/* ── Nav ── */
+.s-nav{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(6,15,10,0.95);backdrop-filter:blur(12px);z-index:100}
 .s-nav-logo{font-family:'Great Vibes',cursive;font-size:26px;color:var(--cream)}
-.s-nav-back{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(242,234,216,0.4);transition:color .2s}
+.s-nav-back{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(242,234,216,0.4);transition:color .2s}
 .s-nav-back:hover{color:var(--bright-green)}
-@media(max-width:600px){.s-nav{padding:20px 20px}}
 
-/* hero */
-.s-hero{padding:80px 60px 60px;max-width:760px;margin:0 auto;text-align:center}
-.s-label{font-size:10px;letter-spacing:0.65em;text-transform:uppercase;color:var(--bright-green);margin-bottom:20px}
-.s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,6vw,68px);font-weight:300;line-height:1.1;color:var(--cream);margin-bottom:20px}
+/* ── Hero ── */
+.s-hero{padding:52px 24px 36px;max-width:600px;margin:0 auto;text-align:center}
+.s-label{font-size:10px;letter-spacing:0.5em;text-transform:uppercase;color:var(--bright-green);margin-bottom:16px}
+.s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,7vw,58px);font-weight:300;line-height:1.1;color:var(--cream);margin-bottom:14px}
 .s-title em{font-style:italic;color:var(--bright-green)}
-.s-desc{font-size:15px;color:rgba(242,234,216,0.55);max-width:520px;margin:0 auto;line-height:1.85}
-@media(max-width:600px){.s-hero{padding:60px 24px 40px}}
+.s-desc{font-size:14px;color:rgba(242,234,216,0.5);max-width:480px;margin:0 auto;line-height:1.8}
 
-/* scanner */
-.scan-wrap{max-width:760px;margin:0 auto;padding:0 60px 100px}
-@media(max-width:600px){.scan-wrap{padding:0 20px 80px}}
+/* ── Scanner wrap ── */
+.scan-wrap{max-width:640px;margin:0 auto;padding:0 20px 80px}
 
-.scanner-drop{border:1px dashed rgba(82,183,136,0.3);border-radius:6px;background:rgba(82,183,136,0.03);min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:40px 24px;cursor:pointer;transition:border-color .2s,background .2s}
-.scanner-drop:hover,.scanner-drop.drag-over{border-color:rgba(82,183,136,0.6);background:rgba(82,183,136,0.06)}
-.scanner-drop-icon{width:52px;height:52px;color:rgba(82,183,136,0.5)}
-.scanner-drop-title{font-size:16px;font-weight:500;color:var(--cream);text-align:center}
-.scanner-drop-sub{font-size:12px;color:rgba(242,234,216,0.35);letter-spacing:0.06em;text-align:center;margin-top:-12px}
-.scanner-drop-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-.scanner-btn{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;padding:13px 24px;border-radius:3px;border:1px solid rgba(82,183,136,0.4);background:transparent;color:var(--bright-green);cursor:pointer;transition:background .2s,border-color .2s;min-height:44px}
-.scanner-btn:hover{background:rgba(82,183,136,0.1);border-color:rgba(82,183,136,0.7)}
-.scanner-btn-primary{background:var(--bright-green);color:#060f0a;border-color:var(--bright-green)}
-.scanner-btn-primary:hover{background:#74c69d;border-color:#74c69d}
-.scanner-preview-wrap{position:relative;border-radius:6px;overflow:hidden;border:1px solid rgba(82,183,136,0.25)}
-.scanner-preview-img{width:100%;max-height:320px;object-fit:contain;background:#030806;display:block}
-.scanner-preview-clear{position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:50%;background:rgba(6,12,6,0.8);border:1px solid rgba(242,234,216,0.2);color:rgba(242,234,216,0.7);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.scanner-preview-clear:hover{background:rgba(6,12,6,0.95);color:var(--cream)}
-.scanner-action{display:flex;justify-content:center;margin-top:20px}
-.scanner-loading{display:flex;flex-direction:column;align-items:center;gap:14px;padding:40px;text-align:center}
-.scanner-loading-ring{width:44px;height:44px;border:2px solid rgba(82,183,136,0.15);border-top-color:var(--bright-green);border-radius:50%;animation:spin .9s linear infinite}
+/* ── Camera viewfinder ── */
+.cam-wrap{position:relative;border-radius:10px;overflow:hidden;background:#000;aspect-ratio:4/3;display:none}
+.cam-wrap.active{display:block}
+#camVideo{width:100%;height:100%;object-fit:cover;display:block}
+.cam-snap-btn{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);width:68px;height:68px;border-radius:50%;background:var(--bright-green);border:4px solid rgba(255,255,255,0.3);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.5);transition:transform .15s}
+.cam-snap-btn:active{transform:translateX(-50%) scale(.93)}
+.cam-snap-btn svg{width:28px;height:28px;color:#060f0a}
+.cam-close-btn{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;background:rgba(6,15,10,0.7);border:1px solid rgba(255,255,255,0.15);color:rgba(242,234,216,0.7);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
+canvas#camCanvas{display:none}
+
+/* ── Drop zone ── */
+.scanner-drop{border:1px dashed rgba(82,183,136,0.3);border-radius:10px;background:rgba(82,183,136,0.03);min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:36px 24px;transition:border-color .2s,background .2s}
+.scanner-drop.drag-over{border-color:rgba(82,183,136,0.6);background:rgba(82,183,136,0.07)}
+.scanner-drop-icon{width:48px;height:48px;color:rgba(82,183,136,0.45)}
+.scanner-drop-title{font-size:15px;font-weight:500;color:var(--cream);text-align:center}
+.scanner-drop-sub{font-size:11px;color:rgba(242,234,216,0.3);letter-spacing:0.05em;text-align:center}
+.scan-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:4px}
+
+/* ── Buttons ── */
+.s-btn{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:14px 28px;border-radius:4px;border:1px solid rgba(82,183,136,0.4);background:transparent;color:var(--bright-green);cursor:pointer;transition:background .2s,border-color .2s;min-height:48px;display:inline-flex;align-items:center;gap:8px;text-decoration:none;white-space:nowrap}
+.s-btn:hover{background:rgba(82,183,136,0.1);border-color:rgba(82,183,136,0.7)}
+.s-btn-primary{background:var(--bright-green);color:#060f0a;border-color:var(--bright-green)}
+.s-btn-primary:hover{background:#88d9b5;border-color:#88d9b5}
+.s-btn-gold{background:rgba(201,151,58,0.12);color:var(--gold);border-color:rgba(201,151,58,0.35)}
+.s-btn-gold:hover{background:rgba(201,151,58,0.2);border-color:rgba(201,151,58,0.6)}
+.s-btn:disabled{opacity:.5;cursor:default}
+
+/* ── Preview ── */
+.scan-preview-wrap{position:relative;border-radius:10px;overflow:hidden;border:1px solid rgba(82,183,136,0.2)}
+.scan-preview-img{width:100%;max-height:340px;object-fit:contain;background:#030806;display:block}
+.scan-preview-clear{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;background:rgba(6,12,6,0.85);border:1px solid rgba(242,234,216,0.2);color:rgba(242,234,216,0.7);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.scan-action{display:flex;justify-content:center;margin-top:16px}
+
+/* ── Loading ── */
+.scan-loading{display:flex;flex-direction:column;align-items:center;gap:14px;padding:48px 24px;text-align:center}
+.scan-loading-ring{width:44px;height:44px;border:2px solid rgba(82,183,136,0.12);border-top-color:var(--bright-green);border-radius:50%;animation:spin .9s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.scanner-loading-text{font-size:13px;color:rgba(242,234,216,0.5);letter-spacing:0.06em}
+.scan-loading-text{font-size:13px;color:rgba(242,234,216,0.45);letter-spacing:0.05em}
 
-/* result card */
-.scan-card{border:1px solid rgba(82,183,136,0.18);border-radius:6px;background:rgba(255,255,255,0.025);overflow:hidden;margin-top:32px}
-.scan-card-header{padding:24px 28px 20px;border-bottom:1px solid rgba(255,255,255,0.06)}
-.scan-card-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
-.scan-card-brand{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(242,234,216,0.4)}
-.scan-card-dot{color:rgba(242,234,216,0.2);font-size:10px}
-.scan-card-cat{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:3px 9px;border-radius:20px;background:rgba(82,183,136,0.12);color:rgba(82,183,136,0.8);border:1px solid rgba(82,183,136,0.15)}
-.scan-card-confidence-high{color:#52b788}
-.scan-card-confidence-medium{color:var(--amber)}
-.scan-card-confidence-low{color:rgba(242,234,216,0.4)}
-.scan-card-name{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:400;color:var(--cream);line-height:1.2;margin-bottom:4px}
-.scan-card-strain{font-size:12px;color:rgba(242,234,216,0.45);letter-spacing:0.05em}
-.scan-card-type-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 10px;border-radius:3px;margin-left:8px}
-.scan-type-indica{background:rgba(155,127,212,0.15);color:#b89ef8;border:1px solid rgba(155,127,212,0.2)}
-.scan-type-sativa{background:rgba(232,168,76,0.12);color:#e8a84c;border:1px solid rgba(232,168,76,0.2)}
-.scan-type-hybrid{background:rgba(82,183,136,0.12);color:#52b788;border:1px solid rgba(82,183,136,0.2)}
-.scan-type-cbd{background:rgba(92,160,232,0.12);color:#5ca0e8;border:1px solid rgba(92,160,232,0.2)}
-.scan-type-unknown{background:rgba(242,234,216,0.06);color:rgba(242,234,216,0.4);border:1px solid rgba(242,234,216,0.1)}
-.scan-card-body{padding:24px 28px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
-@media(max-width:600px){.scan-card-body{grid-template-columns:1fr}}
-.scan-section-label{font-size:9px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--bright-green);margin-bottom:8px;opacity:.8}
-.scan-card-section-full{grid-column:1/-1}
-.scan-potency-row{display:flex;gap:16px}
-.scan-potency-val{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--cream);line-height:1}
-.scan-potency-key{font-size:10px;color:rgba(242,234,216,0.4);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px}
-.scan-tags{display:flex;flex-wrap:wrap;gap:6px}
-.scan-tag{font-size:11px;padding:4px 10px;border-radius:20px;background:rgba(82,183,136,0.08);color:rgba(82,183,136,0.85);border:1px solid rgba(82,183,136,0.15)}
-.scan-tag-neutral{background:rgba(242,234,216,0.05);color:rgba(242,234,216,0.55);border:1px solid rgba(242,234,216,0.1)}
-.scan-lineage{font-size:13px;color:rgba(242,234,216,0.55);line-height:1.5;font-style:italic}
-.scan-review{font-size:14px;color:rgba(242,234,216,0.7);line-height:1.75;border-top:1px solid rgba(255,255,255,0.06);padding-top:20px}
-.scan-review-attr{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(82,183,136,0.6);margin-top:10px}
-.scan-error{padding:32px;text-align:center;color:rgba(242,234,216,0.5);font-size:14px;line-height:1.6}
+/* ── Result card ── */
+.scan-card{border:1px solid rgba(82,183,136,0.2);border-radius:10px;background:rgba(255,255,255,0.025);overflow:hidden;margin-top:28px}
+.scan-card-header{padding:22px 24px 18px;border-bottom:1px solid rgba(255,255,255,0.06);background:rgba(82,183,136,0.03)}
+.scan-card-meta{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.scan-card-brand{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(242,234,216,0.38)}
+.scan-card-dot{color:rgba(242,234,216,0.18);font-size:10px}
+.scan-card-cat{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:3px 9px;border-radius:20px;background:rgba(82,183,136,0.1);color:rgba(82,183,136,0.8);border:1px solid rgba(82,183,136,0.15)}
+.conf-high{color:#52b788}.conf-med{color:var(--amber)}.conf-low{color:rgba(242,234,216,0.38)}
+.scan-card-name{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;color:var(--cream);line-height:1.2;margin-bottom:4px}
+.scan-card-sub{font-size:12px;color:rgba(242,234,216,0.4);letter-spacing:0.04em}
+.scan-type-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 9px;border-radius:3px;margin-left:8px;vertical-align:middle}
+.st-indica{background:rgba(155,114,207,0.15);color:#b89ef8;border:1px solid rgba(155,114,207,0.2)}
+.st-sativa{background:rgba(232,168,76,0.12);color:#e8a84c;border:1px solid rgba(232,168,76,0.2)}
+.st-hybrid{background:rgba(82,183,136,0.12);color:#52b788;border:1px solid rgba(82,183,136,0.2)}
+.st-cbd{background:rgba(92,160,232,0.12);color:#5ca0e8;border:1px solid rgba(92,160,232,0.2)}
+.st-unknown{background:rgba(242,234,216,0.05);color:rgba(242,234,216,0.35);border:1px solid rgba(242,234,216,0.1)}
+
+/* ── Card body grid ── */
+.scan-body{padding:20px 24px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:500px){.scan-body{grid-template-columns:1fr;gap:16px}}
+.scan-full{grid-column:1/-1}
+.s-label-sm{font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--bright-green);margin-bottom:8px;opacity:.75}
+
+/* ── Potency ── */
+.scan-potency-row{display:flex;gap:20px;flex-wrap:wrap}
+.scan-potency-item{}
+.scan-potency-val{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--cream);line-height:1}
+.scan-potency-key{font-size:9px;color:rgba(242,234,216,0.38);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px}
+
+/* ── Date / batch row ── */
+.scan-meta-row{display:flex;flex-wrap:wrap;gap:16px}
+.scan-meta-item{}
+.scan-meta-val{font-size:13px;color:var(--cream);font-weight:500}
+.scan-meta-key{font-size:9px;color:rgba(242,234,216,0.35);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px}
+.scan-coa-box{background:rgba(201,151,58,0.06);border:1px solid rgba(201,151,58,0.18);border-radius:6px;padding:10px 14px;margin-top:4px}
+.scan-coa-val{font-family:monospace;font-size:13px;color:var(--gold);word-break:break-all}
+.scan-coa-key{font-size:9px;color:rgba(201,151,58,0.5);letter-spacing:0.1em;text-transform:uppercase;margin-top:3px}
+
+/* ── Tags / pills ── */
+.scan-pills{display:flex;flex-wrap:wrap;gap:6px}
+.scan-pill{font-size:11px;padding:4px 11px;border-radius:20px;background:rgba(82,183,136,0.08);color:rgba(82,183,136,0.85);border:1px solid rgba(82,183,136,0.15)}
+.scan-pill-neutral{background:rgba(242,234,216,0.05);color:rgba(242,234,216,0.5);border:1px solid rgba(242,234,216,0.1)}
+.scan-lineage{font-size:13px;color:rgba(242,234,216,0.5);line-height:1.55;font-style:italic}
+
+/* ── Mary Jane review ── */
+.scan-review-box{border-top:1px solid rgba(255,255,255,0.06);padding-top:18px}
+.scan-review-text{font-size:14px;color:rgba(242,234,216,0.68);line-height:1.8}
+.scan-review-attr{font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(82,183,136,0.55);margin-top:8px}
+
+/* ── Action buttons ── */
+.scan-actions{display:flex;flex-wrap:wrap;gap:10px;padding:20px 24px;border-top:1px solid rgba(255,255,255,0.05);background:rgba(0,0,0,0.15)}
+
+/* ── Similar strains ── */
+.scan-similar{margin-top:28px}
+.scan-similar-title{font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(242,234,216,0.3);margin-bottom:14px}
+.scan-sim-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(max-width:400px){.scan-sim-grid{grid-template-columns:1fr}}
+.scan-sim-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 16px;text-decoration:none;color:inherit;transition:border-color .2s,transform .15s;display:block}
+.scan-sim-card:hover{border-color:rgba(82,183,136,0.3);transform:translateY(-2px)}
+.scan-sim-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--cream);margin-bottom:3px}
+.scan-sim-type{font-size:9px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:7px;font-weight:600}
+.scan-sim-effs{display:flex;flex-wrap:wrap;gap:4px}
+.scan-sim-eff{font-size:10px;background:rgba(255,255,255,0.05);border-radius:3px;padding:2px 6px;color:rgba(242,234,216,0.4)}
+
+.scan-error-box{padding:32px 24px;text-align:center;color:rgba(242,234,216,0.45);font-size:14px;line-height:1.7}
 </style>
 </head>
 <body>
 
 <nav class="s-nav">
   <a href="/" class="s-nav-logo">Cannascenti</a>
-  <a href="/" class="s-nav-back">← Back to Home</a>
+  <a href="/" class="s-nav-back">← Home</a>
 </nav>
 
 <div class="s-hero">
   <div class="s-label">✦ Mary Jane Vision</div>
   <h1 class="s-title">Scan Any Product.<br><em>Know Everything.</em></h1>
-  <p class="s-desc">Point your camera at any cannabis product — flower, concentrate, vape, edible. Mary Jane identifies it instantly and delivers a full intelligence briefing.</p>
+  <p class="s-desc">Point your camera at any cannabis product. Mary Jane reads the label and delivers a full intelligence briefing — terpenes, potency, dates, COA, and strain comparison.</p>
 </div>
 
 <div class="scan-wrap">
 
   <input type="file" id="scanFileInput" accept="image/*" style="display:none" onchange="onScanFile(this)">
+  <canvas id="camCanvas"></canvas>
 
+  <!-- Live camera viewfinder -->
+  <div class="cam-wrap" id="camWrap">
+    <video id="camVideo" autoplay playsinline muted></video>
+    <button class="cam-snap-btn" onclick="snapPhoto()" title="Take photo">
+      <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></svg>
+    </button>
+    <button class="cam-close-btn" onclick="stopCamera()">×</button>
+  </div>
+
+  <!-- Drop zone -->
   <div class="scanner-drop" id="scannerDrop"
-    onclick="document.getElementById('scanFileInput').click()"
     ondragover="scanDragOver(event)" ondragleave="scanDragLeave(event)" ondrop="scanDrop(event)">
     <svg class="scanner-drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="2" y="3" width="20" height="15" rx="2"/>
-      <circle cx="8.5" cy="8.5" r="1.5"/>
-      <path d="M21 15l-5-5L5 21"/>
-      <path d="M16 3h5v5"/>
-      <path d="M21 3l-5 5"/>
+      <rect x="2" y="3" width="20" height="15" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+      <path d="M21 15l-5-5L5 21"/><path d="M16 3h5v5"/><path d="M21 3l-5 5"/>
     </svg>
-    <div class="scanner-drop-title">Drop a photo here — or tap to browse</div>
-    <div class="scanner-drop-sub">JPG · PNG · WEBP &nbsp;·&nbsp; Up to 4MB</div>
-    <div class="scanner-drop-btns" onclick="event.stopPropagation()">
-      <button class="scanner-btn" onclick="triggerCam()">📷 &nbsp;Take Photo</button>
-      <label class="scanner-btn scanner-btn-primary" for="scanFileInput" style="display:inline-flex;align-items:center;cursor:pointer;">↑ &nbsp;Upload Image</label>
+    <div class="scanner-drop-title">Drop a photo — or use your camera</div>
+    <div class="scanner-drop-sub">JPG · PNG · WEBP · up to 5MB</div>
+    <div class="scan-btns">
+      <button class="s-btn s-btn-primary" onclick="startCamera()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        Open Camera
+      </button>
+      <label class="s-btn" for="scanFileInput" style="cursor:pointer">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        Upload Photo
+      </label>
     </div>
   </div>
 
+  <!-- Preview -->
   <div id="scannerPreviewWrap" style="display:none">
-    <div class="scanner-preview-wrap">
-      <img id="scannerPreviewImg" class="scanner-preview-img" alt="Product photo">
-      <button class="scanner-preview-clear" onclick="clearScan()" title="Remove">×</button>
+    <div class="scan-preview-wrap">
+      <img id="scannerPreviewImg" class="scan-preview-img" alt="Product photo">
+      <button class="scan-preview-clear" onclick="clearScan()">×</button>
     </div>
-    <div class="scanner-action">
-      <button class="scanner-btn scanner-btn-primary" id="scanBtn" onclick="runScan()">Ask Mary Jane →</button>
+    <div class="scan-action">
+      <button class="s-btn s-btn-primary" id="scanBtn" onclick="runScan()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        Analyze Product
+      </button>
     </div>
   </div>
 
-  <div class="scanner-loading" id="scannerLoading" style="display:none">
-    <div class="scanner-loading-ring"></div>
-    <div class="scanner-loading-text">Mary Jane is reading the product…</div>
+  <!-- Loading -->
+  <div class="scan-loading" id="scannerLoading" style="display:none">
+    <div class="scan-loading-ring"></div>
+    <div class="scan-loading-text">Mary Jane is reading the label…</div>
   </div>
 
+  <!-- Result -->
   <div id="scannerResult"></div>
 
 </div>
 
 <script>
 let scanFileData = null;
+let camStream = null;
 
-function triggerCam() {
-  const inp = document.getElementById('scanFileInput');
-  inp.setAttribute('capture', 'environment');
-  inp.click();
+// ── Camera ────────────────────────────────────────────────────────────────────
+async function startCamera() {
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    // Fallback to file input with capture
+    const inp = document.getElementById('scanFileInput');
+    inp.setAttribute('capture','environment');
+    inp.click();
+    return;
+  }
+  try {
+    camStream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: 'environment', width: { ideal: 1920 }, height: { ideal: 1080 } }
+    });
+    const video = document.getElementById('camVideo');
+    video.srcObject = camStream;
+    document.getElementById('scannerDrop').style.display = 'none';
+    document.getElementById('camWrap').classList.add('active');
+  } catch {
+    // Permission denied or not available — fall back to file picker
+    const inp = document.getElementById('scanFileInput');
+    inp.setAttribute('capture','environment');
+    inp.click();
+  }
 }
 
+function stopCamera() {
+  if (camStream) { camStream.getTracks().forEach(t => t.stop()); camStream = null; }
+  document.getElementById('camWrap').classList.remove('active');
+  document.getElementById('scannerDrop').style.display = 'flex';
+}
+
+function snapPhoto() {
+  const video = document.getElementById('camVideo');
+  const canvas = document.getElementById('camCanvas');
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext('2d').drawImage(video, 0, 0);
+  stopCamera();
+  const dataUrl = canvas.toDataURL('image/jpeg', 0.88);
+  showPreview(dataUrl, 'image/jpeg');
+}
+
+// ── File upload ───────────────────────────────────────────────────────────────
 function onScanFile(input) {
   const file = input.files[0];
   if (!file) return;
-  if (file.size > 5 * 1024 * 1024) {
-    alert('Image is too large. Please use a photo under 5MB.');
-    input.value = '';
-    return;
-  }
+  if (file.size > 5 * 1024 * 1024) { alert('Image too large — please use under 5MB.'); input.value=''; return; }
   const reader = new FileReader();
   reader.onload = (e) => {
     const dataUrl = e.target.result;
-    const [header, base64] = dataUrl.split(',');
-    const mediaType = header.match(/data:([^;]+)/)[1];
-    scanFileData = { base64, mediaType };
-    document.getElementById('scannerDrop').style.display = 'none';
-    document.getElementById('scannerPreviewWrap').style.display = 'block';
-    document.getElementById('scannerPreviewImg').src = dataUrl;
-    document.getElementById('scannerResult').innerHTML = '';
+    const mediaType = dataUrl.split(',')[0].match(/data:([^;]+)/)[1];
+    showPreview(dataUrl, mediaType);
   };
   reader.readAsDataURL(file);
+}
+
+function showPreview(dataUrl, mediaType) {
+  const [, base64] = dataUrl.split(',');
+  scanFileData = { base64: base64 || dataUrl.split(',')[1], mediaType: mediaType || 'image/jpeg', dataUrl };
+  document.getElementById('scannerDrop').style.display = 'none';
+  document.getElementById('scannerPreviewWrap').style.display = 'block';
+  document.getElementById('scannerPreviewImg').src = dataUrl;
+  document.getElementById('scannerResult').innerHTML = '';
 }
 
 function clearScan() {
@@ -7585,13 +7696,8 @@ function clearScan() {
   document.getElementById('scannerResult').innerHTML = '';
 }
 
-function scanDragOver(e) {
-  e.preventDefault();
-  document.getElementById('scannerDrop').classList.add('drag-over');
-}
-function scanDragLeave(e) {
-  document.getElementById('scannerDrop').classList.remove('drag-over');
-}
+function scanDragOver(e) { e.preventDefault(); document.getElementById('scannerDrop').classList.add('drag-over'); }
+function scanDragLeave() { document.getElementById('scannerDrop').classList.remove('drag-over'); }
 function scanDrop(e) {
   e.preventDefault();
   document.getElementById('scannerDrop').classList.remove('drag-over');
@@ -7600,11 +7706,11 @@ function scanDrop(e) {
   onScanFile({ files: [file] });
 }
 
+// ── Scan / analyze ────────────────────────────────────────────────────────────
 async function runScan() {
   if (!scanFileData) return;
   const btn = document.getElementById('scanBtn');
   btn.disabled = true;
-  btn.textContent = 'Analyzing…';
   document.getElementById('scannerLoading').style.display = 'flex';
   document.getElementById('scannerResult').innerHTML = '';
   try {
@@ -7615,44 +7721,124 @@ async function runScan() {
     });
     const data = await res.json();
     document.getElementById('scannerLoading').style.display = 'none';
-    document.getElementById('scannerResult').innerHTML = renderScanCard(data);
+    if (data.error) {
+      document.getElementById('scannerResult').innerHTML = '<div class="scan-error-box">'+data.error+'</div>';
+    } else {
+      document.getElementById('scannerResult').innerHTML = renderScanCard(data);
+      // Load similar strains async
+      if (data.strainName || data.strainType) loadSimilar(data.strainName, data.strainType, data.effects);
+    }
   } catch {
     document.getElementById('scannerLoading').style.display = 'none';
-    document.getElementById('scannerResult').innerHTML = '<div class="scan-error">Something went wrong. Please try again.</div>';
+    document.getElementById('scannerResult').innerHTML = '<div class="scan-error-box">Something went wrong. Please try again.</div>';
   } finally {
     btn.disabled = false;
-    btn.textContent = 'Ask Mary Jane →';
   }
 }
 
+// ── Render result card ────────────────────────────────────────────────────────
 function renderScanCard(d) {
-  if (d.error) return '<div class="scan-error">' + d.error + '</div>';
-  const typeClass = {'Indica':'scan-type-indica','Sativa':'scan-type-sativa','Hybrid':'scan-type-hybrid','CBD':'scan-type-cbd'}[d.strainType] || 'scan-type-unknown';
-  const confColor = {'High':'scan-card-confidence-high','Medium':'scan-card-confidence-medium','Low':'scan-card-confidence-low'}[d.confidence] || '';
-  const tags = (arr) => (arr||[]).map(t => '<span class="scan-tag">'+t+'</span>').join('');
-  const neutralTags = (arr) => (arr||[]).map(t => '<span class="scan-tag scan-tag-neutral">'+t+'</span>').join('');
+  const typeMap = {Indica:'st-indica',Sativa:'st-sativa',Hybrid:'st-hybrid',CBD:'st-cbd'};
+  const typeClass = typeMap[d.strainType] || 'st-unknown';
+  const confClass = {High:'conf-high',Medium:'conf-med',Low:'conf-low'}[d.confidence] || '';
+  const pills = (arr,cls) => (arr||[]).map(t=>'<span class="scan-pill'+(cls?' '+cls:'')+'">'+t+'</span>').join('');
+
+  // Dates / batch / COA section
+  const metaItems = [];
+  if (d.packageDate) metaItems.push(['Packaged', d.packageDate]);
+  if (d.harvestDate) metaItems.push(['Harvested', d.harvestDate]);
+  if (d.batchNumber) metaItems.push(['Batch/Lot', d.batchNumber]);
+  if (d.labName) metaItems.push(['Lab', d.labName]);
+  const metaHtml = metaItems.length ? '<div class="scan-meta-row">' + metaItems.map(([k,v])=>
+    '<div class="scan-meta-item"><div class="scan-meta-val">'+v+'</div><div class="scan-meta-key">'+k+'</div></div>'
+  ).join('') + '</div>' : '';
+  const coaHtml = d.coaBarcode ? '<div class="scan-coa-box"><div class="scan-coa-val">'+d.coaBarcode+'</div><div class="scan-coa-key">COA / Barcode Reference</div></div>' : '';
+
+  // Ask MJ URL
+  const mjQ = encodeURIComponent('Tell me everything about ' + (d.strainName || d.productName || 'this strain') + ' — effects, terpenes, who it is for, and the best time to use it.');
+  const strainSlug = (d.strainName||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+
   return '<div class="scan-card">' +
+    // Header
     '<div class="scan-card-header">' +
       '<div class="scan-card-meta">' +
         (d.brand ? '<span class="scan-card-brand">'+d.brand+'</span><span class="scan-card-dot">·</span>' : '') +
         '<span class="scan-card-cat">'+(d.category||'Cannabis')+'</span>' +
-        (d.confidence ? '<span class="scan-card-dot">·</span><span class="scan-section-label '+confColor+'" style="margin-bottom:0">'+d.confidence+' confidence</span>' : '') +
+        (d.confidence ? '<span class="scan-card-dot">·</span><span class="'+confClass+'" style="font-size:10px;letter-spacing:.1em;text-transform:uppercase">'+d.confidence+' confidence</span>' : '') +
       '</div>' +
-      '<div class="scan-card-name">' +
-        (d.productName||d.strainName||'Unknown Product') +
-        (d.strainType && d.strainType !== 'Unknown' ? '<span class="scan-card-type-badge '+typeClass+'">'+d.strainType+'</span>' : '') +
+      '<div class="scan-card-name">'+(d.productName||d.strainName||'Cannabis Product')+
+        (d.strainType && d.strainType!=='Unknown' ? '<span class="scan-type-badge '+typeClass+'">'+d.strainType+'</span>' : '') +
       '</div>' +
-      (d.strainName && d.productName && d.strainName !== d.productName ? '<div class="scan-card-strain">'+d.strainName+'</div>' : '') +
+      (d.strainName && d.productName && d.strainName!==d.productName ? '<div class="scan-card-sub">'+d.strainName+'</div>' : '') +
     '</div>' +
-    '<div class="scan-card-body">' +
-      '<div class="scan-card-section"><div class="scan-section-label">Potency</div><div class="scan-potency-row"><div class="scan-potency-item"><div class="scan-potency-val">'+(d.thc||'—')+'</div><div class="scan-potency-key">THC</div></div><div class="scan-potency-item"><div class="scan-potency-val">'+(d.cbd||'—')+'</div><div class="scan-potency-key">CBD</div></div></div></div>' +
-      (d.lineage ? '<div class="scan-card-section"><div class="scan-section-label">Lineage</div><div class="scan-lineage">'+d.lineage+'</div></div>' : '') +
-      '<div class="scan-card-section"><div class="scan-section-label">Terpenes</div><div class="scan-tags">'+tags(d.terpenes)+'</div></div>' +
-      '<div class="scan-card-section"><div class="scan-section-label">Effects</div><div class="scan-tags">'+tags(d.effects)+'</div></div>' +
-      '<div class="scan-card-section"><div class="scan-section-label">Flavor Profile</div><div class="scan-tags">'+neutralTags(d.flavors)+'</div></div>' +
-      '<div class="scan-card-section"><div class="scan-section-label">Best With</div><div class="scan-tags">'+neutralTags(d.pairings)+'</div></div>' +
-      (d.reviewSummary ? '<div class="scan-card-section scan-card-section-full"><div class="scan-review">'+d.reviewSummary+'<div class="scan-review-attr">— Mary Jane, Cannascenti</div></div></div>' : '') +
-    '</div></div>';
+    // Body
+    '<div class="scan-body">' +
+      // Potency
+      '<div><div class="s-label-sm">Potency</div><div class="scan-potency-row">' +
+        '<div class="scan-potency-item"><div class="scan-potency-val">'+(d.thc||'—')+'</div><div class="scan-potency-key">THC</div></div>' +
+        '<div class="scan-potency-item"><div class="scan-potency-val">'+(d.cbd||'—')+'</div><div class="scan-potency-key">CBD</div></div>' +
+      '</div></div>' +
+      // Lineage
+      (d.lineage ? '<div><div class="s-label-sm">Lineage</div><div class="scan-lineage">'+d.lineage+'</div></div>' : '') +
+      // Terpenes
+      '<div class="scan-full"><div class="s-label-sm">Terpenes</div><div class="scan-pills">'+pills(d.terpenes)+'</div></div>' +
+      // Effects
+      '<div><div class="s-label-sm">Effects</div><div class="scan-pills">'+pills(d.effects)+'</div></div>' +
+      // Flavors
+      '<div><div class="s-label-sm">Flavor Profile</div><div class="scan-pills">'+pills(d.flavors,'scan-pill-neutral')+'</div></div>' +
+      // Dates / Batch / COA
+      (metaHtml||coaHtml ? '<div class="scan-full"><div class="s-label-sm">Label Info</div>'+metaHtml+coaHtml+'</div>' : '') +
+      // Best with
+      (d.pairings&&d.pairings.length ? '<div class="scan-full"><div class="s-label-sm">Best With</div><div class="scan-pills">'+pills(d.pairings,'scan-pill-neutral')+'</div></div>' : '') +
+      // Review
+      (d.reviewSummary ? '<div class="scan-full"><div class="scan-review-box"><div class="scan-review-text">'+d.reviewSummary+'</div><div class="scan-review-attr">— Mary Jane, Cannascenti</div></div></div>' : '') +
+      // Similar strains placeholder
+      '<div class="scan-full" id="similarSection"></div>' +
+    '</div>' +
+    // Action buttons
+    '<div class="scan-actions">' +
+      '<a href="/?ask='+mjQ+'" class="s-btn s-btn-gold">Ask Mary Jane →</a>' +
+      (strainSlug ? '<a href="/strains/'+strainSlug+'" class="s-btn">View Strain Profile</a>' : '') +
+      '<button class="s-btn" onclick="clearScan();window.scrollTo(0,0)">Scan Another</button>' +
+    '</div>' +
+  '</div>';
+}
+
+// ── Similar strains ───────────────────────────────────────────────────────────
+async function loadSimilar(strainName, strainType, effects) {
+  const sec = document.getElementById('similarSection');
+  if (!sec) return;
+  try {
+    const res = await fetch('/api/strains/all');
+    const all = await res.json();
+    const type = (strainType||'').toLowerCase();
+    const effs = effects || [];
+    const toSlug = n => n.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+    const typeColors = {indica:'#9B72CF',sativa:'#E8A84C',hybrid:'#52B788'};
+    const scored = all
+      .filter(s => s.name.toLowerCase() !== (strainName||'').toLowerCase())
+      .map(s => {
+        let score = ((s.type||'').toLowerCase()===type ? 3 : 0);
+        score += (s.effects||[]).filter(e=>effs.includes(e)).length;
+        return {...s, _score: score};
+      })
+      .filter(s => s._score > 0)
+      .sort((a,b) => b._score - a._score)
+      .slice(0, 4);
+    if (!scored.length) return;
+    sec.innerHTML = '<div class="scan-similar">' +
+      '<div class="scan-similar-title">Similar Strains You May Like</div>' +
+      '<div class="scan-sim-grid">' +
+      scored.map(s => {
+        const tc = typeColors[(s.type||'hybrid').toLowerCase()] || '#52B788';
+        return '<a href="/strains/'+toSlug(s.name)+'" class="scan-sim-card">' +
+          '<div class="scan-sim-name">'+s.name+'</div>' +
+          '<div class="scan-sim-type" style="color:'+tc+'">'+s.type+'</div>' +
+          '<div class="scan-sim-effs">'+(s.effects||[]).slice(0,3).map(e=>'<span class="scan-sim-eff">'+e+'</span>').join('')+'</div>' +
+        '</a>';
+      }).join('') +
+      '</div></div>';
+  } catch { /* silently skip */ }
 }
 </script>
 </body>
