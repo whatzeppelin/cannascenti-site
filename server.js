@@ -484,7 +484,7 @@ Your personality:
 What you know deeply:
 - Every strain, terpene, cannabinoid, and effect — you can speak to all of it
 - Hash culture: bubble hash, dry sift, rosin, live hash, kief — the history, the techniques, the tasting notes
-- Cannascenti's offerings: The Magazine, Cannalogy education hub, Joint Rolling Seminars (Beginner/Intermediate/Advanced), Hash events (Taste the Courage tasting events, Solventless Sessions, Hash Nights), CannaQuant — your personal cannabis consultant and budtender for life (personal consumer sessions, dispensary consulting, business strategy, staff training), AI Strain Finder, Budtender Pro tool
+- Cannascenti's offerings: The Magazine, Cannalogy education hub, Joint Rolling Seminars (Beginner/Intermediate/Advanced), Hash events (Taste the Courage tasting events, Solventless Sessions, Hash Nights), Mary Jane Sessions — personal cannabis consulting and budtender for life (personal consumer sessions, dispensary consulting, business strategy, staff training), AI Strain Finder, Budtender Pro tool
 - Joint rolling techniques from basics to advanced (cross joints, tulips, backwoods, Dutch masters, etc.)
 - How to evaluate cannabis quality — label reading, terpene profiles, the entourage effect
 - Dosing, consumption methods, harm reduction
@@ -521,7 +521,7 @@ Quality evaluation: jar appeal, bud structure, trichome density under a loupe, t
 CANNASCENTI PLATFORM (mention naturally when it helps, never pushy):
 - Strain Finder: free AI matching on the homepage — great starting point
 - Encyclopedia: /strains (392+ profiles), /terpenes, /cannabinoids, /history, /concentrates, /edibles
-- CannaQuant: personal cannabis consulting — for people who want seriously personalized guidance
+- Mary Jane Sessions: personal cannabis consulting — for people who want seriously personalized guidance
 - Joint Rolling Seminars: Beginner/Intermediate/Advanced
 - Solventless Sessions & Hash Nights: premium tasting events
 - Budtender Pro: tool for dispensary staff at /budtender-pro
@@ -6409,14 +6409,6 @@ a{color:var(--bright-green);text-decoration:none}
 .d-hero-cta:hover{opacity:.85;color:#060f0a}
 .d-hero-sub{margin-top:16px;font-size:12px;color:rgba(242,234,216,0.3);letter-spacing:.04em}
 @media(max-width:600px){.d-hero{padding:80px 24px 70px}}
-/* stats bar */
-.d-stats{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--border)}
-.d-stat{padding:44px 60px;border-right:1px solid var(--border)}
-.d-stat:last-child{border-right:none}
-.d-stat-num{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,54px);color:var(--cream);margin-bottom:6px;line-height:1}
-.d-stat-num em{color:var(--bright-green);font-style:normal}
-.d-stat-label{font-size:12px;color:rgba(242,234,216,0.4);letter-spacing:.08em}
-@media(max-width:760px){.d-stats{grid-template-columns:1fr;}.d-stat{padding:32px 24px;border-right:none;border-bottom:1px solid var(--border)}.d-stat:last-child{border-bottom:none}}
 /* features */
 .d-features{padding:90px 60px;max-width:1100px;margin:0 auto;border-bottom:1px solid var(--border)}
 /* bpro callout */
@@ -6443,11 +6435,6 @@ a{color:var(--bright-green);text-decoration:none}
 .d-how-step-heading{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream);margin-bottom:10px}
 .d-how-step-desc{font-size:13px;color:rgba(242,234,216,0.45);line-height:1.8}
 @media(max-width:760px){.d-how{padding:60px 24px}.d-how-steps{grid-template-columns:1fr;gap:32px}}
-/* testimonial */
-.d-testimonial{padding:90px 60px;border-bottom:1px solid var(--border);text-align:center}
-.d-testimonial-quote{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3vw,34px);color:var(--cream);font-style:italic;max-width:780px;margin:0 auto 24px;line-height:1.5}
-.d-testimonial-attr{font-size:12px;color:rgba(242,234,216,0.35);letter-spacing:.15em;text-transform:uppercase}
-@media(max-width:600px){.d-testimonial{padding:60px 24px}}
 /* cta */
 .d-cta{padding:100px 60px;text-align:center;border-bottom:1px solid var(--border)}
 .d-cta-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4.5vw,56px);color:var(--cream);font-style:italic;margin-bottom:20px;line-height:1.2}
@@ -6480,20 +6467,6 @@ a{color:var(--bright-green);text-decoration:none}
   <p class="d-hero-sub">No commitment. We'll walk you through the partnership in 20 minutes.</p>
 </div>
 
-<div class="d-stats">
-  <div class="d-stat">
-    <div class="d-stat-num"><em>4,200+</em></div>
-    <div class="d-stat-label">profiles matched to date</div>
-  </div>
-  <div class="d-stat">
-    <div class="d-stat-num">30<em>s</em></div>
-    <div class="d-stat-label">average quiz completion time</div>
-  </div>
-  <div class="d-stat">
-    <div class="d-stat-num"><em>6</em></div>
-    <div class="d-stat-label">personalized cannabis profiles</div>
-  </div>
-</div>
 
 <div class="d-features">
   <div class="d-section-label">✦ What You Get</div>
@@ -6562,10 +6535,6 @@ a{color:var(--bright-green);text-decoration:none}
   </div>
 </div>
 
-<div class="d-testimonial">
-  <p class="d-testimonial-quote">"The quiz cut our 'I don't know what I want' conversations in half. Customers come in knowing their profile — the upsell practically happens by itself."</p>
-  <p class="d-testimonial-attr">— Early partner dispensary, Los Angeles</p>
-</div>
 
 <div class="d-cta">
   <h2 class="d-cta-title">Ready to personalize<br>your customer experience?</h2>
@@ -6787,7 +6756,7 @@ a{color:var(--bright-green);text-decoration:none}
 .bpro-dose-row-label{color:rgba(245,240,225,0.5);font-family:'Montserrat',sans-serif;font-size:11px}
 .bpro-dose-row-val{color:var(--cream);font-weight:600;font-family:'Montserrat',sans-serif;font-size:11px;text-align:right}
 
-/* Consulting / CannaQuant */
+/* Consulting / Mary Jane */
 .bp-consulting{padding:80px 60px;border-top:1px solid rgba(82,183,136,0.1)}
 .bp-consulting-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
 .consulting-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,50px);font-weight:300;line-height:1.15;color:var(--cream);margin-bottom:24px;margin-top:20px}
@@ -6947,20 +6916,20 @@ a{color:var(--bright-green);text-decoration:none}
   </div>
 </div>
 
-<!-- CannaQuant -->
+<!-- Mary Jane Consulting -->
 <div class="bp-consulting">
   <div class="bp-consulting-inner">
     <div>
-      <div class="section-label">✦ CannaQuant</div>
-      <div class="consulting-title">Your personal <em>CannaQuant.</em> Your budtender for life.</div>
-      <p class="consulting-desc">Think of me as your cannabis financial advisor — except instead of money, we're talking about your experience, your body, your goals, and your plant. Whether you're brand new or a seasoned connoisseur, I meet you exactly where you are. Real conversations. Real answers. No guesswork.</p>
+      <div class="section-label">✦ Mary Jane</div>
+      <div class="consulting-title">Your personal <em>Mary Jane.</em> Your budtender for life.</div>
+      <p class="consulting-desc">The greatest cannabis sommelier there ever was — your personal AI cannabis guide. Think of her as your cannabis financial advisor — except instead of money, we're talking about your experience, your body, your goals, and your plant. Whether you're brand new or a seasoned connoisseur, she meets you exactly where you are. Real conversations. Real answers. No guesswork.</p>
       <div class="consulting-stats">
         <div><div class="consulting-stat-num">10+</div><div class="consulting-stat-label">Years on the floor</div></div>
         <div><div class="consulting-stat-num">1000s</div><div class="consulting-stat-label">Customers helped</div></div>
         <div><div class="consulting-stat-num">500+</div><div class="consulting-stat-label">Strains studied</div></div>
         <div><div class="consulting-stat-num">100%</div><div class="consulting-stat-label">Real experience</div></div>
       </div>
-      <a href="https://calendly.com/cannascenti" target="_blank" class="btn-primary">Book Your CannaQuant Session</a>
+      <a href="https://calendly.com/cannascenti" target="_blank" class="btn-primary">Book Your Mary Jane Session</a>
     </div>
     <div class="consulting-services">
       <div class="consulting-service">
