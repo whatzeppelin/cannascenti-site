@@ -5906,7 +5906,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   <div id="qIntro" class="q-intro">
     <div class="q-label">&#10022; The Cannascenti Match</div>
     <h1 class="q-intro-title">Find what <em>actually</em><br>works for you.</h1>
-    <p class="q-intro-sub">5 questions. 30 seconds. A personalized cannabis profile matched to real strains from our database of 392+ cultivars.</p>
+    <p class="q-intro-sub">5 questions. 30 seconds. A personalized cannabis profile matched to real strains from our database of 394 cultivars.</p>
     <button class="q-start-btn" onclick="startQuiz()">Begin &#8594;</button>
   </div>
 
@@ -5922,7 +5922,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   <!-- ANALYZING -->
   <div id="qAnalyzing" style="display:none" class="q-analyzing">
     <div class="q-analyzing-title">Analyzing your profile&#8230;</div>
-    <div class="q-analyzing-sub">Matching against 392+ strains</div>
+    <div class="q-analyzing-sub">Matching against 394 strains</div>
     <div class="q-dots"><div class="q-dot"></div><div class="q-dot"></div><div class="q-dot"></div></div>
   </div>
 
@@ -6144,10 +6144,13 @@ function getTopStrains(profile) {
 }
 
 function strainCard(strain, rank) {
-  var badges = ['&#11088; Best Match', isBeginner ? '&#127807; Gentle Option' : '&#128293; Step It Up', '&#127807; Start Here'];
+  var badges = ['&#11088; Best Match', '&#127807; Also Great', '&#10022; Worth Trying'];
   var badgeClass = rank === 0 ? 'gold' : '';
   var typeClass = strain.type ? strain.type.toLowerCase() : 'hybrid';
   var thc = (strain.thc_min || '?') + '\u2013' + (strain.thc_max || '?') + '%';
+  var cbd = strain.cbd ? (strain.cbd + '% CBD') : '';
+  var slug = strain.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+  var mjQuery = encodeURIComponent('Tell me about ' + strain.name + ' — effects, terpenes, and who it\'s best for.');
   var terps = (strain.terpenes || []).slice(0,3).map(function(t) {
     return '<span class="q-strain-tag terpene">' + t + '</span>';
   }).join('');
@@ -6164,6 +6167,7 @@ function strainCard(strain, rank) {
         '<div class="q-strain-type-row">' +
           '<span class="q-strain-type ' + typeClass + '">' + strain.type + '</span>' +
           '<span class="q-strain-thc">THC ' + thc + '</span>' +
+          (cbd ? '<span class="q-strain-thc">' + cbd + '</span>' : '') +
         '</div>' +
       '</div>' +
       '<span class="q-strain-badge ' + badgeClass + '">' + badges[rank] + '</span>' +
@@ -6171,6 +6175,10 @@ function strainCard(strain, rank) {
     '<div class="q-strain-tags">' + terps + effs + '</div>' +
     '<p class="q-strain-desc">' + (strain.description || '') + '</p>' +
     (flavors ? '<div class="q-strain-tags" style="margin-top:10px">' + flavors + '</div>' : '') +
+    '<div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">' +
+      '<a href="/strains/' + slug + '" style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#52B788;border:1px solid rgba(82,183,136,0.25);padding:7px 14px;border-radius:20px;text-decoration:none;transition:background .2s" onmouseover="this.style.background=\'rgba(82,183,136,0.08)\'" onmouseout="this.style.background=\'\'">View Full Profile &#8594;</a>' +
+      '<a href="/?mj=' + mjQuery + '#mary-jane" style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(242,234,216,0.5);border:1px solid rgba(255,255,255,0.1);padding:7px 14px;border-radius:20px;text-decoration:none;transition:all .2s" onmouseover="this.style.color=\'#F2EAD8\';this.style.borderColor=\'rgba(255,255,255,0.25)\'" onmouseout="this.style.color=\'rgba(242,234,216,0.5)\';this.style.borderColor=\'rgba(255,255,255,0.1)\'">Ask Mary Jane &#8594;</a>' +
+    '</div>' +
   '</div>';
 }
 
@@ -6190,7 +6198,13 @@ function showResults() {
     '<div class="q-strains">' + cards + '</div>' +
     '<div class="q-result-ctas">' +
       '<button class="q-retake-btn" onclick="retakeQuiz()">Retake the quiz</button>' +
-      '<a href="/strains" class="q-browse-btn">Browse all 392+ strains &#8594;</a>' +
+      '<a href="/strains" class="q-browse-btn">Browse all 394 strains &#8594;</a>' +
+    '</div>' +
+    '<div style="margin-top:48px;padding:28px 32px;background:rgba(82,183,136,0.04);border:1px solid rgba(82,183,136,0.15);border-radius:12px;text-align:center">' +
+      '<div style="font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:#52B788;margin-bottom:10px">&#10022; For Dispensaries</div>' +
+      '<p style="font-family:\'Cormorant Garamond\',serif;font-size:1.3rem;font-style:italic;color:#F2EAD8;margin-bottom:8px">This is what your customers experience.</p>' +
+      '<p style="font-size:13px;color:rgba(242,234,216,0.5);margin-bottom:20px;font-weight:300">White-label this quiz for your store — your branding, your product catalog, your customers.</p>' +
+      '<a href="/for-dispensaries" style="display:inline-block;background:#52B788;color:#060d0a;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:12px 28px;border-radius:100px;text-decoration:none">See How It Works &#8594;</a>' +
     '</div>';
   var el = document.getElementById('qResult');
   el.innerHTML = html;
@@ -6378,6 +6392,12 @@ a{color:var(--bright-green);text-decoration:none}
 
   // ─── Dispensary pitch page ─────────────────────────────────────────────────
   if (req.method === "GET" && req.url === "/for-dispensaries") {
+    const html = fs.readFileSync(path.join(__dirname, "for-dispensaries.html"), "utf8");
+    res.writeHead(200, { "Content-Type": "text/html", "Cache-Control": "no-cache, no-store, must-revalidate" });
+    res.end(html);
+    return;
+  }
+  if (false && req.method === "GET" && req.url === "/for-dispensaries-old") {
     const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6555,6 +6575,14 @@ a{color:var(--bright-green);text-decoration:none}
 </body>
 </html>`;
     res.writeHead(200, { "Content-Type": "text/html", "Cache-Control": "public, max-age=3600" });
+    res.end(html);
+    return;
+  }
+
+  // ─── Pricing page ─────────────────────────────────────────────────────────
+  if (req.method === "GET" && req.url === "/pricing") {
+    const html = fs.readFileSync(path.join(__dirname, "pricing.html"), "utf8");
+    res.writeHead(200, { "Content-Type": "text/html", "Cache-Control": "no-cache, no-store, must-revalidate" });
     res.end(html);
     return;
   }
