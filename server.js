@@ -525,7 +525,7 @@ Quality evaluation: jar appeal, bud structure, trichome density under a loupe, t
 
 CANNASCENTI PLATFORM (mention naturally when it helps, never pushy):
 - Strain Finder: free AI matching on the homepage — great starting point
-- Encyclopedia: /strains (392+ profiles), /terpenes, /cannabinoids, /history, /concentrates, /edibles
+- Encyclopedia: /strains (394+ profiles), /terpenes, /cannabinoids, /history, /concentrates, /edibles
 - Mary Jane Sessions: personal cannabis consulting — for people who want seriously personalized guidance
 - Joint Rolling Seminars: Beginner/Intermediate/Advanced
 - Solventless Sessions & Hash Nights: premium tasting events
