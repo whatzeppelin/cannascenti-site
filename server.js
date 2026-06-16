@@ -2302,6 +2302,15 @@ ${ENC_NAV}
     ${geneticsHtml}
   </div>` : ''}
 
+  <div class="sp-section" style="background:rgba(82,183,136,0.06);border:1px solid rgba(82,183,136,0.25);border-radius:12px;padding:24px;">
+    <div class="sp-section-title" style="color:#52B788;">Find at Erba Sawtelle</div>
+    <p style="color:#ccc;margin:0 0 16px;font-size:0.95rem;">Check if <strong style="color:#fff;">${s.name}</strong> is currently in stock at Erba Sawtelle in Los Angeles.</p>
+    <a href="https://weedmaps.com/dispensaries/erba-2/menu?searchQuery=${encodeURIComponent(s.name)}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;background:#52B788;color:#0a0f0a;font-weight:700;padding:12px 22px;border-radius:8px;text-decoration:none;font-size:0.95rem;">
+      🌿 Search on Weedmaps
+    </a>
+    <p style="color:#666;margin:12px 0 0;font-size:0.8rem;">Opens Erba Sawtelle's live menu · Stock changes daily</p>
+  </div>
+
   ${relCards ? `<div class="sp-section">
     <div class="sp-section-title">Similar Strains</div>
     <div class="sp-rel-grid">${relCards}</div>
