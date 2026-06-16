@@ -139,6 +139,8 @@ a{color:var(--bright-green);text-decoration:none}
 .d-footer{text-align:center;padding:24px;border-top:1px solid var(--border);font-size:11px;color:rgba(242,234,216,0.3);font-weight:300}
 .d-footer a{color:rgba(242,234,216,0.3)}
 .d-footer a:hover{color:var(--bright-green)}
+@media(max-width:640px){.d-hero{padding:70px 24px 60px}.dc-row{grid-template-columns:1fr}}
+.dc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
 </style>
 </head>
 <body>
@@ -299,11 +301,11 @@ a{color:var(--bright-green);text-decoration:none}
     <div style="margin-top:32px;border-top:1px solid rgba(255,255,255,0.07);padding-top:28px">
       <p style="text-align:center;font-size:13px;color:rgba(242,234,216,0.4);margin-bottom:20px">Or send us a message directly — we'll respond within one business day.</p>
       <div id="d-contact-form">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div class="dc-row">
           <input id="dc-name" type="text" placeholder="Your name" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:12px 14px;color:#F2EAD8;font-family:'Montserrat',sans-serif;font-size:13px;outline:none;width:100%">
           <input id="dc-dispensary" type="text" placeholder="Dispensary name" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:12px 14px;color:#F2EAD8;font-family:'Montserrat',sans-serif;font-size:13px;outline:none;width:100%">
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div class="dc-row">
           <input id="dc-email" type="email" placeholder="Email address *" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:12px 14px;color:#F2EAD8;font-family:'Montserrat',sans-serif;font-size:13px;outline:none;width:100%">
           <input id="dc-phone" type="tel" placeholder="Phone number" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:12px 14px;color:#F2EAD8;font-family:'Montserrat',sans-serif;font-size:13px;outline:none;width:100%">
         </div>
