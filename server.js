@@ -8653,7 +8653,12 @@ function showToast(msg) {
   filePath = path.join(__dirname, filePath);
 
   fs.readFile(filePath, (err, data) => {
-    if (err) { res.writeHead(404); res.end("Not found"); return; }
+    if (err) {
+      const html404 = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Page Not Found — Cannascenti</title><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{background:#060f0a;color:#f2ead8;font-family:'Montserrat',sans-serif;font-weight:300;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px}h1{font-family:'Cormorant Garamond',serif;font-size:clamp(5rem,15vw,10rem);font-weight:300;color:rgba(82,183,136,0.2);line-height:1;margin-bottom:8px}p{font-size:13px;color:rgba(242,234,216,0.4);letter-spacing:.08em;margin-bottom:40px}a{display:inline-flex;align-items:center;gap:8px;background:#52b788;color:#060f0a;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:13px 26px;border-radius:4px;text-decoration:none}a:hover{background:#74c69d}.sub{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;color:rgba(242,234,216,0.5);margin-bottom:12px}</style></head><body><h1>404</h1><div class="sub">Page not found.</div><p>The page you're looking for doesn't exist or was moved.</p><a href="/">← Back to Cannascenti</a></body></html>`;
+      res.writeHead(404, { "Content-Type": "text/html" });
+      res.end(html404);
+      return;
+    }
     const ext = path.extname(filePath);
     const mime = MIME[ext] || "application/octet-stream";
     const cacheControl = CACHE_TTL[ext] || "public, max-age=3600";

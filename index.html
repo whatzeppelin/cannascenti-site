@@ -7026,6 +7026,7 @@
     <li><a href="/learn">Education</a></li>
     <li><a href="/scan">Scanner</a></li>
     <li><a href="/budtender-pro">Budtender Pro</a></li>
+    <li><a href="/about">About</a></li>
     <li><a href="/quiz">Take the Quiz</a></li>
     <li><a href="#newsletter" class="nav-cta">Subscribe</a></li>
   </ul>
@@ -11405,7 +11406,7 @@
             <div class="quiz-strain-thc">THC ${s.thc}</div>
             <div class="quiz-strain-effects">${s.effects.map(e=>`<span class="quiz-strain-effect">${e}</span>`).join('')}</div>
             <div class="quiz-strain-terps">${s.terps}</div>
-            <a class="quiz-strain-find" href="${s.link}" target="_blank" rel="noopener" onclick="track('strain_click',{strain:'${s.name}',profile:'${key}'})">Find this near you →</a>
+            <a class="quiz-strain-find" href="/strains/${s.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')}" onclick="track('strain_click',{strain:'${s.name}',profile:'${key}'})">View Full Profile →</a>
           </div>`).join('')}
       </div>
       <div class="quiz-guidance">💡 ${r.guidance}</div>
