@@ -12,6 +12,7 @@ const client = new Anthropic();
 const DASH_PASSWORD = process.env.DASH_PASSWORD || "erba2026";
 const DASH_TOKEN = Buffer.from(DASH_PASSWORD + ":cannascenti-dash").toString("base64");
 const LEADS_PATH = path.join(__dirname, "leads.json");
+const CONTACTS_PATH = path.join(__dirname, "contacts.json");
 
 // ─── Gzip cache (populated on first request, lives in memory) ─────────────────
 const gzipCache = new Map();
@@ -8556,6 +8557,40 @@ function showToast(msg) {
     return;
   }
 
+  // ─── Contact form submission ──────────────────────────────────────────────
+  if (req.method === "POST" && req.url === "/api/contact") {
+    let body = "";
+    req.on("data", chunk => { body += chunk; });
+    req.on("end", () => {
+      try {
+        const { name, dispensary, phone, email, message } = JSON.parse(body);
+        if (!name || !email) {
+          res.writeHead(400, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Name and email are required." }));
+          return;
+        }
+        let contacts = [];
+        try { contacts = JSON.parse(fs.readFileSync(CONTACTS_PATH, "utf8")); } catch {}
+        contacts.push({ name, dispensary: dispensary||"", phone: phone||"", email, message: message||"", ts: new Date().toISOString() });
+        fs.writeFileSync(CONTACTS_PATH, JSON.stringify(contacts, null, 2));
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ ok: true }));
+      } catch (err) {
+        res.writeHead(500, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ error: "Failed to save. Please try again." }));
+      }
+    });
+    return;
+  }
+
+  // ─── Contact page ─────────────────────────────────────────────────────────
+  if (req.method === "GET" && req.url === "/contact") {
+    const html = fs.readFileSync(path.join(__dirname, "contact.html"), "utf8");
+    res.writeHead(200, { "Content-Type": "text/html", "Cache-Control": "no-cache, no-store, must-revalidate" });
+    res.end(html);
+    return;
+  }
+
   // ─── Dashboard login ──────────────────────────────────────────────────────
   if (req.method === "POST" && req.url === "/api/dashboard-login") {
     let body = "";
@@ -8596,14 +8631,17 @@ function showToast(msg) {
       const raw = fs.readFileSync(path.join(__dirname, "subscribers.jsonl"), "utf8");
       subs = raw.trim().split("\n").filter(Boolean).map(l => JSON.parse(l));
     } catch {}
+    let contacts = [];
+    try { contacts = JSON.parse(fs.readFileSync(CONTACTS_PATH, "utf8")); } catch {}
 
     const profileCounts = {};
     leads.forEach(l => { if (l.profile) profileCounts[l.profile] = (profileCounts[l.profile] || 0) + 1; });
     const profileRows = Object.entries(profileCounts).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<tr><td>${k}</td><td>${v}</td></tr>`).join("");
     const leadRows = [...leads].reverse().map(l=>`<tr><td>${l.email}</td><td>${l.profile||"—"}</td><td>${(l.strains||[]).join(", ")||"—"}</td><td>${l.ts?l.ts.slice(0,10):"—"}</td></tr>`).join("");
     const subRows = [...subs].reverse().map(s=>`<tr><td>${s.email}</td><td>${s.profile||"—"}</td><td>${s.ts?s.ts.slice(0,10):"—"}</td></tr>`).join("");
+    const contactRows = [...contacts].reverse().map(c=>`<tr><td>${c.name}</td><td>${c.dispensary||"—"}</td><td>${c.phone||"—"}</td><td>${c.email}</td><td style="max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${c.message||"—"}</td><td>${c.ts?c.ts.slice(0,10):"—"}</td></tr>`).join("");
 
-    const dashHtml = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dashboard — Cannascenti</title><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{background:#060d0a;color:#F2EAD8;font-family:'Montserrat',sans-serif;font-weight:300;min-height:100vh}nav{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;border-bottom:1px solid rgba(255,255,255,0.07)}.logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:#F2EAD8}.nav-r{display:flex;align-items:center;gap:20px}.nav-r a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,234,216,0.4);text-decoration:none}.wrap{max-width:1100px;margin:0 auto;padding:40px}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:48px}.stat{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:24px}.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.4rem;color:#52B788;line-height:1;margin-bottom:6px}.stat-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,234,216,0.35)}h2{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:#F2EAD8;margin-bottom:16px;font-weight:400}table{width:100%;border-collapse:collapse;margin-bottom:48px;font-size:12px}thead th{text-align:left;padding:10px 14px;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(242,234,216,0.3);border-bottom:1px solid rgba(255,255,255,0.06)}tbody td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,0.04);color:rgba(242,234,216,0.7)}tbody tr:hover td{background:rgba(255,255,255,0.015);color:#F2EAD8}.section-tag{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:#52B788;margin-bottom:8px}.empty{font-size:13px;color:rgba(242,234,216,0.25);padding:20px 0}</style></head><body><nav><div class="logo">Cannascenti</div><div class="nav-r"><a href="/">← Site</a></div></nav><div class="wrap"><div class="stats"><div class="stat"><div class="stat-num">${leads.length}</div><div class="stat-label">Quiz Leads</div></div><div class="stat"><div class="stat-num">${subs.length}</div><div class="stat-label">Newsletter Subscribers</div></div><div class="stat"><div class="stat-num">${leads.length+subs.length}</div><div class="stat-label">Total Contacts</div></div></div><div class="section-tag">✦ Profile Breakdown</div><h2>Which profiles are walking in</h2>${profileRows?`<table><thead><tr><th>Profile</th><th>Count</th></tr></thead><tbody>${profileRows}</tbody></table>`:'<div class="empty">No quiz leads yet.</div>'}<div class="section-tag">✦ Quiz Leads</div><h2>Captured from the quiz</h2>${leadRows?`<table><thead><tr><th>Email</th><th>Profile</th><th>Matched Strains</th><th>Date</th></tr></thead><tbody>${leadRows}</tbody></table>`:'<div class="empty">No quiz leads yet — email capture appears at the end of the quiz.</div>'}<div class="section-tag">✦ Newsletter Subscribers</div><h2>Homepage newsletter signups</h2>${subRows?`<table><thead><tr><th>Email</th><th>Source</th><th>Date</th></tr></thead><tbody>${subRows}</tbody></table>`:'<div class="empty">No subscribers yet.</div>'}</div></body></html>`;
+    const dashHtml = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dashboard — Cannascenti</title><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{background:#060d0a;color:#F2EAD8;font-family:'Montserrat',sans-serif;font-weight:300;min-height:100vh}nav{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;border-bottom:1px solid rgba(255,255,255,0.07)}.logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:#F2EAD8}.nav-r{display:flex;align-items:center;gap:20px}.nav-r a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,234,216,0.4);text-decoration:none}.wrap{max-width:1100px;margin:0 auto;padding:40px}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:48px}.stat{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:24px}.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.4rem;color:#52B788;line-height:1;margin-bottom:6px}.stat-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,234,216,0.35)}h2{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:#F2EAD8;margin-bottom:16px;font-weight:400}table{width:100%;border-collapse:collapse;margin-bottom:48px;font-size:12px}thead th{text-align:left;padding:10px 14px;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(242,234,216,0.3);border-bottom:1px solid rgba(255,255,255,0.06)}tbody td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,0.04);color:rgba(242,234,216,0.7)}tbody tr:hover td{background:rgba(255,255,255,0.015);color:#F2EAD8}.section-tag{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:#52B788;margin-bottom:8px}.empty{font-size:13px;color:rgba(242,234,216,0.25);padding:20px 0}</style></head><body><nav><div class="logo">Cannascenti</div><div class="nav-r"><a href="/">← Site</a></div></nav><div class="wrap"><div class="stats"><div class="stat"><div class="stat-num">${contacts.length}</div><div class="stat-label">Contact Inquiries</div></div><div class="stat"><div class="stat-num">${leads.length}</div><div class="stat-label">Quiz Leads</div></div><div class="stat"><div class="stat-num">${subs.length}</div><div class="stat-label">Newsletter Subs</div></div><div class="stat"><div class="stat-num">${contacts.length+leads.length+subs.length}</div><div class="stat-label">Total Contacts</div></div></div><div class="section-tag">✦ Contact Inquiries</div><h2>Dispensary inbound leads</h2>${contactRows?`<table><thead><tr><th>Name</th><th>Dispensary</th><th>Phone</th><th>Email</th><th>Message</th><th>Date</th></tr></thead><tbody>${contactRows}</tbody></table>`:'<div class="empty">No contact submissions yet.</div>'}<div class="section-tag">✦ Profile Breakdown</div><h2>Which profiles are walking in</h2>${profileRows?`<table><thead><tr><th>Profile</th><th>Count</th></tr></thead><tbody>${profileRows}</tbody></table>`:'<div class="empty">No quiz leads yet.</div>'}<div class="section-tag">✦ Quiz Leads</div><h2>Captured from the quiz</h2>${leadRows?`<table><thead><tr><th>Email</th><th>Profile</th><th>Matched Strains</th><th>Date</th></tr></thead><tbody>${leadRows}</tbody></table>`:'<div class="empty">No quiz leads yet — email capture appears at the end of the quiz.</div>'}<div class="section-tag">✦ Newsletter Subscribers</div><h2>Homepage newsletter signups</h2>${subRows?`<table><thead><tr><th>Email</th><th>Source</th><th>Date</th></tr></thead><tbody>${subRows}</tbody></table>`:'<div class="empty">No subscribers yet.</div>'}</div></body></html>`;
     res.writeHead(200, { "Content-Type": "text/html", "Cache-Control": "no-cache, no-store, must-revalidate" });
     res.end(dashHtml);
     return;

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact — Cannascenti</title>
+<meta name="description" content="Get in touch with Cannascenti. Dispensary partnerships, general inquiries, and press.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--dark:#060f0a;--green:#52b788;--bright-green:#74c69d;--cream:#f2ead8;--cream-dim:rgba(242,234,216,0.55);--border:rgba(255,255,255,0.07)}
+body{background:var(--dark);color:var(--cream);font-family:'Montserrat',sans-serif;font-weight:300;line-height:1.75;min-height:100vh}
+a{color:var(--bright-green);text-decoration:none}
+
+/* NAV */
+.c-nav{display:flex;align-items:center;justify-content:space-between;padding:24px 60px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(6,15,10,0.96);backdrop-filter:blur(12px);z-index:100}
+.c-nav-logo{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--cream);letter-spacing:.06em}
+.c-nav-back{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,234,216,0.4);transition:color .2s}
+.c-nav-back:hover{color:var(--bright-green)}
+@media(max-width:640px){.c-nav{padding:20px 24px}}
+
+/* LAYOUT */
+.c-wrap{max-width:960px;margin:0 auto;padding:80px 40px 100px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+@media(max-width:720px){.c-wrap{grid-template-columns:1fr;gap:48px;padding:60px 24px 80px}}
+
+/* LEFT */
+.c-intro-tag{font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--green);margin-bottom:18px;opacity:.8}
+.c-intro h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.6rem);font-weight:300;line-height:1.15;color:var(--cream);margin-bottom:20px}
+.c-intro h1 em{font-style:italic;color:var(--green)}
+.c-intro p{font-size:14px;color:var(--cream-dim);line-height:1.85;margin-bottom:28px}
+.c-detail{display:flex;flex-direction:column;gap:16px;margin-top:8px}
+.c-detail-item{font-size:13px;color:rgba(242,234,216,0.45)}
+.c-detail-item strong{color:rgba(242,234,216,0.7);display:block;font-size:10px;letter-spacing:.15em;text-transform:uppercase;margin-bottom:3px;font-weight:500}
+.c-detail-item a{color:var(--bright-green)}
+
+/* FORM */
+.c-form-card{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:10px;padding:40px}
+.c-field{margin-bottom:20px}
+.c-label{display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,234,216,0.45);margin-bottom:8px;font-weight:500}
+.c-input{width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:13px 16px;color:var(--cream);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:300;outline:none;transition:border-color .2s}
+.c-input:focus{border-color:rgba(82,183,136,0.45)}
+.c-input::placeholder{color:rgba(242,234,216,0.2)}
+textarea.c-input{resize:vertical;min-height:100px}
+.c-submit{width:100%;background:var(--green);color:#060f0a;border:none;border-radius:6px;padding:15px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s;margin-top:4px}
+.c-submit:hover{background:var(--bright-green)}
+.c-submit:disabled{opacity:.5;cursor:default}
+.c-success{display:none;text-align:center;padding:40px 20px}
+.c-success-icon{font-size:2.5rem;margin-bottom:16px}
+.c-success h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--cream);margin-bottom:10px;font-weight:400}
+.c-success p{font-size:13px;color:var(--cream-dim)}
+.c-err{font-size:12px;color:#e05c5c;margin-top:10px;min-height:16px}
+
+/* FOOTER */
+footer{text-align:center;padding:24px;border-top:1px solid var(--border);font-size:11px;color:rgba(242,234,216,0.28)}
+footer a{color:rgba(242,234,216,0.28);transition:color .2s}
+footer a:hover{color:var(--green)}
+</style>
+</head>
+<body>
+
+<nav class="c-nav">
+  <a href="/" class="c-nav-logo">Cannascenti</a>
+  <a href="/" class="c-nav-back">← Home</a>
+</nav>
+
+<div class="c-wrap">
+
+  <!-- LEFT: intro -->
+  <div class="c-intro">
+    <div class="c-intro-tag">✦ Get in Touch</div>
+    <h1>Let's talk about<br><em>your dispensary.</em></h1>
+    <p>Whether you want to see a live demo, ask about pricing, or just have questions about how Cannascenti works on the floor — fill out the form and we'll get back to you directly.</p>
+    <div class="c-detail">
+      <div class="c-detail-item">
+        <strong>Email</strong>
+        <a href="mailto:hello@cannascenti.com">hello@cannascenti.com</a>
+      </div>
+      <div class="c-detail-item">
+        <strong>Instagram</strong>
+        <a href="https://www.instagram.com/cannascenti.hq" target="_blank" rel="noopener noreferrer">@cannascenti.hq</a>
+      </div>
+      <div class="c-detail-item">
+        <strong>Based in</strong>
+        Los Angeles, CA
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: form -->
+  <div class="c-form-card">
+    <div id="contactForm">
+      <div class="c-field">
+        <label class="c-label" for="cf-name">Your Name <span style="color:#e05c5c">*</span></label>
+        <input class="c-input" id="cf-name" type="text" placeholder="First and last name" autocomplete="name">
+      </div>
+      <div class="c-field">
+        <label class="c-label" for="cf-dispensary">Dispensary Name</label>
+        <input class="c-input" id="cf-dispensary" type="text" placeholder="Where do you work?" autocomplete="organization">
+      </div>
+      <div class="c-field">
+        <label class="c-label" for="cf-email">Email <span style="color:#e05c5c">*</span></label>
+        <input class="c-input" id="cf-email" type="email" placeholder="your@email.com" autocomplete="email">
+      </div>
+      <div class="c-field">
+        <label class="c-label" for="cf-phone">Phone</label>
+        <input class="c-input" id="cf-phone" type="tel" placeholder="(555) 000-0000" autocomplete="tel">
+      </div>
+      <div class="c-field">
+        <label class="c-label" for="cf-message">Message</label>
+        <textarea class="c-input" id="cf-message" placeholder="What are you looking to do?"></textarea>
+      </div>
+      <div class="c-err" id="cf-err"></div>
+      <button class="c-submit" id="cf-btn" onclick="submitContact()">Send Message</button>
+    </div>
+    <div class="c-success" id="contactSuccess">
+      <div class="c-success-icon">✓</div>
+      <h3>Message received.</h3>
+      <p>We'll be in touch shortly — usually within one business day.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 Cannascenti. All rights reserved. · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/for-dispensaries">For Dispensaries</a> · <a href="https://www.instagram.com/cannascenti.hq" target="_blank" rel="noopener noreferrer">Instagram</a></p>
+</footer>
+
+<script>
+async function submitContact() {
+  const name = document.getElementById('cf-name').value.trim();
+  const dispensary = document.getElementById('cf-dispensary').value.trim();
+  const email = document.getElementById('cf-email').value.trim();
+  const phone = document.getElementById('cf-phone').value.trim();
+  const message = document.getElementById('cf-message').value.trim();
+  const err = document.getElementById('cf-err');
+  const btn = document.getElementById('cf-btn');
+
+  err.textContent = '';
+  if (!name) { err.textContent = 'Please enter your name.'; return; }
+  if (!email || !email.includes('@')) { err.textContent = 'Please enter a valid email.'; return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  try {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, dispensary, email, phone, message })
+    });
+    const data = await res.json();
+    if (data.ok) {
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('contactSuccess').style.display = 'block';
+    } else {
+      err.textContent = data.error || 'Something went wrong. Please try again.';
+      btn.disabled = false;
+      btn.textContent = 'Send Message';
+    }
+  } catch {
+    err.textContent = 'Something went wrong. Please try again.';
+    btn.disabled = false;
+    btn.textContent = 'Send Message';
+  }
+}
+</script>
+</body>
+</html>
