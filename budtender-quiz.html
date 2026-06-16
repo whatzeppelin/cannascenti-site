@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Budtender Knowledge Assessment — Cannascenti</title>
+<meta name="description" content="15-question cannabis knowledge assessment covering strains, cannabinoids, concentrates, California law, and customer scenarios.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#060d0a;color:#F2EAD8;font-family:'Montserrat',sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden}
+a{color:#52B788;text-decoration:none}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(82,183,136,0.05) 0%,transparent 65%);pointer-events:none;z-index:0}
+
+/* NAV */
+.bnav{display:flex;align-items:center;justify-content:space-between;padding:24px 48px;position:sticky;top:0;background:rgba(6,13,10,0.92);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid rgba(255,255,255,0.05)}
+.bnav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:#F2EAD8;letter-spacing:.06em}
+.bnav-right{display:flex;align-items:center;gap:24px}
+.bnav-back{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,234,216,0.4);transition:color .2s}
+.bnav-back:hover{color:#52B788}
+.bnav-tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(82,183,136,0.7);background:rgba(82,183,136,0.08);border:1px solid rgba(82,183,136,0.2);padding:4px 12px;border-radius:20px}
+@media(max-width:600px){.bnav{padding:18px 24px}.bnav-tag{display:none}}
+
+/* WRAP */
+.bwrap{max-width:780px;margin:0 auto;padding:60px 32px 120px;position:relative;z-index:1}
+@media(max-width:600px){.bwrap{padding:40px 20px 80px}}
+
+/* INTRO */
+.b-intro{text-align:center;padding:48px 0 20px}
+.b-tag{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#52B788;margin-bottom:18px}
+.b-intro-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,6vw,3.8rem);font-weight:300;line-height:1.1;color:#F2EAD8;margin-bottom:18px}
+.b-intro-title em{font-style:italic;color:#52B788}
+.b-intro-sub{font-size:.95rem;color:rgba(242,234,216,0.5);line-height:1.8;max-width:520px;margin:0 auto 36px}
+.b-meta{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-bottom:40px}
+.b-meta-item{text-align:center}
+.b-meta-num{font-family:'Cormorant Garamond',serif;font-size:2rem;color:#52B788;line-height:1}
+.b-meta-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,234,216,0.35);margin-top:4px}
+.b-start-btn{display:inline-flex;align-items:center;gap:10px;background:#52B788;color:#060d0a;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:16px 40px;border-radius:100px;border:none;cursor:pointer;transition:all .2s}
+.b-start-btn:hover{background:#74C69D;transform:translateY(-1px)}
+
+/* PROGRESS */
+.b-progress{margin-bottom:44px}
+.b-progress-bar{height:2px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden;margin-bottom:10px}
+.b-progress-fill{height:100%;background:#52B788;border-radius:2px;transition:width .4s ease}
+.b-progress-meta{display:flex;justify-content:space-between;align-items:center}
+.b-progress-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(242,234,216,0.3)}
+.b-progress-type{font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:20px}
+.b-progress-type.mc{background:rgba(82,183,136,0.1);color:#52B788}
+.b-progress-type.text{background:rgba(232,168,76,0.1);color:#E8A84C}
+
+/* QUESTION */
+.b-question{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,3.5vw,2rem);font-weight:300;color:#F2EAD8;line-height:1.4;margin-bottom:32px;font-style:italic}
+.b-question-num{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,234,216,0.3);margin-bottom:10px;font-style:normal}
+
+/* MC OPTIONS */
+.b-options{display:flex;flex-direction:column;gap:10px}
+.b-option{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:18px 20px;cursor:pointer;transition:all .2s;text-align:left;font-family:'Montserrat',sans-serif;font-size:.88rem;color:rgba(242,234,216,0.8);line-height:1.6;font-weight:300}
+.b-option:hover{border-color:rgba(82,183,136,0.35);background:rgba(82,183,136,0.04);color:#F2EAD8}
+.b-option.selected{border-color:#52B788;background:rgba(82,183,136,0.08);color:#F2EAD8}
+.b-option.correct{border-color:#52B788;background:rgba(82,183,136,0.12);color:#F2EAD8;pointer-events:none}
+.b-option.wrong{border-color:#e05c5c;background:rgba(224,92,92,0.08);color:rgba(242,234,216,0.6);pointer-events:none}
+.b-option.dimmed{opacity:.35;pointer-events:none}
+
+/* TEXT INPUT */
+.b-text-area{width:100%;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:18px 20px;font-family:'Montserrat',sans-serif;font-size:.88rem;color:#F2EAD8;line-height:1.7;resize:vertical;min-height:120px;transition:border-color .2s;font-weight:300}
+.b-text-area:focus{outline:none;border-color:rgba(82,183,136,0.4)}
+.b-text-area::placeholder{color:rgba(242,234,216,0.25)}
+.b-next-btn{display:inline-flex;align-items:center;gap:8px;margin-top:16px;background:#52B788;color:#060d0a;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:13px 28px;border-radius:100px;border:none;cursor:pointer;transition:all .2s}
+.b-next-btn:hover{background:#74C69D}
+.b-skip-btn{display:inline-flex;align-items:center;gap:8px;margin-top:16px;margin-left:12px;background:none;border:1px solid rgba(255,255,255,0.1);color:rgba(242,234,216,0.4);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:13px 22px;border-radius:100px;cursor:pointer;transition:all .2s}
+.b-skip-btn:hover{border-color:rgba(255,255,255,0.25);color:rgba(242,234,216,0.7)}
+
+/* FEEDBACK */
+.b-feedback{margin-top:16px;padding:16px 18px;border-radius:8px;font-size:.82rem;line-height:1.7;color:rgba(242,234,216,0.7);display:none}
+.b-feedback.correct{background:rgba(82,183,136,0.07);border:1px solid rgba(82,183,136,0.2)}
+.b-feedback.wrong{background:rgba(224,92,92,0.06);border:1px solid rgba(224,92,92,0.2)}
+.b-feedback-label{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.b-feedback.correct .b-feedback-label{color:#52B788}
+.b-feedback.wrong .b-feedback-label{color:#e05c5c}
+.b-continue-btn{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(242,234,216,0.6);font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:10px 20px;border-radius:100px;cursor:pointer;transition:all .2s}
+.b-continue-btn:hover{background:rgba(255,255,255,0.09);color:#F2EAD8}
+
+/* FADE */
+.b-fade{opacity:0;transition:opacity .25s}
+.b-fade.visible{opacity:1}
+
+/* ANALYZING */
+.b-analyzing{text-align:center;padding:80px 0}
+.b-analyzing-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;font-style:italic;color:#F2EAD8;margin-bottom:8px}
+.b-analyzing-sub{font-size:.82rem;color:rgba(242,234,216,0.4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:32px}
+.b-dots{display:flex;justify-content:center;gap:8px}
+.b-dot{width:8px;height:8px;border-radius:50%;background:#52B788;animation:bdot 1.2s ease-in-out infinite}
+.b-dot:nth-child(2){animation-delay:.2s}
+.b-dot:nth-child(3){animation-delay:.4s}
+@keyframes bdot{0%,80%,100%{transform:scale(.5);opacity:.3}40%{transform:scale(1);opacity:1}}
+
+/* RESULTS */
+.b-result-header{text-align:center;margin-bottom:48px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.07)}
+.b-score-display{font-family:'Cormorant Garamond',serif;font-size:clamp(4rem,10vw,6rem);font-weight:300;line-height:1;color:#F2EAD8;margin-bottom:8px}
+.b-score-display span{color:#52B788}
+.b-score-sub{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,234,216,0.35);margin-bottom:20px}
+.b-tier{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:7px 20px;border-radius:20px;margin-bottom:20px}
+.b-tier.needs{background:rgba(224,92,92,0.1);color:#e05c5c;border:1px solid rgba(224,92,92,0.25)}
+.b-tier.developing{background:rgba(232,168,76,0.1);color:#E8A84C;border:1px solid rgba(232,168,76,0.25)}
+.b-tier.proficient{background:rgba(82,183,136,0.1);color:#52B788;border:1px solid rgba(82,183,136,0.25)}
+.b-tier.expert{background:rgba(116,198,157,0.15);color:#74C69D;border:1px solid rgba(116,198,157,0.4)}
+.b-tier-desc{font-size:.9rem;color:rgba(242,234,216,0.5);max-width:500px;margin:0 auto;line-height:1.7}
+
+/* RESULT SECTIONS */
+.b-result-section{margin-bottom:40px}
+.b-result-section-title{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,234,216,0.3);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.05)}
+.b-review-item{background:rgba(255,255,255,0.02);border-radius:8px;padding:18px 20px;margin-bottom:10px;border-left:3px solid transparent}
+.b-review-item.correct{border-left-color:#52B788}
+.b-review-item.wrong{border-left-color:#e05c5c}
+.b-review-item.open{border-left-color:#E8A84C}
+.b-review-q{font-size:.82rem;color:rgba(242,234,216,0.6);margin-bottom:8px;line-height:1.5}
+.b-review-a{font-size:.85rem;color:#F2EAD8;margin-bottom:6px}
+.b-review-correct{font-size:.8rem;color:#52B788;margin-bottom:8px}
+.b-review-explanation{font-size:.78rem;color:rgba(242,234,216,0.45);line-height:1.7}
+.b-review-label{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;margin-bottom:4px}
+.b-review-label.correct{color:#52B788}
+.b-review-label.wrong{color:#e05c5c}
+.b-review-label.open{color:#E8A84C}
+
+/* RESULT CTAS */
+.b-result-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:48px;padding-top:40px;border-top:1px solid rgba(255,255,255,0.07)}
+.b-cta-primary{display:inline-flex;align-items:center;gap:8px;background:#52B788;color:#060d0a;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:13px 28px;border-radius:100px;text-decoration:none;transition:all .2s;border:none;cursor:pointer;font-family:'Montserrat',sans-serif}
+.b-cta-primary:hover{background:#74C69D}
+.b-cta-ghost{display:inline-flex;align-items:center;gap:8px;background:none;border:1px solid rgba(255,255,255,0.12);color:rgba(242,234,216,0.5);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:13px 24px;border-radius:100px;text-decoration:none;transition:all .2s;cursor:pointer;font-family:'Montserrat',sans-serif}
+.b-cta-ghost:hover{border-color:rgba(255,255,255,0.25);color:#F2EAD8}
+</style>
+</head>
+<body>
+
+<nav class="bnav">
+  <a href="/" class="bnav-logo">Cannascenti</a>
+  <div class="bnav-right">
+    <span class="bnav-tag">Budtender Assessment</span>
+    <a href="/budtender-pro" class="bnav-back">&#8592; Budtender Pro</a>
+  </div>
+</nav>
+
+<div class="bwrap">
+
+  <!-- INTRO -->
+  <div id="bIntro" class="b-intro">
+    <div class="b-tag">&#10022; Cannascenti</div>
+    <h1 class="b-intro-title">Budtender<br><em>Knowledge Assessment</em></h1>
+    <p class="b-intro-sub">15 questions covering strains, cannabinoids, concentrates, California law, and real customer scenarios. Some questions are scored — others are open-ended to show what you know in your own words.</p>
+    <div class="b-meta">
+      <div class="b-meta-item">
+        <div class="b-meta-num">15</div>
+        <div class="b-meta-label">Questions</div>
+      </div>
+      <div class="b-meta-item">
+        <div class="b-meta-num">12</div>
+        <div class="b-meta-label">Scored</div>
+      </div>
+      <div class="b-meta-item">
+        <div class="b-meta-num">3</div>
+        <div class="b-meta-label">Open-Ended</div>
+      </div>
+    </div>
+    <button class="b-start-btn" onclick="startQuiz()">Begin Assessment &#8594;</button>
+  </div>
+
+  <!-- QUIZ FLOW -->
+  <div id="bFlow" style="display:none">
+    <div class="b-progress">
+      <div class="b-progress-bar"><div class="b-progress-fill" id="bProgressFill" style="width:0%"></div></div>
+      <div class="b-progress-meta">
+        <div class="b-progress-label" id="bProgressLabel">Question 1 of 15</div>
+        <div class="b-progress-type mc" id="bProgressType">Multiple Choice</div>
+      </div>
+    </div>
+    <div id="bStep" class="b-fade"></div>
+  </div>
+
+  <!-- ANALYZING -->
+  <div id="bAnalyzing" style="display:none" class="b-analyzing">
+    <div class="b-analyzing-title">Scoring your assessment&#8230;</div>
+    <div class="b-analyzing-sub">Reviewing 15 questions</div>
+    <div class="b-dots"><div class="b-dot"></div><div class="b-dot"></div><div class="b-dot"></div></div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="bResult" style="display:none"></div>
+
+</div>
+
+<script>
+var QUESTIONS = [
+  {
+    id: 1, type: 'mc',
+    q: 'What are the main differences between an Indica and a Sativa plant and strain?',
+    options: [
+      'Indica plants are tall and thin with narrow leaves; Sativa plants are short and bushy with broad leaves. Indicas are energizing; Sativas are sedating.',
+      'Indica plants are shorter and bushier with broader leaves; Sativa plants are taller and thinner with narrow leaves. Indicas typically produce more sedating, body-focused effects; Sativas tend to be more energizing and cerebral.',
+      'Indica and Sativa are the same species — the only difference is the curing and drying method used after harvest.',
+      'Indicas always have higher THC content; Sativas always have higher CBD content regardless of growing conditions.'
+    ],
+    correct: 1,
+    explanation: 'Indica plants are compact, bushy, and broad-leafed with shorter flowering cycles — originally from mountainous regions like Afghanistan and Pakistan. Sativa plants grow tall and thin with narrow leaves, originating near the equator. Effect-wise, indicas tend toward body relaxation and sedation; sativas toward cerebral, energetic effects. In practice, terpene profile often matters as much as indica/sativa classification.'
+  },
+  {
+    id: 2, type: 'text',
+    q: 'Name two strains and their crosses (parent strains / lineage):',
+    placeholder: 'Example:\nBlue Dream = Blueberry \u00d7 Haze\nGirl Scout Cookies = OG Kush \u00d7 Durban Poison'
+  },
+  {
+    id: 3, type: 'text',
+    q: 'What is your favorite strain and why?',
+    placeholder: 'Name the strain and describe what you love about it \u2014 the effects, terpenes, when you use it, who you\u2019d recommend it to...'
+  },
+  {
+    id: 4, type: 'text',
+    q: 'What brands that we carry are you familiar with? What do you know about them?',
+    placeholder: 'List the brands you\u2019re familiar with and what you know about each one \u2014 their products, reputation, price point, who they\u2019re good for...'
+  },
+  {
+    id: 5, type: 'mc',
+    q: 'Which of the following correctly describes a cannabinoid and its properties?',
+    options: [
+      'CBN is energizing and great for daytime use \u2014 it sharpens focus and suppresses appetite.',
+      'CBD is highly psychoactive and primarily responsible for the cannabis \u201chigh.\u201d',
+      'CBG is known as the \u201cmother cannabinoid\u201d \u2014 all cannabinoids are derived from it. It is non-psychoactive and shows potential for focus, inflammation, and gut health.',
+      'THCV is deeply sedating, increases appetite, and is found primarily in indica strains.'
+    ],
+    correct: 2,
+    explanation: 'CBG (Cannabigerol) is the precursor cannabinoid \u2014 all others begin as CBGA before enzymes convert it into THC, CBD, CBC, etc. CBG itself is non-psychoactive. CBN is actually sedating (it\u2019s a degradation product of THC). CBD is non-psychoactive. THCV is stimulating, may suppress appetite, and produces a fast-clearing, clear-headed effect \u2014 found in strains like Durban Poison.'
+  },
+  {
+    id: 6, type: 'mc',
+    q: 'What is the recreational purchase limit for both flower and concentrates in California?',
+    options: [
+      '1 oz (28.5g) of flower and 4g of concentrates per transaction',
+      '28.5g of flower and 8g of concentrates per transaction',
+      '1 oz of flower and 1g of concentrates per transaction, per day',
+      '14g of flower and 8g of concentrates per transaction'
+    ],
+    correct: 1,
+    explanation: 'California recreational limits for adults 21+: 28.5 grams (just under 1 oz) of cannabis flower and 8 grams of cannabis concentrates per transaction. Edibles are limited to 8 grams of THC. These are per-transaction limits, not daily limits \u2014 though responsible retailers should flag unusual purchase patterns.'
+  },
+  {
+    id: 7, type: 'mc',
+    q: 'What is CBC? What is THCV?',
+    options: [
+      'CBC is psychoactive and known for producing intense euphoria; THCV is primarily used for pain relief and heavy sedation.',
+      'CBC (Cannabichromene) is a non-psychoactive cannabinoid studied for anti-inflammatory and neuroprotective effects; THCV (Tetrahydrocannabivarin) may suppress appetite and produces a fast-acting, stimulating, clear-headed effect.',
+      'CBC and THCV are both synthetic cannabinoids not found in natural cannabis \u2014 they are lab-derived compounds.',
+      'CBC is only found in hemp plants; THCV is a psychoactive compound exclusive to high-potency indica strains.'
+    ],
+    correct: 1,
+    explanation: 'CBC is a non-psychoactive minor cannabinoid with promising research in anti-inflammation, antidepressant effects, and neurogenesis. THCV is found in high concentrations in strains like Durban Poison and some African sativas. It\u2019s stimulating rather than sedating, may suppress appetite (opposite of THC), and its effects come on fast and clear quickly. Both are increasingly relevant as the market moves toward cannabinoid-specific products.'
+  },
+  {
+    id: 8, type: 'mc',
+    q: 'What is Live Resin? What is the difference between Live Resin and Live Rosin?',
+    options: [
+      'Live Resin uses dried and cured plant material processed with butane; Live Rosin also uses dried material but is pressed with heat. Neither uses fresh-frozen plant material.',
+      'Live Resin and Live Rosin are interchangeable terms \u2014 both refer to the same fresh-frozen concentrate made without solvents.',
+      'Live Resin is made from fresh-frozen cannabis using a hydrocarbon solvent (like butane or propane) to preserve terpenes, then the solvent is purged; Live Rosin is made from fresh-frozen material using only heat and pressure \u2014 no solvents.',
+      'Live Rosin uses CO\u2082 extraction; Live Resin uses ice water hash as the starting material and is then pressed.'
+    ],
+    correct: 2,
+    explanation: 'Both start with fresh-frozen plant material to preserve the live terpene profile \u2014 that\u2019s what \u201cLive\u201d means. The difference is the extraction method: Live Resin uses hydrocarbon solvents (BHO/PHO) which are then fully purged. Live Rosin is completely solventless \u2014 fresh-frozen flower or bubble hash is pressed with heat and pressure. Rosin is generally considered cleaner and more artisanal, commanding higher prices. Both preserve far more terpenes than concentrates made from cured material.'
+  },
+  {
+    id: 9, type: 'mc',
+    q: 'What is a clone?',
+    options: [
+      'A cannabis seed that has been genetically engineered to produce plants identical to a specific high-performing cultivar.',
+      'A cutting taken from a living cannabis mother plant, rooted, and grown into a new plant \u2014 genetically identical to the mother.',
+      'A lab-synthesized cannabis product designed to replicate the chemical profile of a popular strain.',
+      'A plant produced by grafting two different strains together to combine their genetics.'
+    ],
+    correct: 1,
+    explanation: 'A clone is a vegetative cutting \u2014 a branch snipped from a healthy mother plant, then rooted in a growing medium and cultivated into a full plant. Because it shares the mother\u2019s DNA exactly, it produces identical cannabinoid profiles, terpene profiles, and growth characteristics. Clones are essential for consistency in commercial cultivation. The tradeoff vs. seeds: clones can also carry pests or disease from the mother plant.'
+  },
+  {
+    id: 10, type: 'mc',
+    q: 'What is the difference between THC and THCA?',
+    options: [
+      'THCA is the active, psychoactive form of cannabis found in finished products; THC is the raw acidic precursor found only in fresh plants.',
+      'THC and THCA are the same compound \u2014 just different abbreviations used in different states for the same thing.',
+      'THCA (Tetrahydrocannabinolic Acid) is the raw, non-psychoactive acidic form found in fresh and uncured cannabis; it converts to THC through heat (decarboxylation), which is why cannabis must be smoked, vaped, or baked to produce psychoactive effects.',
+      'THCA only exists in hemp plants; THC only exists in marijuana plants \u2014 they are produced by different species.'
+    ],
+    correct: 2,
+    explanation: 'Fresh cannabis produces THCA, not THC. THCA is non-psychoactive \u2014 you can eat raw cannabis flower and feel nothing. When heat is applied (through smoking, vaping, or baking), a carboxylic acid group is removed in a process called decarboxylation, converting THCA into psychoactive THC. This is why lab labels show both numbers. It\u2019s also why THCA flower \u2014 technically legal in some markets \u2014 becomes standard THC the moment it\u2019s combusted.'
+  },
+  {
+    id: 11, type: 'mc',
+    q: 'What is a tincture?',
+    options: [
+      'A cannabis-infused cooking butter or oil used as an ingredient in baked goods and edibles.',
+      'A highly concentrated cannabis wax extract consumed by dabbing on a heated nail or banger.',
+      'An alcohol or MCT oil-based cannabis extract taken sublingually (under the tongue) for faster absorption than edibles \u2014 typically 15 to 45 minutes onset versus 45 to 90 minutes for edibles.',
+      'A transdermal cannabis patch applied directly to the skin for targeted, localized relief without psychoactivity.'
+    ],
+    correct: 2,
+    explanation: 'Tinctures are liquid cannabis extracts in an alcohol or carrier oil (commonly MCT/coconut oil) base. When taken sublingually, cannabinoids absorb through the mucous membranes directly into the bloodstream \u2014 bypassing first-pass liver metabolism. This makes onset faster and more predictable than traditional edibles. Tinctures offer precise dosing control, making them popular for medical patients and cannabis newcomers. They can also be added to food or drinks, though this extends onset time.'
+  },
+  {
+    id: 12, type: 'mc',
+    q: 'What is a trichome?',
+    options: [
+      'A specialized cannabis seed variant bred for high germination rates in commercial cultivation environments.',
+      'The thin, waxy outer membrane on cannabis flowers that regulates moisture loss during the curing process.',
+      'The tiny, hair-like resin glands on the cannabis plant that produce and store cannabinoids, terpenes, and flavonoids \u2014 the source of the plant\u2019s potency, aroma, and therapeutic properties.',
+      'A standardized unit used on lab reports to measure the moisture content and density of cured cannabis flower.'
+    ],
+    correct: 2,
+    explanation: 'Trichomes are microscopic glandular structures that cover cannabis flowers and sugar leaves, appearing as the crystalline \u201cfrost\u201d on premium flower. They are the biosynthesis factories for cannabinoids, terpenes, and flavonoids. There are three types: bulbous (smallest, few cannabinoids), capitate-sessile (mid-size), and capitate-stalked (largest, highest cannabinoid concentration). Trichome density, size, and clarity (clear vs. cloudy vs. amber) are key indicators of quality, potency, and harvest timing.'
+  },
+  {
+    id: 13, type: 'mc',
+    q: 'What is RSO?',
+    options: [
+      'A premium vape cartridge technology using ceramic heating elements for cleaner, more flavorful vapor at lower temperatures.',
+      'Rick Simpson Oil \u2014 a highly concentrated, full-spectrum cannabis oil typically consumed orally or applied topically. Made by extracting cannabinoids using a solvent (usually ethanol) which is then fully evaporated, leaving a thick, dark oil often used for serious medical conditions.',
+      'A solventless rosin extraction technique developed by Rick Simpson involving cold-water hash pressed under extreme pressure.',
+      'A California regulatory standard (Regulated Substance Order) governing lab testing requirements for cannabis concentrate products.'
+    ],
+    correct: 1,
+    explanation: 'RSO stands for Rick Simpson Oil, named after Canadian cannabis activist Rick Simpson who claimed to use it to treat his own skin cancer. It\u2019s made by soaking cannabis in a solvent (typically ethanol or isopropyl alcohol), then fully evaporating the solvent to leave a thick, dark, tar-like concentrate. It\u2019s full-spectrum with very high cannabinoid concentration (60\u201390%+). Used primarily for serious medical conditions \u2014 cancer patients, severe pain, late-stage illness. Dosing starts extremely small (rice grain sized) and is titrated up slowly.'
+  },
+  {
+    id: 14, type: 'mc',
+    q: 'A customer comes in requesting a CBD-rich tincture for her inflammation. She doesn\u2019t want to feel \u201ctoo out of it.\u201d Which ratio would you suggest?',
+    options: [
+      '1:3 (1 part CBD to 3 parts THC)',
+      '30:1 (30 parts CBD to 1 part THC)',
+      '1:1 (equal parts CBD and THC)',
+      '10:1 (10 parts CBD to 1 part THC)',
+      '1:30 (1 part CBD to 30 parts THC)'
+    ],
+    correct: 1,
+    explanation: '30:1 (CBD:THC) is the right call. The high CBD ratio provides powerful anti-inflammatory benefit while the trace amount of THC is low enough to avoid psychoactivity \u2014 the \u201centourage effect\u201d means even a small amount of THC can enhance CBD\u2019s effectiveness. A 10:1 ratio could still produce mild psychoactivity in a THC-sensitive customer. 1:1 and 1:3 both have enough THC to potentially make her feel \u201cout of it.\u201d 1:30 would be the opposite of what she needs \u2014 essentially a THC-dominant product.'
+  },
+  {
+    id: 15, type: 'mc',
+    q: 'Which strain would you recommend for someone looking for help with sleep?',
+    options: [
+      'Jack Herer \u2014 a legendary sativa known for energizing, clear-headed, creative effects',
+      'Durban Poison \u2014 a pure sativa landrace from South Africa known for sharp focus and uplifting energy',
+      'Granddaddy Purple \u2014 a heavy indica cross of Purple Urkle and Big Bud, high in myrcene and linalool, known for deep body relaxation and sleep support',
+      'Green Crack \u2014 a sativa-dominant hybrid named for its intense, fast-acting mental energy and focus'
+    ],
+    correct: 2,
+    explanation: 'Granddaddy Purple (GDP) is one of the most well-established sleep strains in the catalog. Its terpene profile is dominated by myrcene (sedating, potentiates THC via CB1 receptors) and linalool (promotes sleep by modulating GABA receptors \u2014 same mechanism as lavender). Its heavy indica effects quiet both the mind and body. Jack Herer, Durban Poison, and Green Crack are all sativa or sativa-dominant \u2014 recommending any of them for sleep would likely leave the customer lying awake and frustrated.'
+  }
+];
+
+var MC_COUNT = QUESTIONS.filter(function(q){ return q.type === 'mc'; }).length;
+var answers = {};
+var step = 0;
+
+function startQuiz() {
+  document.getElementById('bIntro').style.display = 'none';
+  document.getElementById('bFlow').style.display = 'block';
+  renderStep();
+}
+
+function renderStep() {
+  var q = QUESTIONS[step];
+  var pct = ((step) / QUESTIONS.length * 100) + '%';
+  document.getElementById('bProgressFill').style.width = pct;
+  document.getElementById('bProgressLabel').textContent = 'Question ' + (step + 1) + ' of ' + QUESTIONS.length;
+  var typeEl = document.getElementById('bProgressType');
+  typeEl.textContent = q.type === 'mc' ? 'Multiple Choice' : 'Open Ended';
+  typeEl.className = 'b-progress-type ' + q.type;
+
+  var html = '<div class="b-question-num">Question ' + (step + 1) + '</div>' +
+    '<p class="b-question">' + q.q + '</p>';
+
+  if (q.type === 'mc') {
+    html += '<div class="b-options">' +
+      q.options.map(function(opt, i) {
+        return '<button class="b-option" onclick="pickMC(' + i + ')">' + opt + '</button>';
+      }).join('') +
+      '</div>' +
+      '<div class="b-feedback" id="bFeedback"></div>';
+  } else {
+    html += '<textarea class="b-text-area" id="bTextInput" placeholder="' + (q.placeholder || '') + '" rows="5"></textarea>' +
+      '<div style="margin-top:4px">' +
+      '<button class="b-next-btn" onclick="pickText()">Next &#8594;</button>' +
+      '<button class="b-skip-btn" onclick="skipText()">Skip</button>' +
+      '</div>';
+  }
+
+  var el = document.getElementById('bStep');
+  el.classList.remove('visible');
+  el.innerHTML = html;
+  setTimeout(function(){ el.classList.add('visible'); }, 20);
+}
+
+function pickMC(idx) {
+  var q = QUESTIONS[step];
+  var opts = document.querySelectorAll('.b-option');
+  opts.forEach(function(o){ o.classList.add('dimmed'); });
+  opts[idx].classList.remove('dimmed');
+
+  var isCorrect = idx === q.correct;
+  answers[step] = { type: 'mc', selected: idx, correct: q.correct, isCorrect: isCorrect };
+
+  opts[idx].classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) opts[q.correct].classList.add('correct');
+
+  var fb = document.getElementById('bFeedback');
+  fb.className = 'b-feedback ' + (isCorrect ? 'correct' : 'wrong');
+  fb.innerHTML = '<div class="b-feedback-label">' + (isCorrect ? 'Correct' : 'Not quite') + '</div>' +
+    q.explanation +
+    '<br><button class="b-continue-btn" onclick="advance()">Continue &#8594;</button>';
+  fb.style.display = 'block';
+}
+
+function pickText() {
+  var val = (document.getElementById('bTextInput') || {}).value || '';
+  answers[step] = { type: 'text', value: val.trim() };
+  advance();
+}
+
+function skipText() {
+  answers[step] = { type: 'text', value: '' };
+  advance();
+}
+
+function advance() {
+  step++;
+  if (step >= QUESTIONS.length) {
+    showAnalyzing();
+  } else {
+    renderStep();
+  }
+}
+
+function showAnalyzing() {
+  document.getElementById('bFlow').style.display = 'none';
+  document.getElementById('bAnalyzing').style.display = 'block';
+  setTimeout(showResults, 1800);
+}
+
+function showResults() {
+  document.getElementById('bAnalyzing').style.display = 'none';
+
+  var score = 0;
+  Object.values(answers).forEach(function(a){
+    if (a.type === 'mc' && a.isCorrect) score++;
+  });
+
+  var tierClass, tierLabel, tierDesc;
+  if (score <= 4) {
+    tierClass = 'needs'; tierLabel = 'Needs Development';
+    tierDesc = 'A solid foundation to build on. Review the explanations below \u2014 the concepts covered here are core to every customer interaction on the floor.';
+  } else if (score <= 7) {
+    tierClass = 'developing'; tierLabel = 'Developing';
+    tierDesc = 'Good base knowledge with some gaps to close. Focus on cannabinoids, concentrates, and compliance \u2014 those come up every single shift.';
+  } else if (score <= 10) {
+    tierClass = 'proficient'; tierLabel = 'Proficient';
+    tierDesc = 'Strong foundational knowledge. You can hold your own on the floor. Keep sharpening your strain and terpene knowledge to reach the next level.';
+  } else {
+    tierClass = 'expert'; tierLabel = 'Expert Budtender';
+    tierDesc = 'Top-tier knowledge. You\u2019re the person other budtenders should be learning from. Keep going \u2014 this industry rewards the ones who never stop learning.';
+  }
+
+  var reviewHtml = '';
+
+  // MC review
+  var mcWrong = QUESTIONS.filter(function(q, i){ return q.type === 'mc' && answers[i] && !answers[i].isCorrect; });
+  var mcCorrect = QUESTIONS.filter(function(q, i){ return q.type === 'mc' && answers[i] && answers[i].isCorrect; });
+
+  if (mcWrong.length > 0) {
+    reviewHtml += '<div class="b-result-section"><div class="b-result-section-title">Review \u2014 Missed Questions</div>';
+    QUESTIONS.forEach(function(q, i) {
+      if (q.type !== 'mc' || !answers[i] || answers[i].isCorrect) return;
+      var a = answers[i];
+      reviewHtml += '<div class="b-review-item wrong">' +
+        '<div class="b-review-label wrong">Incorrect</div>' +
+        '<div class="b-review-q">Q' + (i+1) + '. ' + q.q + '</div>' +
+        '<div class="b-review-a">Your answer: ' + q.options[a.selected] + '</div>' +
+        '<div class="b-review-correct">Correct: ' + q.options[q.correct] + '</div>' +
+        '<div class="b-review-explanation">' + q.explanation + '</div>' +
+        '</div>';
+    });
+    reviewHtml += '</div>';
+  }
+
+  // Open-ended review
+  var openAnswers = QUESTIONS.filter(function(q, i){ return q.type === 'text'; });
+  reviewHtml += '<div class="b-result-section"><div class="b-result-section-title">Your Open-Ended Answers</div>';
+  QUESTIONS.forEach(function(q, i) {
+    if (q.type !== 'text') return;
+    var a = answers[i];
+    reviewHtml += '<div class="b-review-item open">' +
+      '<div class="b-review-label open">Open Ended</div>' +
+      '<div class="b-review-q">Q' + (i+1) + '. ' + q.q + '</div>' +
+      '<div class="b-review-a">' + (a && a.value ? a.value.replace(/\n/g, '<br>') : '<em style="opacity:.4">Skipped</em>') + '</div>' +
+      '</div>';
+  });
+  reviewHtml += '</div>';
+
+  var html =
+    '<div class="b-result-header">' +
+      '<div class="b-tag" style="margin-bottom:14px">&#10022; Assessment Complete</div>' +
+      '<div class="b-score-display"><span>' + score + '</span>/' + MC_COUNT + '</div>' +
+      '<div class="b-score-sub">Scored questions correct</div>' +
+      '<div class="b-tier ' + tierClass + '">' + tierLabel + '</div>' +
+      '<p class="b-tier-desc">' + tierDesc + '</p>' +
+    '</div>' +
+    reviewHtml +
+    '<div class="b-result-ctas">' +
+      '<button class="b-cta-primary" onclick="retake()">Retake Assessment &#8594;</button>' +
+      '<a href="/budtender-pro" class="b-cta-ghost">Open Budtender Pro &#8594;</a>' +
+    '</div>';
+
+  var el = document.getElementById('bResult');
+  el.innerHTML = html;
+  el.style.display = 'block';
+  el.style.opacity = '0';
+  setTimeout(function(){ el.style.transition = 'opacity .4s'; el.style.opacity = '1'; }, 20);
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function retake() {
+  answers = {};
+  step = 0;
+  document.getElementById('bResult').style.display = 'none';
+  document.getElementById('bIntro').style.display = 'block';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
+</body>
+</html>
