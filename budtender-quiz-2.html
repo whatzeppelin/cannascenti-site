@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Budtender Assessment Part 2 — Cannascenti</title>
+<meta name="description" content="Part 2 of the Cannascenti budtender knowledge assessment. Terpenes, entourage effect, edibles, customer scenarios, storage, tolerance, and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#060d0a;color:#F2EAD8;font-family:'Montserrat',sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden}
+a{color:#52B788;text-decoration:none}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(82,183,136,0.05) 0%,transparent 65%);pointer-events:none;z-index:0}
+
+.bnav{display:flex;align-items:center;justify-content:space-between;padding:24px 48px;position:sticky;top:0;background:rgba(6,13,10,0.92);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid rgba(255,255,255,0.05)}
+.bnav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:#F2EAD8;letter-spacing:.06em}
+.bnav-right{display:flex;align-items:center;gap:24px}
+.bnav-back{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,234,216,0.4);transition:color .2s}
+.bnav-back:hover{color:#52B788}
+.bnav-tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(232,168,76,0.8);background:rgba(232,168,76,0.08);border:1px solid rgba(232,168,76,0.2);padding:4px 12px;border-radius:20px}
+@media(max-width:600px){.bnav{padding:18px 24px}.bnav-tag{display:none}}
+
+.bwrap{max-width:780px;margin:0 auto;padding:60px 32px 120px;position:relative;z-index:1}
+@media(max-width:600px){.bwrap{padding:40px 20px 80px}}
+
+.b-intro{text-align:center;padding:48px 0 20px}
+.b-tag{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#52B788;margin-bottom:18px}
+.b-intro-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,6vw,3.8rem);font-weight:300;line-height:1.1;color:#F2EAD8;margin-bottom:18px}
+.b-intro-title em{font-style:italic;color:#E8A84C}
+.b-intro-sub{font-size:.95rem;color:rgba(242,234,216,0.5);line-height:1.8;max-width:520px;margin:0 auto 36px}
+.b-part-link{display:inline-block;margin-bottom:28px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,234,216,0.35);border:1px solid rgba(255,255,255,0.07);padding:8px 18px;border-radius:20px;transition:all .2s}
+.b-part-link:hover{color:#52B788;border-color:rgba(82,183,136,0.25)}
+.b-meta{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-bottom:40px}
+.b-meta-item{text-align:center}
+.b-meta-num{font-family:'Cormorant Garamond',serif;font-size:2rem;color:#E8A84C;line-height:1}
+.b-meta-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,234,216,0.35);margin-top:4px}
+.b-start-btn{display:inline-flex;align-items:center;gap:10px;background:#E8A84C;color:#060d0a;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:16px 40px;border-radius:100px;border:none;cursor:pointer;transition:all .2s}
+.b-start-btn:hover{background:#f0bc6e;transform:translateY(-1px)}
+
+.b-progress{margin-bottom:44px}
+.b-progress-bar{height:2px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden;margin-bottom:10px}
+.b-progress-fill{height:100%;background:#E8A84C;border-radius:2px;transition:width .4s ease}
+.b-progress-meta{display:flex;justify-content:space-between;align-items:center}
+.b-progress-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(242,234,216,0.3)}
+.b-progress-type{font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:20px}
+.b-progress-type.mc{background:rgba(232,168,76,0.1);color:#E8A84C}
+.b-progress-type.text{background:rgba(82,183,136,0.1);color:#52B788}
+
+.b-question{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,3.5vw,2rem);font-weight:300;color:#F2EAD8;line-height:1.4;margin-bottom:32px;font-style:italic}
+.b-question-num{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,234,216,0.3);margin-bottom:10px;font-style:normal}
+
+.b-options{display:flex;flex-direction:column;gap:10px}
+.b-option{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:18px 20px;cursor:pointer;transition:all .2s;text-align:left;font-family:'Montserrat',sans-serif;font-size:.88rem;color:rgba(242,234,216,0.8);line-height:1.6;font-weight:300}
+.b-option:hover{border-color:rgba(232,168,76,0.35);background:rgba(232,168,76,0.04);color:#F2EAD8}
+.b-option.selected{border-color:#E8A84C;background:rgba(232,168,76,0.08);color:#F2EAD8}
+.b-option.correct{border-color:#52B788;background:rgba(82,183,136,0.1);color:#F2EAD8;pointer-events:none}
+.b-option.wrong{border-color:#e05c5c;background:rgba(224,92,92,0.07);color:rgba(242,234,216,0.6);pointer-events:none}
+.b-option.dimmed{opacity:.3;pointer-events:none}
+
+.b-text-area{width:100%;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:18px 20px;font-family:'Montserrat',sans-serif;font-size:.88rem;color:#F2EAD8;line-height:1.7;resize:vertical;min-height:120px;transition:border-color .2s;font-weight:300}
+.b-text-area:focus{outline:none;border-color:rgba(82,183,136,0.4)}
+.b-text-area::placeholder{color:rgba(242,234,216,0.22)}
+.b-next-btn{display:inline-flex;align-items:center;gap:8px;margin-top:16px;background:#52B788;color:#060d0a;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:13px 28px;border-radius:100px;border:none;cursor:pointer;transition:all .2s}
+.b-next-btn:hover{background:#74C69D}
+.b-skip-btn{display:inline-flex;align-items:center;gap:8px;margin-top:16px;margin-left:12px;background:none;border:1px solid rgba(255,255,255,0.1);color:rgba(242,234,216,0.4);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:13px 22px;border-radius:100px;cursor:pointer;transition:all .2s}
+.b-skip-btn:hover{border-color:rgba(255,255,255,0.25);color:rgba(242,234,216,0.7)}
+
+.b-feedback{margin-top:16px;padding:16px 18px;border-radius:8px;font-size:.82rem;line-height:1.7;color:rgba(242,234,216,0.7);display:none}
+.b-feedback.correct{background:rgba(82,183,136,0.07);border:1px solid rgba(82,183,136,0.2)}
+.b-feedback.wrong{background:rgba(224,92,92,0.06);border:1px solid rgba(224,92,92,0.2)}
+.b-feedback-label{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.b-feedback.correct .b-feedback-label{color:#52B788}
+.b-feedback.wrong .b-feedback-label{color:#e05c5c}
+.b-continue-btn{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(242,234,216,0.6);font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:10px 20px;border-radius:100px;cursor:pointer;transition:all .2s}
+.b-continue-btn:hover{background:rgba(255,255,255,0.09);color:#F2EAD8}
+
+.b-fade{opacity:0;transition:opacity .25s}
+.b-fade.visible{opacity:1}
+
+.b-analyzing{text-align:center;padding:80px 0}
+.b-analyzing-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;font-style:italic;color:#F2EAD8;margin-bottom:8px}
+.b-analyzing-sub{font-size:.82rem;color:rgba(242,234,216,0.4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:32px}
+.b-dots{display:flex;justify-content:center;gap:8px}
+.b-dot{width:8px;height:8px;border-radius:50%;background:#E8A84C;animation:bdot 1.2s ease-in-out infinite}
+.b-dot:nth-child(2){animation-delay:.2s}
+.b-dot:nth-child(3){animation-delay:.4s}
+@keyframes bdot{0%,80%,100%{transform:scale(.5);opacity:.3}40%{transform:scale(1);opacity:1}}
+
+.b-result-header{text-align:center;margin-bottom:48px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.07)}
+.b-score-display{font-family:'Cormorant Garamond',serif;font-size:clamp(4rem,10vw,6rem);font-weight:300;line-height:1;color:#F2EAD8;margin-bottom:8px}
+.b-score-display span{color:#E8A84C}
+.b-score-sub{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,234,216,0.35);margin-bottom:20px}
+.b-tier{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:7px 20px;border-radius:20px;margin-bottom:20px}
+.b-tier.needs{background:rgba(224,92,92,0.1);color:#e05c5c;border:1px solid rgba(224,92,92,0.25)}
+.b-tier.developing{background:rgba(232,168,76,0.1);color:#E8A84C;border:1px solid rgba(232,168,76,0.25)}
+.b-tier.proficient{background:rgba(82,183,136,0.1);color:#52B788;border:1px solid rgba(82,183,136,0.25)}
+.b-tier.expert{background:rgba(116,198,157,0.15);color:#74C69D;border:1px solid rgba(116,198,157,0.4)}
+.b-tier-desc{font-size:.9rem;color:rgba(242,234,216,0.5);max-width:500px;margin:0 auto;line-height:1.7}
+
+.b-result-section{margin-bottom:40px}
+.b-result-section-title{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,234,216,0.3);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.05)}
+.b-review-item{background:rgba(255,255,255,0.02);border-radius:8px;padding:18px 20px;margin-bottom:10px;border-left:3px solid transparent}
+.b-review-item.correct{border-left-color:#52B788}
+.b-review-item.wrong{border-left-color:#e05c5c}
+.b-review-item.open{border-left-color:#E8A84C}
+.b-review-q{font-size:.82rem;color:rgba(242,234,216,0.6);margin-bottom:8px;line-height:1.5}
+.b-review-a{font-size:.85rem;color:#F2EAD8;margin-bottom:6px}
+.b-review-correct{font-size:.8rem;color:#52B788;margin-bottom:8px}
+.b-review-explanation{font-size:.78rem;color:rgba(242,234,216,0.45);line-height:1.7}
+.b-review-label{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;margin-bottom:4px}
+.b-review-label.correct{color:#52B788}
+.b-review-label.wrong{color:#e05c5c}
+.b-review-label.open{color:#E8A84C}
+
+.b-result-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:48px;padding-top:40px;border-top:1px solid rgba(255,255,255,0.07)}
+.b-cta-primary{display:inline-flex;align-items:center;gap:8px;background:#E8A84C;color:#060d0a;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:13px 28px;border-radius:100px;text-decoration:none;transition:all .2s;border:none;cursor:pointer;font-family:'Montserrat',sans-serif}
+.b-cta-primary:hover{background:#f0bc6e}
+.b-cta-green{display:inline-flex;align-items:center;gap:8px;background:#52B788;color:#060d0a;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:13px 28px;border-radius:100px;text-decoration:none;transition:all .2s}
+.b-cta-green:hover{background:#74C69D}
+.b-cta-ghost{display:inline-flex;align-items:center;gap:8px;background:none;border:1px solid rgba(255,255,255,0.12);color:rgba(242,234,216,0.5);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:13px 24px;border-radius:100px;text-decoration:none;transition:all .2s;cursor:pointer;font-family:'Montserrat',sans-serif}
+.b-cta-ghost:hover{border-color:rgba(255,255,255,0.25);color:#F2EAD8}
+</style>
+</head>
+<body>
+
+<nav class="bnav">
+  <a href="/" class="bnav-logo">Cannascenti</a>
+  <div class="bnav-right">
+    <span class="bnav-tag">Part 2</span>
+    <a href="/budtender-quiz" class="bnav-back">&#8592; Part 1</a>
+  </div>
+</nav>
+
+<div class="bwrap">
+
+  <!-- INTRO -->
+  <div id="bIntro" class="b-intro">
+    <div class="b-tag">&#10022; Cannascenti</div>
+    <h1 class="b-intro-title">Budtender Assessment<br><em>Part Two</em></h1>
+    <p class="b-intro-sub">15 deeper questions covering terpenes, the entourage effect, edible pharmacology, customer scenarios, extracts, storage, tolerance, and medication interactions. This is where floor experience shows.</p>
+    <a href="/budtender-quiz" class="b-part-link">&#8592; Start with Part 1 first</a>
+    <div class="b-meta">
+      <div class="b-meta-item">
+        <div class="b-meta-num">15</div>
+        <div class="b-meta-label">Questions</div>
+      </div>
+      <div class="b-meta-item">
+        <div class="b-meta-num">15</div>
+        <div class="b-meta-label">Scored</div>
+      </div>
+      <div class="b-meta-item">
+        <div class="b-meta-num">30</div>
+        <div class="b-meta-label">Total w/ Part 1</div>
+      </div>
+    </div>
+    <button class="b-start-btn" onclick="startQuiz()">Begin Part 2 &#8594;</button>
+  </div>
+
+  <!-- QUIZ FLOW -->
+  <div id="bFlow" style="display:none">
+    <div class="b-progress">
+      <div class="b-progress-bar"><div class="b-progress-fill" id="bProgressFill" style="width:0%"></div></div>
+      <div class="b-progress-meta">
+        <div class="b-progress-label" id="bProgressLabel">Question 1 of 15</div>
+        <div class="b-progress-type mc" id="bProgressType">Multiple Choice</div>
+      </div>
+    </div>
+    <div id="bStep" class="b-fade"></div>
+  </div>
+
+  <!-- ANALYZING -->
+  <div id="bAnalyzing" style="display:none" class="b-analyzing">
+    <div class="b-analyzing-title">Scoring your assessment&#8230;</div>
+    <div class="b-analyzing-sub">Calculating results</div>
+    <div class="b-dots"><div class="b-dot"></div><div class="b-dot"></div><div class="b-dot"></div></div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="bResult" style="display:none"></div>
+
+</div>
+
+<script>
+var QUESTIONS = [
+  {
+    id: 1, type: 'mc',
+    q: 'What is myrcene and why does it matter on the floor?',
+    options: [
+      'Myrcene is a citrus-forward terpene responsible for the bright, uplifting effects in strains like Lemon Haze and Jack Herer.',
+      'Myrcene is the most abundant terpene in cannabis. It produces sedating and relaxing effects and is believed to potentiate THC by increasing CB1 receptor permeability \u2014 which is why high-myrcene strains hit harder at the same THC percentage.',
+      'Myrcene is a rare minor terpene found only in landrace strains, with anti-anxiety properties comparable to CBD.',
+      'Myrcene produces piney, clear-headed effects that counteract THC-induced memory impairment \u2014 making it ideal for daytime productivity strains.'
+    ],
+    correct: 1,
+    explanation: 'Myrcene is the most common terpene in cannabis and a primary driver of the sedative "couch-lock" effect associated with indicas. Research suggests it increases CB1 receptor membrane permeability, allowing THC to cross the blood-brain barrier more efficiently \u2014 meaning a myrcene-dominant strain hits harder at the same THC% as a low-myrcene strain. It\u2019s also found in mango \u2014 the folk trick of eating a ripe mango 45 minutes before consuming cannabis has real pharmacological basis. Common in: OG Kush, Granddaddy Purple, Blue Dream.'
+  },
+  {
+    id: 2, type: 'mc',
+    q: 'What makes caryophyllene unique among all cannabis terpenes?',
+    options: [
+      'It produces the sweetest, most candy-like aroma of any terpene \u2014 responsible for the dessert flavors in strains like Gelato and Wedding Cake.',
+      'It is the rarest terpene in cannabis, found only in high-altitude landrace strains and commands the highest extraction prices.',
+      'It is the only terpene known to directly bind to cannabinoid receptors (specifically CB2), acting pharmacologically as a cannabinoid itself with anti-inflammatory effects \u2014 it\u2019s also found in black pepper, which is why sniffing pepper can help reduce a THC panic attack.',
+      'It binds to CB1 receptors more powerfully than THC, producing the most intense psychoactive effect of any terpene in the cannabis plant.'
+    ],
+    correct: 2,
+    explanation: 'Caryophyllene (specifically beta-caryophyllene) is the only terpene that directly activates cannabinoid receptors \u2014 specifically CB2, which is concentrated in the immune system and peripheral tissues rather than the brain. This gives it potent anti-inflammatory effects without psychoactivity. It\u2019s abundant in black pepper, cloves, and cinnamon. The black pepper trick for THC anxiety \u2014 sniffing or chewing black peppercorns \u2014 is pharmacologically grounded: caryophyllene\u2019s CB2 agonism may calm the body\u2019s stress response. Found in high amounts in GSC, Sour Diesel, and OG Kush.'
+  },
+  {
+    id: 3, type: 'mc',
+    q: 'What is the entourage effect and why should a budtender understand it?',
+    options: [
+      'The social phenomenon where people consuming cannabis in a group report stronger effects than solo users due to shared excitement.',
+      'A cannabis marketing strategy in which brands bundle products together to increase average order value per customer transaction.',
+      'The theory that the full spectrum of cannabinoids, terpenes, and plant compounds work synergistically \u2014 producing effects greater than any single isolated compound. It\u2019s why full-spectrum products often outperform pure THC distillate even at lower percentages.',
+      'The cumulative tolerance effect that builds when a user consumes cannabis daily, requiring larger doses over time to achieve the same effect.'
+    ],
+    correct: 2,
+    explanation: 'The entourage effect (coined by Dr. Ethan Russo and colleagues) describes how cannabinoids, terpenes, and flavonoids work together synergistically. CBD modulates THC\u2019s anxiety-producing effects; caryophyllene adds anti-inflammatory action; linalool promotes sedation; pinene counteracts memory fog. This is why a 22% full-spectrum flower can outperform a 90% THC distillate cartridge for many patients. On the floor, it means you should help customers look beyond THC percentage to the full terpene and cannabinoid profile \u2014 that\u2019s where the real difference lives.'
+  },
+  {
+    id: 4, type: 'mc',
+    q: 'Why do edibles take longer to kick in and often feel stronger than smoking the equivalent amount of THC?',
+    options: [
+      'Edibles are typically made with lower-quality trim and shake, requiring more time for the digestive system to break down and absorb the compounds.',
+      'When cannabis is eaten, THC is processed by the liver into 11-hydroxy-THC \u2014 a metabolite that crosses the blood-brain barrier more efficiently and is 2\u20133x more potent than standard THC \u2014 causing delayed onset (45\u201390 min) and a longer, more intense, more body-heavy experience.',
+      'Edibles contain binding agents and emulsifiers that slow digestion and amplify psychoactive effects \u2014 without these additives onset would be nearly identical to smoking.',
+      'The digestive system filters out terpenes entirely from edibles, leaving only concentrated THC which explains the more intense and longer-lasting effect.'
+    ],
+    correct: 1,
+    explanation: 'When you eat cannabis, THC absorbs through the GI tract and travels to the liver before entering systemic circulation. The liver converts delta-9-THC into 11-hydroxy-THC \u2014 a more lipid-soluble metabolite that crosses the blood-brain barrier more efficiently and is estimated 2\u20133x more potent than the original compound. This explains why edibles feel more psychedelic, more body-heavy, and last 4\u20138 hours versus 2\u20133 hours for inhalation. "I didn\u2019t feel it so I took more" is the single most common edible mistake. Onset truly takes 45\u201390 minutes \u2014 sometimes longer with a full stomach.'
+  },
+  {
+    id: 5, type: 'mc',
+    q: 'What is the difference between bubble hash and dry sift hash?',
+    options: [
+      'Bubble hash is made by pressing cannabis flowers with heat and pressure; dry sift is made by dissolving trichomes in butane and then evaporating the solvent.',
+      'Bubble hash uses ice-cold water and agitation to separate trichomes from plant material, filtered through progressively finer mesh screens; dry sift uses only physical agitation over fine mesh screens with no water or solvents.',
+      'Bubble hash is lower quality than dry sift because water damages terpenes during extraction; dry sift preserves the full terpene profile through its solvent-free cold-water process.',
+      'There is no real difference \u2014 both terms describe the same ice-water and mesh-screen process and are used interchangeably by extractors.'
+    ],
+    correct: 1,
+    explanation: 'Both are solventless. Bubble hash (ice water hash): cannabis is agitated in ice-cold water, making trichome heads brittle and causing them to break off. The mixture is filtered through a series of bubble bags (mesh screens at decreasing micron sizes, typically 25\u00b5\u2013220\u00b5) to separate trichome heads by size. The finest grades (73\u00b5\u201390\u00b5 "full melt") vaporize completely when dabbed. Dry sift: cannabis is agitated over fine mesh screens (silk or stainless) using only mechanical motion and cold temperature \u2014 no water. Simpler process, generally lower quality and yield than premium bubble hash. Both can be pressed into rosin.'
+  },
+  {
+    id: 6, type: 'mc',
+    q: 'When reading a Certificate of Analysis (COA), what should you look at beyond THC percentage?',
+    options: [
+      'The lab\u2019s logo, color scheme, and facility location \u2014 premium labs in certain cities are known to produce more accurate results and signal higher product quality.',
+      'The dispensary\u2019s state license number printed on the COA \u2014 this is the primary compliance indicator customers should reference.',
+      'Total terpene percentage and the specific terpene breakdown, CBD and minor cannabinoid levels, and whether the product passed safety testing for pesticides, heavy metals, residual solvents, and microbials.',
+      'The harvest date only \u2014 this is the most reliable single indicator of freshness, potency, and overall product quality.'
+    ],
+    correct: 2,
+    explanation: 'A COA is the truth document. Beyond THC%: Total terpene % \u2014 higher terpene content often correlates with a more complex, effective experience; some argue this matters more than THC%. The specific terpene profile tells you effects before the customer tries it. Minor cannabinoids (CBD, CBG, CBN) are relevant for medical customers. Most critically: the safety panel. Did it pass for pesticides? Heavy metals (especially in concentrates)? Residual solvents (critical for extracts \u2014 failed solvent tests mean the purge was incomplete)? Microbials (mold, bacteria)? A 30% THC product that failed pesticide testing is worse than a 20% product that passed everything.'
+  },
+  {
+    id: 7, type: 'mc',
+    q: 'A customer tells you they\u2019ve never used cannabis before and want to try it for anxiety but are nervous about getting too high. What is the right approach?',
+    options: [
+      'Recommend a high-THC indica like Gorilla Glue or Wedding Cake \u2014 the heavy body sedation will suppress their anxiety without producing mental stimulation.',
+      'Suggest a high-THC vape for fast onset so they can gauge effects quickly and stop if they feel uncomfortable.',
+      'Recommend a high CBD:THC ratio product (10:1 or 20:1 tincture), explain that low doses of THC can reduce anxiety while high doses can trigger it, advise sublingual dosing for controlled onset, and emphasize starting with the smallest possible dose and waiting.',
+      'Suggest an edible because the slow onset gives them more time to mentally prepare for the effects before they feel anything.'
+    ],
+    correct: 2,
+    explanation: 'First-timers need harm reduction first. The critical concepts to convey: the dose-response curve is real \u2014 low THC doses are anxiolytic (anxiety-reducing), but high doses can trigger or worsen anxiety, especially in people with FAAH enzyme variation that affects endocannabinoid breakdown. A high CBD:THC ratio (10:1, 20:1) delivers therapeutic CBD benefit with minimal psychoactivity. Tinctures allow precise, incremental dosing. Vapes onset too fast for someone without tolerance. Edibles are the worst choice for first-timers \u2014 delayed onset leads to redosing mistakes, and 11-hydroxy-THC is much more intense than inhaled THC.'
+  },
+  {
+    id: 8, type: 'mc',
+    q: 'A customer says: "Last time I tried cannabis I got really anxious and paranoid. I never want to feel that way again." What do you tell them and what do you recommend?',
+    options: [
+      'Tell them cannabis simply isn\u2019t right for them and they should stick to CBD-only products with absolutely zero THC.',
+      'Acknowledge what happened and explain that high-dose THC can trigger anxiety in sensitive people. Recommend a high CBD:THC ratio product, a strain or product high in caryophyllene and linalool which modulate anxiety, and emphasize starting very low and going very slow.',
+      'Recommend a pure sativa strain \u2014 indicas are what cause anxiety and paranoia, and sativas produce a cleaner, less anxious experience for everyone.',
+      'Suggest a high-potency concentrate because the faster onset means the experience peaks and clears more quickly than flower.'
+    ],
+    correct: 1,
+    explanation: '"I got too high" is one of the most important conversations on the floor. First: validate and explain \u2014 it wasn\u2019t a character flaw. High-dose THC can trigger anxiety through multiple mechanisms: it increases amygdala activity, and people with FAAH enzyme variation process endocannabinoids differently. The fix: CBD significantly reduces THC-induced anxiety (use 1:1 or higher ratio products). Caryophyllene (CB2 agonist) and linalool (GABA modulator, same mechanism as lavender and some anxiety medications) both have evidence for anxiety reduction. Never recommend indicas vs sativas as the frame \u2014 terpenes and ratio matter far more. Never recommend concentrates to someone who\u2019s had a bad experience.'
+  },
+  {
+    id: 9, type: 'mc',
+    q: 'What is microdosing and why is it a useful recommendation for certain customers?',
+    options: [
+      'Microdosing means consuming cannabis only once per day regardless of amount \u2014 the term refers to frequency of use rather than the size of the dose.',
+      'Microdosing means consuming very small amounts of THC (typically 1\u20135mg) to achieve therapeutic benefits \u2014 reduced anxiety, better focus, mild pain relief \u2014 without significant psychoactive impairment, allowing people to function normally throughout the day.',
+      'Microdosing is a clinical administration method exclusive to medical cannabis patients, delivered intravenously under physician supervision in licensed facilities.',
+      'Microdosing refers to purchasing concentrates that have been diluted to approximately 10% of standard dispensary potency for sensitive or first-time consumers.'
+    ],
+    correct: 1,
+    explanation: 'Microdosing typically means 1\u20135mg of THC per dose \u2014 far below the commonly cited 10mg "standard" serving. The goal is to remain below the threshold of noticeable psychoactivity while still accessing therapeutic effects: mood lift, anxiety reduction, pain management, creative enhancement. Many professionals microdose throughout the workday without impairment. It also slows tolerance buildup. Great candidates: anxious customers, first-timers, people who tried cannabis and felt "too high," professionals who can\u2019t be impaired, and seniors. Products well-suited for microdosing: 2.5mg mints, small portions of 1:1 tinctures, divided low-dose edibles.'
+  },
+  {
+    id: 10, type: 'mc',
+    q: 'What is the difference between a distillate vape cartridge and a full-spectrum or live resin cartridge?',
+    options: [
+      'Distillate cartridges contain the complete range of cannabinoids and terpenes preserved from the original plant; full-spectrum cartridges contain only THC with cannabis-flavored additives.',
+      'Distillate is a highly refined, near-pure THC oil where terpenes and minor cannabinoids are stripped out in processing and may be added back artificially; full-spectrum and live resin cartridges preserve the plant\u2019s original cannabinoid and terpene profile, producing a more complex entourage effect.',
+      'Distillate cartridges are always significantly more potent because purity directly equals strength; full-spectrum cartridges are intended exclusively for medical patients and beginners.',
+      'There is no functional difference between distillate and full-spectrum \u2014 both are marketing terms for the same oil produced through identical CO\u2082 extraction methods.'
+    ],
+    correct: 1,
+    explanation: 'Distillate is produced through short-path distillation that strips away almost everything except THC \u2014 resulting in clear, nearly odorless oil at 85\u201395%+ THC. Terpenes are added back (cannabis-derived or botanical), but the profile may not match the original plant. Full-spectrum and live resin cartridges are extracted at lower temperatures to preserve the complete original terpene and minor cannabinoid profile. The entourage effect means full-spectrum often produces more nuanced, therapeutic effects even at lower THC%. Practical guidance: for medical patients or those seeking specific effects \u2014 full-spectrum. For discretion, high potency, or price sensitivity \u2014 distillate.'
+  },
+  {
+    id: 11, type: 'mc',
+    q: 'What is CBN and what is it best known for?',
+    options: [
+      'CBN (Cannabinol) is a precursor cannabinoid like CBG that converts into THC and CBD as the plant matures through its flowering cycle.',
+      'CBN (Cannabinol) is formed when THC oxidizes and degrades over time through exposure to heat, light, and oxygen. It is mildly psychoactive and most known for its sedative properties \u2014 making it popular in sleep-focused products.',
+      'CBN is a highly psychoactive cannabinoid found only in fresh, uncured cannabis that rapidly degrades into non-psychoactive THC after harvest and drying.',
+      'CBN is a lab-synthesized cannabinoid created specifically for the medical cannabis market to treat seizure disorders without the psychoactivity of THC.'
+    ],
+    correct: 1,
+    explanation: 'CBN (Cannabinol) is a degradation product of THC \u2014 as THC oxidizes over time (through exposure to air, light, and heat), it slowly converts to CBN. Old or improperly stored cannabis often makes people sleepier than fresh cannabis, and CBN is a significant reason why. It\u2019s only about 10% as psychoactive as THC but has pronounced sedative properties. Increasingly featured in sleep products (gummies, tinctures). Practical application: if a customer asks why their older stash puts them to sleep, CBN is the explanation. Also: properly sealed, dark, room-temperature storage slows the THC\u2192CBN conversion significantly.'
+  },
+  {
+    id: 12, type: 'mc',
+    q: 'How should cannabis flower be properly stored and why does it matter?',
+    options: [
+      'Cannabis should be stored in zip-lock plastic bags in the freezer \u2014 freezing preserves potency indefinitely and eliminates any risk of mold or bacterial growth.',
+      'Cannabis should be stored in airtight glass jars at room temperature (60\u201370\u00b0F), away from light and heat, at 55\u201362% relative humidity \u2014 to preserve terpenes, prevent mold, and slow cannabinoid degradation.',
+      'Cannabis should be kept in paper bags at room temperature \u2014 the paper allows the flower to breathe, which prevents moisture buildup and maintains freshness better than sealed containers.',
+      'Storage conditions have minimal effect on quality \u2014 properly cured flower maintains the same potency and terpene profile for 2\u20133 years under any normal conditions.'
+    ],
+    correct: 1,
+    explanation: 'Proper cannabis storage: airtight glass (not plastic \u2014 plastic generates static that pulls trichomes off and can leach chemicals). Room temperature 60\u201370\u00b0F \u2014 heat accelerates terpene evaporation and cannabinoid degradation. Away from light \u2014 UV radiation is one of the fastest ways to degrade THC. Humidity control is critical: 55\u201362% RH prevents mold (above 65% = mold risk) while keeping flower from drying out below 55% (brittle, loses terpenes, harsh smoke). Humidity packs like Boveda or Integra Boost are the easiest solution. Freezing is controversial \u2014 trichomes become brittle at cold temperatures and can shatter and fall off during handling.'
+  },
+  {
+    id: 13, type: 'mc',
+    q: 'What is decarboxylation and when does it matter for a customer?',
+    options: [
+      'Decarboxylation is the process of adding carbon molecules to cannabis compounds during cultivation to increase the plant\u2019s natural cannabinoid production and overall potency.',
+      'Decarboxylation is the removal of a carboxylic acid group from THCA through heat, converting it into psychoactive THC. It matters whenever a customer wants to make homemade edibles \u2014 raw unheated flower has no psychoactive effect when eaten because THCA is non-psychoactive.',
+      'Decarboxylation is the primary lab testing method used to verify the true cannabinoid potency of cannabis products before they reach the dispensary shelf.',
+      'Decarboxylation is a fermentation process that occurs during cannabis curing, converting CBD into trace amounts of THC \u2014 relevant for customers who are concerned about THC content in CBD products.'
+    ],
+    correct: 1,
+    explanation: 'Decarboxylation ("decarbing") is the heat-driven removal of a carboxylic acid (COOH) group from THCA, yielding psychoactive THC + CO\u2082. It happens automatically and instantly when you smoke or vape. For homemade edibles, customers must first decarb their flower before infusing it: 240\u00b0F for 30\u201340 minutes in an oven on a parchment-lined sheet. If they grind raw flower straight into brownie batter, they\u2019ll get a very expensive batch of non-psychoactive baked goods. Also relevant: COAs list "total THC" as (THCA \u00d7 0.877) + THC, accounting for the molecular weight loss (the CO\u2082) that occurs during decarboxylation.'
+  },
+  {
+    id: 14, type: 'mc',
+    q: 'A daily cannabis user tells you nothing seems to work anymore and asks what you have that\u2019s stronger. What is the most useful thing you can tell them?',
+    options: [
+      'Recommend switching immediately to delta-8 THC products \u2014 delta-8 bypasses CB1 receptor tolerance and produces effects comparable to first-time cannabis use.',
+      'Suggest high-potency concentrates at 90%+ THC \u2014 the dramatically higher dose will overcome the tolerance they have built from flower.',
+      'Explain that cannabis tolerance builds at CB1 receptors through receptor downregulation, and a tolerance break of even 2 weeks can significantly reset sensitivity \u2014 making their same usual products feel effective again, often at lower doses than before.',
+      'Tell them their endocannabinoid system has permanently adapted and no amount of abstinence will restore their original sensitivity \u2014 they need to accept a higher baseline.'
+    ],
+    correct: 2,
+    explanation: 'Cannabis tolerance builds primarily through CB1 receptor downregulation \u2014 chronic THC exposure causes the brain to produce fewer CB1 receptors and reduce their sensitivity. Unlike opioid tolerance, this is largely reversible. Research shows 2\u20134 weeks of abstinence significantly restores CB1 receptor density and sensitivity. Practical advice: a 2-week tolerance break often makes their usual products feel as potent as when they started, frequently at lower doses. Some people notice sensitivity returning within 48\u201372 hours. Switching to higher-potency products accelerates tolerance buildup further \u2014 it solves nothing long-term. This conversation builds trust and loyalty because you\u2019re giving them real advice instead of just selling them something more expensive.'
+  },
+  {
+    id: 15, type: 'mc',
+    q: 'A customer asks whether cannabis is safe to take alongside their prescription medications. What do you say?',
+    options: [
+      'Reassure them that cannabis is all-natural and has no known interactions with any pharmaceutical medications \u2014 it is completely safe to combine with any prescription drug.',
+      'Explain that cannabis \u2014 particularly CBD \u2014 is metabolized through the CYP450 enzyme system in the liver (the same system that processes most drugs), and they should speak with their doctor or pharmacist before combining cannabis with any prescription, especially blood thinners, antidepressants, or seizure medications.',
+      'Tell them to stop taking their prescription medications and transition to cannabis as a safer, more natural alternative with fewer side effects.',
+      'Assure them that as long as they\u2019re using only CBD and no THC, there are absolutely no possible drug interactions to be concerned about.'
+    ],
+    correct: 1,
+    explanation: 'This is one of the most critical harm-reduction conversations a budtender can have. Cannabis \u2014 especially CBD \u2014 is metabolized primarily through the CYP450 enzyme system (specifically CYP3A4 and CYP2C9), which processes the majority of pharmaceutical drugs. Cannabis can inhibit these enzymes, causing other medications to reach higher-than-intended blood levels. High-risk interactions: blood thinners like warfarin (cannabis can significantly increase bleeding risk), SSRIs and antidepressants, antiepileptics, heart medications, immunosuppressants. Never diagnose. Never tell them to stop their medication. Always refer to their healthcare provider \u2014 and frame it as "this is a question worth bringing to your doctor, here\u2019s why." That\u2019s the answer that keeps people safe and builds long-term trust.'
+  }
+];
+
+var MC_COUNT = 15;
+var answers = {};
+var step = 0;
+
+function startQuiz() {
+  document.getElementById('bIntro').style.display = 'none';
+  document.getElementById('bFlow').style.display = 'block';
+  renderStep();
+}
+
+function renderStep() {
+  var q = QUESTIONS[step];
+  var pct = (step / QUESTIONS.length * 100) + '%';
+  document.getElementById('bProgressFill').style.width = pct;
+  document.getElementById('bProgressLabel').textContent = 'Question ' + (step + 1) + ' of ' + QUESTIONS.length;
+  var typeEl = document.getElementById('bProgressType');
+  typeEl.textContent = 'Multiple Choice';
+  typeEl.className = 'b-progress-type mc';
+
+  var html = '<div class="b-question-num">Question ' + (step + 1) + '</div>' +
+    '<p class="b-question">' + q.q + '</p>' +
+    '<div class="b-options">' +
+    q.options.map(function(opt, i) {
+      return '<button class="b-option" onclick="pickMC(' + i + ')">' + opt + '</button>';
+    }).join('') +
+    '</div>' +
+    '<div class="b-feedback" id="bFeedback"></div>';
+
+  var el = document.getElementById('bStep');
+  el.classList.remove('visible');
+  el.innerHTML = html;
+  setTimeout(function(){ el.classList.add('visible'); }, 20);
+}
+
+function pickMC(idx) {
+  var q = QUESTIONS[step];
+  var opts = document.querySelectorAll('.b-option');
+  opts.forEach(function(o){ o.classList.add('dimmed'); });
+  opts[idx].classList.remove('dimmed');
+
+  var isCorrect = idx === q.correct;
+  answers[step] = { selected: idx, correct: q.correct, isCorrect: isCorrect };
+
+  opts[idx].classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) opts[q.correct].classList.add('correct');
+
+  var fb = document.getElementById('bFeedback');
+  fb.className = 'b-feedback ' + (isCorrect ? 'correct' : 'wrong');
+  fb.innerHTML = '<div class="b-feedback-label">' + (isCorrect ? 'Correct' : 'Not quite') + '</div>' +
+    q.explanation +
+    '<br><button class="b-continue-btn" onclick="advance()">Continue &#8594;</button>';
+  fb.style.display = 'block';
+}
+
+function advance() {
+  step++;
+  if (step >= QUESTIONS.length) {
+    showAnalyzing();
+  } else {
+    renderStep();
+  }
+}
+
+function showAnalyzing() {
+  document.getElementById('bFlow').style.display = 'none';
+  document.getElementById('bAnalyzing').style.display = 'block';
+  setTimeout(showResults, 1800);
+}
+
+function showResults() {
+  document.getElementById('bAnalyzing').style.display = 'none';
+
+  var score = 0;
+  Object.values(answers).forEach(function(a){ if (a.isCorrect) score++; });
+
+  var tierClass, tierLabel, tierDesc;
+  if (score <= 5) {
+    tierClass = 'needs'; tierLabel = 'Needs Development';
+    tierDesc = 'These are advanced concepts that take floor time to internalize. Read through every explanation below \u2014 this is the knowledge that separates good budtenders from great ones.';
+  } else if (score <= 9) {
+    tierClass = 'developing'; tierLabel = 'Developing';
+    tierDesc = 'Solid foundation with room to grow. The customer scenario questions and pharmacology sections are worth revisiting \u2014 that knowledge shows up every single shift.';
+  } else if (score <= 12) {
+    tierClass = 'proficient'; tierLabel = 'Proficient';
+    tierDesc = 'Strong, well-rounded knowledge. You understand not just what cannabis is but how it works \u2014 that\u2019s what makes a customer trust you.';
+  } else {
+    tierClass = 'expert'; tierLabel = 'Expert Budtender';
+    tierDesc = 'This is elite-level knowledge. You\u2019re not just selling products \u2014 you\u2019re consulting. That\u2019s the standard Cannascenti is built on.';
+  }
+
+  var reviewHtml = '';
+  var missed = QUESTIONS.filter(function(q, i){ return answers[i] && !answers[i].isCorrect; });
+
+  if (missed.length > 0) {
+    reviewHtml += '<div class="b-result-section"><div class="b-result-section-title">Review \u2014 Missed Questions</div>';
+    QUESTIONS.forEach(function(q, i) {
+      if (!answers[i] || answers[i].isCorrect) return;
+      var a = answers[i];
+      reviewHtml += '<div class="b-review-item wrong">' +
+        '<div class="b-review-label wrong">Incorrect</div>' +
+        '<div class="b-review-q">Q' + (i+1) + '. ' + q.q + '</div>' +
+        '<div class="b-review-a">Your answer: ' + q.options[a.selected] + '</div>' +
+        '<div class="b-review-correct">Correct: ' + q.options[q.correct] + '</div>' +
+        '<div class="b-review-explanation">' + q.explanation + '</div>' +
+        '</div>';
+    });
+    reviewHtml += '</div>';
+  }
+
+  if (missed.length === 0) {
+    reviewHtml += '<div class="b-result-section"><div class="b-result-section-title">Perfect Score</div>' +
+      '<div class="b-review-item correct"><div class="b-review-label correct">All Correct</div>' +
+      '<p style="font-size:.85rem;color:rgba(242,234,216,0.6)">You answered every question correctly. That\u2019s a rare result \u2014 this material trips up even experienced budtenders.</p></div></div>';
+  }
+
+  var html =
+    '<div class="b-result-header">' +
+      '<div class="b-tag" style="margin-bottom:14px">&#10022; Part 2 Complete</div>' +
+      '<div class="b-score-display"><span>' + score + '</span>/' + MC_COUNT + '</div>' +
+      '<div class="b-score-sub">Scored questions correct</div>' +
+      '<div class="b-tier ' + tierClass + '">' + tierLabel + '</div>' +
+      '<p class="b-tier-desc">' + tierDesc + '</p>' +
+    '</div>' +
+    reviewHtml +
+    '<div class="b-result-ctas">' +
+      '<button class="b-cta-primary" onclick="retake()">Retake Part 2 &#8594;</button>' +
+      '<a href="/budtender-quiz" class="b-cta-green">Take Part 1 &#8594;</a>' +
+      '<a href="/budtender-pro" class="b-cta-ghost">Open Budtender Pro &#8594;</a>' +
+    '</div>';
+
+  var el = document.getElementById('bResult');
+  el.innerHTML = html;
+  el.style.display = 'block';
+  el.style.opacity = '0';
+  setTimeout(function(){ el.style.transition = 'opacity .4s'; el.style.opacity = '1'; }, 20);
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function retake() {
+  answers = {};
+  step = 0;
+  document.getElementById('bResult').style.display = 'none';
+  document.getElementById('bIntro').style.display = 'block';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
+</body>
+</html>

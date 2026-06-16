@@ -6391,6 +6391,13 @@ a{color:var(--bright-green);text-decoration:none}
   }
 
   // ─── Budtender knowledge assessment ───────────────────────────────────────
+  if (req.method === "GET" && req.url === "/budtender-quiz-2") {
+    const html = fs.readFileSync(path.join(__dirname, "budtender-quiz-2.html"), "utf8");
+    res.writeHead(200, { "Content-Type": "text/html", "Cache-Control": "no-cache, no-store, must-revalidate" });
+    res.end(html);
+    return;
+  }
+
   if (req.method === "GET" && req.url === "/budtender-quiz") {
     const html = fs.readFileSync(path.join(__dirname, "budtender-quiz.html"), "utf8");
     res.writeHead(200, { "Content-Type": "text/html", "Cache-Control": "no-cache, no-store, must-revalidate" });
