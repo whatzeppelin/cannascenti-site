@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pricing — Cannascenti</title>
+<meta name="description" content="Simple, transparent pricing for dispensaries. Budtender Pro, white-label quiz, and customer insights — starting at $149/month.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --dark:#060f0a;
+  --card-bg:rgba(255,255,255,0.02);
+  --card-bg2:rgba(255,255,255,0.04);
+  --green:#52b788;
+  --bright-green:#74c69d;
+  --cream:#f2ead8;
+  --cream-dim:rgba(242,234,216,0.55);
+  --border:rgba(255,255,255,0.07);
+  --border-bright:rgba(116,198,157,0.35);
+  --radius:8px;
+}
+body{background:var(--dark);color:var(--cream);font-family:'Montserrat',sans-serif;line-height:1.7;overflow-x:hidden}
+a{color:var(--bright-green);text-decoration:none}
+
+/* NAV */
+.p-nav{display:flex;align-items:center;justify-content:space-between;padding:24px 60px;border-bottom:1px solid var(--border)}
+.p-nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream);letter-spacing:.08em}
+.p-nav-links{display:flex;gap:28px;align-items:center}
+.p-nav-links a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,234,216,0.5);transition:color .2s}
+.p-nav-links a:hover{color:var(--bright-green)}
+.p-nav-cta{background:var(--bright-green)!important;color:#060f0a!important;padding:9px 20px;border-radius:3px;font-weight:600!important}
+@media(max-width:640px){.p-nav{padding:20px 24px}.p-nav-links{display:none}}
+
+/* HERO */
+.p-hero{text-align:center;padding:80px 24px 60px}
+.p-hero-tag{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--bright-green);margin-bottom:18px;opacity:.8}
+.p-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:600;line-height:1.1;margin-bottom:16px}
+.p-hero h1 em{font-style:italic;color:var(--bright-green)}
+.p-hero p{font-size:15px;color:var(--cream-dim);max-width:500px;margin:0 auto 40px;font-weight:300}
+
+/* BILLING TOGGLE */
+.billing-toggle{display:inline-flex;align-items:center;gap:14px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:50px;padding:7px 22px;margin-bottom:60px}
+.billing-toggle span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,234,216,0.4);cursor:pointer;transition:color .2s;user-select:none}
+.billing-toggle span.active{color:var(--cream);font-weight:600}
+.toggle-switch{width:42px;height:22px;background:rgba(255,255,255,0.08);border:1px solid var(--border-bright);border-radius:50px;position:relative;cursor:pointer;transition:background .3s}
+.toggle-switch.yearly{background:var(--bright-green)}
+.toggle-knob{position:absolute;top:3px;left:3px;width:14px;height:14px;background:white;border-radius:50%;transition:transform .3s}
+.toggle-switch.yearly .toggle-knob{transform:translateX(20px)}
+.save-badge{display:inline-block;background:rgba(116,198,157,0.12);color:var(--bright-green);font-size:9px;font-weight:700;padding:2px 8px;border-radius:50px;border:1px solid var(--border-bright);margin-left:4px;letter-spacing:.08em;text-transform:uppercase}
+
+/* PLANS */
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px;max-width:1060px;margin:0 auto;padding:0 24px 80px}
+.plan-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:36px 30px;position:relative;transition:border-color .2s,transform .2s}
+.plan-card:hover{border-color:var(--border-bright);transform:translateY(-2px)}
+.plan-card.featured{border-color:var(--bright-green);background:rgba(116,198,157,0.04)}
+.featured-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--bright-green);color:#060f0a;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 16px;border-radius:50px;white-space:nowrap}
+.plan-name{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,234,216,0.4);margin-bottom:8px}
+.plan-tagline{font-size:13px;color:var(--cream-dim);margin-bottom:22px;min-height:40px;font-weight:300}
+.price-amount{font-family:'Cormorant Garamond',serif;font-size:3.4rem;font-weight:600;line-height:1;color:var(--cream)}
+.price-amount sup{font-size:1.3rem;vertical-align:super}
+.price-period{font-size:12px;color:var(--cream-dim);margin-left:4px}
+.price-yearly-note{font-size:11px;color:var(--bright-green);margin:6px 0 0;min-height:18px;letter-spacing:.03em}
+.price-custom{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:600;color:var(--cream)}
+.plan-divider{border:none;border-top:1px solid var(--border);margin:22px 0}
+.plan-features{list-style:none;margin-bottom:28px}
+.plan-features li{display:flex;align-items:flex-start;gap:10px;font-size:12px;color:var(--cream-dim);padding:5px 0;font-weight:300}
+.plan-features li .chk{color:var(--bright-green);font-size:.9rem;flex-shrink:0;margin-top:2px}
+.plan-features li .no{color:rgba(242,234,216,0.18);flex-shrink:0;margin-top:2px}
+.plan-features li .dimtext{color:rgba(242,234,216,0.2)}
+.plan-cta{display:block;text-align:center;padding:13px 24px;border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;transition:all .2s;cursor:pointer}
+.cta-primary{background:var(--bright-green);color:#060f0a}
+.cta-primary:hover{opacity:.85}
+.cta-secondary{background:transparent;color:var(--bright-green);border:1px solid var(--border-bright)}
+.cta-secondary:hover{background:rgba(116,198,157,0.07)}
+
+/* COMPARISON TABLE */
+.compare-section{max-width:960px;margin:0 auto 80px;padding:0 24px}
+.section-tag{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--bright-green);opacity:.7;margin-bottom:10px}
+.compare-section h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:600;margin-bottom:36px}
+.compare-section h2 em{font-style:italic;color:var(--bright-green)}
+table{width:100%;border-collapse:collapse}
+thead th{padding:12px 16px;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(242,234,216,0.35);border-bottom:1px solid var(--border);text-align:center}
+thead th:first-child{text-align:left}
+tbody tr{border-bottom:1px solid var(--border);transition:background .15s}
+tbody tr:hover{background:rgba(116,198,157,0.02)}
+tbody tr.cat-row td{padding:18px 16px 6px;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--bright-green);opacity:.6;border-bottom:none}
+tbody td{padding:11px 16px;font-size:12px;color:var(--cream-dim);text-align:center;font-weight:300}
+tbody td:first-child{text-align:left;color:var(--cream);font-weight:400}
+.yes{color:var(--bright-green);font-size:1rem}
+.nope{color:rgba(242,234,216,0.15);font-size:1rem}
+.partial{color:#d4a853;font-size:11px;font-weight:600}
+
+/* FAQ */
+.faq-section{max-width:680px;margin:0 auto 80px;padding:0 24px}
+.faq-section h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,2.4rem);font-weight:600;text-align:center;margin-bottom:32px}
+.faq-section h2 em{font-style:italic;color:var(--bright-green)}
+.faq-item{border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;overflow:hidden}
+.faq-q{padding:17px 20px;font-size:13px;font-weight:500;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none;transition:background .2s}
+.faq-q:hover{background:rgba(116,198,157,0.04)}
+.faq-q .arr{transition:transform .2s;color:var(--bright-green);font-size:.8rem}
+.faq-item.open .faq-q .arr{transform:rotate(180deg)}
+.faq-a{display:none;padding:0 20px 17px;font-size:12px;color:var(--cream-dim);line-height:1.8;font-weight:300}
+.faq-item.open .faq-a{display:block}
+
+/* BOTTOM CTA */
+.bottom-cta{text-align:center;padding:60px 24px 80px;border-top:1px solid var(--border)}
+.bottom-cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:600;margin-bottom:10px}
+.bottom-cta h2 em{font-style:italic;color:var(--bright-green)}
+.bottom-cta p{color:var(--cream-dim);margin-bottom:30px;font-size:14px;font-weight:300}
+.cta-group{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-lg{display:inline-block;padding:15px 32px;border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;transition:all .2s}
+.btn-filled{background:var(--bright-green);color:#060f0a}
+.btn-filled:hover{opacity:.85}
+.btn-bordered{border:1px solid var(--border-bright);color:var(--bright-green)}
+.btn-bordered:hover{background:rgba(116,198,157,0.07)}
+
+/* FOOTER */
+footer{text-align:center;padding:24px;border-top:1px solid var(--border);font-size:11px;color:rgba(242,234,216,0.3);font-weight:300}
+footer a{color:rgba(242,234,216,0.3)}
+footer a:hover{color:var(--bright-green)}
+</style>
+</head>
+<body>
+
+<nav class="p-nav">
+  <a href="/" class="p-nav-logo">Cannascenti</a>
+  <div class="p-nav-links">
+    <a href="/for-dispensaries">For Dispensaries</a>
+    <a href="/budtender-pro">Budtender Pro</a>
+    <a href="/learn">Education</a>
+    <a href="https://calendly.com/cannascenti" class="p-nav-cta">Book a Demo</a>
+  </div>
+</nav>
+
+<section class="p-hero">
+  <div class="p-hero-tag">✦ Pricing</div>
+  <h1>Simple pricing.<br><em>Real results.</em></h1>
+  <p>Everything your dispensary needs to turn confused shoppers into confident, loyal buyers. No contracts — cancel anytime.</p>
+  <div class="billing-toggle">
+    <span class="active" id="lbl-mo">Monthly</span>
+    <div class="toggle-switch" id="tog" onclick="toggleBilling()"><div class="toggle-knob"></div></div>
+    <span id="lbl-yr">Yearly <span class="save-badge">Save 17%</span></span>
+  </div>
+</section>
+
+<div class="plans">
+
+  <!-- STARTER -->
+  <div class="plan-card">
+    <div class="plan-name">Starter</div>
+    <div class="plan-tagline">The essential toolkit. Get your staff up to speed fast.</div>
+    <div>
+      <span class="price-amount"><sup>$</sup><span id="ps">149</span></span>
+      <span class="price-period">/month</span>
+    </div>
+    <div class="price-yearly-note" id="ns"></div>
+    <hr class="plan-divider">
+    <ul class="plan-features">
+      <li><span class="chk">✓</span> Budtender Pro for up to 5 staff</li>
+      <li><span class="chk">✓</span> Full strain database (392+ cultivars)</li>
+      <li><span class="chk">✓</span> Customer intake &amp; strain matching</li>
+      <li><span class="chk">✓</span> 25-term glossary &amp; talking point scripts</li>
+      <li><span class="chk">✓</span> Dosing quick reference</li>
+      <li><span class="chk">✓</span> Terpene &amp; cannabinoid profiles</li>
+      <li><span class="chk">✓</span> Email support</li>
+      <li><span class="no">✗</span> <span class="dimtext">White-label quiz</span></li>
+      <li><span class="no">✗</span> <span class="dimtext">Customer insights dashboard</span></li>
+    </ul>
+    <a href="https://calendly.com/cannascenti" class="plan-cta cta-secondary">Get Started →</a>
+  </div>
+
+  <!-- GROWTH -->
+  <div class="plan-card featured">
+    <div class="featured-badge">Most Popular</div>
+    <div class="plan-name">Growth</div>
+    <div class="plan-tagline">The full personalization engine. Your brand, your products, your data.</div>
+    <div>
+      <span class="price-amount"><sup>$</sup><span id="pg">299</span></span>
+      <span class="price-period">/month</span>
+    </div>
+    <div class="price-yearly-note" id="ng"></div>
+    <hr class="plan-divider">
+    <ul class="plan-features">
+      <li><span class="chk">✓</span> Everything in Starter</li>
+      <li><span class="chk">✓</span> Budtender Pro for up to 15 staff</li>
+      <li><span class="chk">✓</span> White-label quiz with your branding</li>
+      <li><span class="chk">✓</span> Your product catalog in quiz results</li>
+      <li><span class="chk">✓</span> Email capture from quiz takers</li>
+      <li><span class="chk">✓</span> Customer insights dashboard</li>
+      <li><span class="no">✗</span> <span class="dimtext">Automated follow-ups <span style="font-size:.65rem;color:#E8A84C;letter-spacing:.08em;text-transform:uppercase">Coming Soon</span></span></li>
+      <li><span class="chk">✓</span> QR code &amp; website embed</li>
+      <li><span class="chk">✓</span> Priority support</li>
+    </ul>
+    <a href="https://calendly.com/cannascenti" class="plan-cta cta-primary">Get Started →</a>
+  </div>
+
+  <!-- ENTERPRISE -->
+  <div class="plan-card">
+    <div class="plan-name">Enterprise</div>
+    <div class="plan-tagline">Multi-location groups and MSOs that need a custom partnership.</div>
+    <div><span class="price-custom">Custom</span></div>
+    <div class="price-yearly-note"></div>
+    <hr class="plan-divider">
+    <ul class="plan-features">
+      <li><span class="chk">✓</span> Everything in Growth</li>
+      <li><span class="chk">✓</span> Unlimited locations &amp; staff</li>
+      <li><span class="chk">✓</span> Dedicated account manager</li>
+      <li><span class="chk">✓</span> In-person or virtual staff training</li>
+      <li><span class="chk">✓</span> Custom POS / Leafly integrations</li>
+      <li><span class="chk">✓</span> API access</li>
+      <li><span class="chk">✓</span> SLA &amp; priority onboarding</li>
+      <li><span class="chk">✓</span> Quarterly strategy reviews</li>
+    </ul>
+    <a href="mailto:hello@cannascenti.com?subject=Enterprise%20Inquiry" class="plan-cta cta-secondary">Contact Us →</a>
+  </div>
+
+</div>
+
+<!-- COMPARE TABLE -->
+<section class="compare-section">
+  <div class="section-tag">✦ Compare Plans</div>
+  <h2>Everything side by side, <em>no fine print.</em></h2>
+  <table>
+    <thead>
+      <tr><th style="width:40%">Feature</th><th>Starter</th><th>Growth</th><th>Enterprise</th></tr>
+    </thead>
+    <tbody>
+      <tr class="cat-row"><td colspan="4">Budtender Tools</td></tr>
+      <tr><td>Budtender Pro access</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+      <tr><td>Staff seats</td><td>Up to 5</td><td>Up to 15</td><td>Unlimited</td></tr>
+      <tr><td>Customer intake tool</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+      <tr><td>Instant strain matching</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+      <tr><td>Talking point scripts</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+      <tr><td>Dosing reference</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+      <tr class="cat-row"><td colspan="4">Customer Personalization</td></tr>
+      <tr><td>White-label quiz</td><td><span class="nope">✗</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+      <tr><td>Your product catalog in results</td><td><span class="nope">✗</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+      <tr><td>Email capture from quiz</td><td><span class="nope">✗</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+      <tr><td>Automated follow-up emails <span style="font-size:.65rem;color:#E8A84C;letter-spacing:.06em;text-transform:uppercase">Soon</span></td><td><span class="nope">✗</span></td><td><span class="partial">Soon</span></td><td><span class="partial">Soon</span></td></tr>
+      <tr><td>QR code &amp; website embed</td><td><span class="nope">✗</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+      <tr class="cat-row"><td colspan="4">Data &amp; Insights</td></tr>
+      <tr><td>Customer insights dashboard</td><td><span class="nope">✗</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+      <tr><td>Strain conversion tracking <span style="font-size:.65rem;color:#E8A84C;letter-spacing:.06em;text-transform:uppercase">Soon</span></td><td><span class="nope">✗</span></td><td><span class="partial">Soon</span></td><td><span class="partial">Soon</span></td></tr>
+      <tr><td>API access</td><td><span class="nope">✗</span></td><td><span class="nope">✗</span></td><td><span class="yes">✓</span></td></tr>
+      <tr class="cat-row"><td colspan="4">Support</td></tr>
+      <tr><td>Email support</td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+      <tr><td>Priority support</td><td><span class="nope">✗</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+      <tr><td>Dedicated account manager</td><td><span class="nope">✗</span></td><td><span class="nope">✗</span></td><td><span class="yes">✓</span></td></tr>
+      <tr><td>Staff training sessions</td><td><span class="nope">✗</span></td><td><span class="nope">✗</span></td><td><span class="yes">✓</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="section-tag" style="text-align:center;display:block">✦ FAQ</div>
+  <h2>Questions, <em>answered.</em></h2>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Is there a contract or commitment? <span class="arr">▾</span></div>
+    <div class="faq-a">No contracts. Month-to-month plans can be cancelled anytime. Annual plans are billed upfront and non-refundable after 14 days, but you can cancel renewal at any time.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How long does setup take? <span class="arr">▾</span></div>
+    <div class="faq-a">Budtender Pro is ready the moment you sign up. The white-label quiz (Growth and above) typically takes 3–5 business days once you send us your product catalog.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What do you need from us to set up the white-label quiz? <span class="arr">▾</span></div>
+    <div class="faq-a">Just your product catalog (strains and SKUs), your logo, and any brand colors. We handle the mapping, configuration, and testing — and deliver a QR code and embed link you can use immediately.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I try it before paying? <span class="arr">▾</span></div>
+    <div class="faq-a">Yes — book a 20-minute demo and we'll walk you through everything live. You can also try the public version of the quiz and Budtender Pro on this site right now. No credit card needed until you're ready to go live.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What if I have multiple locations? <span class="arr">▾</span></div>
+    <div class="faq-a">Starter and Growth cover a single location. For multi-location groups or MSOs, the Enterprise plan is built for you — get in touch and we'll put together a custom quote.</div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="bottom-cta">
+  <h2>Not sure which plan?<br><em>Let's talk.</em></h2>
+  <p>Book a free 20-minute demo — we'll walk you through what works best for your store.</p>
+  <div class="cta-group">
+    <a href="https://calendly.com/cannascenti" class="btn-lg btn-filled">Book a Free Demo →</a>
+    <a href="mailto:hello@cannascenti.com?subject=Pricing%20Question" class="btn-lg btn-bordered">Email Us</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Cannascenti. All rights reserved. · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/for-dispensaries">For Dispensaries</a></p>
+  <p style="margin-top:6px">Must be 21+ where applicable. Cannascenti provides educational tools and does not sell cannabis.</p>
+</footer>
+
+<script>
+let isYr = false;
+const prices = { starter:{mo:149,yr:124}, growth:{mo:299,yr:249} };
+function toggleBilling(){
+  isYr = !isYr;
+  document.getElementById('tog').classList.toggle('yearly', isYr);
+  document.getElementById('lbl-mo').classList.toggle('active', !isYr);
+  document.getElementById('lbl-yr').classList.toggle('active', isYr);
+  document.getElementById('ps').textContent = isYr ? prices.starter.yr : prices.starter.mo;
+  document.getElementById('pg').textContent = isYr ? prices.growth.yr  : prices.growth.mo;
+  document.getElementById('ns').textContent = isYr ? '$'+prices.starter.yr*12+'/yr — save $'+((prices.starter.mo-prices.starter.yr)*12) : '';
+  document.getElementById('ng').textContent = isYr ? '$'+prices.growth.yr*12+'/yr — save $'+((prices.growth.mo-prices.growth.yr)*12)   : '';
+}
+</script>
+</body>
+</html>

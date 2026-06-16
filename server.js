@@ -8,6 +8,11 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const client = new Anthropic();
 
+// ─── Dashboard auth ────────────────────────────────────────────────────────────
+const DASH_PASSWORD = process.env.DASH_PASSWORD || "erba2026";
+const DASH_TOKEN = Buffer.from(DASH_PASSWORD + ":cannascenti-dash").toString("base64");
+const LEADS_PATH = path.join(__dirname, "leads.json");
+
 // ─── Gzip cache (populated on first request, lives in memory) ─────────────────
 const gzipCache = new Map();
 
@@ -6182,11 +6187,16 @@ function strainCard(strain, rank) {
   '</div>';
 }
 
+var _qProfile = '';
+var _qStrains = [];
+
 function showResults() {
   document.getElementById('qAnalyzing').style.display = 'none';
   var profile = getProfile();
   var p = PROFILES[profile];
   var topStrains = getTopStrains(profile);
+  _qProfile = p.name;
+  _qStrains = topStrains.map(function(s) { return s.name; });
   var cards = topStrains.map(function(s, i) { return strainCard(s, i); }).join('');
   var html =
     '<div class="q-result-header">' +
@@ -6200,7 +6210,17 @@ function showResults() {
       '<button class="q-retake-btn" onclick="retakeQuiz()">Retake the quiz</button>' +
       '<a href="/strains" class="q-browse-btn">Browse all 394 strains &#8594;</a>' +
     '</div>' +
-    '<div style="margin-top:48px;padding:28px 32px;background:rgba(82,183,136,0.04);border:1px solid rgba(82,183,136,0.15);border-radius:12px;text-align:center">' +
+    '<div style="margin-top:40px;padding:28px 32px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:12px">' +
+      '<div style="font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:#52B788;margin-bottom:10px">&#10022; Save Your Profile</div>' +
+      '<p style="font-family:\'Cormorant Garamond\',serif;font-size:1.2rem;font-style:italic;color:#F2EAD8;margin-bottom:6px">Get your results in your inbox.</p>' +
+      '<p style="font-size:13px;color:rgba(242,234,216,0.45);margin-bottom:18px;font-weight:300">Save your cannabis profile so you always know what to ask for.</p>' +
+      '<div style="display:flex;gap:10px;flex-wrap:wrap">' +
+        '<input type="email" id="qEmailIn" placeholder="your@email.com" style="flex:1;min-width:200px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:12px 16px;color:#F2EAD8;font-family:Montserrat,sans-serif;font-size:13px;outline:none">' +
+        '<button onclick="saveProfile()" style="background:#52B788;color:#060d0a;border:none;border-radius:8px;padding:12px 22px;font-family:Montserrat,sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap">Save &#8594;</button>' +
+      '</div>' +
+      '<div id="qEmailMsg" style="font-size:12px;margin-top:10px;min-height:16px;color:rgba(242,234,216,0.45)"></div>' +
+    '</div>' +
+    '<div style="margin-top:24px;padding:28px 32px;background:rgba(82,183,136,0.04);border:1px solid rgba(82,183,136,0.15);border-radius:12px;text-align:center">' +
       '<div style="font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:#52B788;margin-bottom:10px">&#10022; For Dispensaries</div>' +
       '<p style="font-family:\'Cormorant Garamond\',serif;font-size:1.3rem;font-style:italic;color:#F2EAD8;margin-bottom:8px">This is what your customers experience.</p>' +
       '<p style="font-size:13px;color:rgba(242,234,216,0.5);margin-bottom:20px;font-weight:300">White-label this quiz for your store — your branding, your product catalog, your customers.</p>' +
@@ -6211,6 +6231,24 @@ function showResults() {
   el.style.display = 'block';
   el.style.opacity = '0';
   setTimeout(function() { el.style.transition = 'opacity .4s'; el.style.opacity = '1'; }, 20);
+}
+
+function saveProfile() {
+  var email = (document.getElementById('qEmailIn') || {}).value || '';
+  var msg = document.getElementById('qEmailMsg');
+  if (!email || !email.includes('@')) { msg.textContent = 'Please enter a valid email.'; return; }
+  msg.textContent = 'Saving\u2026';
+  fetch('/api/capture-email', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ email: email.trim(), profile: _qProfile, strains: _qStrains, source: 'quiz' })
+  }).then(function(r) { return r.json(); }).then(function(d) {
+    if (d.ok) {
+      msg.style.color = '#52B788';
+      msg.textContent = '\u2713 Saved! Your profile has been recorded.';
+      document.getElementById('qEmailIn').disabled = true;
+    } else { msg.textContent = 'Something went wrong \u2014 try again.'; }
+  }).catch(function() { msg.textContent = 'Something went wrong \u2014 try again.'; });
 }
 
 function retakeQuiz() {
@@ -8471,6 +8509,86 @@ function showToast(msg) {
         res.end(JSON.stringify({ error: "Failed" }));
       }
     });
+    return;
+  }
+
+  // ─── Quiz lead capture ────────────────────────────────────────────────────
+  if (req.method === "POST" && req.url === "/api/capture-email") {
+    let body = "";
+    req.on("data", chunk => { body += chunk; });
+    req.on("end", () => {
+      try {
+        const { email, profile, strains, source } = JSON.parse(body);
+        if (!email || typeof email !== "string" || !email.includes("@") || email.length > 200) {
+          res.writeHead(400, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Invalid email" }));
+          return;
+        }
+        let leads = [];
+        try { leads = JSON.parse(fs.readFileSync(LEADS_PATH, "utf8")); } catch {}
+        leads.push({ email: email.trim(), profile: profile || null, strains: strains || [], source: source || "quiz", ts: new Date().toISOString() });
+        fs.writeFileSync(LEADS_PATH, JSON.stringify(leads, null, 2));
+        console.log(`Quiz lead: ${email.trim()} — ${profile || "unknown"}`);
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ ok: true }));
+      } catch (err) {
+        res.writeHead(500, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ error: "Failed" }));
+      }
+    });
+    return;
+  }
+
+  // ─── Dashboard login ──────────────────────────────────────────────────────
+  if (req.method === "POST" && req.url === "/api/dashboard-login") {
+    let body = "";
+    req.on("data", chunk => { body += chunk; });
+    req.on("end", () => {
+      try {
+        const { password } = JSON.parse(body);
+        if (password === DASH_PASSWORD) {
+          res.writeHead(200, { "Content-Type": "application/json", "Set-Cookie": `ds_auth=${DASH_TOKEN}; Path=/; HttpOnly; SameSite=Strict; Max-Age=86400` });
+          res.end(JSON.stringify({ ok: true }));
+        } else {
+          res.writeHead(401, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Wrong password" }));
+        }
+      } catch {
+        res.writeHead(400, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ error: "Bad request" }));
+      }
+    });
+    return;
+  }
+
+  // ─── Dashboard page ───────────────────────────────────────────────────────
+  if (req.method === "GET" && req.url === "/dashboard") {
+    const cookies = req.headers.cookie || "";
+    const isAuthed = cookies.includes(`ds_auth=${DASH_TOKEN}`);
+    if (!isAuthed) {
+      const loginHtml = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dashboard — Cannascenti</title><style>*{margin:0;padding:0;box-sizing:border-box}body{background:#060d0a;color:#F2EAD8;font-family:'Montserrat',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh}.card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:48px 40px;width:100%;max-width:360px;text-align:center}.logo{font-family:'Georgia',serif;font-size:22px;margin-bottom:8px;color:#F2EAD8}.sub{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(242,234,216,0.35);margin-bottom:36px}input{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:14px 16px;color:#F2EAD8;font-family:'Montserrat',sans-serif;font-size:14px;margin-bottom:12px;outline:none}input:focus{border-color:rgba(82,183,136,0.4)}button{width:100%;background:#52B788;color:#060d0a;border:none;border-radius:8px;padding:14px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}.err{font-size:12px;color:#e05c5c;margin-top:10px;min-height:18px}</style></head><body><div class="card"><div class="logo">Cannascenti</div><div class="sub">Owner Dashboard</div><input type="password" id="pw" placeholder="Password" onkeydown="if(event.key==='Enter')login()"><button onclick="login()">Sign In</button><div class="err" id="err"></div></div><script>function login(){fetch('/api/dashboard-login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:document.getElementById('pw').value})}).then(r=>r.json()).then(d=>{if(d.ok)location.reload();else document.getElementById('err').textContent='Wrong password.';}).catch(()=>document.getElementById('err').textContent='Error — try again.');}</script></body></html>`;
+      res.writeHead(200, { "Content-Type": "text/html" });
+      res.end(loginHtml);
+      return;
+    }
+
+    let leads = [];
+    try { leads = JSON.parse(fs.readFileSync(LEADS_PATH, "utf8")); } catch {}
+    let subs = [];
+    try {
+      const raw = fs.readFileSync(path.join(__dirname, "subscribers.jsonl"), "utf8");
+      subs = raw.trim().split("\n").filter(Boolean).map(l => JSON.parse(l));
+    } catch {}
+
+    const profileCounts = {};
+    leads.forEach(l => { if (l.profile) profileCounts[l.profile] = (profileCounts[l.profile] || 0) + 1; });
+    const profileRows = Object.entries(profileCounts).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<tr><td>${k}</td><td>${v}</td></tr>`).join("");
+    const leadRows = [...leads].reverse().map(l=>`<tr><td>${l.email}</td><td>${l.profile||"—"}</td><td>${(l.strains||[]).join(", ")||"—"}</td><td>${l.ts?l.ts.slice(0,10):"—"}</td></tr>`).join("");
+    const subRows = [...subs].reverse().map(s=>`<tr><td>${s.email}</td><td>${s.profile||"—"}</td><td>${s.ts?s.ts.slice(0,10):"—"}</td></tr>`).join("");
+
+    const dashHtml = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dashboard — Cannascenti</title><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{background:#060d0a;color:#F2EAD8;font-family:'Montserrat',sans-serif;font-weight:300;min-height:100vh}nav{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;border-bottom:1px solid rgba(255,255,255,0.07)}.logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:#F2EAD8}.nav-r{display:flex;align-items:center;gap:20px}.nav-r a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,234,216,0.4);text-decoration:none}.wrap{max-width:1100px;margin:0 auto;padding:40px}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:48px}.stat{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:24px}.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.4rem;color:#52B788;line-height:1;margin-bottom:6px}.stat-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,234,216,0.35)}h2{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:#F2EAD8;margin-bottom:16px;font-weight:400}table{width:100%;border-collapse:collapse;margin-bottom:48px;font-size:12px}thead th{text-align:left;padding:10px 14px;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(242,234,216,0.3);border-bottom:1px solid rgba(255,255,255,0.06)}tbody td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,0.04);color:rgba(242,234,216,0.7)}tbody tr:hover td{background:rgba(255,255,255,0.015);color:#F2EAD8}.section-tag{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:#52B788;margin-bottom:8px}.empty{font-size:13px;color:rgba(242,234,216,0.25);padding:20px 0}</style></head><body><nav><div class="logo">Cannascenti</div><div class="nav-r"><a href="/">← Site</a></div></nav><div class="wrap"><div class="stats"><div class="stat"><div class="stat-num">${leads.length}</div><div class="stat-label">Quiz Leads</div></div><div class="stat"><div class="stat-num">${subs.length}</div><div class="stat-label">Newsletter Subscribers</div></div><div class="stat"><div class="stat-num">${leads.length+subs.length}</div><div class="stat-label">Total Contacts</div></div></div><div class="section-tag">✦ Profile Breakdown</div><h2>Which profiles are walking in</h2>${profileRows?`<table><thead><tr><th>Profile</th><th>Count</th></tr></thead><tbody>${profileRows}</tbody></table>`:'<div class="empty">No quiz leads yet.</div>'}<div class="section-tag">✦ Quiz Leads</div><h2>Captured from the quiz</h2>${leadRows?`<table><thead><tr><th>Email</th><th>Profile</th><th>Matched Strains</th><th>Date</th></tr></thead><tbody>${leadRows}</tbody></table>`:'<div class="empty">No quiz leads yet — email capture appears at the end of the quiz.</div>'}<div class="section-tag">✦ Newsletter Subscribers</div><h2>Homepage newsletter signups</h2>${subRows?`<table><thead><tr><th>Email</th><th>Source</th><th>Date</th></tr></thead><tbody>${subRows}</tbody></table>`:'<div class="empty">No subscribers yet.</div>'}</div></body></html>`;
+    res.writeHead(200, { "Content-Type": "text/html", "Cache-Control": "no-cache, no-store, must-revalidate" });
+    res.end(dashHtml);
     return;
   }
 
