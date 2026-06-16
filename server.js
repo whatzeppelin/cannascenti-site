@@ -7639,7 +7639,7 @@ canvas#camCanvas{display:none}
       <path d="M21 15l-5-5L5 21"/><path d="M16 3h5v5"/><path d="M21 3l-5 5"/>
     </svg>
     <div class="scanner-drop-title">Drop a photo — or use your camera</div>
-    <div class="scanner-drop-sub">JPG · PNG · WEBP · up to 5MB</div>
+    <div class="scanner-drop-sub">JPG · PNG · WEBP · up to 4MB</div>
     <div class="scan-btns">
       <button class="s-btn s-btn-primary" onclick="startCamera()">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
@@ -7727,7 +7727,7 @@ function snapPhoto() {
 function onScanFile(input) {
   const file = input.files[0];
   if (!file) return;
-  if (file.size > 5 * 1024 * 1024) { alert('Image too large — please use under 5MB.'); input.value=''; return; }
+  if (file.size > 4 * 1024 * 1024) { alert('Image too large — please use under 4MB.'); input.value=''; return; }
   const reader = new FileReader();
   reader.onload = (e) => {
     const dataUrl = e.target.result;
