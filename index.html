@@ -5288,10 +5288,17 @@
   @media (max-width: 480px) { .hashenc-quality-grid { grid-template-columns: 1fr; } }
 
   /* ===================== ENCYCLOPEDIA HUB ===================== */
-  .enc-hub { background: #080e08; padding: 100px 60px; overflow-x: hidden; }
-  .enc-hub-inner { max-width: 1200px; margin: 0 auto; overflow-x: hidden; }
-  .enc-hub-header { max-width: 720px; margin-bottom: 50px; }
-  .enc-hub-header p { color: rgba(255,255,255,0.6); font-size: 16px; line-height: 1.7; margin-top: 16px; }
+  .enc-hub { background: #060e08; padding: 60px 32px; overflow-x: hidden; }
+  .enc-hub-inner { max-width: 1160px; margin: 0 auto; background: #0d2818; border-radius: 24px; border: 1px solid rgba(82,183,136,0.1); padding: 72px 64px; overflow-x: hidden; }
+  .enc-hub-header { max-width: 640px; margin-bottom: 52px; }
+  .enc-hub-eyebrow { font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 500; letter-spacing: .45em; text-transform: uppercase; color: rgba(82,183,136,0.55); margin-bottom: 24px; }
+  .enc-hub-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4.5vw, 60px); font-weight: 300; color: #F2EAD8; line-height: 1.05; margin-bottom: 16px; letter-spacing: -0.01em; }
+  .enc-hub-header p { color: rgba(242,234,216,0.45); font-size: 14px; font-weight: 300; line-height: 1.75; margin-top: 0; }
+  .enc-topic-card { display: block; padding: 28px 24px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.07); text-decoration: none; color: inherit; transition: border-color 0.2s, background 0.2s; background: rgba(255,255,255,0.02); }
+  .enc-topic-card:hover { border-color: rgba(82,183,136,0.3); background: rgba(82,183,136,0.04); }
+  .enc-topic-accent { width: 28px; height: 3px; border-radius: 2px; margin-bottom: 18px; }
+  .enc-topic-name { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; color: #F2EAD8; margin-bottom: 8px; line-height: 1.2; }
+  .enc-topic-desc { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 300; color: rgba(242,234,216,0.45); line-height: 1.65; }
   .enc-hub-nav { display: flex; gap: 0; flex-wrap: wrap; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 48px; overflow-x: auto; }
   .enc-hub-tab { padding: 14px 24px; background: none; border: none; border-bottom: 2px solid transparent; color: rgba(255,255,255,0.4); font-family: 'Montserrat', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: all 0.2s; white-space: nowrap; margin-bottom: -1px; display: flex; align-items: center; gap: 8px; text-decoration: none; }
   .enc-hub-tab:hover { color: rgba(255,255,255,0.7); }
@@ -5483,7 +5490,8 @@
     .enc-history-era { margin-left: 90px; }
   }
   @media (max-width: 600px) {
-    .enc-hub { padding: 60px 24px; }
+    .enc-hub { padding: 32px 16px; }
+    .enc-hub-inner { padding: 44px 24px; border-radius: 16px; }
     .enc-hub-tab { padding: 12px 14px; font-size: 10px; }
     .enc-terp-grid { grid-template-columns: 1fr 1fr; }
     .enc-detail.open { grid-template-columns: 1fr; }
@@ -7055,9 +7063,9 @@
 <div id="encyclopedia-hub" class="enc-hub">
   <div class="enc-hub-inner">
     <div class="enc-hub-header reveal">
-      <div class="section-label">✦ The Cannascenti Encyclopedia</div>
-      <h2 class="section-title" style="color:var(--cream)">The Complete Cannabis Reference</h2>
-      <p>Every terpene, cannabinoid, consumption method, cultivation stage, historical milestone, and extraction technique — the most comprehensive cannabis reference anywhere. Click a topic to explore.</p>
+      <div class="enc-hub-eyebrow">the cannascenti encyclopedia</div>
+      <h2>the complete<br>cannabis reference.</h2>
+      <p>Every terpene, cannabinoid, consumption method, cultivation stage, historical milestone, and extraction technique. Click a topic to explore.</p>
     </div>
     <!-- Encyclopedia Search + Feeling Filters -->
     <div class="enc-search-wrap">
@@ -7090,51 +7098,51 @@
     <div class="enc-ai-loading" id="encAiLoading">✦ Looking up strain…</div>
     <div class="enc-ai-result" id="encAiResult"></div>
     <div class="enc-hub-panel" id="enc-hub-panel">
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;padding:32px 0;">
-        <a href="/strains" style="display:block;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
-          <div style="font-size:28px;margin-bottom:10px;">◈</div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--bright-green);margin-bottom:6px;">Strains</div>
-          <div style="font-size:13px;color:rgba(242,234,216,0.6);line-height:1.5;">Browse 394+ strains with effects, terpenes, THC/CBD profiles and growing info.</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:32px 0;">
+        <a href="/strains" class="enc-topic-card">
+          <div class="enc-topic-accent" style="background:#74C69D;"></div>
+          <div class="enc-topic-name">Strains</div>
+          <div class="enc-topic-desc">394+ cultivars — effects, terpenes, THC/CBD profiles and growing info.</div>
         </a>
-        <a href="/terpenes" style="display:block;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
-          <div style="font-size:28px;margin-bottom:10px;">🌿</div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--bright-green);margin-bottom:6px;">Terpenes</div>
-          <div style="font-size:13px;color:rgba(242,234,216,0.6);line-height:1.5;">Interactive terpene wheel with 16 terpene profiles, aromas, effects, and boiling points.</div>
+        <a href="/terpenes" class="enc-topic-card">
+          <div class="enc-topic-accent" style="background:#B9D437;"></div>
+          <div class="enc-topic-name">Terpenes</div>
+          <div class="enc-topic-desc">16 terpene profiles — aromas, effects, boiling points, and the interactive wheel.</div>
         </a>
-        <a href="/cannabinoids" style="display:block;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
-          <div style="font-size:28px;margin-bottom:10px;">🔬</div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--bright-green);margin-bottom:6px;">Cannabinoids</div>
-          <div style="font-size:13px;color:rgba(242,234,216,0.6);line-height:1.5;">THC, CBD, CBG, CBN, THCV, CBC + more — full profiles, interactive body map, and ratio guide.</div>
+        <a href="/cannabinoids" class="enc-topic-card">
+          <div class="enc-topic-accent" style="background:#4ECDC4;"></div>
+          <div class="enc-topic-name">Cannabinoids</div>
+          <div class="enc-topic-desc">THC, CBD, CBG, CBN, THCV, CBC + more — full profiles and body map.</div>
         </a>
-        <a href="/consumption" style="display:block;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
-          <div style="font-size:28px;margin-bottom:10px;">💨</div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--bright-green);margin-bottom:6px;">Consumption</div>
-          <div style="font-size:13px;color:rgba(242,234,216,0.6);line-height:1.5;">Onset times, bioavailability, pros and cons for every consumption method.</div>
+        <a href="/consumption" class="enc-topic-card">
+          <div class="enc-topic-accent" style="background:#E07B39;"></div>
+          <div class="enc-topic-name">Consumption</div>
+          <div class="enc-topic-desc">Onset times, bioavailability, and pros/cons for every method.</div>
         </a>
-        <a href="/cultivation" style="display:block;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
-          <div style="font-size:28px;margin-bottom:10px;">🌱</div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--bright-green);margin-bottom:6px;">Cultivation</div>
-          <div style="font-size:13px;color:rgba(242,234,216,0.6);line-height:1.5;">Environments, seed-to-harvest life cycle, training techniques, global growing cultures, and beginner strain guide.</div>
+        <a href="/cultivation" class="enc-topic-card">
+          <div class="enc-topic-accent" style="background:#52B788;"></div>
+          <div class="enc-topic-name">Cultivation</div>
+          <div class="enc-topic-desc">Seed-to-harvest life cycle, environments, training techniques, and strain guide.</div>
         </a>
-        <a href="/history" style="display:block;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
-          <div style="font-size:28px;margin-bottom:10px;">📜</div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--bright-green);margin-bottom:6px;">History</div>
-          <div style="font-size:13px;color:rgba(242,234,216,0.6);line-height:1.5;">12,000 years of cannabis history — from ancient China to modern legalization.</div>
+        <a href="/history" class="enc-topic-card">
+          <div class="enc-topic-accent" style="background:#C9973A;"></div>
+          <div class="enc-topic-name">History</div>
+          <div class="enc-topic-desc">12,000 years of cannabis — from ancient China to modern legalization.</div>
         </a>
-        <a href="/concentrates" style="display:block;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
-          <div style="font-size:28px;margin-bottom:10px;">💎</div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--bright-green);margin-bottom:6px;">Concentrates</div>
-          <div style="font-size:13px;color:rgba(242,234,216,0.6);line-height:1.5;">From ancient charas to liquid diamonds — every concentrate and extraction method documented.</div>
+        <a href="/concentrates" class="enc-topic-card">
+          <div class="enc-topic-accent" style="background:#7B9CCC;"></div>
+          <div class="enc-topic-name">Concentrates</div>
+          <div class="enc-topic-desc">From ancient charas to liquid diamonds — every extraction method documented.</div>
         </a>
-        <a href="/edibles" style="display:block;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
-          <div style="font-size:28px;margin-bottom:10px;">🍬</div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--bright-green);margin-bottom:6px;">Edibles</div>
-          <div style="font-size:13px;color:rgba(242,234,216,0.6);line-height:1.5;">Gummies, chocolate, beverages, capsules, tinctures — the full consumer guide including cooking.</div>
+        <a href="/edibles" class="enc-topic-card">
+          <div class="enc-topic-accent" style="background:#F4A261;"></div>
+          <div class="enc-topic-name">Edibles</div>
+          <div class="enc-topic-desc">Gummies, chocolate, beverages, capsules, tinctures — the full consumer guide.</div>
         </a>
-        <a href="/glossary" style="display:block;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px;text-decoration:none;color:inherit;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.08)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
-          <div style="font-size:28px;margin-bottom:10px;">📖</div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--bright-green);margin-bottom:6px;">Glossary</div>
-          <div style="font-size:13px;color:rgba(242,234,216,0.6);line-height:1.5;">60+ cannabis terms explained — from anandamide to THCA diamonds. Searchable A–Z.</div>
+        <a href="/glossary" class="enc-topic-card">
+          <div class="enc-topic-accent" style="background:#A78BFA;"></div>
+          <div class="enc-topic-name">Glossary</div>
+          <div class="enc-topic-desc">60+ cannabis terms explained — from anandamide to THCA diamonds. Searchable A–Z.</div>
         </a>
       </div>
     </div>
