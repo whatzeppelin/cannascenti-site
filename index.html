@@ -6793,123 +6793,109 @@
   }
 
   /* ===================== MARY JANE SPOTLIGHT ===================== */
-  .mj-spotlight {
-    background: #060d08;
-    border-top: 1px solid rgba(82,183,136,0.08);
-    border-bottom: 1px solid rgba(82,183,136,0.08);
-    padding: 100px 60px;
-    overflow: hidden;
-  }
-  .mj-spotlight-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .mj-spotlight-header { margin-bottom: 56px; }
+  .mj-spotlight { background: #060e08; padding: 60px 32px; overflow: hidden; }
+  .mj-spotlight-inner { max-width: 1160px; margin: 0 auto; background: #0d2818; border-radius: 24px; border: 1px solid rgba(82,183,136,0.1); padding: 72px 64px; }
+  .mj-spotlight-eyebrow { font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 500; letter-spacing: .45em; text-transform: uppercase; color: rgba(82,183,136,0.55); margin-bottom: 28px; }
+  .mj-spotlight-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4.5vw, 60px); font-weight: 300; color: #F2EAD8; line-height: 1.05; margin-bottom: 52px; letter-spacing: -0.01em; }
   .mj-dual {
     display: grid;
     grid-template-columns: 1fr 1px 1fr;
-    gap: 0 60px;
+    gap: 0 64px;
     align-items: start;
   }
-  .mj-dual-divider {
-    background: rgba(82,183,136,0.12);
-    align-self: stretch;
-    min-height: 380px;
-  }
+  .mj-dual-divider { background: rgba(82,183,136,0.1); align-self: stretch; min-height: 380px; }
   .mj-dual-panel { display: flex; flex-direction: column; }
-  .mj-spotlight-title {
+  .mj-panel-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(32px, 4vw, 56px);
-    color: var(--cream);
+    font-size: clamp(24px, 2.8vw, 38px);
+    font-weight: 300;
+    color: #F2EAD8;
     line-height: 1.1;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
   }
-  .mj-spotlight-title em { font-family: 'Playfair Display', serif; color: var(--bright-green); font-style: italic; font-weight: 400; }
+  .mj-panel-title em { color: #74C69D; font-style: italic; }
   .mj-spotlight-desc {
-    font-size: 15px;
-    color: rgba(242,234,216,0.55);
-    line-height: 1.85;
-    margin-bottom: 36px;
-    max-width: 460px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(242,234,216,0.45);
+    line-height: 1.8;
+    margin-bottom: 32px;
+    max-width: 420px;
   }
   .mj-spotlight-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--bright-green);
-    color: #020b05;
+    display: inline-block;
     font-family: 'Montserrat', sans-serif;
     font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 16px 32px;
-    border: none;
-    border-radius: 2px;
+    font-weight: 500;
+    letter-spacing: .15em;
+    color: #F2EAD8;
+    border: 2px solid rgba(242,234,216,0.65);
+    padding: 14px 36px;
+    border-radius: 14px;
     cursor: pointer;
-    box-shadow: 0 0 28px rgba(82,183,136,0.35);
-    transition: box-shadow 0.2s, transform 0.2s;
+    background: transparent;
+    text-decoration: none;
+    transition: background 0.25s, border-color 0.25s;
+    align-self: flex-start;
+    margin-bottom: 32px;
   }
-  .mj-spotlight-cta:hover {
-    box-shadow: 0 0 44px rgba(82,183,136,0.55);
-    transform: translateY(-2px);
-  }
-  /* Chat preview mock */
+  .mj-spotlight-cta:hover { background: rgba(242,234,216,0.07); border-color: #F2EAD8; }
   .mj-chat-preview {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(82,183,136,0.12);
-    border-radius: 12px;
-    padding: 28px 24px 20px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(82,183,136,0.1);
+    border-radius: 16px;
+    padding: 24px 20px;
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 16px;
   }
-  .mj-chat-msg {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-  }
+  .mj-chat-msg { display: flex; align-items: flex-start; gap: 10px; }
   .mj-chat-msg--user { justify-content: flex-end; }
-  .mj-chat-msg--user .mj-chat-bubble {
-    background: rgba(82,183,136,0.12);
-    border-color: rgba(82,183,136,0.25);
-    color: var(--cream);
-  }
+  .mj-chat-msg--user .mj-chat-bubble { background: rgba(82,183,136,0.1); border-color: rgba(82,183,136,0.2); color: #F2EAD8; }
   .mj-chat-avatar {
-    width: 30px; height: 30px;
+    width: 28px; height: 28px;
     border-radius: 50%;
-    background: rgba(82,183,136,0.1);
-    border: 1px solid rgba(82,183,136,0.2);
+    background: rgba(82,183,136,0.08);
+    border: 1px solid rgba(82,183,136,0.18);
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
   }
   .mj-chat-bubble {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 10px;
-    padding: 12px 16px;
-    font-size: 13px;
-    color: rgba(242,234,216,0.75);
-    line-height: 1.6;
-    max-width: 320px;
-  }
-  .mj-chat-cta {
-    text-align: center;
-    margin-top: 8px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 11px 15px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--bright-green);
-    cursor: pointer;
-    padding: 10px;
-    border: 1px solid rgba(82,183,136,0.2);
-    border-radius: 4px;
-    transition: background 0.2s;
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(242,234,216,0.7);
+    line-height: 1.65;
+    max-width: 300px;
   }
-  .mj-chat-cta:hover { background: rgba(82,183,136,0.08); }
+  .mj-scanner-mock {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(82,183,136,0.1);
+    border-radius: 16px;
+    padding: 48px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+  .mj-scanner-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    color: rgba(82,183,136,0.4);
+  }
   @media (max-width: 860px) {
-    .mj-spotlight { padding: 72px 24px; }
+    .mj-spotlight { padding: 32px 16px; }
+    .mj-spotlight-inner { padding: 44px 24px; border-radius: 16px; }
     .mj-dual { grid-template-columns: 1fr; gap: 48px; }
     .mj-dual-divider { display: none; }
     .mj-chat-preview { max-width: 520px; }
@@ -6998,30 +6984,22 @@
 </section>
 
 
-<div class="full-divider"></div>
-
-<div style="text-align:center;padding:56px 24px 16px;position:relative;z-index:2;">
-  <p style="font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:rgba(82,183,136,0.55);">✦ The Customer Experience</p>
-  <p style="font-size:15px;color:rgba(242,234,216,0.4);margin-top:10px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.7;">Here's what your shoppers get — before they ever reach the counter.</p>
-</div>
-
 <!-- MARY JANE VISION — COMBINED -->
 <section class="mj-spotlight">
   <div class="mj-spotlight-inner reveal">
-    <div class="mj-spotlight-header">
-      <div class="section-label">✦ Mary Jane Vision</div>
-    </div>
+    <div class="mj-spotlight-eyebrow">mary jane vision</div>
+    <h2 class="mj-spotlight-headline">your AI cannabis<br>guide.</h2>
     <div class="mj-dual">
 
       <!-- LEFT: Cannabis Sommelier -->
       <div class="mj-dual-panel">
-        <h2 class="mj-spotlight-title" style="font-size:clamp(26px,3vw,44px);margin-bottom:14px;">Your personal<br><em>cannabis sommelier</em></h2>
-        <p class="mj-spotlight-desc">Ask Mary Jane anything — she knows your taste profile, explains every terpene and cannabinoid in plain language, and recommends exactly what you need for how you want to feel. No dispensary pressure. No upsells. Just honest guidance.</p>
-        <button class="mj-spotlight-cta" style="margin-bottom:32px;" onclick="toggleMJ()">Talk to Mary Jane →</button>
+        <h3 class="mj-panel-title">your personal<br><em>cannabis sommelier</em></h3>
+        <p class="mj-spotlight-desc">Ask Mary Jane anything — she explains every terpene and cannabinoid in plain language and recommends exactly what you need for how you want to feel. No pressure, no upsells.</p>
+        <button class="mj-spotlight-cta" onclick="toggleMJ()">talk to mary jane →</button>
         <div class="mj-chat-preview">
           <div class="mj-chat-msg mj-chat-msg--mj">
             <div class="mj-chat-avatar">
-              <svg width="18" height="23" viewBox="0 0 160 200" fill="none"><polygon points="80,4 92,32 80,52 68,32" fill="#B7E4C7" opacity="0.95"/><polygon points="80,28 108,38 96,62 80,52" fill="#74C69D" opacity="0.9"/><polygon points="80,28 52,38 64,62 80,52" fill="#B7E4C7" opacity="0.9"/><polygon points="80,50 118,58 104,84 80,74" fill="#74C69D" opacity="0.8"/><polygon points="80,50 42,58 56,84 80,74" fill="#B7E4C7" opacity="0.8"/></svg>
+              <svg width="16" height="20" viewBox="0 0 160 200" fill="none"><polygon points="80,4 92,32 80,52 68,32" fill="#B7E4C7" opacity="0.95"/><polygon points="80,28 108,38 96,62 80,52" fill="#74C69D" opacity="0.9"/><polygon points="80,28 52,38 64,62 80,52" fill="#B7E4C7" opacity="0.9"/><polygon points="80,50 118,58 104,84 80,74" fill="#74C69D" opacity="0.8"/><polygon points="80,50 42,58 56,84 80,74" fill="#B7E4C7" opacity="0.8"/></svg>
             </div>
             <div class="mj-chat-bubble">Hey — what are you going for tonight? Energy, calm, focus, or just vibing?</div>
           </div>
@@ -7030,9 +7008,9 @@
           </div>
           <div class="mj-chat-msg mj-chat-msg--mj">
             <div class="mj-chat-avatar">
-              <svg width="18" height="23" viewBox="0 0 160 200" fill="none"><polygon points="80,4 92,32 80,52 68,32" fill="#B7E4C7" opacity="0.95"/><polygon points="80,28 108,38 96,62 80,52" fill="#74C69D" opacity="0.9"/><polygon points="80,28 52,38 64,62 80,52" fill="#B7E4C7" opacity="0.9"/><polygon points="80,50 118,58 104,84 80,74" fill="#74C69D" opacity="0.8"/><polygon points="80,50 42,58 56,84 80,74" fill="#B7E4C7" opacity="0.8"/></svg>
+              <svg width="16" height="20" viewBox="0 0 160 200" fill="none"><polygon points="80,4 92,32 80,52 68,32" fill="#B7E4C7" opacity="0.95"/><polygon points="80,28 108,38 96,62 80,52" fill="#74C69D" opacity="0.9"/><polygon points="80,28 52,38 64,62 80,52" fill="#B7E4C7" opacity="0.9"/><polygon points="80,50 118,58 104,84 80,74" fill="#74C69D" opacity="0.8"/><polygon points="80,50 42,58 56,84 80,74" fill="#B7E4C7" opacity="0.8"/></svg>
             </div>
-            <div class="mj-chat-bubble">Perfect — look for something linalool-forward. It's the same compound in lavender; unwinding without the couch lock. Blue Dream or Lavender Kush would be my picks.</div>
+            <div class="mj-chat-bubble">Look for something linalool-forward — same compound as lavender. Unwinding without the couch lock. Blue Dream or Lavender Kush would be my picks.</div>
           </div>
         </div>
       </div>
@@ -7042,17 +7020,18 @@
 
       <!-- RIGHT: Product Scanner -->
       <div class="mj-dual-panel">
-        <h2 class="mj-spotlight-title" style="font-size:clamp(26px,3vw,44px);margin-bottom:14px;">Scan any product.<br><em>Know everything.</em></h2>
-        <p class="mj-spotlight-desc">Point your camera at any cannabis product — flower, concentrate, vape, edible. Mary Jane identifies it instantly and delivers a full intelligence briefing: strain, terpenes, effects, potency, and more.</p>
-        <a href="/scan" class="mj-spotlight-cta" style="margin-bottom:32px;text-decoration:none;display:inline-flex;">Try the Scanner →</a>
-        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(82,183,136,0.12);border-radius:12px;padding:40px;display:flex;align-items:center;justify-content:center;">
-          <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="rgba(82,183,136,0.6)" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round">
+        <h3 class="mj-panel-title">scan any product.<br><em>know everything.</em></h3>
+        <p class="mj-spotlight-desc">Point your camera at any cannabis product — flower, concentrate, vape, edible. Mary Jane identifies it instantly and delivers a full briefing: strain, terpenes, effects, potency, and more.</p>
+        <a href="/scan" class="mj-spotlight-cta">try the scanner →</a>
+        <div class="mj-scanner-mock">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="rgba(82,183,136,0.5)" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="3" width="20" height="15" rx="2"/>
             <circle cx="8.5" cy="8.5" r="1.5"/>
             <path d="M21 15l-5-5L5 21"/>
             <path d="M16 3h5v5"/>
             <path d="M21 3l-5 5"/>
           </svg>
+          <div class="mj-scanner-label">point · scan · know</div>
         </div>
       </div>
 
