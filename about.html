@@ -4,160 +4,227 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>About — Cannascenti</title>
-<meta name="description" content="Michael Encinas didn't build Cannascenti from a boardroom. He built it from behind the counter — 3 years on the floor at one of LA's top dispensaries.">
+<meta name="description" content="Michael Encinas didn't build Cannascenti from a boardroom. He built it from behind the counter — 10+ years in LA cannabis.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --dark:#060f0a;
+  --bg:#060e08;
+  --card:#0d2818;
+  --bright:#74c69d;
   --green:#52b788;
-  --bright-green:#74c69d;
-  --cream:#f2ead8;
-  --cream-dim:rgba(242,234,216,0.55);
-  --border:rgba(255,255,255,0.07);
+  --cream:#F2EAD8;
+  --dim:rgba(242,234,216,0.45);
+  --border:rgba(82,183,136,0.1);
+  --radius:24px;
 }
-body{background:var(--dark);color:var(--cream);font-family:'Montserrat',sans-serif;font-weight:300;line-height:1.75;overflow-x:hidden}
-a{color:var(--bright-green);text-decoration:none}
-a:hover{text-decoration:underline}
+body{background:var(--bg);color:var(--cream);font-family:'Montserrat',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden}
+a{color:var(--bright);text-decoration:none}
+a:hover{opacity:.75}
 
 /* NAV */
-.a-nav{display:flex;align-items:center;justify-content:space-between;padding:24px 60px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(6,15,10,0.96);backdrop-filter:blur(12px);z-index:100}
-.a-nav-logo{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--cream);letter-spacing:.06em;text-decoration:none}
-.a-nav-links{display:flex;gap:28px;align-items:center}
-.a-nav-links a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,234,216,0.45);transition:color .2s}
-.a-nav-links a:hover{color:var(--bright-green);text-decoration:none}
-.a-nav-cta{background:var(--green)!important;color:#060f0a!important;padding:9px 20px;border-radius:3px;font-weight:600!important;opacity:1!important}
-@media(max-width:640px){.a-nav{padding:20px 24px}.a-nav-links{display:none}}
+nav{display:flex;align-items:center;justify-content:space-between;padding:24px 40px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(6,14,8,0.96);backdrop-filter:blur(12px);z-index:100}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream);letter-spacing:.06em}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,234,216,0.45);transition:color .2s}
+.nav-links a:hover{color:var(--bright);opacity:1}
+.nav-cta{color:var(--cream)!important;border:2px solid rgba(242,234,216,0.55)!important;padding:10px 22px;border-radius:12px;transition:background .2s!important}
+.nav-cta:hover{background:rgba(242,234,216,0.07)!important}
+@media(max-width:640px){nav{padding:20px}.nav-links{display:none}}
 
-/* HERO */
-.a-hero{max-width:780px;margin:0 auto;padding:100px 40px 72px}
-.a-tag{font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--green);margin-bottom:20px;opacity:.8}
-.a-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,6vw,4.8rem);font-weight:300;line-height:1.1;color:var(--cream);margin-bottom:28px}
-.a-hero h1 em{font-style:italic;color:var(--green)}
-.a-hero-lead{font-size:16px;color:var(--cream-dim);line-height:1.85;max-width:620px}
+/* PAGE */
+.page{padding:40px 32px;max-width:1224px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+@media(max-width:640px){.page{padding:20px 16px;gap:14px}}
 
-/* DIVIDER */
-.a-rule{display:flex;align-items:center;gap:16px;max-width:780px;margin:0 auto;padding:0 40px}
-.a-rule-line{flex:1;height:1px;background:rgba(255,255,255,0.07)}
-.a-rule-diamond{width:6px;height:6px;background:var(--green);transform:rotate(45deg);flex-shrink:0}
+/* CARD */
+.card{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:72px 64px}
+@media(max-width:860px){.card{padding:48px 36px;border-radius:18px}}
+@media(max-width:560px){.card{padding:36px 24px;border-radius:14px}}
 
-/* BODY SECTIONS */
-.a-body{max-width:780px;margin:0 auto;padding:72px 40px 100px}
-.a-section{margin-bottom:72px}
-.a-section-label{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--green);margin-bottom:18px;opacity:.75}
-.a-section h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:400;color:var(--cream);line-height:1.2;margin-bottom:22px}
-.a-section p{font-size:15px;color:var(--cream-dim);line-height:1.85;margin-bottom:16px}
-.a-section p:last-child{margin-bottom:0}
+/* EYEBROW */
+.eyebrow{font-size:9px;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:rgba(82,183,136,0.55);margin-bottom:24px}
 
-/* FOUNDER PHOTO */
-.a-founder{display:grid;grid-template-columns:1fr 340px;gap:60px;align-items:start;margin-bottom:72px}
-.a-founder-copy{}
-.a-founder-img{border-radius:10px;overflow:hidden;border:1px solid rgba(82,183,136,0.15)}
-.a-founder-img img{width:100%;height:420px;object-fit:cover;object-position:center top;display:block;filter:grayscale(20%)}
-@media(max-width:760px){.a-founder{grid-template-columns:1fr}.a-founder-img{order:-1}.a-founder-img img{height:300px}}
+/* HEADINGS */
+h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:300;color:var(--cream);letter-spacing:-.01em;line-height:1.05}
+h1{font-size:clamp(44px,5.5vw,80px);margin-bottom:28px}
+h2{font-size:clamp(30px,3.5vw,50px);margin-bottom:20px}
+h3{font-size:clamp(22px,2.5vw,32px);margin-bottom:16px}
+h1 em,h2 em,h3 em{color:var(--bright);font-style:italic}
 
-/* STAT ROW */
-.a-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:48px 0}
-.a-stat{background:rgba(255,255,255,0.02);padding:28px 24px}
-.a-stat-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--green);line-height:1;margin-bottom:6px}
-.a-stat-label{font-size:11px;letter-spacing:.08em;color:rgba(242,234,216,0.38);text-transform:uppercase}
-@media(max-width:560px){.a-stats{grid-template-columns:1fr}.a-hero,.a-rule,.a-body{padding-left:24px;padding-right:24px}}
+/* BUTTONS */
+.btn{display:inline-block;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:500;letter-spacing:.15em;color:var(--cream);border:2px solid rgba(242,234,216,0.65);padding:16px 40px;border-radius:14px;text-decoration:none;cursor:pointer;background:transparent;transition:background .25s,border-color .25s}
+.btn:hover{background:rgba(242,234,216,0.07);border-color:var(--cream);opacity:1}
+.btn-ghost{border-color:rgba(242,234,216,0.28);color:rgba(242,234,216,0.55)}
+.btn-ghost:hover{border-color:rgba(242,234,216,0.55);color:var(--cream)}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
 
-/* CTA BOX */
-.a-cta-box{background:rgba(82,183,136,0.05);border:1px solid rgba(82,183,136,0.2);border-radius:10px;padding:40px 36px;text-align:center;margin-top:72px}
-.a-cta-box h3{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:400;color:var(--cream);margin-bottom:12px}
-.a-cta-box p{font-size:14px;color:var(--cream-dim);margin-bottom:28px}
-.a-cta-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.a-btn{display:inline-flex;align-items:center;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:13px 26px;border-radius:4px;text-decoration:none;transition:all .2s}
-.a-btn-primary{background:var(--green);color:#060f0a}
-.a-btn-primary:hover{background:var(--bright-green);text-decoration:none}
-.a-btn-ghost{border:1px solid rgba(255,255,255,0.15);color:rgba(242,234,216,0.6)}
-.a-btn-ghost:hover{border-color:rgba(82,183,136,0.4);color:var(--cream);text-decoration:none}
+/* HERO CARD — SPLIT */
+.hero-split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+@media(max-width:860px){.hero-split{grid-template-columns:1fr;gap:40px}}
+
+.hero-lead{font-size:15px;color:var(--dim);line-height:1.85;max-width:480px}
+
+/* FOUNDER CARD — SPLIT */
+.founder-split{display:grid;grid-template-columns:1fr 320px;gap:60px;align-items:start}
+@media(max-width:800px){.founder-split{grid-template-columns:1fr}}
+
+.founder-img{border-radius:16px;overflow:hidden;border:1px solid var(--border);background:rgba(82,183,136,0.04);aspect-ratio:3/4;display:flex;align-items:center;justify-content:center}
+.founder-img img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:grayscale(15%)}
+@media(max-width:800px){.founder-img{aspect-ratio:16/9;order:-1}}
+
+.body-text{font-size:14px;color:var(--dim);line-height:1.85}
+.body-text p{margin-bottom:18px}
+.body-text p:last-child{margin-bottom:0}
+
+/* STATS */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+@media(max-width:560px){.stats-row{grid-template-columns:1fr}}
+.stat-item{background:rgba(255,255,255,0.02);border:1px solid rgba(82,183,136,0.1);border-radius:16px;padding:28px 24px}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;color:var(--cream);line-height:1;margin-bottom:8px}
+.stat-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(82,183,136,0.5)}
+
+/* PLATFORM LIST */
+.platform-list{display:flex;flex-direction:column;gap:0;margin-top:8px}
+.platform-item{padding:24px 0;border-bottom:1px solid rgba(82,183,136,0.08);display:flex;gap:24px;align-items:flex-start}
+.platform-item:first-child{border-top:1px solid rgba(82,183,136,0.08)}
+.platform-accent{width:3px;height:100%;background:var(--bright);border-radius:2px;flex-shrink:0;margin-top:4px;align-self:stretch;min-height:20px}
+.platform-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--cream);margin-bottom:6px;line-height:1.2}
+.platform-desc{font-size:13px;color:var(--dim);line-height:1.7}
 
 /* FOOTER */
-footer{text-align:center;padding:24px;border-top:1px solid var(--border);font-size:11px;color:rgba(242,234,216,0.28);font-weight:300}
-footer a{color:rgba(242,234,216,0.28);transition:color .2s}
-footer a:hover{color:var(--green);text-decoration:none}
+footer{text-align:center;padding:28px;border-top:1px solid var(--border);font-size:11px;color:rgba(242,234,216,0.25)}
+footer a{color:rgba(242,234,216,0.25)}
+footer a:hover{color:var(--bright);opacity:1}
+footer p+p{margin-top:6px}
 </style>
 </head>
 <body>
 
-<nav class="a-nav">
-  <a href="/" class="a-nav-logo">Cannascenti</a>
-  <div class="a-nav-links">
+<nav>
+  <a href="/" class="nav-logo">Cannascenti</a>
+  <div class="nav-links">
     <a href="/#quiz">Try the Quiz</a>
     <a href="/contact">Contact</a>
-    <a href="/for-dispensaries" class="a-nav-cta">For Dispensaries</a>
+    <a href="/for-dispensaries" class="nav-cta">For Dispensaries</a>
   </div>
 </nav>
 
-<div class="a-hero">
-  <div class="a-tag">✦ About</div>
-  <h1>I didn't build this<br>from a boardroom.<br><em>I built it from behind<br>the counter.</em></h1>
-  <p class="a-hero-lead">Three years on the floor at one of LA's top dispensaries. Thousands of customers. The same question, over and over: <em>"What should I get?"</em> Cannascenti is the tool that should have always existed.</p>
-</div>
+<div class="page">
 
-<div class="a-rule"><div class="a-rule-line"></div><div class="a-rule-diamond"></div><div class="a-rule-line"></div></div>
-
-<div class="a-body">
-
-  <div class="a-founder">
-    <div class="a-founder-copy">
-      <div class="a-section-label">✦ The Founder</div>
-      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:400;color:var(--cream);line-height:1.2;margin-bottom:22px">Michael Encinas</h2>
-      <p style="font-size:15px;color:var(--cream-dim);line-height:1.85;margin-bottom:16px">I was there on day one of a dispensary grand opening in Los Angeles. I've spent years on the floor since — talking to real customers every single day. First-timers, veterans, patients, people from all over the world, all walking in with the same look: they don't know what they want, and they're hoping someone behind the counter does.</p>
-      <p style="font-size:15px;color:var(--cream-dim);line-height:1.85;margin-bottom:16px">Most of the time, that someone was me. And I learned fast that a great recommendation isn't just about knowing cannabis — it's about knowing how to translate what a person actually needs into the right product. That takes time. That takes tools. Most dispensaries have neither.</p>
-      <p style="font-size:15px;color:var(--cream-dim);line-height:1.85">I built Cannascenti because I lived this problem. Not from the outside — from behind the counter at Erba Sawtelle, one of LA's top dispensaries. Every feature on this platform exists because I needed it on the floor and it didn't exist anywhere else.</p>
-    </div>
-    <div class="a-founder-img">
-      <img src="/michael.jpg" alt="Michael Encinas — Founder, Cannascenti">
+  <!-- HERO CARD -->
+  <div class="card">
+    <div class="hero-split">
+      <div>
+        <div class="eyebrow">about</div>
+        <h1>I didn't build this from a boardroom.<br><em>I built it from behind the counter.</em></h1>
+      </div>
+      <div style="padding-top:8px">
+        <p class="hero-lead">Three years on the floor at one of LA's top dispensaries. Thousands of customers. The same question, over and over: <em style="color:var(--cream);font-style:italic">"What should I get?"</em> Cannascenti is the tool that should have always existed.</p>
+      </div>
     </div>
   </div>
 
-  <div class="a-stats">
-    <div class="a-stat">
-      <div class="a-stat-num">10+</div>
-      <div class="a-stat-label">Years in LA Cannabis</div>
-    </div>
-    <div class="a-stat">
-      <div class="a-stat-num">394</div>
-      <div class="a-stat-label">Strains in the Database</div>
-    </div>
-    <div class="a-stat">
-      <div class="a-stat-num">Day 1</div>
-      <div class="a-stat-label">Floor Experience</div>
-    </div>
-  </div>
-
-  <div class="a-section">
-    <div class="a-section-label">✦ To Dispensary Owners</div>
-    <h2>I've been you.</h2>
-    <p>I'm not a tech founder who studied your industry from the outside. I know what it's like to have a line at the counter, a customer who can't decide, and a staff member who doesn't have the knowledge to close the sale. I know what actually works on the floor — because I'm still on it.</p>
-    <p>Cannascenti isn't a "cool AI tool." It's what I built because I was frustrated with not having it. If you run a dispensary and you want your customers to leave confident instead of confused, this was built for exactly that.</p>
-  </div>
-
-  <div class="a-section">
-    <div class="a-section-label">✦ The Platform</div>
-    <h2>What we've built so far.</h2>
-    <p><strong style="color:var(--cream)">Mary Jane</strong> — AI cannabis guide trained on deep strain, terpene, and cannabinoid knowledge. She answers questions the way a great budtender would: directly, with an opinion.</p>
-    <p><strong style="color:var(--cream)">Strain Finder</strong> — a 6-question quiz that matches customers to strains based on how they want to feel, not what's trending. 394 strains, 6 profiles, real recommendations.</p>
-    <p><strong style="color:var(--cream)">Product Scanner</strong> — point your camera at any cannabis product and get a full intelligence briefing: terpenes, potency, dates, COA reference, and a strain comparison.</p>
-    <p><strong style="color:var(--cream)">Budtender Pro</strong> — training quizzes and reference tools built for dispensary staff. Because knowledge on the floor directly affects the sale.</p>
-    <p><strong style="color:var(--cream)">Encyclopedia</strong> — deep-dive reference covering strains, terpenes, cannabinoids, concentrates, edibles, and consumption methods.</p>
-  </div>
-
-  <div class="a-cta-box">
-    <h3>Let's talk about your dispensary.</h3>
-    <p>No pitch deck. No outside consultant. Just someone who's been on your floor — with a platform built to prove it.</p>
-    <div class="a-cta-links">
-      <a href="/contact" class="a-btn a-btn-primary">Get in Touch →</a>
-      <a href="/for-dispensaries" class="a-btn a-btn-ghost">See How It Works</a>
+  <!-- FOUNDER CARD -->
+  <div class="card">
+    <div class="founder-split">
+      <div>
+        <div class="eyebrow">the founder</div>
+        <h2>Michael Encinas</h2>
+        <div class="body-text">
+          <p>I was there on day one of a dispensary grand opening in Los Angeles. I've spent years on the floor since — talking to real customers every single day. First-timers, veterans, patients, people from all over the world, all walking in with the same look: they don't know what they want, and they're hoping someone behind the counter does.</p>
+          <p>Most of the time, that someone was me. And I learned fast that a great recommendation isn't just about knowing cannabis — it's about knowing how to translate what a person actually needs into the right product. That takes time. That takes tools. Most dispensaries have neither.</p>
+          <p>I built Cannascenti because I lived this problem. Not from the outside — from behind the counter at Erba Sawtelle, one of LA's top dispensaries. Every feature on this platform exists because I needed it on the floor and it didn't exist anywhere else.</p>
+        </div>
+        <div class="stats-row">
+          <div class="stat-item">
+            <div class="stat-num">10+</div>
+            <div class="stat-label">Years in LA Cannabis</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">394</div>
+            <div class="stat-label">Strains in the Database</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">Day 1</div>
+            <div class="stat-label">Floor Experience</div>
+          </div>
+        </div>
+      </div>
+      <div class="founder-img">
+        <img src="/michael.jpg" alt="Michael Encinas — Founder, Cannascenti" onerror="this.parentElement.style.minHeight='320px'">
+      </div>
     </div>
   </div>
 
-</div>
+  <!-- TO DISPENSARY OWNERS CARD -->
+  <div class="card">
+    <div style="max-width:680px">
+      <div class="eyebrow">to dispensary owners</div>
+      <h2>I've been you.</h2>
+      <div class="body-text">
+        <p>I'm not a tech founder who studied your industry from the outside. I know what it's like to have a line at the counter, a customer who can't decide, and a staff member who doesn't have the knowledge to close the sale. I know what actually works on the floor — because I'm still on it.</p>
+        <p>Cannascenti isn't a "cool AI tool." It's what I built because I was frustrated with not having it. If you run a dispensary and you want your customers to leave confident instead of confused, this was built for exactly that.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLATFORM CARD -->
+  <div class="card">
+    <div class="eyebrow">the platform</div>
+    <h2>what we've built so far.</h2>
+    <div class="platform-list">
+      <div class="platform-item">
+        <div class="platform-accent" style="background:#74C69D"></div>
+        <div>
+          <div class="platform-name">Mary Jane</div>
+          <div class="platform-desc">AI cannabis guide trained on deep strain, terpene, and cannabinoid knowledge. She answers questions the way a great budtender would: directly, with an opinion.</div>
+        </div>
+      </div>
+      <div class="platform-item">
+        <div class="platform-accent" style="background:#4ECDC4"></div>
+        <div>
+          <div class="platform-name">Strain Finder</div>
+          <div class="platform-desc">A 5-question quiz that matches customers to strains based on how they want to feel, not what's trending. 394 strains, 6 profiles, real recommendations.</div>
+        </div>
+      </div>
+      <div class="platform-item">
+        <div class="platform-accent" style="background:#E07B39"></div>
+        <div>
+          <div class="platform-name">Product Scanner</div>
+          <div class="platform-desc">Point your camera at any cannabis product and get a full intelligence briefing: terpenes, potency, dates, COA reference, and a strain comparison.</div>
+        </div>
+      </div>
+      <div class="platform-item">
+        <div class="platform-accent" style="background:#7B9CCC"></div>
+        <div>
+          <div class="platform-name">Budtender Pro</div>
+          <div class="platform-desc">Training quizzes and reference tools built for dispensary staff. Because knowledge on the floor directly affects the sale.</div>
+        </div>
+      </div>
+      <div class="platform-item">
+        <div class="platform-accent" style="background:#C9973A"></div>
+        <div>
+          <div class="platform-name">Encyclopedia</div>
+          <div class="platform-desc">Deep-dive reference covering strains, terpenes, cannabinoids, concentrates, edibles, and consumption methods.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA CARD -->
+  <div class="card" style="text-align:center">
+    <div class="eyebrow" style="text-align:center">let's talk</div>
+    <h2>let's talk about<br>your dispensary.</h2>
+    <p style="font-size:14px;color:var(--dim);max-width:440px;margin:0 auto 36px;line-height:1.75">No pitch deck. No outside consultant. Just someone who's been on your floor — with a platform built to prove it.</p>
+    <div class="btns" style="justify-content:center">
+      <a href="/contact" class="btn">get in touch →</a>
+      <a href="/for-dispensaries" class="btn btn-ghost">see how it works</a>
+    </div>
+  </div>
+
+</div><!-- end .page -->
 
 <footer>
   <p>© 2026 Cannascenti. All rights reserved. · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/for-dispensaries">For Dispensaries</a> · <a href="https://www.instagram.com/cannascenti.hq" target="_blank" rel="noopener noreferrer">Instagram</a></p>
