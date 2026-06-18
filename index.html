@@ -131,6 +131,12 @@
     .quiz-options { grid-template-columns: 1fr; }
     .quiz-strains { grid-template-columns: 1fr; }
     .quiz-email-form { flex-direction: column; }
+    #quiz { padding: 32px 16px !important; }
+    #quiz > div { padding: 44px 24px !important; border-radius: 16px !important; }
+    #quiz-effects-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+  @media (max-width: 400px) {
+    #quiz-effects-grid { grid-template-columns: 1fr !important; }
   }
   /* ── Featured Picks ───────────────────────────────────────────────────── */
   .featured-section { padding: 80px 60px; border-bottom: 1px solid rgba(255,255,255,0.05); }
@@ -7146,19 +7152,45 @@
 </div>
 
 <!-- QUIZ TEASER -->
-<section id="quiz" style="background:#060c06;padding:100px 60px;border-top:1px solid rgba(82,183,136,0.08)">
-  <div style="max-width:760px;margin:0 auto;text-align:center">
-    <div style="font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:#52B788;margin-bottom:20px">&#10022; The Cannascenti Match</div>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:300;color:#F2EAD8;line-height:1.15;margin-bottom:16px">Find what <em style="font-style:italic;color:#52B788">actually</em> works for you.</h2>
-    <p style="font-size:.95rem;color:rgba(242,234,216,0.5);line-height:1.8;max-width:500px;margin:0 auto 36px">5 questions. 30 seconds. A personalized cannabis profile matched to real strains from our database of 394 cultivars.</p>
-    <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:48px">
-      <span style="font-size:.78rem;color:rgba(242,234,216,0.4);display:flex;align-items:center;gap:6px">&#128524; Relax</span>
-      <span style="font-size:.78rem;color:rgba(242,234,216,0.4);display:flex;align-items:center;gap:6px">&#9889; Focus</span>
-      <span style="font-size:.78rem;color:rgba(242,234,216,0.4);display:flex;align-items:center;gap:6px">&#128564; Sleep</span>
-      <span style="font-size:.78rem;color:rgba(242,234,216,0.4);display:flex;align-items:center;gap:6px">&#127912; Create</span>
-      <span style="font-size:.78rem;color:rgba(242,234,216,0.4);display:flex;align-items:center;gap:6px">&#128516; Uplift</span>
+<section id="quiz" style="background:#060e08;padding:60px 32px;">
+  <div style="max-width:1160px;margin:0 auto;background:#0d2818;border-radius:24px;border:1px solid rgba(82,183,136,0.1);padding:72px 64px;">
+    <div style="text-align:center;max-width:600px;margin:0 auto 56px;">
+      <div style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:rgba(82,183,136,0.55);margin-bottom:28px;">the cannascenti match</div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(40px,5vw,68px);font-weight:300;color:#F2EAD8;line-height:1.05;margin-bottom:20px;letter-spacing:-0.01em;">what are you<br>after?</h2>
+      <p style="font-family:'Montserrat',sans-serif;font-size:14px;font-weight:300;color:rgba(242,234,216,0.45);line-height:1.75;">5 questions. 30 seconds. Matched to real strains from 394 cultivars.</p>
     </div>
-    <a href="/quiz" style="display:inline-flex;align-items:center;gap:10px;background:#52B788;color:#060d0a;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:18px 44px;border-radius:100px;text-decoration:none;transition:background .2s" onmouseover="this.style.background='#74C69D'" onmouseout="this.style.background='#52B788'">Take the Match &#8594;</a>
+
+    <div id="quiz-effects-grid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:56px;">
+      <div style="background:rgba(116,198,157,0.07);border:1px solid rgba(116,198,157,0.2);border-radius:16px;padding:28px 20px;text-align:center;">
+        <div style="width:36px;height:36px;border-radius:50%;background:rgba(116,198,157,0.2);margin:0 auto 14px;"></div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:#F2EAD8;margin-bottom:6px;">Relaxed</div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:10px;color:rgba(116,198,157,0.6);letter-spacing:.08em;">Unwind &amp; decompress</div>
+      </div>
+      <div style="background:rgba(224,123,57,0.07);border:1px solid rgba(224,123,57,0.2);border-radius:16px;padding:28px 20px;text-align:center;">
+        <div style="width:36px;height:36px;border-radius:50%;background:rgba(224,123,57,0.2);margin:0 auto 14px;"></div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:#F2EAD8;margin-bottom:6px;">Energized</div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:10px;color:rgba(224,123,57,0.6);letter-spacing:.08em;">Get moving &amp; lifted</div>
+      </div>
+      <div style="background:rgba(78,205,196,0.07);border:1px solid rgba(78,205,196,0.2);border-radius:16px;padding:28px 20px;text-align:center;">
+        <div style="width:36px;height:36px;border-radius:50%;background:rgba(78,205,196,0.2);margin:0 auto 14px;"></div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:#F2EAD8;margin-bottom:6px;">Focused</div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:10px;color:rgba(78,205,196,0.6);letter-spacing:.08em;">Clear head &amp; sharp</div>
+      </div>
+      <div style="background:rgba(123,156,204,0.07);border:1px solid rgba(123,156,204,0.2);border-radius:16px;padding:28px 20px;text-align:center;">
+        <div style="width:36px;height:36px;border-radius:50%;background:rgba(123,156,204,0.2);margin:0 auto 14px;"></div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:#F2EAD8;margin-bottom:6px;">Sleepy</div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:10px;color:rgba(123,156,204,0.6);letter-spacing:.08em;">Rest &amp; recovery</div>
+      </div>
+      <div style="background:rgba(244,162,97,0.07);border:1px solid rgba(244,162,97,0.2);border-radius:16px;padding:28px 20px;text-align:center;">
+        <div style="width:36px;height:36px;border-radius:50%;background:rgba(244,162,97,0.2);margin:0 auto 14px;"></div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:#F2EAD8;margin-bottom:6px;">Social</div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:10px;color:rgba(244,162,97,0.6);letter-spacing:.08em;">Talkative &amp; open</div>
+      </div>
+    </div>
+
+    <div style="text-align:center;">
+      <a href="/quiz" style="display:inline-block;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:500;letter-spacing:.15em;color:#F2EAD8;border:2px solid rgba(242,234,216,0.65);padding:17px 52px;border-radius:14px;text-decoration:none;transition:background .25s,border-color .25s;" onmouseover="this.style.background='rgba(242,234,216,0.07)';this.style.borderColor='#F2EAD8'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(242,234,216,0.65)'">take the quiz</a>
+    </div>
   </div>
 </section>
 
