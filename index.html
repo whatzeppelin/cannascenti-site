@@ -523,247 +523,174 @@
   nav.nav-open .nav-ham span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
   /* ===================== HERO ===================== */
-  /* ═══ HERO — CINEMATIC REVAMP ═══ */
   .hero {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 32px;
     position: relative;
-    overflow: hidden;
-    background: #010804;
+    background: #060e08;
   }
 
-  /* Subtle grid overlay */
-  .hero-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(82,183,136,0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(82,183,136,0.035) 1px, transparent 1px);
-    background-size: 64px 64px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* Animated scan line */
-  .hero-scanline {
-    position: absolute;
-    left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(82,183,136,0.2) 20%, rgba(82,183,136,0.5) 50%, rgba(82,183,136,0.2) 80%, transparent 100%);
-    pointer-events: none;
-    z-index: 2;
-    animation: scanMove 10s linear infinite;
-  }
-  @keyframes scanMove {
-    0%   { top: 0%; opacity: 0; }
-    3%   { opacity: 1; }
-    97%  { opacity: 1; }
-    100% { top: 100%; opacity: 0; }
-  }
-
-  /* Central ambient glow */
-  .hero-glow {
-    position: absolute;
-    width: 800px; height: 800px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(27,67,50,0.65) 0%, rgba(11,37,24,0.25) 45%, transparent 70%);
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 0;
-    animation: glowPulse 7s ease-in-out infinite;
-  }
-  @keyframes glowPulse {
-    0%, 100% { opacity: 0.6; transform: translate(-50%,-50%) scale(1); }
-    50%       { opacity: 1;   transform: translate(-50%,-50%) scale(1.1); }
-  }
-
-  /* Particle canvas */
-  #hero-particles {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  /* Content */
-  .hero-content {
-    position: relative;
-    z-index: 3;
-    text-align: center;
-    max-width: 1100px;
+  .hero-card {
     width: 100%;
-    padding: 0 60px;
+    max-width: 1160px;
+    min-height: 78vh;
+    background: #0d2818;
+    border-radius: 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    border: 1px solid rgba(82,183,136,0.1);
+    position: relative;
   }
 
-  /* Terminal status bar */
-  .hero-terminal {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 56px;
-    padding: 9px 22px;
-    border: 1px solid rgba(82,183,136,0.18);
-    border-radius: 2px;
-    background: rgba(82,183,136,0.04);
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.1s;
+  .hero-left {
+    padding: 72px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
-  .hero-terminal-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--bright-green);
-    box-shadow: 0 0 6px rgba(82,183,136,0.8);
-    animation: blink 2s step-end infinite;
-  }
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0.15; }
-  }
-  .hero-terminal-text {
+
+  .hero-eyebrow {
     font-family: 'Montserrat', sans-serif;
     font-size: 9px;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 0.45em;
     text-transform: uppercase;
-    color: rgba(82,183,136,0.65);
-  }
-  .hero-terminal-sep { color: rgba(82,183,136,0.2); font-size: 10px; }
-
-  /* Giant wordmark */
-  .hero-display {
-    font-family: 'Great Vibes', cursive;
-    font-size: clamp(80px, 14vw, 200px);
-    font-weight: normal;
-    line-height: 0.95;
-    background: linear-gradient(160deg, #F5F0E8 0%, #d8f3e8 35%, #B7E4C7 65%, #74c69d 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    opacity: 0;
-    animation: fadeUp 1.2s ease forwards 0.35s;
-    filter: drop-shadow(0 0 80px rgba(82,183,136,0.18));
-    margin-bottom: 0;
+    color: rgba(82,183,136,0.55);
+    margin-bottom: 32px;
   }
 
-  /* Rule */
-  .hero-rule {
+  .hero-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 6.5vw, 92px);
+    font-weight: 300;
+    line-height: 1.0;
+    color: #F2EAD8;
+    margin-bottom: 28px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-sub {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(242,234,216,0.45);
+    line-height: 1.75;
+    max-width: 360px;
+    margin-bottom: 52px;
+  }
+
+  .hero-cta-outline {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: #F2EAD8;
+    border: 2px solid rgba(242,234,216,0.65);
+    padding: 17px 42px;
+    border-radius: 14px;
+    text-decoration: none;
+    transition: background 0.25s, border-color 0.25s;
+    align-self: flex-start;
+  }
+  .hero-cta-outline:hover {
+    background: rgba(242,234,216,0.07);
+    border-color: #F2EAD8;
+  }
+
+  .hero-dispensary-link {
+    margin-top: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(82,183,136,0.45);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+  }
+  .hero-dispensary-link:hover { color: #52B788; }
+
+  .hero-right {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 18px;
-    margin: 28px auto;
-    max-width: 480px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 0.9s;
-  }
-  .hero-rule-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(82,183,136,0.35), transparent);
-  }
-  .hero-rule-diamond {
-    width: 5px; height: 5px;
-    border: 1px solid rgba(82,183,136,0.45);
-    transform: rotate(45deg);
-  }
-
-  /* Tagline */
-  .hero-tagline {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: clamp(16px, 2vw, 24px);
-    color: rgba(232,168,76,0.85);
-    letter-spacing: 0.04em;
-    margin-bottom: 36px;
-    line-height: 1.5;
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 1.1s;
-  }
-
-  /* Data metrics */
-  .hero-metrics {
-    display: flex;
     justify-content: center;
-    margin-bottom: 48px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 1.3s;
+    background: linear-gradient(135deg, rgba(27,67,50,0.4) 0%, rgba(6,14,8,0.6) 100%);
+    overflow: hidden;
   }
-  .hero-metric {
-    padding: 0 28px;
-    border-right: 1px solid rgba(82,183,136,0.13);
-    text-align: center;
+
+  .hero-orb-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .hero-metric:last-child { border-right: none; }
-  .hero-metric-val {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 30px;
-    font-weight: 600;
-    color: var(--cream);
-    line-height: 1;
-    margin-bottom: 5px;
+
+  .hero-orb {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 38% 35%, #74C69D 0%, #2D6A4F 55%, #1B4332 100%);
+    box-shadow: 0 0 60px rgba(82,183,136,0.28), 0 0 120px rgba(82,183,136,0.1);
+    animation: orbPulse 5s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
   }
-  .hero-metric-key {
+
+  @keyframes orbPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 60px rgba(82,183,136,0.28), 0 0 120px rgba(82,183,136,0.1); }
+    50% { transform: scale(1.06); box-shadow: 0 0 90px rgba(82,183,136,0.42), 0 0 160px rgba(82,183,136,0.16); }
+  }
+
+  .hero-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(82,183,136,0.15);
+  }
+  .hero-ring--1 { width: 174px; height: 174px; animation: ringRotate 18s linear infinite; }
+  .hero-ring--2 { width: 240px; height: 240px; border-style: dashed; border-color: rgba(82,183,136,0.08); animation: ringRotate 28s linear infinite reverse; }
+  .hero-ring--3 { width: 300px; height: 300px; border-color: rgba(82,183,136,0.05); animation: ringRotate 40s linear infinite; }
+
+  @keyframes ringRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .hero-moods {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .hero-mood {
+    position: absolute;
     font-family: 'Montserrat', sans-serif;
     font-size: 8px;
     font-weight: 600;
-    letter-spacing: 0.35em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: rgba(82,183,136,0.5);
+    white-space: nowrap;
   }
+  .hero-mood:nth-child(1) { top: 8%; left: 50%; transform: translateX(-50%); }
+  .hero-mood:nth-child(2) { top: 42%; right: 0; }
+  .hero-mood:nth-child(3) { bottom: 18%; right: 6%; }
+  .hero-mood:nth-child(4) { bottom: 8%; left: 50%; transform: translateX(-50%); }
+  .hero-mood:nth-child(5) { top: 42%; left: 0; }
 
-  /* CTAs */
-  .hero-ctas {
-    display: flex;
-    gap: 14px;
-    justify-content: center;
-    flex-wrap: wrap;
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 1.5s;
-  }
-  .hero-btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--bright-green);
-    color: #010804;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 17px 38px;
-    border-radius: 2px;
-    text-decoration: none;
-    box-shadow: 0 0 28px rgba(82,183,136,0.25);
-    transition: box-shadow 0.3s, transform 0.2s;
-  }
-  .hero-btn-primary:hover { box-shadow: 0 0 50px rgba(82,183,136,0.5); transform: translateY(-2px); }
-  .hero-btn-ghost {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: transparent;
-    color: rgba(242,234,216,0.5);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 17px 38px;
-    border-radius: 2px;
-    text-decoration: none;
-    border: 1px solid rgba(255,255,255,0.1);
-    transition: border-color 0.3s, color 0.3s;
-  }
-  .hero-btn-ghost:hover { border-color: rgba(82,183,136,0.35); color: var(--cream); }
-
-  /* Scroll cue */
   .hero-scroll {
     position: absolute;
-    bottom: 36px;
+    bottom: 32px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -775,32 +702,31 @@
     letter-spacing: 0.5em;
     text-transform: uppercase;
     color: rgba(82,183,136,0.3);
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 2s;
     z-index: 3;
   }
   .hero-scroll-bar {
     width: 1px;
-    height: 36px;
-    background: linear-gradient(to bottom, rgba(82,183,136,0.6), transparent);
+    height: 32px;
+    background: linear-gradient(to bottom, rgba(82,183,136,0.5), transparent);
     animation: scrollBar 2s ease-in-out infinite;
   }
   @keyframes scrollBar {
-    0%, 100% { opacity: 0.35; }
-    50%       { opacity: 1; }
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.9; }
   }
 
-  /* Legacy compat */
-  .hero-actions {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards 1s;
+  @media (max-width: 900px) {
+    .hero { padding: 20px; }
+    .hero-card { grid-template-columns: 1fr; min-height: auto; border-radius: 20px; }
+    .hero-left { padding: 52px 36px; }
+    .hero-right { min-height: 280px; }
   }
-  .hero-desc { display: none; }
-  .hero-search-wrap { display: none; }
-  .hero-pills { display: none; }
+  @media (max-width: 560px) {
+    .hero-left { padding: 44px 28px; }
+    .hero-right { min-height: 240px; }
+    .hero-orb-container { width: 200px; height: 200px; }
+    .hero-ring--3 { display: none; }
+  }
 
   .btn-primary {
     font-size: 12px;
@@ -6310,17 +6236,6 @@
 
   /* ===================== VISUAL OVERHAUL ===================== */
 
-  /* Edge vignette on hero */
-  .hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 80% 60% at 50% 110%, rgba(27,67,50,0.2) 0%, transparent 60%),
-      linear-gradient(to bottom, rgba(1,8,4,0.4) 0%, transparent 20%, transparent 80%, rgba(1,8,4,0.5) 100%);
-    pointer-events: none;
-    z-index: 2;
-  }
 
   /* Hero CTA buttons */
   .hero-ctas {
@@ -7035,49 +6950,30 @@
   </button>
 </nav>
 
-<!-- HERO — CINEMATIC -->
+<!-- HERO — PHASES-STYLE CARD -->
 <section class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-scanline"></div>
-  <canvas id="hero-particles"></canvas>
-
-  <div class="hero-content">
-    <div class="hero-terminal">
-      <div class="hero-terminal-dot"></div>
-      <span class="hero-terminal-text">Cannabis Intelligence</span>
-      <span class="hero-terminal-sep">//</span>
-      <span class="hero-terminal-text">Dispensary Platform</span>
+  <div class="hero-card">
+    <div class="hero-left">
+      <div class="hero-eyebrow">cannabis · personalized</div>
+      <h1 class="hero-headline">find your<br>effect.</h1>
+      <p class="hero-sub">Answer a few questions and we'll match you to the perfect strain — based on how you actually want to feel.</p>
+      <a href="#quiz" class="hero-cta-outline">take the quiz</a>
+      <a href="/for-dispensaries" class="hero-dispensary-link">For dispensaries →</a>
     </div>
-
-    <h1 class="hero-display">Cannascenti</h1>
-
-    <div class="hero-rule">
-      <div class="hero-rule-line"></div>
-      <div class="hero-rule-diamond"></div>
-      <div class="hero-rule-line"></div>
-    </div>
-
-    <p class="hero-tagline">Turn confused shoppers into confident buyers.</p>
-
-    <div class="hero-metrics">
-      <div class="hero-metric">
-        <div class="hero-metric-val">394</div>
-        <div class="hero-metric-key">Strains</div>
+    <div class="hero-right">
+      <div class="hero-orb-container">
+        <div class="hero-orb"></div>
+        <div class="hero-ring hero-ring--1"></div>
+        <div class="hero-ring hero-ring--2"></div>
+        <div class="hero-ring hero-ring--3"></div>
+        <div class="hero-moods">
+          <span class="hero-mood">Relaxed</span>
+          <span class="hero-mood">Energized</span>
+          <span class="hero-mood">Focused</span>
+          <span class="hero-mood">Sleepy</span>
+          <span class="hero-mood">Social</span>
+        </div>
       </div>
-      <div class="hero-metric">
-        <div class="hero-metric-val">16</div>
-        <div class="hero-metric-key">Terpenes</div>
-      </div>
-      <div class="hero-metric">
-        <div class="hero-metric-val">8</div>
-        <div class="hero-metric-key">Cannabinoids</div>
-      </div>
-    </div>
-
-    <div class="hero-ctas">
-      <a href="/for-dispensaries" class="hero-btn-primary">For Dispensaries →</a>
-      <a href="#quiz" class="hero-btn-ghost">Try it yourself →</a>
     </div>
   </div>
 
@@ -7087,83 +6983,13 @@
   </div>
 </section>
 
-<script>
-(function() {
-  var canvas = document.getElementById('hero-particles');
-  if (!canvas) return;
-  var ctx = canvas.getContext('2d');
-  var W, H, particles = [];
-  var connDist = 110;
-  var cols = [[82,183,136],[116,198,157],[183,228,199],[232,168,76],[45,106,79]];
-
-  function resize() {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = document.querySelector('.hero').offsetHeight || window.innerHeight;
-  }
-
-  function mkP(startY) {
-    var c = cols[Math.floor(Math.random() * cols.length)];
-    return {
-      x: Math.random() * W,
-      y: startY !== undefined ? startY : H + 20,
-      r: Math.random() * 2 + 0.5,
-      vy: -(Math.random() * 0.4 + 0.1),
-      vx: (Math.random() - 0.5) * 0.2,
-      a: Math.random() * 0.45 + 0.1,
-      c: c,
-      ph: Math.random() * Math.PI * 2
-    };
-  }
-
-  function init() {
-    resize();
-    var n = Math.min(70, Math.floor(W * H / 14000));
-    for (var i = 0; i < n; i++) particles.push(mkP(Math.random() * H));
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    var i, j, p, dx, dy, dist, alpha;
-
-    for (i = 0; i < particles.length - 1; i++) {
-      for (j = i + 1; j < particles.length; j++) {
-        dx = particles[i].x - particles[j].x;
-        dy = particles[i].y - particles[j].y;
-        dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist < connDist) {
-          alpha = (1 - dist / connDist) * 0.1;
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = 'rgba(82,183,136,' + alpha + ')';
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
-        }
-      }
-    }
-
-    for (i = 0; i < particles.length; i++) {
-      p = particles[i];
-      p.ph += 0.018;
-      var a = p.a * (0.65 + 0.35 * Math.sin(p.ph));
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(' + p.c[0] + ',' + p.c[1] + ',' + p.c[2] + ',' + a + ')';
-      ctx.fill();
-      p.x += p.vx; p.y += p.vy;
-      if (p.y < -10) particles[i] = mkP();
-      if (p.x < -10) p.x = W + 10;
-      if (p.x > W + 10) p.x = -10;
-    }
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', function() { resize(); });
-  init(); draw();
-})();
-</script>
 
 <div class="full-divider"></div>
+
+<div style="text-align:center;padding:56px 24px 16px;position:relative;z-index:2;">
+  <p style="font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:rgba(82,183,136,0.55);">✦ The Customer Experience</p>
+  <p style="font-size:15px;color:rgba(242,234,216,0.4);margin-top:10px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.7;">Here's what your shoppers get — before they ever reach the counter.</p>
+</div>
 
 <!-- MARY JANE VISION — COMBINED -->
 <section class="mj-spotlight">
@@ -7308,92 +7134,9 @@
     </div>
   </div>
 
-  <!-- CANNABIS & YOUR BODY -->
-  <div class="body-section" style="padding: 80px 60px 100px; max-width: 1200px; margin: 0 auto;">
-    <div class="terpene-intro reveal">
-      <div class="section-label">✦ Cannabis &amp; Your Body</div>
-      <div class="terpene-intro-title">What's actually <em>happening inside you</em></div>
-      <p class="terpene-intro-desc">Your body has an entire system built to receive cannabis — the Endocannabinoid System. CB1 and CB2 receptors are distributed throughout your brain, organs, and nervous system. Cannabis doesn't hijack your brain. It plugs into a system that was always there.</p>
-    </div>
-    <div class="body-diagram-wrap">
-      <div class="body-diagram">
-        <div class="body-hotspot" style="top:8%;left:42%;" data-zone="brain" onclick="bodySelect('brain')">
-          <div class="body-dot"></div><div class="body-dot-ring"></div><div class="body-dot-ring-2"></div>
-          <div class="body-label body-label-right">Brain</div>
-        </div>
-        <div class="body-hotspot" style="top:22%;left:60%;" data-zone="eyes" onclick="bodySelect('eyes')">
-          <div class="body-dot"></div><div class="body-dot-ring"></div><div class="body-dot-ring-2"></div>
-          <div class="body-label body-label-right">Eyes</div>
-        </div>
-        <div class="body-hotspot" style="top:28%;left:38%;" data-zone="lungs" onclick="bodySelect('lungs')">
-          <div class="body-dot"></div><div class="body-dot-ring"></div><div class="body-dot-ring-2"></div>
-          <div class="body-label body-label-left">Lungs</div>
-        </div>
-        <div class="body-hotspot" style="top:35%;left:48%;" data-zone="heart" onclick="bodySelect('heart')">
-          <div class="body-dot"></div><div class="body-dot-ring"></div><div class="body-dot-ring-2"></div>
-          <div class="body-label body-label-right">Heart</div>
-        </div>
-        <div class="body-hotspot" style="top:42%;left:40%;" data-zone="gut" onclick="bodySelect('gut')">
-          <div class="body-dot"></div><div class="body-dot-ring"></div><div class="body-dot-ring-2"></div>
-          <div class="body-label body-label-left">Gut</div>
-        </div>
-        <div class="body-hotspot" style="top:55%;left:44%;" data-zone="muscles" onclick="bodySelect('muscles')">
-          <div class="body-dot"></div><div class="body-dot-ring"></div><div class="body-dot-ring-2"></div>
-          <div class="body-label body-label-left">Muscles</div>
-        </div>
-        <div class="body-hotspot" style="top:68%;left:50%;" data-zone="joints" onclick="bodySelect('joints')">
-          <div class="body-dot"></div><div class="body-dot-ring"></div><div class="body-dot-ring-2"></div>
-          <div class="body-label body-label-right">Joints</div>
-        </div>
-        <svg viewBox="0 0 200 480" xmlns="http://www.w3.org/2000/svg" class="body-svg" style="pointer-events:none;position:relative;z-index:0">
-          <ellipse cx="100" cy="45" rx="34" ry="40" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-          <rect x="88" y="82" width="24" height="18" rx="4" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-          <path d="M60 100 Q50 130 52 180 L70 200 L130 200 L148 180 Q150 130 140 100 Z" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-          <path d="M60 105 Q40 130 38 175 Q37 185 44 190" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-          <path d="M140 105 Q160 130 162 175 Q163 185 156 190" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-          <path d="M70 200 Q65 260 64 320 Q63 350 68 380" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-          <path d="M130 200 Q135 260 136 320 Q137 350 132 380" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-          <path d="M68 380 Q60 390 55 395 Q62 400 78 398 L82 380" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-          <path d="M132 380 Q140 390 145 395 Q138 400 122 398 L118 380" fill="none" stroke="rgba(122,184,80,0.35)" stroke-width="2"/>
-        </svg>
-      </div>
-      <div class="body-info-panel" id="bodyInfoPanel">
-        <div class="body-info-placeholder">
-          <div style="font-size:2rem;margin-bottom:12px;">👆</div>
-          <div style="font-size:1rem;font-weight:700;margin-bottom:8px;">Tap any hotspot</div>
-          <div style="font-size:0.8rem;opacity:0.55;">Explore how cannabis interacts with each part of your body</div>
-        </div>
-      </div>
-    </div>
-    <div style="margin-top:32px;text-align:center">
-      <a href="/cannabinoids" style="display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--bright-green);text-decoration:none;border:1px solid rgba(82,183,136,0.3);border-radius:8px;padding:12px 24px;transition:background .2s;" onmouseover="this.style.background='rgba(82,183,136,0.08)'" onmouseout="this.style.background='transparent'">Explore Cannabinoids &amp; Body Map →</a>
-    </div>
-  </div>
 
 </div>
 
-<!-- CANNABIS & FOOD -->
-
-<!-- BUDTENDER PRO TEASER -->
-<div class="scan-teaser-wrap" style="background:linear-gradient(160deg,#060d0a 0%,#090e0c 60%,#050b07 100%);border-top:1px solid rgba(82,183,136,0.15)">
-  <div class="scan-teaser reveal" style="display:flex;flex-direction:column;gap:32px">
-    <div class="scan-teaser-text">
-      <div class="section-label">✦ Budtender Pro</div>
-      <h3 class="scan-teaser-title">The tool built for <em>the floor.</em></h3>
-      <p class="scan-teaser-desc">Professional cannabis intelligence for dispensary staff — customer intake, instant strain matching, a 25-term glossary, talking point scripts, and dosing reference. All in one tablet-ready tool.</p>
-      <a href="/budtender-pro" class="scan-teaser-cta">Open Budtender Pro →</a>
-    </div>
-    <div style="display:flex;flex-wrap:wrap;gap:8px">
-      <span class="seminar-level-badge" style="background:rgba(82,183,136,0.08);border:1px solid rgba(82,183,136,0.2);color:var(--bright-green)">Customer Intake</span>
-      <span class="seminar-level-badge" style="background:rgba(82,183,136,0.08);border:1px solid rgba(82,183,136,0.2);color:var(--bright-green)">Strain Matching</span>
-      <span class="seminar-level-badge" style="background:rgba(82,183,136,0.08);border:1px solid rgba(82,183,136,0.2);color:var(--bright-green)">Glossary</span>
-      <span class="seminar-level-badge" style="background:rgba(82,183,136,0.08);border:1px solid rgba(82,183,136,0.2);color:var(--bright-green)">Talking Points</span>
-      <span class="seminar-level-badge" style="background:rgba(82,183,136,0.08);border:1px solid rgba(82,183,136,0.2);color:var(--bright-green)">Dosing Ref</span>
-    </div>
-  </div>
-</div>
-
-<div class="full-divider"></div>
 
 </section>
 
@@ -7554,28 +7297,6 @@
     </div>
 </div>
 
-<!-- CANNALOGY TEASER -->
-<div class="cannalogy">
-  <div class="cannalogy-inner">
-    <div class="seminars-teaser reveal" style="background:rgba(82,183,136,0.04);border:1px solid rgba(82,183,136,0.12);border-radius:16px;padding:48px 52px;display:flex;align-items:center;justify-content:space-between;gap:40px;">
-      <div>
-        <div class="section-label">✦ Cannabis Education</div>
-        <h3 class="seminars-teaser-title">Cannabis education for <em>everyone.</em></h3>
-        <p class="seminars-teaser-desc">Numbers, lab reports (COAs), cannabis &amp; conditions, and a full US legal map — everything you need to understand what you're buying and putting in your body.</p>
-        <a href="/learn" class="seminars-teaser-cta">Explore the Education Hub →</a>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:10px;flex-shrink:0;text-align:right;">
-        <span style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(242,234,216,0.35);">Inside</span>
-        <span style="font-size:13px;color:rgba(242,234,216,0.6);">100+ Cannabinoids</span>
-        <span style="font-size:13px;color:rgba(242,234,216,0.6);">COA Decoder</span>
-        <span style="font-size:13px;color:rgba(242,234,216,0.6);">Conditions Guide</span>
-        <span style="font-size:13px;color:rgba(242,234,216,0.6);">US Legal Map</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="full-divider"></div>
 
 <!-- TESTIMONIAL -->
 <div style="max-width:760px;margin:0 auto;padding:80px 40px 0">
