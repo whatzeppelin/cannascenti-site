@@ -7,120 +7,152 @@
 <meta name="description" content="Get in touch with Cannascenti. Dispensary partnerships, general inquiries, and press.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--dark:#060f0a;--green:#52b788;--bright-green:#74c69d;--cream:#f2ead8;--cream-dim:rgba(242,234,216,0.55);--border:rgba(255,255,255,0.07)}
-body{background:var(--dark);color:var(--cream);font-family:'Montserrat',sans-serif;font-weight:300;line-height:1.75;min-height:100vh}
-a{color:var(--bright-green);text-decoration:none}
+:root{
+  --bg:#060e08;
+  --card:#0d2818;
+  --bright:#74c69d;
+  --green:#52b788;
+  --cream:#F2EAD8;
+  --dim:rgba(242,234,216,0.45);
+  --border:rgba(82,183,136,0.1);
+  --radius:24px;
+}
+body{background:var(--bg);color:var(--cream);font-family:'Montserrat',sans-serif;font-weight:300;line-height:1.7;min-height:100vh}
+a{color:var(--bright);text-decoration:none}
 
 /* NAV */
-.c-nav{display:flex;align-items:center;justify-content:space-between;padding:24px 60px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(6,15,10,0.96);backdrop-filter:blur(12px);z-index:100}
-.c-nav-logo{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--cream);letter-spacing:.06em}
-.c-nav-back{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,234,216,0.4);transition:color .2s}
-.c-nav-back:hover{color:var(--bright-green)}
-@media(max-width:640px){.c-nav{padding:20px 24px}}
+nav{display:flex;align-items:center;justify-content:space-between;padding:24px 40px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(6,14,8,0.96);backdrop-filter:blur(12px);z-index:100}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream);letter-spacing:.06em}
+.nav-back{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,234,216,0.4);transition:color .2s}
+.nav-back:hover{color:var(--bright)}
+@media(max-width:640px){nav{padding:20px}}
 
-/* LAYOUT */
-.c-wrap{max-width:960px;margin:0 auto;padding:80px 40px 100px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
-@media(max-width:720px){.c-wrap{grid-template-columns:1fr;gap:48px;padding:60px 24px 80px}}
+/* PAGE */
+.page{padding:40px 32px;max-width:1224px;margin:0 auto}
+@media(max-width:640px){.page{padding:20px 16px}}
+
+/* CARD */
+.card{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:72px 64px}
+@media(max-width:860px){.card{padding:48px 36px;border-radius:18px}}
+@media(max-width:560px){.card{padding:36px 24px;border-radius:14px}}
+
+/* SPLIT */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+@media(max-width:800px){.split{grid-template-columns:1fr;gap:48px}}
 
 /* LEFT */
-.c-intro-tag{font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--green);margin-bottom:18px;opacity:.8}
-.c-intro h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.6rem);font-weight:300;line-height:1.15;color:var(--cream);margin-bottom:20px}
-.c-intro h1 em{font-style:italic;color:var(--green)}
-.c-intro p{font-size:14px;color:var(--cream-dim);line-height:1.85;margin-bottom:28px}
-.c-detail{display:flex;flex-direction:column;gap:16px;margin-top:8px}
-.c-detail-item{font-size:13px;color:rgba(242,234,216,0.45)}
-.c-detail-item strong{color:rgba(242,234,216,0.7);display:block;font-size:10px;letter-spacing:.15em;text-transform:uppercase;margin-bottom:3px;font-weight:500}
-.c-detail-item a{color:var(--bright-green)}
+.eyebrow{font-size:9px;font-weight:500;letter-spacing:.45em;text-transform:uppercase;color:rgba(82,183,136,0.55);margin-bottom:24px}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,5vw,68px);font-weight:300;color:var(--cream);line-height:1.05;margin-bottom:24px;letter-spacing:-.01em}
+h1 em{color:var(--bright);font-style:italic}
+.intro-body{font-size:14px;color:var(--dim);line-height:1.85;margin-bottom:40px}
+
+.details{display:flex;flex-direction:column;gap:20px}
+.detail-item{}
+.detail-label{font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(82,183,136,0.5);margin-bottom:5px}
+.detail-value{font-size:14px;color:var(--cream)}
+.detail-value a{color:var(--cream);transition:color .2s}
+.detail-value a:hover{color:var(--bright)}
 
 /* FORM */
-.c-form-card{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:10px;padding:40px}
-.c-field{margin-bottom:20px}
-.c-label{display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,234,216,0.45);margin-bottom:8px;font-weight:500}
-.c-input{width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:13px 16px;color:var(--cream);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:300;outline:none;transition:border-color .2s}
-.c-input:focus{border-color:rgba(82,183,136,0.45)}
-.c-input::placeholder{color:rgba(242,234,216,0.2)}
-textarea.c-input{resize:vertical;min-height:100px}
-.c-submit{width:100%;background:var(--green);color:#060f0a;border:none;border-radius:6px;padding:15px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s;margin-top:4px}
-.c-submit:hover{background:var(--bright-green)}
-.c-submit:disabled{opacity:.5;cursor:default}
-.c-success{display:none;text-align:center;padding:40px 20px}
-.c-success-icon{font-size:2.5rem;margin-bottom:16px}
-.c-success h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--cream);margin-bottom:10px;font-weight:400}
-.c-success p{font-size:13px;color:var(--cream-dim)}
-.c-err{font-size:12px;color:#e05c5c;margin-top:10px;min-height:16px}
+.form-field{margin-bottom:20px}
+.form-label{display:block;font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(82,183,136,0.5);margin-bottom:10px}
+.form-req{color:#e05c5c;margin-left:2px}
+.form-input{width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;color:var(--cream);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:300;outline:none;transition:border-color .2s}
+.form-input:focus{border-color:rgba(82,183,136,0.4)}
+.form-input::placeholder{color:rgba(242,234,216,0.2)}
+textarea.form-input{resize:vertical;min-height:110px}
+.form-err{font-size:12px;color:#e05c5c;min-height:18px;margin-bottom:10px}
+.form-submit{width:100%;background:transparent;color:var(--cream);border:2px solid rgba(242,234,216,0.6);border-radius:14px;padding:15px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:500;letter-spacing:.15em;cursor:pointer;transition:background .25s,border-color .25s}
+.form-submit:hover{background:rgba(242,234,216,0.07);border-color:var(--cream)}
+.form-submit:disabled{opacity:.4;cursor:default}
+
+/* SUCCESS */
+.success{display:none;text-align:center;padding:48px 20px}
+.success-mark{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;color:var(--bright);margin-bottom:16px;line-height:1}
+.success h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--cream);margin-bottom:10px}
+.success p{font-size:13px;color:var(--dim)}
 
 /* FOOTER */
-footer{text-align:center;padding:24px;border-top:1px solid var(--border);font-size:11px;color:rgba(242,234,216,0.28)}
-footer a{color:rgba(242,234,216,0.28);transition:color .2s}
-footer a:hover{color:var(--green)}
+footer{text-align:center;padding:28px;margin-top:20px;border-top:1px solid var(--border);font-size:11px;color:rgba(242,234,216,0.25)}
+footer a{color:rgba(242,234,216,0.25)}
+footer a:hover{color:var(--bright)}
+footer p+p{margin-top:6px}
 </style>
 </head>
 <body>
 
-<nav class="c-nav">
-  <a href="/" class="c-nav-logo">Cannascenti</a>
-  <a href="/" class="c-nav-back">← Home</a>
+<nav>
+  <a href="/" class="nav-logo">Cannascenti</a>
+  <a href="/" class="nav-back">← Home</a>
 </nav>
 
-<div class="c-wrap">
+<div class="page">
+  <div class="card">
+    <div class="split">
 
-  <!-- LEFT: intro -->
-  <div class="c-intro">
-    <div class="c-intro-tag">✦ Get in Touch</div>
-    <h1>Let's talk about<br><em>your dispensary.</em></h1>
-    <p>Whether you want to see a live demo, ask about pricing, or just have questions about how Cannascenti works on the floor — fill out the form and we'll get back to you directly.</p>
-    <div class="c-detail">
-      <div class="c-detail-item">
-        <strong>Email</strong>
-        <a href="mailto:hello@cannascenti.com">hello@cannascenti.com</a>
+      <!-- LEFT -->
+      <div>
+        <div class="eyebrow">get in touch</div>
+        <h1>let's talk about<br><em>your dispensary.</em></h1>
+        <p class="intro-body">Whether you want to see a live demo, ask about pricing, or just have questions about how Cannascenti works on the floor — fill out the form and we'll get back to you directly.</p>
+        <div class="details">
+          <div class="detail-item">
+            <div class="detail-label">Email</div>
+            <div class="detail-value"><a href="mailto:hello@cannascenti.com">hello@cannascenti.com</a></div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Instagram</div>
+            <div class="detail-value"><a href="https://www.instagram.com/cannascenti.hq" target="_blank" rel="noopener noreferrer">@cannascenti.hq</a></div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Based in</div>
+            <div class="detail-value">Los Angeles, CA</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Response time</div>
+            <div class="detail-value">Within one business day</div>
+          </div>
+        </div>
       </div>
-      <div class="c-detail-item">
-        <strong>Instagram</strong>
-        <a href="https://www.instagram.com/cannascenti.hq" target="_blank" rel="noopener noreferrer">@cannascenti.hq</a>
+
+      <!-- RIGHT: FORM -->
+      <div>
+        <div id="contactForm">
+          <div class="form-field">
+            <label class="form-label" for="cf-name">Your Name <span class="form-req">*</span></label>
+            <input class="form-input" id="cf-name" type="text" placeholder="First and last name" autocomplete="name">
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="cf-dispensary">Dispensary Name</label>
+            <input class="form-input" id="cf-dispensary" type="text" placeholder="Where do you work?" autocomplete="organization">
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="cf-email">Email <span class="form-req">*</span></label>
+            <input class="form-input" id="cf-email" type="email" placeholder="your@email.com" autocomplete="email">
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="cf-phone">Phone</label>
+            <input class="form-input" id="cf-phone" type="tel" placeholder="(555) 000-0000" autocomplete="tel">
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="cf-message">Message</label>
+            <textarea class="form-input" id="cf-message" placeholder="What are you looking to do?"></textarea>
+          </div>
+          <div class="form-err" id="cf-err"></div>
+          <button class="form-submit" id="cf-btn" onclick="submitContact()">send message</button>
+        </div>
+        <div class="success" id="contactSuccess">
+          <div class="success-mark">✓</div>
+          <h3>Message received.</h3>
+          <p>We'll be in touch shortly — usually within one business day.</p>
+        </div>
       </div>
-      <div class="c-detail-item">
-        <strong>Based in</strong>
-        Los Angeles, CA
-      </div>
+
     </div>
   </div>
-
-  <!-- RIGHT: form -->
-  <div class="c-form-card">
-    <div id="contactForm">
-      <div class="c-field">
-        <label class="c-label" for="cf-name">Your Name <span style="color:#e05c5c">*</span></label>
-        <input class="c-input" id="cf-name" type="text" placeholder="First and last name" autocomplete="name">
-      </div>
-      <div class="c-field">
-        <label class="c-label" for="cf-dispensary">Dispensary Name</label>
-        <input class="c-input" id="cf-dispensary" type="text" placeholder="Where do you work?" autocomplete="organization">
-      </div>
-      <div class="c-field">
-        <label class="c-label" for="cf-email">Email <span style="color:#e05c5c">*</span></label>
-        <input class="c-input" id="cf-email" type="email" placeholder="your@email.com" autocomplete="email">
-      </div>
-      <div class="c-field">
-        <label class="c-label" for="cf-phone">Phone</label>
-        <input class="c-input" id="cf-phone" type="tel" placeholder="(555) 000-0000" autocomplete="tel">
-      </div>
-      <div class="c-field">
-        <label class="c-label" for="cf-message">Message</label>
-        <textarea class="c-input" id="cf-message" placeholder="What are you looking to do?"></textarea>
-      </div>
-      <div class="c-err" id="cf-err"></div>
-      <button class="c-submit" id="cf-btn" onclick="submitContact()">Send Message</button>
-    </div>
-    <div class="c-success" id="contactSuccess">
-      <div class="c-success-icon">✓</div>
-      <h3>Message received.</h3>
-      <p>We'll be in touch shortly — usually within one business day.</p>
-    </div>
-  </div>
-
 </div>
 
 <footer>
@@ -157,12 +189,12 @@ async function submitContact() {
     } else {
       err.textContent = data.error || 'Something went wrong. Please try again.';
       btn.disabled = false;
-      btn.textContent = 'Send Message';
+      btn.textContent = 'send message';
     }
   } catch {
     err.textContent = 'Something went wrong. Please try again.';
     btn.disabled = false;
-    btn.textContent = 'Send Message';
+    btn.textContent = 'send message';
   }
 }
 </script>
