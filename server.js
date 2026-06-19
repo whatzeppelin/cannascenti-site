@@ -916,7 +916,7 @@ ${isPrivacy ? `<h1>Privacy Policy</h1><p>Last updated: April 2026</p>
   </div>
 </nav>`;
 
-  const ENC_FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">`;
+  const ENC_FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"><script src="/gate.js" defer><\/script>`;
 
   const ENC_BASE_CSS = `*{margin:0;padding:0;box-sizing:border-box}body{background:#060d0a;color:#F2EAD8;font-family:Montserrat,sans-serif}a{color:#52B788;text-decoration:none}.enc-page{max-width:1100px;margin:0 auto;padding:60px 32px 120px}.enc-page-header{margin-bottom:56px}.enc-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#52B788;margin-bottom:12px}.enc-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:300;color:#F2EAD8;line-height:1.15;margin-bottom:20px}.enc-title em{font-style:italic;color:#52B788}.enc-desc{font-size:.95rem;line-height:1.8;color:rgba(242,234,216,0.65);max-width:680px}`;
 
@@ -7345,6 +7345,7 @@ a{color:var(--bright-green);text-decoration:none}
 .legal-state-name{font-size:.78rem;font-weight:600;color:var(--cream)}
 .legal-state-status{font-size:.62rem;opacity:.5;text-transform:uppercase;letter-spacing:.06em}
 </style>
+<script src="/gate.js" defer></script>
 </head>
 <body>
 
@@ -7623,6 +7624,7 @@ canvas#camCanvas{display:none}
 
 .scan-error-box{padding:32px 24px;text-align:center;color:rgba(242,234,216,0.45);font-size:14px;line-height:1.7}
 </style>
+<script src="/gate.js" defer></script>
 </head>
 <body>
 
