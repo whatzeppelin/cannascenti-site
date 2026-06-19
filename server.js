@@ -900,25 +900,23 @@ ${isPrivacy ? `<h1>Privacy Policy</h1><p>Last updated: April 2026</p>
   // ─── Encyclopedia dedicated pages ─────────────────────────────────────────
 
   // Shared nav for all encyclopedia pages
-  const ENC_NAV = `<nav style="background:#060d0a;border-bottom:1px solid rgba(82,183,136,0.15);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100">
-  <a href="/" style="font-family:'Great Vibes',cursive;font-size:1.4rem;color:#52B788;text-decoration:none">Cannascenti</a>
-  <div style="display:flex;gap:4px;flex-wrap:wrap">
-    <a href="/strains" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Strains</a>
-    <a href="/terpenes" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Terpenes</a>
-    <a href="/cannabinoids" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Cannabinoids</a>
-    <a href="/consumption" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Consumption</a>
-    <a href="/cultivation" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Cultivation</a>
-    <a href="/history" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">History</a>
-    <a href="/concentrates" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Concentrates</a>
-    <a href="/edibles" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Edibles</a>
-
-    <a href="/glossary" style="color:rgba(242,234,216,0.7);text-decoration:none;font-family:Montserrat,sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.08)">Glossary</a>
+  const ENC_NAV = `<style>.enc-nav{display:flex;align-items:center;justify-content:space-between;padding:24px 40px;border-bottom:1px solid rgba(82,183,136,0.1);position:sticky;top:0;background:rgba(6,14,8,0.96);backdrop-filter:blur(12px);z-index:100}.enc-nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:#F2EAD8;letter-spacing:.06em;text-decoration:none}.enc-nav-links{display:flex;gap:24px;flex-wrap:wrap;align-items:center}.enc-nav-link{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,234,216,0.45);text-decoration:none;transition:color .2s}.enc-nav-link:hover{color:#74c69d}@media(max-width:640px){.enc-nav{padding:20px}.enc-nav-links{display:none}}</style>
+<nav class="enc-nav">
+  <a href="/" class="enc-nav-logo">Cannascenti</a>
+  <div class="enc-nav-links">
+    <a href="/strains" class="enc-nav-link">Strains</a>
+    <a href="/terpenes" class="enc-nav-link">Terpenes</a>
+    <a href="/cannabinoids" class="enc-nav-link">Cannabinoids</a>
+    <a href="/concentrates" class="enc-nav-link">Concentrates</a>
+    <a href="/edibles" class="enc-nav-link">Edibles</a>
+    <a href="/history" class="enc-nav-link">History</a>
+    <a href="/glossary" class="enc-nav-link">Glossary</a>
   </div>
 </nav>`;
 
-  const ENC_FONTS = `<script src="/theme.js"><\/script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"><script src="/gate.js" defer><\/script>`;
+  const ENC_FONTS = `<script src="/theme.js"><\/script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"><script src="/gate.js" defer><\/script>`;
 
-  const ENC_BASE_CSS = `*{margin:0;padding:0;box-sizing:border-box}body{background:#060d0a;color:#F2EAD8;font-family:Montserrat,sans-serif}a{color:#52B788;text-decoration:none}.enc-page{max-width:1100px;margin:0 auto;padding:60px 32px 120px}.enc-page-header{margin-bottom:56px}.enc-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#52B788;margin-bottom:12px}.enc-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:300;color:#F2EAD8;line-height:1.15;margin-bottom:20px}.enc-title em{font-style:italic;color:#52B788}.enc-desc{font-size:.95rem;line-height:1.8;color:rgba(242,234,216,0.65);max-width:680px}`;
+  const ENC_BASE_CSS = `*{margin:0;padding:0;box-sizing:border-box}body{background:#060e08;color:#F2EAD8;font-family:Montserrat,sans-serif}a{color:#52B788;text-decoration:none}.enc-page{max-width:1100px;margin:0 auto;padding:60px 32px 120px}.enc-page-header{margin-bottom:56px}.enc-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#52B788;margin-bottom:12px}.enc-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:300;color:#F2EAD8;line-height:1.15;margin-bottom:20px}.enc-title em{font-style:italic;color:#52B788}.enc-desc{font-size:.95rem;line-height:1.8;color:rgba(242,234,216,0.65);max-width:680px}`;
 
   // ─── /terpenes ──────────────────────────────────────────────────────────────
   if (req.method === "GET" && req.url === "/terpenes") {
@@ -5825,20 +5823,21 @@ document.addEventListener('DOMContentLoaded', function() {
 <title>The Cannascenti Match — Find Your Strain</title>
 <meta name="description" content="5 questions. 30 seconds. A personalized cannabis profile matched to real strains from the Cannascenti database.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="/theme.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:#060d0a;color:#F2EAD8;font-family:Montserrat,sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden}
+body{background:#060e08;color:#F2EAD8;font-family:Montserrat,sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden}
 a{color:#52B788;text-decoration:none}
 /* Ambient glow */
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(82,183,136,0.06) 0%,transparent 70%);pointer-events:none;z-index:0}
 /* Nav */
-.qnav{display:flex;align-items:center;justify-content:space-between;padding:24px 48px;position:sticky;top:0;background:rgba(6,13,10,0.9);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid rgba(255,255,255,0.05)}
-.qnav-logo{font-family:'Great Vibes',cursive;font-size:26px;color:#F2EAD8}
+.qnav{display:flex;align-items:center;justify-content:space-between;padding:24px 40px;position:sticky;top:0;background:rgba(6,14,8,0.96);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid rgba(82,183,136,0.1)}
+.qnav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:#F2EAD8;letter-spacing:.06em}
 .qnav-back{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,234,216,0.4);transition:color .2s}
-.qnav-back:hover{color:#52B788}
-@media(max-width:600px){.qnav{padding:20px 24px}}
+.qnav-back:hover{color:#74c69d}
+@media(max-width:600px){.qnav{padding:20px}}
 /* Wrapper */
 .qwrap{max-width:760px;margin:0 auto;padding:60px 32px 120px;position:relative;z-index:1}
 @media(max-width:600px){.qwrap{padding:40px 20px 80px}}
@@ -6286,18 +6285,19 @@ function retakeQuiz() {
 <meta name="description" content="Learn to roll from scratch or master advanced techniques. Three levels: Beginner, Intermediate, and Masterclass. Taught by a 12-year cannabis veteran.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="/theme.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--dark:#060f0a;--green:#52b788;--bright-green:#74c69d;--cream:#f2ead8;--gold:#c9973a;--border:rgba(255,255,255,0.07);--card:rgba(255,255,255,0.025)}
+:root{--dark:#060e08;--green:#52b788;--bright-green:#74c69d;--cream:#f2ead8;--gold:#c9973a;--border:rgba(82,183,136,0.1);--card:rgba(255,255,255,0.025)}
 body{background:var(--dark);color:var(--cream);font-family:'Montserrat',sans-serif;font-weight:300;line-height:1.75;overflow-x:hidden}
 a{color:var(--bright-green);text-decoration:none}
 /* nav */
-.s-nav{display:flex;align-items:center;justify-content:space-between;padding:24px 60px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(6,15,10,0.9);backdrop-filter:blur(12px);z-index:100}
-.s-nav-logo{font-family:'Great Vibes',cursive;font-size:26px;color:var(--cream)}
-.s-nav-back{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(242,234,216,0.4);transition:color .2s}
-.s-nav-back:hover{color:var(--bright-green)}
-@media(max-width:600px){.s-nav{padding:20px 20px}}
+.s-nav{display:flex;align-items:center;justify-content:space-between;padding:24px 40px;border-bottom:1px solid rgba(82,183,136,0.1);position:sticky;top:0;background:rgba(6,14,8,0.96);backdrop-filter:blur(12px);z-index:100}
+.s-nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream);letter-spacing:.06em}
+.s-nav-back{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(242,234,216,0.4);transition:color .2s}
+.s-nav-back:hover{color:#74c69d}
+@media(max-width:600px){.s-nav{padding:20px}}
 /* hero */
 .s-hero{padding:100px 60px 80px;max-width:900px;margin:0 auto;text-align:center}
 .s-label{font-size:10px;letter-spacing:0.65em;text-transform:uppercase;color:var(--bright-green);margin-bottom:20px}
@@ -7262,18 +7262,18 @@ document.getElementById('bproDosingGrid').innerHTML = BPRO_DOSE_CARDS.map(functi
 <meta name="description" content="The most comprehensive cannabis education resource. Numbers, lab reports, conditions, and legal status — all in one place.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--dark:#060f0a;--green:#52b788;--bright-green:#74c69d;--light-green:#b7e4c7;--cream:#f2ead8;--gold:#c9973a;--amber:#e8a84c;--warm-black:#060f0a;--card-bg:rgba(255,255,255,0.025);--border:rgba(255,255,255,0.07)}
+:root{--dark:#060e08;--green:#52b788;--bright-green:#74c69d;--light-green:#b7e4c7;--cream:#f2ead8;--gold:#c9973a;--amber:#e8a84c;--warm-black:#060e08;--card-bg:rgba(255,255,255,0.025);--border:rgba(82,183,136,0.1)}
 body{background:var(--dark);color:var(--cream);font-family:'Montserrat',sans-serif;font-weight:300;line-height:1.75;overflow-x:hidden}
 a{color:var(--bright-green);text-decoration:none}
 
-.s-nav{display:flex;align-items:center;justify-content:space-between;padding:24px 60px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(6,15,10,0.9);backdrop-filter:blur(12px);z-index:100}
-.s-nav-logo{font-family:'Great Vibes',cursive;font-size:26px;color:var(--cream)}
-.s-nav-back{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(242,234,216,0.4);transition:color .2s}
-.s-nav-back:hover{color:var(--bright-green)}
-@media(max-width:600px){.s-nav{padding:20px 20px}}
+.s-nav{display:flex;align-items:center;justify-content:space-between;padding:24px 40px;border-bottom:1px solid rgba(82,183,136,0.1);position:sticky;top:0;background:rgba(6,14,8,0.96);backdrop-filter:blur(12px);z-index:100}
+.s-nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream);letter-spacing:.06em}
+.s-nav-back{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(242,234,216,0.4);transition:color .2s}
+.s-nav-back:hover{color:#74c69d}
+@media(max-width:600px){.s-nav{padding:20px}}
 
 .s-hero{padding:80px 60px 60px;max-width:900px;margin:0 auto;text-align:center}
 .s-label{font-size:10px;letter-spacing:0.65em;text-transform:uppercase;color:var(--bright-green);margin-bottom:20px}
@@ -7497,18 +7497,18 @@ document.getElementById('legalGrid').innerHTML = LEGAL_STATES.map(s =>
 <meta name="description" content="Scan any cannabis product and get a full intelligence briefing instantly. Terpenes, THC/CBD, dates, COA, and strain comparison.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--dark:#060f0a;--green:#52b788;--bright-green:#74c69d;--cream:#f2ead8;--gold:#c9973a;--border:rgba(255,255,255,0.07);--card:rgba(255,255,255,0.025);--amber:#e8a84c}
+:root{--dark:#060e08;--green:#52b788;--bright-green:#74c69d;--cream:#f2ead8;--gold:#c9973a;--border:rgba(82,183,136,0.1);--card:rgba(255,255,255,0.025);--amber:#e8a84c}
 body{background:var(--dark);color:var(--cream);font-family:'Montserrat',sans-serif;font-weight:300;line-height:1.75;overflow-x:hidden}
 a{color:var(--bright-green);text-decoration:none}
 
 /* ── Nav ── */
-.s-nav{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(6,15,10,0.95);backdrop-filter:blur(12px);z-index:100}
-.s-nav-logo{font-family:'Great Vibes',cursive;font-size:26px;color:var(--cream)}
+.s-nav{display:flex;align-items:center;justify-content:space-between;padding:24px 40px;border-bottom:1px solid rgba(82,183,136,0.1);position:sticky;top:0;background:rgba(6,14,8,0.96);backdrop-filter:blur(12px);z-index:100}
+.s-nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream);letter-spacing:.06em}
 .s-nav-back{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(242,234,216,0.4);transition:color .2s}
-.s-nav-back:hover{color:var(--bright-green)}
+.s-nav-back:hover{color:#74c69d}
 
 /* ── Hero ── */
 .s-hero{padding:52px 24px 36px;max-width:600px;margin:0 auto;text-align:center}
