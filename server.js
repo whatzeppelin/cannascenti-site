@@ -1857,7 +1857,7 @@ ${ENC_NAV}
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Strain Library — Cannascenti Encyclopedia</title>
-<meta name="description" content="Complete cannabis strain library. Full genetics, lineage trees, crosses, effects, and flavor profiles for every major strain.">
+<meta name="description" content="394 cannabis cultivars documented with verified lineage, terpene data, and lab-tested potency ranges. The deepest strain reference online — not crowdsourced.">
 ${ENC_FONTS}
 <style>
 ${ENC_BASE_CSS}
@@ -1934,8 +1934,8 @@ ${ENC_NAV}
 <div class="enc-page">
   <div class="enc-page-header">
     <div class="enc-label">✦ Cannascenti Encyclopedia</div>
-    <h1 class="enc-title">Every strain. <em>Full genetics.</em></h1>
-    <p class="enc-desc">From ancient Afghan landraces to Liquid Diamonds-era California drops — the complete genetic record. Every strain traced back to its roots. Know your strain, know your product.</p>
+    <h1 class="enc-title">394 cultivars. <em>Verified data.</em></h1>
+    <p class="enc-desc">From ancient Afghan landraces to modern California drops — every entry with documented lineage, terpene profile, and lab-tested potency ranges. Not crowdsourced reviews. Sourced data, floor-tested knowledge.</p>
   </div>
 
   <div class="strain-search-wrap">

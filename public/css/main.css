@@ -509,6 +509,26 @@ input, textarea { font-family:inherit; }
 .footer-legal { font-size:11px; color:var(--text-3); line-height:1.6; max-width:580px; }
 .footer-copy  { font-size:11px; color:var(--text-3); }
 
+/* ─── FOUNDER NOTE ───────────────────────────────────────── */
+.founder-note { padding:100px var(--pad); border-bottom:1px solid var(--border); }
+.founder-inner {
+  max-width:var(--max-w); margin:0 auto;
+  display:grid; grid-template-columns:300px 1fr; gap:80px; align-items:start;
+}
+.founder-img-wrap { position:sticky; top:calc(var(--nav-h) + 40px); }
+.founder-img {
+  width:100%; aspect-ratio:3/4; object-fit:cover; object-position:center top;
+  border-radius:var(--r-lg); filter:grayscale(15%) contrast(1.05);
+  border:1px solid var(--border);
+}
+.founder-eyebrow { font-size:10px; font-weight:600; letter-spacing:0.5em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; }
+.founder-title { font-family:var(--serif); font-size:clamp(28px,3.5vw,44px); font-weight:300; color:var(--text); line-height:1.2; margin-bottom:36px; }
+.founder-body { display:flex; flex-direction:column; gap:20px; margin-bottom:32px; }
+.founder-body p { font-size:15px; color:var(--text-2); line-height:1.9; }
+.founder-attr { display:flex; flex-direction:column; gap:6px; padding-top:28px; border-top:1px solid var(--border); }
+.founder-attr strong { font-size:15px; color:var(--text); font-weight:500; }
+.founder-attr span { font-size:12px; color:var(--text-3); }
+
 /* ─── ANIMATIONS / REVEAL ────────────────────────────────── */
 .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.6s var(--ease), transform 0.6s var(--ease); }
 .reveal.visible { opacity:1; transform:none; }
@@ -523,6 +543,8 @@ input, textarea { font-family:inherit; }
   .mj-dual           { grid-template-columns:1fr; }
   .mj-dual-divider   { height:1px; width:100%; }
   .b2b-inner         { grid-template-columns:1fr; }
+  .founder-inner     { grid-template-columns:1fr; gap:40px; }
+  .founder-img-wrap  { position:static; max-width:260px; }
   .footer-inner      { grid-template-columns:1fr 1fr; gap:40px; }
 }
 
