@@ -8160,6 +8160,141 @@ function showToast(msg) {
     return;
   }
 
+  // ── Strain Data Label demo page ─────────────────────────────────
+  if (req.url === "/strain-labels" || req.url === "/strain-labels/") {
+    function renderSDL(s) {
+      const pending = '<span class="sdl-row-value pending">[PENDING LAB DATA]</span>';
+      return `
+<div class="sdl">
+  <div class="sdl-header">
+    <div class="sdl-header-name">${s.name}</div>
+    <div class="sdl-type-badge">${s.type}</div>
+  </div>
+  <div class="sdl-subheader">
+    <div class="sdl-lineage">Lineage: <span>${s.lineage}</span></div>
+  </div>
+  <div class="sdl-body">
+    <div class="sdl-section-label">Potency</div>
+    <div class="sdl-row">
+      <span class="sdl-row-label">THC</span>${pending}
+    </div>
+    <div class="sdl-row">
+      <span class="sdl-row-label">CBD</span>${pending}
+    </div>
+    <div class="sdl-row">
+      <span class="sdl-row-label">Total Cannabinoids</span>${pending}
+    </div>
+    <div class="sdl-divider-thick"></div>
+    <div class="sdl-section-label">Terpene Profile</div>
+    <div class="sdl-row">
+      <span class="sdl-row-label">#1 Dominant</span>${pending}
+    </div>
+    <div class="sdl-row">
+      <span class="sdl-row-label">#2</span>${pending}
+    </div>
+    <div class="sdl-row">
+      <span class="sdl-row-label">#3</span>${pending}
+    </div>
+    <div class="sdl-divider-thick"></div>
+    <div class="sdl-section-label">Effects</div>
+    <div class="sdl-row">
+      <span class="sdl-row-label">Dominant Effects</span>${pending}
+    </div>
+    <div class="sdl-row">
+      <span class="sdl-row-label">Onset Time</span>${pending}
+    </div>
+    <div class="sdl-row">
+      <span class="sdl-row-label">Duration</span>${pending}
+    </div>
+  </div>
+  <div class="sdl-floor-notes">
+    <strong>Floor Notes</strong>
+    ${s.floorNote}
+  </div>
+  <div class="sdl-footer">
+    <span>Updated: ${s.updated}</span>
+    <span>Sources: ${s.sources}</span>
+  </div>
+</div>`;
+    }
+
+    const strainExamples = [
+      {
+        name: "Blue Dream",
+        type: "Hybrid (Sativa-dom)",
+        lineage: "Blueberry × Haze",
+        floorNote: "One of the most requested strains in LA retail for over a decade. Consistent cross-tolerance appeal — works for first-timers and daily consumers alike. Strong berry nose.",
+        updated: "Pending COA",
+        sources: "Pending"
+      },
+      {
+        name: "GMO Cookies",
+        type: "Indica-dom Hybrid",
+        lineage: "Girl Scout Cookies × Chemdawg",
+        floorNote: "Polarizing on the nose — diesel-forward with deep garlic funk. High potency profile; typically reserved for experienced consumers. Shelf presence is immediate.",
+        updated: "Pending COA",
+        sources: "Pending"
+      },
+      {
+        name: "Wedding Cake",
+        type: "Indica-dom Hybrid",
+        lineage: "Triangle Kush × Animal Mints",
+        floorNote: "Earthy vanilla profile with dense, resinous structure. One of the easiest conversions at the counter — the name sells it and the effects deliver. High repeat purchase rate.",
+        updated: "Pending COA",
+        sources: "Pending"
+      }
+    ];
+
+    const sdlHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Strain Data Labels — Cannascenti</title>
+  <meta name="description" content="Lab-verified strain data labels for Blue Dream, GMO Cookies, Wedding Cake, and 394 other cannabis cultivars. COA-sourced terpene and potency data — no invented numbers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <nav class="nav" id="mainNav">
+    <a href="/" class="nav-logo">Cannascenti</a>
+    <div class="nav-links" id="navLinks">
+      <a href="/strains">Strains</a>
+      <a href="/terpenes">Terpenes</a>
+      <a href="/cannabinoids">Cannabinoids</a>
+      <a href="/for-dispensaries">For Dispensaries</a>
+    </div>
+    <button class="nav-ham" id="navHam" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="sdl-page">
+    <div class="sdl-page-header">
+      <h1>Strain Data Labels</h1>
+      <p>A standardized format for presenting lab-verified cannabis cultivar data — potency, terpene profile, and effects — sourced from Certificates of Analysis.</p>
+      <span class="sdl-policy-note">All lab fields pending COA sourcing — no invented numbers</span>
+    </div>
+
+    <div class="sdl-grid">
+      ${strainExamples.map(renderSDL).join("\n      ")}
+    </div>
+  </div>
+
+  <script>
+    const ham = document.getElementById('navHam');
+    const links = document.getElementById('navLinks');
+    if (ham) ham.addEventListener('click', () => links.classList.toggle('open'));
+  </script>
+</body>
+</html>`;
+
+    res.writeHead(200, { "Content-Type": "text/html" });
+    res.end(sdlHtml);
+    return;
+  }
+
   // Strip query strings for file path resolution
   const urlPath = req.url.split("?")[0];
   let filePath = urlPath === "/" ? "/index.html" : urlPath;

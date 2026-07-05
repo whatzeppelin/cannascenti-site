@@ -576,3 +576,180 @@ input, textarea { font-family:inherit; }
   .stat-strip-inner { grid-template-columns:repeat(2,1fr); }
   .hero-stats       { gap:24px; }
 }
+
+/* ─── Strain Data Label (SDL) ──────────────────────────────────── */
+.sdl-page {
+  background: var(--bg);
+  min-height: 100vh;
+  padding: 80px 24px 120px;
+}
+.sdl-page-header {
+  max-width: 720px;
+  margin: 0 auto 64px;
+  text-align: center;
+}
+.sdl-page-header h1 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+.sdl-page-header p {
+  font-size: 15px;
+  color: var(--text-2);
+  line-height: 1.7;
+  max-width: 560px;
+  margin: 0 auto;
+}
+.sdl-page-header .sdl-policy-note {
+  display: inline-block;
+  margin-top: 20px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  padding: 6px 14px;
+}
+.sdl-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+/* The label card */
+.sdl {
+  background: var(--surface);
+  border: 2px solid var(--text-2);
+  border-radius: 4px;
+  overflow: hidden;
+  font-family: var(--sans);
+}
+.sdl-header {
+  background: var(--text);
+  color: var(--bg);
+  padding: 14px 16px 12px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.sdl-header-name {
+  font-family: var(--serif);
+  font-size: 1.45rem;
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--bg);
+}
+.sdl-type-badge {
+  flex-shrink: 0;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  background: var(--bg);
+  color: var(--text);
+  border-radius: 3px;
+  padding: 4px 8px;
+  margin-top: 4px;
+}
+.sdl-subheader {
+  padding: 10px 16px 12px;
+  border-bottom: 1px solid var(--text-2);
+}
+.sdl-lineage {
+  font-size: 11px;
+  color: var(--text-2);
+  font-style: italic;
+  margin-bottom: 2px;
+}
+.sdl-lineage span {
+  color: var(--text-3);
+}
+.sdl-body {
+  padding: 0 16px;
+}
+.sdl-section-label {
+  font-size: 9px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  padding: 10px 0 6px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  margin-bottom: 2px;
+}
+.sdl-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(255,255,255,.04);
+  font-size: 12px;
+  color: var(--text-2);
+}
+.sdl-row:last-child {
+  border-bottom: none;
+}
+.sdl-row-label {
+  font-weight: 500;
+  color: var(--text);
+  font-size: 12px;
+}
+.sdl-row-value {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--gold);
+}
+.sdl-row-value.pending {
+  color: var(--text-3);
+  font-style: italic;
+}
+.sdl-divider-thick {
+  height: 8px;
+  background: var(--text-2);
+  margin: 2px -16px;
+}
+/* inside body, needs negative margins to bleed edge */
+.sdl-body .sdl-divider-thick {
+  margin-left: -16px;
+  margin-right: -16px;
+}
+.sdl-floor-notes {
+  padding: 12px 16px;
+  background: rgba(201,168,76,.05);
+  border-top: 1px solid rgba(201,168,76,.2);
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--text-2);
+  font-style: italic;
+}
+.sdl-floor-notes strong {
+  font-style: normal;
+  font-size: 9px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 5px;
+}
+.sdl-footer {
+  padding: 10px 16px;
+  border-top: 1px solid var(--text-2);
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  letter-spacing: .06em;
+  color: var(--text-3);
+  font-family: var(--mono);
+}
+
+@media (max-width:900px) {
+  .sdl-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width:580px) {
+  .sdl-grid { grid-template-columns: 1fr; max-width:400px; }
+}
