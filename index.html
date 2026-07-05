@@ -4,19 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cannascenti — The Cannabis Encyclopedia</title>
-<meta name="description" content="394 cultivars documented with verified lineage, terpene data, and lab-tested potency ranges. 13 terpene profiles. 8 cannabinoid deep-dives. Built by a working LA budtender with 12 years on the floor.">
+<meta name="description" content="Hundreds of cultivars documented with verified lineage, terpene data, and lab-tested potency ranges. 13 terpene profiles. 8 cannabinoid deep-dives. Built by a working LA budtender with 12 years on the floor.">
 <meta name="theme-color" content="#080808">
 <script src="/theme.js"></script>
 <script src="/gate.js" defer></script>
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Cannascenti — The Cannabis Encyclopedia">
-<meta property="og:description" content="394 cultivars with verified lineage, terpene data, and potency ranges. The deepest cannabis reference online.">
+<meta property="og:description" content="Hundreds of cultivars with verified lineage, terpene data, and potency ranges. The deepest cannabis reference online.">
 <meta property="og:site_name" content="Cannascenti">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Cannascenti — The Cannabis Encyclopedia">
-<meta name="twitter:description" content="394 cultivars with verified lineage, terpene data, and potency ranges. The deepest cannabis reference online.">
+<meta name="twitter:description" content="Hundreds of cultivars with verified lineage, terpene data, and potency ranges. The deepest cannabis reference online.">
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,7 +77,7 @@
     <div class="hero-content">
       <div class="hero-eyebrow">the definitive cannabis reference</div>
       <h1 class="hero-headline">The Cannabis<br>Encyclopedia.</h1>
-      <p class="hero-sub">394 cultivars documented — every one with verified lineage, terpene data, and lab-tested potency ranges. 13 terpene profiles. 8 cannabinoid deep-dives. Built by a working LA budtender. Not an algorithm.</p>
+      <p class="hero-sub">Hundreds of cultivars documented — verified lineage, terpene data, and lab-tested potency ranges on every entry. 13 terpene profiles. 8 cannabinoid deep-dives. Built by a working LA budtender. Not an algorithm.</p>
       <div class="hero-actions">
         <a href="#encyclopedia-hub" class="btn-primary">Start Exploring</a>
         <a href="/for-dispensaries" class="btn-outline">For Dispensaries →</a>
@@ -129,7 +129,7 @@
 <div class="stat-strip">
   <div class="stat-strip-inner">
     <div class="stat-strip-item">
-      <span class="stat-strip-num">394</span>
+      <span class="stat-strip-num" id="strainCount">—</span>
       <span class="stat-strip-label">Cultivars Documented</span>
     </div>
     <div class="stat-strip-item">
@@ -191,7 +191,7 @@
         <a href="/strains" class="enc-topic-card">
           <div class="enc-topic-accent" style="background:#C9A84C;"></div>
           <div class="enc-topic-name">Strains</div>
-          <div class="enc-topic-desc">394 cultivars — verified lineage, terpene data, and lab-tested potency ranges on every entry.</div>
+          <div class="enc-topic-desc">Hundreds of cultivars — verified lineage, terpene data, and lab-tested potency ranges on every entry.</div>
         </a>
         <a href="/terpenes" class="enc-topic-card">
           <div class="enc-topic-accent" style="background:#B9D437;"></div>
@@ -307,7 +307,7 @@
         <div class="featured-eyebrow">from the database</div>
         <h2 class="featured-title">Three Worth Knowing.</h2>
       </div>
-      <a href="/strains" class="btn-outline">Browse All 394 →</a>
+      <a href="/strains" class="btn-outline">Browse All Strains →</a>
     </div>
     <div class="featured-grid">
       <div class="featured-card">
@@ -716,6 +716,11 @@
       nav.style.background = window.scrollY > 60 ? 'rgba(8,8,8,0.98)' : 'rgba(8,8,8,0.94)';
     }, { passive:true });
   }
+  // Live strain count
+  fetch('/api/strains/all').then(r=>r.json()).then(d=>{
+    const el = document.getElementById('strainCount');
+    if(el && d && d.length) el.textContent = d.length;
+  }).catch(()=>{});
   const reveals = document.querySelectorAll('.reveal');
   if('IntersectionObserver' in window){
     const obs = new IntersectionObserver(function(entries){

@@ -1857,7 +1857,7 @@ ${ENC_NAV}
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Strain Library — Cannascenti Encyclopedia</title>
-<meta name="description" content="394 cannabis cultivars documented with verified lineage, terpene data, and lab-tested potency ranges. The deepest strain reference online — not crowdsourced.">
+<meta name="description" content="Hundreds of cannabis cultivars documented with verified lineage, terpene data, and lab-tested potency ranges. The deepest strain reference online — not crowdsourced.">
 ${ENC_FONTS}
 <style>
 ${ENC_BASE_CSS}
@@ -1934,7 +1934,7 @@ ${ENC_NAV}
 <div class="enc-page">
   <div class="enc-page-header">
     <div class="enc-label">✦ Cannascenti Encyclopedia</div>
-    <h1 class="enc-title">394 cultivars. <em>Verified data.</em></h1>
+    <h1 class="enc-title">Every cultivar. <em>Verified data.</em></h1>
     <p class="enc-desc">From ancient Afghan landraces to modern California drops — every entry with documented lineage, terpene profile, and lab-tested potency ranges. Not crowdsourced reviews. Sourced data, floor-tested knowledge.</p>
   </div>
 
@@ -5598,7 +5598,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   <div id="qIntro" class="q-intro">
     <div class="q-label">&#10022; The Cannascenti Match</div>
     <h1 class="q-intro-title">Find what <em>actually</em><br>works for you.</h1>
-    <p class="q-intro-sub">5 questions. 30 seconds. A personalized cannabis profile matched to real strains from our database of 394 cultivars.</p>
+    <p class="q-intro-sub">5 questions. 30 seconds. A personalized cannabis profile matched to real strains from our database.</p>
     <button class="q-start-btn" onclick="startQuiz()">Begin &#8594;</button>
   </div>
 
@@ -5614,7 +5614,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   <!-- ANALYZING -->
   <div id="qAnalyzing" style="display:none" class="q-analyzing">
     <div class="q-analyzing-title">Analyzing your profile&#8230;</div>
-    <div class="q-analyzing-sub">Matching against 394 strains</div>
+    <div class="q-analyzing-sub">Matching against our strain database</div>
     <div class="q-dots"><div class="q-dot"></div><div class="q-dot"></div><div class="q-dot"></div></div>
   </div>
 
@@ -5895,7 +5895,7 @@ function showResults() {
     '<div class="q-strains">' + cards + '</div>' +
     '<div class="q-result-ctas">' +
       '<button class="q-retake-btn" onclick="retakeQuiz()">Retake the quiz</button>' +
-      '<a href="/strains" class="q-browse-btn">Browse all 394 strains &#8594;</a>' +
+      '<a href="/strains" class="q-browse-btn">Browse all strains &#8594;</a>' +
     '</div>' +
     '<div style="margin-top:40px;padding:28px 32px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:12px">' +
       '<div style="font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:#52B788;margin-bottom:10px">&#10022; Save Your Profile</div>' +
@@ -8273,7 +8273,7 @@ function showToast(msg) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Strain Data Labels — Cannascenti</title>
-  <meta name="description" content="Lab-verified strain data labels for Blue Dream, GMO Cookies, Wedding Cake, and 394 other cannabis cultivars. COA-sourced terpene and potency data — no invented numbers.">
+  <meta name="description" content="Lab-verified strain data labels for Blue Dream, GMO Cookies, Wedding Cake, and hundreds of other cannabis cultivars. COA-sourced terpene and potency data — no invented numbers.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css">
