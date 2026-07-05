@@ -2152,9 +2152,9 @@ document.addEventListener('DOMContentLoaded', function(){ doFilter(); });
     };
 
     const terpCards = (s.terpenes || []).map(t => {
-      const ti = TERP_INFO[t] || {color:'#52B788', icon:'&#10022;', aroma:t, effect:'A terpene contributing to this strain\'s unique aromatic profile.'};
-      return `<div class="sp-terp-card" style="border-top:3px solid ${ti.color}22;border-color:${ti.color}22">
-        <div class="sp-terp-head" style="color:${ti.color}"><span>${ti.icon}</span><span class="sp-terp-name">${t}</span></div>
+      const ti = TERP_INFO[t] || {color:'#C9A84C', icon:'&#10022;', aroma:t, effect:'A terpene contributing to this strain\'s unique aromatic profile.'};
+      return `<div class="sp-terp-card" style="border-left-color:${ti.color}">
+        <div class="sp-terp-head"><span>${ti.icon}</span><span class="sp-terp-name">${t}</span></div>
         <div class="sp-terp-aroma">${ti.aroma}</div>
         <div class="sp-terp-effect">${ti.effect}</div>
       </div>`;
@@ -2166,14 +2166,14 @@ document.addEventListener('DOMContentLoaded', function(){ doFilter(); });
       .slice(0, 4);
 
     const relCards = related.map(r => {
-      const rc = typeColors[(r.type||'').toLowerCase()] || '#52B788';
+      const rc = typeColors[(r.type||'').toLowerCase()] || '#C9A84C';
       const rSlug = toSlug(r.name);
       return `<a href="/strains/${rSlug}" class="sp-rel-card">
-        <div style="height:3px;background:${rc}"></div>
+        <div class="sp-rel-bar" style="background:${rc}"></div>
         <div class="sp-rel-body">
           <div class="sp-rel-name">${r.name}</div>
-          <div style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:${rc};margin-bottom:8px;font-weight:600">${r.type}</div>
-          <div style="display:flex;flex-wrap:wrap;gap:4px">${(r.effects||[]).slice(0,3).map(e=>`<span style="font-size:.65rem;background:rgba(255,255,255,0.05);border-radius:4px;padding:2px 7px;color:rgba(242,234,216,0.45)">${e}</span>`).join('')}</div>
+          <div class="sp-rel-type" style="color:${rc}">${r.type}</div>
+          <div class="sp-rel-effects">${(r.effects||[]).slice(0,3).map(e=>`<span class="sp-rel-eff">${e}</span>`).join('')}</div>
         </div>
       </a>`;
     }).join('');
@@ -2183,138 +2183,160 @@ document.addEventListener('DOMContentLoaded', function(){ doFilter(); });
     const typeLabel = typeName.charAt(0).toUpperCase() + typeName.slice(1);
     const pageTitle = `${s.name} — ${typeLabel} Strain, THC ${thcMin}–${thcMax}% | Cannascenti`;
 
+    // SDL sidebar — THC/CBD from DB, onset/duration pending
+    const sdlPending = '<span style="font-family:var(--mono,monospace);font-size:11px;color:var(--text-3,#666);font-style:italic">[PENDING COA]</span>';
+    const thcVal = (thcMin || thcMax) ? `<span style="font-family:var(--mono,monospace);font-size:11px;color:var(--gold,#C9A84C)">${thcMin}–${thcMax}%</span>` : sdlPending;
+    const cbdVal = cbd > 0 ? `<span style="font-family:var(--mono,monospace);font-size:11px;color:var(--gold,#C9A84C)">${cbd}%</span>` : sdlPending;
+    const terp1 = (s.terpenes||[])[0] || null;
+    const terp2 = (s.terpenes||[])[1] || null;
+    const terp3 = (s.terpenes||[])[2] || null;
+
     const spHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${pageTitle}</title>
-<meta name="description" content="${s.name}: A ${typeName} cannabis strain with ${thcMin}-${thcMax}% THC. ${(s.description||'').replace(/"/g,'').slice(0,140)}">
-${ENC_FONTS}
-<style>
-${ENC_BASE_CSS}
-.sp-hero{padding:48px 0 40px;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:52px}
-.sp-breadcrumb{font-size:.72rem;letter-spacing:.06em;color:rgba(242,234,216,0.3);margin-bottom:28px;display:flex;align-items:center;gap:8px}
-.sp-breadcrumb a{color:rgba(242,234,216,0.4);text-decoration:none;transition:color .2s}.sp-breadcrumb a:hover{color:#52B788}
-.sp-name{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,6vw,4.5rem);font-weight:300;color:#F2EAD8;line-height:1.1;margin-bottom:18px}
-.sp-badges{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:36px}
-.sp-type-badge{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;border-radius:20px;padding:5px 16px;font-weight:600}
-.sp-rating{display:flex;align-items:center;gap:8px;font-size:.85rem;color:rgba(242,234,216,0.5)}
-.sp-stars{color:#E8A84C;font-size:.9rem;letter-spacing:2px}
-.sp-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
-.sp-stat{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px 20px}
-.sp-stat-label{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,234,216,0.3);margin-bottom:8px}
-.sp-stat-val{font-size:1.5rem;font-family:'Cormorant Garamond',serif;color:#F2EAD8;margin-bottom:10px}
-.sp-bar{height:4px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden}
-.sp-bar-fill{height:100%;border-radius:4px}
-.sp-section{margin-bottom:52px}
-.sp-section-title{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(242,234,216,0.3);margin-bottom:20px;display:flex;align-items:center;gap:14px}
-.sp-section-title::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06)}
-.sp-desc{font-family:'Cormorant Garamond',serif;font-size:1.1rem;line-height:1.9;color:rgba(242,234,216,0.82);max-width:760px}
-.sp-effects{display:flex;flex-wrap:wrap;gap:10px}
-.sp-eff{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:8px 18px;font-size:.8rem;color:rgba(242,234,216,0.75);letter-spacing:.04em}
-.sp-flavors{display:flex;flex-wrap:wrap;gap:10px}
-.sp-flav{background:rgba(232,168,76,0.07);border:1px solid rgba(232,168,76,0.15);border-radius:24px;padding:8px 18px;font-size:.8rem;color:rgba(232,168,76,0.8)}
-.sp-terp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
-.sp-terp-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px 20px}
-.sp-terp-head{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:.9rem;font-weight:600}
-.sp-terp-name{letter-spacing:.04em}
-.sp-terp-aroma{font-size:.7rem;color:rgba(242,234,216,0.32);letter-spacing:.06em;margin-bottom:10px;text-transform:uppercase}
-.sp-terp-effect{font-size:.82rem;line-height:1.68;color:rgba(242,234,216,0.6)}
-.sp-tags{display:flex;flex-wrap:wrap;gap:8px}
-.sp-tag{background:rgba(82,183,136,0.08);border:1px solid rgba(82,183,136,0.2);border-radius:6px;padding:5px 12px;font-size:.7rem;color:rgba(82,183,136,0.85);letter-spacing:.07em;text-transform:uppercase}
-.sp-genetics{font-size:.9rem;color:rgba(242,234,216,0.6);line-height:1.6;font-style:italic;border-left:2px solid rgba(82,183,136,0.2);padding-left:14px}
-.sp-rel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
-.sp-rel-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;overflow:hidden;text-decoration:none;transition:border-color .2s,transform .15s;display:block}
-.sp-rel-card:hover{border-color:rgba(255,255,255,0.15);transform:translateY(-2px)}
-.sp-rel-body{padding:14px 16px}
-.sp-rel-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#F2EAD8;margin-bottom:4px}
-.sp-ask-mj{display:inline-flex;align-items:center;gap:5px;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:#52B788;border:1px solid rgba(82,183,136,0.3);border-radius:20px;padding:5px 14px;text-decoration:none;font-family:Montserrat,sans-serif;transition:background .2s,border-color .2s}
-.sp-ask-mj:hover{background:rgba(82,183,136,0.08);border-color:rgba(82,183,136,0.6)}
-@media(max-width:640px){.sp-name{font-size:2.2rem}.sp-stats{grid-template-columns:1fr 1fr}.sp-terp-grid{grid-template-columns:1fr}}
-</style>
+<meta name="description" content="${s.name}: A ${typeName} cannabis strain with ${thcMin}–${thcMax}% THC. ${(s.description||'').replace(/"/g,'').slice(0,140)}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-${ENC_NAV}
-<div class="enc-page">
+<nav class="nav" id="mainNav">
+  <a href="/" class="nav-logo">Cannascenti</a>
+  <div class="nav-links" id="navLinks">
+    <a href="/strains">Strains</a>
+    <a href="/terpenes">Terpenes</a>
+    <a href="/cannabinoids">Cannabinoids</a>
+    <a href="/for-dispensaries">For Dispensaries</a>
+  </div>
+  <button class="nav-ham" id="navHam" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="sp-wrap">
+  <div class="sp-breadcrumb">
+    <a href="/strains">All Strains</a>
+    <span class="sp-breadcrumb-sep">/</span>
+    <span>${s.name}</span>
+  </div>
+
   <div class="sp-hero">
-    <div class="sp-breadcrumb">
-      <a href="/strains">All Strains</a>
-      <span style="opacity:.4">/</span>
-      <span style="color:rgba(242,234,216,0.6)">${s.name}</span>
-    </div>
     <div class="sp-name">${s.name}</div>
-    <div class="sp-badges">
-      <span class="sp-type-badge" style="background:${tc}22;color:${tc}">${typeLabel}</span>
-      <span class="sp-rating">
-        <span class="sp-stars">${starStr}</span>
-        <span>${rating.toFixed(1)}</span>
-      </span>
-      <a href="/?ask=${encodeURIComponent('Tell me about ' + s.name + ' — effects, who it is for, and when to use it.')}" class="sp-ask-mj">Ask Mary Jane →</a>
-    </div>
-    <div class="sp-stats">
-      <div class="sp-stat">
-        <div class="sp-stat-label">THC Range</div>
-        <div class="sp-stat-val">${thcMin}&#8211;${thcMax}%</div>
-        <div class="sp-bar"><div class="sp-bar-fill" style="width:${thcBarW}%;background:${tc}"></div></div>
-      </div>
-      <div class="sp-stat">
-        <div class="sp-stat-label">CBD</div>
-        <div class="sp-stat-val">${cbd}%</div>
-        <div class="sp-bar"><div class="sp-bar-fill" style="width:${cbdBarW}%;background:#52B788"></div></div>
-      </div>
-      <div class="sp-stat">
-        <div class="sp-stat-label">Dominant Terpene</div>
-        <div class="sp-stat-val" style="font-size:1.05rem;margin-top:4px">${(s.terpenes||[])[0] || '&#8212;'}</div>
-        <div style="font-size:.7rem;color:rgba(242,234,216,0.28);margin-top:4px">${(s.terpenes||[]).slice(1).join(' &middot; ') || ''}</div>
-      </div>
+    <div class="sp-hero-meta">
+      <span class="sp-type-badge" style="background:${tc}18;color:${tc}">${typeLabel}</span>
+      <a href="/?ask=${encodeURIComponent('Tell me about ' + s.name + ' — effects, who it is for, and when to use it.')}" class="sp-ask-mj">Ask Mary Jane &#8594;</a>
     </div>
   </div>
 
-  <div class="sp-section">
-    <div class="sp-section-title">About This Strain</div>
-    <div class="sp-desc">${s.description || ''}</div>
+  <div class="sp-layout">
+    <!-- Main content -->
+    <div class="sp-main">
+      ${s.description ? `<div class="sp-section">
+        <div class="sp-section-label">About This Strain</div>
+        <div class="sp-desc">${s.description}</div>
+      </div>` : ''}
+
+      ${(s.effects||[]).length > 0 ? `<div class="sp-section">
+        <div class="sp-section-label">Effects</div>
+        <div class="sp-chips">${(s.effects||[]).map(e=>`<span class="sp-chip">${e}</span>`).join('')}</div>
+      </div>` : ''}
+
+      ${(s.flavors||[]).length > 0 ? `<div class="sp-section">
+        <div class="sp-section-label">Flavor Profile</div>
+        <div class="sp-chips">${(s.flavors||[]).map(f=>`<span class="sp-chip sp-chip-gold">${f}</span>`).join('')}</div>
+      </div>` : ''}
+
+      ${terpCards ? `<div class="sp-section">
+        <div class="sp-section-label">Terpene Deep Dive</div>
+        <div class="sp-terp-grid">${terpCards}</div>
+      </div>` : ''}
+
+      ${geneticsHtml ? `<div class="sp-section">
+        <div class="sp-section-label">Genetic Lineage</div>
+        ${geneticsHtml}
+      </div>` : ''}
+
+      ${tagsHtml ? `<div class="sp-section">
+        <div class="sp-section-label">Best For</div>
+        <div class="sp-tags">${tagsHtml}</div>
+      </div>` : ''}
+
+      ${relCards ? `<div class="sp-section">
+        <div class="sp-section-label">Similar Strains</div>
+        <div class="sp-rel-grid">${relCards}</div>
+      </div>` : ''}
+    </div>
+
+    <!-- Sidebar: SDL + Erba box -->
+    <div class="sp-sidebar">
+      <div class="sdl">
+        <div class="sdl-header">
+          <div class="sdl-header-name">${s.name}</div>
+          <div class="sdl-type-badge">${typeLabel}</div>
+        </div>
+        ${s.genetics ? `<div class="sdl-subheader"><div class="sdl-lineage">Lineage: <span>${s.genetics}</span></div></div>` : ''}
+        <div class="sdl-body">
+          <div class="sdl-section-label">Potency</div>
+          <div class="sdl-row">
+            <span class="sdl-row-label">THC</span>${thcVal}
+          </div>
+          <div class="sdl-row">
+            <span class="sdl-row-label">CBD</span>${cbdVal}
+          </div>
+          <div class="sdl-row">
+            <span class="sdl-row-label">Total Cannabinoids</span>${sdlPending}
+          </div>
+          <div class="sdl-divider-thick"></div>
+          <div class="sdl-section-label">Terpene Profile</div>
+          <div class="sdl-row">
+            <span class="sdl-row-label">#1 Dominant</span>
+            ${terp1 ? `<span class="sdl-row-value">${terp1}</span>` : sdlPending}
+          </div>
+          <div class="sdl-row">
+            <span class="sdl-row-label">#2</span>
+            ${terp2 ? `<span class="sdl-row-value">${terp2}</span>` : sdlPending}
+          </div>
+          <div class="sdl-row">
+            <span class="sdl-row-label">#3</span>
+            ${terp3 ? `<span class="sdl-row-value">${terp3}</span>` : sdlPending}
+          </div>
+          <div class="sdl-divider-thick"></div>
+          <div class="sdl-section-label">Effects</div>
+          <div class="sdl-row">
+            <span class="sdl-row-label">Dominant Effects</span>
+            ${(s.effects||[]).length > 0 ? `<span class="sdl-row-value" style="text-align:right;max-width:50%">${(s.effects||[]).slice(0,2).join(', ')}</span>` : sdlPending}
+          </div>
+          <div class="sdl-row">
+            <span class="sdl-row-label">Onset (inhale)</span>${sdlPending}
+          </div>
+          <div class="sdl-row">
+            <span class="sdl-row-label">Duration</span>${sdlPending}
+          </div>
+        </div>
+        <div class="sdl-footer">
+          <span>COA data pending</span>
+          <span>cannascenti.com</span>
+        </div>
+      </div>
+
+      <div class="sp-erba">
+        <div class="sp-erba-label">Find at Erba Sawtelle</div>
+        <p>Check if <strong>${s.name}</strong> is in stock at Erba Sawtelle, Los Angeles.</p>
+        <a href="https://weedmaps.com/dispensaries/erba-2/menu?searchQuery=${encodeURIComponent(s.name)}" target="_blank" rel="noopener noreferrer" class="sp-erba-btn">Search on Weedmaps &#8599;</a>
+        <p class="sp-erba-note">Opens Erba Sawtelle's live menu &middot; Stock changes daily</p>
+      </div>
+    </div>
   </div>
-
-  ${(s.effects||[]).length > 0 ? `<div class="sp-section">
-    <div class="sp-section-title">Effects</div>
-    <div class="sp-effects">${(s.effects||[]).map(e=>`<span class="sp-eff">${e}</span>`).join('')}</div>
-  </div>` : ''}
-
-  ${(s.flavors||[]).length > 0 ? `<div class="sp-section">
-    <div class="sp-section-title">Flavor Profile</div>
-    <div class="sp-flavors">${(s.flavors||[]).map(f=>`<span class="sp-flav">${f}</span>`).join('')}</div>
-  </div>` : ''}
-
-  ${terpCards ? `<div class="sp-section">
-    <div class="sp-section-title">Terpene Deep Dive</div>
-    <div class="sp-terp-grid">${terpCards}</div>
-  </div>` : ''}
-
-  ${tagsHtml ? `<div class="sp-section">
-    <div class="sp-section-title">Best For</div>
-    <div class="sp-tags">${tagsHtml}</div>
-  </div>` : ''}
-
-  ${geneticsHtml ? `<div class="sp-section">
-    <div class="sp-section-title">Genetic Lineage</div>
-    ${geneticsHtml}
-  </div>` : ''}
-
-  <div class="sp-section" style="background:rgba(82,183,136,0.06);border:1px solid rgba(82,183,136,0.25);border-radius:12px;padding:24px;">
-    <div class="sp-section-title" style="color:#52B788;">Find at Erba Sawtelle</div>
-    <p style="color:#ccc;margin:0 0 16px;font-size:0.95rem;">Check if <strong style="color:#fff;">${s.name}</strong> is currently in stock at Erba Sawtelle in Los Angeles.</p>
-    <a href="https://weedmaps.com/dispensaries/erba-2/menu?searchQuery=${encodeURIComponent(s.name)}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;background:#52B788;color:#0a0f0a;font-weight:700;padding:12px 22px;border-radius:8px;text-decoration:none;font-size:0.95rem;">
-      🌿 Search on Weedmaps
-    </a>
-    <p style="color:#666;margin:12px 0 0;font-size:0.8rem;">Opens Erba Sawtelle's live menu · Stock changes daily</p>
-  </div>
-
-  ${relCards ? `<div class="sp-section">
-    <div class="sp-section-title">Similar Strains</div>
-    <div class="sp-rel-grid">${relCards}</div>
-  </div>` : ''}
 </div>
+
+<script>
+  const ham = document.getElementById('navHam');
+  const links = document.getElementById('navLinks');
+  if (ham) ham.addEventListener('click', () => links.classList.toggle('open'));
+</script>
 </body>
 </html>`;
 

@@ -577,6 +577,284 @@ input, textarea { font-family:inherit; }
   .hero-stats       { gap:24px; }
 }
 
+/* ─── Strain Profile Page ──────────────────────────────────────── */
+.sp-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 32px 120px;
+}
+.sp-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: .06em;
+  color: var(--text-3);
+  margin-bottom: 28px;
+}
+.sp-breadcrumb a {
+  color: var(--text-3);
+  text-decoration: none;
+  transition: color .2s;
+}
+.sp-breadcrumb a:hover { color: var(--gold); }
+.sp-breadcrumb-sep { opacity: .35; }
+.sp-hero {
+  margin-bottom: 52px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.sp-name {
+  font-family: var(--serif);
+  font-size: clamp(2.6rem, 6vw, 4.5rem);
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.sp-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.sp-type-badge {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  padding: 5px 12px;
+}
+.sp-ask-mj {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(201,168,76,.3);
+  border-radius: 3px;
+  padding: 5px 14px;
+  text-decoration: none;
+  font-family: var(--sans);
+  transition: background .2s, border-color .2s;
+}
+.sp-ask-mj:hover {
+  background: rgba(201,168,76,.08);
+  border-color: var(--gold);
+}
+/* Two-column layout */
+.sp-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 56px;
+  align-items: start;
+}
+.sp-sidebar {
+  position: sticky;
+  top: 80px;
+}
+.sp-section {
+  margin-bottom: 44px;
+}
+.sp-section-label {
+  font-size: 9px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sp-section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.sp-desc {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: var(--text-2);
+}
+.sp-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.sp-chip {
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 7px 16px;
+  font-size: 12px;
+  color: var(--text-2);
+  letter-spacing: .03em;
+}
+.sp-chip-gold {
+  background: rgba(201,168,76,.06);
+  border: 1px solid rgba(201,168,76,.2);
+  color: rgba(201,168,76,.85);
+}
+.sp-terp-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+.sp-terp-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 16px 18px;
+  border-left: 3px solid var(--gold);
+}
+.sp-terp-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+}
+.sp-terp-aroma {
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 8px;
+}
+.sp-terp-effect {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text-2);
+}
+.sp-genetics {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.6;
+  font-style: italic;
+  border-left: 2px solid rgba(201,168,76,.25);
+  padding-left: 14px;
+}
+.sp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.sp-tag {
+  background: rgba(201,168,76,.06);
+  border: 1px solid rgba(201,168,76,.18);
+  border-radius: 3px;
+  padding: 5px 10px;
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,.8);
+}
+/* Related strains */
+.sp-rel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.sp-rel-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  text-decoration: none;
+  display: block;
+  transition: border-color .2s, transform .15s;
+}
+.sp-rel-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+.sp-rel-bar { height: 2px; }
+.sp-rel-body { padding: 12px 14px; }
+.sp-rel-name {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+.sp-rel-type {
+  font-size: 9px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.sp-rel-effects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.sp-rel-eff {
+  font-size: 10px;
+  background: rgba(255,255,255,.04);
+  border-radius: 3px;
+  padding: 2px 6px;
+  color: var(--text-3);
+}
+/* Erba availability box */
+.sp-erba {
+  background: rgba(201,168,76,.05);
+  border: 1px solid rgba(201,168,76,.2);
+  border-radius: 4px;
+  padding: 18px;
+  margin-top: 16px;
+}
+.sp-erba-label {
+  font-size: 9px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.sp-erba p {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.55;
+  margin-bottom: 14px;
+}
+.sp-erba p strong { color: var(--text); }
+.sp-erba-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gold);
+  color: var(--bg);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: .06em;
+  padding: 10px 18px;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: opacity .2s;
+}
+.sp-erba-btn:hover { opacity: .85; }
+.sp-erba-note {
+  font-size: 10px;
+  color: var(--text-3);
+  margin-top: 10px !important;
+  margin-bottom: 0 !important;
+}
+/* Responsive */
+@media (max-width: 900px) {
+  .sp-layout { grid-template-columns: 1fr; gap: 40px; }
+  .sp-sidebar { position: static; }
+}
+@media (max-width: 600px) {
+  .sp-wrap { padding: 40px 20px 80px; }
+  .sp-name { font-size: 2.2rem; }
+  .sp-rel-grid { grid-template-columns: 1fr; }
+}
+
 /* ─── Strain Data Label (SDL) ──────────────────────────────────── */
 .sdl-page {
   background: var(--bg);
