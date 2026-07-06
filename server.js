@@ -1205,7 +1205,7 @@ ${isPrivacy ? `<h1>Privacy Policy</h1><p>Last updated: April 2026</p>
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Terpenes — Cannascenti Encyclopedia</title>
+<title>The Aromatics — Terpene Profiles | Cannascenti</title>
 <meta name="description" content="Interactive terpene wheel with 15 terpene profiles — aromas, effects, boiling points, and strain pairings. Myrcene, limonene, caryophyllene, terpinolene and more.">
 ${ENC_FONTS}
 <style>
@@ -1294,8 +1294,8 @@ h2.tsec em{color:#52B788;font-style:italic}
 ${ENC_NAV}
 <div class="enc-page">
   <div class="enc-page-header">
-    <div class="enc-label">✦ Cannascenti Encyclopedia</div>
-    <h1 class="enc-title">Terpenes are <em>everything.</em></h1>
+    <div class="enc-label">✦ The Cannascenti Lore — The Aromatics</div>
+    <h1 class="enc-title">The Aromatics. <em>Terpene Profiles.</em></h1>
     <p class="enc-desc">If you don't know your strain, you know your terpene. If you know your terpene, you know your strain. Terpenes aren't unique to cannabis — they're the aromatic language of the entire plant kingdom. Lavender, black pepper, mangoes, hops, pine forests — your endocannabinoid system has been responding to terpenes your whole life. Cannabis just delivers them in extraordinary concentration.</p>
   </div>
 
@@ -3117,7 +3117,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cannabinoids &amp; Your Body — Cannascenti Encyclopedia</title>
+<title>The Compounds — Cannabinoid Profiles | Cannascenti</title>
 <meta name="description" content="THC, CBD, CBG, CBN, THCV, CBC and more — full profiles, interactive body map, and ratio guide. Everything you need to understand cannabinoids.">
 ${ENC_FONTS}
 <style>
@@ -3233,8 +3233,8 @@ ${ENC_BASE_CSS}
 ${ENC_NAV}
 <div class="enc-page">
   <div class="enc-page-header">
-    <div class="enc-label">&#10022; Cannascenti Encyclopedia</div>
-    <h1 class="enc-title">Cannabinoids &amp; Your <em>Body.</em></h1>
+    <div class="enc-label">✦ The Cannascenti Lore — The Compounds</div>
+    <h1 class="enc-title">The Compounds. <em>Cannabinoid Profiles.</em></h1>
     <p class="enc-desc">THC is just the beginning. Explore every major cannabinoid, an interactive body map showing where each one acts, and a complete ratio guide for dialing in your experience.</p>
   </div>
   <div class="cn-tabs">
