@@ -4357,7 +4357,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cannabis History & Origins — Cannascenti Encyclopedia</title>
+<title>The Chronicle — Cannabis History & Origins | Cannascenti</title>
 <meta name="description" content="12,000 years of cannabis history — from ancient China and the Silk Road to modern legalization. The complete timeline of the world's most consequential plant.">
 ${ENC_FONTS}
 <style>
@@ -4404,7 +4404,7 @@ ${ENC_NAV}
 <div class="globe-section">
   <div class="globe-section-inner">
     <div class="enc-page-header" style="padding-top:0;margin-bottom:32px">
-      <div class="enc-label">✦ Cannascenti Encyclopedia</div>
+      <div class="enc-label">✦ The Cannascenti Lore — The Chronicle</div>
       <h1 class="enc-title">Cannabis <em>origins &amp; lineages.</em></h1>
       <p class="enc-desc">Every strain traces back to a specific place on earth. Drag the globe. Click any marker to explore the landrace genetics, Strain Hunters expeditions, and the journey from wild plant to modern variety.</p>
     </div>
@@ -5393,7 +5393,7 @@ document.addEventListener('DOMContentLoaded', function(){
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cannabis Glossary — ${_GL.length} Terms Defined | Cannascenti</title>
+<title>The Lexicon — ${_GL.length} Cannabis Terms | Cannascenti</title>
 <meta name="description" content="${_GL.length} cannabis terms defined — cannabinoids, terpenes, cultivation, concentrates, and consumption. Reference-grade definitions written for consumers and industry professionals.">
 <script type="application/ld+json">
 {
@@ -5453,9 +5453,9 @@ ${ENC_BASE_CSS}
 ${ENC_NAV}
 <div class="enc-page">
   <div class="enc-page-header">
-    <div class="enc-label">&#10022; Cannascenti Encyclopedia</div>
-    <h1 class="enc-title">The Cannabis <em>Glossary.</em></h1>
-    <p class="enc-desc">Every term you'll encounter in cannabis — from the science of the endocannabinoid system to cultivation technique to concentrate culture. Searchable, filterable, and plainly explained.</p>
+    <div class="enc-label">✦ The Cannascenti Lore — The Lexicon</div>
+    <h1 class="enc-title">The <em>Lexicon.</em></h1>
+    <p class="enc-desc">Every term in the cannabis world — from the science of the endocannabinoid system to cultivation technique to concentrate culture. The language of the lore, searchable and plainly explained.</p>
   </div>
 
   <div class="gl-search-wrap">
@@ -6359,7 +6359,7 @@ a{color:var(--bright-green);text-decoration:none}
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Budtender Pro — Cannascenti</title>
+<title>The Order — Budtender Pro | Cannascenti</title>
 <meta name="description" content="Professional cannabis intelligence for dispensary staff. Customer intake, strain matching, glossary, talking points, and dosing reference — all in one tool.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -6523,7 +6523,7 @@ a{color:var(--bright-green);text-decoration:none}
 
 <div class="bp-hero">
   <div>
-    <div class="section-label">✦ Budtender Pro</div>
+    <div class="section-label">✦ The Order</div>
     <div class="section-title">The tool built for <em>the floor.</em></div>
     <p class="bp-hero-desc">Fast, practical cannabis intelligence for dispensary professionals. Customer intake, instant strain matching, terminology reference, and ready-to-use customer scripts — everything you need to give exceptional service on every transaction.</p>
   </div>
