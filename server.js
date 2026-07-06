@@ -2325,14 +2325,14 @@ document.addEventListener('DOMContentLoaded', function(){ doFilter(); });
         <div class="sp-rel-grid">${relCards}</div>
       </div>` : ''}
 
-      \${rawSlug === 'og-kush' ? `<div class="sp-section" style="margin-top:32px">
+      ${rawSlug === 'og-kush' ? `<div class="sp-section" style="margin-top:32px">
         <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#C9A84C;margin-bottom:8px">Strain Spotlight · Magazine</div>
         <a href="/magazine/strain-spotlight-og-kush" style="display:block;padding:18px 20px;background:rgba(201,160,76,0.06);border:1px solid rgba(201,160,76,0.2);border-radius:6px;text-decoration:none;transition:background .2s" onmouseover="this.style.background='rgba(201,160,76,0.1)'" onmouseout="this.style.background='rgba(201,160,76,0.06)'">
           <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#F2EAD8;margin-bottom:4px">Strain Spotlight: OG Kush</div>
           <div style="font-size:.78rem;color:rgba(242,234,216,0.45)">The strain that built LA cannabis — full lineage tree, the OG family, and floor-level truth from 12 years on the market.</div>
         </a>
       </div>` : ''}
-      \${rawSlug === 'blue-dream' ? `<div class="sp-section" style="margin-top:32px">
+      ${rawSlug === 'blue-dream' ? `<div class="sp-section" style="margin-top:32px">
         <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#C9A84C;margin-bottom:8px">Strain Spotlight · Magazine</div>
         <a href="/magazine/strain-spotlight-blue-dream" style="display:block;padding:18px 20px;background:rgba(201,160,76,0.06);border:1px solid rgba(201,160,76,0.2);border-radius:6px;text-decoration:none;transition:background .2s" onmouseover="this.style.background='rgba(201,160,76,0.1)'" onmouseout="this.style.background='rgba(201,160,76,0.06)'">
           <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#F2EAD8;margin-bottom:4px">Strain Spotlight: Blue Dream</div>
