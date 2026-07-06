@@ -2325,7 +2325,14 @@ document.addEventListener('DOMContentLoaded', function(){ doFilter(); });
         <div class="sp-rel-grid">${relCards}</div>
       </div>` : ''}
 
-      ${rawSlug === 'blue-dream' ? `<div class="sp-section" style="margin-top:32px">
+      \${rawSlug === 'og-kush' ? `<div class="sp-section" style="margin-top:32px">
+        <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#C9A84C;margin-bottom:8px">Strain Spotlight · Magazine</div>
+        <a href="/magazine/strain-spotlight-og-kush" style="display:block;padding:18px 20px;background:rgba(201,160,76,0.06);border:1px solid rgba(201,160,76,0.2);border-radius:6px;text-decoration:none;transition:background .2s" onmouseover="this.style.background='rgba(201,160,76,0.1)'" onmouseout="this.style.background='rgba(201,160,76,0.06)'">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#F2EAD8;margin-bottom:4px">Strain Spotlight: OG Kush</div>
+          <div style="font-size:.78rem;color:rgba(242,234,216,0.45)">The strain that built LA cannabis — full lineage tree, the OG family, and floor-level truth from 12 years on the market.</div>
+        </a>
+      </div>` : ''}
+      \${rawSlug === 'blue-dream' ? `<div class="sp-section" style="margin-top:32px">
         <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#C9A84C;margin-bottom:8px">Strain Spotlight · Magazine</div>
         <a href="/magazine/strain-spotlight-blue-dream" style="display:block;padding:18px 20px;background:rgba(201,160,76,0.06);border:1px solid rgba(201,160,76,0.2);border-radius:6px;text-decoration:none;transition:background .2s" onmouseover="this.style.background='rgba(201,160,76,0.1)'" onmouseout="this.style.background='rgba(201,160,76,0.06)'">
           <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#F2EAD8;margin-bottom:4px">Strain Spotlight: Blue Dream</div>
@@ -6450,6 +6457,427 @@ a:hover{text-decoration:underline}
     <div class="mag-mj-cta">
       <p>Not sure if Blue Dream is your match? Tell Mary Jane how you want to feel — she'll confirm this strain or point you somewhere better.</p>
       <a href="/?ask=Is Blue Dream right for me?" class="mag-mj-btn">Consult the Oracle →</a>
+    </div>
+  </div>
+
+  <div class="mag-footer">
+    <span>&copy; 2026 Cannascenti</span>
+    <span><a href="/">cannascenti.com</a></span>
+  </div>
+</div>
+
+</body>
+</html>`;
+    res.writeHead(200, {"Content-Type":"text/html","Cache-Control":"no-cache"});
+    res.end(html);
+    return;
+  }
+
+
+  // ─── Magazine: Strain Spotlight — OG Kush ────────────────────────────────────
+  if (req.method === "GET" && req.url === "/magazine/strain-spotlight-og-kush") {
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Strain Spotlight: OG Kush — Cannascenti Magazine</title>
+<meta name="description" content="OG Kush: the strain that built LA cannabis and the genetic ancestor of half the modern menu. Full lineage tree, terpene breakdown, and 12 years of floor truth.">
+<meta property="og:title" content="Strain Spotlight: OG Kush — Cannascenti Magazine">
+<meta property="og:description" content="The strain that built LA cannabis — and the genetic ancestor of half the modern menu. The full OG family tree, terpene breakdown, and floor-level truth.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://cannascenti.com/magazine/strain-spotlight-og-kush">
+${ENC_FONTS}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Strain Spotlight: OG Kush",
+  "description": "OG Kush: the strain that built LA cannabis and the genetic ancestor of half the modern menu. Full lineage tree, terpene breakdown, and floor-level truth.",
+  "url": "https://cannascenti.com/magazine/strain-spotlight-og-kush",
+  "datePublished": "2026-07-06",
+  "dateModified": "2026-07-06",
+  "author": {
+    "@type": "Person",
+    "name": "Michael Encinas",
+    "jobTitle": "Budtender & Founder",
+    "worksFor": { "@type": "Organization", "name": "Cannascenti" }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Cannascenti",
+    "url": "https://cannascenti.com"
+  },
+  "about": {
+    "@type": "Thing",
+    "name": "OG Kush",
+    "description": "A hybrid cannabis strain originating from Southern California, crossed from Chemdawg and Hindu Kush × Lemon Thai. The genetic ancestor of much of the modern California cannabis market."
+  },
+  "keywords": "OG Kush, cannabis strain, lineage tree, terpenes, myrcene, limonene, caryophyllene, LA cannabis, California cannabis, OG family, Girl Scout Cookies, Gelato, Runtz"
+}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#060e08;color:#F2EAD8;font-family:'Montserrat',sans-serif;font-weight:300;line-height:1.7}
+a{color:#52B788;text-decoration:none}
+a:hover{text-decoration:underline}
+
+.mag-nav{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;border-bottom:1px solid rgba(255,255,255,0.07);position:sticky;top:0;background:rgba(6,14,8,0.95);backdrop-filter:blur(12px);z-index:100}
+.mag-nav-logo{font-family:'Cormorant Garamond',serif;font-size:18px;letter-spacing:.06em;color:#F2EAD8}
+.mag-nav-links{display:flex;gap:24px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(242,234,216,0.5)}
+.mag-nav-links a{color:rgba(242,234,216,0.5);transition:color .2s}
+.mag-nav-links a:hover{color:#52B788;text-decoration:none}
+
+.mag-wrap{max-width:760px;margin:0 auto;padding:64px 32px 120px}
+
+.mag-eyebrow{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#C9A84C;margin-bottom:16px}
+.mag-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.2rem);font-weight:300;line-height:1.15;color:#F2EAD8;margin-bottom:12px}
+.mag-deck{font-size:1.05rem;color:rgba(242,234,216,0.6);font-style:italic;margin-bottom:32px;line-height:1.6}
+.mag-meta{display:flex;gap:20px;align-items:center;padding:16px 0;border-top:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:48px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(242,234,216,0.4)}
+.mag-meta-author{color:rgba(242,234,216,0.7)}
+.mag-meta-sep{color:rgba(255,255,255,0.15)}
+
+.mag-body h2{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:#F2EAD8;margin:48px 0 16px;line-height:1.2}
+.mag-body p{font-size:.95rem;line-height:1.85;color:rgba(242,234,216,0.8);margin-bottom:20px}
+.mag-body ul{margin:0 0 24px 0;padding-left:0;list-style:none}
+.mag-body ul li{font-size:.95rem;line-height:1.8;color:rgba(242,234,216,0.8);padding:4px 0 4px 20px;position:relative}
+.mag-body ul li::before{content:'—';position:absolute;left:0;color:#C9A84C}
+.mag-body strong{color:#F2EAD8;font-weight:500}
+.mag-body em{color:rgba(242,234,216,0.6);font-style:italic}
+.mag-body hr{border:none;border-top:1px solid rgba(255,255,255,0.08);margin:40px 0}
+.mag-body a{color:#52B788;border-bottom:1px solid rgba(82,183,136,0.3)}
+.mag-body a:hover{border-color:#52B788;text-decoration:none}
+
+/* ── Lineage Tree ── */
+.lineage-section{margin:56px -32px;padding:48px 32px;background:rgba(0,0,0,0.3);border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06)}
+.lineage-eyebrow{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#C9A84C;margin-bottom:10px}
+.lineage-title{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:300;color:#F2EAD8;margin-bottom:8px}
+.lineage-intro{font-size:.82rem;color:rgba(242,234,216,0.4);margin-bottom:28px;line-height:1.6}
+.lineage-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -32px;padding:0 32px}
+.lineage-svg{display:block;min-width:740px;width:100%;max-width:960px;margin:0 auto}
+.ln-node{cursor:pointer}
+.ln-node rect{transition:filter .2s}
+.ln-node:hover rect{filter:brightness(1.4)}
+.lineage-legend{display:flex;gap:24px;margin-top:20px;flex-wrap:wrap}
+.lineage-legend-item{display:flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:rgba(242,234,216,0.4)}
+.lineage-legend-box{width:28px;height:12px;border-radius:2px}
+
+/* ── OG Family grid ── */
+.og-family{margin:48px 0}
+.og-family-eyebrow{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#52B788;margin-bottom:12px}
+.og-family-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;color:#F2EAD8;margin-bottom:20px}
+.og-family-group{margin-bottom:24px}
+.og-family-group-label{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,234,216,0.35);margin-bottom:10px}
+.og-family-chips{display:flex;flex-wrap:wrap;gap:8px}
+.og-chip{display:inline-block;padding:5px 12px;border:1px solid rgba(255,255,255,0.1);border-radius:20px;font-size:.75rem;color:rgba(242,234,216,0.65);text-decoration:none;transition:all .2s}
+.og-chip:hover{border-color:#52B788;color:#52B788;text-decoration:none}
+.og-chip.phenotype{border-style:dashed}
+
+.mag-strain-link{display:block;margin:40px 0;padding:24px 28px;background:rgba(201,160,76,0.06);border:1px solid rgba(201,160,76,0.2);border-radius:8px;transition:background .2s}
+.mag-strain-link:hover{background:rgba(201,160,76,0.1);text-decoration:none}
+.mag-strain-link-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#C9A84C;margin-bottom:6px}
+.mag-strain-link-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:#F2EAD8}
+.mag-strain-link-sub{font-size:.8rem;color:rgba(242,234,216,0.45);margin-top:4px}
+
+.mag-mj-cta{margin:48px 0 0;padding:28px 32px;background:rgba(201,160,76,0.06);border:1px solid rgba(201,160,76,0.2);border-radius:8px;text-align:center}
+.mag-mj-cta p{font-size:.9rem;color:rgba(242,234,216,0.65);margin-bottom:16px}
+.mag-mj-btn{display:inline-block;background:#C9A84C;color:#060e08;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:12px 24px;border-radius:4px;text-decoration:none;transition:background .2s}
+.mag-mj-btn:hover{background:#D4B86A;text-decoration:none}
+
+.mag-footer{margin-top:80px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.07);font-size:11px;color:rgba(242,234,216,0.3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+@media(max-width:600px){.mag-wrap{padding:40px 20px 80px}.mag-nav{padding:16px 20px}.mag-nav-links{display:none}.lineage-section{margin:40px -20px;padding:32px 20px}}
+</style>
+</head>
+<body>
+
+<nav class="mag-nav">
+  <a href="/" class="mag-nav-logo">Cannascenti</a>
+  <div class="mag-nav-links">
+    <a href="/strains">Bloodlines</a>
+    <a href="/#encyclopedia-hub">The Lore</a>
+    <a href="/for-dispensaries">For Dispensaries</a>
+  </div>
+</nav>
+
+<div class="mag-wrap">
+  <div class="mag-eyebrow">Strain Spotlight · Magazine</div>
+  <h1 class="mag-title">Strain Spotlight:<br>OG Kush</h1>
+  <p class="mag-deck">The strain that built LA cannabis — and the genetic ancestor of half the modern menu.</p>
+  <div class="mag-meta">
+    <span class="mag-meta-author">By Michael Encinas — Budtender &amp; Founder</span>
+    <span class="mag-meta-sep">·</span>
+    <span>Last updated July 6, 2026</span>
+  </div>
+
+  <div class="mag-body">
+    <h2>The Story</h2>
+    <p>OG Kush's origin is genuinely disputed, which is fitting for a strain that became part cannabis myth. The most documented story: it came out of Florida in the early 1990s when a grower connected to the Chemdawg circle brought genetics west to Southern California — specifically the San Fernando Valley — where they were worked, stabilized, and eventually became the foundational strain of the entire LA cannabis market.</p>
+    <p>The "OG" still gets debated: some say "Ocean Grown" (a nod to coastal California conditions), others say "Original Gangster." Both get claimed depending on who's telling the story. What nobody disputes: once OG landed in LA, it defined the market for the next twenty years.</p>
+
+    <h2>The Lineage</h2>
+    <p>OG Kush is a cross of <strong>Chemdawg</strong> and a <strong>Hindu Kush × Lemon Thai</strong> hybrid. Chemdawg brings the fuel, the intensity, and the cerebral disorientation. Hindu Kush brings the resin, the body weight, and the sedation. Lemon Thai contributes the citrus lift — the reason OG never feels purely dark.</p>
+    <p>The result was a strain nobody had seen before: heavy and cerebral at the same time. And a terpene profile that turned out to be endlessly reproducible, which is why breeders kept reaching for it.</p>
+  </div>
+
+  <!-- ── LINEAGE TREE ── -->
+  <div class="lineage-section">
+    <div class="lineage-eyebrow">Genetic Lineage</div>
+    <h2 class="lineage-title">The OG Kush Family Tree</h2>
+    <p class="lineage-intro">From ancestors to third-generation descendants. Click any strain to view its full profile. Dashed nodes = phenotype or cut of OG Kush. Solid nodes = OG crossed with another strain.</p>
+    <div class="lineage-wrap">
+      <svg viewBox="0 0 960 460" class="lineage-svg" xmlns="http://www.w3.org/2000/svg">
+
+        <!-- Column labels -->
+        <text x="80" y="20" font-family="Montserrat,sans-serif" font-size="9" font-weight="600" letter-spacing="2" text-anchor="middle" fill="rgba(242,234,216,0.25)" text-transform="uppercase">ORIGINS</text>
+        <text x="270" y="20" font-family="Montserrat,sans-serif" font-size="9" font-weight="600" letter-spacing="2" text-anchor="middle" fill="rgba(201,160,76,0.6)" text-transform="uppercase">OG KUSH</text>
+        <text x="480" y="20" font-family="Montserrat,sans-serif" font-size="9" font-weight="600" letter-spacing="2" text-anchor="middle" fill="rgba(82,183,136,0.5)" text-transform="uppercase">GEN 1</text>
+        <text x="700" y="20" font-family="Montserrat,sans-serif" font-size="9" font-weight="600" letter-spacing="2" text-anchor="middle" fill="rgba(82,183,136,0.35)" text-transform="uppercase">GEN 2</text>
+        <text x="880" y="20" font-family="Montserrat,sans-serif" font-size="9" font-weight="600" letter-spacing="2" text-anchor="middle" fill="rgba(82,183,136,0.25)" text-transform="uppercase">GEN 3</text>
+
+        <!-- Divider line under labels -->
+        <line x1="20" y1="28" x2="940" y2="28" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+        <!-- ── CONNECTION LINES (draw first, behind nodes) ── -->
+
+        <!-- Ancestors → OG Kush (right edge of ancestor to left edge of OG) -->
+        <!-- Chemdawg (80,120) right=(145,120) → OG left=(200,230) -->
+        <path d="M 145,120 C 172,120 200,230 200,230" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+        <!-- Hindu Kush (80,230) right=(145,230) → OG left=(200,230) -->
+        <path d="M 145,230 L 200,230" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+        <!-- Lemon Thai (80,340) right=(145,340) → OG left=(200,230) -->
+        <path d="M 145,340 C 172,340 200,230 200,230" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+
+        <!-- OG Kush (270,230) right=(340,230) → Gen1 nodes left=(415,y) -->
+        <!-- → SFV OG (480,75) -->
+        <path d="M 340,230 C 377,230 415,75 415,75" fill="none" stroke="rgba(82,183,136,0.3)" stroke-width="1.5"/>
+        <!-- → Tahoe OG (480,145) -->
+        <path d="M 340,230 C 377,230 415,145 415,145" fill="none" stroke="rgba(82,183,136,0.3)" stroke-width="1.5"/>
+        <!-- → Ghost OG (480,215) -->
+        <path d="M 340,230 C 377,230 415,215 415,215" fill="none" stroke="rgba(82,183,136,0.3)" stroke-width="1.5"/>
+        <!-- → GSC (480,295) -->
+        <path d="M 340,230 C 377,230 415,295 415,295" fill="none" stroke="rgba(82,183,136,0.4)" stroke-width="1.5"/>
+        <!-- → Bubba Kush (480,365) -->
+        <path d="M 340,230 C 377,230 415,365 415,365" fill="none" stroke="rgba(82,183,136,0.3)" stroke-width="1.5"/>
+        <!-- → King Louis (480,430) -->
+        <path d="M 340,230 C 377,230 415,430 415,430" fill="none" stroke="rgba(82,183,136,0.3)" stroke-width="1.5"/>
+
+        <!-- GSC (480,295) right=(545,295) → Gelato (700,250) left=(635,250) -->
+        <path d="M 545,295 C 590,295 635,250 635,250" fill="none" stroke="rgba(82,183,136,0.35)" stroke-width="1.5"/>
+
+        <!-- Gelato (700,250) right=(765,250) → Runtz (880,250) left=(815,250) -->
+        <path d="M 765,250 L 815,250" fill="none" stroke="rgba(82,183,136,0.25)" stroke-width="1.5"/>
+
+        <!-- ── NODES ── -->
+
+        <!-- ANCESTORS -->
+        <!-- Chemdawg -->
+        <a href="/strains/chemdawg" class="ln-node">
+          <rect x="15" y="102" width="130" height="36" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+          <text x="80" y="116" font-family="'Cormorant Garamond',serif" font-size="13" text-anchor="middle" fill="rgba(242,234,216,0.85)">Chemdawg</text>
+          <text x="80" y="130" font-family="Montserrat,sans-serif" font-size="8.5" text-anchor="middle" fill="rgba(242,234,216,0.3)">hybrid · ancestor</text>
+        </a>
+        <!-- Hindu Kush -->
+        <a href="/strains/hindu-kush" class="ln-node">
+          <rect x="15" y="212" width="130" height="36" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+          <text x="80" y="226" font-family="'Cormorant Garamond',serif" font-size="13" text-anchor="middle" fill="rgba(242,234,216,0.85)">Hindu Kush</text>
+          <text x="80" y="240" font-family="Montserrat,sans-serif" font-size="8.5" text-anchor="middle" fill="rgba(242,234,216,0.3)">indica · landrace</text>
+        </a>
+        <!-- Lemon Thai -->
+        <a href="/strains/lemon-thai" class="ln-node">
+          <rect x="15" y="322" width="130" height="36" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+          <text x="80" y="336" font-family="'Cormorant Garamond',serif" font-size="13" text-anchor="middle" fill="rgba(242,234,216,0.85)">Lemon Thai</text>
+          <text x="80" y="350" font-family="Montserrat,sans-serif" font-size="8.5" text-anchor="middle" fill="rgba(242,234,216,0.3)">sativa · landrace</text>
+        </a>
+
+        <!-- OG KUSH — star node, gold, larger -->
+        <a href="/strains/og-kush" class="ln-node">
+          <rect x="200" y="206" width="140" height="48" rx="5" fill="rgba(201,160,76,0.12)" stroke="#C9A84C" stroke-width="1.5"/>
+          <text x="270" y="224" font-family="'Cormorant Garamond',serif" font-size="15" font-weight="400" text-anchor="middle" fill="#F2EAD8">OG Kush</text>
+          <text x="270" y="241" font-family="Montserrat,sans-serif" font-size="8.5" text-anchor="middle" fill="rgba(201,160,76,0.8)">hybrid · 20–26% THC</text>
+        </a>
+
+        <!-- GEN 1 — PHENOTYPES (dashed border) -->
+        <!-- SFV OG -->
+        <a href="/strains/sfv-og" class="ln-node">
+          <rect x="415" y="57" width="130" height="36" rx="4" fill="rgba(82,183,136,0.05)" stroke="rgba(82,183,136,0.35)" stroke-width="1" stroke-dasharray="4,3"/>
+          <text x="480" y="71" font-family="'Cormorant Garamond',serif" font-size="13" text-anchor="middle" fill="rgba(242,234,216,0.85)">SFV OG</text>
+          <text x="480" y="85" font-family="Montserrat,sans-serif" font-size="8.5" text-anchor="middle" fill="rgba(82,183,136,0.5)">phenotype · LA classic</text>
+        </a>
+        <!-- Tahoe OG -->
+        <a href="/strains/tahoe-og" class="ln-node">
+          <rect x="415" y="127" width="130" height="36" rx="4" fill="rgba(82,183,136,0.05)" stroke="rgba(82,183,136,0.35)" stroke-width="1" stroke-dasharray="4,3"/>
+          <text x="480" y="141" font-family="'Cormorant Garamond',serif" font-size="13" text-anchor="middle" fill="rgba(242,234,216,0.85)">Tahoe OG</text>
+          <text x="480" y="155" font-family="Montserrat,sans-serif" font-size="8.5" text-anchor="middle" fill="rgba(82,183,136,0.5)">phenotype · NorCal cut</text>
+        </a>
+        <!-- Ghost OG -->
+        <a href="/strains/ghost-og" class="ln-node">
+          <rect x="415" y="197" width="130" height="36" rx="4" fill="rgba(82,183,136,0.05)" stroke="rgba(82,183,136,0.35)" stroke-width="1" stroke-dasharray="4,3"/>
+          <text x="480" y="211" font-family="'Cormorant Garamond',serif" font-size="13" text-anchor="middle" fill="rgba(242,234,216,0.85)">Ghost OG</text>
+          <text x="480" y="225" font-family="Montserrat,sans-serif" font-size="8.5" text-anchor="middle" fill="rgba(82,183,136,0.5)">phenotype · legendary cut</text>
+        </a>
+
+        <!-- GEN 1 — CROSSES (solid border) -->
+        <!-- GSC -->
+        <a href="/strains/girl-scout-cookies" class="ln-node">
+          <rect x="415" y="277" width="130" height="36" rx="4" fill="rgba(82,183,136,0.07)" stroke="rgba(82,183,136,0.5)" stroke-width="1"/>
+          <text x="480" y="291" font-family="'Cormorant Garamond',serif" font-size="13" text-anchor="middle" fill="#F2EAD8">Girl Scout Cookies</text>
+          <text x="480" y="305" font-family="Montserrat,sans-serif" font-size="8.5" text-anchor="middle" fill="rgba(82,183,136,0.5)">× Durban Poison</text>
+        </a>
+        <!-- Bubba Kush -->
+        <a href="/strains/bubba-kush" class="ln-node">
+          <rect x="415" y="347" width="130" height="36" rx="4" fill="rgba(82,183,136,0.05)" stroke="rgba(82,183,136,0.4)" stroke-width="1"/>
+          <text x="480" y="361" font-family="'Cormorant Garamond',serif" font-size="13" text-anchor="middle" fill="rgba(242,234,216,0.85)">Bubba Kush</text>
+          <text x="480" y="375" font-family="Montserrat,sans-serif" font-size="8.5" text-anchor="middle" fill="rgba(82,183,136,0.5)">× Northern Lights</text>
+        </a>
+        <!-- King Louis XIII -->
+        <a href="/strains/king-louis-xiii-og" class="ln-node">
+          <rect x="415" y="412" width="130" height="36" rx="4" fill="rgba(82,183,136,0.05)" stroke="rgba(82,183,136,0.4)" stroke-width="1"/>
+          <text x="480" y="426" font-family="'Cormorant Garamond',serif" font-size="13" text-anchor="middle" fill="rgba(242,234,216,0.85)">King Louis XIII</text>
+          <text x="480" y="440" font-family="Montserrat,sans-serif" font-size="8.5" text-anchor="middle" fill="rgba(82,183,136,0.5)">× LA Confidential</text>
+        </a>
+
+        <!-- GEN 2 -->
+        <!-- Gelato -->
+        <a href="/strains/gelato" class="ln-node">
+          <rect x="635" y="232" width="130" height="36" rx="4" fill="rgba(82,183,136,0.05)" stroke="rgba(82,183,136,0.35)" stroke-width="1"/>
+          <text x="700" y="246" font-family="'Cormorant Garamond',serif" font-size="13" text-anchor="middle" fill="rgba(242,234,216,0.85)">Gelato</text>
+          <text x="700" y="260" font-family="Montserrat,sans-serif" font-size="8.5" text-anchor="middle" fill="rgba(82,183,136,0.45)">× Sunset Sherbet</text>
+        </a>
+
+        <!-- GEN 3 -->
+        <!-- Runtz -->
+        <a href="/strains/runtz" class="ln-node">
+          <rect x="815" y="232" width="130" height="36" rx="4" fill="rgba(82,183,136,0.04)" stroke="rgba(82,183,136,0.25)" stroke-width="1"/>
+          <text x="880" y="246" font-family="'Cormorant Garamond',serif" font-size="13" text-anchor="middle" fill="rgba(242,234,216,0.75)">Runtz</text>
+          <text x="880" y="260" font-family="Montserrat,sans-serif" font-size="8.5" text-anchor="middle" fill="rgba(82,183,136,0.4)">× Zkittlez</text>
+        </a>
+
+      </svg>
+    </div>
+    <div class="lineage-legend">
+      <div class="lineage-legend-item">
+        <div class="lineage-legend-box" style="border:1px dashed rgba(82,183,136,0.4);background:rgba(82,183,136,0.05)"></div>
+        <span>OG Kush phenotype / cut — same genetics, different expression</span>
+      </div>
+      <div class="lineage-legend-item">
+        <div class="lineage-legend-box" style="border:1px solid rgba(82,183,136,0.5);background:rgba(82,183,136,0.07)"></div>
+        <span>OG Kush × another strain</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mag-body">
+
+    <!-- OG Family Full List -->
+    <div class="og-family">
+      <div class="og-family-eyebrow">The Full OG Family</div>
+      <div class="og-family-title">Every strain that carries OG Kush DNA</div>
+
+      <div class="og-family-group">
+        <div class="og-family-group-label">Phenotypes &amp; Cuts — same plant, different expressions</div>
+        <div class="og-family-chips">
+          <a href="/strains/sfv-og" class="og-chip phenotype">SFV OG</a>
+          <a href="/strains/tahoe-og" class="og-chip phenotype">Tahoe OG</a>
+          <a href="/strains/ghost-og" class="og-chip phenotype">Ghost OG</a>
+          <a href="/strains/true-og" class="og-chip phenotype">True OG</a>
+          <a href="/strains/larry-og" class="og-chip phenotype">Larry OG</a>
+          <a href="/strains/platinum-og" class="og-chip phenotype">Platinum OG</a>
+          <a href="/strains/headband-og" class="og-chip phenotype">Headband OG</a>
+          <a href="/strains/diablo-og" class="og-chip phenotype">Diablo OG</a>
+          <a href="/strains/presidential-og" class="og-chip phenotype">Presidential OG</a>
+          <a href="/strains/venom-og" class="og-chip phenotype">Venom OG</a>
+          <a href="/strains/cali-og" class="og-chip phenotype">Cali OG</a>
+          <a href="/strains/lucid-og" class="og-chip phenotype">Lucid OG</a>
+          <a href="/strains/jupiter-og" class="og-chip phenotype">Jupiter OG</a>
+          <span class="og-chip phenotype" style="cursor:default;opacity:.5">Hardcore OG</span>
+          <span class="og-chip phenotype" style="cursor:default;opacity:.5">Saturn OG</span>
+          <span class="og-chip phenotype" style="cursor:default;opacity:.5">Faceoff OG</span>
+          <span class="og-chip phenotype" style="cursor:default;opacity:.5">Oaksterdam OG</span>
+        </div>
+      </div>
+
+      <div class="og-family-group">
+        <div class="og-family-group-label">Direct Crosses — OG Kush × another strain</div>
+        <div class="og-family-chips">
+          <a href="/strains/girl-scout-cookies" class="og-chip">Girl Scout Cookies</a>
+          <a href="/strains/bubba-kush" class="og-chip">Bubba Kush</a>
+          <a href="/strains/king-louis-xiii-og" class="og-chip">King Louis XIII</a>
+          <a href="/strains/skywalker-og" class="og-chip">Skywalker OG</a>
+          <a href="/strains/fire-og" class="og-chip">Fire OG</a>
+          <a href="/strains/white-fire-og" class="og-chip">White Fire OG</a>
+          <a href="/strains/banana-og" class="og-chip">Banana OG</a>
+          <a href="/strains/lemon-og-kush" class="og-chip">Lemon OG Kush</a>
+          <a href="/strains/alien-og" class="og-chip">Alien OG</a>
+          <a href="/strains/blueberry-og" class="og-chip">Blueberry OG</a>
+          <a href="/strains/blackberry-og" class="og-chip">Blackberry OG</a>
+          <a href="/strains/peach-og" class="og-chip">Peach OG</a>
+          <a href="/strains/sherbet-og" class="og-chip">Sherbet OG</a>
+          <a href="/strains/og-kush-breath" class="og-chip">OG Kush Breath</a>
+          <a href="/strains/gushers-og" class="og-chip">Gushers OG</a>
+        </div>
+      </div>
+
+      <div class="og-family-group">
+        <div class="og-family-group-label">Second &amp; Third Generation</div>
+        <div class="og-family-chips">
+          <a href="/strains/gelato" class="og-chip">Gelato</a>
+          <a href="/strains/runtz" class="og-chip">Runtz</a>
+          <a href="/strains/wedding-cake" class="og-chip">Wedding Cake</a>
+          <a href="/strains/cereal-milk-og" class="og-chip">Cereal Milk OG</a>
+          <a href="/strains/runtz-og" class="og-chip">Runtz OG</a>
+        </div>
+      </div>
+    </div>
+
+    <h2>Terpene Profile</h2>
+    <p>OG's signature is a triangle of three terpenes that hit all at once:</p>
+    <ul>
+      <li><strong>Myrcene</strong> — the backbone. Heavy, earthy, sedating. This is what gives OG its weight and why it's not a daytime strain for most people.</li>
+      <li><strong>Limonene</strong> — the lift inside the heavy. The citrus-fuel aroma, the mood elevation that keeps OG from being purely sedative. This is what makes OG feel euphoric rather than just sleepy.</li>
+      <li><strong>Caryophyllene</strong> — the spicy, fuel-forward bite that's unmistakably OG. Binds CB2 receptors directly, adds depth to the body effect, and gives that stress-dissolving quality OG is known for.</li>
+    </ul>
+    <p>On the nose: fuel, lemon, pine, and earth. If it smells sweet or fruity, it's not OG — or it's a cross. Real OG has a specific, assertive smell that announces itself and doesn't apologize for it.</p>
+    <p><em>Deep dive into each terpene: <a href="/terpenes">The Aromatics</a></em></p>
+
+    <h2>What It's Actually Like</h2>
+    <p>This is the strain people describe when they talk about getting "too high" — and also the strain they chase when they want a real experience.</p>
+    <p>OG hits the head first — a cerebral, almost disorienting lift that then settles into heavy physical relaxation. The limonene keeps it from being depressing, but the myrcene wins eventually. Most people end up on the couch. Most people don't mind.</p>
+    <p>On the floor: OG is a daily customer. The people who love it are loyal, almost ritualistic about it. They want their cut — sometimes by name: SFV OG, Tahoe OG, Fire OG, King Louis. They know the difference between a good grow and a mediocre one. OG consumers are usually experienced and they'll tell you exactly what they want.</p>
+    <p>It's also the strain new customers get talked into by their friends and then come back wide-eyed saying it was too much. The dose matters a lot here.</p>
+
+    <h2>Who It's For</h2>
+    <ul>
+      <li><strong>Experienced consumers</strong> looking for a classic, full experience</li>
+      <li><strong>Evening and nighttime use</strong> — this is not a "stay productive" strain</li>
+      <li><strong>Stress and anxiety relief</strong> — the caryophyllene + myrcene combo is genuinely effective for winding down</li>
+      <li><strong>Pain management</strong> — one of the most cited strains for chronic pain on the floor</li>
+      <li>Anyone building their cannabis vocabulary who needs to understand the genetic root of the modern market</li>
+    </ul>
+
+    <h2>Who Should Skip It</h2>
+    <ul>
+      <li><strong>Beginners</strong> — high-potency, it will overwhelm someone without tolerance</li>
+      <li><strong>Anxiety-prone users</strong> — the disorienting head lift can trigger anxiety before the body effect kicks in; the dose-response curve is steep</li>
+      <li><strong>Daytime functional use</strong> — if you have things to do, pick something else</li>
+      <li>Anyone who wants something light, bright, or creative-focused</li>
+    </ul>
+
+    <h2>The Bottom Line</h2>
+    <p>OG Kush is the strain that built LA cannabis. Everything that came after it — GSC, Gelato, Runtz, Wedding Cake, most of what's on your menu right now — traces its DNA back to this plant. Understanding OG isn't just about this one strain. It's about understanding where the modern market came from.</p>
+    <p>If you've never had it done right, you need to. If you know it, you know.</p>
+
+    <hr>
+
+    <a href="/strains/og-kush" class="mag-strain-link">
+      <div class="mag-strain-link-label">Full Profile in The Lore</div>
+      <div class="mag-strain-link-name">OG Kush — Bloodlines &amp; Lab Data</div>
+      <div class="mag-strain-link-sub">Verified lineage · Terpene data · Potency ranges</div>
+    </a>
+
+    <div class="mag-mj-cta">
+      <p>Not sure if OG Kush is your match? The oracle knows the full family — ask which cut or OG cross is right for you.</p>
+      <a href="/?ask=Which OG Kush variant is right for me?" class="mag-mj-btn">Consult the Oracle →</a>
     </div>
   </div>
 
