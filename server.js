@@ -1644,8 +1644,28 @@ function toggleProf(card, i) {
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${terp.name} — Terpene Profile | Cannascenti</title>
-<meta name="description" content="${terp.aroma}. ${terp.effect.slice(0,120)}...">
+<title>${terp.name} — Terpene Profile, Effects & Strains | Cannascenti</title>
+<meta name="description" content="${terp.name}: ${terp.aroma}. ${terp.effect.slice(0,130)} Found in cannabis and other plants. Boiling point: ${terp.bp}°C.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "name": "${terp.name}",
+  "description": "${terp.effect.replace(/"/g,"'")}",
+  "url": "https://cannascenti.com/terpenes/${terp.name.toLowerCase()}",
+  "inDefinedTermSet": {
+    "@type": "DefinedTermSet",
+    "name": "Cannascenti Terpene Encyclopedia",
+    "url": "https://cannascenti.com/terpenes"
+  },
+  "additionalProperty": [
+    { "@type": "PropertyValue", "name": "Aroma", "value": "${terp.aroma}" },
+    { "@type": "PropertyValue", "name": "Boiling Point", "value": "${terp.bp}°C" },
+    { "@type": "PropertyValue", "name": "Terpene Family", "value": "${terp.family}" }
+  ],
+  "dateModified": "2026-07-05"
+}
+</script>
 ${ENC_FONTS}<style>
 ${ENC_BASE_CSS}
 .tp-hero{max-width:860px;margin:100px auto 0;padding:40px 32px 32px}
@@ -1751,6 +1771,12 @@ ${ENC_NAV}
     <div class="tp-strain-grid">${strainCards}</div>
     ${allContaining.length > dominantStrains.length ? `<div class="tp-all-note">${allContaining.length - dominantStrains.length} more strains also contain ${terp.name} as a secondary terpene</div>` : ''}
   </div>` : ''}
+  <div style="margin-top:48px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06)">
+    <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,234,216,0.25);margin-bottom:6px">Entry Info</div>
+    <div style="font-size:11px;color:rgba(242,234,216,0.25);line-height:1.8;font-family:monospace">
+      Last updated: July 5, 2026 &nbsp;·&nbsp; Sources: [Sources pending]
+    </div>
+  </div>
 </div>
 </body>
 </html>`;
@@ -2181,7 +2207,7 @@ document.addEventListener('DOMContentLoaded', function(){ doFilter(); });
     const tagsHtml = (s.tags||[]).map(tag => `<span class="sp-tag">${tag}</span>`).join('');
     const geneticsHtml = s.genetics ? `<div class="sp-genetics">${s.genetics}</div>` : '';
     const typeLabel = typeName.charAt(0).toUpperCase() + typeName.slice(1);
-    const pageTitle = `${s.name} — ${typeLabel} Strain, THC ${thcMin}–${thcMax}% | Cannascenti`;
+    const pageTitle = `${s.name} — Lineage, Terpenes & Lab Data | Cannascenti`;
 
     // SDL sidebar — THC/CBD from DB, onset/duration pending
     const sdlPending = '<span style="font-family:var(--mono,monospace);font-size:11px;color:var(--text-3,#666);font-style:italic">[PENDING COA]</span>';
@@ -2197,10 +2223,40 @@ document.addEventListener('DOMContentLoaded', function(){ doFilter(); });
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${pageTitle}</title>
-<meta name="description" content="${s.name}: A ${typeName} cannabis strain with ${thcMin}–${thcMax}% THC. ${(s.description||'').replace(/"/g,'').slice(0,140)}">
+<meta name="description" content="${s.name}: ${typeLabel} cannabis strain${s.genetics ? ' — ' + s.genetics + '.' : '.'} ${(s.description||'').replace(/"/g,'').slice(0,120)} Verified lineage, terpene profile, and potency data.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/main.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "${s.name} — ${typeLabel} Cannabis Cultivar",
+  "description": "${(s.description||'').replace(/"/g,"'").slice(0,200)}",
+  "url": "https://cannascenti.com/strains/${rawSlug}",
+  "datePublished": "2025-01-01",
+  "dateModified": "2026-07-05",
+  "author": {
+    "@type": "Person",
+    "name": "Michael Encinas",
+    "jobTitle": "Budtender & Founder",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Cannascenti"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Cannascenti",
+    "url": "https://cannascenti.com"
+  },
+  "about": {
+    "@type": "Thing",
+    "name": "${s.name}",
+    "description": "${s.genetics ? 'Lineage: ' + s.genetics + '. ' : ''}${typeLabel} cannabis cultivar.${(s.terpenes||[]).length > 0 ? ' Dominant terpenes: ' + (s.terpenes||[]).slice(0,3).join(', ') + '.' : ''}"
+  }
+}
+</script>
 </head>
 <body>
 <nav class="nav" id="mainNav">
@@ -2268,6 +2324,14 @@ document.addEventListener('DOMContentLoaded', function(){ doFilter(); });
         <div class="sp-section-label">Similar Strains</div>
         <div class="sp-rel-grid">${relCards}</div>
       </div>` : ''}
+
+      <div class="sp-section" style="border-top:1px solid var(--border);padding-top:20px;margin-top:40px">
+        <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px">Entry Info</div>
+        <div style="font-size:12px;color:var(--text-3);line-height:1.8;font-family:var(--mono)">
+          Last updated: July 5, 2026<br>
+          Sources: [Sources pending]
+        </div>
+      </div>
     </div>
 
     <!-- Sidebar: SDL + Erba box -->
@@ -5329,8 +5393,31 @@ document.addEventListener('DOMContentLoaded', function(){
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cannabis Glossary — Cannascenti Encyclopedia</title>
-<meta name="description" content="The definitive cannabis glossary — 60+ terms covering cannabinoids, terpenes, cultivation, concentrates, and consumption. From anandamide to THCA diamonds.">
+<title>Cannabis Glossary — ${_GL.length} Terms Defined | Cannascenti</title>
+<meta name="description" content="${_GL.length} cannabis terms defined — cannabinoids, terpenes, cultivation, concentrates, and consumption. Reference-grade definitions written for consumers and industry professionals.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "name": "Cannabis Glossary",
+  "description": "Reference definitions for cannabis terminology covering science, cultivation, concentrates, consumption, and culture.",
+  "url": "https://cannascenti.com/glossary",
+  "dateModified": "2026-07-05",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Cannascenti",
+    "url": "https://cannascenti.com"
+  },
+  "hasDefinedTerm": [
+    ${_GL.map(g => `{
+      "@type": "DefinedTerm",
+      "name": ${JSON.stringify(g.term)},
+      "description": ${JSON.stringify(g.def)},
+      "inDefinedTermSet": "https://cannascenti.com/glossary"
+    }`).join(',\n    ')}
+  ]
+}
+</script>
 ${ENC_FONTS}
 <style>
 ${ENC_BASE_CSS}
@@ -5486,6 +5573,12 @@ document.addEventListener('DOMContentLoaded', function() {
   renderContent();
 });
 </script>
+<div style="max-width:900px;margin:48px auto 0;padding:20px 32px 80px;border-top:1px solid rgba(255,255,255,0.06)">
+  <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,234,216,0.25);margin-bottom:6px">Entry Info</div>
+  <div style="font-size:11px;color:rgba(242,234,216,0.25);line-height:1.8;font-family:monospace">
+    Last updated: July 5, 2026 &nbsp;·&nbsp; Sources: [Sources pending]
+  </div>
+</div>
 </body></html>`;
     res.writeHead(200,{"Content-Type":"text/html","Cache-Control":"no-cache, no-store, must-revalidate"});
     res.end(html);
