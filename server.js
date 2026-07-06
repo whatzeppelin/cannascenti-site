@@ -2325,6 +2325,13 @@ document.addEventListener('DOMContentLoaded', function(){ doFilter(); });
         <div class="sp-rel-grid">${relCards}</div>
       </div>` : ''}
 
+      ${rawSlug === 'blue-dream' ? `<div class="sp-section" style="margin-top:32px">
+        <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#C9A84C;margin-bottom:8px">Strain Spotlight · Magazine</div>
+        <a href="/magazine/strain-spotlight-blue-dream" style="display:block;padding:18px 20px;background:rgba(201,160,76,0.06);border:1px solid rgba(201,160,76,0.2);border-radius:6px;text-decoration:none;transition:background .2s" onmouseover="this.style.background='rgba(201,160,76,0.1)'" onmouseout="this.style.background='rgba(201,160,76,0.06)'">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#F2EAD8;margin-bottom:4px">Strain Spotlight: Blue Dream</div>
+          <div style="font-size:.78rem;color:rgba(242,234,216,0.45)">Floor-level truth from 12 years on the LA market — terpene breakdown, who it's for, and who should skip it.</div>
+        </a>
+      </div>` : ''}
       <div class="sp-section" style="border-top:1px solid var(--border);padding-top:20px;margin-top:40px">
         <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px">Entry Info</div>
         <div style="font-size:12px;color:var(--text-3);line-height:1.8;font-family:var(--mono)">
@@ -6278,6 +6285,183 @@ a{color:var(--bright-green);text-decoration:none}
   if (req.method === "GET" && req.url === "/pricing") {
     const html = fs.readFileSync(path.join(__dirname, "pricing.html"), "utf8");
     res.writeHead(200, { "Content-Type": "text/html", "Cache-Control": "no-cache, no-store, must-revalidate" });
+    res.end(html);
+    return;
+  }
+
+
+  // ─── Magazine: Strain Spotlight — Blue Dream ─────────────────────────────────
+  if (req.method === "GET" && req.url === "/magazine/strain-spotlight-blue-dream") {
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Strain Spotlight: Blue Dream — Cannascenti Magazine</title>
+<meta name="description" content="Blue Dream: the strain everyone's heard of and the one budtenders never stop recommending. Terpene breakdown, floor-level truth, and who it's really for.">
+<meta property="og:title" content="Strain Spotlight: Blue Dream — Cannascenti Magazine">
+<meta property="og:description" content="The strain everyone's heard of — and the one budtenders never stop recommending. Floor-level truth from 12 years on the LA market.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://cannascenti.com/magazine/strain-spotlight-blue-dream">
+${ENC_FONTS}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Strain Spotlight: Blue Dream",
+  "description": "Blue Dream: the strain everyone's heard of and the one budtenders never stop recommending. Terpene breakdown, floor-level truth, and who it's really for.",
+  "url": "https://cannascenti.com/magazine/strain-spotlight-blue-dream",
+  "datePublished": "2026-07-06",
+  "dateModified": "2026-07-06",
+  "author": {
+    "@type": "Person",
+    "name": "Michael Encinas",
+    "jobTitle": "Budtender & Founder",
+    "worksFor": { "@type": "Organization", "name": "Cannascenti" }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Cannascenti",
+    "url": "https://cannascenti.com"
+  },
+  "about": {
+    "@type": "Thing",
+    "name": "Blue Dream",
+    "description": "A sativa-dominant hybrid cannabis strain originating from Northern California, crossed from Blueberry and Haze."
+  },
+  "keywords": "Blue Dream, cannabis strain, terpenes, myrcene, pinene, caryophyllene, sativa hybrid, California cannabis"
+}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#060e08;color:#F2EAD8;font-family:'Montserrat',sans-serif;font-weight:300;line-height:1.7}
+a{color:#52B788;text-decoration:none}
+a:hover{text-decoration:underline}
+
+.mag-nav{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;border-bottom:1px solid rgba(255,255,255,0.07);position:sticky;top:0;background:rgba(6,14,8,0.95);backdrop-filter:blur(12px);z-index:100}
+.mag-nav-logo{font-family:'Cormorant Garamond',serif;font-size:18px;letter-spacing:.06em;color:#F2EAD8}
+.mag-nav-links{display:flex;gap:24px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(242,234,216,0.5)}
+.mag-nav-links a{color:rgba(242,234,216,0.5);transition:color .2s}
+.mag-nav-links a:hover{color:#52B788;text-decoration:none}
+
+.mag-wrap{max-width:720px;margin:0 auto;padding:64px 32px 120px}
+
+.mag-eyebrow{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#C9A84C;margin-bottom:16px}
+.mag-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.2rem);font-weight:300;line-height:1.15;color:#F2EAD8;margin-bottom:12px}
+.mag-deck{font-size:1.05rem;color:rgba(242,234,216,0.6);font-style:italic;margin-bottom:32px;line-height:1.6}
+.mag-meta{display:flex;gap:20px;align-items:center;padding:16px 0;border-top:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:48px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(242,234,216,0.4)}
+.mag-meta-author{color:rgba(242,234,216,0.7)}
+.mag-meta-sep{color:rgba(255,255,255,0.15)}
+
+.mag-body h2{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:#F2EAD8;margin:48px 0 16px;line-height:1.2}
+.mag-body p{font-size:.95rem;line-height:1.85;color:rgba(242,234,216,0.8);margin-bottom:20px}
+.mag-body ul{margin:0 0 24px 0;padding-left:0;list-style:none}
+.mag-body ul li{font-size:.95rem;line-height:1.8;color:rgba(242,234,216,0.8);padding:4px 0 4px 20px;position:relative}
+.mag-body ul li::before{content:'—';position:absolute;left:0;color:#C9A84C}
+.mag-body strong{color:#F2EAD8;font-weight:500}
+.mag-body em{color:rgba(242,234,216,0.6);font-style:italic}
+.mag-body hr{border:none;border-top:1px solid rgba(255,255,255,0.08);margin:40px 0}
+.mag-body a{color:#52B788;border-bottom:1px solid rgba(82,183,136,0.3);transition:border-color .2s}
+.mag-body a:hover{border-color:#52B788;text-decoration:none}
+
+.mag-strain-link{display:block;margin:40px 0;padding:24px 28px;background:rgba(82,183,136,0.06);border:1px solid rgba(82,183,136,0.2);border-radius:8px;transition:background .2s}
+.mag-strain-link:hover{background:rgba(82,183,136,0.1);text-decoration:none}
+.mag-strain-link-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#52B788;margin-bottom:6px}
+.mag-strain-link-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:#F2EAD8}
+.mag-strain-link-sub{font-size:.8rem;color:rgba(242,234,216,0.45);margin-top:4px}
+
+.mag-mj-cta{margin:48px 0 0;padding:28px 32px;background:rgba(201,160,76,0.06);border:1px solid rgba(201,160,76,0.2);border-radius:8px;text-align:center}
+.mag-mj-cta p{font-size:.9rem;color:rgba(242,234,216,0.65);margin-bottom:16px}
+.mag-mj-btn{display:inline-block;background:#C9A84C;color:#060e08;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:12px 24px;border-radius:4px;text-decoration:none;transition:background .2s}
+.mag-mj-btn:hover{background:#D4B86A;text-decoration:none}
+
+.mag-footer{margin-top:80px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.07);font-size:11px;color:rgba(242,234,216,0.3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+@media(max-width:600px){.mag-wrap{padding:40px 20px 80px}.mag-nav{padding:16px 20px}.mag-nav-links{display:none}}
+</style>
+</head>
+<body>
+
+<nav class="mag-nav">
+  <a href="/" class="mag-nav-logo">Cannascenti</a>
+  <div class="mag-nav-links">
+    <a href="/strains">Bloodlines</a>
+    <a href="#encyclopedia-hub">The Lore</a>
+    <a href="/for-dispensaries">For Dispensaries</a>
+  </div>
+</nav>
+
+<div class="mag-wrap">
+  <div class="mag-eyebrow">Strain Spotlight · Magazine</div>
+  <h1 class="mag-title">Strain Spotlight:<br>Blue Dream</h1>
+  <p class="mag-deck">The strain everyone's heard of — and the one budtenders never stop recommending.</p>
+  <div class="mag-meta">
+    <span class="mag-meta-author">By Michael Encinas — Budtender &amp; Founder</span>
+    <span class="mag-meta-sep">·</span>
+    <span>Last updated July 6, 2026</span>
+  </div>
+
+  <div class="mag-body">
+    <h2>The Story</h2>
+    <p>Blue Dream came out of Northern California in the early 2000s, a cross between <strong>Blueberry</strong> (a legendary indica) and <strong>Haze</strong> (a classic energetic sativa). It spread through the medical market fast because it did something rare: it delivered a noticeable, uplifting high without the anxiety spiral that pure sativas can bring, and without the couch-lock of its Blueberry parent.</p>
+    <p>Two decades later, it's still one of the best-selling strains in California — not because of hype, but because it just works for a huge range of people.</p>
+
+    <h2>Terpene Profile</h2>
+    <p>Blue Dream's signature comes from three terpenes working together:</p>
+    <ul>
+      <li><strong>Myrcene</strong> — the dominant terpene. Earthy, slightly musky, and responsible for the relaxed body undertone.</li>
+      <li><strong>Pinene</strong> — sharp and fresh. This is the terpene that keeps the head clear and counters the foggy feeling some strains cause.</li>
+      <li><strong>Caryophyllene</strong> — a little peppery spice that rounds out the flavor and adds subtle calming support.</li>
+    </ul>
+    <p>The result on the nose: sweet blueberry up front, herbal and piney underneath. If your eighth doesn't smell like <em>something</em>, that's a freshness red flag — good Blue Dream announces itself when you open the jar.</p>
+    <p><em>Want to go deeper on terpenes? Check out <a href="/terpenes">The Aromatics</a> — 16 full profiles with receptor science and real-world effects.</em></p>
+
+    <h2>What It's Actually Like</h2>
+    <p>Here's the floor-level truth after years of selling this strain: Blue Dream is the answer when someone says <em>"I want to feel good but still function."</em></p>
+    <p>The onset is a gentle head lift — mood up, a little creative spark — that settles into a soft, relaxed body without pinning you down. It's the strain people take to a hike, a beach day, cleaning the apartment, or a hangout where they still want to hold a conversation.</p>
+    <p>It's balanced enough that it rarely surprises anyone, which is exactly why budtenders reach for it constantly. When in doubt, Blue Dream.</p>
+
+    <h2>Who It's For</h2>
+    <ul>
+      <li><strong>First-timers and returners</strong> who want a smooth, predictable experience</li>
+      <li><strong>Daytime users</strong> who need to stay functional</li>
+      <li><strong>Creatives</strong> looking for a gentle mood lift without racing thoughts</li>
+      <li>Anyone who found pure sativas too edgy or heavy indicas too sleepy</li>
+    </ul>
+
+    <h2>Who Should Skip It</h2>
+    <ul>
+      <li>If you're chasing a <strong>heavy sedative, sleep-focused</strong> experience, look at a true indica or something myrcene-and-linalool dominant instead</li>
+      <li>If you're <strong>very sensitive to THC</strong>, note that modern Blue Dream cuts often test 20%+ — start low</li>
+      <li>If you want something <strong>exotic or novel</strong>, this is a classic, not a conversation piece</li>
+    </ul>
+
+    <h2>The Bottom Line</h2>
+    <p>Blue Dream earned its reputation the honest way: by being reliably good for the most people, most of the time. It's the strain we recommend when someone's overwhelmed by a menu of 50 options — and it almost never comes back with complaints.</p>
+
+    <hr>
+
+    <a href="/strains/blue-dream" class="mag-strain-link">
+      <div class="mag-strain-link-label">Full Profile in The Lore</div>
+      <div class="mag-strain-link-name">Blue Dream — Bloodlines &amp; Lab Data</div>
+      <div class="mag-strain-link-sub">Verified lineage · Terpene data · Potency ranges</div>
+    </a>
+
+    <div class="mag-mj-cta">
+      <p>Not sure if Blue Dream is your match? Tell Mary Jane how you want to feel — she'll confirm this strain or point you somewhere better.</p>
+      <a href="/?ask=Is Blue Dream right for me?" class="mag-mj-btn">Consult the Oracle →</a>
+    </div>
+  </div>
+
+  <div class="mag-footer">
+    <span>&copy; 2026 Cannascenti</span>
+    <span><a href="/">cannascenti.com</a></span>
+  </div>
+</div>
+
+</body>
+</html>`;
+    res.writeHead(200, {"Content-Type":"text/html","Cache-Control":"no-cache"});
     res.end(html);
     return;
   }
