@@ -2393,6 +2393,16 @@ document.addEventListener('DOMContentLoaded', function(){ doFilter(); });
           <div style="font-size:.78rem;color:rgba(242,234,216,0.45)">Floor-level truth from 12 years on the LA market — terpene breakdown, who it's for, and who should skip it.</div>
         </a>
       </div>` : ''}
+      <div class="sp-newsletter">
+        <div class="sp-nl-eyebrow">The Cannascenti Newsletter</div>
+        <div class="sp-nl-title">Strain breakdowns. Terpene science. Floor knowledge.</div>
+        <p class="sp-nl-sub">Weekly notes from a working LA budtender — the stuff that doesn't make it onto the label.</p>
+        <div class="sp-nl-form" id="spNlForm">
+          <input class="sp-nl-input" type="email" id="spNlEmail" placeholder="Your email address">
+          <button class="sp-nl-btn" onclick="spNlSubmit()">Subscribe</button>
+        </div>
+      </div>
+
       <div class="sp-section" style="border-top:1px solid var(--border);padding-top:20px;margin-top:40px">
         <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px">Entry Info</div>
         <div style="font-size:12px;color:var(--text-3);line-height:1.8;font-family:var(--mono)">
@@ -2472,6 +2482,12 @@ document.addEventListener('DOMContentLoaded', function(){ doFilter(); });
   const nav = document.getElementById('mainNav');
   if(nav){ window.addEventListener('scroll', function(){ nav.style.background = window.scrollY > 60 ? 'rgba(8,8,8,0.98)' : 'rgba(8,8,8,0.94)'; }, { passive:true }); }
 })();
+function spNlSubmit() {
+  const input = document.getElementById('spNlEmail');
+  if (!input || !input.value.trim() || !input.value.includes('@')) { if(input) input.focus(); return; }
+  fetch('/api/email', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email:input.value.trim(), profile:'strain-page'}) }).catch(()=>{});
+  document.getElementById('spNlForm').innerHTML = '<div style="color:#52B788;font-size:14px;padding:10px 0">&#10003; You\'re in. Weekly drops incoming.</div>';
+}
 </script>
 </body>
 </html>`;

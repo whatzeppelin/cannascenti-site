@@ -844,6 +844,19 @@ input, textarea { font-family:inherit; }
   margin-top: 10px !important;
   margin-bottom: 0 !important;
 }
+/* ── Strain Page Newsletter */
+.sp-newsletter { margin: 40px 0; padding: 32px 28px; background: rgba(201,168,76,0.04); border: 1px solid rgba(201,168,76,0.15); border-radius: var(--r-lg); }
+.sp-nl-eyebrow { font-size: 9px; font-weight: 600; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.sp-nl-title { font-family: var(--serif); font-size: 1.35rem; font-weight: 300; color: var(--text); margin-bottom: 8px; line-height: 1.3; }
+.sp-nl-sub { font-size: 13px; color: var(--text-2); line-height: 1.7; margin-bottom: 20px; }
+.sp-nl-form { display: flex; gap: 8px; }
+.sp-nl-input { flex: 1; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 11px 14px; color: var(--text); font-size: 13px; font-family: var(--sans); outline: none; transition: border-color var(--fast); }
+.sp-nl-input:focus { border-color: var(--gold-soft); }
+.sp-nl-input::placeholder { color: var(--text-3); }
+.sp-nl-btn { background: var(--gold); color: #0a0a0a; border: none; border-radius: var(--r-sm); padding: 11px 20px; font-size: 12px; font-weight: 600; font-family: var(--sans); letter-spacing: 0.08em; cursor: pointer; white-space: nowrap; transition: opacity var(--fast); }
+.sp-nl-btn:hover { opacity: 0.88; }
+@media (max-width: 500px) { .sp-nl-form { flex-direction: column; } }
+
 /* ── Who Is This For */
 .sp-who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .sp-who-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-2); padding: 10px 14px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-2); border-radius: var(--r-md); }
