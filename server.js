@@ -2151,19 +2151,34 @@ document.addEventListener('DOMContentLoaded', function(){ doFilter(); });
       </div>`;
     }).join('');
 
-    const related = STRAINS_DB
-      .filter(r => r.name !== s.name && (r.type||'').toLowerCase() === typeName)
-      .filter(r => (r.effects||[]).filter(e => (s.effects||[]).includes(e)).length >= 2)
-      .slice(0, 4);
+    // Score similarity: shared terpenes (weight 3) + shared effects (weight 1)
+    const scoredRelated = STRAINS_DB
+      .filter(r => r.name !== s.name)
+      .map(r => {
+        const sharedTerps = (s.terpenes||[]).filter(t => (r.terpenes||[]).includes(t));
+        const sharedEffects = (s.effects||[]).filter(e => (r.effects||[]).includes(e));
+        const score = sharedTerps.length * 3 + sharedEffects.length;
+        return { r, score, sharedTerps, sharedEffects };
+      })
+      .filter(x => x.score >= 3)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 3);
 
-    const relCards = related.map(r => {
+    const relCards = scoredRelated.map(({ r, sharedTerps, sharedEffects }) => {
       const rc = typeColors[(r.type||'').toLowerCase()] || '#C9A84C';
       const rSlug = toSlug(r.name);
+      const rThc = (r.thc_min && r.thc_max) ? `${r.thc_min}–${r.thc_max}% THC` : '';
+      const sharedNote = sharedTerps.length > 0
+        ? 'Shared: ' + sharedTerps.slice(0,2).join(', ')
+        : sharedEffects.length > 0
+        ? 'Shared: ' + sharedEffects.slice(0,2).join(', ')
+        : '';
       return `<a href="/strains/${rSlug}" class="sp-rel-card">
         <div class="sp-rel-bar" style="background:${rc}"></div>
         <div class="sp-rel-body">
           <div class="sp-rel-name">${r.name}</div>
-          <div class="sp-rel-type" style="color:${rc}">${r.type}</div>
+          <div class="sp-rel-type" style="color:${rc}">${r.type}${rThc ? ' &middot; ' + rThc : ''}</div>
+          ${sharedNote ? `<div class="sp-rel-shared">${sharedNote}</div>` : ''}
           <div class="sp-rel-effects">${(r.effects||[]).slice(0,3).map(e=>`<span class="sp-rel-eff">${e}</span>`).join('')}</div>
         </div>
       </a>`;
@@ -2375,7 +2390,7 @@ document.addEventListener('DOMContentLoaded', function(){ doFilter(); });
       </div>` : ''}
 
       ${relCards ? `<div class="sp-section">
-        <div class="sp-section-label">Similar Strains</div>
+        <div class="sp-section-label">Compare to</div>
         <div class="sp-rel-grid">${relCards}</div>
       </div>` : ''}
 
