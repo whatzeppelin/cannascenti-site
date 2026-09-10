@@ -844,6 +844,23 @@ input, textarea { font-family:inherit; }
   margin-top: 10px !important;
   margin-bottom: 0 !important;
 }
+/* ── Who Is This For */
+.sp-who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.sp-who-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-2); padding: 10px 14px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-2); border-radius: var(--r-md); }
+.sp-who-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-bright); flex-shrink: 0; }
+@media (max-width: 500px) { .sp-who-grid { grid-template-columns: 1fr; } }
+
+/* ── Budtender Script */
+.sp-budtender-script { font-family: var(--serif); font-size: 1.15rem; font-style: italic; color: var(--text); line-height: 1.6; padding: 18px 20px; background: rgba(201,168,76,0.05); border-left: 2px solid var(--gold); border-radius: 0 var(--r-md) var(--r-md) 0; margin-bottom: 10px; }
+.sp-budtender-note { font-size: 11px; color: var(--text-3); letter-spacing: 0.04em; }
+
+/* ── Activity Pairings */
+.sp-pair-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.sp-pair-item { display: flex; align-items: center; gap: 8px; padding: 9px 16px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-2); border-radius: 20px; font-size: 12px; color: var(--text-2); transition: border-color var(--fast); }
+.sp-pair-item:hover { border-color: rgba(82,183,136,0.3); }
+.sp-pair-icon { font-size: 16px; line-height: 1; }
+.sp-pair-label { font-weight: 500; }
+
 /* Responsive */
 @media (max-width: 900px) {
   .sp-layout { grid-template-columns: 1fr; gap: 40px; }

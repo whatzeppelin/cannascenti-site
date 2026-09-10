@@ -2182,6 +2182,48 @@ document.addEventListener('DOMContentLoaded', function(){ doFilter(); });
     const terp2 = (s.terpenes||[])[1] || null;
     const terp3 = (s.terpenes||[])[2] || null;
 
+    // ── Who Is This For ────────────────────────────────────────────────────────
+    const whoForItems = [];
+    if ((s.effects||[]).includes('Creative') || (s.tags||[]).includes('creative')) whoForItems.push('Creative sessions');
+    if ((s.effects||[]).includes('Focused') || (s.tags||[]).includes('focus')) whoForItems.push('Focus & productivity');
+    if ((s.effects||[]).includes('Energetic') || (s.tags||[]).includes('daytime') || typeName === 'sativa') whoForItems.push('Daytime use');
+    if ((s.effects||[]).includes('Sleepy') || (s.tags||[]).includes('sleep') || (s.tags||[]).includes('nighttime')) whoForItems.push('Sleep support');
+    if ((s.effects||[]).includes('Relaxed')) whoForItems.push('Unwinding');
+    if ((s.effects||[]).includes('Happy') || (s.effects||[]).includes('Euphoric')) whoForItems.push('Social settings');
+    if (typeName === 'indica' && !(s.tags||[]).includes('daytime')) whoForItems.push('Evening use');
+    if ((s.thc_max||0) <= 18) whoForItems.push('Lower tolerance');
+    if ((s.thc_max||0) >= 26) whoForItems.push('Experienced consumers');
+    const whoFor = [...new Set(whoForItems)].slice(0, 4);
+    const whoForHtml = whoFor.map(w => '<div class="sp-who-item"><span class="sp-who-dot"></span>' + w + '</div>').join('');
+
+    // ── Budtender Script ───────────────────────────────────────────────────────
+    const bdTime = (s.tags||[]).includes('daytime') ? 'daytime' : (s.tags||[]).includes('nighttime') ? 'nighttime' : typeName === 'sativa' ? 'daytime' : typeName === 'indica' ? 'nighttime' : 'anytime';
+    const bdEffect = ((s.effects||[])[0]||'').toLowerCase();
+    const bdTerp0 = (s.terpenes||[])[0];
+    const terpPhrases = {Myrcene:'earthy and musky',Limonene:'bright and citrusy',Caryophyllene:'spicy with a peppery edge',Linalool:'floral and calming',Pinene:'piney and clear-headed',Terpinolene:'uplifting and cerebral',Ocimene:'sweet and herbal',Humulene:'earthy and hoppy',Bisabolol:'smooth and floral',Valencene:'sweet and citrusy'};
+    const bdTerpPhrase = bdTerp0 ? (terpPhrases[bdTerp0] || null) : null;
+    let bdScript = '\u201cI\u2019m looking for something ' + bdTime;
+    if (bdEffect) bdScript += ', ' + bdEffect;
+    if (bdTerpPhrase) bdScript += ' \u2014 ' + bdTerpPhrase;
+    bdScript += '.\u201d';
+
+    // ── Activity Pairings ──────────────────────────────────────────────────────
+    const allPairings = [
+      {effect:'Creative',icon:'🎨',label:'Creative Work'},
+      {effect:'Focused',icon:'💻',label:'Deep Focus'},
+      {effect:'Energetic',icon:'🏃',label:'Active & Moving'},
+      {effect:'Happy',icon:'🗣️',label:'Socializing'},
+      {effect:'Euphoric',icon:'✨',label:'Good Vibes'},
+      {effect:'Relaxed',icon:'📖',label:'Reading & Rest'},
+      {effect:'Sleepy',icon:'🌙',label:'Sleep'},
+      {effect:'Uplifted',icon:'🎵',label:'Music'},
+      {effect:'Talkative',icon:'💬',label:'Conversation'},
+      {effect:'Hungry',icon:'🍽️',label:'Dining'},
+      {effect:'Giggly',icon:'🎬',label:'Movies & Comedy'},
+    ];
+    const pairings = allPairings.filter(p => (s.effects||[]).includes(p.effect)).slice(0,4);
+    const pairingsHtml = pairings.map(p => '<div class="sp-pair-item"><span class="sp-pair-icon">' + p.icon + '</span><span class="sp-pair-label">' + p.label + '</span></div>').join('');
+
     const spHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -2225,16 +2267,47 @@ document.addEventListener('DOMContentLoaded', function(){ doFilter(); });
 </head>
 <body>
 <nav class="nav" id="mainNav">
-  <a href="/" class="nav-logo">Cannascenti</a>
-  <div class="nav-links" id="navLinks">
-    <a href="/strains">Strains</a>
-    <a href="/terpenes">Terpenes</a>
-    <a href="/cannabinoids">Cannabinoids</a>
-    <a href="/for-dispensaries">For Dispensaries</a>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg width="24" height="32" viewBox="0 0 160 200" fill="none">
+        <defs>
+          <linearGradient id="spLg1" x1="80" y1="0" x2="80" y2="200" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#E0C06A"/>
+            <stop offset="50%" stop-color="#C9A84C"/>
+            <stop offset="100%" stop-color="#8B6B2A"/>
+          </linearGradient>
+          <linearGradient id="spLg2" x1="160" y1="0" x2="0" y2="200" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#C9A84C" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#8B6B2A" stop-opacity="0.3"/>
+          </linearGradient>
+        </defs>
+        <polygon points="80,4 92,32 80,52 68,32" fill="url(#spLg1)" opacity="0.95"/>
+        <polygon points="80,28 108,38 96,62 80,52" fill="url(#spLg2)" opacity="0.9"/>
+        <polygon points="80,28 52,38 64,62 80,52" fill="url(#spLg1)" opacity="0.9"/>
+        <polygon points="80,50 118,58 104,84 80,74" fill="url(#spLg2)" opacity="0.75"/>
+        <polygon points="80,50 42,58 56,84 80,74" fill="url(#spLg1)" opacity="0.75"/>
+        <polygon points="80,72 114,82 98,108 80,98" fill="url(#spLg2)" opacity="0.55"/>
+        <polygon points="80,72 46,82 62,108 80,98" fill="url(#spLg1)" opacity="0.55"/>
+        <polygon points="80,95 106,108 92,130 80,122" fill="url(#spLg2)" opacity="0.4"/>
+        <polygon points="80,95 54,108 68,130 80,122" fill="url(#spLg1)" opacity="0.4"/>
+        <polygon points="80,118 90,134 80,148 70,134" fill="url(#spLg1)" opacity="0.28"/>
+        <path d="M80 148 Q76 162 74 175" stroke="url(#spLg1)" stroke-width="2" fill="none" opacity="0.45"/>
+      </svg>
+      <div class="nav-divider"></div>
+      <span class="nav-wordmark">Cannascenti</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/strains">Strains</a></li>
+      <li><a href="/#encyclopedia-hub">The Lore</a></li>
+      <li><a href="/scan">Scanner</a></li>
+      <li><a href="/budtender-pro">The Order</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/for-dispensaries" class="nav-cta">For Dispensaries</a></li>
+    </ul>
+    <button class="nav-ham" id="navHam" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-  <button class="nav-ham" id="navHam" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
 </nav>
 
 <div class="sp-wrap">
@@ -2283,6 +2356,22 @@ document.addEventListener('DOMContentLoaded', function(){ doFilter(); });
       ${tagsHtml ? `<div class="sp-section">
         <div class="sp-section-label">Best For</div>
         <div class="sp-tags">${tagsHtml}</div>
+      </div>` : ''}
+
+      ${whoForHtml ? `<div class="sp-section">
+        <div class="sp-section-label">Who Is This For</div>
+        <div class="sp-who-grid">${whoForHtml}</div>
+      </div>` : ''}
+
+      <div class="sp-section">
+        <div class="sp-section-label">What to Tell Your Budtender</div>
+        <div class="sp-budtender-script">${bdScript}</div>
+        <div class="sp-budtender-note">Say this when asking for ${s.name} or something similar.</div>
+      </div>
+
+      ${pairingsHtml ? `<div class="sp-section">
+        <div class="sp-section-label">Pairs Well With</div>
+        <div class="sp-pair-grid">${pairingsHtml}</div>
       </div>` : ''}
 
       ${relCards ? `<div class="sp-section">
@@ -2376,9 +2465,13 @@ document.addEventListener('DOMContentLoaded', function(){ doFilter(); });
 </div>
 
 <script>
+(function(){
   const ham = document.getElementById('navHam');
   const links = document.getElementById('navLinks');
-  if (ham) ham.addEventListener('click', () => links.classList.toggle('open'));
+  if(ham && links){ ham.addEventListener('click', function(){ links.classList.toggle('open'); }); }
+  const nav = document.getElementById('mainNav');
+  if(nav){ window.addEventListener('scroll', function(){ nav.style.background = window.scrollY > 60 ? 'rgba(8,8,8,0.98)' : 'rgba(8,8,8,0.94)'; }, { passive:true }); }
+})();
 </script>
 </body>
 </html>`;
