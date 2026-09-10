@@ -8,22 +8,10 @@
 <script src="/theme.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/public/css/main.css">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:#060e08;color:#F2EAD8;font-family:'Montserrat',sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden}
-a{color:#52B788;text-decoration:none}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(82,183,136,0.05) 0%,transparent 65%);pointer-events:none;z-index:0}
-
-/* NAV */
-.bnav{display:flex;align-items:center;justify-content:space-between;padding:24px 40px;position:sticky;top:0;background:rgba(6,14,8,0.96);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid rgba(82,183,136,0.1)}
-.bnav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;color:#F2EAD8;letter-spacing:.06em}
-.bnav-right{display:flex;align-items:center;gap:24px}
-.bnav-back{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,234,216,0.4);transition:color .2s}
-.bnav-back:hover{color:#52B788}
-.bnav-tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(82,183,136,0.7);background:rgba(82,183,136,0.08);border:1px solid rgba(82,183,136,0.2);padding:4px 12px;border-radius:20px}
-@media(max-width:600px){.bnav{padding:18px 24px}.bnav-tag{display:none}}
 
 /* WRAP */
 .bwrap{max-width:780px;margin:0 auto;padding:60px 32px 120px;position:relative;z-index:1}
@@ -136,11 +124,47 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 </head>
 <body>
 
-<nav class="bnav">
-  <a href="/" class="bnav-logo">Cannascenti</a>
-  <div class="bnav-right">
-    <span class="bnav-tag">Budtender Assessment</span>
-    <a href="/budtender-pro" class="bnav-back">&#8592; Budtender Pro</a>
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg width="24" height="32" viewBox="0 0 160 200" fill="none">
+        <defs>
+          <linearGradient id="lg1" x1="80" y1="0" x2="80" y2="200" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#E0C06A"/>
+            <stop offset="50%" stop-color="#C9A84C"/>
+            <stop offset="100%" stop-color="#8B6B2A"/>
+          </linearGradient>
+          <linearGradient id="lg2" x1="160" y1="0" x2="0" y2="200" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#C9A84C" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#8B6B2A" stop-opacity="0.3"/>
+          </linearGradient>
+        </defs>
+        <polygon points="80,4 92,32 80,52 68,32" fill="url(#lg1)" opacity="0.95"/>
+        <polygon points="80,28 108,38 96,62 80,52" fill="url(#lg2)" opacity="0.9"/>
+        <polygon points="80,28 52,38 64,62 80,52" fill="url(#lg1)" opacity="0.9"/>
+        <polygon points="80,50 118,58 104,84 80,74" fill="url(#lg2)" opacity="0.75"/>
+        <polygon points="80,50 42,58 56,84 80,74" fill="url(#lg1)" opacity="0.75"/>
+        <polygon points="80,72 114,82 98,108 80,98" fill="url(#lg2)" opacity="0.55"/>
+        <polygon points="80,72 46,82 62,108 80,98" fill="url(#lg1)" opacity="0.55"/>
+        <polygon points="80,95 106,108 92,130 80,122" fill="url(#lg2)" opacity="0.4"/>
+        <polygon points="80,95 54,108 68,130 80,122" fill="url(#lg1)" opacity="0.4"/>
+        <polygon points="80,118 90,134 80,148 70,134" fill="url(#lg1)" opacity="0.28"/>
+        <path d="M80 148 Q76 162 74 175" stroke="url(#lg1)" stroke-width="2" fill="none" opacity="0.45"/>
+      </svg>
+      <div class="nav-divider"></div>
+      <span class="nav-wordmark">Cannascenti</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/strains">Strains</a></li>
+      <li><a href="/#encyclopedia-hub">The Lore</a></li>
+      <li><a href="/scan">Scanner</a></li>
+      <li><a href="/budtender-pro">The Order</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/for-dispensaries" class="nav-cta">For Dispensaries</a></li>
+    </ul>
+    <button class="nav-ham" id="navHam" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
@@ -534,6 +558,69 @@ function retake() {
   document.getElementById('bIntro').style.display = 'block';
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
+</script>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-wordmark">Cannascenti</span>
+      <p>The deepest cannabis reference online — built by industry professionals, for anyone who wants to understand what they're consuming.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">The Lore</div>
+      <ul class="footer-links">
+        <li><a href="/strains">Strain Database</a></li>
+        <li><a href="/terpenes">The Aromatics</a></li>
+        <li><a href="/cannabinoids">Cannabinoids</a></li>
+        <li><a href="/history">The Chronicle</a></li>
+        <li><a href="/concentrates">The Extracts</a></li>
+        <li><a href="/glossary">The Lexicon</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Tools</div>
+      <ul class="footer-links">
+        <li><a href="/scan">Product Scanner</a></li>
+        <li><a href="/quiz">Strain Finder Quiz</a></li>
+        <li><a href="/budtender-pro">The Order</a></li>
+        <li><a href="/edibles">The Infused</a></li>
+        <li><a href="/consumption">The Rituals</a></li>
+        <li><a href="/cultivation">The Grow</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Magazine</div>
+      <ul class="footer-links">
+        <li><a href="/magazine/strain-spotlight-blue-dream">Strain Spotlight: Blue Dream</a></li>
+        <li><a href="/magazine/strain-spotlight-og-kush">Strain Spotlight: OG Kush</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="/about">About</a></li>
+        <li><a href="/for-dispensaries">For Dispensaries</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="https://www.instagram.com/cannascenti.hq" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+        <li><a href="/privacy">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-legal">Must be 21+ to purchase cannabis products where legal. Cannascenti provides educational content only and does not sell cannabis. Cannabis laws vary by location — know your local regulations.</p>
+    <span class="footer-copy">&copy; 2026 Cannascenti</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const ham = document.getElementById('navHam');
+  const links = document.getElementById('navLinks');
+  if(ham && links){ ham.addEventListener('click', function(){ links.classList.toggle('open'); }); }
+  const nav = document.getElementById('mainNav');
+  if(nav){ window.addEventListener('scroll', function(){ nav.style.background = window.scrollY > 60 ? 'rgba(8,8,8,0.98)' : 'rgba(8,8,8,0.94)'; }, { passive:true }); }
+})();
 </script>
 </body>
 </html>
