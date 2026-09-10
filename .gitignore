@@ -3,3 +3,9 @@ node_modules
 subscribers.jsonl
 analytics.jsonl
 strains-leafly-raw.json
+
+.env.*
+!.env.example
+leads.json
+contacts.json
+.sites-runtime/

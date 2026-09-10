@@ -1,4 +1,6 @@
 (function () {
+  // Reading the archive never requires sharing an email address.
+  try { if (sessionStorage.getItem('cs_gate_dismissed')) return; } catch {}
   if (document.cookie.split(';').some(function (c) { return c.trim().startsWith('cs_access='); })) return;
 
   var style = document.createElement('style');
@@ -31,7 +33,8 @@
     + '<input class="cs-gate-input" id="cs-gate-email" type="email" placeholder="your@email.com" autocomplete="email">'
     + '<div class="cs-gate-err" id="cs-gate-err"></div>'
     + '<button class="cs-gate-btn" id="cs-gate-btn" onclick="csGateSubmit()">get free access &rarr;</button>'
-    + '<p class="cs-gate-fine">No spam. Unsubscribe anytime.</p>'
+    + '<button class="cs-gate-btn" type="button" style="margin-top:12px" onclick="csGateDismiss()">Continue without email</button>'
+    + '<p class="cs-gate-fine">Email is optional.</p>'
     + '</div></div>';
 
   function inject() {
@@ -48,6 +51,12 @@
     document.addEventListener('DOMContentLoaded', inject);
   }
 
+  window.csGateDismiss = function () {
+    try { sessionStorage.setItem('cs_gate_dismissed', '1'); } catch {}
+    var gate = document.getElementById('cs-gate');
+    if (gate) gate.remove();
+    document.body.style.overflow = '';
+  };
   window.csGateSubmit = async function () {
     var email = document.getElementById('cs-gate-email').value.trim();
     var err = document.getElementById('cs-gate-err');
