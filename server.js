@@ -6031,12 +6031,7 @@ function retakeQuiz() {
     return;
   }
   // ─── Quiz Part 1 (/quiz + legacy /budtender-quiz) ─────────────────────────
-  if (req.method === "GET" && (req.url === "/quiz" || req.url === "/budtender-quiz")) {
-    if (req.url === "/budtender-quiz") {
-      res.writeHead(301, { "Location": "/quiz" });
-      res.end();
-      return;
-    }
+  if (req.method === "GET" && req.url === "/budtender-quiz") {
     const html = fs.readFileSync(path.join(__dirname, "budtender-quiz.html"), "utf8");
     res.writeHead(200, { "Content-Type": "text/html", "Cache-Control": "no-cache, no-store, must-revalidate" });
     res.end(html);
@@ -6044,12 +6039,7 @@ function retakeQuiz() {
   }
 
   // ─── Quiz Part 2 (/quiz-2 + legacy /budtender-quiz-2) ─────────────────────
-  if (req.method === "GET" && (req.url === "/quiz-2" || req.url === "/budtender-quiz-2")) {
-    if (req.url === "/budtender-quiz-2") {
-      res.writeHead(301, { "Location": "/quiz-2" });
-      res.end();
-      return;
-    }
+  if (req.method === "GET" && req.url === "/budtender-quiz-2") {
     const html = fs.readFileSync(path.join(__dirname, "budtender-quiz-2.html"), "utf8");
     res.writeHead(200, { "Content-Type": "text/html", "Cache-Control": "no-cache, no-store, must-revalidate" });
     res.end(html);
