@@ -120,6 +120,26 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .b-cta-primary:hover{background:#74C69D}
 .b-cta-ghost{display:inline-flex;align-items:center;gap:8px;background:none;border:1px solid rgba(255,255,255,0.12);color:rgba(242,234,216,0.5);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:13px 24px;border-radius:100px;text-decoration:none;transition:all .2s;cursor:pointer;font-family:'Montserrat',sans-serif}
 .b-cta-ghost:hover{border-color:rgba(255,255,255,0.25);color:#F2EAD8}
+
+/* CERT BADGE */
+.b-cert-wrap{display:flex;justify-content:center;margin:0 0 48px}
+.b-cert-card{position:relative;width:100%;max-width:440px;background:linear-gradient(150deg,rgba(18,11,3,0.98) 0%,rgba(10,10,8,1) 55%,rgba(16,10,3,0.98) 100%);border:1px solid rgba(201,168,76,0.28);border-radius:22px;padding:40px 36px;text-align:center;overflow:hidden}
+.b-cert-glow{position:absolute;top:-30px;left:50%;transform:translateX(-50%);width:240px;height:100px;background:radial-gradient(ellipse,rgba(201,168,76,0.1) 0%,transparent 70%);pointer-events:none}
+.b-cert-mark{font-family:'Cormorant Garamond',serif;font-size:20px;color:rgba(201,168,76,0.5);line-height:1;margin-bottom:14px;position:relative;z-index:1}
+.b-cert-brand{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;letter-spacing:.08em;color:#DDB955;line-height:1;margin-bottom:5px;position:relative;z-index:1}
+.b-cert-subtitle{font-size:8px;letter-spacing:.32em;text-transform:uppercase;color:rgba(221,185,85,0.38);margin-bottom:22px;position:relative;z-index:1}
+.b-cert-rule{width:50px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.38),transparent);margin:0 auto 22px;position:relative;z-index:1}
+.b-cert-tier-name{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,5vw,2.1rem);font-weight:300;line-height:1.1;margin-bottom:4px;position:relative;z-index:1}
+.b-cert-tier-name.needs{color:#e07070}
+.b-cert-tier-name.developing{color:#E8A84C}
+.b-cert-tier-name.proficient{color:#52B788}
+.b-cert-tier-name.expert{color:#74C69D}
+.b-cert-part{font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,234,216,0.22);margin-bottom:20px;position:relative;z-index:1}
+.b-cert-score-big{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,9vw,4.2rem);font-weight:300;line-height:1;color:#F2EAD8;margin-bottom:3px;position:relative;z-index:1}
+.b-cert-score-big em{color:#DDB955;font-style:normal}
+.b-cert-score-lbl{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,234,216,0.22);margin-bottom:22px;position:relative;z-index:1}
+.b-cert-date-str{font-size:10px;letter-spacing:.1em;color:rgba(221,185,85,0.32);margin-bottom:18px;position:relative;z-index:1}
+.b-cert-share-hint{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(242,234,216,0.18);position:relative;z-index:1}
 </style>
 </head>
 <body>
@@ -528,6 +548,23 @@ function showResults() {
   });
   reviewHtml += '</div>';
 
+  var today = new Date();
+  var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var dateStr = months[today.getMonth()] + ' ' + today.getDate() + ', ' + today.getFullYear();
+  var certHtml = '<div class="b-cert-wrap"><div class="b-cert-card">' +
+    '<div class="b-cert-glow"></div>' +
+    '<div class="b-cert-mark">&#10022;</div>' +
+    '<div class="b-cert-brand">Cannascenti</div>' +
+    '<div class="b-cert-subtitle">Certificate of Knowledge</div>' +
+    '<div class="b-cert-rule"></div>' +
+    '<div class="b-cert-tier-name ' + tierClass + '">' + tierLabel + '</div>' +
+    '<div class="b-cert-part">Budtender Assessment &middot; Part 1</div>' +
+    '<div class="b-cert-score-big"><em>' + score + '</em>/' + MC_COUNT + '</div>' +
+    '<div class="b-cert-score-lbl">Scored Questions Correct</div>' +
+    '<div class="b-cert-date-str">' + dateStr + '</div>' +
+    '<div class="b-cert-share-hint">&#128248; Screenshot &amp; share</div>' +
+    '</div></div>';
+
   var html =
     '<div class="b-result-header">' +
       '<div class="b-tag" style="margin-bottom:14px">&#10022; Assessment Complete</div>' +
@@ -536,6 +573,7 @@ function showResults() {
       '<div class="b-tier ' + tierClass + '">' + tierLabel + '</div>' +
       '<p class="b-tier-desc">' + tierDesc + '</p>' +
     '</div>' +
+    certHtml +
     reviewHtml +
     '<div class="b-result-ctas">' +
       '<a href="/quiz-2" class="b-cta-primary">Continue to Part 2 &#8594;</a>' +
