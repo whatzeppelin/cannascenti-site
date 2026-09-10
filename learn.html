@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Start Here — Cannabis Learning Path | Cannascenti</title>
+<meta name="description" content="A 5-step guided intro to cannabis. Learn the basics, pick your goal, understand terpenes, and find the right strain for you.">
+<script src="/theme.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/public/css/main.css">
+<style>
+.lp-wrap{max-width:820px;margin:0 auto;padding:60px 32px 120px}
+@media(max-width:640px){.lp-wrap{padding:40px 20px 80px}}
+
+/* PROGRESS */
+.lp-track{display:flex;align-items:flex-start;justify-content:center;margin-bottom:64px}
+.lp-node{display:flex;flex-direction:column;align-items:center;gap:8px}
+.lp-node-num{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);color:rgba(242,234,216,0.2);transition:all .35s;font-family:'Inter',sans-serif}
+.lp-node.active .lp-node-num{border-color:#C9A84C;background:rgba(201,168,76,0.1);color:#C9A84C}
+.lp-node.done .lp-node-num{border-color:#52B788;background:rgba(82,183,136,0.08);color:#52B788}
+.lp-node-name{font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,234,216,0.15);white-space:nowrap;transition:color .35s}
+.lp-node.active .lp-node-name{color:rgba(242,234,216,0.45)}
+.lp-node.done .lp-node-name{color:rgba(82,183,136,0.4)}
+.lp-connector{flex:1;height:1px;background:rgba(255,255,255,0.06);min-width:20px;max-width:56px;margin-top:17px;transition:background .35s}
+.lp-connector.done{background:rgba(82,183,136,0.2)}
+@media(max-width:480px){.lp-node-name{display:none}.lp-connector{min-width:10px;max-width:28px}}
+
+/* STEP */
+.lp-step{animation:lpIn .3s ease both}
+@keyframes lpIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* TEXT */
+.lp-eyebrow{font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:rgba(201,168,76,0.5);margin-bottom:14px}
+.lp-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5.5vw,3.4rem);font-weight:300;color:#F2EAD8;line-height:1.1;margin-bottom:14px}
+.lp-h1 em{font-style:italic;color:#C9A84C}
+.lp-lead{font-size:.9rem;color:rgba(242,234,216,0.42);line-height:1.85;margin-bottom:36px;max-width:580px}
+
+/* BACK */
+.lp-back-btn{display:inline-flex;align-items:center;gap:5px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,234,216,0.2);background:none;border:none;cursor:pointer;padding:0;margin-bottom:28px;transition:color .2s;font-family:'Inter',sans-serif}
+.lp-back-btn:hover{color:rgba(242,234,216,0.45)}
+
+/* CONCEPT CARDS — step 1 */
+.lp-concepts{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-bottom:44px}
+.lp-concept{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:24px 20px}
+.lp-concept-icon{font-size:22px;line-height:1;margin-bottom:12px}
+.lp-concept-title{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:300;color:#F2EAD8;margin-bottom:8px}
+.lp-concept-text{font-size:.8rem;color:rgba(242,234,216,0.42);line-height:1.8}
+.lp-concept-text strong{color:#52B788;font-weight:400}
+
+/* GOAL GRID — step 2 */
+.lp-goals{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:10px;margin-bottom:24px}
+.lp-goal{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px 16px;cursor:pointer;transition:all .2s;text-align:center;user-select:none}
+.lp-goal:hover{border-color:rgba(201,168,76,0.3);background:rgba(201,168,76,0.03)}
+.lp-goal.sel{border-color:#C9A84C;background:rgba(201,168,76,0.07)}
+.lp-goal-icon{font-size:26px;line-height:1;margin-bottom:10px}
+.lp-goal-label{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;color:#F2EAD8;margin-bottom:3px}
+.lp-goal-desc{font-size:.72rem;color:rgba(242,234,216,0.28);line-height:1.5}
+
+/* TERPENE CARDS — step 3 */
+.lp-terps{display:flex;flex-direction:column;gap:12px;margin-bottom:40px}
+.lp-terp{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px 20px;border-left:3px solid #C9A84C}
+.lp-terp-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:300;color:#F2EAD8;margin-bottom:6px}
+.lp-terp-note{font-size:.82rem;color:rgba(242,234,216,0.45);line-height:1.75}
+
+/* STRAIN CARDS — step 4 */
+.lp-strains{display:flex;flex-direction:column;gap:10px;margin-bottom:40px}
+.lp-strain{display:flex;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);border-radius:12px;overflow:hidden;text-decoration:none;transition:border-color .2s,transform .15s}
+.lp-strain:hover{border-color:rgba(201,168,76,0.4);transform:translateY(-1px)}
+.lp-strain-accent{width:3px;flex-shrink:0}
+.lp-strain-body{padding:16px 18px;flex:1}
+.lp-strain-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:300;color:#F2EAD8;margin-bottom:3px}
+.lp-strain-meta{font-size:9px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:7px}
+.lp-strain-why{font-size:.8rem;color:rgba(242,234,216,0.42);line-height:1.7}
+.lp-strain-arrow{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(201,168,76,0.45);margin-top:8px}
+
+/* SCAN BOX — step 5 */
+.lp-scan-box{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:44px 36px;text-align:center;margin-bottom:36px}
+@media(max-width:480px){.lp-scan-box{padding:32px 24px}}
+.lp-scan-icon{font-size:44px;margin-bottom:16px;line-height:1}
+.lp-scan-title{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;color:#F2EAD8;margin-bottom:10px}
+.lp-scan-desc{font-size:.88rem;color:rgba(242,234,216,0.42);line-height:1.8;max-width:460px;margin:0 auto}
+
+/* COMPLETE BOX — end of step 5 */
+.lp-complete{background:rgba(82,183,136,0.04);border:1px solid rgba(82,183,136,0.15);border-radius:14px;padding:28px 24px;margin-bottom:36px;text-align:center}
+.lp-complete-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:#52B788;margin-bottom:8px}
+.lp-complete-text{font-size:.82rem;color:rgba(242,234,216,0.4);line-height:1.7}
+
+/* BUTTONS */
+.lp-btns{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.lp-btn{display:inline-flex;align-items:center;gap:8px;border-radius:100px;padding:13px 28px;font-family:'Inter',sans-serif;font-size:11px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all .2s;white-space:nowrap;border:none}
+.lp-btn-cream{background:transparent;border:1.5px solid rgba(242,234,216,0.45);color:#F2EAD8}
+.lp-btn-cream:hover{background:rgba(242,234,216,0.05);border-color:#F2EAD8}
+.lp-btn-gold{background:transparent;border:1.5px solid rgba(201,168,76,0.5);color:#C9A84C}
+.lp-btn-gold:hover{background:rgba(201,168,76,0.07);border-color:#DDB955;color:#DDB955}
+.lp-btn-green{background:#52B788;color:#060d0a}
+.lp-btn-green:hover{background:#74C69D}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg width="24" height="32" viewBox="0 0 160 200" fill="none">
+        <defs>
+          <linearGradient id="lg1" x1="80" y1="0" x2="80" y2="200" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#E0C06A"/>
+            <stop offset="50%" stop-color="#C9A84C"/>
+            <stop offset="100%" stop-color="#8B6B2A"/>
+          </linearGradient>
+          <linearGradient id="lg2" x1="160" y1="0" x2="0" y2="200" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#C9A84C" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#8B6B2A" stop-opacity="0.3"/>
+          </linearGradient>
+        </defs>
+        <polygon points="80,4 92,32 80,52 68,32" fill="url(#lg1)" opacity="0.95"/>
+        <polygon points="80,28 108,38 96,62 80,52" fill="url(#lg2)" opacity="0.9"/>
+        <polygon points="80,28 52,38 64,62 80,52" fill="url(#lg1)" opacity="0.9"/>
+        <polygon points="80,50 118,58 104,84 80,74" fill="url(#lg2)" opacity="0.75"/>
+        <polygon points="80,50 42,58 56,84 80,74" fill="url(#lg1)" opacity="0.75"/>
+        <polygon points="80,72 114,82 98,108 80,98" fill="url(#lg2)" opacity="0.55"/>
+        <polygon points="80,72 46,82 62,108 80,98" fill="url(#lg1)" opacity="0.55"/>
+        <polygon points="80,95 106,108 92,130 80,122" fill="url(#lg2)" opacity="0.4"/>
+        <polygon points="80,95 54,108 68,130 80,122" fill="url(#lg1)" opacity="0.4"/>
+        <polygon points="80,118 90,134 80,148 70,134" fill="url(#lg1)" opacity="0.28"/>
+        <path d="M80 148 Q76 162 74 175" stroke="url(#lg1)" stroke-width="2" fill="none" opacity="0.45"/>
+      </svg>
+      <div class="nav-divider"></div>
+      <span class="nav-wordmark">Cannascenti</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/strains">Strains</a></li>
+      <li><a href="/#encyclopedia-hub">The Lore</a></li>
+      <li><a href="/scan">Scanner</a></li>
+      <li><a href="/budtender-pro">The Order</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/for-dispensaries" class="nav-cta">For Dispensaries</a></li>
+    </ul>
+    <button class="nav-ham" id="navHam" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="lp-wrap">
+
+  <!-- PROGRESS TRACK -->
+  <div class="lp-track">
+    <div class="lp-node active" id="lpNode1">
+      <div class="lp-node-num">1</div>
+      <div class="lp-node-name">Basics</div>
+    </div>
+    <div class="lp-connector" id="lpConn1"></div>
+    <div class="lp-node" id="lpNode2">
+      <div class="lp-node-num">2</div>
+      <div class="lp-node-name">Your Goal</div>
+    </div>
+    <div class="lp-connector" id="lpConn2"></div>
+    <div class="lp-node" id="lpNode3">
+      <div class="lp-node-num">3</div>
+      <div class="lp-node-name">Terpenes</div>
+    </div>
+    <div class="lp-connector" id="lpConn3"></div>
+    <div class="lp-node" id="lpNode4">
+      <div class="lp-node-num">4</div>
+      <div class="lp-node-name">Strains</div>
+    </div>
+    <div class="lp-connector" id="lpConn4"></div>
+    <div class="lp-node" id="lpNode5">
+      <div class="lp-node-num">5</div>
+      <div class="lp-node-name">Scanner</div>
+    </div>
+  </div>
+
+  <!-- STEP 1: BASICS -->
+  <div id="s1" class="lp-step">
+    <div class="lp-eyebrow">Step 1 of 5 &mdash; The Basics</div>
+    <h1 class="lp-h1">Everything you need<br><em>in 90 seconds.</em></h1>
+    <p class="lp-lead">Before you walk into a dispensary, you only need to know three things. Here they are.</p>
+    <div class="lp-concepts">
+      <div class="lp-concept">
+        <div class="lp-concept-icon">&#128300;</div>
+        <div class="lp-concept-title">THC &amp; CBD</div>
+        <div class="lp-concept-text"><strong>THC</strong> is the compound responsible for psychoactive effects. <strong>CBD</strong> is non-psychoactive &mdash; it reduces anxiety and inflammation without impairment. Most products contain both. The ratio matters as much as the percentage.</div>
+      </div>
+      <div class="lp-concept">
+        <div class="lp-concept-icon">&#127807;</div>
+        <div class="lp-concept-title">Indica &middot; Sativa &middot; Hybrid</div>
+        <div class="lp-concept-text">Indica = relaxing, body-focused. Sativa = energizing, cerebral. Hybrid = in between. <strong>But these labels are a starting point, not a guarantee.</strong> Terpene profile is a more reliable predictor of your actual experience.</div>
+      </div>
+      <div class="lp-concept">
+        <div class="lp-concept-icon">&#10022;</div>
+        <div class="lp-concept-title">Terpenes</div>
+        <div class="lp-concept-text">The aromatic compounds that give each strain its smell &mdash; and largely determine its effect. <strong>Myrcene</strong> makes you sleepy. <strong>Limonene</strong> lifts your mood. <strong>Pinene</strong> keeps you clear-headed. We&rsquo;ll map the ones relevant to you in Step 3.</div>
+      </div>
+    </div>
+    <div class="lp-btns">
+      <button class="lp-btn lp-btn-cream" onclick="goTo(2)">Got it &rarr;</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: GOAL -->
+  <div id="s2" class="lp-step" style="display:none">
+    <button class="lp-back-btn" onclick="goTo(1)">&#8592; Back</button>
+    <div class="lp-eyebrow">Step 2 of 5 &mdash; Your Goal</div>
+    <h1 class="lp-h1">What are you<br><em>looking for?</em></h1>
+    <p class="lp-lead">Pick the one that fits your situation. Everything that follows gets tailored to your answer.</p>
+    <div class="lp-goals">
+      <div class="lp-goal" onclick="pickGoal(this,'sleep')">
+        <div class="lp-goal-icon">&#127769;</div>
+        <div class="lp-goal-label">Better Sleep</div>
+        <div class="lp-goal-desc">Fall asleep faster, stay asleep</div>
+      </div>
+      <div class="lp-goal" onclick="pickGoal(this,'anxiety')">
+        <div class="lp-goal-icon">&#129354;</div>
+        <div class="lp-goal-label">Stress &amp; Anxiety</div>
+        <div class="lp-goal-desc">Calm the mind without fogging it</div>
+      </div>
+      <div class="lp-goal" onclick="pickGoal(this,'energy')">
+        <div class="lp-goal-icon">&#9889;</div>
+        <div class="lp-goal-label">Energy &amp; Focus</div>
+        <div class="lp-goal-desc">Clear-headed and productive</div>
+      </div>
+      <div class="lp-goal" onclick="pickGoal(this,'social')">
+        <div class="lp-goal-icon">&#10024;</div>
+        <div class="lp-goal-label">Good Vibes</div>
+        <div class="lp-goal-desc">Uplifted, present, social</div>
+      </div>
+      <div class="lp-goal" onclick="pickGoal(this,'creative')">
+        <div class="lp-goal-icon">&#127912;</div>
+        <div class="lp-goal-label">Creative Flow</div>
+        <div class="lp-goal-desc">Open, inspired, in the zone</div>
+      </div>
+      <div class="lp-goal" onclick="pickGoal(this,'pain')">
+        <div class="lp-goal-icon">&#129658;</div>
+        <div class="lp-goal-label">Pain &amp; Inflammation</div>
+        <div class="lp-goal-desc">Physical relief, stay functional</div>
+      </div>
+      <div class="lp-goal" onclick="pickGoal(this,'relax')">
+        <div class="lp-goal-icon">&#127807;</div>
+        <div class="lp-goal-label">Just Relaxing</div>
+        <div class="lp-goal-desc">Unwind without agenda</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3: TERPENES -->
+  <div id="s3" class="lp-step" style="display:none">
+    <button class="lp-back-btn" onclick="goTo(2)">&#8592; Back</button>
+    <div class="lp-eyebrow" id="s3eyebrow">Step 3 of 5 &mdash; Terpenes</div>
+    <h1 class="lp-h1">The terpenes that<br><em>work for you.</em></h1>
+    <p class="lp-lead" id="s3lead"></p>
+    <div class="lp-terps" id="s3terps"></div>
+    <div class="lp-btns">
+      <button class="lp-btn lp-btn-cream" onclick="goTo(4)">Show me strains &rarr;</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: STRAINS -->
+  <div id="s4" class="lp-step" style="display:none">
+    <button class="lp-back-btn" onclick="goTo(3)">&#8592; Back</button>
+    <div class="lp-eyebrow">Step 4 of 5 &mdash; Strains</div>
+    <h1 class="lp-h1">Strains worth<br><em>exploring.</em></h1>
+    <p class="lp-lead">Three strains matched to your goal. Click any to see the full profile &mdash; lineage, terpenes, effects, and floor notes.</p>
+    <div class="lp-strains" id="s4strains"></div>
+    <div class="lp-btns">
+      <button class="lp-btn lp-btn-cream" onclick="goTo(5)">One more step &rarr;</button>
+      <a href="/strains" class="lp-btn lp-btn-gold">Browse all 394 strains</a>
+    </div>
+  </div>
+
+  <!-- STEP 5: SCANNER -->
+  <div id="s5" class="lp-step" style="display:none">
+    <button class="lp-back-btn" onclick="goTo(4)">&#8592; Back</button>
+    <div class="lp-eyebrow">Step 5 of 5 &mdash; The Scanner</div>
+    <h1 class="lp-h1">Now look at<br><em>what you&rsquo;ve got.</em></h1>
+    <p class="lp-lead">Got a product in hand? Point the scanner at the label. We&rsquo;ll read the data and break down what it actually means &mdash; terpenes, potency, effects, and whether it matches your goal.</p>
+    <div class="lp-scan-box">
+      <div class="lp-scan-icon">&#128247;</div>
+      <div class="lp-scan-title">Product Scanner</div>
+      <div class="lp-scan-desc">Take a photo of any cannabis product label. The scanner reads the data and gives you a full breakdown &mdash; in plain language, not dispensary jargon.</div>
+    </div>
+    <div class="lp-complete">
+      <div class="lp-complete-title">You&rsquo;re ready.</div>
+      <div class="lp-complete-text">You know the basics, you know your goal, you know the terpenes and strains that match it. That&rsquo;s more than most people walking into a dispensary.</div>
+    </div>
+    <div class="lp-btns">
+      <a href="/scan" class="lp-btn lp-btn-green">Open Scanner &rarr;</a>
+      <a href="/strains" class="lp-btn lp-btn-gold">Explore all strains</a>
+    </div>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-wordmark">Cannascenti</span>
+      <p>The deepest cannabis reference online &mdash; built by industry professionals, for anyone who wants to understand what they&rsquo;re consuming.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">The Lore</div>
+      <ul class="footer-links">
+        <li><a href="/strains">Strain Database</a></li>
+        <li><a href="/terpenes">The Aromatics</a></li>
+        <li><a href="/cannabinoids">Cannabinoids</a></li>
+        <li><a href="/history">The Chronicle</a></li>
+        <li><a href="/concentrates">The Extracts</a></li>
+        <li><a href="/glossary">The Lexicon</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Tools</div>
+      <ul class="footer-links">
+        <li><a href="/scan">Product Scanner</a></li>
+        <li><a href="/quiz">Strain Finder Quiz</a></li>
+        <li><a href="/budtender-pro">The Order</a></li>
+        <li><a href="/edibles">The Infused</a></li>
+        <li><a href="/consumption">The Rituals</a></li>
+        <li><a href="/cultivation">The Grow</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Magazine</div>
+      <ul class="footer-links">
+        <li><a href="/magazine/strain-spotlight-blue-dream">Strain Spotlight: Blue Dream</a></li>
+        <li><a href="/magazine/strain-spotlight-og-kush">Strain Spotlight: OG Kush</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="/about">About</a></li>
+        <li><a href="/for-dispensaries">For Dispensaries</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="https://www.instagram.com/cannascenti.hq" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+        <li><a href="/privacy">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-legal">Must be 21+ to purchase cannabis products where legal. Cannascenti provides educational content only and does not sell cannabis. Cannabis laws vary by location &mdash; know your local regulations.</p>
+    <span class="footer-copy">&copy; 2026 Cannascenti</span>
+  </div>
+</footer>
+
+<script>
+var currentStep = 1;
+var selectedGoal = null;
+
+var GOALS = {
+  sleep: {
+    lead: 'These three terpenes are the ones most associated with sedation and sleep support. When you see these on a label, you\'re in the right territory.',
+    terps: [
+      { name: 'Myrcene', color: '#E07B39', note: 'The most abundant cannabis terpene. Increases cell membrane permeability so THC crosses the blood-brain barrier faster. High myrcene = heavier, more sedating effect. The primary predictor of couch-lock and the backbone of most sleep strains.' },
+      { name: 'Linalool', color: '#9B72CF', note: 'The active compound in lavender. Modulates GABA receptors to quiet the nervous system and promote deep rest. Naturally calming without being overpowering.' },
+      { name: 'Caryophyllene', color: '#C97B4B', note: 'Anti-inflammatory and stress-reducing. Takes the edge off physical tension so your body can actually let go. Found in most classic indica strains.' }
+    ],
+    strains: [
+      { name: 'Granddaddy Purple', slug: 'granddaddy-purple', type: 'Indica', color: '#A855F7', why: 'The gold standard for sleep support on any shelf. High myrcene and linalool, full-body relaxation, and consistently sedating across different batches.' },
+      { name: 'Northern Lights', slug: 'northern-lights', type: 'Indica', color: '#A855F7', why: 'One of the most reliably sedating strains ever bred. Classic heavy indica with a long track record of helping people stay asleep through the night.' },
+      { name: 'Bubba Kush', slug: 'bubba-kush', type: 'Indica', color: '#A855F7', why: 'Dense, earthy, full-body. High caryophyllene reduces the stress response that keeps people awake even when they\'re exhausted.' }
+    ]
+  },
+  anxiety: {
+    lead: 'Anxiety is where strain selection matters most. These terpenes work with low-to-moderate THC to calm without overwhelming.',
+    terps: [
+      { name: 'Linalool', color: '#9B72CF', note: 'Directly reduces anxiety by modulating GABA activity \u2014 the same pathway targeted by many anti-anxiety medications, but naturally and without dependency.' },
+      { name: 'Caryophyllene', color: '#C97B4B', note: 'Activates CB2 receptors, reducing the cortisol and stress response. The only terpene that functions like a cannabinoid \u2014 anti-anxiety without psychoactivity.' },
+      { name: 'Myrcene', color: '#E07B39', note: 'Quiets physical tension. At moderate doses, grounding and calming without heavy sedation \u2014 takes the body out of fight-or-flight.' }
+    ],
+    strains: [
+      { name: 'Blue Dream', slug: 'blue-dream', type: 'Hybrid', color: '#52B788', why: 'Gentle, predictable, one of the most consistently well-loved strains in California. Enough THC to relax without the paranoia risk of high-potency options.' },
+      { name: 'Harlequin', slug: 'harlequin', type: 'Hybrid', color: '#52B788', why: 'High CBD:THC ratio. CBD modulates THC\'s anxiety-inducing properties \u2014 ideal for THC-sensitive consumers or anyone who has had bad experiences before.' },
+      { name: 'Granddaddy Purple', slug: 'granddaddy-purple', type: 'Indica', color: '#A855F7', why: 'Linalool-forward with deep body relaxation. Physically dissolves tension before it reaches the mind.' }
+    ]
+  },
+  energy: {
+    lead: 'Not all cannabis is sedating. These terpenes are associated with clear-headed, uplifting, productive effects \u2014 the ones to look for when you need to stay sharp.',
+    terps: [
+      { name: 'Terpinolene', color: '#5B8DD9', note: 'The most energizing terpene. Rare at high concentrations \u2014 dominant-terpinolene strains are cerebral and psychedelic-light rather than heavy. Look for it on labels from Durban Poison, Jack Herer, and Ghost Train Haze.' },
+      { name: 'Limonene', color: '#F2C94C', note: 'Mood elevation through serotonin receptor interaction. Citrus-forward strains with limonene feel bright and uplifting rather than cloudy or heavy.' },
+      { name: 'Pinene', color: '#52B788', note: 'Mental alertness and memory retention. Alpha-pinene may actually counteract THC-induced memory fog. Acts as a bronchodilator. The clearest-headed terpene in the catalog.' }
+    ],
+    strains: [
+      { name: 'Durban Poison', slug: 'durban-poison', type: 'Sativa', color: '#F2C94C', why: 'Terpinolene-dominant landrace from South Africa. Sharp, clean, focused energy with no body sedation. The espresso of cannabis.' },
+      { name: 'Jack Herer', slug: 'jack-herer', type: 'Sativa', color: '#F2C94C', why: 'Named after the cannabis activist. Balanced cerebral high with enough body ease to stay comfortable while working or creating.' },
+      { name: 'Green Crack', slug: 'green-crack', type: 'Sativa', color: '#F2C94C', why: 'Fast-acting mental energy. High-powered \u2014 best for experienced consumers who need to get things done and don\'t want any sedation.' }
+    ]
+  },
+  social: {
+    lead: 'These terpenes lower social anxiety, elevate mood, and keep the energy light \u2014 the profile behind most of the strains people reach for before going out.',
+    terps: [
+      { name: 'Limonene', color: '#F2C94C', note: 'The social terpene. Mood-elevating and anxiety-reducing through serotonin receptors. Makes conversations flow easier and lowers self-consciousness.' },
+      { name: 'Ocimene', color: '#52B788', note: 'Sweet, tropical, uplifting. Found in many of the hybrid favorites that feel good without being too heavy or too cerebral \u2014 keeps you present.' },
+      { name: 'Caryophyllene', color: '#C97B4B', note: 'Takes the edge off social anxiety without dulling the experience. Lets you be fully present without the cortisol running in the background.' }
+    ],
+    strains: [
+      { name: 'Blue Dream', slug: 'blue-dream', type: 'Hybrid', color: '#52B788', why: 'The crowd-pleaser. Uplifted and relaxed at the same time \u2014 works in almost any social setting, with almost any group.' },
+      { name: 'Sour Diesel', slug: 'sour-diesel', type: 'Sativa', color: '#F2C94C', why: 'Fast-acting, talkative, energetic. The strain behind a lot of good nights in LA.' },
+      { name: 'Girl Scout Cookies', slug: 'girl-scout-cookies', type: 'Hybrid', color: '#52B788', why: 'Euphoric and relaxed. GSC is the definition of good vibes without going overboard.' }
+    ]
+  },
+  creative: {
+    lead: 'The best creative strains tend to be terpinolene or limonene-dominant. They open up associative thinking without locking you in your head.',
+    terps: [
+      { name: 'Terpinolene', color: '#5B8DD9', note: 'Cerebral and psychedelic-light. Opens associative thinking and loosens the filter \u2014 the terpene most consistently linked to divergent, non-linear creative thought.' },
+      { name: 'Limonene', color: '#F2C94C', note: 'Mood elevation and reduced self-criticism. Lets you make things without over-editing or second-guessing every decision.' },
+      { name: 'Pinene', color: '#52B788', note: 'Keeps you mentally alert and on-task. Stops the creativity from drifting into unfocused meandering.' }
+    ],
+    strains: [
+      { name: 'Jack Herer', slug: 'jack-herer', type: 'Sativa', color: '#F2C94C', why: 'Writers, artists, and musicians have relied on this strain for decades. Cerebral but grounded \u2014 the creative professional\'s strain.' },
+      { name: 'Trainwreck', slug: 'trainwreck', type: 'Hybrid', color: '#52B788', why: 'Powerful cerebral rush followed by body relaxation. Best for experienced consumers doing deep, immersive creative work.' },
+      { name: 'Pineapple Express', slug: 'pineapple-express', type: 'Hybrid', color: '#52B788', why: 'Happy, tropical, and easy. Great for casual creative sessions without over-committing to an intense experience.' }
+    ]
+  },
+  pain: {
+    lead: 'For physical relief, terpene selection matters as much as THC percentage. These three work directly on the body\'s inflammation and pain pathways.',
+    terps: [
+      { name: 'Caryophyllene', color: '#C97B4B', note: 'The only terpene that directly binds CB2 receptors \u2014 the body\'s primary inflammation-regulation pathway. Powerful anti-inflammatory without psychoactivity. Also found in black pepper and cloves.' },
+      { name: 'Myrcene', color: '#E07B39', note: 'Muscle relaxant and natural analgesic. Increases THC absorption at the cellular level, amplifying pain relief beyond what the percentage alone would suggest.' },
+      { name: 'Humulene', color: '#C9973A', note: 'Anti-inflammatory with appetite suppression. Found in strains that give real physical relief without completely sedating you \u2014 good for daytime pain management.' }
+    ],
+    strains: [
+      { name: 'Harlequin', slug: 'harlequin', type: 'Hybrid', color: '#52B788', why: 'High CBD:THC ratio. CBD is a potent anti-inflammatory \u2014 this strain gives real pain relief without full psychoactivity. Functional during the day.' },
+      { name: 'Granddaddy Purple', slug: 'granddaddy-purple', type: 'Indica', color: '#A855F7', why: 'Body-heavy with high myrcene and caryophyllene. One of the most effective strains for physical pain and muscle tension.' },
+      { name: 'OG Kush', slug: 'og-kush', type: 'Hybrid', color: '#52B788', why: 'High caryophyllene. Addresses both the physical pain and the stress that amplifies it \u2014 a two-front approach.' }
+    ]
+  },
+  relax: {
+    lead: 'For unwinding without agenda, you want myrcene-dominant strains with moderate THC \u2014 enough to actually decompress, not so much it becomes an event.',
+    terps: [
+      { name: 'Myrcene', color: '#E07B39', note: 'The most abundant cannabis terpene and the backbone of most relaxation strains. High myrcene = deep, easy, physical relaxation. The definition of end-of-day cannabis.' },
+      { name: 'Linalool', color: '#9B72CF', note: 'Clean, floral, gentle. Promotes calm without heavy sedation \u2014 a natural mental reset after a long shift or a hard week.' },
+      { name: 'Caryophyllene', color: '#C97B4B', note: 'Reduces cortisol and stress response without getting in the way of the experience. Takes the edge off without taking over.' }
+    ],
+    strains: [
+      { name: 'OG Kush', slug: 'og-kush', type: 'Hybrid', color: '#52B788', why: 'The original relaxation strain. Earthy, euphoric, reliably pleasant \u2014 built for exactly this kind of evening.' },
+      { name: 'Gelato', slug: 'gelato', type: 'Hybrid', color: '#52B788', why: 'Sweet, smooth, balanced. Body relaxation with enough mental brightness to stay present and actually enjoy the evening.' },
+      { name: 'Wedding Cake', slug: 'wedding-cake', type: 'Hybrid', color: '#52B788', why: 'Rich, creamy, deeply relaxing. High THC \u2014 a little goes a long way, especially for newer consumers.' }
+    ]
+  }
+};
+
+function goTo(n) {
+  var prev = document.getElementById('s' + currentStep);
+  if (prev) prev.style.display = 'none';
+
+  if (n === 3 && selectedGoal) renderStep3();
+  if (n === 4 && selectedGoal) renderStep4();
+
+  var next = document.getElementById('s' + n);
+  if (next) {
+    next.style.display = 'block';
+    next.style.animation = 'none';
+    next.offsetHeight; // trigger reflow
+    next.style.animation = '';
+  }
+
+  currentStep = n;
+  updateProgress();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function pickGoal(el, key) {
+  selectedGoal = key;
+  document.querySelectorAll('.lp-goal').forEach(function(g) { g.classList.remove('sel'); });
+  el.classList.add('sel');
+  setTimeout(function() { goTo(3); }, 300);
+}
+
+function renderStep3() {
+  var g = GOALS[selectedGoal];
+  if (!g) return;
+  document.getElementById('s3lead').textContent = g.lead;
+  document.getElementById('s3terps').innerHTML = g.terps.map(function(t) {
+    return '<div class="lp-terp" style="border-left-color:' + t.color + '">' +
+      '<div class="lp-terp-name">' + t.name + '</div>' +
+      '<div class="lp-terp-note">' + t.note + '</div>' +
+      '</div>';
+  }).join('');
+}
+
+function renderStep4() {
+  var g = GOALS[selectedGoal];
+  if (!g) return;
+  document.getElementById('s4strains').innerHTML = g.strains.map(function(st) {
+    return '<a href="/strains/' + st.slug + '" class="lp-strain">' +
+      '<div class="lp-strain-accent" style="background:' + st.color + '"></div>' +
+      '<div class="lp-strain-body">' +
+        '<div class="lp-strain-name">' + st.name + '</div>' +
+        '<div class="lp-strain-meta" style="color:' + st.color + '">' + st.type + '</div>' +
+        '<div class="lp-strain-why">' + st.why + '</div>' +
+        '<div class="lp-strain-arrow">View full profile \u2192</div>' +
+      '</div>' +
+    '</a>';
+  }).join('');
+}
+
+function updateProgress() {
+  for (var i = 1; i <= 5; i++) {
+    var node = document.getElementById('lpNode' + i);
+    if (!node) continue;
+    node.className = 'lp-node' + (i === currentStep ? ' active' : i < currentStep ? ' done' : '');
+    if (i < 5) {
+      var conn = document.getElementById('lpConn' + i);
+      if (conn) conn.className = 'lp-connector' + (i < currentStep ? ' done' : '');
+    }
+  }
+}
+</script>
+
+<script>
+(function(){
+  const ham = document.getElementById('navHam');
+  const links = document.getElementById('navLinks');
+  if(ham && links){ ham.addEventListener('click', function(){ links.classList.toggle('open'); }); }
+  const nav = document.getElementById('mainNav');
+  if(nav){ window.addEventListener('scroll', function(){ nav.style.background = window.scrollY > 60 ? 'rgba(8,8,8,0.98)' : 'rgba(8,8,8,0.94)'; }, { passive:true }); }
+})();
+</script>
+</body>
+</html>

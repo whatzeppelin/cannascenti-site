@@ -6178,6 +6178,13 @@ function retakeQuiz() {
     return;
   }
 
+  if (req.method === "GET" && req.url === "/learn") {
+    const html = fs.readFileSync(path.join(__dirname, "learn.html"), "utf8");
+    res.writeHead(200, { "Content-Type": "text/html", "Cache-Control": "no-cache, no-store, must-revalidate" });
+    res.end(html);
+    return;
+  }
+
   // ─── Dispensary pitch page ─────────────────────────────────────────────────
   if (req.method === "GET" && req.url === "/for-dispensaries") {
     const html = fs.readFileSync(path.join(__dirname, "for-dispensaries.html"), "utf8");
